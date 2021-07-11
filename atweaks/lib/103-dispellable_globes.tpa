@@ -5,6 +5,10 @@ ACTION_FOR_EACH ~file~ IN
                 ~spwi406~                                                          // Minor Globe of Invulnrability
                 ~spwi602~                                                          // Globe of Invulnrability
                 ~RR#WI406~                                                         // Minor Globe of Invulnrability (used by RR for Selina's Amulet)
+                ~SPWM126~                                                          // Minor Globe of Invulnrability (Wild Mage)
+                ~DWSW406~                                                          // Minor Globe of Invulnrability (stratagems Cast Previously)	
+                ~DWSW602~                                                          // Globe of Invulnrability (stratagems Cast Previously)					
+                ~DW#mlglb~                                                         // Globe of Invulnrability (stratagems)
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.spl~ BEGIN
     COPY_EXISTING ~%file%.spl~ ~override~
