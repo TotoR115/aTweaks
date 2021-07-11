@@ -183,3 +183,19 @@ BEGIN
     BUT_ONLY_IF_IT_CHANGES
   END
 END
+
+/////////////////////////////
+// Compatibility adjustments
+/////////////////////////////
+
+// Ascension
+
+// Add Compatibility with Restored BG1 Bhaalspawn powers from Ascension by overriting Ascension's files
+ACTION_IF FILE_EXISTS_IN_GAME FINP101.spl BEGIN
+COPY_EXISTING "SPIN101.spl" "override/FINP101.spl"
+			  "SPIN102.spl" "override/FINP102.spl"
+			  "SPIN103.spl" "override/FINP103.spl"
+			  "SPIN104.spl" "override/FINP104.spl"
+			  "SPIN105.spl" "override/FINP105.spl"
+			  "SPIN106.spl" "override/FINP106.spl"
+END
