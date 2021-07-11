@@ -35,14 +35,41 @@ STR_VAR                                                                         
 "script18"   = "RR#NOSCN"                                                         // 18th AI script name
 "script19"   = "RR#NOSCN"                                                         // 19th AI script name
 "script20"   = "RR#NOSCN"                                                         // 20th AI script name
+"script21"   = "RR#NOSCN"                                                         // 21st AI script name
+"script22"   = "RR#NOSCN"                                                         // 22nd AI script name
+"script23"   = "RR#NOSCN"                                                         // 23rd AI script name
+"script24"   = "RR#NOSCN"                                                         // 24th AI script name
+"script25"   = "RR#NOSCN"                                                         // 25th AI script name
+"script26"   = "RR#NOSCN"                                                         // 26th AI script name
+"script27"   = "RR#NOSCN"                                                         // 27th AI script name
+"script28"   = "RR#NOSCN"                                                         // 28th AI script name
+"script29"   = "RR#NOSCN"                                                         // 29th AI script name
+"script30"   = "RR#NOSCN"                                                         // 30th AI script name
+"script31"   = "RR#NOSCN"                                                         // 31st AI script name
+"script32"   = "RR#NOSCN"                                                         // 32nd AI script name
+"script33"   = "RR#NOSCN"                                                         // 33rt AI script name
+"script34"   = "RR#NOSCN"                                                         // 34th AI script name
+"script35"   = "RR#NOSCN"                                                         // 35th AI script name
+"script36"   = "RR#NOSCN"                                                         // 36th AI script name
+"script37"   = "RR#NOSCN"                                                         // 37th AI script name
+"script38"   = "RR#NOSCN"                                                         // 38th AI script name
+"script39"   = "RR#NOSCN"                                                         // 39th AI script name
+"script40"   = "RR#NOSCN"                                                         // 40th AI script name
 "skipfile01" = "RR#NOSKIP"                                                        // skip script patching for a designated file
 "skipfile02" = "RR#NOSKIP"                                                        // skip script patching for a designated file
 "skipfile03" = "RR#NOSKIP"                                                        // skip script patching for a designated file
 "skipfile04" = "RR#NOSKIP"                                                        // skip script patching for a designated file
 "skipfile05" = "RR#NOSKIP"                                                        // skip script patching for a designated file
 "skipfile06" = "RR#NOSKIP"                                                        // skip script patching for a designated file
-
-
+"skipfile07" = "RR#NOSKIP"                                                        // skip script patching for a designated file
+"skipfile08" = "RR#NOSKIP"                                                        // skip script patching for a designated file
+"skipfile09" = "RR#NOSKIP"                                                        // skip script patching for a designated file
+"skipfile10" = "RR#NOSKIP"                                                        // skip script patching for a designated file
+"skipfile11" = "RR#NOSKIP"                                                        // skip script patching for a designated file
+"skipfile12" = "RR#NOSKIP"                                                        // skip script patching for a designated file
+"skipfile13" = "RR#NOSKIP"                                                        // skip script patching for a designated file
+"skipfile14" = "RR#NOSKIP"                                                        // skip script patching for a designated file
+"skipfile15" = "RR#NOSKIP"                                                        // skip script patching for a designated file
 
 
 BEGIN                                                                              // Start FUNCTION
@@ -53,14 +80,14 @@ READ_ASCII  0x258 ~airac~                                                       
 READ_ASCII  0x260 ~aigen~                                                          // old general script
 READ_ASCII  0x268 ~aidef~                                                          // old default script
 
-PATCH_FOR_EACH ~skipfile~ IN ~%skipfile01%~ ~%skipfile02%~ ~%skipfile03%~ ~%skipfile04%~ ~%skipfile05%~ ~%skipfile06%~ BEGIN
+PATCH_FOR_EACH ~skipfile~ IN ~%skipfile01%~ ~%skipfile02%~ ~%skipfile03%~ ~%skipfile04%~ ~%skipfile05%~ ~%skipfile06%~ ~%skipfile07%~ ~%skipfile08%~ ~%skipfile09%~ ~%skipfile10%~ ~%skipfile11%~ ~%skipfile12%~ ~%skipfile13%~ ~%skipfile14%~ ~%skipfile15%~ BEGIN
   PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE EVALUATE_BUFFER ~%skipfile%~) BEGIN   // if file is supposed to be skipped
     SET "scrdone" = "1"                                                            // mark new script as assigned
     SET "scrskip" = "1"                                                            // mark script patching to be skipped
   END
 END
 
-PATCH_FOR_EACH ~ainul~ IN ~%script01%~ ~%script02%~ ~%script03%~ ~%script04%~ ~%script05%~ ~%script06%~ ~%script07%~ ~%script08%~ ~%script09%~ ~%script10%~ ~%script11%~ ~%script12%~ ~%script13%~ ~%script14%~ ~%script15%~ ~%script16%~ ~%script17%~ ~%script18%~ ~%script19%~ ~%script20%~ BEGIN
+PATCH_FOR_EACH ~ainul~ IN ~%script01%~ ~%script02%~ ~%script03%~ ~%script04%~ ~%script05%~ ~%script06%~ ~%script07%~ ~%script08%~ ~%script09%~ ~%script10%~ ~%script11%~ ~%script12%~ ~%script13%~ ~%script14%~ ~%script15%~ ~%script16%~ ~%script17%~ ~%script18%~ ~%script19%~ ~%script20%~ ~%script21%~ ~%script22%~ ~%script23%~ ~%script24%~ ~%script25%~ ~%script26%~ ~%script27%~ ~%script28%~ ~%script29%~ ~%script30%~ ~%script31%~ ~%script32%~ ~%script33%~ ~%script34%~ ~%script35%~ ~%script36%~ ~%script37%~ ~%script38%~ ~%script39%~ ~%script40%~ BEGIN
   PATCH_IF ("%aiovr%" STRING_EQUAL_CASE "%ainul%") OR "%aiovr%" STRING_EQUAL "" OR "%aiovr%" STRING_EQUAL_CASE none BEGIN             
     SPRINT "aiovr" ""                                                          // null matching override script
     SET "ovrempty" = "1"                                                           // mark override script slot as empty

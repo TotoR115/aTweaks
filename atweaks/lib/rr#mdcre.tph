@@ -19,16 +19,16 @@ INT_VAR                                                                         
 "newsvs"   = "20"                                                                  // new Save vs. Spell
 "newmr"    = "0"                                                                   // new Magic Resistance value
 "newlvl1"  = "0"                                                                   // new level (first class)
- newlvl2   =  0                                                                    // new level (second)
- newlvl3   =  0                                                                    // new level (third)
+"newlvl2"  = "0"                                                                   // new level (second)
+"newlvl3"  = "0"                                                                   // new level (third)
 "newfr"    = "0"                                                                   // new Resist Fire value
 "newcr"    = "0"                                                                   // new Resist Cold value
 "newer"    = "0"                                                                   // new Resist Electricity value
 "newar"    = "0"                                                                   // new Resist Acid value
- newrs     =  0                                                                    // new Resist Slashing
- newrc     =  0                                                                    // new Resist Crushing
- newrp     =  0                                                                    // new Resist Piercing
- newrm     =  0                                                                    // new Resist Missiles
+"newrs"    = "0"                                                                   // new Resist Slashing
+"newrc"    = "0"                                                                   // new Resist Crushing
+"newrp"    = "0"                                                                   // new Resist Piercing
+"newrm"    = "0"                                                                   // new Resist Missiles
 "newstr"   = "0"                                                                   // new Strength value
 "newstrx"  = "0"                                                                   // new Exceptional Strength value
 "newint"   = "0"                                                                   // new Intelligence value
@@ -39,7 +39,7 @@ INT_VAR                                                                         
 "newmor"   = "20"                                                                  // new morale value
 "newmorb"  = "1"                                                                   // new morale break value
 "newmorr"  = "99"                                                                  // new morale recovery value
- newgen    =  999
+"newgen"   = "999"
 "newrace"  = "999"                                                                 // new race
 "newclass" = "999"                                                                 // new class
 "newgendr" = "999"                                                                 // new gender
@@ -67,6 +67,26 @@ STR_VAR                                                                         
 "enfc08"   = "RR#NOENF"                                                            // enforced creature 8
 "enfc09"   = "RR#NOENF"                                                            // enforced creature 9
 "enfc10"   = "RR#NOENF"                                                            // enforced creature 10
+"enfc11"   = "RR#NOENF"                                                            // enforced creature 11
+"enfc12"   = "RR#NOENF"                                                            // enforced creature 12
+"enfc13"   = "RR#NOENF"                                                            // enforced creature 13
+"enfc14"   = "RR#NOENF"                                                            // enforced creature 14
+"enfc15"   = "RR#NOENF"                                                            // enforced creature 15
+"enfc16"   = "RR#NOENF"                                                            // enforced creature 16
+"enfc17"   = "RR#NOENF"                                                            // enforced creature 17
+"enfc18"   = "RR#NOENF"                                                            // enforced creature 18
+"enfc19"   = "RR#NOENF"                                                            // enforced creature 19
+"enfc20"   = "RR#NOENF"                                                            // enforced creature 20
+"enfc21"   = "RR#NOENF"                                                            // enforced creature 21
+"enfc22"   = "RR#NOENF"                                                            // enforced creature 22
+"enfc23"   = "RR#NOENF"                                                            // enforced creature 23
+"enfc24"   = "RR#NOENF"                                                            // enforced creature 24
+"enfc25"   = "RR#NOENF"                                                            // enforced creature 25
+"enfc26"   = "RR#NOENF"                                                            // enforced creature 26
+"enfc27"   = "RR#NOENF"                                                            // enforced creature 27
+"enfc28"   = "RR#NOENF"                                                            // enforced creature 28
+"enfc29"   = "RR#NOENF"                                                            // enforced creature 29
+"enfc30"   = "RR#NOENF"                                                            // enforced creature 30
 "notenf01" = "RR#XENFD"                                                            // non-enforced creature 1
 "notenf02" = "RR#XENFD"                                                            // non-enforced creature 2
 "notenf03" = "RR#XENFD"                                                            // non-enforced creature 3
@@ -126,7 +146,7 @@ READ_BYTE  0x27b "oldalign"                                                     
 READ_BYTE  0x45  "oldhide"                                                         // Hide in Shadows
 READ_BYTE  0x68  "oldmsil"                                                         // Move Silently
 
-PATCH_FOR_EACH ~enfcre~ IN ~%enfc01%~ ~%enfc02%~ ~%enfc03%~ ~%enfc04%~ ~%enfc05%~ ~%enfc06%~ ~%enfc07%~ ~%enfc08%~ ~%enfc09%~ ~%enfc10%~ BEGIN // checks for enforced creatures
+PATCH_FOR_EACH ~enfcre~ IN ~%enfc01%~ ~%enfc02%~ ~%enfc03%~ ~%enfc04%~ ~%enfc05%~ ~%enfc06%~ ~%enfc07%~ ~%enfc08%~ ~%enfc09%~ ~%enfc10%~ ~%enfc11%~ ~%enfc12%~ ~%enfc13%~ ~%enfc14%~ ~%enfc15%~ ~%enfc16%~ ~%enfc17%~ ~%enfc18%~ ~%enfc19%~ ~%enfc20%~ ~%enfc21%~ ~%enfc22%~ ~%enfc23%~ ~%enfc24%~ ~%enfc25%~ ~%enfc26%~ ~%enfc27%~ ~%enfc28%~ ~%enfc29%~ ~%enfc30%~ BEGIN // checks for enforced creatures
   PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE "%enfcre%") BEGIN             
     SET "enforce" = "1"                                                           // mark creature as enforced (will always use specified values, even if the existing ones are better)
   END
