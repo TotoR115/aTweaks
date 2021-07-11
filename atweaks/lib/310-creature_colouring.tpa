@@ -1,5 +1,3 @@
-
-// Iron Golem
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~GOLIRO01~                                                             // Iron Golem
             ~GORGRD01~                                                             // Guardian (Iron) Golem (Watcher's Keep)
@@ -98,7 +96,6 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
 
 
 // Stone Golem
@@ -475,7 +472,8 @@ END                                                                             
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~MEPRAD01~                                                           // Radiant Mephit
               ~MEPRAD02~                                                           // Radiant Mephit
-               ~RR#MRAD~                                                           // Radiant Mephit (gated)
+              ~RR#MRAD~                                                            // Radiant Mephit (gated)
+              ~FAMRAD~                                                             // Radiant Mephit - familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -550,6 +548,10 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~ELEMEP04~                                                           // Fire Mephit
               ~OBSFIR02~                                                           // Fire Mephit
                ~RR#MFIR~                                                           // Fire Mephit (gated)
+			    ~A7Q5FM~                                                           // Fire Mephit (Afaaq)
+			  ~O#brimP1~
+			  ~O#brimP2~
+               ~FAMFIRE~                                                            // Fire Mephit - familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -622,6 +624,7 @@ END                                                                             
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~MEPLIG01~                                                           // Lightning Mephit
                ~RR#MLIG~                                                           // Lightning Mephit (gated)
+              ~FAMLIGHT~                                                           // Lightning Mephit - familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -770,6 +773,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~ELEMEP05~                                                           // Magma Mephit
               ~OBSFIR03~                                                           // Magma Mephit
                ~RR#MMAG~                                                           // Magma Mephit (gated)
+			  ~O#brimP3~
+			    ~A7Q5MM~                                                           // Magma Mephit (afaaq)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -844,6 +849,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~AR18FAM~                                                           // Mist Mephit
                 ~GPFAM1~                                                           // Pitch
                ~RR#MMST~                                                           // Mist Mephit (gated)
+               ~FAMMIST~                                                           // Mist Mephit - Familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1137,6 +1143,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
                 ~MDDUST~                                                           // Dust Mephit
                ~RR#MDUS~                                                           // Dust Mephit (gated)
               ~TCMMBKWM~                                                           // Book Mephit (Classic Adventures)
+               ~FAMDUST~                                                           // Dust Mephit - familiar
+              ~FAMDUS25~                                                           // Dust Mephit - familiar ToB
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1448,6 +1456,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SEVPAT03~                                                             // Pooky
             ~x#dyqimp~                                                             // Ichthraa, the imp in Dynaheir's quest (BG1 NPCs)
              ~TCIMP01~                                                             // Imp (Classic Adventures)
+			~FL#UDIMP~                                                             // Imp
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1568,18 +1577,18 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
 // Snow Troll
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~OBSICE01~                                                           // Snow Troll
-              ~dw#trlbl~ 
-              ~dw#trlsn~
-              ~obsice11~ 
-              ~trolic03~ 
-              ~trolic04~ 
-              ~trolsn01~ 
-              ~trolsn02~
+              ~OBSICE11~                                                           // Snow Troll
+              ~obsice11~                                                           // Snow Troll
+              ~trolic03~                                                           // Snow Troll
+              ~trolic04~                                                           // Snow Troll
+              ~trolsn01~                                                           // Snow Troll
+              ~trolsn02~                                                           // Snow Troll
+              ~dw#trlbl~                                                           // Snow Troll (SCS)
+              ~dw#trlsn~                                                           // Snow Troll (SCS)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1645,16 +1654,21 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
 // Ice Troll
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~trolic01~                                                           // Ice Troll
-              ~trolic02~                                                           // Ice Troll
-              ~kptrol06~                                                           // Ice Troll
+              ~trolic02~                                                           // Ice Troll (BP)
+              ~icetrlz2~                                                           // Ice Troll (BP)
+              ~trolicd2~                                                           // Ice Troll (BP)
+              ~dw#trlic~                                                           // Ice Troll (SCS)
+              ~icetrolx~                                                           // Ice Troll (TDD)
+              ~icetrolz~                                                           // Ice Troll (TDD)
+              ~trolicdd~                                                           // Ice Troll (TDD)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 32512 BEGIN 									           // TROLL
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -1708,10 +1722,10 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
 WRITE_BYTE  0x2E "58"                                                              // major color (Dark Blue)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
 
 // Desert Troll
 
@@ -1721,6 +1735,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 32512 BEGIN 									           // TROLL
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -1772,6 +1787,7 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
 WRITE_BYTE  0x2E "67"                                                              // major color (Shiny Gold)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -1781,6 +1797,7 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~MUMGRE01~                                                           // Greater Mummy
+			  ~MUMMYX1~ 														   //  Greater Mummy (TDD)		
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1916,8 +1933,6 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
-
 // Nabassu
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -1936,24 +1951,24 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~TANARI01~                                                           // Tanar'ri (Nabassu within the Planar Sphere)
                  ~TANAR~                                                           // Aec'Letec (BGT)
                 ~_TANAR~                                                           // Aec'Letec (Tutu)
-              ~barbe2~ 
-              ~barbe3~ 
-              ~caddem13~ 
-              ~caddem5~
-              ~demnabr1~ 
-              ~demnabr2~
-              ~enddem04~ 
-              ~enddem05~ 
-              ~esp04~ 
-              ~f_demdrg~ 
-              ~finnabas~
-              ~rumar02~ 
-              ~tg#dem2~ 
-              ~z#gnab01~ 
-              ~z#gnabas~
-              fl#nabsu                                                             //aTweaks fiend intended for SCSII
-              fl#hsnab                                                             //Fiendish Gating  
-              rr#hsnab                                                             //Fiendish Gating  
+              ~dw#nabsu~                                                           // SCSII Nabassu
+              ~dw#drctz~                                                           // SCSII Nabassu
+				~barbe2~                                                           // Nabassu (Kim NPC)
+				~barbe3~                                                           // Nabassu (Kim NPC)
+			  ~caddem13~                                                           // Nabassu (Rot)
+			   ~caddem5~                                                           // Nabassu (Rot)
+			  ~demnabr1~                                                           // Nabassu (TDD)
+			  ~demnabr2~                                                           // Nabassu (TDD)
+				 ~esp04~                                                           // Nabassu (Improved Volcano)
+		      ~f_demdrg~                                                           // Gretaer Tanari (Drizzt Saga)
+			   ~BSTANAR~                                                           // Nabassu (BST)
+			  ~FINNABAS~                                                           // Nabassu (Ascension)
+			   ~tg#dem2~                                                           // Nabassu (Refinement)
+			  ~z#gnab01~                                                           // Nabassu (Spellhold Gauntlet)
+			  ~z#gnabas~                                                           // Nabassu (Spellhold Gauntlet)
+              ~fl#nabsu~                                                           //aTweaks fiend intended for SCSII
+              ~fl#hsnab~                                                           //Fiendish Gating  
+              ~rr#hsnab~                                                           //Fiendish Gating  
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2050,9 +2065,6 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 
-
-
-
 // Pit Fiend
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -2062,30 +2074,30 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~TELPIT1~                                                           // Pit Fiend
                ~TELPIT2~                                                           // Pit Fiend
                ~GORBAT1~                                                           // Ka'rashur (Watcher's Keep Baatezu leader)
-               ~caddem11~ 
-               ~caddem18~ 
-               ~caddem25~ 
-               ~caddem3~
-               ~dempitr1~ 
-               ~dempitr2~
+			  ~caddem11~                                                           // Pit Fiend  (RoT)
+			  ~caddem18~                                                           // Pit Fiend  (RoT)
+			  ~caddem25~                                                           // Pit Fiend  (RoT)
+			   ~caddem3~                                                           // Pit Fiend  (RoT)
+			  ~dempitr1~                                                           // Pit Fiend  (TDD)
+			  ~dempitr2~                                                           // Pit Fiend  (TDD)
                ~dubnd11~
-               ~dw#bazpf~
-               ~dw#pitsu~ 
-               ~heldem3~ 
-               ~heldem4~ 
-               ~heldem5~ 
+              ~dw#bazpf~
+              ~dw#pitsu~ 
+			   ~heldem3~                                                           // Pit Fiend  (RoT)
+			   ~heldem4~                                                           // Pit Fiend  (RoT)
+			   ~heldem5~                                                           // Pit Fiend  (RoT)
                ~psbaatl~ 
-               ~rempitsu~ 
+              ~rempitsu~ 
                ~tg#dem1~ 
-               ~z#gpit01~ 
-               ~z#gpitfd~ 
-               ~z_whel1~ 
-               ~z_whel2~ 
-               ~z_whel3~ 
-               ~z_whel4~
-               fl#pitsu                                                            //aTweaks fiend intended for SCSII
-               fl#hspit                                                            //Fiendish Gating 
-               rr#hspit                                                            //Fiendish Gating 
+			  ~z#gpit01~                                                           // Pit Fiend  (Spellhold Gauntlet)
+			  ~z#gpitfd~                                                           // Pit Fiend  (Spellhold Gauntlet)
+			   ~z_whel1~                                                           // Pit Fiend  (ToA)
+			   ~z_whel2~                                                           // Pit Fiend  (ToA)
+			   ~z_whel3~                                                           // Pit Fiend  (ToA)
+			   ~z_whel4~                                                           // Pit Fiend  (ToA)
+              ~fl#pitsu~                                                           // aTweaks fiend intended for SCSII
+              ~fl#hspit~                                                           // Fiendish Gating 
+              ~rr#hspit~                                                           // Fiendish Gating 
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2134,7 +2146,6 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-
 // Balor
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -2164,16 +2175,16 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~balorsu~ 
                ~bw05jere~ 
                ~caddem1~ 
-               ~caddem12~ 
-               ~caddem16~ 
-               ~caddem17~ 
-               ~caddem18~ 
-               ~caddem21~ 
-               ~caddem24~ 
-               ~caddem25~ 
-               ~caddem4~ 
-               ~caddem8~ 
-               ~caddem9~ 
+			   ~CADDEM12~                                                           // Balor (RoT)			   
+			   ~CADDEM16~                                                           // Balor (RoT)			   
+			   ~CADDEM21~                                                           // Balor (RoT)			   
+			   ~CADDEM4~                                                            // Balor (RoT)			   
+               ~caddem17~                                                           // Balor (RoT)			   
+               ~caddem18~                                                           // Balor (RoT)			   
+			   ~CADDEM24~                                                           // Balor (RoT)			   
+			   ~CADDEM25~                                                           // Balor (RoT)			   
+			   ~CADDEM8~                                                            // Balor (RoT)			   
+			   ~CADDEM9~                                                            // Balor (RoT)	
                ~cbmalrdm~ 
                ~cbtanasu~ 
                ~cratzyl~ 
@@ -2184,11 +2195,13 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~dpdem01~ 
                ~dsroach~ 
                ~dubnd10~ 
-               ~dw#grbal~ 
-               ~eastdem2~ 
-               ~eastdem4~ 
-               ~eastdem7~ 
-               ~eastdem9~ 
+			   ~DW#DRCTX~                                                           // Balor (SCS)
+			   ~DW#GRBAL~                                                           // Balor (SCS)
+			   ~DW#SBAIM~                                                           // Balor (SCS)
+			   ~eastdem2~                                                           // Glabrezu (TDD)
+			   ~eastdem4~                                                           // Glabrezu (TDD)
+			   ~eastdem7~                                                           // Glabrezu (TDD)
+			   ~eastdem9~                                                           // Glabrezu (TDD)
                ~endragor~ 
                ~errtu~ 
                ~errtu01~ 
@@ -2198,7 +2211,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~f_errtu~ 
                ~f_tanari~ 
                ~f_tansum~ 
-               ~finbalor~ 
+			   ~FINBALOR~                                                           // Balor (Ascension)
                ~garg~ 
                ~glourkis~ 
                ~godmari4~ 
@@ -2219,10 +2232,10 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~psdem03~ 
                ~pstana01~ 
                ~pstanal~ 
-               ~r#demon~ 
-               ~riattan1~ 
-               ~riattan2~ 
-               ~riattan3~ 
+			   ~R#DEMON~                                                            // Glabrezu (Improved Asylum)
+			   ~RIATTAN1~                                                           // Glabrezu (TDD)
+			   ~RIATTAN2~                                                           // Glabrezu (TDD)
+			   ~RIATTAN3~                                                           // Glabrezu (TDD)
                ~rr#sbalr~ 
                ~sudemde1~ 
                ~sumtan01~ 
@@ -2237,11 +2250,11 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~tartarus~ 
                ~tg#did3~ 
                ~tg#did4~ 
-               ~va#balor~ 
+			   ~VA#BALOR~                                                           // Balor (Tower of Deception)
                ~w_rune~ 
                ~yoshimoa~ 
-               ~z#gbalor~ 
-               ~z_2balor~ 
+			   ~Z#GBALOR~                                                           // Balor (Spellhold Gauntlet)			   
+			   ~Z_2BALOR~                                                           // Balor (Tales of Anegh)			   
                ~z_bered~ 
                ~z_torta~ 
                ~zy18bala~ 
@@ -2257,9 +2270,13 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~zy18balk~ 
                ~zy18ball~ 
                ~zy18balm~
-               fl#balsu                                                            //aTweaks fiend intended for SCSII
-               fl#hsbal                                                            //Fiendish Gating     
-               rr#hsbal                                                            //Fiendish Gating     
+               ~fl#balsu~                                                           //aTweaks fiend intended for SCSII
+               ~fl#hsbal~                                                           //Fiendish Gating     
+               ~rr#hsbal~                                                           //Fiendish Gating     
+			   ~ACQ17003~                                                           // Balor (Ascalon's Quest Pack)
+			   ~DW#DRCTX~                                                           // Balor (SCS)
+			   ~DW#SBAIM~                                                           // Balor (SCS)
+			   
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2308,7 +2325,6 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-
 // Maurezhi
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -2319,7 +2335,7 @@ BEGIN                                                                           
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-PATCH_IF valid BEGIN
+PATCH_IF valid AND LONG_AT 0x28 = 30464 BEGIN
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
 // =============================================================================== // the actual work starts from here
   WRITE_BYTE  0x2E "20"                                                            // major color (dark moldy green)
@@ -2368,9 +2384,10 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~DBONEF01~                                                           // Bone Fiend
                ~GORBAT5~                                                           // Bone Fiend
               ~MELSUM02~                                                           // Bone Fiend
-              ~dw#vibon~
-              fl#hsbfn                                                             //Fiendish Gating
-              rr#hsbfn                                                             //Fiendish Gating
+			  ~DW#VIBON~                                                           // Bone Fiend (SCS & Wheels)
+              ~fl#hsbfn~                                                           // Fiendish Gating
+              ~rr#hsbfn~                                                           // Fiendish Gating
+			  ~cbgrbone~                                                           // Bone Fiend (SoS)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2421,24 +2438,25 @@ END                                                                             
 // Abishai (Red)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-              ~ABISRED1~                                                           // Abishai
-              ~DEMABI01~                                                           // Abishai
-              ~abishai1~ 
-              ~godabis1~ 
-              ~godabis2~ 
-              ~nsabish~ 
-              ~psbaat02~
-              ~psbaat2a~ 
-              ~rabi~ 
-              ~redabi01~ 
-              ~remorle~
-              fl#hsabi                                                             //Fiendish Gating
-              rr#hsabi                                                             //Fiendish Gating
+              ~ABISRED1~                                                           // Abishai RED
+              ~DEMABI01~                                                           // Abishai RED
+			  ~abishai~															   // Abishai RED (RoT)
+			  ~abishai1~                                                           // Abishai RED (RoT)
+			  ~godabis1~                                                           // Abishai RED (RoT)
+			  ~godabis2~                                                           // Abishai RED (RoT)
+			  ~remorle~                                                            // Abishai RED (RoT)
+			  ~nsabish~                                                            // Abishai RED (Saerileth)
+			  ~psbaat02~                                                           // Abishai RED (Planar Sphere)
+			  ~psbaat2a~                                                           // Abishai RED (Planar Sphere)
+			  ~rabi~                                                           	   // Abishai RED (BP)
+			  ~redabi01~                                                           // Abishai RED (BP)
+              ~fl#hsabi~                                                           // Fiendish Gating
+              ~rr#hsabi~                                                           // Fiendish Gating
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-PATCH_IF valid AND LONG_AT 0x28 = 57568 BEGIN // IC_CORNUGONSKI
+PATCH_IF valid AND LONG_AT 0x28 = 57568 BEGIN 									   // IC_CORNUGONSKI
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
 // =============================================================================== // the actual work starts from here
   WRITE_BYTE  0x2E "46"                                                            // major color (red)
@@ -2479,7 +2497,6 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
 
 // Hellcat
 
@@ -2654,9 +2671,12 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~DRYAD03~                                                            // Dryad (unused?)
               ~IDRYAD02~                                                           // Cania (one of Irenicus captive Dryads)
               ~rr#sdrya~                                                           // aTweaks' summoned Dryad
+              ~dr01mod~                                                            // PofQuestPack
+              ~drmod~                                                              // PofQuestPack
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									    		   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2669,6 +2689,7 @@ END
   WRITE_BYTE 0x31 20                                                               // armor color (Dark Moldy Green)
   WRITE_BYTE 0x32 67                                                               // hair color (Shiny Gold)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -2685,6 +2706,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2697,6 +2719,7 @@ END
   WRITE_BYTE 0x31 15                                                               // armor color (Pastel Green)
   WRITE_BYTE 0x32 53                                                               // hair color (Green)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -2712,9 +2735,12 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~rr#snymp~                                                           // aTweaks' summoned Nymph
               ~dvnymph~                                                            // Spell Revisions' summoned Nymph
              ~dw#nymsu~                                                            // SCSII summoned Nymph
+              ~NYMPHSUM~
+              ~WQXNYM~
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2727,6 +2753,7 @@ END
   WRITE_BYTE 0x31 115                                                              // armor color (Sunkissed)
   WRITE_BYTE 0x32 4                                                                // hair color (Auburn)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -2746,9 +2773,19 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~_IRINE02~                                                           // Sirine (Tutu)
                    ~SIL~                                                           // Sil (BGT)
                   ~_SIL~                                                           // Sil (Tutu)
+			  ~J#SIRIN1~ 														   //Sirine (Jarl Adv)
+			  ~J#SIRIN2~ 														   //Sirine (Jarl Adv)
+			    ~L#NDC1~
+			   ~NTSILUA~ 														   //Sirine (NTotSC)
+			  ~NTSIRIN2~ 														   //Sirine (NTotSC)
+			  ~NTSIRIN4~ 														   //Sirine (NTotSC)
+			    ~ISLSIR~ 														   //Sirine Queen (BGT)
+			    ~MEIALA~ 														   //Sirine (BGT)
+			  ~QSEROMOD~ 														   //PofQuestPack
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2761,6 +2798,7 @@ END
   WRITE_BYTE 0x31 20                                                               // armor color (Dark Moldy Green)
   WRITE_BYTE 0x32 5                                                                // hair color (Light Silver)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -2775,6 +2813,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2787,10 +2826,10 @@ END
   WRITE_BYTE 0x31 20                                                               // armor color (Dark Moldy Green)
   WRITE_BYTE 0x32 16                                                               // hair color (Silverish Gold)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
 
 // Succubus
 
@@ -2802,9 +2841,18 @@ ACTION_FOR_EACH ~file~ IN                                                       
                 ~KIRINH~                                                           // Kirinhale, the Succubus in Durlag's Tower (BGT)
                ~_KIRINH~                                                           // Kirinhale, the Succubus in Durlag's Tower (Tutu)
               ~RR#HSSUC~                                                           // aTweaks Succubus (Fiendish Gating)
+              ~x#amelia~                                                           // Amelia, the Succubus added by BG1 NPCs during Coran's quest
+			  ~yugsuc01~                                                           // Succubus (Longer Road)
+			   ~FINSUCC~                                                           // Succubus (Ascension)
+			  ~pstana02~                                                           // Succubus (Planar Sphere)
+			  ~pstana2a~                                                           // Succubus (Planar Sphere)
+               ~nssuc01~                                                           // Succubus (Saerileth)
+			   ~nssuc02~                                                           // Succubus (Saerileth)
+			  ~sd_hrzr2~                                                           // Succubus (Shed's Mods)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2817,19 +2865,21 @@ END
   WRITE_BYTE 0x31 19                                                               // armor color (Dark Rose Red)
   WRITE_BYTE 0x32 47                                                               // hair color (Pure Dark Red)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
 
 // Aerial Servant
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~SERVSU~                                                             // Aerial Servant
             ~rr#easer~                                                             // Aerial Servant (aTweaks)
+			 ~gtt#ser~                                                             // Aerial Servant ?
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29473 BEGIN 								  			   // Air elmental small
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2887,54 +2937,84 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 17                                                               // major color (Light Blue)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-// Air Elemental (8 and 12 HD)
+// Lesser Air Elemental (8 HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-             ~ELAIR01~                                                             // Air Elemental (12 HD)
             ~ELAIRL01~                                                             // Lesser Air Elemental (8 HD)
-            ~ELAIRSU1~                                                             // Air Elemental (summoned, wizard version)
-            ~ELAIRSUW~                                                             // Air Elemental (summoned, wizard version)
+            ~ELAIRSUW~                                                             // Lesser Air Elemental (8 HD, summoned, wizard version)
+			~ELAIRSU1~                                                             // Lesser Air Elemental (8 HD, summoned, priest version)
             ~ELARIL01~                                                             // Lesser Air Elemental (8 HD, Bioware's typo?)
             ~GORAIR01~                                                             // Lesser Air Elemental (8 HD, Watcher's Keep)
+            ~SUMELAIR~                                                             // Lesser Air Elemental (8 HD, summoned, Staff of Air)
+            ~DW#PRELA~                                                             // SCS - Prat's Lesser Air Elementals
+            ~cdi8air~                                                              // Lesser Air Elemental (Iwidification)            ~_IRASPEC~                                                             // Air Aspect (Tutu)
+            ~es8air~                                                               // Lesser Air Elemental (Iwidification - Stratagems)
+            ~AR#ELEAI~                                                             // Lesser Air Elemental (Arena)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29473 BEGIN 								  			   // Air elmental small
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
+ INT_VAR do_message = 1
+END
+// =============================================================================== // the actual work starts from here
+  WRITE_BYTE 0x2E 0                                                                // major color (Dark Silver)
+// =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END
+                                                                                   // ends ACTION_FOR_EACH block
+// Air Elemental (12 HD)
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~_IRASPEC~                                                             // Air Aspect (Tutu)
+            ~AIRASPEC~                                                             // Air Aspect (BGT)
+             ~ELAIR01~                                                             // Air Elemental (12 HD)
+            ~ELAIRSU2~                                                             // Air Elemental (12 HD, summoned, wizard version)
                ~MDAIR~                                                             // Air Elemental (12 HD, unused?)
               ~MDAIR2~                                                             // Air Elemental (12 HD, unused?)
             ~PAIREL01~                                                             // Air Elemental (12 HD, unused?)
-            ~SUMELAIR~                                                             // Lesser Air Elemental (8 HD, summoned, Staff of Air)
+			~DRAIRPR2~                                                             // Air Elemental (12 HD, Divine Remix)
             ~rr#eairr~                                                             // Air Elemental (12 HD, summoned, summoned by Chan and Yan-C-Bin in aTweaks)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29472 BEGIN 								  			   // Air elmental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
 // =============================================================================== // the actual work starts from here
   WRITE_BYTE 0x2E 6                                                                // major color (Dark Silver)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-END                                                                                // ends ACTION_FOR_EACH block
+END
 
-
-// Air Elemental (16 HD)
+// Greater Air Elemental (16 HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~ELAIRG01~                                                             // Greater Air Elemental (16 HD)
-            ~ELAIRSU2~                                                             // Air Elemental (16 HD, wizard version)
             ~GORAIR02~                                                             // Greater Air Elemental (16 HD, Watcher's Keep)
               ~MDAIRG~                                                             // Greater Air Elemental (16 HD, unused?)
              ~MDAIRG2~                                                             // Greater Air Elemental (16 HD, unused?)
               ~MDHSSS~                                                             // Greater Air Elemental (16 HD, unused?)
-              ~MDHSSS~                                                             // Greater Air Elemental (16 HD, unused?)
+             ~_MDHSSS~                                                             // Greater Air Elemental (16 HD, unused?)
             ~SWAAIR01~                                                             // Air Elemental (16 HD, Elemental Summoning HLA)
                ~UDAIR~                                                             // Air Elemental (Underdark portal)
+            ~ELAIRSU3~                                                             // Air Elemental (16 HD, wizard version)
+			~DRAIRPR3~                                                             // Air Elemental (16 HD, Divine Remix)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29472 BEGIN 								  			   // Air elmental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2979,15 +3059,15 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 5                                                                // major color (Light Silver)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-// Air Elemental (20+ HD)
+// Elder Air Elemental (20+ HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-            ~ELAIRSU3~                                                             // Air Elemental (20+ HD, summoned, wizard version)
                ~SUAIR~                                                             // Air Elemental (Suldanesselar, Tree of Life guardian)
             ~SWAAIR02~                                                             // Air Elemental (20+ HD, summoned, Elemental Summoning HLA)
               ~UDELDA~                                                             // Air Elemental (Underdark portal guardian)
@@ -2995,9 +3075,15 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~finsol02~                                                             // Yan-C-Bin in ToB
             ~elemchan~                                                             // Chan
             ~rr#eaire~                                                             // Elder Air Elemental (aTweaks)
+            ~li#druai~                                                             // Elemental transformation air (Refinements)
+			~MH#air20~                                                             // Elemental transformation air (mih_eq)
+            ~ELAIRSU4~                                                             // Air Elemental (20+ HD, summoned, wizard version)
+			~DRAIRPR4~                                                             // Air Elemental (20 HD, Divine Remix)
+            ~AR#ELAIK~                                                             // Air Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29472 BEGIN 								  			   // Air elmental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3055,40 +3141,61 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 74                                                               // major color (Solid White)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
-// Earth Elemental (8 and 12 HD)
-
+// Lesser Earth Elemental (8 HD)
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-             ~ELEAR01~                                                             // Earth Elemental (12 HD)
             ~ELEARL01~                                                             // Lesser Earth Elemental (8 HD)
-             ~ELEARPR~                                                             // Earth Elemental (12 HD, summoned, priest version)
             ~ELEARSU1~                                                             // Earth Elemental (8 HD, summoned, wizard version)
-            ~ELEARSU2~                                                             // Earth Elemental (12 HD, summoned, wizard version)
             ~ELEARSUW~                                                             // Lesser Earth Elemental (8 HD, summoned, wizard version)
             ~ELEEEL01~                                                             // Lesser Earth Elemental (8 HD)
-              ~KEARTH~                                                             // Earth Elemental (12 HD, unused?)
             ~MEKEAR01~                                                             // Lesser Earth Elemental (8 HD, Mekrath's quest)
-             ~SHEARTH~                                                             // Earth Elemental (12 HD, Shapechange Spell)
             ~SUMELEAR~                                                             // Lesser Earth Elemental (8 HD, summoned, Staff of Earth)
+			~DW#viele~                                                             // Lesser Earth Elemental (8 HD, summoned, Staff of Earth)
+			~cdi8erth~                                                             // Lesser Earth Elemental (8 HD, iwd)
+			~es8erth~															   // Lesser Earth Elemental (IWDification - Stratagems)
+            ~AR#ELEEA~                                                             // Lesser Earth Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29441 BEGIN 								  			   // Small Earth elmental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
 // =============================================================================== // the actual work starts from here
   WRITE_BYTE 0x2E 8                                                                // major color (Dark Muddish Brown)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
+// Earth Elemental (12 HD)
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+             ~ELEAR01~                                                             // Earth Elemental (12 HD)
+             ~ELEARPR~                                                             // Earth Elemental (12 HD, summoned, priest version)
+            ~ELEARSU2~                                                             // Earth Elemental (12 HD, summoned, wizard version)
+              ~KEARTH~                                                             // Earth Elemental (12 HD, unused?)
+             ~SHEARTH~                                                             // Earth Elemental (12 HD, Shapechange Spell)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29440 BEGIN 								  			   // Earth elmental
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
+ INT_VAR do_message = 1
+END
+// =============================================================================== // the actual work starts from here
+  WRITE_BYTE 0x2E 8                                                                // major color (Dark Muddish Brown)
+// =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_FOR_EACH block
+END																				   // ends ACTION_IF Infinity Animation Compatibility (IAv5b)
 
-// Earth Elemental (16 HD)
+// Greater Earth Elemental (16 HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~ELEARG01~                                                             // Greater Earth Elemental (16 HD)
@@ -3097,9 +3204,16 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~ELEARSU3~                                                             // Earth Elemental (16 HD, summoned, wizard version)
             ~SWAEAR01~                                                             // Earth Elemental (16 HD, summoned, Elemental Summoning HLA)
              ~UDEARTH~                                                             // Earth Elemental (Underdark portal spawn)
+			~o#llgua1~                                                             // Earth Elemental
+			~o#llgua2~                                                             // Earth Elemental
+			~agearth1~                                                             // Earth Elemental
+			~ELECALI1~                                                             // Earth Elemental (TDD)
+			~ELECALI3~                                                             // Earth Elemental (TDD)
+			~ELECALI5~                                                             // Earth Elemental (TDD)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29440 BEGIN 								  			   // Earth elmental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3144,12 +3258,13 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 9                                                                // major color (Light Muddish Brown)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-// Earth Elemental (20+ HD)
+// Elder Earth Elemental (20+ HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~DRUEAR01~                                                             // Earth Elemental (Druid Earth Elemental Transformation HLA)
@@ -3161,9 +3276,13 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SWAEAR02~                                                             // Earth Elemental (20+ HD, Elemental Summoning HLA)
               ~UDELDE~                                                             // Earth Elemental (Underdark portal guardian)
             ~rr#eeare~                                                             // Elder Earth Elemental (aTweaks)
+            ~dw#eldee~                                                             // SCSII "Improved Minor Encounters" greater earth elemental
+			~mh#ear20~                                                             // mih_eq
+            ~AR#ELEAK~                                                             // Earth Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29440 BEGIN 								  			   // Earth elmental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3208,6 +3327,7 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 49                                                               // major color (Dark Bronze)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -3217,9 +3337,11 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~elemsunn~                                                             // Sunnis
+            ~dw#esunn~                                                             // SCSII Sunnis-alternative from "Smarter Priests"
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29440 BEGIN 								  			   // Earth elmental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3264,6 +3386,7 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 49                                                               // major color (Dark Bronze)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -3275,6 +3398,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29440 BEGIN 								  			   // Earth elmental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3319,12 +3443,13 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 94                                                               // major color (Rhubarb)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-// Fire Elemental (8 HD)
+// Lesser Fire Elemental (8 HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~ELEFEL01~                                                             // Lesser Fire Elemental (8 HD)
@@ -3332,9 +3457,16 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~ELFIRSU1~                                                             // Fire Elemental (8 HD, summoned, wizard version)
             ~ELFIRSUW~                                                             // Lesser Fire Elemental (8 HD, summoned, wizard version)
             ~SUMELFIR~                                                             // Lesser Fire Elemental (8 HD, summoned, Staff of Fire)
+			~BSFRELEM~                                                             // Lesser Fire Elemental (BST)
+			~cdi8fire~                                                             // Lesser Fire Elemental (iwd)
+			 ~es8fire~															   // Lesser Fire Elemental (IWDification - Stratagems)
+            ~AR#ELEFI~                                                             // Lesser Fire Elemental (Arena)
+            ~FIRLSMOD~                                                             // Lesser Fire Elemental (PofQuestPack)
+            ~PXF5ELEM~                                                             // Lesser Fire Elemental (Devin)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29457 BEGIN 								  			   // Fire Elemental Small
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3379,6 +3511,7 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 4                                                                // major color (Auburn)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -3394,21 +3527,23 @@ ACTION_FOR_EACH ~file~ IN                                                       
              ~ELFIRPR~                                                             // Fire Elemental (12 HD, summoned, priest version)
             ~ELFIRSU2~                                                             // Fire Elemental (12 HD, summoned, wizard version)
               ~SHFIRE~                                                             // Fire Elemental (12 HD, Shapechange Spell)
+                 ~AMX~                                                             // Fire Elemental (12 HD, TDD)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29456 BEGIN 								  			   // Fire Elemental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
 // =============================================================================== // the actual work starts from here
   WRITE_BYTE 0x2E 67                                                               // major color (Shiny Gold)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
-// Fire Elemental (16 HD)
+// Greater Fire Elemental (16 HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~DECKFELE~                                                             // Fire Elemental (Deck of Many Things)
@@ -3426,10 +3561,31 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SWAFIR01~                                                             // Fire Elemental (16 HD, summoned, Elemental Summoning HLA)
             ~TELELFIR~                                                             // Greater Fire Elemental (16 HD, Watcher's Keep)
             ~YSCARA04~                                                             // Greater Fire Elemental (16 HD, unused?)
-              ~UDFIRE~                                                             // Fire Elemental (Underdark portal spawn)
+            ~UDFIRE~                                                               // Fire Elemental (Underdark portal spawn)
+            ~tg#did5~                                                              // Greater Fire Elemental (Refinements; special)
+			~O#BRELE1~                                                             // Greater Fire Elemental (16 HD)
+			~O#BRELE2~                                                             // Greater Fire Elemental (16 HD)
+			~O#BRELE3~                                                             // Greater Fire Elemental (16 HD)
+			~O#BRELE4~                                                             // Greater Fire Elemental (16 HD)
+			~a7q5fe01~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe02~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe03~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe04~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe05~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe06~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe07~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe08~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe09~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe10~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe11~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe12~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fes~                                                              // Greater Fire Elemental (16 HD) (afaaq)
+			~ELECALI2~                                                             // Greater Fire Elemental (TDD)
+			~ELECALI4~                                                             // Greater Fire Elemental (TDD)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29456 BEGIN 								  			   // Fire Elemental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3474,12 +3630,13 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 24                                                               // major color (Dark Gold)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-// Fire Elemental (20+ HD)
+// Elder Fire Elemental (20+ HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~DRUFIR01~                                                             // Fire Elemental (Druid Fire Elemental Transformation HLA)
@@ -3489,9 +3646,12 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SWAFIR02~                                                             // Fire Elemental (20+ HD, summoned, Elemental Summoning HLA)
               ~UDELDF~                                                             // Fire Elemental (Underdark, portal guardian)
             ~rr#efire~                                                             // Elder Fire Elemental (aTweaks)
+			~MH#fir20~                                                             // Fire Elemental (mih_eq)
+            ~AR#ELFIK~                                                             // Fire Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29456 BEGIN 								  			   // Fire Elemental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3536,6 +3696,7 @@ END                                                                             
 END                                                                                // ends PATCH_FOR_EACH
   WRITE_BYTE 0x2E 50                                                               // major color (Dark Yellow)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -3545,9 +3706,11 @@ END                                                                             
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~elemimix~                                                             // Imix
             ~elemzaam~                                                             // Zaaman Rul
+            ~dw#ezaam~                                                             // SCSII alternative from "Smarter Priests"
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
+PATCH_IF LONG_AT 0x28 = 29456 BEGIN 								  			   // Fire Elemental
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3565,10 +3728,10 @@ END
   INT_VAR opcode_to_delete = "66" END                                              // mark opcode #66 (transparency fade) for deletion
   WRITE_BYTE 0x2E 25                                                               // major color (Dark Pure Gold)
 // =============================================================================== // the actual work ends here
+END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
 
 // Water Weird
 
@@ -3610,11 +3773,56 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
+// Water Elemental
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~rr#ewatr~                                                             // Water Elemental (aTweaks)
+            ~tg#wel2~                                                              // Water Elemental (Refinements)
+			~DW#WATE2~                                                             // Water Elemental (SCS)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
+ INT_VAR do_message = 1
+END
+// =============================================================================== // the actual work starts from here
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "8" END                                               // mark opcode #8 (Colour: Change by RGB) for deletion
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "9" END                                               // mark opcode #9 (Colour Glow Pulse) for deletion
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "51" END                                              // mark opcode #51 (Colour: Strong/Dark by RGB) for deletion
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "52" END                                              // mark opcode #52 (Colour: Very Bright by RGB) for deletion
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "66" END                                              // mark opcode #66 (transparency fade) for deletion
+LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
+  INT_VAR                                                                          // initialize numeric variables
+  "opcode" = "66"                                                                  // effect: #66 (transparency fade)
+  "target" = "1"                                                                   // target: 1 (self)
+  "timing" = "9"                                                                   // timing mode: 9 (permanent after death)
+  "duration" = "0"                                                                 // duration: 0
+  "sectype" = "0"                                                                  // secondary type: none
+  "parameter1" = "125"                                                             // param1: (fade amount)
+  "parameter2" = "0"                                                               // param2: 0
+  "probability1" = "100"                                                           // probability1: 100%
+  STR_VAR                                                                          // initialize string variables
+  "effsource" = ""                                                                 // effsource: none
+END                                                                                // ends FUNCTION call
+  WRITE_BYTE 0x2E 31                                                               // major color (Light Sea Blue)
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END
 
 // Greater Water Elemental
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~ELWATG01~                                                             // Greater Water Elemental
+            ~tg#wel3~                                                              // Greater Water Elemental (Refinements)
+			~DW#WATE3~                                                             // Greater Water Elemental (SCS)
+			~ELEMWAG~                                                              // Greater Water Elemental (TS)
+			~WATERELT~                                                             // Greater Water Elemental (TS)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3679,13 +3887,98 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
+// Elder Water Elemental
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~rr#ewate~                                                             // Elder Water Elemental (aTweaks)
+            ~li#druwa~                                                             // Elemental transformation water (Refinements)
+		    ~DW#wate4~                                                             // Water Elemental (SCS)
+			~MH#wat20~                                                             // Water Elemental (mih_eq)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
+ INT_VAR do_message = 1
+END
+// =============================================================================== // the actual work starts from here
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "8" END                                               // mark opcode #8 (Colour: Change by RGB) for deletion
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "9" END                                               // mark opcode #9 (Colour Glow Pulse) for deletion
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "51" END                                              // mark opcode #51 (Colour: Strong/Dark by RGB) for deletion
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "52" END                                              // mark opcode #52 (Colour: Very Bright by RGB) for deletion
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
+  INT_VAR opcode_to_delete = "66" END                                              // mark opcode #66 (transparency fade) for deletion
+LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
+  INT_VAR                                                                          // initialize numeric variables
+  "opcode" = "52"                                                                  // effect: #52 (Colour: Very Bright by RGB)
+  "target" = "1"                                                                   // target: 1 (self)
+  "timing" = "9"                                                                   // timing mode: 9 (permanent after death)
+  "duration" = "0"                                                                 // duration: 0
+  "sectype" = "0"                                                                  // secondary type: none
+  "parameter1" = "218300416"                                                       // param1: (RGB colour)
+  "parameter2" = "2"                                                               // param2: (location)
+  "probability1" = "100"                                                           // probability1: 100%
+  STR_VAR                                                                          // initialize string variables
+  "effsource" = ""                                                                 // effsource: none
+END
+LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
+  INT_VAR                                                                          // initialize numeric variables
+  "opcode" = "66"                                                                  // effect: #66 (transparency fade)
+  "target" = "1"                                                                   // target: 1 (self)
+  "timing" = "9"                                                                   // timing mode: 9 (permanent after death)
+  "duration" = "0"                                                                 // duration: 0
+  "sectype" = "0"                                                                  // secondary type: none
+  "parameter1" = "75"                                                              // param1: (fade amount)
+  "parameter2" = "0"                                                               // param2: 0
+  "probability1" = "100"                                                           // probability1: 100%
+  STR_VAR                                                                          // initialize string variables
+  "effsource" = ""                                                                 // effsource: none
+END                                                                                // ends FUNCTION call
+PATCH_FOR_EACH ~rr#color~ IN ~9~ ~50~ BEGIN                                        // grant immunity to the color glow/pulse effects (they disrupt aTweaks' re-coloring)
+LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call
+  INT_VAR                                                                          // initialize variables
+  "opcode" = "101"                                                                 // effect: #101 (Protection from Opcode)
+  "target" = "1"                                                                   // target: 1 (self)
+  "timing" = "9"                                                                   // timing mode: 9 (permanent after death)
+  "duration" = "0"                                                                 // duration: 0
+  "parameter2" = EVALUATE_BUFFER "%rr#color%"                                      // param2: evaluated opcode
+  "sectype" = "0"                                                                  // secondary type: none
+  "probability1" = "100"                                                           // probability1: 100%
+  STR_VAR                                                                          // initialize strings
+  "resource"  = ""                                                                 // resref: none
+  "effsource" = ""                                                                 // effsource: none
+END                                                                                // ends LAUNCH_PATCH_FUNCTION
+END                                                                                // ends PATCH_FOR_EACH
+  WRITE_BYTE 0x2E 58                                                               // major color (Light Blue)
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END
 
 // Fire Salamander
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
              ~hgsal01~                                                             // Fire Salamander
             ~icsalfir~                                                             // Fire Salamander (Planar Sphere)
-            ~wrmons01~                                                             // Fire Salamander (Hell Wrath, possibly unused?)
+             ~plysala~                                                             // Fire Salamander (Avenger kit shapechange)
+			~wrmons01~                                                             // Fire Salamander (Hell Wrath, possibly unused?)
+            ~a7q5fs02~                                                             // Fire Salamander (afaaq)
+			~a7q5fs03~                                                             // Fire Salamander (afaaq)
+			~a7q5fs04~                                                             // Fire Salamander (afaaq)
+			~a7q5fs05~                                                             // Fire Salamander (afaaq)
+			~a7q5fs06~                                                             // Fire Salamander (afaaq)
+			~firesal1~                                                             // Fire Salamander (RoT)
+			~cdi6salf~                                                             // Fire Salamander (IWDification)
+			~ms6salf~                                                              // Fire Salamander (IWDification - Stratagems)
+			~nthells1~                                                             // Fire Salamander (NTotSC)
+			~nthells3~                                                             // Fire Salamander (NTotSC)
+			~o#brsal1~                                                             // Fire Salamander
+			~o#brsal2~                                                             // Fire Salamander
+			~pxf5sala~                                                             // Fire Salamander (DEVIN)
+			~va#fsala~                                                             // Fire Salamander (Tower of Deception)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3710,12 +4003,20 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-// Frost Salamander
+// Frost/Ice Salamander
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-            ~salgrice~                                                             // Frost Salamander (Abazigal's Lair)
+            ~salgrice~                                                             // Frost Salamander
             ~icsalcol~                                                             // Ice Salamander (Planar Sphere)
             ~telicesa~                                                             // Ice Salamander (unused?)
+			~cdi6salc~                                                             // Ice Salamander (IWDification)
+			~ms6salc~                                                              // Ice Salamander (IWDification - Stratagems)
+			~dw#visal~                                                             // Ice Salamander (SCS)
+			~ntsalmi3~                                                             // Ice Salamander (NTotSC)
+			~ntsalmic~                                                             // Ice Salamander (NTotSC)
+		    ~va#isala~                                                             // Ice Salamander (Tower of Deception)
+			~icesal~                                                               // Ice Salamander (RoT)
+			~icesal2~                                                              // Ice Salamander (RoT)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3742,6 +4043,9 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~SALGRFIR~                                                             // Salamander Noble
+			~a7q5fs01~                                                             // Salamander Noble (afaaq)
+			~salking~                                                              // Fire Salamander King (RoT)
+			~firesal2~                                                             // Fire Salamander (RoT)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3798,6 +4102,7 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~rr#eicer~                                                             // Ice Paraelemental (aTweaks)
+			~mh#icepe~                                                             // Ice Paraelemental (mih_eq)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
