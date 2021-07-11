@@ -8,6 +8,7 @@
 @3 = ~Kosmetyczne poprawki~
 @4 = ~Rozne poprawki~
 
+@89 = ~* * *  Dla tego komponentu wymagane jest komponentu dodatku 'poprawka dla przywolywanych biesow' * * *~
 @90 = ~* * * Dla tego komponentu wymagane jest posiadanie dodatku Tron Bhaala * * *~
 @91 = ~* * * Komponent ten nie moze byc zainstalowany dla TuTu * * *~
 @92 = ~* * * Komponent ten nie moze byc zainstalowany dla tej gry * * *~
@@ -36,6 +37,7 @@
 @153 = ~Dodaje wszystkim biesom skrypty aTweaks, ale nie zmienia ich statystk~
 @155 = ~Dodatkowa poprawka dla przywolywanych biesow~
 @156 = ~Biesy moga otwierac przejscia do swoich sfer i wymiarow~
+@157 = ~poprawka dla przywolywanych biesow~
 @160 = ~Zasady PnP dla nieumarlych~
 @180 = ~Zasady PnP dla mefitow~
 @185 = ~Zasady PnP dla istot basniowych~

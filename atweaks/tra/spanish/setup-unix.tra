@@ -6,6 +6,7 @@
 @2     = ~Cambios en jugabilidad~
 @3     = ~Cambios cosméticos~
 @4     = ~Cambios misceláneos~
+@89    = ~* * * Este componente requiere componente 'Convocatoria revisada de Demonios' * * *~
 @90    = ~* * * Este componente requiere Throne of Bhaal * * *~
 @91    = ~* * * Este componente puede ser instalado con Tutu * * *~
 @92    = ~* * * Este componente no puede ser instalado en este juego * * *~
@@ -34,6 +35,7 @@
 @153   = ~Dar a todos los demonios los scripts de aTweaks pero no alterar las características~
 @155   = ~Mejorar la convocatoria revisada de Demonios~
 @156   = ~Portal demoníaco~
+@157   = ~Convocatoria revisada de Demonios~
 @160   = ~No-muertos PnP~
 @180   = ~Mephits PnP~
 @185   = ~Criaturas Fantásticas PnP~
