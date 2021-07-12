@@ -1,3 +1,6 @@
+///////////////
+// PnP Undead
+///////////////
 
 ACTION_IF GAME_IS ~tutu tutu_totsc~ BEGIN //The items in EasyTutu lack the necessary immunities; using items copied from a Fixpacked BG2 game is easier
   OUTER_SPRINT ring95 fl#rng95
@@ -20,6 +23,8 @@ OUTER_SET FearSecType = fl#Fear
 ACTION_FOR_EACH file IN
                 banshe01 //ToB Banshee
                 firmon01 //Unused critter from Firkraag's
+				dsbanshe //DSotSC
+				f_wailin //Drizzt Saga
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -71,9 +76,12 @@ BEGIN
             newscript = fl#bansh
             script01 = banshe01
             script02 = wtasight
-            script03 = dw#melee
-            script04 = bpwtsigt
-            script05 = bpwdasgt
+            script03 = bpwtsigt
+            script04 = bpwdasgt
+			script05 = f_wailin
+			script06 = DW2MC2GE
+			script07 = DW2MS0GE
+			skipfile01 = dsbanshe
         END
         LPF cold_spell_immunities END
         LPF electrical_spell_immunities END
@@ -124,6 +132,10 @@ ACTION_FOR_EACH file IN
                uddeath2 //Underdark Death Knight leader
                gooddeat //Durlag's Tower DK mirror fiend
                _ooddeat
+			   cmskel03 //Dark Horizons
+			   cmskel04 //Dark Horizons
+			   CADDEM20 //RoT
+			   CB3579DK //CtB
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -195,10 +207,17 @@ BEGIN
               script03 = _eathkni
               script04 = _tasight
               script05 = uddeath
-              script06 = dw#melee
               script06 = bpwtsigt
               script07 = bpmag18a
               script08 = bpdemon
+			  script09 = dw#death
+			  script10 = CB3579DK
+			  script11 = WTASI2
+			  script12 = DW1MELGE
+			  script13 = DW2MS4GE
+			  script14 = DW2MS2GE
+			  script15 = DW2MS1GE
+			  script16 = DW2MS5GE
           END
         END
         LPF add_skeletal_traits END
@@ -377,8 +396,8 @@ ACTION_IF GAME_INCLUDES ~tob~ BEGIN
                 deathkni.cre "override/fl#wkkn1.cre"
                 deathkni.cre "override/fl#wkkn2.cre"
                 deathkni.cre "override/fl#wkkn3.cre"
-		uddeath.cre  override
-		deathkni.cre override
+				uddeath.cre  override
+				deathkni.cre override
     PATCH_INCLUDE "atweaks/lib/fj_cre_validity.tpp"
     PATCH_IF valid BEGIN
       r = RANDOM(1 6)
@@ -422,16 +441,32 @@ END
 
 //Ghast
 ACTION_FOR_EACH file IN
-		ghast //BG1 standard Ghast
-		ghastd //Durlag's Tower Ghast Trap Ghast
+		BHGHOUL2
+		BHGHOUL4
+		ghast01  // BG2 standard Ghast
+		ghastf01
+		ghastgsu
+		gmayor   // Theshal
+		nevm3    // Nev's undead trap Ghast
+		theshal
+		ghast    // BG1 standard Ghast
 		_ghast
+		ghastd   // Durlag's Tower Ghast Trap Ghast
 		_ghastd
-		ghasts //Tiax' summoned ghast
+		ghasts   // Tiax' summoned ghast
 		_ghasts
-		ghast01 //BG2 standard Ghast
-		nevm3 //Nev's undead trap Ghast
-                bgghast //Aec'Letec's death ray, BGT
-                rr#ghast //Nabussu death ray, aTweaks
+		Grael    // BG1 Grael
+		sewerf3  // BG1 Sewerfolk
+		besamen  // Quest Pack
+		bpghast  // BP
+		bgghast  // Aec'Letec's death ray, BGT // BP
+		CDI4GHST // IWDification
+		MH#GLGHA // Made in heaven Q&E
+		sghastgr // Bonehill
+		sk#algol // Neh'taniel
+		sk#ssp3  // Neh'taniel
+		XGHAST1  // Mod added
+		XGHAST2  // Mod added
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -447,11 +482,14 @@ BEGIN
           script06 = _tasight
           script07 = _ghastd
           script08 = _movep1
-          script09 = dw#melee
-          script10 = bpwtsigt
-          skipfile02 = ghasts
+          script09 = bpwtsigt
+		  script10 = bpundead
+		  script11 = DW2MP1GE
+		  skipfile01 = CDI4GHST
+		  skipfile02 = ghasts
           skipfile03 = _ghasts
           skipfile04 = rr#ghast
+		  skipfile05 = ghastgsu
       END
       LPF ADD_CRE_EFFECT
         INT_VAR
@@ -502,12 +540,23 @@ COPY_EXISTING s1-4.itm "override/fl#ghas1.itm"
 
 // Ghoul and Lacedon
 ACTION_FOR_EACH file IN
-               ghoul //BG1 Ghoul
-               korax //Korax the Ghoul
-               _ghoul
+               BHGHOUL1
+			   ghoul01
+			   ghoulsu
+			   GTCIT1
+			   GTCIT2
+               ghoul    //BG1 Ghoul
+			   _ghoul
+               korax    //Korax the Ghoul
                _korax
-               lacedo01 //Lacedon
-               sahlace //Lacedon
+			   bodakmd  // BP
+			   ghuldmod // PofQuestPack
+			   MH#GLGHO // Made in heaven Q&E
+//			   WAGHOUL  // Mod added
+               lacedo01 // Lacedon
+               sahlace  // Lacedon
+			   JA#SUTY1 // Mod added Lacedon
+			   JA#SUTY3 // Mod added Lacedon
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -557,11 +606,17 @@ BEGIN
             newscript = fl#ghoul
             script01 = wdasight
             script02 = _dasight
-            script04 = _tasight
-            script05 = wtasight
-            script06 = dw#melee
-            script07 = bpwtsigt
-            script08 = bpwdasgt
+            script03 = _tasight
+            script04 = wtasight
+            script05 = bpwtsigt
+            script06 = bpwdasgt
+			script07 = ghoul
+			script08 = DW2MC0GE
+			script09 = DW2MC0GW
+			script10 = DW1MELGE
+			script11 = DW2MP0GW	
+			script12 = DW2MM0GE	
+			skipfile01 = ghoulsu	
         END
       END
     BUT_ONLY
@@ -588,9 +643,11 @@ ACTION_FOR_EACH file IN
                 ghogr01
                 gholor01
                 riftcr01
+//				lester // oncle Lester
                 ghoullor
                 _houllor
                 lacedo02 //Sahuagin Greater Lacedon
+				cmghau01 //Dark Horizons
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -602,7 +659,7 @@ BEGIN
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
         REPLACE_CRE_ITEM fl#glor1 #0 #0 #0 none weapon1 EQUIP
         REPLACE_CRE_ITEM fl#glor2 #0 #0 #0 none shield
-        PATCH_IF "%SOURCE_RES%" STRING_COMPARE_CASE lacedo02 BEGIN
+        PATCH_IF "%SOURCE_RES%" STRING_COMPARE_CASE ~lacedo02~ BEGIN
           SAY 0x8 @1033
           SAY 0xc @1033
         END
@@ -653,9 +710,12 @@ BEGIN
             script05 = gholor01
             script06 = wdasight
             script07 = riftcr01
-            script08 = dw#melee
-            script09 = bpwtsigt
-            script10 = bpwdasgt
+            script08 = bpwtsigt
+            script09 = bpwdasgt
+			script10 = DW2MP2GE
+			script11 = DW2MP2GW
+			script12 = DW2MP0GE
+			script13 = DW2MP1GE
         END
         LPF ADD_CRE_EFFECT
           INT_VAR
@@ -760,8 +820,16 @@ OUTER_SET $f_AddSecType(fl#glord.spl) = FearSecType
 
 // Mummy
 ACTION_FOR_EACH file IN
-		mummy
+		mummy 
 		mummy01
+		F_MUMMY  // Drizzt Saga
+		O#LLARU1 // Mod added
+		O#LLARU2 // Mod added
+		O#LLARU3 // Mod added
+		O#LLARU4 // Mod added
+		O#LLARU5 // Mod added
+		O#LLARU6 // Mod added
+		mumx1    // TDD
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -807,9 +875,10 @@ BEGIN
           STR_VAR
             newscript = fl#mum
             script01 = wtasight
-            script02 = dw#melee
-            script03 = bpwtsigt
-            script04 = d0mummy //quest pack, "gaze of despair"
+            script02 = bpwtsigt
+            script03 = d0mummy //quest pack, "gaze of despair"
+			script04 = DW2MM0GE
+			script05 = DW2MC0GE
         END
         LPF cold_spell_immunities END
       END
@@ -895,6 +964,7 @@ OUTER_SET $f_AddSecType(fl#mum.spl) = DiseaseSecType
 ACTION_FOR_EACH file IN
 		mumgre01
 		riftcr03
+		MUMMYX1 // TDD		
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -941,7 +1011,6 @@ BEGIN
 
         ADD_MEMORIZED_SPELL sppr719 #6 priest (1) //Symbol, Death //done
         ADD_MEMORIZED_SPELL sppr718 #6 priest (1) //Symbol, Stun //done
-
         LPF RR#MDCRE
           INT_VAR
             newxpv = 14000
@@ -981,10 +1050,10 @@ BEGIN
           STR_VAR
             newscript = fl#gmum
             script01 = wtasight
-            script02 = "mummy01`"
-            script03 = dw#melee
-            script04 = bpwtsigt
-            script05 = d0mummy //quest pack, "gaze of despair"
+            script02 = "mummy01"
+            script03 = bpwtsigt
+            script04 = d0mummy //quest pack, "gaze of despair"
+			script05 = DW2MC0GE
         END
         LPF cold_spell_immunities END
       END
@@ -1058,10 +1127,110 @@ COPY "atweaks/spl/undead/fl#mumfn.spl" "override/fl#gmumn.spl"
 OUTER_SET $f_AddSecType(fl#gmumn.spl) = FearSecType
 
 
+// Revenant
+ACTION_FOR_EACH file IN
+			   firmon04 //BG2 Revenant
+			   grreven //BG2 Revenant
+			   reven01 //BG2 Revenant
+//			   fearm //BG1 Revenant
+			   revent //BG1 Revenant
+			   srevnnt //Bonehill Revenant
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+      PATCH_INCLUDE "atweaks/lib/fj_cre_validity.tpp"
+      PATCH_IF valid BEGIN
+        PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
+        REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring
+        REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
+		PATCH_IF NOT "%SOURCE_RES%" STRING_EQUAL_CASE ~firmon04~ BEGIN
+          REPLACE_CRE_ITEM REVENT1 #0 #0 #0 none weapon1 EQUIP
+          REPLACE_CRE_ITEM REVENT2 #0 #0 #0 none weapon2
+		END
+		REPLACE_CRE_ITEM RevnREG #0 #0 #0 none amulet
+		REPLACE_CRE_ITEM monhp1 #0 #0 #0 none belt
+         LPF unturnable END
+		 LPF RR#MDCRE
+			INT_VAR
+            newxpv = 3000
+            newhp = 64 //8d8
+            newac = 10
+            newth = 13
+            newapr = 1
+            newsvd = 10
+            newsvw = 12
+            newsvp = 11
+            newsvb = 12
+            newsvs = 13
+            newlvl1 = 8
+            newlvl2 = 0
+            newlvl3 = 0
+            newmr = 0
+            newfr = "-25"
+            newcr = 100
+            newer = 0
+            newar = 100
+            newrs = 0
+            newrc = 0
+            newrp = 0
+            newrm = 0
+            newstr = 18
+            newstrx = 79
+            newint = 16
+            newwis = 9
+            newdex = 9
+            newcon = 9
+            newchr = 9
+            newmor = 18
+            newalign = 34 //N
+            newclass = 117 //Ghoul_revenant
+            newgen = 4 //undead
+            newrace = 108 //Ghoul
+			
+			enforce = 1
+        END
+
+        LPF RR#MDCSC
+          STR_VAR
+            newscript = TRevn_01
+			script01 = ""
+			script02 = "None"
+        END
+        LPF RR#MDCSC
+          STR_VAR
+            newscript = fl#higmc
+            script01 = wtasight
+            script02 = _tasight
+			script03 = bpwtsigt
+			script04 = bpwtrsgt
+			script05 = bpwdrsgt
+			script06 = DW2RM3GE
+			script07 = DW2RC3GE
+         END
+        LPF cold_spell_immunities END
+		LPF acid_spell_immunities END
+      END
+    BUT_ONLY
+  END
+END
+
+COPY_EXISTING "trollreg.itm" "override/RevnREG.itm"
+  WRITE_SHORT 0x1c 1
+  LPF ALTER_EFFECT INT_VAR match_opcode = 98 parameter1 = 3 parameter2 = 3 END
+
+COPY_EXISTING "REVENT1.itm" override
+  LPF DELETE_EFFECT INT_VAR match_opcode = 98 END
+
+COPY 	 "atweaks\itm\undead\fl#Revn1.itm" override
+COPY 	 "atweaks\spl\fl#die.spl" override
+COPY 	 "atweaks\spl\fl#back.spl" override
+COPY 	 "atweaks\spl\fl#itm.spl" override
+
 
 // Shadow
 ACTION_FOR_EACH file IN
                 kshadow  //circus
+                rngsha
                 rngsha01 //in shadow temple
                 rngsha04 //Shadow Jailer
                 sdshadow //Spawned by area script in shadow temple
@@ -1071,6 +1240,17 @@ ACTION_FOR_EACH file IN
                 uhcreat  //with the kids in umar cave
                 lshadfi  //From BP, apparently
                 lshadow  //likewise
+//				krshadm  // DSoA - Not Tested
+//				krshadow // DSoA - Not Tested
+//				shadesm1 // Arcane-Divine Spell Pack - Not Tested
+//				shadesm2 // Arcane-Divine Spell Pack - Not Tested
+//				shadesm3 // Arcane-Divine Spell Pack - Not Tested
+				a#sdsha1 // Song and Silence
+				a#sdsha2 // Song and Silence
+				a#sdsha3 // Song and Silence
+				a#sdsha4 // Song and Silence
+				specx1 	 // TDD
+				va#shdgl // Tower of Deception
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1120,16 +1300,23 @@ BEGIN
             enforce = 1
           STR_VAR
             notenf01 = rngsha04
+			notenf02 = a#sdsha1
+			notenf03 = a#sdsha2
+			notenf04 = a#sdsha3
+			notenf05 = a#sdsha4
+			notenf06 = specx1
         END
         LPF RR#MDCSC
           STR_VAR
             newscript = fl#midmc
             script01 = wtasight
-            script02 = dw#melee
-            script03 = bpshadow
-            script04 = bpwtsigt
-            script05 = bpwdasgt
-            script06 = bpmag14m //maybe we should not strip this for the shadow jailer
+            script02 = bpshadow
+            script03 = bpwtsigt
+            script04 = bpwdasgt
+            script05 = bpmag14m //maybe we should not strip this for the shadow jailer
+			script06 = DW2MS0GE
+			script07 = DW2MS3GE
+			skipfile01 = va#shdgl
         END
         LPF cold_spell_immunities END
       END
@@ -1166,29 +1353,50 @@ COPY_EXISTING b1-10.itm "override/fl#shad.itm"
 
 
 
-ACTION_IF FILE_EXISTS_IN_GAME dw#drow.mrk BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME dw#drow.mrk OR MOD_IS_INSTALLED ~stratagems.TP2~ ~8140~) BEGIN
   OUTER_SPRINT fluddoor ""
 END ELSE OUTER_SPRINT fluddoor uddoor07
 
 // Skeleton, melee
 ACTION_FOR_EACH file IN
+				skele2
                 gpskel1 //Underdark adventuring party
                 rskel01 //Ranger plot
                 rskel03 //Ranger plot
                 skelet01 //regular
                 ttskel   //tutorial
-                "%fluddoor%" //drow party by the UD exit; Golem if SCSII's Improved Drow is installed (vide supra)
-
+                "%fluddoor%" //drow party by the UD exit; Golem if Stratagems/SCSII's Improved Drow is installed (vide supra)
                 iskelet  //Candlekeep tutorial
                 _iskelet
+                skelet
+                _skelet
                 skelet03 
                 _kelet03
                 skelet_a
                 _kelet_a
                 //skelpetr //The tourist attraction in Durlag's Tower
                 //_kelpetr
-                skelet
-                _skelet
+				appar	 // CtB
+				cadskel1 // RoT
+				CBAPPAR1 // CtB
+			    cmske03  // Dark Horizons
+			    cmske04  // Dark Horizons
+				dragbr2  // TDD
+				gholske1 // RoT
+				psqsksu  // Planar Sphere mod
+			    ranske1  // RoT
+			    ranske2  // RoT
+			    ranske3  // RoT
+			    ranske4  // RoT
+			    ranske5  // RoT
+			    ranske6  // RoT
+			    ranske8  // RoT
+				skwr1mod // PofQuestPack
+				skwr2mod // PofQuestPack
+				skwr3mod // PofQuestPack
+				skwr4mod // PofQuestPack
+				skeldmod // PofQuestPack
+				skellord // DSotSC
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1199,13 +1407,28 @@ BEGIN
       LPF RR#MDCSC
         STR_VAR
           newscript = fl#lowm
-          script02 = wtasight
-          script04 = _tasight
-          script06 = dw#melee
-          script08 = bpwtsigt
-          script09 = bpwtrsgt
-          script10 = bpwdrsgt
-      END
+          script01 = wtasight
+          script02 = _tasight
+          script03 = bpwtsigt
+          script04 = bpwtrsgt
+          script05 = bpwdrsgt
+		  script06 = DW2MC0MO
+ 		  script07 = DW2MC1MO
+ 		  script08 = DW2RC0MO
+ 		  script09 = DW2MS0MO
+ 		  script10 = DW2MS1GE
+ 		  script11 = DW2MC1GE
+ 		  script12 = DW2MC3MO
+		  skipfile01 = ranske1
+		  skipfile02 = ranske2
+		  skipfile03 = ranske3
+		  skipfile04 = ranske4
+		  skipfile05 = ranske5
+		  skipfile06 = ranske6
+		  skipfile07 = appar
+		  skipfile08 = CBAPPAR1
+		  skipfile09 = skellord
+     END
     BUT_ONLY
   END
 END
@@ -1231,27 +1454,34 @@ ACTION_FOR_EACH file IN
                 _kelet_b
                 skelet_c
                 _kelet_c
+				CMSKE01  // Dark Horizons
+				CMSKE02  // Dark Horizons
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
       LPF make_skeleton END
-      PATCH_IF "%SOURCE_RES%" STRING_EQUAL_CASE skeletb BEGIN
+      PATCH_IF "%SOURCE_RES%" STRING_EQUAL_CASE ~skeletb~ BEGIN
         LPF promote_script STR_VAR script = skeletb END
       END
       LPF RR#MDCSC
         STR_VAR
           newscript = fl#lowr
-          script02 = wtasight
-          script03 = wtarsgt
-          script04 = _tasight
-          script05 = _wtarsgt
-          script06 = dw#melee
-          script07 = dw#range
-          script08 = bpwtsigt
-          script09 = bpwtrsgt
-          script10 = bpwdrsgt
-          script11 = wdarsgt
-          script12 = _wdarsgt
+          script01 = wtasight
+          script02 = wtarsgt
+          script03 = _tasight
+          script04 = _wtarsgt
+          script05 = bpwtsigt
+          script06 = bpwtrsgt
+          script07 = bpwdrsgt
+          script08 = wdarsgt
+          script09 = _wdarsgt
+          script10 = DW2RS0MO
+          script11 = DW2RP0MO
+          script12 = DW2RP1MO
+          script13 = DW2RS0MW
+          script14 = DW2RC0MW
+          script15 = DW2RP0MW
+          script16 = DW2RP1MW
       END
     BUT_ONLY
   END
@@ -1260,7 +1490,10 @@ END
 // Skeleton, summoned
 ACTION_IF !MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN //Not a skeleton in this case
   ACTION_FOR_EACH file IN
-                  ghastsu //Animate Dead
+                  ghastsu  //Animate Dead
+				  LCADEAD0 //Spellpack Animate Dead
+				  LCADEAD1 //Spellpack Animate Dead
+				  LCADEAD7 //Spellpack Animate Dead
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
@@ -1287,13 +1520,30 @@ ACTION_FOR_EACH file IN
                rskel02
                sahskel
                skelwa
+               _skelwa
                skelwa01
                skelwa02
-               suundead
-               _skelwa
                _kelwa02
-               bgskel02
-               bgskelwa
+               suundead
+			   tanskw1
+               bgskel02 //BG1
+               bgskelwa //BG1
+//			   bpduehi  // BP - Not Tested
+//			   c#ajske2 // Ajantis for BG2 - Not Tested
+			   cmskel01 // Dark Horizons
+			   cmskel02 // Dark Horizons
+			   dw#angsk // Stratagems
+			   dw#diask // Stratagems
+			   dw#semsk // Stratagems
+			   fhlskl1  // The Luxley Family
+			   fhlskl2  // The Luxley Family
+			   jc_ske01 // The Vault		   
+			   tg#dud1  // Refinements
+			   ranske7  // RoT
+			   ranske9  // RoT
+			   skelwa04 // RoT
+			   skelwax2 // TDD
+			   skelwmod // PofQuestPack
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1301,7 +1551,7 @@ BEGIN
         STR_VAR
           notenf_regexp = "hgskl04\|grtomb01\|ar18skel\|ceskel01"
       END
-      PATCH_IF "%SOURCE_RES%" STRING_EQUAL_CASE grskel1 BEGIN
+      PATCH_IF "%SOURCE_RES%" STRING_EQUAL_CASE ~grskel1~ BEGIN
         LPF promote_script STR_VAR script = initdlg END
       END
       LPF RR#MDCSC
@@ -1311,14 +1561,25 @@ BEGIN
           script02 = wtasight
           script03 = _tasight
           script04 = wtarsgt
-          script05 = dw#melee
-          script06 = wdasight
-          script07 = dw#range
-          script08 = _wtarsgt
-          script09 = bpwtsigt
-          script10 = bpwtrsgt
-          script11 = bpwdasgt
-          script12 = bpwtasgt
+          script05 = wdasight
+          script06 = dw#range
+          script07 = _wtarsgt
+          script08 = bpwtsigt
+          script09 = bpwtrsgt
+          script10 = bpwdasgt
+          script11 = bpwtasgt
+		  script12 = DW2MS1GE
+		  script13 = DW2MS0GE
+		  script14 = DW2MP1GE
+		  script15 = DW2MS2GE
+		  script16 = DW2MS1GW
+		  script17 = DW1MELGE
+		  script18 = DW2MS3GE
+		  skipfile01 = endske01
+		  skipfile02 = endske02
+		  skipfile03 = endske03
+		  skipfile04 = endske04
+		  skipfile05 = ranske7
       END
     BUT_ONLY
   END
@@ -1326,9 +1587,16 @@ END
 
 // Skeleton Warrior, ranged
 ACTION_FOR_EACH file IN
+			   firmon02
                skelwa03
                _kelwa03
-               bgskel03
+               bgskel03 //BG1
+			   mh#sadet //Made in heaven Q&E
+			   mh#sadis //Made in heaven Q&E
+			   tg#dud2  // Refinements
+			   skelwax3 // TDD
+			   jc_ske02 // The Vault
+			   0xuddg   // ToDG
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1340,15 +1608,19 @@ BEGIN
           script02 = wtasight
           script03 = _tasight
           script04 = wtarsgt
-          script05 = dw#melee
-          script06 = wdasight
-          script07 = dw#range
-          script08 = _wtarsgt
-          script09 = bpwtsigt
-          script10 = bpwtrsgt
-          script11 = bpwdasgt
-          script12 = bpwtasgt
-      END
+          script05 = wdasight
+          script06 = _wtarsgt
+          script07 = bpwtsigt
+          script08 = bpwtrsgt
+          script09 = bpwdasgt
+          script10 = bpwtasgt
+          script11 = DW2RP3GE
+          script12 = DW2RS0GE
+		  script13 = DW1RANGE
+		  script14 = DW2RS1GE
+		  script15 = DW2RS2GE
+          script16 = 0xuddg
+	END
     BUT_ONLY
   END
 END
@@ -1376,6 +1648,8 @@ COPY "atweaks/spl/undead/fl#skelw.spl" override
 // Spectre
 ACTION_FOR_EACH file IN
                 spectr01 //regular (also ranger stronghold mission)
+//				sahspc01
+				cbmalr6b //CtB
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1426,9 +1700,11 @@ BEGIN
           STR_VAR
             newscript = fl#higmc
             script01 = wtasight
-            script02 = dw#melee
-            script03 = bpmag14m
-            script04 = bpwtsigt
+            script02 = bpmag14m
+            script03 = bpwtsigt
+			script04 = DW2MC2GE
+			script05 = DW2MS4GE
+			skipfile01 = cbmalr6b
         END
         LPF hover_immunities END
         LPF cold_spell_immunities END
@@ -1460,6 +1736,10 @@ COPY_EXISTING b1-8.itm "override/fl#spect.itm"
 // Wight
 ACTION_FOR_EACH file IN
                 nevm1 //Nev's
+				MH#WIGHT //Made in heaven Q&E
+				MH#WGHT5 //Made in heaven Q&E
+				MH#WGHT6 //Made in heaven Q&E
+				MH#WGHT7 //Made in heaven Q&E
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1469,7 +1749,9 @@ BEGIN
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
         REPLACE_CRE_ITEM fl#wigh #0 #0 #0 none weapon1
+    PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS/SETUP-INFINITYANIMATIONS.TP2~ ~400~ BEGIN // Infinity Animation Compatibility (IAv5b)
         WRITE_SHORT 0x28 30464 //animation: ghoul
+	END
         LPF RR#MDCRE
           INT_VAR
             newxpv = 1400
@@ -1506,13 +1788,18 @@ BEGIN
             newgen = 4 //undead
             
             enforce = 1
+	       STR_VAR
+            notenf01 = MH#WIGHT5
+			notenf02 = MH#WIGHT6
+			notenf03 = MH#WIGHT7
         END
         LPF RR#MDCSC
           STR_VAR
             newscript = fl#midmc
             script01 = wdasight
-            script02 = dw#melee
-            script03 = bpwtsigt
+            script02 = bpwtsigt
+			script03 = DW2MC2GW
+			script04 = DW2MC1GE
         END
         LPF cold_spell_immunities END
       END
@@ -1543,9 +1830,14 @@ COPY_EXISTING b1-4.itm "override/fl#wigh.itm"
 // Wraith
 ACTION_FOR_EACH file IN
                 chwraith //Neb's child wraiths
+                firwra01 //Greater Wraith at Firkraag's
                 //telslav //Demon Wraith's slaves; not undead, apparently
                 wraith01 //regular
-                firwra01 //Greater Wraith at Firkraag's
+				BHWRAITH // Mod added
+				cbmalr6a // CtB
+				psqtpa1  // Planar Sphere mod
+				psqtpa2  // Planar Sphere mod
+				psqtpa3  // Planar Sphere mod
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1553,10 +1845,10 @@ BEGIN
       PATCH_IF valid BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none lring
-        PATCH_IF !"%SOURCE_RES%" STRING_EQUAL_CASE chwraith BEGIN
+        PATCH_IF NOT "%SOURCE_RES%" STRING_EQUAL_CASE ~chwraith~ BEGIN
           REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none rring //Standard undead immunities
         END
-        PATCH_IF !"%SOURCE_RES%" STRING_EQUAL_CASE telslav BEGIN
+        PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~telslav~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa1~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa2~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa3~)) BEGIN
           REPLACE_CRE_ITEM fl#wrai #0 #0 #0 none weapon1
         END
         LPF RR#MDCRE
@@ -1599,15 +1891,22 @@ BEGIN
             notenf01 = chwraith
             notenf02 = telslav
             notenf03 = firwra01
+			notenf04 = psqtpa1
+			notenf05 = psqtpa2
+			notenf06 = psqtpa3
         END
         LPF RR#MDCSC
           STR_VAR
             newscript = fl#higmc
             script01 = wtasight
-            script02 = dw#melee
-            script03 = bpmag14m
-            script04 = bpwtsigt
-            script05 = bpwdasgt
+			script02 = wdasight
+            script03 = bpshadow
+            script04 = bpmag14m
+            script05 = bpwtsigt
+            script06 = bpwdasgt
+			script07 = DW2MS4GE
+			script08 = DW2MS4GW
+			script09 = DW2MS1GE
         END
         LPF hover_immunities END
         LPF cold_spell_immunities END
@@ -1678,11 +1977,17 @@ END
 ACTION_FOR_EACH file IN
                 bhghoul3 //undead village
                 bhghoul5 //undead village
+				GTCIT3
+				GTCIT4
+				GTCIT5
                 kelzomb //Keldorn's
                 nevm5 //Nev's
                 rzomb01 //Ranger stronghold mission
+                zombie
+                _zombie
                 zombie01 //Unused, but no accounting for mods
-
+                zombieb //Bassilus
+                _zombieb
                 zombie_a
                 _ombie_a
                 zombie_b
@@ -1693,12 +1998,34 @@ ACTION_FOR_EACH file IN
                 _ombie_d
                 zombie_e
                 _ombie_e
-                zombie
-                _zombie
-                zombieb //Bassilus
-                _zombieb
-                zombiew //zombie farm
-                _zombiew
+				sewerf2  //BG1 Sewerfolk
+				//CRCRE004 // Mod added
+				//CRCRE009 // Mod added
+				c#q06002 // BGQE
+				d0monty2 // Quest Pack
+				ja#zomb1 // Mod added
+				LCADEAD2 // Spellpack
+				LCADEAD3 // Spellpack
+				LCADEAD4 // Spellpack
+				LCADEAD5 // Spellpack
+				LCADEAD6 // Spellpack
+				nszomb01 // Saerileth
+				nszomb02 // Saerileth
+				nszomb03 // Saerileth
+				nszomb04 // Saerileth
+				nszomb05 // Saerileth
+				nszomb06 // Saerileth
+				nszomb07 // Saerileth
+				nszomb08 // Saerileth
+				nszomb09 // Saerileth
+				nszomb10 // Saerileth
+				ntzombie // NTotSC
+				x#garz01 // BG1 NPC
+				x#garz02 // BG1 NPC
+				x#garz03 // BG1 NPC
+				x#garz04 // BG1 NPC
+				zombsexx // TDD
+				zombx1   // TDD
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1745,6 +2072,9 @@ BEGIN
             newrace = 148 //Zombie
             
             enforce = 1
+          STR_VAR
+            notenf01 = zombsexx
+            notenf02 = zombx1	
         END
         PATCH_IF "%SOURCE_RES%" STRING_MATCHES_REGEXP "_?zombie[bw]" = 0 BEGIN
           LPF promote_script STR_VAR script = "_?zombie[bw]" END
@@ -1753,9 +2083,16 @@ BEGIN
           STR_VAR
             newscript = fl#lowm
             script01 = wtasight
-            script02 = dw#melee
-            script03 = bpwtsigt
-            skipfile02 = kelzomb
+            script02 = bpwtsigt
+			script03 = DW2MC0MO
+			script04 = DW2MC0GE
+			script05 = dw2mp1mo
+            skipfile01 = kelzomb
+			skipfile02 = LCADEAD2
+			skipfile03 = LCADEAD3
+			skipfile04 = LCADEAD4
+			skipfile05 = LCADEAD5
+			skipfile06 = LCADEAD6
         END
         LPF cold_spell_immunities END
       END
@@ -1768,11 +2105,96 @@ COPY_EXISTING b1-8.itm "override/fl#zomb.itm"
     WRITE_BYTE LONG_AT 0x64 + 0x38*i + 0x12 10 //speed
   END
 
+// Zombie, Lord
+ACTION_FOR_EACH file IN
+            zomblo01
+			dszomblo // DsotSC
+			gzombie  // TS
+			MH#zom12 // Made In Heaven Q&E
+//			xszomb1  // Exnem - Not Tested
+			szombl01 // DSotSC & Bonehill	
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+      PATCH_INCLUDE "atweaks/lib/fj_cre_validity.tpp"
+      PATCH_IF valid BEGIN
+        PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
+        REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
+        REPLACE_CRE_ITEM fl#zlord #0 #0 #0 none weapon1
+        LPF unturnable END
+        LPF RR#MDCRE
+		  INT_VAR
+            newxpv = 650
+            newhp = 48 //6d8
+            newac = 6
+            newth = 15
+            newapr = 2
+            newsvd = 11
+            newsvw = 13
+            newsvp = 12
+            newsvb = 13
+            newsvs = 14
+            newlvl1 = 6
+            newlvl2 = 0
+            newlvl3 = 0
+            newmr = 0
+            newfr = 0
+            newcr = 100
+            newer = 0
+            newar = 0
+            newrs = 0
+            newrc = 0
+            newrp = 0
+            newrm = 0
+            newstr = 18
+            newstrx = 1
+            newint = 10
+            newwis = 10
+            newdex = 10
+            newcon = 10
+            newchr = 10
+            newmor = 18
+            newalign = 35 //Neutral Evil
+            newclass = 198 //Zombie
+            newgen = 4 //undead
+            newrace = 148 //Zombie           
+            enforce = 1
+		  STR_VAR
+            notenf01 = dszomblo
+        END
+        PATCH_IF "%SOURCE_RES%" STRING_MATCHES_REGEXP "_?zombie[bw]" = 0 BEGIN
+          LPF promote_script STR_VAR script = "_?zombie[bw]" END
+        END
+        LPF RR#MDCSC
+          STR_VAR
+            newscript = fl#zlord
+            script01 = wtasight
+            script02 = bpwtsigt
+			script03 = GHOLOR01 //Ghoul lord
+			script04 = DW2MP1MO
+			script05 = DW2MP1GE
+			script06 = DW2MP2MW
+			script07 = DW2MC2MO
+        END
+        LPF cold_spell_immunities END
+      END
+    BUT_ONLY
+  END
+END
 
+COPY_EXISTING b2-8.itm "override/fl#zlord.itm"
+  LPF set_enchantment INT_VAR enchantment = 2 END
+  FOR (i = 0; i < SHORT_AT 0x68; ++i) BEGIN
+    WRITE_BYTE LONG_AT 0x64 + 0x38*i + 0x12 10 //speed
+  END
 
 // Zombie, Ju-ju
 ACTION_FOR_EACH file IN
                 zombju01
+                zombiew //zombie farm
+                _zombiew
+				CDI5JZOM // IWDification
+				LCJUJUSU // Spellpack
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1813,7 +2235,7 @@ BEGIN
             newsvp = 12
             newsvb = 13
             newsvs = 14
-            newlvl1 = 9
+            newlvl1 = 3
             newlvl2 = 0
             newlvl3 = 0
             newmr = 0
@@ -1844,8 +2266,12 @@ BEGIN
           STR_VAR
             newscript = fl#midmc
             script01 = wtasight
-            script02 = dw#melee
-            script03 = bpwtsigt
+            script02 = bpwtsigt
+			script03 = DW2MC0MO
+			script05 = DW2MC1MO
+			script04 = DW2MS0GE
+			skipfile01 = CDI5JZOM
+			skipfile02 = LCJUJUSU
         END
         LPF cold_spell_immunities END
         LPF electrical_spell_immunities END
@@ -1863,6 +2289,10 @@ COPY_EXISTING b3-12.itm "override/fl#zomju.itm"
 ACTION_FOR_EACH file IN
                 sahzomb
                 zombse01
+				VA#ZOM01 // Tower of Deception
+				VA#ZOM02 // Tower of Deception
+				VA#ZOM03 // Tower of Deception
+				VA#ZOMGL // Tower of Deception
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1880,7 +2310,7 @@ BEGIN
           INT_VAR
             newxpv = 420
             newhp = 40 //5d8
-            newac = 6
+            newac = 7
             newth = 15
             newapr = 1
             newsvd = 11
@@ -1919,15 +2349,86 @@ BEGIN
           STR_VAR
             newscript = fl#zomse
             script01 = wtasight
-            script03 = wdasight
-            script04 = dw#melee
-            script05 = bpwtsigt
-            script06 = bpwdasgt
+            script02 = wdasight
+            script03 = bpwtsigt
+            script04 = bpwdasgt
+			script05 = DW2MP0GW
+			script06 = DW2MP0GE
         END
       END
     BUT_ONLY
   END
 END
+
+// Zombie, Sea Lord
+ACTION_FOR_EACH file IN
+                sahzom01
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+      PATCH_INCLUDE "atweaks/lib/fj_cre_validity.tpp"
+      PATCH_IF valid BEGIN
+        PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
+        REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
+        REPLACE_CRE_ITEM fl#zsel #0 #0 #0 none weapon1
+        LPF illusion_immunity END
+        LPF unturnable END
+        ADD_MEMORIZED_SPELL sppr102 #0 priest //Command
+        ADD_MEMORIZED_SPELL sppr113 #0 priest //Doom
+        ADD_MEMORIZED_SPELL sppr208 #1 priest //Hold Person
+        LPF RR#MDCRE
+          INT_VAR
+            newxpv = 1500
+            newhp = 64 //8d8
+            newac = "-3"
+            newth = 11
+            newapr = 2
+            newsvd = 7
+            newsvw = 9
+            newsvp = 8
+            newsvb = 8
+            newsvs = 10
+            newlvl1 = 6
+            newlvl2 = 4
+            newlvl3 = 0
+            newmr = 50
+            newfr = 50
+            newcr = "-100"
+            newer = "-100"
+            newar = 0
+            newrs = 0
+            newrc = 0
+            newrp = 0
+            newrm = 0
+            newstr = 19
+            newstrx = 0
+            newint = 10
+            newwis = 10
+            newdex = 17
+            newcon = 18
+            newchr = 9
+            newmor = 60
+            newalign = 0x33 //NE
+            newclass = 8 //F/C
+            newgen = 4 //undead
+            newrace = 148 //Zombie
+
+            enforce = 1
+        END
+        LPF RR#MDCSC
+          STR_VAR
+            newscript = fl#zsel
+            script01 = wtasight
+            script02 = wdasight
+            script03 = bpwtsigt
+            script04 = bpwdasgt
+			script05 = DW2MP0GE
+        END
+      END
+    BUT_ONLY
+  END
+END
+
 
 // Fix XP for RIFTCR group
 ACTION_FOR_EACH file IN
@@ -1989,6 +2490,9 @@ COPY_EXISTING b1-10.itm "override/fl#zomse.itm" //Sorry, but the zombie animatio
     STR_VAR
       resource = fl#zomsd
   END
+
+COPY_EXISTING fl#zomse.itm "override/fl#zsel.itm"
+  LPF set_enchantment INT_VAR enchantment = 2 END
 
 COPY "atweaks/spl/base.spl" "override/fl#zomsd.spl"
   LPF ADD_SPELL_EFFECT
@@ -2121,15 +2625,18 @@ COMPILE ~atweaks/baf/undead/fl#death.baf~
         "atweaks/baf/undead/fl#sklwm.baf"
         "atweaks/baf/undead/fl#sklwr.baf"
         "atweaks/baf/undead/fl#bansh.baf"
-	"atweaks/baf/undead/fl#gmum.baf"
+		"atweaks/baf/undead/fl#gmum.baf"
         "atweaks/baf/undead/fl#lowm.baf"
         "atweaks/baf/undead/fl#zomse.baf"
         "atweaks/baf/undead/fl#lowr.baf"
+		"atweaks/baf/undead/fl#zlord.baf"
+		"atweaks/baf/undead/fl#zsel.baf"
         "atweaks/baf/undead/fl#midmc.baf"
         "atweaks/baf/undead/fl#higmc.baf"
         "atweaks/baf/undead/fl#saham.baf"
         "atweaks/baf/undead/fl#skwsu.baf"
         "atweaks/baf/undead/fl#sklsu.baf"
+		"atweaks/baf/undead/TRevn_01.baf"
 
 
 
@@ -2148,3 +2655,74 @@ OUTER_SET $f_RemoveSecType(161) = FearSecType
 
 LAF integrate_sectypes END
 
+//Custom Animate Dead
+COPY_EXISTING sppr301.spl  "override/fl#adead.spl"
+  READ_LONG  0x64 ao
+  READ_LONG  0x6a eo
+  FOR (i=0;i<SHORT_AT 0x68;++i) BEGIN
+    READ_SHORT ao + 0x28*i + 0x10 lvl
+    READ_SHORT ao + 0x28*i + 0x1e ne
+    READ_SHORT ao + 0x28*i + 0x20 ei
+    c = 0
+    FOR (j=0;j<ne;++j) BEGIN
+      READ_SHORT eo + 0x30*(ei + j) type
+      PATCH_IF type = 177 BEGIN
+        READ_ASCII   eo + 0x30*(ei + j) + 0x14 res
+        PATCH_IF "%res%" STRING_EQUAL_CASE spandl15 OR (lvl >= 15 AND !c) BEGIN
+          SPRINT res fl#swasu
+          ++c
+        END ELSE BEGIN
+          SPRINT res fl#skesu
+        END
+        WRITE_ASCIIE eo + 0x30*(ei + j) + 0x14 "%res%" #8
+      END
+    END
+  END  
+  LPF RR#SP2IN INT_VAR rr#rinvis = 1 END
+
+COPY_EXISTING spandead.eff "override/fl#skesu.eff"
+              spandl15.eff "override/fl#swasu.eff"
+  WRITE_ASCIIE 0x30 "%DEST_RES%" #8
+
+COPY_EXISTING ghastsu.cre  "override/fl#skesu.cre"
+              skelwasu.cre "override/fl#swasu.cre"
+  WRITE_LONG 0x10 2                                                                // clear flags, leave only "no corpse"
+  WRITE_LONG 0x14 0                                                                //no xp 
+  WRITE_BYTE 0x6e THIS < 2 ? 2 : THIS                                              //large sword prof
+  WRITE_ASCII_LIST 0x248 fl#adead "" "" "" ""                                      //new script
+  WRITE_BYTE   0x270 128                                                           //Initially neutral
+  REPLACE_CRE_ITEM "%DEST_RES%" #0 #0 #0 none weapon1 EQUIP
+  PATCH_IF "%DEST_RES%" STRING_EQUAL_CASE fl#swasu BEGIN
+    WRITE_BYTE 0x271 4 //undead
+    WRITE_BYTE 0x273 135 //SKELETON_WARRIOR
+  END
+  PATCH_MATCH "%DEST_RES%" WITH
+    fl#swasu
+    BEGIN
+      n = 2
+    END
+    DEFAULT
+      n = 1
+  END
+  WRITE_ASCIIE 0x280 "fl#propertyoftheyugoloth%n%" #32
+  
+COPY_EXISTING skelwasu.itm "override/fl#swasu.itm"
+              sw1h05.itm   "override/fl#skesu.itm"
+  WRITE_BYTE 0x18 THIS BAND 251                                                     //remove droppable
+  READ_LONG  0x60 enchantment
+  READ_LONG  0x6a eo
+  type = "-1"
+  p1 = "-1"
+  p2 = "-1"
+  FOR (i=0;i<SHORT_AT 0x70 AND type != 177 AND p1 != enchantment AND p2 != 109;++i) BEGIN
+    READ_SHORT eo + 0x30*i       type
+    READ_LONG  eo + 0x30*i + 0x4 p1
+    READ_LONG  eo + 0x30*i + 0x8 p2
+  END
+  PATCH_IF type != 233 AND p1 != enchantment AND p2 != 109 BEGIN
+    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 233 target = 1 parameter1 = enchantment parameter2 = 109 timing = 2 END //Detectable enchantment
+  END
+
+     
+
+COMPILE "atweaks/baf/fiends/fl#adead.baf"

@@ -46,6 +46,15 @@ BEGIN
         rr#ptwf = 1
 
         enforce = 1
+	  STR_VAR
+		notenf01 = ghastf01
+		notenf02 = ghastgsu
+		notenf03 = gmayor
+		notenf04 = theshal
+		notenf05 = sghastgr
+		notenf06 = sk#algol
+		notenf07 = sk#ssp3
+		notenf08 = Grael
     END
   END
 END
@@ -167,8 +176,6 @@ BEGIN
         newclass = 135 //Skeleton Warrior (for ID)
         newgen = 4 //undead
         newrace = 115 //Skeleton
-
-        enforce
       STR_VAR
         enf_regexp
         notenf_regexp
