@@ -51,8 +51,9 @@ DEFINE_PATCH_FUNCTION make_imp BEGIN
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DIMP01"                                                        // enforced creature 1 (uses strict PnP values)
           "enfc02"   = "GORBAT4"                                                       // enforced creature 2 (uses strict PnP values)
-          "enfc03"   = "IMP01"                                                         // enforced creature 4 (uses strict PnP values)
-          "enfc04"   = "TELIMP1"                                                       // enforced creature 5 (uses strict PnP values)
+          "enfc03"   = "IMP01"                                                         // enforced creature 3 (uses strict PnP values)
+          "enfc04"   = "TELIMP1"                                                       // enforced creature 4 (uses strict PnP values)
+          "enfc05"   = "TCIMP01"                                                       // enforced creature 5 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -63,10 +64,19 @@ DEFINE_PATCH_FUNCTION make_imp BEGIN
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "DEMIMP"                                                        // fourth AI script name
         "script05"   = "BPWDASGT"                                                      // Big Picture script
-        "script06"   = "DW#MELEE"                                                      // SCSII melee script
-        "script07"   = "GENSHT01"                                                      // generic shout script
+        "script05"   = "BPDEMON"                                                       // Big Picture Demon script
+        "script06"   = "GENSHT01"                                                      // generic shout script
+        "script07"   = "DW2MP0GE"                                                      // Stratagems melee script
+        "script08"   = "DW2RP0MO"                                                      // Stratagems melee script
+		"script09"   = "DW2MS0MO"                                                      // Stratagems melee script
+		"script10"   = "DW#MG647"                                                      // Stratagems melee script
+		"script11"   = "DW#MG458"                                                      // Stratagems melee script
         "skipfile01" = "RUMAR03"                                                       // skip script patching for a designated file
         "skipfile02" = "MEKIMP01"                                                      // skip script patching for a designated file
+        "skipfile03" = "FAMIMP25"                                                      // skip script patching for a designated file
+        "skipfile04" = "FAMIMP"                                                        // skip script patching for a designated file
+        "skipfile05" = "lrimp1"                                                        // skip script patching for a designated file
+        "skipfile06" = "lrimp2"                                                        // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -147,8 +157,8 @@ DEFINE_PATCH_FUNCTION make_hellcat BEGIN
         "script02"   = "None"                                                          // second AI script name
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script05"   = "BPDEMON"                                                       // Big Picture Demon AI
-        "script06"   = "DW#MELEE"                                                      // SCSII melee script
-        "skipfile01" = "GORCAMB6"                                                      // skip script patching for a designated file
+        "script06"   = "DW2MP4MO"                                                      // Stratagems melee script
+		"skipfile01" = "GORCAMB6"                                                      // skip script patching for a designated file
         "skipfile02" = "GORCAMB7"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
@@ -212,6 +222,8 @@ DEFINE_PATCH_FUNCTION make_erinyes BEGIN
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DERINY01"                                                      // enforced creature 1 (uses strict PnP values)
           "enfc02"   = "GORBAT2"                                                       // enforced creature 2 (uses strict PnP values)
+          "enfc03"   = "jumjum"                                                        // enforced creature 3 (uses strict PnP values)
+          "enfc04"    = "wardtief"                                                      // enforced creature 4 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -222,6 +234,7 @@ DEFINE_PATCH_FUNCTION make_erinyes BEGIN
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "ERINYES"                                                       // fourth AI script name
         "script05"   = "BPDEMON"                                                       // Big Picture Demon AI
+		"skipfile01" = "jumjum"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -295,8 +308,8 @@ DEFINE_PATCH_FUNCTION make_bone_fiend BEGIN
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "BPDEMON"                                                       // Big Picture Demon AI
         "script05"   = "DEMBAL01"                                                      // Big Picture script (misassigned?)
-        "script06"   = "DW#MELEE"                                                      // SCSII melee script
-        "script07"   = "DW#BONEF"                                                      // SCSII Bone Fiend script
+        "script06"   = "DW2MC4GE"                                                      // Stratagems melee script
+        "script07"   = "DW#BONEF"                                                      // Stratagems Bone Fiend script
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -358,7 +371,7 @@ DEFINE_PATCH_FUNCTION make_abishai BEGIN
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMABI01"                                                      // enforced creature 1 (uses strict PnP values)
-           enfc02    = abisred1
+          "enfc02"   = "abisred1"                                                      // enforced creature 2 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -368,7 +381,16 @@ DEFINE_PATCH_FUNCTION make_abishai BEGIN
         "script02"   = "None"                                                          // second AI script name
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "BPDEMON"                                                       // Big Picture Demon AI
-        "script05"   = "DW#MELEE"                                                      // SCSII melee script
+        "script05"   = "DW2MP4GE"                                                      // Stratagems melee script
+        "script06"   = "DW2MS3GE"                                                      // Stratagems melee script
+        "script07"   = "DW2MS4GE"                                                      // Stratagems melee script
+		"script08"   = "DW2MC6GE"                                                      // Stratagems melee script
+		"script09"   = "DW2MC4GE"                                                      // Stratagems melee script
+		"script10"   = "DUEGABIS"                                                      // TDD Demon AI
+		"script11"   = "ABISHAI"                                                       // RoT Demon AI
+		"script12"   = "PSBAAT01"                                                      // Planar Sphere Demon AI
+		"script13"   = "GNTEAM2M"                                                      // AI
+		"skipfile01" = "duegabis"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -430,6 +452,8 @@ DEFINE_PATCH_FUNCTION make_cornugon BEGIN
           "enfc02"   = "DEADDEM1"                                                      // enforced creature 2 (uses strict PnP values)
           "enfc03"   = "GORBAT3"                                                       // enforced creature 3 (uses strict PnP values)
           "enfc04"   = "TELCOR1"                                                       // enforced creature 4 (uses strict PnP values)
+          "enfc05"   = "F_corn"                                                        // enforced creature 5 (uses strict PnP values)
+          "enfc06"   = "F_corn02"                                                      // enforced creature 6 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -440,7 +464,13 @@ DEFINE_PATCH_FUNCTION make_cornugon BEGIN
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "CORNUGON"                                                      // fourth AI script name
         "script05"   = "BPDEMON"                                                       // Big Picture Demon AI
-        "script06"   = "DW#MELEE"                                                      // SCSII melee script
+        "script06"   = "DW2MS3GE"                                                      // Stratagems melee script
+        "script07"   = "DW2MS4GE"                                                      // Stratagems melee script
+        "script08"   = "DW2MC4GE"                                                      // Stratagems melee script
+        "script09"   = "DW2MC0GE"                                                      // Stratagems melee script
+		"script10"   = "nscornug"
+		"script11"   = "WTASI2"                                                        // Drizzt Saga Demon script
+		"skipfile01" = "CULTMO2"                                                     // RoT Demon
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -466,6 +496,75 @@ DEFINE_PATCH_FUNCTION make_cornugon BEGIN
   END                                                                                  // ends file validity check
 END
 
+
+DEFINE_PATCH_FUNCTION make_gelugon BEGIN
+  
+  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+  PATCH_IF valid BEGIN
+    // =============================================================================== // the actual work starts from here
+    SAY NAME1 @670 SAY NAME2 @670
+    REPLACE_CRE_ITEM ~RR#DGELU~ #0 #0 #0 UNDROPPABLE ~weapon1~ EQUIP
+    REPLACE_CRE_ITEM ~RR#DGEL2~ #0 #0 #0 UNDROPPABLE ~shield~
+	REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 UNDROPPABLE ~lring~
+	REPLACE_CRE_ITEM ~RINGDEMN~ #0 #0 #0 UNDROPPABLE ~rring~
+	REPLACE_CRE_ITEM ~REGHP2R~ #0 #0 #0 UNDROPPABLE ~amulet~
+    newxpv = 19000
+    LPM update_fiend_xp
+    PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
+	LAUNCH_PATCH_FUNCTION ~RR#MDCRE~
+      INT_VAR
+        newxpv
+          "rr#ptwf"  = "2"                                                             // perfect two weapon fighting
+          "newmove"  = "11"                                                            // new movement rate                                                            // new movement rate
+          "newhp"    = "88"                                                            // new hit point value
+          "newac"    = "-3"                                                            // new Armor Class value
+          "newth"    = "9"                                                             // new THAC0 value
+          "newapr"   = "3"                                                             // new number of attacks per round
+          "newsvd"   = "7"                                                             // new Save vs. Death
+          "newsvw"   = "9"                                                             // new Save vs. Wand
+          "newsvp"   = "8"                                                             // new Save vs. Polymorph
+          "newsvb"   = "8"                                                             // new Save vs. Breath
+          "newsvs"   = "10"                                                            // new Save vs. Spell
+          "newmr"    = "50"                                                            // new Magic Resistance value
+          "newfr"    = "50"                                                            // new Resist Fire value
+          "newcr"    = "100"                                                           // new Resist Cold value
+          "newer"    = "0"                                                             // new Resist Electricity value
+          "newrm"    = "50"                                                            // new Resist Missiles
+          "newlvl1"  = "11"                                                            // new level (first class)
+          "newstr"   = "18"                                                            // new Strength value
+          "newstrx"  = "76"                                                            // new Exceptional Strength value
+          "newint"   = "18"                                                            // new Intelligence value
+          "newwis"   = "18"                                                            // new Wisdom value
+          "newdex"   = "17"                                                            // new Dexterity value
+          "newcon"   = "18"                                                            // new Constitution value
+          "newchr"   = "16"                                                            // new Charisma value
+          "newmor"   = "16"                                                            // new morale value
+          "newmorb"  = "4"                                                             // new morale break value
+          "newmorr"  = "15"                                                            // new morale recovery value
+          "newrace"  = "121"                                                           // new race (Demonic)
+          "newclass" = "179"                                                           // new class (Imp)
+          "newalign" = "19"                                                            // new alignment (Lawful Evil)
+     END
+   LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+      STR_VAR                                                                          // Initialize strings
+        "newscript"  = "RR#HGELU"                                                      // new AI script
+        "script01"   = ""                                                              // first AI script name
+        "script02"   = "None"                                                          // second AI script name
+        "script03"   = "WTASIGHT"                                                      // third AI script name
+        "script04"   = "BPWDASGT"                                                      // Big Picture script
+        "script05"   = "DW2MC4GE"                                                      // Stratagems melee script
+        "script06"   = "GENSHT01"                                                      // generic shout script
+      END 
+	LAUNCH_PATCH_FUNCTION cold_spell_immunities END
+	LAUNCH_PATCH_FUNCTION poison_spell_immunities END                                  // grant immunities to poison-based area effect spells
+    WRITE_LONG  0x10 0                                                               // clear flags
+    WRITE_BYTE  0x273 179															 // IMP
+    WRITE_BYTE  0x270 "255"                                                          // set initial allegiance to ENEMY
+    WRITE_BYTE  0x275 1                                                              //gender: male
+    WRITE_ASCII 0x280 ~RR#HGELU~ #32                                                 // assign new death variable      
+    END
+  END
+END
 
 DEFINE_PATCH_FUNCTION make_pit_fiend INT_VAR enforce = 0 BEGIN
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
@@ -513,14 +612,23 @@ DEFINE_PATCH_FUNCTION make_pit_fiend INT_VAR enforce = 0 BEGIN
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "179"                                                           // new class (Imp)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
-          
-          enforce
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMPIT"                                                        // enforced creature 1 (uses strict PnP values)
           "enfc02"   = "DEMPIT01"                                                      // enforced creature 2 (uses strict PnP values)
           "enfc03"   = "TELPIT1"                                                       // enforced creature 3 (uses strict PnP values)
           "enfc04"   = "TELPIT2"                                                       // enforced creature 4 (uses strict PnP values)
-           enfc05    = dempitsu   
+          "enfc05"   = "dempitsu"                                                      // enforced creature 5 (uses strict PnP values)
+          "enfc06"   = "dw#bazpf"                                                      // enforced creature 6 (uses strict PnP values)
+          "enfc07"   = "dw#pitsu"                                                      // enforced creature 7 (uses strict PnP values)
+          "enfc08"   = "tg#dem1"                                                      // enforced creature 8 (uses strict PnP values)
+          "enfc09"   = "caddem11"                                                      // enforced creature 9 (uses strict PnP values)
+          "enfc10"   = "caddem3"                                                      // enforced creature 10 (uses strict PnP values)
+          "enfc11"   = "dempitr1"                                                      // enforced creature 11 (uses strict PnP values)
+          "enfc12"   = "dempitr2"                                                      // enforced creature 12 (uses strict PnP values)
+          "enfc13"   = "heldem3"                                                      // enforced creature 13 (uses strict PnP values)
+          "enfc14"   = "heldem4"                                                      // enforced creature 14 (uses strict PnP values)
+          "enfc15"   = "z#gpit01"                                                      // enforced creature 15 (uses strict PnP values)
+          "enfc16"   = "z#gpitfd"                                                      // enforced creature 16 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     PATCH_IF "%file%" STRING_COMPARE_CASE dempitsu BEGIN
@@ -536,10 +644,17 @@ DEFINE_PATCH_FUNCTION make_pit_fiend INT_VAR enforce = 0 BEGIN
           "script07"   = "DEMPTJ"                                                      // sixth AI script name
           "script08"   = "BPDEMON"                                                     // Big Picture Demon AI
           "script09"   = "BPDEMPIT"                                                    // Big Picture Pit Fiend AI
-          "script10"   = "DW#MELEE"                                                    // SCSII melee script
+          "script10"   = "DW2MP4GE"                                                    // Stratagems melee script
+		  "script11"   = "DEMBAL01"                                                    // TDD Demon AI
+		  "script12"   = "z#gpitfd"                                                    // Spellhold Gauntlet Demon AI
+		  "script13"   = "DEMPIT3"                                                     // RoT Demon AI
+		  "script14"   = "DEMPIT2"                                                     // RoT Demon AI
+		  "script15"   = "WTASI2"                                                      // RoT Demon AI
           "skipfile01" = "GORBAT1"                                                     // skip script patching for a designated file
-      END                                                                              // ends FUNCTION call
-    END
+          "skipfile02" = "tg#dem1"                                                     // skip script patching for a designated file 
+          "skipfile03" = "CADDEM18"                                                     // skip script patching for a designated file 
+ END                                                                              // ends FUNCTION call
+    END 
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
       LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
@@ -547,11 +662,12 @@ DEFINE_PATCH_FUNCTION make_pit_fiend INT_VAR enforce = 0 BEGIN
       LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
         INT_VAR opcode_to_delete = "292" END                                           // mark opcode #292 (Protection from Backstab) for deletion
     END
-    WRITE_SHORT 0x28 "4352"                                                            // special case, Pit Fiends should use the TANARRI (winged demon) avatar
+    PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS/SETUP-INFINITYANIMATIONS.TP2~ ~150~ BEGIN // Infinity Animation Compatibility (IAv5b)
+      WRITE_SHORT 0x28 "4352"                                                          // special case, Pit Fiends should use the TANARRI (winged demon) avatar
+	END	
     END
     // =============================================================================== // the actual work ends here
-  END                                                                                  // ends file validity check
-
+END                                                                                  // ends file validity check
 
 
 DEFINE_PATCH_FUNCTION make_quasit BEGIN
@@ -615,16 +731,19 @@ DEFINE_PATCH_FUNCTION make_quasit BEGIN
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "QUASIT"                                                        // fourth AI script name
         "script05"   = "QUASIT01"                                                      // 5th AI script name
-        "script07"   = "BPWDASGT"                                                      // Big Picture script
-        "script08"   = "DW#MELEE"                                                      // SCSII melee script
+        "script06"   = "BPWDASGT"                                                      // Big Picture script
+        "script07"   = "DW2MP0GE"                                                      // Stratagems melee script
         "skipfile01" = "TELQUA1"                                                       // skip script patching for a designated file
         "skipfile02" = "TELQUA2"                                                       // skip script patching for a designated file
+        "skipfile03" = "FAMQUAS"                                                       // skip script patching for a designated file
+        "skipfile04" = "FAMQUA25"                                                       // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
     LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
     LAUNCH_PATCH_FUNCTION electrical_spell_immunities END                              // grant immunities to electricity-based area effect spells
     LAUNCH_PATCH_FUNCTION extraplanar_traits END                                       // grant extraplanar traits
+    LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
       LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
         INT_VAR opcode_to_delete = "193" END                                           // mark opcode #193 (Invisible Detection by Script) for deletion
       LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
@@ -699,9 +818,11 @@ DEFINE_PATCH_FUNCTION make_cambion BEGIN
           "enfc03"   = "IDEMON01"                                                      // enforced creature 3 (uses strict PnP values)
           "enfc04"   = "IDEMON02"                                                      // enforced creature 4 (uses strict PnP values)
           "enfc05"   = "TELCAM1"                                                       // enforced creature 5 (uses strict PnP values)
-           enfc06    = illcamb
-           enfc07    = illcamb2
-           enfc08    = kdemon01 
+          "enfc06"   = "illcamb"                                                       // enforced creature 6 (uses strict PnP values)
+          "enfc07"   = "illcamb2"                                                      // enforced creature 7 (uses strict PnP values)
+          "enfc08"   = "kdemon01"                                                      // enforced creature 8 (uses strict PnP values)
+          "enfc09"   = "TCCAMBI1"                                                      // enforced creature 9 (uses strict PnP values)
+          "enfc10"   = "TCCAMBI2"                                                      // enforced creature 10 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -711,16 +832,34 @@ DEFINE_PATCH_FUNCTION make_cambion BEGIN
         "script02"   = "None"                                                          // second AI script name
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "CTHIE20B"                                                      // fourth AI script name
-        "script05"   = "BPDEMTHF"                                                      // Big Picture script
-        "script06"   = "BPWTRSGT"                                                      // Big Picture script
-        "script07"   = "BPDEMON"                                                       // Big Picture Demon script
-        "script08"   = "DW#MELEE"                                                      // SCSII melee script
+		"script05"   = "TANARI"                                                        // fifth AI script name
+        "script06"   = "BPDEMTHF"                                                      // Big Picture script
+        "script07"   = "BPWTRSGT"                                                      // Big Picture script
+        "script08"   = "BPDEMON"                                                       // Big Picture Demon script
+		"script09"   = "AESGAR"
+		"script10"   = "ERRTU"		
+        "script11"   = "DW2MS2TH"                                                      // Stratagems melee script
+ 		"script12"   = "DW2MS1GE"                                                      // Stratagems melee script
+        "script13"   = "DW2MC5GE"                                                      // Stratagems melee script
+		"script14"   = "DW2MM4TH"                                                      // Stratagems melee script
+		"script15"   = "DW2MM4GE"                                                      // Stratagems melee script
+        "script16"   = "DW2MS1TH"                                                      // Stratagems melee script
+ 		"script17"   = "DW#MG162"                                                      // Stratagems Mage script
+		"script18"   = "DW#MG205"                                                      // Stratagems Mage script		
+		"script19"   = "DW_0008"		
+		"script20"   = "DW#MG590"                                                      // Stratagems Mage script		
+		"script21"   = "DW#MG199"                                                      // Stratagems Mage script		
+		"script22"   = "DW#MG598"                                                      // Stratagems Mage script		
         "skipfile01" = "IDEMON01"                                                      // skip script patching for a designated file
         "skipfile02" = "KDEMON01"                                                      // skip script patching for a designated file
         "skipfile03" = "GORCAMB"                                                       // skip script patching for a designated file
         "skipfile04" = "ILLCAMB"                                                       // skip script patching for a designated file
         "skipfile05" = "ILLCAMB2"                                                      // skip script patching for a designated file
         "skipfile06" = "PWARDEN"                                                       // skip script patching for a designated file
+        "skipfile07" = "FINCAMB2"                                                      // skip script patching for a designated file
+        "skipfile08" = "AGCAMB01"                                                      // skip script patching for a designated file
+        "skipfile09" = "AGCAMB02"                                                      // skip script patching for a designated file
+        "skipfile10" = "nscamb03"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -728,7 +867,7 @@ DEFINE_PATCH_FUNCTION make_cambion BEGIN
       LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
         INT_VAR opcode_to_delete = "193" END                                           // mark opcode #193 (Invisible Detection by Script) for deletion
     END
-    PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~GORCAMB~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~PWARDEN~)) BEGIN  // special case, don't alter the Warden's and Aesgareth's spell selection
+    PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~GORCAMB~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~PWARDEN~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~AGCAMB01~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~AGCAMB02~)) BEGIN  // special case, don't alter the Warden's, Aesgareth's spell selection and Aurora Demon's spells
     REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
     REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
     ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~wizard~                                          // adds 1x Blindness
@@ -750,7 +889,9 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
   PATCH_IF valid BEGIN
     PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                     // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
     // =============================================================================== // the actual work starts from here
-    WRITE_SHORT 0x28 "25104"                                                           // Sets avatar to MAGE_FEMALE_HUMAN
+    PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS/SETUP-INFINITYANIMATIONS.TP2~ ~260~ BEGIN // Infinity Animation Compatibility (IAv5b)
+      WRITE_SHORT 0x28 "25104"                                                           // Sets avatar to MAGE_FEMALE_HUMAN
+	END
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~HELMNOAN~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
     ADD_CRE_ITEM ~CLCK14~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~                               // replace armor with a robe to enable arcane spellcasting
@@ -795,7 +936,10 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
           "enfc03"   = "GORALU01"                                                      // enforced creature 3 (uses strict PnP values)
           "enfc04"   = "TELALU1"                                                       // enforced creature 4 (uses strict PnP values)
           "enfc05"   = "TELSUC1"                                                       // enforced creature 5 (uses strict PnP values)
-      END                                                                              // ends FUNCTION call
+          "enfc06"   = "ntindfi1"                                                      // enforced creature 6 (uses strict PnP values)
+          "enfc07"   = "ntindfi2"                                                      // enforced creature 7 (uses strict PnP values)
+          "enfc08"   = "nsaluf01"                                                      // enforced creature 8 (uses strict PnP values)
+     END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
       STR_VAR                                                                          // Initialize strings
@@ -807,8 +951,17 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
         "script05"   = "CARCH20B"                                                      // fifth AI script name
         "script06"   = "DEMALU01"                                                      // sixth AI script name
         "script07"   = "BPCFIG2B"                                                      // Big Picture script
-        "script07"   = "BPCARC2B"                                                      // Big Picture script
-        "script08"   = "BPDEMON"                                                       // Big Picture demon script
+        "script08"   = "BPCARC2B"                                                      // Big Picture script
+        "script09"   = "BPDEMON"                                                       // Big Picture demon script
+		"script10"   = "DW2MC3GE"                                                      // Stratagems melee script
+		"script11"   = "DW2RS1GE"                                                      // Stratagems melee script
+		"script12"   = "DW2RS3GE"                                                      // Stratagems melee script
+        "script13"   = "DW3MS3BE"                                                      // Stratagems melee script
+		"script14"   = "DW2MS0GE"                                                      // Stratagems melee script
+		"script15"   = "FINALUF"                                                       // Ascension Demon script
+		"script16"   = "NTINDFIF"                                                      // NTotSC Demon script		
+        "skipfile01" = "AGALUF01"                                                      // skip script patching for a designated file
+        "skipfile02" = "AGALUF02"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -816,6 +969,7 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
       LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
         INT_VAR opcode_to_delete = "193" END                                           // mark opcode #193 (Invisible Detection by Script) for deletion
     END
+    PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~AGALUF01~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~AGALUF02~)) BEGIN  // special case, don't alter Aurora Demon's spells
     REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
     REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
     ADD_KNOWN_SPELL     ~SPWI201~ #1 ~wizard~                                          // add Blur as known
@@ -844,6 +998,7 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
     ADD_MEMORIZED_SPELL ~SPWI508~ #4 ~wizard~                                          // adds 1x Chaos
     ADD_MEMORIZED_SPELL ~SPWI508~ #4 ~wizard~                                          // adds 1x Chaos
     ADD_MEMORIZED_SPELL ~SPWI611~ #5 ~wizard~                                          // adds 1x Protection From Magical Weapons
+	END
     // =============================================================================== // the actual work ends here
   END                                                                                  // ends file validity check
 END
@@ -907,9 +1062,10 @@ DEFINE_PATCH_FUNCTION make_maurezhi BEGIN
         "script02"   = "None"                                                          // second AI script name
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "OBSDEM04"                                                      // fourth AI script name
-        "script05"   = "DEMMAU01"                                                      // fourth AI script name
+        "script05"   = "DEMMAU01"                                                      // fifth AI script name
         "script06"   = "BPPRI10A"                                                      // Big Picture script
         "script07"   = "BPDEMON"                                                       // Big Picture demon script
+		"script08"   = "DW2MS3GE"                                                      // Stratagems melee script
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -919,7 +1075,9 @@ DEFINE_PATCH_FUNCTION make_maurezhi BEGIN
       LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
         INT_VAR opcode_to_delete = "292" END                                           // mark opcode #292 (Protection from Backstab) for deletion
     END
-    WRITE_SHORT 0x28 "30464"                                                           // special case, standardize Maurezhi apperance (use Ghoul avatar)
+    PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS/SETUP-INFINITYANIMATIONS.TP2~ ~100~ BEGIN // Infinity Animation Compatibility (IAv5b)
+      WRITE_SHORT 0x28 "30464"                                                           // special case, standardize Maurezhi apperance (use Ghoul avatar)
+	END
     // =============================================================================== // the actual work ends here
   END                                                                                  // ends file validity check
 END
@@ -976,6 +1134,7 @@ DEFINE_PATCH_FUNCTION make_succubus BEGIN
           "enfc03"   = "GORTAN2"                                                       // enforced creature 3 (uses strict PnP values)
           "enfc04"   = "KIRINH"                                                        // enforced creature 4 (uses strict PnP values)
           "enfc05"   = "_KIRINH"                                                       // enforced creature 5 (uses strict PnP values)
+          "enfc06"   = "yugsuc01"                                                      // enforced creature 6 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -992,6 +1151,9 @@ DEFINE_PATCH_FUNCTION make_succubus BEGIN
         "script09"   = "BPDEMON"                                                       // Big Picture demon script
         "script10"   = "INITDLG"                                                       // dialogue initialization script (BGT Kirinhale)
         "script11"   = "_INITDLG"                                                      // dialogue initialization script (Tutu Kirinhale)
+		"script12"   = "FINSUCC"                                                       // Ascension demon script
+        "script13"   = "DW2MC0GE"                                                      // Stratagems melee script
+		"skipfile01" = "X#AMELIA"                                                      // BG1 NPC Project melee script
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -1058,10 +1220,15 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
           "enfc01"   = "DEMNAB01"                                                      // enforced creature 1 (uses strict PnP values)
           "enfc02"   = "DEMNAB02"                                                      // enforced creature 2 (uses strict PnP values)
           "enfc03"   = "UDNABA"                                                        // enforced creature 3 (uses strict PnP values)
-           enfc04    =  demnabsu
-           enfc05    = rumar02
-           enfc06    = obsdem05
-           enfc07    = tanari01
+          "enfc04"   = "demnabsu"                                                      // enforced creature 4 (uses strict PnP values)
+          "enfc05"   = "rumar02"                                                       // enforced creature 5 (uses strict PnP values)
+          "enfc06"   = "obsdem05"                                                      // enforced creature 6 (uses strict PnP values)
+          "enfc07"   = "tanari01"                                                      // enforced creature 7 (uses strict PnP values)
+          "enfc08"   = "dw#nabsu"                                                      // enforced creature 8 (uses strict PnP values)
+          "enfc09"   = "tg#dem2"                                                       // enforced creature 9 (uses strict PnP values)
+          "enfc10"   = "demnabr1"                                                      // enforced creature 10 (uses strict PnP values)
+          "enfc11"   = "demnabr2"                                                      // enforced creature 11 (uses strict PnP values)
+          "enfc11"   = "z#gnabas"                                                      // enforced creature 12 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     PATCH_IF "%file%" STRING_COMPARE_CASE demnabsu BEGIN
@@ -1080,8 +1247,19 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
           "script10"   = "BGTANARI"                                                    // 10th AI script name
           "script11"   = "BPDEMON"                                                     // Big Picture demon script
           "script12"   = "BPTANARI"                                                    // Big Picture script
-          "script13"   = "DW#MELEE"                                                    // SCSII melee script
-          script14     = TANARI_                                                       // EET
+          "script13"   = "DW2MC4GE"                                                    // Stratagems melee script
+		  "script14"   = "DW2MC0GE"                                                    // Stratagems melee script
+		  "script15"   = "DW2MC4GE"                                                    // Stratagems melee script
+		  "script16"   = "DW2MS0GE"                                                    // Stratagems melee script
+		  "script17"   = "DW1MELGE"                                                    // Stratagems melee script
+		  "script18"   = "DW2MM2GE"                                                    // Stratagems melee script
+          "script19"   = "TANARI_"                                                     // EET
+		  "script20"   = "FINNABAS"                                                    // Ascension demon script
+ 		  "script21"   = "DEMBAL01"                                                    // TDD demon script
+ 		  "script22"   = "DEMNAB2"                                                     // RoT Gauntlet demon script
+		  "script23"   = "F_TANARI"                                                    // Drizzt Saga demon script
+		  "script24"   = "WTASI2"                                                    // RoT melee script
+		  "skipfile01" = "tg#dem2"                                                     // Refinement Demon
       END                                                                              // ends FUNCTION call
     END
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
@@ -1167,21 +1345,30 @@ DEFINE_PATCH_FUNCTION make_glabrezu INT_VAR enforce = 0 BEGIN
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "160"                                                           // new class (Tanari)
           "newalign" = "51"                                                            // new alignment (Chaotic Evil)
-
-          enforce
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMGLA01"                                                      // enforced creature 1 (uses strict PnP values)
           "enfc02"   = "DEMGLAB"                                                       // enforced creature 2 (uses strict PnP values)
           "enfc03"   = "DGLAB01"                                                       // enforced creature 3 (uses strict PnP values)
           "enfc04"   = "TELTAN1"                                                       // enforced creature 4 (uses strict PnP values)
           "enfc05"   = "TELTAN2"                                                       // enforced creature 5 (uses strict PnP values)
-           enfc06    =  demglasu 
-           enfc07    = demglab2
-           enfc08    = gortan4
-           emfc09    = jondem01
-           emfc10    = jondem03
-           enfc11    = jondem05  
-           enfc12    = abydem01
+          "enfc06"   = "demglasu"                                                      // enforced creature 6 (uses strict PnP values) 
+          "enfc07"   = "demglab2"                                                      // enforced creature 7 (uses strict PnP values)
+          "enfc08"   = "gortan4"                                                       // enforced creature 8 (uses strict PnP values)
+          "emfc09"   = "jondem01"                                                      // enforced creature 9 (uses strict PnP values)
+          "emfc10"   = "jondem03"                                                      // enforced creature 10 (uses strict PnP values)
+          "enfc11"   = "jondem05"                                                      // enforced creature 11 (uses strict PnP values)  
+          "enfc12"   = "abydem01"                                                      // enforced creature 12 (uses strict PnP values)
+          "enfc13"   = "dw#drxg1"                                                      // enforced creature 13 (uses strict PnP values)
+          "enfc14"   = "dw#drxg2"                                                      // enforced creature 14 (uses strict PnP values)
+          "enfc15"   = "dw#sengl"                                                      // enforced creature 15 (uses strict PnP values)
+          "enfc16"   = "BSGLABRE"                                                      // enforced creature 16 (uses strict PnP values)
+          "enfc17"   = "eastdem1"                                                      // enforced creature 17 (uses strict PnP values)
+          "enfc18"   = "eastdem3"                                                      // enforced creature 18 (uses strict PnP values)
+          "enfc19"   = "eastdem5"                                                      // enforced creature 19 (uses strict PnP values)
+          "enfc20"   = "eastdem6"                                                      // enforced creature 20 (uses strict PnP values)
+          "enfc21"   = "eastdem8"                                                      // enforced creature 21 (uses strict PnP values)
+          "enfc22"   = "FINGLAB"                                                       // enforced creature 22 (uses strict PnP values)
+          "enfc23"   = "PSGLAB"                                                        // enforced creature 23 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     PATCH_IF "%file%" STRING_COMPARE_CASE demglasu BEGIN
@@ -1200,9 +1387,22 @@ DEFINE_PATCH_FUNCTION make_glabrezu INT_VAR enforce = 0 BEGIN
           "script10"   = "TELTAN2"                                                     // 10th AI script name
           "script11"   = "TANARI"                                                      // 11th AI script name
           "script12"   = "BPDEMON"                                                     // Big Picture demon script
-          "script13"   = "DW#MELEE"                                                    // SCSII melee script
-          "script14"   = "BPTANARI"                                                    // Big Picture Tanar'ri script
-      END                                                                              // ends FUNCTION call
+          "script13"   = "BPTANARI"                                                    // Big Picture Tanar'ri script
+          "script14"   = "DW2MS2GE"                                             	   // Stratagems melee script
+		  "script15"   = "DW2MC4GE"                 		                           // Stratagems melee script
+		  "script16"   = "DW2MC3GE"                                                    // Stratagems melee script
+		  "script17"   = "DW2MS0GE"                 		                           // Stratagems melee script
+          "script18"   = "DW2MC0GE"                                                    // Stratagems melee script
+		  "script19"   = "FINGLAB"													   // Ascension demon script
+		  "script20"   = "DEMGLAB4"                                                    // RoT demon script
+		  "script21"   = "DEMGLAB3"                                                    // RoT demon script
+		  "script22"   = "DEMPTJ"                                                      // TDD demon script
+		  "script23"   = "BSGLABRE"                                                    // BST demon script
+		  "script24"   = "KISHDEMO"                                                    // NPC stronghold demon script
+		  "script25"   = "WTASI2"                                                      // RoT melee script
+		  "skipfile01" = "CULTMO1"                                                     // RoT Demon
+		  "skipfile02" = "PSGLAB"                                                     // RoT Demon
+		END                                                                            // ends FUNCTION call
     END
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -1217,9 +1417,8 @@ DEFINE_PATCH_FUNCTION make_glabrezu INT_VAR enforce = 0 BEGIN
   END                                                                                  // ends file validity check
 
 
-
 DEFINE_PATCH_FUNCTION make_marilith BEGIN
-  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                     // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
     PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                     // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
     // =============================================================================== // the actual work starts from here
@@ -1238,7 +1437,7 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
       LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                 // Starts FUNCTION call (aTweaks' Creature Modification function)
         INT_VAR                                                                        // Initialize variables
            newxpv
-         "rr#bsimm"  = "1"                                                             // Backstab immunity (1 = enable)
+          "rr#bsimm" = "1"                                                             // Backstab immunity (1 = enable)
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
           "newhp"    = "96"                                                            // new hit point value
           "newac"    = "-9"                                                            // new Armor Class value
@@ -1270,7 +1469,16 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMOSUM1"                                                      // enforced creature 1 (uses strict PnP values)
           "enfc02"   = "ICMARILI"                                                      // enforced creature 2 (uses strict PnP values)
-          "enfc03"   = "OBSDEM01"                                                      // enforced creature 2 (uses strict PnP values)
+          "enfc03"   = "OBSDEM01"                                                      // enforced creature 3 (uses strict PnP values)
+          "enfc04"   = "d0qpwima"                                                      // enforced creature 4 (uses strict PnP values)
+          "enfc05"   = "dw#grmar"                                                      // enforced creature 5 (uses strict PnP values)
+          "enfc06"   = "FINMARIL"                                                      // enforced creature 6 (uses strict PnP values)
+          "enfc07"   = "F_MARI"                                                        // enforced creature 7 (uses strict PnP values)
+          "enfc08"   = "CADDEM6"                                                       // enforced creature 8 (uses strict PnP values)
+          "enfc09"   = "CADDEM14"                                                      // enforced creature 9 (uses strict PnP values)
+          "enfc10"   = "HELDEM1"                                                       // enforced creature 10 (uses strict PnP values)
+          "enfc11"   = "HELDEM2"                                                       // enforced creature 11 (uses strict PnP values)
+          "enfc12"   = "MARIL"                                                         // enforced creature 12 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -1287,6 +1495,17 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
         "script09"   = "TANARI"                                                        // generic Tanar'ri script
         "script10"   = "GRPSHT01"                                                      // generic shout script
         "script11"   = "BPTANARI"                                                      // Big Picture Tanar'ri script
+        "script12"   = "BPMARILI"                                                     // Planar Sphere Mod melee script
+		"script13"   = "DW2MS3GE"                                             		   // Stratagems melee script
+		"script14"   = "DW2MS0GE"                                                      // Stratagems melee script
+		"script15"   = "DW2MS4GE"                                                      // Stratagems melee script
+		"script16"   = "FINMARIL"                 		                               // Ascension demon script
+		"script17"   = "F_MARI"                                                        // Drizzt Saga Demon script
+		"script18"   = "WTASI2"                                                        // Drizzt Saga Demon script
+		"skipfile01" = "Z_2spe2"                                                       // Tales of Anegh Demon
+		"skipfile02" = "PSMARI1"                                                       // Planar Sphere Mod
+		"skipfile03" = "PSMARI2"                                                       // Planar Sphere Mod
+		"skipfile03" = "YUXBOSSA"                                                       // TDD Mod
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -1372,17 +1591,27 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
           "enfc02"   = "DEMBAL01"                                                      // enforced creature 2 (uses strict PnP values)
           "enfc03"   = "DEMBAL02"                                                      // enforced creature 3 (uses strict PnP values)
           "enfc04"   = "UDBALOR"                                                       // enforced creature 4 (uses strict PnP values)
-           enfc05    = telbal1
-           enfc06    = telbal2 
-           enfc07    = gordem
-           enfc08    = gordemc1
-           enfc09    = jondem02
-           enfc10    = jondem04 
-           enfc11    = sudemon
-           enfc12    = sudemon2
-           enfc13    = sudemde1
-           enfc14    = sudemde2
-           enfc15    = sudemw1
+          "enfc05"   = "telbal1"                                                       // enforced creature 5 (uses strict PnP values)
+          "enfc06"   = "telbal2"                                                       // enforced creature 6 (uses strict PnP values) 
+          "enfc07"   = "gordem"                                                        // enforced creature 7 (uses strict PnP values)
+          "enfc08"   = "gordemc1"                                                      // enforced creature 8 (uses strict PnP values)
+          "enfc09"   = "jondem02"                                                      // enforced creature 9 (uses strict PnP values)
+          "enfc10"   = "jondem04"                                                      // enforced creature 10 (uses strict PnP values)
+          "enfc11"   = "sudemon"                                                       // enforced creature 11 (uses strict PnP values)
+          "enfc12"   = "sudemon2"                                                      // enforced creature 12 (uses strict PnP values)
+          "enfc13"   = "sudemde1"                                                      // enforced creature 13 (uses strict PnP values)
+          "enfc14"   = "sudemde2"                                                      // enforced creature 14 (uses strict PnP values)
+          "enfc15"   = "sudemw1"                                                       // enforced creature 15 (uses strict PnP values)
+          "notenf01" = "ACQ17003"                                                      // non-enforced creature 1 (uses best stat values)
+          "notenf02" = "godmari4"                                                      // non-enforced creature 2 (uses best stat values)
+          "notenf03" = "caddem1"                                                       // non-enforced creature 3 (uses best stat values)
+          "notenf04" = "CADDEM16"                                                      // non-enforced creature 4 (uses best stat values)
+          "notenf05" = "CADDEM21"                                                      // non-enforced creature 5 (uses best stat values)
+          "notenf07" = "endragor"                                                      // non-enforced creature 6 (uses best stat values)
+          "notenf08" = "errtu"                                                         // non-enforced creature 7 (uses best stat values)
+          "notenf09" = "f_demdrg"                                                      // non-enforced creature 8 (uses best stat values)
+          "notenf10" = "f_tanari"                                                      // non-enforced creature 9 (uses best stat values)
+          "notenf11" = "holytana"                                                      // non-enforced creature 10 (uses best stat values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -1403,12 +1632,33 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
         "script13"   = "DEMPTJ"                                                        // 13th AI script name
         "script14"   = "TANARI"                                                        // 14th AI script name
         "script15"   = "BPDEMON"                                                       // Big Picture demon script
-        "script16"   = "DW#MELEE"                                                      // SCSII melee script
-        "script17"   = "dw#subal"                                                      // SCSII Suldanesselar Balor script
-        "script18"   = "BPTANARI"                                                      // Big Picture Tanar'ri script
+        "script16"   = "BPTANARI"                                                      // Big Picture Tanar'ri script
+        "script17"   = "dw#subal"                                                      // Stratagems Suldanesselar Balor script
+		"script18"   = "FINBALOR"													   // Ascension demon script
+ 		"script19"   = "Z#GBALOR"                                                      // Spellhold Gauntlet script
+ 		"script20"   = "R#DEMON"                                                       // Improved Asylum script
+ 		"script21"   = "DEMBAL03"                                                      // RoT Demon script
+ 		"script22"   = "DEMBAL04"                                                      // RoT Demon script
+ 		"script23"   = "VA#BALOR"                                                      // Tower of Deception script
+ 		"script24"   = "Z_2BALOR"                                                      // Tales of Anegh script
+ 		"script25"   = "WTASI2"                                                        // Tales of Anegh script
+ 		"script26"   = "F_TANARI"                                                      // Drizzt Saga demon script
+ 		"script27"   = "ERRTU"                                                         // TDD demon script
+ 		"script28"   = "F_DEMDRG"                                                      // Drizzt Saga demon script
+		"script29"   = "Z#GBALOR"                                                      // Tales of Anegh script
+		"script30"   = "DW2MS2GE"                                                      // Tales of Anegh script
+ 		"script31"   = "DW2MS0GE"                                                      // Tales of Anegh script
+        "script32"   = "DW2MS4GE"                                                      // Stratagems melee script
+        "script33"   = "DW2MC4GE"                                                      // Stratagems melee script
+ 		"script34"   = "DW2MC0GE"                                                      // Stratagems melee script
+ 		"script35"   = "DW2MC3GE"                                                      // Stratagems melee script
+ 		"script36"   = "DW2MS3GE"                                                      // Stratagems melee script
+ 		"script37"   = "DW2MM2GE"                                                      // Tales of Anegh script
         "skipfile01" = "GORTAN1"                                                       // skip script patching for a designated file
         "skipfile02" = "M05DEMON"                                                      // skip script patching for a designated file
         "skipfile03" = "GORDEMC1"                                                      // skip script patching for a designated file
+        "skipfile04" = "tg#did3"                                                       // skip script patching for a designated file
+        "skipfile05" = "tg#did4"                                                       // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
       SET_BG2_PROFICIENCY PROFICIENCYLONGSWORD 1
@@ -1598,6 +1848,7 @@ DEFINE_PATCH_FUNCTION make_arcanaloth BEGIN
   END
 END
 
+
 DEFINE_PATCH_FUNCTION make_shadow_fiend BEGIN
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
@@ -1605,7 +1856,8 @@ DEFINE_PATCH_FUNCTION make_shadow_fiend BEGIN
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END
     LAUNCH_PATCH_FUNCTION cold_spell_immunities END
     LPF electrical_spell_immunities END
-    REPLACE_CRE_ITEM fl#shaf1 #0 #0 #0 none weapon1 EQUIP
+    LPF extraplanar_traits END
+	REPLACE_CRE_ITEM fl#shaf1 #0 #0 #0 none weapon1 EQUIP
     REPLACE_CRE_ITEM fl#shaf2 #0 #0 #0 none shield
     REMOVE_CRE_ITEM immune1 ring95
     WRITE_BYTE 0x273 255 //NO_CLASS
@@ -1642,6 +1894,15 @@ DEFINE_PATCH_FUNCTION make_shadow_fiend BEGIN
         rr#ptwf      = 1
         
         enforce      = 1
-    END
+	  END
+	LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+      STR_VAR
+        "newscript" = "fl#shafi"
+        "script01" = "wtasight"                                                       // third AI script name
+        "script02" = "bpmag14m"                                                       // Big Picture mage script
+        "script03" = "bpwtsigt"                                                       // Big Picture melee script
+        "script04" = "bpshadow"                                                       // Big Picture shadow script
+        "script05" = "dw2MC0GE"                                                       // Stratagems melee script
+	  END
   END
 END
