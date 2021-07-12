@@ -151,6 +151,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~IDRYAD01~                                                           // Ulene (one of Irenicus captive Dryads)
               ~IDRYAD02~                                                           // Cania (one of Irenicus captive Dryads)
               ~IDRYAD03~                                                           // Elyme (one of Irenicus captive Dryads)
+              ~dr01mod~                                                            // Dryad (PofQuestPack)
+              ~drmod~                                                              // Dryad (PofQuestPack)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -195,6 +197,8 @@ INT_VAR                                                                         
 "newsex"   = "2"                                                                   // new sex (Female)
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // Initialize strings
+"notenf01" = "dr01mod"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -203,16 +207,19 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "CDRYAD"                                                            // Dryad AI script
 "script04"   = "_CDRYAD"                                                           // Dryad AI script (Tutu)
-"script05"   = "INITDLG"                                                           // dialogue script (not needed as it's handled within the new script)
-"script06"   = "_INITDLG"                                                          // dialogue script (Tutu)
-"script07"   = "SHOUT"                                                             // generic shout script
-"script08"   = "WTASIGHT"                                                          // generic AI script
-"script09"   = "wtrunsgt"                                                          // generic AI script
-"script10"   = "_TRUNSGT"                                                          // generic AI script (Tutu)
-"script11"   = "IDRYAD01"                                                          // Ulene's dialogue script (not needed as it's handled within the new script)
-"script12"   = "ULENE"                                                             // Ulene's AI script (not needed as it's handled within the new script)
-"script13"   = "dw#melee"                                                          // SCSII melee AI script
+"script05"   = "DRYAD"                                                             // Dryad AI script
+"script06"   = "INITDLG"                                                           // dialogue script (not needed as it's handled within the new script)
+"script07"   = "_INITDLG"                                                          // dialogue script (Tutu)
+"script08"   = "SHOUT"                                                             // generic shout script
+"script09"   = "WTASIGHT"                                                          // generic AI script
+"script10"   = "wtrunsgt"                                                          // generic AI script
+"script11"   = "_TRUNSGT"                                                          // generic AI script (Tutu)
+"script12"   = "IDRYAD01"                                                          // Ulene's dialogue script (not needed as it's handled within the new script)
+"script13"   = "ULENE"                                                             // Ulene's AI script (not needed as it's handled within the new script)
 "script14"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script15"   = "SIRSPELL"                                                          // default Sirine script
+"script16"   = "DW2MP0GE"                                                          // Stratagems Melee script
+"script17"   = "DW2RC2MO"                                                          // Stratagems Melee script
 END                                                                                // ends FUNCTION call
   PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~DRYAD~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~_DRYAD~)) BEGIN // special case, Dryad of the Cloudpeaks
     WRITE_BYTE 0x273 155                                                           // class = INNOCENT
@@ -290,9 +297,10 @@ STR_VAR                                                                         
 "script06"   = "_HAMA"                                                             // default Hamadryad AI (Tutu)
 "script07"   = "SHOUTDLG"                                                          // dialogue script (not needed as it's handled within the new script)
 "script08"   = "vaelasa"                                                           // Vaelasa's script (not needed as it's handled within the new script)
-"script09"   = "dw#melee"                                                          // SCSII melee AI script
-"script10"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script09"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script10"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script11"   = "DW2MP2GE"                                                          // Stratagems Melee script
+"script12"   = "DW2MP0GE"                                                          // Stratagems Melee script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~entangle_immunities~ END                                    // add immunity to Entangle spells and abilities
 // =============================================================================== // the actual work ends here
@@ -315,7 +323,15 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~_IRINE02~                                                           // Sirine (Tutu)
                    ~SIL~                                                           // Sil (BGT)
                   ~_SIL~                                                           // Sil (Tutu)
-
+			  ~J#SIRIN1~ 														   //Sirine (Jarl Adv)
+			  ~J#SIRIN2~ 														   //Sirine (Jarl Adv)
+			    ~L#NDC1~
+			   ~NTSILUA~ 														   //Sirine (NTotSC)
+			  ~NTSIRIN2~ 														   //Sirine (NTotSC)
+			  ~NTSIRIN4~ 														   //Sirine (NTotSC)
+			    ~ISLSIR~ 														   //Sirine Queen (BGT)
+			    ~MEIALA~ 														   //Sirine (BGT)
+			  ~QSEROMOD~ 														   //Sirine (PofQuestPack)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -372,6 +388,10 @@ INT_VAR                                                                         
 "newsex"   = "2"                                                                   // new sex (Female)
 "newalign" = "50"                                                                  // new alignment (Chaotic Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // Initialize strings
+"notenf01" = "ISLSIR"
+"notenf02" = "MEIALA"
+"notenf03" = "QSEROMOD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -392,7 +412,10 @@ STR_VAR                                                                         
 "script14"   = "_WDARSGT"                                                          // generic AI script (Tutu)
 "script15"   = "BPWTRSGT"                                                          // Big Picture generic AI script
 "script16"   = "CRESHOUT"                                                          // Big Picture shout script
-"script17"   = "dw#range"                                                          // SCSII ranged AI script
+"script17"   = "DW2RC2MO"                                                          // Stratagems ranged AI script
+"script18"   = "DW2RC2MW"                                                          // Stratagems ranged AI script
+"script19"   = "DW2RC2GE"                                                          // Stratagems ranged AI script
+"script20"   = "DW2MM2MO"                                                          // Stratagems ranged AI script
 END                                                                                
 LAUNCH_PATCH_FUNCTION cloud_spell_immunities END                                   // grant immunities to gas-based area effect spells
 PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~SIL~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~_SIL~)) BEGIN // special case, Sil should be a 7 HD Sirine
@@ -431,8 +454,10 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~_ABELA~                                                             // Abela the Nymph (Tutu)
               ~HGNYMPH~                                                            // Nymph
               ~NYMPHSU~                                                            // default summoned Nymph
-              ~dvnymph~                                                            // Spell Revisions' summoned Nymph
-             ~dw#nymsu~                                                            // SCSII summoned Nymph
+              ~NYMPHSUM~                                                           // summoned Nymph
+			  ~dvnymph~                                                            // Spell Revisions' summoned Nymph
+              ~WQXNYM~
+			  ~dw#nymsu~                                                           // SCSII summoned Nymph
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -483,6 +508,9 @@ INT_VAR                                                                         
 "newsex"   = "2"                                                                   // new sex (Female)
 "newalign" = "33"                                                                  // new alignment (Neutral Good)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // Initialize strings
+"notenf01" = "WQXNYM"
+"notenf02" = "dw#nymsu"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -500,7 +528,7 @@ STR_VAR                                                                         
 "script11"   = "BPNYMPH"                                                           // Big Picture Nymph script
 "script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script13"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script14"   = "dw#melee"                                                          // SCSII melee AI script
+"script14"   = "DW2MS2GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~NYMPHSU~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~dvnymph~)) BEGIN // special case, summoned Nymphs need a different script
   WRITE_ASCII 0x248 ~RR#SNYMP~ #8                                                  // override AI script
@@ -509,10 +537,6 @@ END
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
-
-
-
 
 
 //////////////////
