@@ -191,13 +191,6 @@ COPY ~atweaks/itm/mephits/rr#mstw1.itm~ ~override~                              
 
 
 
-
-
-
-
-
-
-
 //////////////////////////
 // Creature modifications
 //////////////////////////
@@ -277,7 +270,9 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~MEPDUS01~                                                           // Dust Mephit
               ~ELEMEP08~                                                           // Dust Mephit
 //              ~MDDUST~                                                           // Dust Mephit (unused?, don't process)
-              ~TCMMBKWM~                                                           // Book Mephit (Classic Adventures
+              ~TCMMBKWM~                                                           // Book Mephit (Classic Adventures)
+               ~FAMDUST~                                                           // Dust Mephit - familiar
+              ~FAMDUS25~                                                           // Dust Mephit - familiar ToB
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -289,8 +284,10 @@ ADD_CRE_ITEM ~RR#MIMUN~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                         
 REMOVE_CRE_ITEM ~MOVRAT10~                                                         // removes MOVRAT10.ITM (movement rate is handled differently)
 REMOVE_CRE_ITEM ~REGHP1~                                                           // removes REGHP1.ITM (mephit regeneration is handled differently in aTweaks)
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
-REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUST~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUS25~)) BEGIN
+  REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+  REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+END                                                            // Remove all memorized spells from the current creature
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -337,9 +334,14 @@ STR_VAR                                                                         
 "script06"   = "DW#MELEE"                                                          // SCSII melee script
 "script07"   = "MEPDUS"                                                            // original Dust Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
+"skipfile01" = "FAMDUST"                                                          // skip script patching for a designated file
+"skipfile02" = "FAMDUS25"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
+PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUST~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUS25~)) BEGIN
+  WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
+END
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -406,7 +408,9 @@ STR_VAR                                                                         
 "script06"   = "DW#MELEE"                                                          // SCSII melee script
 "script07"   = "MEPEAR"                                                            // original Earth Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
+"script09"   = "DW2MC0GE"                                                          // Stratagems melee script
 END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells -- Mephit fly
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -420,6 +424,10 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~MEPFIR01~                                                           // Fire Mephit
               ~ELEMEP04~                                                           // Fire Mephit
               ~OBSFIR02~                                                           // Fire Mephit
+			  ~A7Q5FM~                                                             // Fire Mephit (Afaaq)
+			  ~O#brimP1~
+			  ~O#brimP2~
+              ~FAMFIRE~                                                            // Fire Mephit - familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -430,8 +438,10 @@ ADD_CRE_ITEM ~RR#MIMUN~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                         
 REMOVE_CRE_ITEM ~MOVRAT10~                                                         // removes MOVRAT10.ITM (movement rate is handled differently)
 REMOVE_CRE_ITEM ~REGHP1~                                                           // removes REGHP1.ITM (mephit regeneration is handled differently in aTweaks)
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
-REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+PATCH_IF NOT ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMFIRE~) BEGIN
+  REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+  REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+END                                                           // Remove all memorized spells from the current creature
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -476,9 +486,13 @@ STR_VAR                                                                         
 "script06"   = "DW#MELEE"                                                          // SCSII melee script
 "script07"   = "MEPFIR"                                                            // original Fire Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
+"skipfile01" = "FAMFIRE"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
+PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMFIRE~) BEGIN
+  WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
+END
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -560,6 +574,7 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~MEPLIG01~                                                           // Lightning Mephit
+              ~FAMLIGHT~                                                           // Lightning Mephit - familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -570,8 +585,10 @@ ADD_CRE_ITEM ~RR#MIMUN~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                         
 REMOVE_CRE_ITEM ~MOVRAT10~                                                         // removes MOVRAT10.ITM (movement rate is handled differently)
 REMOVE_CRE_ITEM ~REGHP1~                                                           // removes REGHP1.ITM (mephit regeneration is handled differently in aTweaks)
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
-REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+PATCH_IF NOT ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMLIGHT~) BEGIN
+  REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+  REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+END
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -615,11 +632,17 @@ STR_VAR                                                                         
 "script06"   = "DW#MELEE"                                                          // SCSII melee script
 "script07"   = "MEPLIG"                                                            // original Lightning Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
+"skipfile01" = "FAMLIGHT"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells - Lightning Mephit has no wings but races through the air like a lightning
 // =============================================================================== // the actual work ends here
+PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMLIGHT~) BEGIN
+  WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
+END
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
+
 
 
 
@@ -630,6 +653,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~MEPMAG02~                                                           // Magma Mephit
               ~ELEMEP05~                                                           // Magma Mephit
               ~OBSFIR03~                                                           // Magma Mephit
+			  ~O#brimP3~
+			  ~A7Q5MM~                                                             // Magma Mephit (afaaq)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -688,6 +713,7 @@ STR_VAR                                                                         
 "script07"   = "MEPMAG"                                                            // original Magma Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -759,6 +785,7 @@ STR_VAR                                                                         
 "script07"   = "MEPMIN"                                                            // original Air Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells -- Mephit fly
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -772,6 +799,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~MEPMIS01~                                                           // Mist Mephit
                ~AR18FAM~                                                           // Mist Mephit
                 ~GPFAM1~                                                           // Pitch
+               ~FAMMIST~                                                           // Mist Mephit - Familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -782,8 +810,10 @@ ADD_CRE_ITEM ~RR#MIMUN~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                         
 REMOVE_CRE_ITEM ~MOVRAT10~                                                         // removes MOVRAT10.ITM (movement rate is handled differently)
 REMOVE_CRE_ITEM ~REGHP1~                                                           // removes REGHP1.ITM (mephit regeneration is handled differently in aTweaks)
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
-REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+PATCH_IF NOT ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMMIST~) BEGIN
+  REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+  REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+END
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -828,9 +858,14 @@ STR_VAR                                                                         
 "script09"   = "GPSHOUT"                                                           // group shout script
 "script10"   = "HUMANSHT"                                                          // Big Picture shout script
 "script11"   = "BPMEPMIS"                                                          // Big Picture Mist Mephit script
+"script12"   = "DW2MS0GE"                                                          // Stratagems melee script
+"skipfile01" = "FAMMIST"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
+PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMMIST~) BEGIN
+  WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
+END
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -915,6 +950,7 @@ END                                                                             
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~MEPRAD01~                                                           // Radiant Mephit
               ~MEPRAD02~                                                           // Radiant Mephit
+              ~FAMRAD~                                                             // Radiant Mephit - familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -926,8 +962,10 @@ ADD_CRE_ITEM ~RR#MIMUN~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                         
 REMOVE_CRE_ITEM ~MOVRAT10~                                                         // removes MOVRAT10.ITM (movement rate is handled differently)
 REMOVE_CRE_ITEM ~REGHP1~                                                           // removes REGHP1.ITM (mephit regeneration is handled differently in aTweaks)
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
-REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+PATCH_IF NOT ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMRAD~) BEGIN
+  REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+  REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+END                                                          // Remove all memorized spells from the current creature
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -970,9 +1008,13 @@ STR_VAR                                                                         
 "script06"   = "DW#MELEE"                                                          // SCSII melee script
 "script07"   = "MEPRAD"                                                            // original Radiant Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
+"skipfile01" = "FAMRAD"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
+PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMRAD~) BEGIN
+  WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
+END
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -1053,7 +1095,9 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~MEPSMO01~                                                           // Smoke Mephit
               ~MEPSMO02~                                                           // Smoke Mephit
               ~OBSFIR04~                                                           // Smoke Mephit
-              ~X#MEPHT1~                                                           // Smoke Mephit 1 (BG1 NPCs, Dynaheir's quest)
+              ~A7Q5SM~                                                         	   // Smoke Mephit (afaaq)
+			  ~O#brimP4~
+			  ~X#MEPHT1~                                                           // Smoke Mephit 1 (BG1 NPCs, Dynaheir's quest)
               ~X#MEPHT2~                                                           // Smoke Mephit 2 (BG1 NPCs, Dynaheir's quest)
               ~X#MEPHT3~                                                           // Smoke Mephit 3 (BG1 NPCs, Dynaheir's quest)
               ~X#MEPHT4~                                                           // Smoke Mephit 4 (BG1 NPCs, Dynaheir's quest)
@@ -1114,6 +1158,7 @@ STR_VAR                                                                         
 "script06"   = "DW#MELEE"                                                          // SCSII melee script
 "script07"   = "MEPSMO"                                                            // original Smoke Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
+"script09"   = "X#MEPSMO"                                                          // BG1 NPC script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
@@ -1124,11 +1169,11 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-// Smoke Mephit
+// Steam Mephit
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-              ~MEPSTE01~                                                           // Steam Mephit
-              ~ELEMEP02~                                                           // Steam Mephit
+              ~MEPSTE01~                                                           // Steam Mephrit
+              ~ELEMEP02~                                                           // Steam Mephrit
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
