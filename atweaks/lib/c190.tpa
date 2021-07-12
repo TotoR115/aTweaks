@@ -466,6 +466,7 @@ BUT_ONLY
 
 COPY ~atweaks/itm/rr#dinv.itm~  ~override~                                         // item which makes creatures untargetable until the gating animation finishes
 COPY ~atweaks/itm/elementals/rr#easer.itm~ ~override~                              // Aerial Servant attack
+	WRITE_BYTE 0x98 0															   // Nerf Aerial Servant atk by removing strength Bonus as the attack is a grabbing attack and do not use strength modifier (Aerial don't accept atk command in PnP)
 COPY ~atweaks/itm/elementals/rr#efsal.itm~ ~override~                              // Fire Salamander spear attack
 COPY ~atweaks/itm/elementals/rr#efsa2.itm~ ~override~                              // Fire Salamander tail attack
 COPY ~atweaks/itm/elementals/rr#efrsa.itm~ ~override~                              // Frost Salamander claw attack
@@ -509,11 +510,12 @@ END                                                                             
 
 
 // Ensure that the mental combat script is assigned to all elementals summoned by arcane spellcasters. Also, these elementals need to start out as NEUTRAL
-
+// ACTION_IF NOT MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~5900~ BEGIN -- useless, can be desactivated by concole Command : CLUAConsole:SetGlobal("RR#NOEMC","GLOBAL",1)
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~elairsu1~                                                             // Air Elemental (mage summon)
             ~elairsu2~                                                             // Air Elemental (mage summon)
             ~elairsu3~                                                             // Air Elemental (mage summon)
+            ~elairsu4~                                                             // Air Elemental (mage summon)
             ~elairsuw~                                                             // Lesser Air Elemental (mage summon)
             ~elearsu1~                                                             // Earth Elemental (mage summon)
             ~elearsu2~                                                             // Earth Elemental (mage summon)
@@ -525,6 +527,17 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~elfirsu3~                                                             // Fire Elemental (mage summon)
             ~elfirsu4~                                                             // Fire Elemental (mage summon)
             ~elfirsuw~                                                             // Lesser Fire Elemental (mage summon)
+			~cdi8air~															   // Lesser Air Elemental (IWDification)
+			~cdi8erth~															   // Lesser Earth Elemental (IWDification)
+			~cdi8fire~															   // Lesser Fire Elemental (IWDification)
+			~cdi8watr~															   // Lesser Water Elemental (IWDification)
+			~es8air~															   // Lesser Air Elemental (IWDification - Stratagems)
+			~es8erth~															   // Lesser Earth Elemental (IWDification - Stratagems)
+			~es8fire~															   // Lesser Fire Elemental (IWDification - Stratagems)
+			~es8watr~															   // Lesser Water Elemental (IWDification - Stratagems)
+			~DW#WATE2~                                                             // Water Elemental (stratagems water elemental summoning)
+			~DW#WATE3~                                                             // Greater Water Elemental (stratagems water elemental summoning)
+			~DW#WATE4~                                                             // Elder Water Elemental (stratagems water elemental summoning)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -537,7 +550,7 @@ ADD_CRE_ITEM ~RIDRING~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~               
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
+//END                                                                              // ends ACTION_IF stratagems
 
 
 
@@ -550,6 +563,7 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~servsu~                                                             // Aerial Servant
+			 ~gtt#ser~                                                             // Aerial Servant ?
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -599,9 +613,8 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "servsu"                                                            // Aerial Servant AI script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script05"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script06"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
@@ -616,7 +629,21 @@ ACTION_FOR_EACH ~file~ IN                                                       
              ~hgsal01~                                                             // Fire Salamander
             ~icsalfir~                                                             // Fire Salamander (Planar Sphere)
              ~plysala~                                                             // Fire Salamander (Avenger kit shapechange)
-            ~wrmons01~                                                             // Fire Salamander (Hell Wrath, possibly unused?)
+			~wrmons01~                                                             // Fire Salamander (Hell Wrath, possibly unused?)
+            ~a7q5fs02~                                                             // Fire Salamander (afaaq)
+			~a7q5fs03~                                                             // Fire Salamander (afaaq)
+			~a7q5fs04~                                                             // Fire Salamander (afaaq)
+			~a7q5fs05~                                                             // Fire Salamander (afaaq)
+			~a7q5fs06~                                                             // Fire Salamander (afaaq)
+			~firesal1~                                                             // Fire Salamander (RoT)
+			~cdi6salf~                                                             // Fire Salamander (IWDification)
+			~ms6salf~                                                              // Fire Salamander (IWDification - Stratagems)
+			~nthells1~                                                             // Fire Salamander (NTotSC)
+			~nthells3~                                                             // Fire Salamander (NTotSC)
+			~o#brsal1~                                                             // Fire Salamander (Mod added)
+			~o#brsal2~                                                             // Fire Salamander (Mod added)
+			~pxf5sala~                                                             // Fire Salamander (DEVIN)
+			~va#fsala~                                                             // Fire Salamander (Tower of Deception)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -669,30 +696,61 @@ STR_VAR                                                                         
 "script04"   = "WTASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout AI script
 "script06"   = "WDASIGHT"                                                          // generic AI script
-"script07"   = "dw#melee"                                                          // SCSII melee AI script
-"script08"   = "CRESHOUT"                                                          // Big Picture shout script
-"script09"   = "BPWDASGT"                                                          // Big Picture generic AI script
-"script10"   = "BERSERK"                                                           // Hell Salamander script
+"script07"   = "CRESHOUT"                                                          // Big Picture shout script
+"script08"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script09"   = "BERSERK"                                                           // Hell Salamander script
+"script10"   = "DW2MP2MO"                                                          // Stratagems melee AI script
+"script11"   = "DW2MP0MW"                                                          // Stratagems melee AI script
+"script12"   = "DW2MP3MO"                                                          // Stratagems melee AI script
+"script13"   = "DW2MP2MW"                                                          // Stratagems melee AI script
+"script14"   = "DW2MP0GE"                                                          // Stratagems melee AI script
+"script15"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
+"skipfile01" = "cdi6salf"                                                          // Fire Salamander summoned (IWDification)
+"skipfile02" = "m6salf"                                                            // Fire Salamander summoned (IWDification - Stratagems)
+"skipfile03" = "plysala"                                                           // special case, the Avenger kit Fire Salamander form
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
 LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-WRITE_ASCII 0x280 ~icsalfir~ #32                                                   // assign new death variable
+PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~icsalfir~) 
+OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~hgsal01~) 
+OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~plysala~) 
+OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~wrmons01~)) BEGIN                            // special case, add a death variable to SoA Fire Salamanders
+  WRITE_ASCII 0x280 ~icsalfir~ #32                                                 // assign new death variable
+END
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~plysala~) BEGIN                        // special case, the Avenger kit Fire Salamander form needs 2 APR since it can't dual-wield
   WRITE_BYTE 0x53 2                                                                // base number of attacks
 END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
+COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Compatibility with IWDification Begins here
+    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 timing = 2 duration = 0 STR_VAR resource = ~cdifire6~ END
+    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~rr#hfire~ END
+	LPF DELETE_EFFECT INT_VAR match_opcode = 232 END
+COPY_EXISTING ~cdi6salf.cre~ ~override~											   // Fire Salamander from IWDification wizard summon spell
+  REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification version
+BUT_ONLY IF_EXISTS																   // Compatibility with IWDification ends here		
+COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDification wizard summon spell
+  REPLACE_CRE_ITEM ~SALGRFIR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with Stratagems version
+BUT_ONLY IF_EXISTS																   // Compatibility with IWDification ends here		
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-// Frost Salamander
+// Frost/Ice Salamander
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~salgrice~                                                             // Frost Salamander
             ~icsalcol~                                                             // Ice Salamander (Planar Sphere)
             ~telicesa~                                                             // Ice Salamander (unused?)
+			~cdi6salc~                                                             // Ice Salamander (IWDification)
+			~ms6salc~                                                              // Ice Salamander (IWDification - Stratagems)
+			~dw#visal~                                                             // Ice Salamander (SCS)
+			~ntsalmi3~                                                             // Ice Salamander (NTotSC)
+			~ntsalmic~                                                             // Ice Salamander (NTotSC)
+		    ~va#isala~                                                             // Ice Salamander (Tower of Deception)
+			~icesal~                                                               // Ice Salamander (RoT)
+			~icesal2~                                                              // Ice Salamander (RoT)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -736,6 +794,8 @@ INT_VAR                                                                         
 "newclass" = "187"                                                                 // new class (ELEMENTAL_FIRE, note: leaving this as is in order for The Wave to function properly)
 "newalign" = "51"                                                                  // new alignment (Chaotic Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // Initialize strings
+"notenf01" = "icesal2"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -745,9 +805,16 @@ STR_VAR                                                                         
 "script03"   = "GRPSHT01"                                                          // generic shout AI script
 "script04"   = "GENSHT01"                                                          // generic shout AI script
 "script05"   = "WDASIGHT"                                                          // generic AI script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "CRESHOUT"                                                          // Big Picture shout script
-"script08"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "CRESHOUT"                                                          // Big Picture shout script
+"script07"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script08"   = "DW2MP2MW"                                                          // Stratagems melee AI script
+"script09"   = "DW2MP0MW"                                                          // Stratagems melee AI script
+"script10"   = "DW2MP3MO"                                                          // Stratagems melee AI script
+"script11"   = "DW2MP0MO"                                                          // Stratagems melee AI script
+"script12"   = "DW2MP0GE"                                                          // Stratagems melee AI script
+"script13"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
+"skipfile01" = "cdi6salc"                                                          // Ice Salamander summoned (IWDification)
+"skipfile02" = "ms6salc"                                                           // Ice Salamander summoned (IWDification - Stratagems)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
 LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
@@ -760,6 +827,26 @@ PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~icsalcol~) BEGIN                    
 END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
+COPY_EXISTING ~RR#EFRSA.itm~ ~override/RR#EFRSI.itm~							   // Compatibility with IWDification Begins here
+    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 timing = 2 duration = 0 STR_VAR resource = ~cdifros6~ END
+    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~RR#HCOLD~ END
+	LPF DELETE_EFFECT INT_VAR match_opcode = 232 END
+COPY_EXISTING ~cdi6salc.cre~ ~override~											   // Ice Salamander from IWDification wizard summon spell
+			  ~ms6salc.cre~ ~override~											   // Ice Salamander from Stratagems wizard summon spell
+REPLACE_CRE_ITEM ~RR#EFRSI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace pnp weapon with compatible IWDification/Stratagems version
+REMOVE_CRE_ITEM ~CSALRING~                                                         // remove Stratagems Visual effect as it is now done with ~RR#HCOLD~
+  WRITE_BYTE 0x24 63                                                               // new hit point value
+  WRITE_BYTE 0x26 63                                                               // new max hit point value
+  WRITE_SHORT 0x14 2000                                                            // new XP value
+  WRITE_BYTE 0x52 13                                                               // new THAC0 value
+  WRITE_BYTE 0x54 10                                                               // new Save vs. Death
+  WRITE_BYTE 0x55 12                                                               // new Save vs. Wand
+  WRITE_BYTE 0x56 11                                                               // new Save vs. Polymorph
+  WRITE_BYTE 0x57 12                                                               // new Save vs. Breath
+  WRITE_BYTE 0x58 13                                                               // new Save vs. Spell
+  WRITE_BYTE 0x234 7                                                               // new level (first class)
+BUT_ONLY IF_EXISTS						   										   // Compatibility with IWDification ends here
+
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
@@ -771,6 +858,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~senstalk~                                                             // Invisible Stalker (Sendai's lair)
             ~gorstalk~                                                             // Guardian of Air (Watcher's Keep, treated as an unique Invisible Stalker)
              ~dvstalk~                                                             // Invisible Stalker (Spell Revisions)
+            ~bgstalke~                                                             // Invisible Stalker (BG1)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -822,11 +910,13 @@ STR_VAR                                                                         
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "WTASIGHT"                                                          // generic AI script
-"script04"   = "dw#melee"                                                          // SCSII melee AI script
-"script05"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script06"   = "WBASIGHT"                                                          // Big Picture generic AI script
-"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script08"   = "senstalk"                                                          // Invisible Stalker in Sendai's lair (covered via aTweaks base script)
+"script04"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script05"   = "WBASIGHT"                                                          // Big Picture generic AI script
+"script06"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script07"   = "senstalk"                                                          // Invisible Stalker in Sendai's lair (covered via aTweaks base script)
+"script08"   = "DW2MC2MO"                                                          // Stratagems melee AI script
+"script09"   = "DW1MELMO"                                                          // Stratagems melee AI script
+"script10"   = "DW#SUMEI"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
@@ -902,8 +992,8 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "WTASIGHT"                                                          // generic AI script(BGT)
 "script04"   = "_TASIGHT"                                                          // generic AI script(Tutu)
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "DW2MM0MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
   INT_VAR
@@ -930,6 +1020,9 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~salgrfir~                                                             // Salamander Noble
+			~a7q5fs01~                                                             // Salamander Noble (afaaq)
+			~salking~                                                              // Fire Salamander King (RoT)
+			~firesal2~                                                             // Fire Salamander (RoT)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -980,6 +1073,9 @@ INT_VAR                                                                         
 "newclass" = "187"                                                                 // new class (ELEMENTAL_FIRE)
 "newalign" = "19"                                                                  // new alignment (Lawful Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = "salking"
+"notenf02"   = "firesal2"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -988,9 +1084,12 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "salgrfir"                                                          // generic shout AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPLEADER"                                                          // Big Picture AI script
-"script07"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script05"   = "BPLEADER"                                                          // Big Picture AI script
+"script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script07"   = "DW2MP2MW"                                                          // Stratagems melee AI script
+"script08"   = "DW2MP2MO"                                                          // Stratagems melee AI script
+"script09"   = "DW2MP4MO"                                                          // Stratagems melee AI script
+"script10"   = "DW2MP3MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
 LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
@@ -1079,17 +1178,21 @@ END                                                                             
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~ELAIRL01~                                                             // Lesser Air Elemental (8 HD)
             ~ELAIRSUW~                                                             // Lesser Air Elemental (8 HD, summoned, wizard version)
+			~ELAIRSU1~                                                             // Lesser Air Elemental (8 HD, summoned, priest version)
             ~ELARIL01~                                                             // Lesser Air Elemental (8 HD, Bioware's typo?)
             ~GORAIR01~                                                             // Lesser Air Elemental (8 HD, Watcher's Keep)
             ~SUMELAIR~                                                             // Lesser Air Elemental (8 HD, summoned, Staff of Air)
             ~DW#PRELA~                                                             // SCS - Prat's Lesser Air Elementals
+            ~cdi8air~                                                              // Lesser Air Elemental (Iwidification)
+            ~es8air~                                                               // Lesser Air Elemental (Iwidification - Stratagems)
+            ~AR#ELEAI~                                                             // Lesser Air Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2845 SAY NAME2 #2847                                                    // Lesser Air Elemental
-WRITE_SHORT 0x28 "29473"                                                           // use the proper avatar (ELEMENTAL_AIR_SMALL)
+WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR_SMALL~))                 // use the proper avatar (ELEMENTAL_AIR_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#eairw~ #0 ~innate~ ( 1 )                                   // adds 1x Air Elemental Whirlwind
@@ -1135,12 +1238,16 @@ STR_VAR                                                                         
 "script04"   = "WTASIGHT"                                                          // generic AI script
 "script05"   = "WDASIGHT"                                                          // generic AI script
 "script06"   = "GENSHT01"                                                          // generic shout script
-"script07"   = "dw#melee"                                                          // SCSII melee AI script
-"script08"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script09"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script07"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "DW2MC3GW"                                                          // Stratagems melee AI script
+"script13"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script16"   = "WIZELSU2"                                                          // ?? mental combat
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
@@ -1156,16 +1263,17 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~_IRASPEC~                                                             // Air Aspect (Tutu)
             ~AIRASPEC~                                                             // Air Aspect (BGT)
              ~ELAIR01~                                                             // Air Elemental (12 HD)
-            ~ELAIRSU1~                                                             // Air Elemental (12 HD, summoned, wizard version)
+            ~ELAIRSU2~                                                             // Air Elemental (12 HD, summoned, wizard version)
                ~MDAIR~                                                             // Air Elemental (12 HD, unused?)
               ~MDAIR2~                                                             // Air Elemental (12 HD, unused?)
             ~PAIREL01~                                                             // Air Elemental (12 HD, unused?)
+			~DRAIRPR2~                                                             // Air Elemental (12 HD, Divine Remix)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-WRITE_SHORT 0x28 "29472"                                                           // use the proper avatar (ELEMENTAL_AIR)
+WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR~))                       // use the proper avatar (ELEMENTAL_AIR)
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~ELAIRSU1~) BEGIN                       // special case, this particular Air Elemental needs to be renamed
   SAY NAME1 #2831 SAY NAME2 #2832                                                  // Air Elemental
 END                                                                                // ends ELAIRSU1 specific block
@@ -1177,7 +1285,7 @@ PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~AIRASPEC~) OR ("%SOURCE_RES%" STRIN
   REMOVE_CRE_ITEM ~%TUTU_VAR%MAGE06~                                               // Remove the haste ring
   ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                            // revise weapon immunities
   WRITE_BYTE 0x2E 6                                                                // major color (Dark Silver)
-  WRITE_SHORT 0x28 "29473"                                                         // use the proper avatar (ELEMENTAL_AIR_SMALL)
+  WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR_SMALL~))               // use the proper avatar (ELEMENTAL_AIR_SMALL)
   WRITE_BYTE 0x53 "1"                                                              // set attacks per round to 1
   FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                     // Null soundset (code borrowed from Nythrun with thanks)
       WRITE_LONG s1 ~-1~
@@ -1231,17 +1339,17 @@ STR_VAR                                                                         
 "script04"   = "WTASIGHT"                                                          // generic AI script
 "script05"   = "WDASIGHT"                                                          // generic AI script
 "script06"   = "GENSHT01"                                                          // generic shout script
-"script07"   = "dw#melee"                                                          // SCSII melee AI script
-"script08"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script09"   = "WYVERN"                                                            // Wyvern AI script (BGT)
-"script10"   = "_WYVERN"                                                           // Wyvern AI script (Tutu)
-"script11"   = "_TASIGHT"                                                          // generic AI script (Tutu)
-"script09"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script08"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script09"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "WYVERN"                                                            // Wyvern AI script (BGT)
+"script09"   = "_WYVERN"                                                           // Wyvern AI script (Tutu)
+"script10"   = "_TASIGHT"                                                          // generic AI script (Tutu)
+"script11"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script12"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script13"   = "CRESHOUT"                                                          // Big Picture shout script
+"script14"   = "HUMANSHT"                                                          // Big Picture shout script
+"script15"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script16"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script17"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
@@ -1255,14 +1363,15 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~ELAIRG01~                                                             // Greater Air Elemental (16 HD)
-            ~ELAIRSU2~                                                             // Air Elemental (16 HD, wizard version)
+            ~ELAIRSU3~                                                             // Air Elemental (16 HD, wizard version)
             ~GORAIR02~                                                             // Greater Air Elemental (16 HD, Watcher's Keep)
               ~MDAIRG~                                                             // Greater Air Elemental (16 HD, unused?)
              ~MDAIRG2~                                                             // Greater Air Elemental (16 HD, unused?)
               ~MDHSSS~                                                             // Greater Air Elemental (16 HD, unused?)
-              ~MDHSSS~                                                             // Greater Air Elemental (16 HD, unused?)
+             ~_MDHSSS~                                                             // Greater Air Elemental (16 HD, unused?)
             ~SWAAIR01~                                                             // Air Elemental (16 HD, Elemental Summoning HLA)
                ~UDAIR~                                                             // Air Elemental (Underdark portal respawn)
+			~DRAIRPR3~                                                             // Air Elemental (16 HD, Divine Remix)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1320,13 +1429,14 @@ STR_VAR                                                                         
 "script04"   = "WTASIGHT"                                                          // generic AI script
 "script05"   = "WDASIGHT"                                                          // generic AI script
 "script06"   = "GENSHT01"                                                          // generic shout script
-"script07"   = "dw#melee"                                                          // SCSII melee AI script
-"script08"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script09"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script10"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script11"   = "CRESHOUT"                                                          // Big Picture shout script
-"script12"   = "HUMANSHT"                                                          // Big Picture shout script
-"script13"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script09"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script10"   = "CRESHOUT"                                                          // Big Picture shout script
+"script11"   = "HUMANSHT"                                                          // Big Picture shout script
+"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script13"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
@@ -1339,11 +1449,14 @@ END                                                                             
 // Elder Air Elemental (20 HD)
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-            ~ELAIRSU3~                                                             // Air Elemental (20+ HD, summoned, wizard version)
+            ~ELAIRSU4~                                                             // Air Elemental (20+ HD, summoned, wizard version)
                ~SUAIR~                                                             // Air Elemental (Suldanesselar, Tree of Life guardian)
             ~SWAAIR02~                                                             // Air Elemental (20+ HD, summoned, Elemental Summoning HLA)
               ~UDELDA~                                                             // Air Elemental (Underdark portal guardian)
-              li#druai                                                             // Elemental transformation air (Refinements)
+            ~li#druai~                                         	                   // Elemental transformation air (Refinements)
+			~MH#air20~                                                             // Elemental transformation air (made in heaven quest & encounters)
+			~DRAIRPR4~                                                             // Air Elemental (20 HD, Divine Remix)
+            ~AR#ELAIK~                                                             // Air Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1389,7 +1502,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR
-  notenf01 = li#druai
+"notenf01" = "li#druai"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -1400,15 +1513,18 @@ STR_VAR                                                                         
 "script04"   = "WTASIGHT"                                                          // generic AI script
 "script05"   = "WDASIGHT"                                                          // generic AI script
 "script06"   = "GENSHT01"                                                          // generic shout script
-"script07"   = "dw#melee"                                                          // SCSII melee AI script
-"script08"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script09"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script10"   = "dw#udela"                                                          // SCSII custom AI
-"script11"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script12"   = "CRESHOUT"                                                          // Big Picture shout script
-"script13"   = "HUMANSHT"                                                          // Big Picture shout script
-"script14"   = "BPWDASGT"                                                          // Big Picture generic AI script
-skipfile01   = li#druai
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script09"   = "dw#udela"                                                          // Stratagems custom AI
+"script10"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script11"   = "CRESHOUT"                                                          // Big Picture shout script
+"script12"   = "HUMANSHT"                                                          // Big Picture shout script
+"script13"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script14"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script16"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"skipfile01"   = "li#druai"
+"skipfile02"   = "AR#ELAIK"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
@@ -1427,13 +1543,17 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~ELEEEL01~                                                             // Lesser Earth Elemental (8 HD)
             ~MEKEAR01~                                                             // Lesser Earth Elemental (8 HD, Mekrath's quest)
             ~SUMELEAR~                                                             // Lesser Earth Elemental (8 HD, summoned, Staff of Earth)
+			~DW#viele~                                                             // Lesser Earth Elemental (8 HD, summoned, Staff of Earth)
+			~cdi8erth~                                                             // Lesser Earth Elemental (8 HD, IWDification)
+			~es8erth~															   // Lesser Earth Elemental (IWDification - Stratagems)
+            ~AR#ELEEA~                                                             // Lesser Earth Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2850 SAY NAME2 #2851                                                    // Lesser Earth Elemental
-WRITE_SHORT 0x28 "29441"                                                           // use the proper avatar (ELEMENTAL_EARTH_SMALL)
+WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_SMALL~))               // use the proper avatar (ELEMENTAL_EARTH_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
@@ -1477,13 +1597,18 @@ STR_VAR                                                                         
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script09"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script08"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "DW2MC3MW"                                                          // Stratagems melee AI script
+"script13"   = "DW2MC3MO"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC0MO"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC3GW"                                                          // Stratagems melee AI script
+"script16"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script17"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -1508,6 +1633,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+  WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))               // use the proper avatar (ELEMENTAL_EARTH_IWD)
+END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
@@ -1551,13 +1679,15 @@ STR_VAR                                                                         
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script09"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script08"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "DW2MC4MW"                                                          // Stratagems melee AI script
+"script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC0MW"
 "skipfile01" = "SHEARTH"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
@@ -1578,12 +1708,19 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~ELEARSU3~                                                             // Earth Elemental (16 HD, summoned, wizard version)
             ~SWAEAR01~                                                             // Earth Elemental (16 HD, summoned, Elemental Summoning HLA)
              ~UDEARTH~                                                             // Earth Elemental (Underdark portal spawn)
+			~o#llgua1~                                                             // Earth Elemental
+			~o#llgua2~                                                             // Earth Elemental
+			~agearth1~                                                             // Earth Elemental
+			~ELECALI1~                                                             // Earth Elemental (TDD)
+			~ELECALI3~                                                             // Earth Elemental (TDD)
+			~ELECALI5~                                                             // Earth Elemental (TDD)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2853 SAY NAME2 #2856                                                    // Greater Earth Elemental
+WRITE_SHORT 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                    // use the proper avatar (ELEMENTAL_EARTH)
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~UDEARTH~) BEGIN                        // special case, Underdark portal spawn
   WRITE_ASCII 0x248 ~DWEARTH~ #8                                                   // override script
   WRITE_ASCII 0x250 ~~ #8                                                          // class script
@@ -1634,13 +1771,16 @@ STR_VAR                                                                         
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script09"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script08"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "DW2MC4MW"                                                          // Stratagems melee AI script
+"script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC0MO"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC0GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -1662,13 +1802,16 @@ ACTION_FOR_EACH ~file~ IN                                                       
              ~SUEARTH~                                                             // Earth Elemental (Suldanesselar, Tree of Life guardian)
             ~SWAEAR02~                                                             // Earth Elemental (20+ HD, Elemental Summoning HLA)
               ~UDELDE~                                                             // Earth Elemental (Underdark portal guardian)
-              dw#eldee                                                             // SCSII "Improved Minor Encounters" greater earth elemental
+            ~dw#eldee~                                                             // Stratagems "Improved Minor Encounters" greater earth elemental
+			~mh#ear20~                                                             // Made in heaven Q&E
+            ~AR#ELEAK~                                                             // Earth Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2116 SAY NAME2 @2116                                                    // Elder Earth Elemental
+WRITE_SHORT 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                    // use the proper avatar (ELEMENTAL_EARTH)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#equa~ #0 ~innate~ ( 1 )                                    // adds 1x Earthquake
@@ -1722,15 +1865,18 @@ STR_VAR                                                                         
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script09"   = "dw#udele"                                                          // SCSII custom AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
-"script13"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script06"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script08"   = "dw#udele"                                                          // Stratagems custom AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC4MW"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "DRUEAR01"                                                          // skip script patching for a designated file
+"skipfile02" = "AR#ELEAK"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -1749,13 +1895,19 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~ELFIRSU1~                                                             // Fire Elemental (8 HD, summoned, wizard version)
             ~ELFIRSUW~                                                             // Lesser Fire Elemental (8 HD, summoned, wizard version)
             ~SUMELFIR~                                                             // Lesser Fire Elemental (8 HD, summoned, Staff of Fire)
+			~BSFRELEM~                                                             // Lesser Fire Elemental (BST)
+			~cdi8fire~                                                             // Lesser Fire Elemental (IWDification)
+			 ~es8fire~															   // Lesser Fire Elemental (IWDification - Stratagems)
+            ~AR#ELEFI~                                                             // Lesser Fire Elemental (Arena)
+            ~FIRLSMOD~                                                             // Lesser Fire Elemental (PofQuestPack)
+            ~PXF5ELEM~                                                             // Lesser Fire Elemental (Devin)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2878 SAY NAME2 #2879                                                    // Lesser Fire Elemental
-WRITE_SHORT 0x28 "29457"                                                           // use the proper avatar (ELEMENTAL_FIRE_SMALL)
+WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_SMALL~))                // use the proper avatar (ELEMENTAL_FIRE_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
@@ -1799,13 +1951,17 @@ STR_VAR                                                                         
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script09"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script08"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "DW2MC4MW"                                                          // Stratagems melee AI script
+"script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script16"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -1826,12 +1982,15 @@ ACTION_FOR_EACH ~file~ IN                                                       
              ~ELFIRPR~                                                             // Fire Elemental (12 HD, summoned, priest version)
             ~ELFIRSU2~                                                             // Fire Elemental (12 HD, summoned, wizard version)
               ~SHFIRE~                                                             // Fire Elemental (12 HD, Shapechange Spell)
+                 ~AMX~                                                             // Fire Elemental (12 HD, TDD)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-WRITE_SHORT 0x28 "29456"                                                           // use the proper avatar (ELEMENTAL_FIRE)
+PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+  WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the proper avatar (ELEMENTAL_FIRE_IWD)
+END                                                          					  
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
@@ -1875,13 +2034,15 @@ STR_VAR                                                                         
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script09"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script08"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "DW2MC4MW"                                                          // Stratagems melee AI script
+"script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "SHFIRE"                                                            // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -1911,14 +2072,34 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SWAFIR01~                                                             // Fire Elemental (16 HD, summoned, Elemental Summoning HLA)
             ~TELELFIR~                                                             // Greater Fire Elemental (16 HD, Watcher's Keep)
             ~YSCARA04~                                                             // Greater Fire Elemental (16 HD, unused?)
-              ~UDFIRE~                                                             // Fire Elemental (Underdark portal spawn)
-              tg#did5                                                              // Greater Fire Elemental (Refinements; special)
+            ~UDFIRE~                                                               // Fire Elemental (Underdark portal spawn)
+            ~tg#did5~                                                              // Greater Fire Elemental (Refinements; special)
+			~O#BRELE1~                                                             // Greater Fire Elemental (16 HD)
+			~O#BRELE2~                                                             // Greater Fire Elemental (16 HD)
+			~O#BRELE3~                                                             // Greater Fire Elemental (16 HD)
+			~O#BRELE4~                                                             // Greater Fire Elemental (16 HD)
+			~a7q5fe01~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe02~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe03~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe04~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe05~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe06~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe07~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe08~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe09~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe10~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe11~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fe12~                                                             // Greater Fire Elemental (16 HD) (afaaq)
+			~a7q5fes~                                                              // Greater Fire Elemental (16 HD) (afaaq)
+			~ELECALI2~                                                             // Greater Fire Elemental (TDD)
+			~ELECALI4~                                                             // Greater Fire Elemental (TDD)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2876 SAY NAME2 #2877                                                    // Greater Fire Elemental
+WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the proper avatar (ELEMENTAL_FIRE)
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~UDFIRE~) BEGIN                         // special case, Underdark portal spawn
   WRITE_ASCII 0x248 ~DWFIRE~ #8                                                    // override script
   WRITE_ASCII 0x250 ~~ #8                                                          // class script
@@ -1969,15 +2150,16 @@ STR_VAR                                                                         
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
 "script06"   = "GORFIR"                                                            // Watcher's Keep Fire Elemental script (non-functional?)
-"script07"   = "dw#melee"                                                          // SCSII melee AI script
-"script08"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script09"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
-"script13"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-
-skipfile01 = tg#did5
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC4MW"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"skipfile01" = "tg#did5"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -1994,15 +2176,18 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~DRUFIR01~                                                             // Fire Elemental (Druid Fire Elemental Transformation HLA)
             ~ELFIRPR3~                                                             // Fire Elemental (20+ HD, summoned, priest version)
             ~ELFIRSU4~                                                             // Fire Elemental (20+ HD, summoned, wizard version)
-             ~SUFIRE~                                                              // Fire Elemental (Suldanesselar, Tree of Life guardian)
+              ~SUFIRE~                                                             // Fire Elemental (Suldanesselar, Tree of Life guardian)
             ~SWAFIR02~                                                             // Fire Elemental (20+ HD, summoned, Elemental Summoning HLA)
               ~UDELDF~                                                             // Fire Elemental (Underdark, portal guardian)
+			~MH#fir20~                                                             // Fire Elemental (Made in heaven Q&E)
+            ~AR#ELFIK~                                                             // Fire Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2117 SAY NAME2 @2117                                                    // Elder Fire Elemental
+WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the proper avatar (ELEMENTAL_FIRE)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
@@ -2055,15 +2240,18 @@ STR_VAR                                                                         
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
-"script08"   = "DVMELEE"                                                           // Spell Revisions melee AI script
-"script09"   = "dw#udelf"                                                          // SCSII custom AI script
-"script10"   = "CRESHOUT"                                                          // Big Picture shout script
-"script11"   = "HUMANSHT"                                                          // Big Picture shout script
-"script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
-"script13"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script06"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script08"   = "dw#udelf"                                                          // Stratagems custom AI script
+"script09"   = "CRESHOUT"                                                          // Big Picture shout script
+"script10"   = "HUMANSHT"                                                          // Big Picture shout script
+"script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script12"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script14"   = "DW2MC4MW"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "DRUFIR01"                                                          // skip script patching for a designated file
+"skipfile02" = "AR#ELFIK"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -2100,13 +2288,31 @@ END
 COPY    ~atweaks/cre/elementals/rr#ewatl.cre~ ~override~                           // Lesser Water Elemental (hostile)
 SAY NAME1 @2126 SAY NAME2 @2126 SAY SELECT_COMMON1 @471 SAY BATTLE_CRY1 @471 SAY BATTLE_CRY2 @472 SAY ATTACK1 @473 SAY ATTACK2 @474 SAY DAMAGE @475 SAY DYING @476 SAY SELECT_ACTION1 @477
 
+COPY    ~atweaks/cre/elementals/rr#ewatl.cre~ ~override/rr#ewats.cre~              // Create Lesser Water Elemental for lesser water summon spell
+// =============================================================================== // the actual work starts from here
+  WRITE_BYTE 0x270 128                                                         	   // Alignment : Neutral
+  WRITE_BYTE 0x275 6                                                         	   // Gender : Summon
+  WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                  // assign override AI script
+  WRITE_BYTE  0x270 128                                                            // set initial allegiance to NEUTRAL
+  ADD_CRE_ITEM ~RIDRING~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~                // selection circle removal ring
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~rr#ewatl~                                                             // Lesser Water Elemental (aTweaks)
+			~rr#ewats~                                                             // Lesser Water Elemental (aTweaks_summon)
+			~mh#wat08~                                                             // Lesser Water Elemental (Made in heaven Q&E)
+			~cdi8watr~                                                             // Lesser Water Elemental (IWDification)
+			 ~es8watr~															   // Lesser Water Elemental (IWDification - Stratagems)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+SAY NAME1 @2126 SAY NAME2 @2126 
+PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+  WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER_SMALL~))			   // Use The animation ELEMENTAL_WATER_SMALL
+END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_EFFECTS
@@ -2145,13 +2351,14 @@ STR_VAR                                                                         
 "newscript"  = "RR#EWAT"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
+"script03"   = "DW2RM0MW"                                                          // Stratagems melee script
+"script04"   = "DW2MC4GE"                                                          // Stratagems melee script
 END                                                                                // ends FUNCTION call
 LPF add_water_elemental_effects END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
 
 // Water Elemental (12 HD)
 
@@ -2160,7 +2367,8 @@ SAY NAME1 @2119 SAY NAME2 @2119 SAY SELECT_COMMON1 @471 SAY BATTLE_CRY1 @471 SAY
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~rr#ewatr~                                                             // Water Elemental (aTweaks)
-            tg#wel2                                                                // Water Elemental (Refinements)
+            ~tg#wel2~                                                              // Water Elemental (Refinements)
+			~DW#WATE2~                                                             // Water Elemental (Stratagems)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2208,6 +2416,9 @@ STR_VAR                                                                         
 "newscript"  = "RR#EWAT"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
+"script03"   = "DW2RM0WM"                                                          // Stratagems melee script
+"script04"   = "DW2MC4GE"                                                          // Stratagems melee script
+"script05"   = "DW2RM0GE"                                                          // Stratagems melee script
 END                                                                                // ends FUNCTION call
 LPF add_water_elemental_effects END
 // =============================================================================== // the actual work ends here
@@ -2220,7 +2431,10 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~ELWATG01~                                                             // Greater Water Elemental
-            tg#wel3                                                                // Greater Water Elemental (Refinements)
+            ~tg#wel3~                                                              // Greater Water Elemental (Refinements)
+			~DW#WATE3~                                                             // Greater Water Elemental (Stratagems)
+			~ELEMWAG~                                                              // Greater Water Elemental (TS)
+			~WATERELT~                                                             // Greater Water Elemental (TS)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2274,8 +2488,12 @@ STR_VAR                                                                         
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
 "script05"   = "GENSHT01"                                                          // generic shout script
-"script06"   = "dw#melee"                                                          // SCSII melee AI script
-"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script06"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script07"   = "DW2RC4MW"                                                          // Stratagems melee AI script
+"script08"   = "DW2RM0GE"                                                          // Stratagems melee AI script
+"script09"   = "DW2MC3MO"                                                          // Stratagems melee AI script
+"script10"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script11"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LPF add_water_elemental_effects END
 // =============================================================================== // the actual work ends here
@@ -2291,7 +2509,9 @@ SAY NAME1 @2118 SAY NAME2 @2118 SAY SELECT_COMMON1 @471 SAY BATTLE_CRY1 @471 SAY
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~rr#ewate~                                                             // Elder Water Elemental (aTweaks)
-            li#druwa                                                               // Elemental transformation water (Refinements)
+            ~li#druwa~                                                             // Elemental transformation water (Refinements)
+		    ~DW#wate4~                                                             // Water Elemental (Stratagems)
+			~MH#wat20~                                                             // Water Elemental (Made in heaven Q&E)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2333,14 +2553,17 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR
-  notenf01 = li#druwa
+"notenf01" = "li#druwa"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EWAT"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
-skipfile01   = li#druwa
+"script03"   = "DW2RM0GE"                                                          // Stratagems melee AI script
+"script04"   = "DW2RM0MW"                                                          // Stratagems melee AI script
+"script05"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"skipfile01"   = "li#druwa"
 END                                                                                // ends FUNCTION call
 LPF add_water_elemental_effects END
 // =============================================================================== // the actual work ends here
@@ -2348,14 +2571,72 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
-// Ice Paraelemental (12 HD)
+// Lesser Ice Paraelemental (8 HD)
 
 COPY    ~atweaks/cre/elementals/rr#eicer.cre~ ~override~                           // Ice Paraelemental (hostile)
 SAY NAME1 @2120 SAY NAME2 @2120 SAY SELECT_COMMON1 @481 SAY BATTLE_CRY1 @481 SAY BATTLE_CRY2 @482 SAY ATTACK1 @483 SAY ATTACK2 @484 SAY DAMAGE @487 SAY HURT @488 SAY DYING @489 SAY SELECT_ACTION1 @482
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+			~mh#icelp~                                                             // Ice Paraelemental (Made in heaven Q&E)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "5"                                                                   // new movement rate
+"rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
+"newxpv"   = "7000"                                                                // new XP value
+"newhp"    = "64"                                                                  // new hit point value
+"newac"    = "3"                                                                   // new Armor Class value
+"newth"    = "12"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "7"                                                                   // new Save vs. Death
+"newsvw"   = "11"                                                                  // new Save vs. Wand
+"newsvp"   = "10"                                                                  // new Save vs. Polymorph
+"newsvb"   = "12"                                                                  // new Save vs. Breath
+"newsvs"   = "12"                                                                  // new Save vs. Spell
+"newfr"    = "-100"                                                                // new Resist Fire value
+"newcr"    = "127"                                                                 // new Resist Cold value
+"newlvl1"  = "8"                                                                   // new level (first class)
+"newstr"   = "17"                                                                  // new Strength value
+"newdex"   = "11"                                                                  // new Dexterity value
+"newcon"   = "15"                                                                  // new Constitution value
+"newint"   = "14"                                                                  // new Intelligence value
+"newwis"   = "13"                                                                  // new Wisdom value
+"newchr"   = "12"                                                                  // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newmorb"  = "2"                                                                   // new morale break value
+"newmorr"  = "15"                                                                  // new morale recovery value
+"newgen"   = "5"                                                                   // new general (GIANT HUMANOID)
+"newrace"  = "145"                                                                 // new race (ELEMENTAL)
+"newclass" = "255"                                                                 // new class (NO_CLASS)
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#EICE"                                                           // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "DW2MC2MO"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END
+
+// Ice Paraelemental (12 HD)
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~rr#eicer~                                                             // Ice Paraelemental (aTweaks)
+			~mh#icepe~                                                             // Ice Paraelemental (Made in heaven Q&E)
+			~ICEELE~                                                               // Ice elemental (TDD)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2401,6 +2682,8 @@ STR_VAR                                                                         
 "newscript"  = "RR#EICE"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
+"script03"   = "DW2MC2MO"                                                          // Stratagems melee AI script
+"script04"   = "DW2MM0MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
 // =============================================================================== // the actual work ends here
@@ -2408,6 +2691,119 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
+// Greater Ice Paraelemental (16 HD)
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+			~mh#icegp~                                                             // Ice Paraelemental (Made in heaven Q&E)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "5"                                                                   // new movement rate
+"rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
+"newxpv"   = "15000"                                                               // new XP value
+"newhp"    = "128"                                                                 // new hit point value
+"newac"    = "3"                                                                   // new Armor Class value
+"newth"    = "4"                                                                   // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "4"                                                                   // new Save vs. Death
+"newsvw"   = "6"                                                                   // new Save vs. Wand
+"newsvp"   = "5"                                                                   // new Save vs. Polymorph
+"newsvb"   = "4"                                                                   // new Save vs. Breath
+"newsvs"   = "7"                                                                   // new Save vs. Spell
+"newfr"    = "-100"                                                                // new Resist Fire value
+"newcr"    = "127"                                                                 // new Resist Cold value
+"newlvl1"  = "16"                                                                  // new level (first class)
+"newstr"   = "19"                                                                  // new Strength value
+"newdex"   = "16"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newint"   = "14"                                                                  // new Intelligence value
+"newwis"   = "13"                                                                  // new Wisdom value
+"newchr"   = "12"                                                                  // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newmorb"  = "2"                                                                   // new morale break value
+"newmorr"  = "15"                                                                  // new morale recovery value
+"newgen"   = "5"                                                                   // new general (GIANT HUMANOID)
+"newrace"  = "145"                                                                 // new race (ELEMENTAL)
+"newclass" = "255"                                                                 // new class (NO_CLASS)
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#EICE"                                                           // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "DW2MC2MO"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END
+
+// Elder Ice Paraelemental (20 HD)
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+			~mh#iceep~                                                             // Ice Paraelemental (Made in heaven Q&E)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "5"                                                                   // new movement rate
+"rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
+"newxpv"   = "18000"                                                               // new XP value
+"newhp"    = "160"                                                                  // new hit point value
+"newac"    = "3"                                                                   // new Armor Class value
+"newth"    = "0"                                                                   // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "2"                                                                   // new Save vs. Death
+"newsvw"   = "5"                                                                   // new Save vs. Wand
+"newsvp"   = "4"                                                                   // new Save vs. Polymorph
+"newsvb"   = "4"                                                                   // new Save vs. Breath
+"newsvs"   = "6"                                                                  // new Save vs. Spell
+"newfr"    = "-100"                                                                // new Resist Fire value
+"newcr"    = "127"                                                                 // new Resist Cold value
+"newlvl1"  = "20"                                                                  // new level (first class)
+"newstr"   = "20"                                                                  // new Strength value
+"newdex"   = "16"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newint"   = "14"                                                                  // new Intelligence value
+"newwis"   = "13"                                                                  // new Wisdom value
+"newchr"   = "12"                                                                  // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newmorb"  = "2"                                                                   // new morale break value
+"newmorr"  = "15"                                                                  // new morale recovery value
+"newgen"   = "5"                                                                   // new general (GIANT HUMANOID)
+"newrace"  = "145"                                                                 // new race (ELEMENTAL)
+"newclass" = "255"                                                                 // new class (NO_CLASS)
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#EICE"                                                           // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "DW2MC2MO"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END
 
 // Cryonax (24 HD)
 
@@ -2477,8 +2873,8 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemcryo"                                                          // original Cryonax script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION petrification_immunity  END                                  // petrification immunity
 LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
@@ -2555,8 +2951,8 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemimix"                                                          // original Imix script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
@@ -2637,7 +3033,7 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemogre"                                                          // original Ogremoch script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
+"script05"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 "script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
@@ -2720,8 +3116,8 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemhydr"                                                          // original Olhydra script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -2799,8 +3195,8 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemyanc"                                                          // original Yan-C-Bin script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
@@ -2820,7 +3216,8 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~elemchan~                                                             // Chan
-            dw#echan                                                               // SCSII Chan-alternative from "Smarter Priests"
+            ~dw#echan~                                                             // Stratagems Chan-alternative from "Smarter Priests"
+            ~AR#AIRGD~                                                             // Air Elemental GOD (Arena)
                                                                                    // The seeming conflict between the aTweaks script and the dw#echan
                                                                                    // script should be avoided due to both scripts using the same local
                                                                                    // variable
@@ -2881,6 +3278,8 @@ INT_VAR                                                                         
 "newsex"   = "2"                                                                   // new sex (Female)
 "newalign" = "33"                                                                  // new alignment (Neutral Good)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // Initialize strings
+"notenf01" = "AR#AIRGD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -2889,9 +3288,11 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemchan"                                                          // original Chan script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script05"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script06"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script07"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script08"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"skipfile01" = "AR#AIRGD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
@@ -2909,7 +3310,8 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~elemsunn~                                                             // Sunnis
-            dw#esunn                                                               // SCSII Sunnis-alternative from "Smarter Priests"
+            ~dw#esunn~                                                             // SCSII Sunnis-alternative from "Smarter Priests"
+            ~AR#ELEAK~                                                             // Earth Elemental GOD (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2965,6 +3367,8 @@ INT_VAR                                                                         
 "newsex"   = "2"                                                                   // new sex (Female)
 "newalign" = "33"                                                                  // new alignment (Neutral Good)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // Initialize strings
+"notenf01" = "AR#EARGD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -2973,9 +3377,11 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemsunn"                                                          // original Sunnis script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script05"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script06"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script07"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script08"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"skipfile01" = "AR#EARGD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
@@ -2993,7 +3399,8 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~elemzaam~                                                             // Zaaman Rul
-            dw#ezaam                                                               // SCSII alternative from "Smarter Priests"
+            ~dw#ezaam~                                                             // SCSII alternative from "Smarter Priests"
+            ~AR#FIRGD~                                                             // Fire Elemental GOD (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3048,6 +3455,8 @@ INT_VAR                                                                         
 "newsex"   = "1"                                                                   // new sex (Male)
 "newalign" = "33"                                                                  // new alignment (Neutral Good)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // Initialize strings
+"notenf01" = "AR#FIRGD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -3056,9 +3465,11 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemzaam"                                                          // original Zaaman Rul script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "dw#melee"                                                          // SCSII melee AI script
-"script06"   = "WGARSGT"                                                           // Big Picture generic AI script
-"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script05"   = "WGARSGT"                                                           // Big Picture generic AI script
+"script06"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script07"   = "DW2MS4GE"                                                          // Stratagems melee AI script
+"script08"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"skipfile01" = "AR#FIRGD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -3338,7 +3749,7 @@ COPY_EXISTING ~splesair.eff~  ~override~                                        
 BUT_ONLY_IF_IT_CHANGES
 
 COPY_EXISTING ~spair1.eff~  ~override~                                             // Conjure Air Elemental (12 HD, mage version)
-  WRITE_ASCII 0x30 "ELAIRSU1" #8                                                   // resref (creature to be summoned)
+  WRITE_ASCII 0x30 "ELAIRSU2" #8                                                   // resref (creature to be summoned)
 BUT_ONLY_IF_IT_CHANGES
 
 
@@ -3351,7 +3762,11 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~elairsu1~                                                             // Air Elemental (mage summon)
             ~elairsu2~                                                             // Air Elemental (mage summon)
             ~elairsu3~                                                             // Air Elemental (mage summon)
+			~elairsu4~                                                             // Air Elemental (mage summon)
             ~swaair01~                                                             // Air Elemental (priest summon)
+			~DRAIRPR2~                                                             // Air Elemental (priest summon)
+			~DRAIRPR3~                                                             // Air Elemental (priest summon)
+			~DRAIRPR4~                                                             // Air Elemental (priest summon)
             ~swaair02~                                                             // Air Elemental (priest summon)
             ~elairsuw~                                                             // Lesser Air Elemental (mage summon)
             ~sumelair~                                                             // Lesser Air Elemental (staff summon)
@@ -3382,8 +3797,24 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~elemzaam~                                                             // Zaaman Rul
               ~servsu~                                                             // Aerial Servant
               ~stalke~                                                             // Invisible Stalker
-              tg#wel2                                                              // Water Elemental (Refinements)
-              tg#wel3                                                              // Greater Water Elemental (Refinements)
+             ~tg#wel2~                                                             // Water Elemental (Refinements)
+             ~tg#wel3~                                                             // Greater Water Elemental (Refinements)
+			 ~cdi8air~															   // Air Elemental (IWDification)
+			~cdi8erth~														       // earth Elemental (IWDification)
+			~cdi8fire~														       // fire Elemental (IWDification)
+			~cdi8watr~															   // water Elemental (IWDification)
+			~cdi6salf~															   // fire salamander (IWDification)
+			~cdi6salc~                                                             // Ice Salamander (IWDification)
+			  ~es8air~                                                             // Lesser Air Elemental (Iwidification - Stratagems)
+			 ~es8erth~															   // Lesser Earth Elemental (IWDification - Stratagems)
+			 ~es8fire~															   // Lesser Fire Elemental (IWDification - Stratagems)
+			 ~es8watr~															   // Lesser Water Elemental (IWDification - Stratagems)
+			 ~ms6salf~															   // fire salamander (IWDification - Stratagems)
+			 ~ms6salc~                                                             // Ice Salamander (IWDification - Stratagems)
+			~rr#ewats~                                                             // Lesser Water Elemental (aTweaks_summon)
+			~DW#WATE2~                                                             // Water Elemental (stratagems water elemental summoning)
+			~DW#WATE3~                                                             // Greater Water Elemental (stratagems water elemental summoning)
+			~DW#WATE4~                                                             // Elder Water Elemental (stratagems water elemental summoning)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the designated file with an ITM extension exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3410,18 +3841,44 @@ END                                                                             
 
 // Conjure Lesser X Elemental (arcane version)
 
-ACTION_DEFINE_ASSOCIATIVE_ARRAY l_elmnt BEGIN
+ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_LESSER_WATER_ELEMENTAL")="-1") THEN BEGIN // For compatibility
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY l_elmnt BEGIN
 //   rr#var0    rr#var1      rr#file
 //   resref      desc          file
      SPLESFIR,   24799    =>  spwi516                                              // Conjure Lesser Fire Elemental
      SPLESAIR,   24800    =>  spwi520                                              // Conjure Lesser Air Elemental
      SPLESEAR,   24797    =>  spwi521                                              // Conjure Lesser Earth Elemental
-END                                                                                // ends ACTION_DEFINE_ASSOCIATIVE_ARRAY
+ END 
+END ELSE BEGIN
+
+ OUTER_SET code=IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_LESSER_WATER_ELEMENTAL")
+ OUTER_SET code=code - 2000
+ COPY_EXISTING ~SPwi%code%.spl~ override
+   READ_LONG 0x50 desc_wat
+ COPY_EXISTING spwi516.spl override
+   READ_LONG 0x50 desc_fir
+ COPY_EXISTING spwi520.spl override
+   READ_LONG 0x50 desc_air
+ COPY_EXISTING spwi521.spl override
+   READ_LONG 0x50 desc_ear   
+ COPY_EXISTING ~SPLESAIR.eff~ ~override\SPLESWAT.eff~										  // Creating eff for Lesser Water Elemental
+  WRITE_ASCII 0x30 rr#ewats                                                                   // Lesser Water Elemental (aTweaks_summon)
+PRINT  ~desc_air~
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY l_elmnt BEGIN
+//   rr#var_0    rr#var_1      rr#file
+//   resref      desc          file
+     SPLESFIR,   ~%desc_fir%~    =>  spwi516                                              // Conjure Lesser Fire Elemental
+     SPLESAIR,   ~%desc_air%~    =>  spwi520                                              // Conjure Lesser Air Elemental
+     SPLESEAR,   ~%desc_ear%~    =>  spwi521                                              // Conjure Lesser Earth Elemental
+	 SPLESWAT,	 ~%desc_wat%~  =>  ~SPwi%code%~										      // Conjure Lesser Water Elemental
+ END 
+END                                                                               		  // ends ACTION_DEFINE_ASSOCIATIVE_ARRAY
 ACTION_PHP_EACH l_elmnt AS rr#var => rr#file BEGIN
 COPY_EXISTING ~%rr#file%.spl~  ~override~
+READ_ASCII 0x76 icone
 WRITE_LONG 0x50 "%rr#var_1%"                                                         // unidentified description
 LPF prep_itm_spl INT_VAR f_Type = 1 END
-LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_CastTime = 9 STR_VAR f_Icon = EVAL ~%SOURCE_RES%B~ END
+LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_CastTime = 9 STR_VAR f_Icon = EVAL ~%icone%~ END
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 duration = 114 STR_VAR resource = EVAL ~%rr#var_0%~ END  // Use EFF file
   READ_LONG  0x64 "abil_off"
   READ_SHORT 0x68 "abil_num"
@@ -3458,18 +3915,36 @@ END                                                                             
 
 
 // Conjure X Elemental (arcane version)
-
-ACTION_DEFINE_ASSOCIATIVE_ARRAY m_elmnt BEGIN
+ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL")="-1") THEN BEGIN // For compatibility
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY m_elmnt BEGIN
 //   rr#var0    rr#var1     rr#var2      rr#file
 //   resref1    resref2     resref3        file
      SPFIR1,    SPFIR2,     SPFIR3    =>  spwi620                                  // Conjure Fire Elemental (mage)
      SPAIR1,    SPAIR2,     SPAIR3    =>  spwi621                                  // Conjure Air Elemental (mage)
      SPEART1,   SPEART2,    SPEART3   =>  spwi622                                  // Conjure Earth Elemental (mage)
+  END 
+END ELSE BEGIN
+  OUTER_SET code=IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL")
+   OUTER_SET code=code - 2000
+   COPY_EXISTING ~SPwi%code%.spl~ override
+     READ_ASCII 0x216 SPEWAT1
+     READ_ASCII 0x246 SPEWAT2
+     READ_ASCII 0x276 SPEWAT3
+
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY m_elmnt BEGIN
+//   rr#var0    rr#var1     rr#var2      rr#file
+//   resref1    resref2     resref3        file
+     SPFIR1,    SPFIR2,     SPFIR3    =>  spwi620                                  // Conjure Fire Elemental (mage)
+     SPAIR1,    SPAIR2,     SPAIR3    =>  spwi621                                  // Conjure Air Elemental (mage)
+     SPEART1,   SPEART2,    SPEART3   =>  spwi622                                  // Conjure Earth Elemental (mage)
+    ~%SPEWAT1%~, ~%SPEWAT1%~,  ~%SPEWAT1%~   =>  ~SPwi%code%~                      // Conjure Water Elemental (mage) - Stratagems 
+  END
 END                                                                                // ends ACTION_DEFINE_ASSOCIATIVE_ARRAY
 ACTION_PHP_EACH m_elmnt AS rr#var => rr#file BEGIN
 COPY_EXISTING ~%rr#file%.spl~  ~override~
+READ_ASCII 0x76 icone
 LPF prep_itm_spl INT_VAR f_Type = 1 END
-LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 35 f_CastTime = 9 STR_VAR f_Icon = EVAL ~%SOURCE_RES%B~ END
+LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 35 f_CastTime = 9 STR_VAR f_Icon = EVAL ~%icone%~ END
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 duration = 660 probability1 = 100  probability2 = 0   STR_VAR resource = EVAL ~%rr#var_0%~ END  // Regular elemental
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 duration = 660 probability1 = 95  probability2 = 61  STR_VAR resource = EVAL ~%rr#var_1%~ END  // Greater elemental
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 duration = 660 probability1 = 100 probability2 = 96  STR_VAR resource = EVAL ~%rr#var_2%~ END  // Elder elemental
@@ -3508,17 +3983,34 @@ END                                                                             
 
 
 // Conjure X Elemental (divine version)
-
-ACTION_DEFINE_ASSOCIATIVE_ARRAY p_elmnt BEGIN
+ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")="-1") THEN BEGIN // For compatibility
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY p_elmnt BEGIN
 //   rr#var0    rr#var1     rr#var2      rr#file
 //   resref1    resref2     resref3        file
      SPFIR1P,   SPFIR2P,    SPFIR3P   =>  sppr605                                  // Conjure Fire Elemental (priest)
      SPEART1P,  SPEART2P,   SPEART3P  =>  sppr702                                  // Conjure Earth Elemental (priest)
+  END 
+END ELSE BEGIN
+  OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")
+   OUTER_SET code=code - 1000
+   COPY_EXISTING ~SPpr%code%.spl~ override
+     READ_ASCII 0x216 airpr1
+     READ_ASCII 0x246 airpr2
+     READ_ASCII 0x276 airpr3
+
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY p_elmnt BEGIN
+//   rr#var0    rr#var1     rr#var2      rr#file
+//   resref1    resref2     resref3        file
+     SPFIR1P,   SPFIR2P,    SPFIR3P   =>  sppr605                                  // Conjure Fire Elemental (priest)
+     SPEART1P,  SPEART2P,   SPEART3P  =>  sppr702                                  // Conjure Earth Elemental (priest)
+	 ~%airpr1%~, ~%airpr2%~,  ~%airpr3%~   =>  ~SPpr%code%~						   // Conjure Air Elemental (priest)
+  END 
 END                                                                                // ends ACTION_DEFINE_ASSOCIATIVE_ARRAY
 ACTION_PHP_EACH p_elmnt AS rr#var => rr#file BEGIN
 COPY_EXISTING ~%rr#file%.spl~  ~override~
+READ_ASCII 0x76 icone																//for compatibility, need to be adapted
 LPF prep_itm_spl INT_VAR f_Type = 1 END
-LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 35 f_CastTime = 9 STR_VAR f_Icon = EVAL ~%SOURCE_RES%B~ END
+LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 35 f_CastTime = 9 STR_VAR f_Icon = EVAL ~%icone%~ END
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 duration = 660 probability1 = 100  probability2 = 0   STR_VAR resource = EVAL ~%rr#var_0%~ END  // Regular elemental
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 duration = 660 probability1 = 95  probability2 = 61  STR_VAR resource = EVAL ~%rr#var_1%~ END  // Greater elemental
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 duration = 660 probability1 = 100 probability2 = 96  STR_VAR resource = EVAL ~%rr#var_2%~ END  // Elder elemental
@@ -3584,7 +4076,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                        
     "effsource" = ""                                                               // effsource: none
 END                                                                                // ends LAUNCH_PATCH_FUNCTION
 END                                                                                // ends PHP_EACH
-
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = SPPR723 END
 
 // Greater Elemental Summoning
 
@@ -3616,6 +4108,72 @@ END                                                                             
 END                                                                                // ends PHP_EACH
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = SPPR724 END
 
+ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN
+
+ OUTER_SET codes=IDS_OF_SYMBOL ("spell" "HLA_CLERIC_ELEMENTAL_SWARM")
+ OUTER_SET codes=codes - 4000
+ OUTER_SPRINT hla_ES "SPCL%codes%"
+ OUTER_SET codeg=IDS_OF_SYMBOL ("spell" "HLA_CLERIC_GREATER_ELEMENTAL_SWARM")
+ OUTER_SET codeg=codeg - 4000
+ OUTER_SPRINT hla_GES "SPCL%codeg%"
+  
+ COPY_EXISTING ~SPCL%codes%.spl~  ~override~                                            // Elemental Summoning
+  SAY NAME1 #63746 SAY NAME2 #63746  SAY DESC @2206 SAY UNIDENTIFIED_DESC @2206      // retain old name but set new description
+  LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = "-1" END                        // delete old summoning effects
+  DEFINE_ASSOCIATIVE_ARRAY es_hla BEGIN
+  //   prob1     prob2       resref
+     100,       91    =>   RR#ESWE                                                 // Elder Elementals
+      90,        0    =>   RR#ESWG                                                 // Greater Elementals
+  END                                                                                // ends DEFINE_ASSOCIATIVE_ARRAY
+  PHP_EACH es_hla AS value  => resref BEGIN
+  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+   INT_VAR                                                                          // initialize variables
+    "opcode" = "146"                                                               // effect: #146 (Cast Spell at Target)
+    "target" = "1"                                                                 // target
+    "timing" = "1"                                                                 // timing mode
+    "parameter2" = "1"                                                             // param2
+    "duration" = "0"                                                               // duration
+    "sectype" = "0"                                                                // secondary type
+    "probability1" = EVALUATE_BUFFER "%value_0%"                                   // probability1
+    "probability2" = EVALUATE_BUFFER "%value_1%"                                   // probability2
+    "insert_point" = "0"                                                           // insert point (0 = add new effect to the top)
+   STR_VAR
+    "resource"  =  EVALUATE_BUFFER "%resref%"                                      // resref
+    "effsource" = ""                                                               // effsource: none
+   END                                                                                // ends LAUNCH_PATCH_FUNCTION
+  END                                                                                // ends PHP_EACH
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = EVAL ~%hla_ES%~ END
+  
+  // Greater Elemental Summoning
+
+ COPY_EXISTING ~SPCL%codeg%.spl~  ~override~                                            // Greater Elemental Summoning
+  SAY NAME1 #63768 SAY NAME2 #63768  SAY DESC @2211 SAY UNIDENTIFIED_DESC @2211      // retain old name but set new description
+  LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = "-1" END                        // delete old summoning effects
+  DEFINE_ASSOCIATIVE_ARRAY ges_hla BEGIN
+  //   prob1     prob2       resref
+     100,       67    =>   SUMSUNN                                                 // Sunnis
+      66,       34    =>   SUMCHAN                                                 // Chan
+      33,        0    =>   SUMZAAM                                                 // Zaaman Rul
+  END                                                                                // ends DEFINE_ASSOCIATIVE_ARRAY
+  PHP_EACH ges_hla AS value  => resref BEGIN
+  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+   INT_VAR                                                                          // initialize variables
+    "opcode" = "177"                                                               // effect: #177 (Use EFF File)
+    "target" = "1"                                                                 // target
+    "timing" = "0"                                                                 // timing mode
+    "duration" = "120"                                                             // duration
+    "parameter2" = "2"                                                             // param2
+    "sectype" = "0"                                                                // secondary type
+    "probability1" = EVALUATE_BUFFER "%value_0%"                                   // probability1
+    "probability2" = EVALUATE_BUFFER "%value_1%"                                   // probability2
+    "insert_point" = "0"                                                           // insert point (0 = add new effect to the top)
+   STR_VAR
+    "resource"  =  EVALUATE_BUFFER "%resref%"                                      // resref
+    "effsource" = ""                                                               // effsource: none
+  END                                                                                // ends LAUNCH_PATCH_FUNCTION
+  END                                                                                // ends PHP_EACH
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = EVAL ~%hla_GES%~ END
+END
 
 // Updated spell and item descriptions
 
@@ -3701,8 +4259,18 @@ COPY_EXISTING ~splesair.eff~  ~override~                                        
                ~spstalk.eff~  ~override~                                           // Invisible Stalker
   WRITE_ASCII 0x70 ~SPPORTAL~ #8                                                   // resref2: SPPORTAL (VVC to display)
   WRITE_LONG  0x18 "0"                                                             // power: 0 (in case the spell is cast directly on a Rakshasa or something)
-BUT_ONLY_IF_IT_CHANGES
 
+
+// Water Elementals
+COPY_EXISTING ~SPLESWAT.eff~  ~override~                                           // Conjure Lesser Water Elemental (8 HD)
+               ~dw#wat1.eff~  ~override~                                           // Conjure Water Elemental (12 HD, mage version)
+               ~dw#wat2.eff~  ~override~                                           // Conjure Water Elemental (16 HD, mage version)
+			   ~dw#wat3.eff~  ~override~                                           // Conjure Water Elemental (16 HD, mage version)
+
+  WRITE_ASCII 0x70 ~rr#cwatr~ #8                                                   // resref2: SPPORTAL (VVC to display)
+  WRITE_LONG  0x18 "0"                                                             // power: 0 (in case the spell is cast directly on a Rakshasa or something)
+
+BUT_ONLY_IF_IT_CHANGES IF_EXISTS
 
 // Revised summoned elemental scripts (note: summoner targeting is now handled via the main script, so it needs to be removed from here)
 // These scripts are no longer used by aTweaks, but patch them just in case
@@ -3726,14 +4294,17 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.sto~ BEGIN                                
 COPY_EXISTING ~%file%.sto~ ~override~
 PATCH_IF (%SOURCE_SIZE% > 0x9b) THEN BEGIN                                         // file size sanity check (filters out 0 byte files i.e. ALLOW_MISSING)
 // =============================================================================== // the actual work starts from here
-PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~SCRL7C~) BEGIN              // if the store doesn't already have the specified item
-  ADD_STORE_ITEM ~SCRL7C~   AFTER  ~%TUTU_VAR%SCRL5P~ #1 #0 #0 ~IDENTIFIED~ #2     // Adds 2x Conjure Lesser Earth Elemental scroll
+PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~SCRL7C~) BEGIN              														// if the store doesn't already have the specified item
+  ADD_STORE_ITEM ~SCRL7C~   AFTER  ~%TUTU_VAR%SCRL5P~ #1 #0 #0 ~IDENTIFIED~ #2     														// Adds 2x Conjure Lesser Earth Elemental scroll
 END
-PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~SCRL7B~) BEGIN              // if the store doesn't already have the specified item
-  ADD_STORE_ITEM ~SCRL7B~   BEFORE  ~SCRL7C~ #1 #0 #0 ~IDENTIFIED~ #2              // Adds 2x Conjure Lesser Air Elemental scroll
+PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~SCRL7B~) BEGIN              														// if the store doesn't already have the specified item
+  ADD_STORE_ITEM ~SCRL7B~   BEFORE  ~SCRL7C~ #1 #0 #0 ~IDENTIFIED~ #2             								 						// Adds 2x Conjure Lesser Air Elemental scroll
 END
-PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~SCRL6X~) BEGIN              // if the store doesn't already have the specified item
-  ADD_STORE_ITEM ~SCRL6X~   BEFORE  ~SCRL7B~ #1 #0 #0 ~IDENTIFIED~ #2              // Adds 2x Conjure Lesser Air Elemental scroll
+PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~SCRL6X~) BEGIN              														// if the store doesn't already have the specified item
+  ADD_STORE_ITEM ~SCRL6X~   BEFORE  ~SCRL7B~ #1 #0 #0 ~IDENTIFIED~ #2              														// Adds 2x Conjure Lesser Air Elemental scroll
+END
+PATCH_IF (FILE_EXISTS_IN_GAME ~CDIA533.itm~ AND (NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~CDIA533~)) AND (MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~5900~)) BEGIN             // if the store doesn't already have the specified item -- Lesser Water Elemental
+  ADD_STORE_ITEM ~CDIA533~   BEFORE  ~SCRL6X~ #1 #0 #0 ~IDENTIFIED~ #2              													 // Adds 2x Conjure Lesser Air Elemental scroll
 END
 // =============================================================================== // the actual work ends here
 END                                                                                // ends file size check
@@ -4261,6 +4832,27 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends second ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
+// IWDification
+
+<<<<<<<<atweaks/inlined/baf/elementals/salelsu.baf
+IF
+	HasItem("RR#DINV",Myself)  // No such index
+THEN
+	RESPONSE #100
+		DestroyItem("RR#DINV")  // No such index
+		Continue()
+END
+>>>>>>>>
+
+EXTEND_TOP ~cdisalfi.bcs~  ~atweaks/inlined/baf/elementals/salelsu.baf~
+EXTEND_TOP ~cdisalfr.bcs~  ~atweaks/inlined/baf/elementals/salelsu.baf~
+
+
+// IWDStratagems
+COPY_EXISTING ~ms6salc.cre~ override
+			  ~ms6salf.cre~ override
+REMOVE_CRE_ITEM ~RR#DINV~ 										                 // item which makes creatures invisible and untargetable while they gate in
+BUT_ONLY IF_EXISTS
 
 // Spell Revisions
 
