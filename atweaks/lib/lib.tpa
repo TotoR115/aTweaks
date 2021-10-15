@@ -6,14 +6,14 @@ END
 //Adds immunity to the provided spell to blindness-causing spells and items
 DEFINE_ACTION_FUNCTION add_blindness_immunity BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
-  ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") BEGIN
+  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") > 0) BEGIN
     OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH")
     OUTER_SET code=code - 1000
     OUTER_SPRINT IWDsuns "SPpr%code%"
   END ELSE BEGIN
     OUTER_SPRINT IWDsuns ""
   END
-  ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") BEGIN
+  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") > 0) BEGIN
     OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE")
     OUTER_SET code=code - 1000
     OUTER_SPRINT IWDcldp "SPpr%code%"
@@ -622,28 +622,28 @@ END // ends function definition
 // Fire spell immunities
 DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
-  PATCH_IF IDS_OF_SYMBOL ("spell" "WIZARD_BELTYNS_BURNING_BLOOD") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_BELTYNS_BURNING_BLOOD") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "WIZARD_BELTYNS_BURNING_BLOOD")
     SET code=code - 2000
     SPRINT IWDbbb "SPwi%code%"
   END ELSE BEGIN
     SPRINT IWDbbb ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "WIZARD_SHROUD_OF_FLAME") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_SHROUD_OF_FLAME") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "WIZARD_SHROUD_OF_FLAME")
     SET code=code - 2000
     SPRINT IWDshrf "SPwi%code%"
   END ELSE BEGIN
 	SPRINT IWDshrf ""
   END	
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH")
     SET code=code - 1000
     SPRINT IWDsuns "SPpr%code%"
   END ELSE BEGIN
     SPRINT IWDsuns ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_PRODUCE_FIRE") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_PRODUCE_FIRE") > 0) BEGIN
 	SET code=IDS_OF_SYMBOL ("spell" "CLERIC_PRODUCE_FIRE")
     SET code=code - 1000
     SPRINT IWDprdf "SPpr%code%"
@@ -740,21 +740,21 @@ END                                                                             
 // Cold spell immunities
 DEFINE_PATCH_FUNCTION cold_spell_immunities BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
-  PATCH_IF IDS_OF_SYMBOL ("spell" "WIZARD_OTILUKES_FREEZING_SPHERE") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_OTILUKES_FREEZING_SPHERE") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "WIZARD_OTILUKES_FREEZING_SPHERE")
     SET code=code - 2000
     SPRINT IWDofrs "SPwi%code%"
   END ELSE BEGIN
     SPRINT IWDofrs ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "WIZARD_SNILLOCS_SNOWBALL_SWARM") BEGIN  
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_SNILLOCS_SNOWBALL_SWARM") > 0) BEGIN  
     SET code=IDS_OF_SYMBOL ("spell" "WIZARD_SNILLOCS_SNOWBALL_SWARM")
     SET code=code - 2000
     SPRINT IWDsss "SPwi%code%"
   END ELSE BEGIN
 	SPRINT IWDsss ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "WIZARD_ICELANCE") BEGIN  
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_ICELANCE") > 0) BEGIN  
     SET code=IDS_OF_SYMBOL ("spell" "WIZARD_ICELANCE")
     SET code=code - 2000
     SPRINT IWDIcel "SPwi%code%"
@@ -823,7 +823,7 @@ END                                                                             
 // Electrical spell immunities
 DEFINE_PATCH_FUNCTION electrical_spell_immunities BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_STATIC_CHARGE") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_STATIC_CHARGE") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_STATIC_CHARGE")
     SET code=code - 1000
     SPRINT IWDstch "SPpr%code%"
@@ -899,14 +899,14 @@ END                                                                             
 // Acid spell immunities
 DEFINE_PATCH_FUNCTION acid_spell_immunities BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
-  PATCH_IF IDS_OF_SYMBOL ("spell" "WIZARD_VITRIOLIC_SPHERE") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_VITRIOLIC_SPHERE") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "WIZARD_VITRIOLIC_SPHERE")
     SET code=code - 2000
     SPRINT IWDvsph "SPwi%code%"
   END ELSE BEGIN
     SPRINT IWDofrs ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "WIZARD_ACID_STORM") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_ACID_STORM") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "WIZARD_ACID_STORM")
     SET code=code - 2000
     SPRINT IWDastm "SPwi%code%"
@@ -1012,42 +1012,42 @@ END                                                                             
 // Cure & cause wound spell immunities
 DEFINE_PATCH_FUNCTION cure_spell_immunities BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_MODERATE_WOUNDS") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_MODERATE_WOUNDS") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_MODERATE_WOUNDS")
     SET code=code - 1000
     SPRINT IWDcamw "SPpr%code%"
   END ELSE BEGIN
     SPRINT IWDcamw ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_CURE_MODERATE_WOUNDS") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CURE_MODERATE_WOUNDS") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CURE_MODERATE_WOUNDS")
     SET code=code - 1000
     SPRINT IWDcumw "SPpr%code%"
   END ELSE BEGIN
     SPRINT IWDcumw ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_LIGHT_WOUNDS") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_LIGHT_WOUNDS") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_LIGHT_WOUNDS")
     SET code=code - 1000
     SPRINT IWDcalw "SPpr%code%"
   END ELSE BEGIN
     SPRINT IWDcalw ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_MEDIUM_WOUNDS") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_MEDIUM_WOUNDS") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_MEDIUM_WOUNDS")
     SET code=code - 1000
     SPRINT IWDcame "SPpr%code%"
   END ELSE BEGIN
     SPRINT IWDcame ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_MASS_CAUSE_LIGHT_WOUNDS") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_MASS_CAUSE_LIGHT_WOUNDS") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_MASS_CAUSE_LIGHT_WOUNDS")
     SET code=code - 1000
     SPRINT IWDmcaw "SPpr%code%"
   END ELSE BEGIN
     SPRINT IWDmcaw ""
   END
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_CURE_MEDIUM_WOUNDS") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CURE_MEDIUM_WOUNDS") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CURE_MEDIUM_WOUNDS")
     SET code=code - 1000
     SPRINT IWDcume "SPpr%code%"
@@ -1080,7 +1080,6 @@ DEFINE_PATCH_FUNCTION cure_spell_immunities BEGIN
                 ~SPPR607~                                                              // Heal
                 ~SPWM168~                                                              // Heal (Wild Mage) 
                 ~SPWISH39~                                                             // Heal
-                ~SPWISH38~                                                             // Heal
                 ~spin711~                                                              // Heal
                 ~spin679~                                                              // Heal
                 ~SPIN101~                                                              // Cure Light Wounds (Bhaalpower)
@@ -1147,7 +1146,7 @@ END                                                                             
 // Cloud spell immunities
 DEFINE_PATCH_FUNCTION cloud_spell_immunities BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE")
     SET code=code - 1000
     SPRINT IWDcldp "SPpr%code%"
@@ -1385,7 +1384,7 @@ END                                                                             
 // Disease immunity
 DEFINE_PATCH_FUNCTION disease_immunity BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
-  PATCH_IF IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_DISEASE") BEGIN
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_DISEASE") > 0) BEGIN
     SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CAUSE_DISEASE")
     SET code=code - 1000
     SPRINT IWDcdis "SPpr%code%"
