@@ -18,14 +18,14 @@ COPY ~atweaks/spl/mephits/rr#mracs.spl~ ~override/spin937.spl~                  
 // The drawbacks outweigh the benefits in this case.
 ACTION_IF !GAME_IS ~iwdee~ BEGIN // not needed on IWD:EE
 // Begin : Add Spells from IWDification mod or stratagems mods version
-  ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") BEGIN
+  ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") > 0 BEGIN
     OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH")
     OUTER_SET code=code - 1000
     OUTER_SPRINT IWDsuns "SPpr%code%"
   END ELSE BEGIN
     OUTER_SPRINT IWDsuns ""
   END
-  ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") BEGIN
+  ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") > 0 BEGIN
     OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE")
     OUTER_SET code=code - 1000
     OUTER_SPRINT IWDcldp "SPpr%code%"
