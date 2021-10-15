@@ -1973,7 +1973,7 @@ BEGIN                                                                           
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-PATCH_IF valid AND LONG_AT 0x28 = 4352 BEGIN // TANARRI
+PATCH_IF valid AND LONG_AT 0x28 = 4352 BEGIN 									   // TANARRI
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
 // =============================================================================== // the actual work starts from here
   WRITE_SHORT 0x28 "4352"                                                          // Sets avatar to TANARRI (winged demon)
@@ -2214,8 +2214,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			   ~FINBALOR~                                                           // Balor (Ascension)
                ~garg~ 
                ~glourkis~ 
-               ~godmari4~ 
-               ~gordemc1~
+               ~godmari4~                                                              // Balor (RoT)  
+               ~gordemc1~                                                              // Balor (RoT) 
                ~heldem5~ 
                ~hellfear~ 
                ~hellgree~ 
@@ -2240,19 +2240,19 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~sudemde1~ 
                ~sumtan01~ 
                ~sumtan02~ 
-               ~tanarix1~ 
-               ~tanarixa~ 
-               ~tanarixb~ 
-               ~tannar~ 
-               ~tannar2~ 
-               ~tannar3~ 
+               ~tanarix1~                                                            // Balor (TDD)  
+               ~tanarixa~                                                            // Balor (TDD)  
+               ~tanarixb~                                                            // Balor (TDD)  
+               ~tannar~                                                              // Balor (RoT)  
+               ~tannar2~                                                             // Balor (RoT)  
+               ~tannar3~                                                             // Balor (RoT)  
                ~tartar01~ 
                ~tartarus~ 
                ~tg#did3~ 
                ~tg#did4~ 
 			   ~VA#BALOR~                                                           // Balor (Tower of Deception)
                ~w_rune~ 
-               ~yoshimoa~ 
+               ~yoshimoa~                                                           // Balor (SoS) 
 			   ~Z#GBALOR~                                                           // Balor (Spellhold Gauntlet)			   
 			   ~Z_2BALOR~                                                           // Balor (Tales of Anegh)			   
                ~z_bered~ 
@@ -2273,10 +2273,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~fl#balsu~                                                           //aTweaks fiend intended for SCSII
                ~fl#hsbal~                                                           //Fiendish Gating     
                ~rr#hsbal~                                                           //Fiendish Gating     
-			   ~ACQ17003~                                                           // Balor (Ascalon's Quest Pack)
-			   ~DW#DRCTX~                                                           // Balor (SCS)
-			   ~DW#SBAIM~                                                           // Balor (SCS)
-			   
+			   ~ACQ17003~                                                           // Balor (Ascalon's Quest Pack)			   
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2982,6 +2979,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~MDAIR2~                                                             // Air Elemental (12 HD, unused?)
             ~PAIREL01~                                                             // Air Elemental (12 HD, unused?)
 			~DRAIRPR2~                                                             // Air Elemental (12 HD, Divine Remix)
+			~ELAIRPR~                                                              // Air Elemental (12 HD, mih_sp)
             ~rr#eairr~                                                             // Air Elemental (12 HD, summoned, summoned by Chan and Yan-C-Bin in aTweaks)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -3011,6 +3009,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~UDAIR~                                                             // Air Elemental (Underdark portal)
             ~ELAIRSU3~                                                             // Air Elemental (16 HD, wizard version)
 			~DRAIRPR3~                                                             // Air Elemental (16 HD, Divine Remix)
+			~ELAIRPR2~                                                             // Air Elemental (16 HD, mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3079,6 +3078,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~MH#air20~                                                             // Elemental transformation air (mih_eq)
             ~ELAIRSU4~                                                             // Air Elemental (20+ HD, summoned, wizard version)
 			~DRAIRPR4~                                                             // Air Elemental (20 HD, Divine Remix)
+			~ELAIRPR3~                                                             // Air Elemental (20 HD, mih_sp)
             ~AR#ELAIK~                                                             // Air Elemental (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -3338,6 +3338,7 @@ END                                                                             
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~elemsunn~                                                             // Sunnis
             ~dw#esunn~                                                             // SCSII Sunnis-alternative from "Smarter Priests"
+            ~AR#ELEAK~                                                             // Earth Elemental GOD (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3707,6 +3708,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~elemimix~                                                             // Imix
             ~elemzaam~                                                             // Zaaman Rul
             ~dw#ezaam~                                                             // SCSII alternative from "Smarter Priests"
+            ~AR#FIRGD~                                                             // Fire Elemental GOD (Arena)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3779,6 +3781,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~rr#ewatr~                                                             // Water Elemental (aTweaks)
             ~tg#wel2~                                                              // Water Elemental (Refinements)
 			~DW#WATE2~                                                             // Water Elemental (SCS)
+			~ELWATPR~                                                              // Water Elemental (mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3823,6 +3826,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~DW#WATE3~                                                             // Greater Water Elemental (SCS)
 			~ELEMWAG~                                                              // Greater Water Elemental (TS)
 			~WATERELT~                                                             // Greater Water Elemental (TS)
+			~ELWATPR2~                                                             // Greater Water Elemental (mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3894,6 +3898,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~li#druwa~                                                             // Elemental transformation water (Refinements)
 		    ~DW#wate4~                                                             // Water Elemental (SCS)
 			~MH#wat20~                                                             // Water Elemental (mih_eq)
+			~ELWATPR3~                                                             // Elder Water Elemental (mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
