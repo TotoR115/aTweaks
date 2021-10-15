@@ -639,7 +639,9 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~cdi6salf~                                                             // Fire Salamander (IWDification)
 			~ms6salf~                                                              // Fire Salamander (IWDification - Stratagems)
 			~nthells1~                                                             // Fire Salamander (NTotSC)
+			~nthells2~                                                             // Fire Salamander (NTotSC)
 			~nthells3~                                                             // Fire Salamander (NTotSC)
+			~nthellsa~                                                             // Fire Salamander (NTotSC)
 			~o#brsal1~                                                             // Fire Salamander (Mod added)
 			~o#brsal2~                                                             // Fire Salamander (Mod added)
 			~pxf5sala~                                                             // Fire Salamander (DEVIN)
@@ -686,6 +688,8 @@ INT_VAR                                                                         
 "newclass" = "187"                                                                 // new class (ELEMENTAL_FIRE)
 "newalign" = "51"                                                                  // new alignment (Chaotic Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // Initialize strings
+"notenf01" = "nthellsa"                                                             // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -706,7 +710,7 @@ STR_VAR                                                                         
 "script14"   = "DW2MP0GE"                                                          // Stratagems melee AI script
 "script15"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
 "skipfile01" = "cdi6salf"                                                          // Fire Salamander summoned (IWDification)
-"skipfile02" = "m6salf"                                                            // Fire Salamander summoned (IWDification - Stratagems)
+"skipfile02" = "ms6salf"                                                           // Fire Salamander summoned (IWDification - Stratagems)
 "skipfile03" = "plysala"                                                           // special case, the Avenger kit Fire Salamander form
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
@@ -723,18 +727,29 @@ PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~plysala~) BEGIN                     
 END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
-COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Compatibility with IWDification Begins here
-    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 timing = 2 duration = 0 STR_VAR resource = ~cdifire6~ END
-    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~rr#hfire~ END
-	LPF DELETE_EFFECT INT_VAR match_opcode = 232 END
-COPY_EXISTING ~cdi6salf.cre~ ~override~											   // Fire Salamander from IWDification wizard summon spell
-  REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification version
-BUT_ONLY IF_EXISTS																   // Compatibility with IWDification ends here		
-COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDification wizard summon spell
-  REPLACE_CRE_ITEM ~SALGRFIR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with Stratagems version
-BUT_ONLY IF_EXISTS																   // Compatibility with IWDification ends here		
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
+
+// =============================================================================== // Compatibility with IWDification Begins here
+ACTION_IF FILE_EXISTS_IN_GAME ~cdifire6.cre~ BEGIN                                 // if the file exists
+COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Create Compatible weapon with IWDification
+      LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 timing = 2 duration = 0 STR_VAR resource = ~cdifire6~ END
+	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~rr#hfire~ END
+
+COPY_EXISTING ~cdi6salf.cre~ ~override~											   // Fire Salamander from IWDification wizard summon spell
+  REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification version
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+
+ACTION_IF FILE_EXISTS_IN_GAME ~ms6salf.cre~ BEGIN								   // Compatibility with IWDification - Stratagems Begins here
+COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
+      LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~#fireau~ END
+	  LPF ADD_ITEM_EQEFFECT INT_VAR match_opcode = 232 target = 1 parameter1 = 0 parameter2 = 1 timing = 2 duration = 138 STR_VAR resource = ~spwi418d~ END
+
+COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDification - Stratagems wizard summon spell
+  REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
+  REMOVE_CRE_ITEM ~FSALRING~                                                       // IWDification - Stratagems Salamanders visual effect (already included)
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+// =============================================================================== // the compatibility work ends here
 
 
 // Frost/Ice Salamander
@@ -746,6 +761,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~cdi6salc~                                                             // Ice Salamander (IWDification)
 			~ms6salc~                                                              // Ice Salamander (IWDification - Stratagems)
 			~dw#visal~                                                             // Ice Salamander (SCS)
+			~ntsalmi1~                                                             // Ice Salamander (NTotSC)
+			~ntsalmi2~                                                             // Ice Salamander (NTotSC)
 			~ntsalmi3~                                                             // Ice Salamander (NTotSC)
 			~ntsalmic~                                                             // Ice Salamander (NTotSC)
 		    ~va#isala~                                                             // Ice Salamander (Tower of Deception)
@@ -795,7 +812,9 @@ INT_VAR                                                                         
 "newalign" = "51"                                                                  // new alignment (Chaotic Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR                                                                            // Initialize strings
-"notenf01" = "icesal2"
+"notenf01" = "icesal2"                                                             // non-enforced creature 1 (uses best stat values)
+"notenf02" = "ntsalmi1"                                                             // non-enforced creature 1 (uses best stat values)
+"notenf03" = "ntsalmi2"                                                             // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -827,14 +846,25 @@ PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~icsalcol~) BEGIN                    
 END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// =============================================================================== // Compatibility with IWDification Begins here
 COPY_EXISTING ~RR#EFRSA.itm~ ~override/RR#EFRSI.itm~							   // Compatibility with IWDification Begins here
     LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 timing = 2 duration = 0 STR_VAR resource = ~cdifros6~ END
     LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~RR#HCOLD~ END
 	LPF DELETE_EFFECT INT_VAR match_opcode = 232 END
+
 COPY_EXISTING ~cdi6salc.cre~ ~override~											   // Ice Salamander from IWDification wizard summon spell
-			  ~ms6salc.cre~ ~override~											   // Ice Salamander from Stratagems wizard summon spell
-REPLACE_CRE_ITEM ~RR#EFRSI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace pnp weapon with compatible IWDification/Stratagems version
-REMOVE_CRE_ITEM ~CSALRING~                                                         // remove Stratagems Visual effect as it is now done with ~RR#HCOLD~
+  REPLACE_CRE_ITEM ~RR#EFRSI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification version
+BUT_ONLY IF_EXISTS
+
+COPY_EXISTING ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDification - Stratagems wizard summon spell
+  REMOVE_CRE_ITEM ~CSALRING~                                                       // IWDification - Stratagems Salamanders visual effect (already included)
+BUT_ONLY IF_EXISTS
+
+COPY_EXISTING ~cdi6salc.cre~ ~override~											   // Ice Salamander from IWDification wizard summon spell
+			  ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDification - Stratagems wizard summon spell
   WRITE_BYTE 0x24 63                                                               // new hit point value
   WRITE_BYTE 0x26 63                                                               // new max hit point value
   WRITE_SHORT 0x14 2000                                                            // new XP value
@@ -846,9 +876,7 @@ REMOVE_CRE_ITEM ~CSALRING~                                                      
   WRITE_BYTE 0x58 13                                                               // new Save vs. Spell
   WRITE_BYTE 0x234 7                                                               // new level (first class)
 BUT_ONLY IF_EXISTS						   										   // Compatibility with IWDification ends here
-
-END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-END                                                                                // ends ACTION_FOR_EACH block
+// =============================================================================== // the compatibility work ends here
 
 
 // Invisible Stalker
@@ -1074,8 +1102,8 @@ INT_VAR                                                                         
 "newalign" = "19"                                                                  // new alignment (Lawful Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR                                                                            // initialize strings
-"notenf01"   = "salking"
-"notenf02"   = "firesal2"
+"notenf01"   = "salking"                                                           // non-enforced creature 1 (uses best stat values)
+"notenf02"   = "firesal2"                                                          // non-enforced creature 2 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -1268,6 +1296,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~MDAIR2~                                                             // Air Elemental (12 HD, unused?)
             ~PAIREL01~                                                             // Air Elemental (12 HD, unused?)
 			~DRAIRPR2~                                                             // Air Elemental (12 HD, Divine Remix)
+			~ELAIRPR~                                                              // Air Elemental (12 HD, mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1372,6 +1401,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SWAAIR01~                                                             // Air Elemental (16 HD, Elemental Summoning HLA)
                ~UDAIR~                                                             // Air Elemental (Underdark portal respawn)
 			~DRAIRPR3~                                                             // Air Elemental (16 HD, Divine Remix)
+			~ELAIRPR2~                                                             // Air Elemental (16 HD, mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1457,6 +1487,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~MH#air20~                                                             // Elemental transformation air (made in heaven quest & encounters)
 			~DRAIRPR4~                                                             // Air Elemental (20 HD, Divine Remix)
             ~AR#ELAIK~                                                             // Air Elemental (Arena)
+			~ELAIRPR3~                                                             // Air Elemental (20 HD, mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1502,7 +1533,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR
-"notenf01" = "li#druai"
+"notenf01" = "li#druai"                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -2369,6 +2400,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~rr#ewatr~                                                             // Water Elemental (aTweaks)
             ~tg#wel2~                                                              // Water Elemental (Refinements)
 			~DW#WATE2~                                                             // Water Elemental (Stratagems)
+			~ELWATPR~                                                             // Water Elemental (12 HD, mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2435,6 +2467,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~DW#WATE3~                                                             // Greater Water Elemental (Stratagems)
 			~ELEMWAG~                                                              // Greater Water Elemental (TS)
 			~WATERELT~                                                             // Greater Water Elemental (TS)
+			~ELWATPR2~                                                             // Water Elemental (16 HD, mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2512,6 +2545,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~li#druwa~                                                             // Elemental transformation water (Refinements)
 		    ~DW#wate4~                                                             // Water Elemental (Stratagems)
 			~MH#wat20~                                                             // Water Elemental (Made in heaven Q&E)
+			~ELWATPR3~                                                             // Water Elemental (20 HD, mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2553,7 +2587,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR
-"notenf01" = "li#druwa"
+"notenf01" = "li#druwa"                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -3368,7 +3402,7 @@ INT_VAR                                                                         
 "newalign" = "33"                                                                  // new alignment (Neutral Good)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR                                                                            // Initialize strings
-"notenf01" = "AR#EARGD"
+"notenf01" = "AR#EARGD"                                                            // non-enforced creature 1 (uses best stat values)                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -3456,7 +3490,7 @@ INT_VAR                                                                         
 "newalign" = "33"                                                                  // new alignment (Neutral Good)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR                                                                            // Initialize strings
-"notenf01" = "AR#FIRGD"
+"notenf01" = "AR#FIRGD"                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -3767,6 +3801,9 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~DRAIRPR2~                                                             // Air Elemental (priest summon)
 			~DRAIRPR3~                                                             // Air Elemental (priest summon)
 			~DRAIRPR4~                                                             // Air Elemental (priest summon)
+			~ELAIRPR~                                                              // Air Elemental (priest summon)
+			~ELAIRPR2~                                                             // Air Elemental (priest summon)
+			~ELAIRPR3~                                                             // Air Elemental (priest summon)			
             ~swaair02~                                                             // Air Elemental (priest summon)
             ~elairsuw~                                                             // Lesser Air Elemental (mage summon)
             ~sumelair~                                                             // Lesser Air Elemental (staff summon)
@@ -3816,7 +3853,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~DW#WATE3~                                                             // Greater Water Elemental (stratagems water elemental summoning)
 			~DW#WATE4~                                                             // Elder Water Elemental (stratagems water elemental summoning)
 BEGIN                                                                              // execute the following
-ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the designated file with an ITM extension exists
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the designated file with a CRE extension exists
 COPY_EXISTING ~%file%.cre~ ~override~
   PATCH_IF (SOURCE_SIZE > 0x2d3) THEN BEGIN                                        // protects against invalid files
 // =============================================================================== // the actual work starts from here
@@ -3937,7 +3974,7 @@ END ELSE BEGIN
      SPFIR1,    SPFIR2,     SPFIR3    =>  spwi620                                  // Conjure Fire Elemental (mage)
      SPAIR1,    SPAIR2,     SPAIR3    =>  spwi621                                  // Conjure Air Elemental (mage)
      SPEART1,   SPEART2,    SPEART3   =>  spwi622                                  // Conjure Earth Elemental (mage)
-    ~%SPEWAT1%~, ~%SPEWAT1%~,  ~%SPEWAT1%~   =>  ~SPwi%code%~                      // Conjure Water Elemental (mage) - Stratagems 
+    ~%SPEWAT1%~, ~%SPEWAT2%~,  ~%SPEWAT3%~   =>  ~SPwi%code%~                      // Conjure Water Elemental (mage) - Stratagems 
   END
 END                                                                                // ends ACTION_DEFINE_ASSOCIATIVE_ARRAY
 ACTION_PHP_EACH m_elmnt AS rr#var => rr#file BEGIN
@@ -3983,7 +4020,7 @@ END                                                                             
 
 
 // Conjure X Elemental (divine version)
-ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")="-1") THEN BEGIN // For compatibility
+ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")="-1") AND (IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_WATER_ELEMENTAL")="-1") THEN BEGIN // For compatibility
   ACTION_DEFINE_ASSOCIATIVE_ARRAY p_elmnt BEGIN
 //   rr#var0    rr#var1     rr#var2      rr#file
 //   resref1    resref2     resref3        file
@@ -3991,22 +4028,35 @@ ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")="-1") THEN BEG
      SPEART1P,  SPEART2P,   SPEART3P  =>  sppr702                                  // Conjure Earth Elemental (priest)
   END 
 END ELSE BEGIN
-  OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")
+  ACTION_IF !(IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL") < 0) BEGIN
+   OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")
    OUTER_SET code=code - 1000
    COPY_EXISTING ~SPpr%code%.spl~ override
      READ_ASCII 0x216 airpr1
      READ_ASCII 0x246 airpr2
      READ_ASCII 0x276 airpr3
+  END
+
+  ACTION_IF !(IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_WATER_ELEMENTAL") < 0) BEGIN
+   OUTER_SET cde=IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_WATER_ELEMENTAL")
+   OUTER_SET cde=cde - 1000
+   COPY_EXISTING ~SPpr%cde%.spl~ override
+     READ_ASCII 0x216 airpr1
+     READ_ASCII 0x246 airpr2
+     READ_ASCII 0x276 airpr3
+  END
 
   ACTION_DEFINE_ASSOCIATIVE_ARRAY p_elmnt BEGIN
 //   rr#var0    rr#var1     rr#var2      rr#file
 //   resref1    resref2     resref3        file
      SPFIR1P,   SPFIR2P,    SPFIR3P   =>  sppr605                                  // Conjure Fire Elemental (priest)
      SPEART1P,  SPEART2P,   SPEART3P  =>  sppr702                                  // Conjure Earth Elemental (priest)
+	 ~%watpr1%~, ~%watpr2%~,  ~%watpr3%~   =>  ~SPpr%cde%~						   // Conjure Water Elemental (priest)
 	 ~%airpr1%~, ~%airpr2%~,  ~%airpr3%~   =>  ~SPpr%code%~						   // Conjure Air Elemental (priest)
   END 
-END                                                                                // ends ACTION_DEFINE_ASSOCIATIVE_ARRAY
+END                                                                                 // ends ACTION_DEFINE_ASSOCIATIVE_ARRAY
 ACTION_PHP_EACH p_elmnt AS rr#var => rr#file BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~%rr#file%.spl~ BEGIN                                 // if the designated file with a SPL extension exists
 COPY_EXISTING ~%rr#file%.spl~  ~override~
 READ_ASCII 0x76 icone																//for compatibility, need to be adapted
 LPF prep_itm_spl INT_VAR f_Type = 1 END
@@ -4045,6 +4095,7 @@ LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 duration = 6
     WRITE_SHORT 0x68 "%abil_num%"
     WRITE_LONG  0x6a "%fx_off%"
 BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends second ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_PHP_EACH
 
 
@@ -4108,7 +4159,7 @@ END                                                                             
 END                                                                                // ends PHP_EACH
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = SPPR724 END
 
-ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN
+ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN				   // Compatibility with Stratagems treat HLA as innate
 
  OUTER_SET codes=IDS_OF_SYMBOL ("spell" "HLA_CLERIC_ELEMENTAL_SWARM")
  OUTER_SET codes=codes - 4000
@@ -4117,7 +4168,7 @@ ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN
  OUTER_SET codeg=codeg - 4000
  OUTER_SPRINT hla_GES "SPCL%codeg%"
   
- COPY_EXISTING ~SPCL%codes%.spl~  ~override~                                            // Elemental Summoning
+ COPY_EXISTING ~SPCL%codes%.spl~  ~override~                                         // Elemental Summoning
   SAY NAME1 #63746 SAY NAME2 #63746  SAY DESC @2206 SAY UNIDENTIFIED_DESC @2206      // retain old name but set new description
   LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = "-1" END                        // delete old summoning effects
   DEFINE_ASSOCIATIVE_ARRAY es_hla BEGIN
@@ -4173,7 +4224,7 @@ ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN
   END                                                                                // ends LAUNCH_PATCH_FUNCTION
   END                                                                                // ends PHP_EACH
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = EVAL ~%hla_GES%~ END
-END
+END																					// Ends compatibility with Stratagems
 
 // Updated spell and item descriptions
 
@@ -4187,16 +4238,30 @@ COPY_EXISTING  ~scrl7c.itm~  ~override~                                         
 SAY UNIDENTIFIED_DESC #24797 SAY DESC #24797
 
 COPY_EXISTING ~spwi620.spl~  ~override~                                            // Conjure Fire Elemental (arcane spell)
-               ~scrl7x.itm~  ~override~                                            // Conjure Fire Elemental (scroll)
+SAY UNIDENTIFIED_DESC @2200 SAY DESC @2200
+COPY_EXISTING ~scrl7x.itm~  ~override~                                             // Conjure Fire Elemental (scroll)
 SAY UNIDENTIFIED_DESC @2200 SAY DESC @2200
 
 COPY_EXISTING ~spwi621.spl~  ~override~                                            // Conjure Air Elemental (arcane spell)
-               ~scrl7y.itm~  ~override~                                            // Conjure Air Elemental (scroll)
+SAY UNIDENTIFIED_DESC @2201 SAY DESC @2201
+COPY_EXISTING ~scrl7y.itm~  ~override~                                             // Conjure Air Elemental (scroll)
 SAY UNIDENTIFIED_DESC @2201 SAY DESC @2201
 
-COPY_EXISTING ~spwi622.spl~  ~override~                                            // Conjure Earth Elemental (arcane spell)
-               ~scrl7z.itm~  ~override~                                            // Conjure Earth Elemental (scroll)
+COPY_EXISTING ~spwi622.spl~  ~override~
+SAY UNIDENTIFIED_DESC @2202 SAY DESC @2202                                           // Conjure Earth Elemental (arcane spell)
+COPY_EXISTING ~scrl7z.itm~  ~override~                                            // Conjure Earth Elemental (scroll)
 SAY UNIDENTIFIED_DESC @2202 SAY DESC @2202
+
+ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL") > 0) THEN BEGIN 	   // For compatibility with Water Elemental (arcane spell)
+  OUTER_SET code=IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL")
+  OUTER_SET code=code - 2000
+  OUTER_SPRINT scrollW "%WIZARD_CONJURE_WATER_ELEMENTAL_SCROLL%"
+  COPY_EXISTING ~SPwi%code%.spl~ override
+  SAY UNIDENTIFIED_DESC @2213 SAY DESC @2213
+  COPY_EXISTING ~%scrollW%.itm~ override
+  SAY UNIDENTIFIED_DESC @2213 SAY DESC @2213
+  BUT_ONLY IF_EXISTS
+END
 
 COPY_EXISTING ~sppr605.spl~  ~override~                                            // Conjure Fire Elemental (divine spell)
 SAY UNIDENTIFIED_DESC @2203 SAY DESC @2203
@@ -4210,67 +4275,96 @@ SAY UNIDENTIFIED_DESC @2207 SAY DESC @2207
 COPY_EXISTING ~sppr732.spl~  ~override~                                            // Earth Elemental Transformation (druid HLA)
 SAY UNIDENTIFIED_DESC @2208 SAY DESC @2208
 
+ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL") > 0) THEN BEGIN 	   // For compatibility with Air Elemental (divine spell)
+  OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")
+  OUTER_SET code=code - 1000
+  COPY_EXISTING ~SPpr%code%.spl~ override
+  SAY UNIDENTIFIED_DESC @2205 SAY DESC @2205
+END
 
 // Make conjure elemental spells use IWD graphics for the summoning circles
 
 // Earth Elementals
-
-COPY_EXISTING ~splesear.eff~  ~override~                                           // Conjure Lesser Earth Elemental (8 HD)
-               ~speart1.eff~  ~override~                                           // Conjure Earth Elemental (12 HD, mage version)
-               ~speart2.eff~  ~override~                                           // Conjure Earth Elemental (16 HD, mage version)
-               ~speart3.eff~  ~override~                                           // Conjure Earth Elemental (24 HD, mage version)
-              ~speart1p.eff~  ~override~                                           // Conjure Earth Elemental (12 HD, priest version)
-              ~speart2p.eff~  ~override~                                           // Conjure Earth Elemental (16 HD, priest version)
-              ~speart3p.eff~  ~override~                                           // Conjure Earth Elemental (24 HD, priest version)
-                ~staf16.eff~  ~override~                                           // Conjure Lesser Earth Elemental (8 HD, Staff of Earth version)
-              ~swaeare1.eff~  ~override~                                           // Elemental Summoning (16 HD, priest HLA version)
-              ~swaeare2.eff~  ~override~                                           // Elemental Summoning (24 HD, priest HLA version)
-               ~sumsunn.eff~  ~override~                                           // Summon Sunnis (priest HLA version)
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+				~splesear~  ~override~                                         	   // Conjure Lesser Earth Elemental (8 HD)
+                ~speart1~  ~override~                                          	   // Conjure Earth Elemental (12 HD, mage version)
+                ~speart2~  ~override~                                          	   // Conjure Earth Elemental (16 HD, mage version)
+                ~speart3~  ~override~                                          	   // Conjure Earth Elemental (24 HD, mage version)
+                ~speart1p~  ~override~                                         	   // Conjure Earth Elemental (12 HD, priest version)
+                ~speart2p~  ~override~                                         	   // Conjure Earth Elemental (16 HD, priest version)
+                ~speart3p~  ~override~                                         	   // Conjure Earth Elemental (24 HD, priest version)
+                ~staf16~  ~override~                                           	   // Conjure Lesser Earth Elemental (8 HD, Staff of Earth version)
+                ~swaeare1~  ~override~                                         	   // Elemental Summoning (16 HD, priest HLA version)
+                ~swaeare2~  ~override~                                         	   // Elemental Summoning (24 HD, priest HLA version)
+                ~sumsunn~  ~override~                                          	   // Summon Sunnis (priest HLA version)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.eff~ BEGIN                                   // if the designated file with a CRE extension exists
+COPY_EXISTING ~%file%.eff~ ~override~
   WRITE_ASCII 0x70 ~RR#CEART~ #8                                                   // resref2: RR#CEART (VVC to display)
   WRITE_LONG  0x18 "0"                                                             // power: 0 (in case the spell is cast directly on a Rakshasa or something)
-
+END                                                                                // ends second ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
 
 // Fire Elementals
-COPY_EXISTING ~splesfir.eff~  ~override~                                           // Conjure Lesser Fire Elemental (8 HD)
-                ~spfir1.eff~  ~override~                                           // Conjure Fire Elemental (12 HD, mage version)
-                ~spfir2.eff~  ~override~                                           // Conjure Fire Elemental (16 HD, mage version)
-                ~spfir3.eff~  ~override~                                           // Conjure Fire Elemental (24 HD, mage version)
-               ~spfir1p.eff~  ~override~                                           // Conjure Fire Elemental (12 HD, priest version)
-               ~spfir2p.eff~  ~override~                                           // Conjure Fire Elemental (16 HD, priest version)
-               ~spfir3p.eff~  ~override~                                           // Conjure Fire Elemental (24 HD, priest version)
-                ~staf17.eff~  ~override~                                           // Conjure Lesser Fire Elemental (8 HD, Staff of Fire version)
-              ~swafire1.eff~  ~override~                                           // Elemental Summoning (16 HD, priest HLA version)
-              ~swafire2.eff~  ~override~                                           // Elemental Summoning (24 HD, priest HLA version)
-               ~sumzaam.eff~  ~override~                                           // Summon Zaaman Rul (priest HLA version)
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+				~splesfir~  ~override~                                         	   // Conjure Lesser Fire Elemental (8 HD)
+                ~spfir1~  ~override~                                           	   // Conjure Fire Elemental (12 HD, mage version)
+                ~spfir2~  ~override~                                           	   // Conjure Fire Elemental (16 HD, mage version)
+                ~spfir3~  ~override~                                           	   // Conjure Fire Elemental (24 HD, mage version)
+                ~spfir1p~  ~override~                                          	   // Conjure Fire Elemental (12 HD, priest version)
+                ~spfir2p~  ~override~                                          	   // Conjure Fire Elemental (16 HD, priest version)
+                ~spfir3p~  ~override~                                          	   // Conjure Fire Elemental (24 HD, priest version)
+                ~staf17~  ~override~                                           	   // Conjure Lesser Fire Elemental (8 HD, Staff of Fire version)
+                ~swafire1~  ~override~                                         	   // Elemental Summoning (16 HD, priest HLA version)
+                ~swafire2~  ~override~                                         	   // Elemental Summoning (24 HD, priest HLA version)
+                ~sumzaam~  ~override~                                          	   // Summon Zaaman Rul (priest HLA version)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.eff~ BEGIN                                   // if the designated file with a CRE extension exists
+COPY_EXISTING ~%file%.eff~ ~override~
   WRITE_ASCII 0x70 ~RR#CFIRE~ #8                                                   // resref2: RR#CFIRE (VVC to display)
   WRITE_LONG  0x18 "0"                                                             // power: 0 (in case the spell is cast directly on a Rakshasa or something)
-
+END                                                                                // ends second ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
 
 // Air Elementals
-COPY_EXISTING ~splesair.eff~  ~override~                                           // Conjure Lesser Air Elemental (8 HD)
-                ~spair1.eff~  ~override~                                           // Conjure Air Elemental (12 HD, mage version)
-                ~spair2.eff~  ~override~                                           // Conjure Air Elemental (16 HD, mage version)
-                ~spair3.eff~  ~override~                                           // Conjure Air Elemental (24 HD, mage version)
-                ~staf16.eff~  ~override~                                           // Conjure Lesser Air Elemental (8 HD, Staff of Air version)
-              ~swaaire1.eff~  ~override~                                           // Elemental Summoning (16 HD, priest HLA version)
-              ~swaaire2.eff~  ~override~                                           // Elemental Summoning (24 HD, priest HLA version)
-               ~sumchan.eff~  ~override~                                           // Summon Chan (priest HLA version)
-                ~spserv.eff~  ~override~                                           // Aerial Servant
-               ~spstalk.eff~  ~override~                                           // Invisible Stalker
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+				~splesair~  ~override~                                             // Conjure Lesser Air Elemental (8 HD)
+                ~spair1~  ~override~                                           	   // Conjure Air Elemental (12 HD, mage version)
+                ~spair2~  ~override~                                           	   // Conjure Air Elemental (16 HD, mage version)
+                ~spair3~  ~override~                                           	   // Conjure Air Elemental (24 HD, mage version)
+                ~elairpr~  ~override~                                              // Conjure Air Elemental (12 HD, priest version)
+                ~elairpr2~  ~override~                                             // Conjure Air Elemental (16 HD, priest version)
+                ~elairpr3~  ~override~                                             // Conjure Air Elemental (20 HD, priest version)
+                ~staf16~  ~override~                                               // Conjure Lesser Air Elemental (8 HD, Staff of Air version)
+                ~swaaire1~  ~override~                                             // Elemental Summoning (16 HD, priest HLA version)
+                ~swaaire2~  ~override~                                             // Elemental Summoning (24 HD, priest HLA version)
+                ~sumchan~  ~override~                                              // Summon Chan (priest HLA version)
+                ~spserv~  ~override~                                               // Aerial Servant
+                ~spstalk~  ~override~                                              // Invisible Stalker
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.eff~ BEGIN                                   // if the designated file with a CRE extension exists
+COPY_EXISTING ~%file%.eff~ ~override~
   WRITE_ASCII 0x70 ~SPPORTAL~ #8                                                   // resref2: SPPORTAL (VVC to display)
   WRITE_LONG  0x18 "0"                                                             // power: 0 (in case the spell is cast directly on a Rakshasa or something)
-
+END                                                                                // ends second ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
 
 // Water Elementals
-COPY_EXISTING ~SPLESWAT.eff~  ~override~                                           // Conjure Lesser Water Elemental (8 HD)
-               ~dw#wat1.eff~  ~override~                                           // Conjure Water Elemental (12 HD, mage version)
-               ~dw#wat2.eff~  ~override~                                           // Conjure Water Elemental (16 HD, mage version)
-			   ~dw#wat3.eff~  ~override~                                           // Conjure Water Elemental (16 HD, mage version)
-
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+				~SPLESWAT~  ~override~                                             // Conjure Lesser Water Elemental (8 HD)
+                ~dw#wat1~  ~override~                                              // Conjure Water Elemental (12 HD, mage version)
+                ~dw#wat2~  ~override~                                              // Conjure Water Elemental (16 HD, mage version)
+			    ~dw#wat3~  ~override~                                              // Conjure Water Elemental (20 HD, mage version)
+                ~elwatpr~  ~override~                                              // Conjure Water Elemental (12 HD, priest version)
+                ~elwatpr2~  ~override~                                             // Conjure Water Elemental (16 HD, priest version)
+                ~elwatpr3~  ~override~                                             // Conjure Water Elemental (20 HD, priest version)
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.eff~ BEGIN                                   // if the designated file with a CRE extension exists
+COPY_EXISTING ~%file%.eff~ ~override~
   WRITE_ASCII 0x70 ~rr#cwatr~ #8                                                   // resref2: SPPORTAL (VVC to display)
   WRITE_LONG  0x18 "0"                                                             // power: 0 (in case the spell is cast directly on a Rakshasa or something)
-
-BUT_ONLY_IF_IT_CHANGES IF_EXISTS
+END                                                                                // ends second ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
 
 // Revised summoned elemental scripts (note: summoner targeting is now handled via the main script, so it needs to be removed from here)
 // These scripts are no longer used by aTweaks, but patch them just in case
@@ -4303,8 +4397,11 @@ END
 PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~SCRL6X~) BEGIN              														// if the store doesn't already have the specified item
   ADD_STORE_ITEM ~SCRL6X~   BEFORE  ~SCRL7B~ #1 #0 #0 ~IDENTIFIED~ #2              														// Adds 2x Conjure Lesser Air Elemental scroll
 END
-PATCH_IF (FILE_EXISTS_IN_GAME ~CDIA533.itm~ AND (NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~CDIA533~)) AND (MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~5900~)) BEGIN             // if the store doesn't already have the specified item -- Lesser Water Elemental
-  ADD_STORE_ITEM ~CDIA533~   BEFORE  ~SCRL6X~ #1 #0 #0 ~IDENTIFIED~ #2              													 // Adds 2x Conjure Lesser Air Elemental scroll
+PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_LESSER_WATER_ELEMENTAL") > 0) THEN BEGIN
+  PATCH_PRINT scrollW "%WIZARD_CONJURE_LESSER_WATER_ELEMENTAL_SCROLL%"
+  PATCH_IF (FILE_EXISTS_IN_GAME ~%scrollW%.itm~ AND (NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~%scrollW%~))) BEGIN                  // if the store doesn't already have the specified item -- Lesser Water Elemental
+    ADD_STORE_ITEM ~%scrollW%~   BEFORE  ~SCRL6X~ #1 #0 #0 ~IDENTIFIED~ #2              												// Adds 2x Conjure Lesser Air Elemental scroll
+  END
 END
 // =============================================================================== // the actual work ends here
 END                                                                                // ends file size check
@@ -4848,7 +4945,7 @@ EXTEND_TOP ~cdisalfi.bcs~  ~atweaks/inlined/baf/elementals/salelsu.baf~
 EXTEND_TOP ~cdisalfr.bcs~  ~atweaks/inlined/baf/elementals/salelsu.baf~
 
 
-// IWDStratagems
+// IWDification/Stratagems
 COPY_EXISTING ~ms6salc.cre~ override
 			  ~ms6salf.cre~ override
 REMOVE_CRE_ITEM ~RR#DINV~ 										                 // item which makes creatures invisible and untargetable while they gate in
