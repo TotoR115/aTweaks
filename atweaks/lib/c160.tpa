@@ -1383,6 +1383,9 @@ ACTION_FOR_EACH file IN
 			    cmske04  // Dark Horizons
 				dragbr2  // TDD
 				gholske1 // RoT
+				golbon01
+				hgskl02
+				krshadsk
 				psqsksu  // Planar Sphere mod
 			    ranske1  // RoT
 			    ranske2  // RoT
@@ -1391,6 +1394,8 @@ ACTION_FOR_EACH file IN
 			    ranske5  // RoT
 			    ranske6  // RoT
 			    ranske8  // RoT
+				shbones
+				sk#ssp2
 				skwr1mod // PofQuestPack
 				skwr2mod // PofQuestPack
 				skwr3mod // PofQuestPack
