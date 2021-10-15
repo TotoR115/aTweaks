@@ -92,16 +92,16 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 // Detect good
-
-ACTION_IF NOT IDS_OF_SYMBOL ("spell" "CLERIC_DETECT_GOOD") = "-1" OR MOD_IS_INSTALLED ~wtpfamiliars/SETUP-wtpfamiliars.TP2~ ~0~ BEGIN 
+OUTER_SPRINT DetectG ""
+ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_DETECT_GOOD") > 0 BEGIN 
  OUTER_SET code = IDS_OF_SYMBOL ("spell" "CLERIC_DETECT_GOOD")
  OUTER_SET code = code - 1000
-// OUTER_SET spl_i ~SPwi%code%~
-PRINT ~SPPR%code%~
+ OUTER_SPRINT DetectG SPPR%code%
+END
+
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-              ~SPPR%code%~
-			  ~wtpin02~															   // WTP Find Familliar
-			  ~WTPIN02B~
+			  ~WTPIN02B~														   // WTP Find Familliar
+              ~%DetectG%~														   // Divine Remix
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.spl~ BEGIN                                   // if the designated file with a SPL extension exists
 COPY_EXISTING ~%file%.spl~ ~override~
@@ -165,9 +165,9 @@ LAUNCH_PATCH_MACRO ~DELETE_SPELL_EFFECT~                                        
 END                                                                                // ends file size check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-END
 END                                                                                // ends ACTION_FOR_EACH block
-PRINT code
+
+
 ACTION_IF (NOT MOD_IS_INSTALLED SPELL_REV.TP2 0) AND (NOT MOD_IS_INSTALLED SETUP-OVERSIGHT.TP2 3) THEN BEGIN  // Checks for the main component of Spell Revisions and for the Altered Spells component of Oversight
 
 // Know Alignment
