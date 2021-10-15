@@ -41,36 +41,19 @@ ACTION_IF !jester_song BEGIN
                   ~RR#BSK02~                                                       // Rogue Rebalancing Skald Enhanced song
                   ~RR#BSK04~                                                       // Rogue Rebalancing Skald Lingering song
                   ~spbax2a~                                                        // Classic Adventures Harper of Twilight song
-				  ~cdibar1~ 													   // New Bard Song - iwdification
-				  ~cdibar2~ 													   // New Bard Song - iwdification
-				  ~cdibar3~ 													   // New Bard Song - iwdification
-				  ~cdibar4~ 													   // New Bard Song - iwdification
-				  ~cdibar5~ 													   // New Bard Song - iwdification
-				  ~cdibar6~ 													   // New Bard Song - iwdification
-				  ~gtt#sno~ 													   // New Bard Song - Garrick-tt
-				  ~gtt#s0a~ 													   // New Bard Song - Garrick-tt
-				  ~gtt#s1a~ 													   // New Bard Song - Garrick-tt
-				  ~gtt#s2a~ 													   // New Bard Song - Garrick-tt
-				  ~BI#B1SS~ 													   // New Bard Song - Bard song switching
-				  ~BI#B2SS~ 													   // New Bard Song - Bard song switching
-				  ~BI#B3SS~ 													   // New Bard Song - Bard song switching
-				  ~BI#B4SS~ 													   // New Bard Song - Bard song switching
-				  ~BI#B11A~ 													   // New Bard Song - Bard song switching
-				  ~BI#B11C~ 													   // New Bard Song - Bard song switching
-				  ~BI#B12A~ 													   // New Bard Song - Bard song switching
-				  ~BI#B12C~ 													   // New Bard Song - Bard song switching
-				  ~BI#B13A~ 													   // New Bard Song - Bard song switching
-				  ~BI#B13C~ 													   // New Bard Song - Bard song switching
-				  ~BI#B14A~ 													   // New Bard Song - Bard song switching
-				  ~BI#B14C~ 													   // New Bard Song - Bard song switching
-				  ~BI#B15A~ 													   // New Bard Song - Bard song switching
-				  ~BI#B15C~ 													   // New Bard Song - Bard song switching
-				  ~BI#B16A~ 													   // New Bard Song - Bard song switching
-				  ~BI#B16C~ 													   // New Bard Song - Bard song switching				  
-				  ~BI#B1SL~ 													   // New Bard Song - Bard song switching
-				  ~BI#B2SL~ 													   // New Bard Song - Bard song switching
-				  ~BI#B3SL~ 													   // New Bard Song - Bard song switching
-				  ~BI#B4SL~ 													   // New Bard Song - Bard song switching
+				  ~gtt#s0b~ 													   // New Bard Song - Garrick-tt
+				  ~gtt#s1b~ 													   // New Bard Song - Garrick-tt
+				  ~gtt#s2b~ 													   // New Bard Song - Garrick-tt
+				  ~BI#B11B~ 													   // New Bard Song - Bard song switching
+				  ~BI#B12B~ 													   // New Bard Song - Bard song switching
+				  ~BI#B13B~ 													   // New Bard Song - Bard song switching
+				  ~BI#B14B~ 													   // New Bard Song - Bard song switching
+				  ~BI#B15B~ 													   // New Bard Song - Bard song switching
+				  ~BI#B16B~ 													   // New Bard Song - Bard song switching
+				  ~BI#B40B~ 													   // New Bard Song - Bard song switching
+				  ~BI#B1SB~ 													   // New Bard Song - Bard song switching
+				  ~BI#B2SB~ 													   // New Bard Song - Bard song switching
+				  ~BI#B4SB~ 													   // New Bard Song - Bard song switching
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME ~%file%.spl~ BEGIN
       COPY_EXISTING ~%file%.spl~ ~override~
