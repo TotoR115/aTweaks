@@ -742,8 +742,8 @@ END                                                                             
 
 ACTION_IF FILE_EXISTS_IN_GAME ~ms6salf.cre~ BEGIN								   // Compatibility with IWDification - Stratagems Begins here
 COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
-      LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~#fireau~ END
-	  LPF ADD_ITEM_EQEFFECT INT_VAR match_opcode = 232 target = 1 parameter1 = 0 parameter2 = 1 timing = 2 duration = 138 STR_VAR resource = ~spwi418d~ END
+      LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~rr#ehems~ END
+	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 1 timing = 2 duration = 138 STR_VAR resource = ~spwi418d~ END
 
 COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDification - Stratagems wizard summon spell
   REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
