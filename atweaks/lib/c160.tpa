@@ -460,6 +460,7 @@ ACTION_FOR_EACH file IN
 		besamen  // Quest Pack
 		bpghast  // BP
 		bgghast  // Aec'Letec's death ray, BGT // BP
+		bsghast1 // BST mod
 		CDI4GHST // IWDification
 		MH#GLGHA // Made in heaven Q&E
 		sghastgr // Bonehill
@@ -822,6 +823,9 @@ OUTER_SET $f_AddSecType(fl#glord.spl) = FearSecType
 ACTION_FOR_EACH file IN
 		mummy 
 		mummy01
+		FSMUMM
+		FSMUMM2
+		FSMUMM3
 		F_MUMMY  // Drizzt Saga
 		O#LLARU1 // Mod added
 		O#LLARU2 // Mod added
@@ -1232,12 +1236,14 @@ ACTION_FOR_EACH file IN
                 kshadow  //circus
                 rngsha
                 rngsha01 //in shadow temple
+				rngsha03 //in shadow temple
                 rngsha04 //Shadow Jailer
                 sdshadow //Spawned by area script in shadow temple
                 sewsha03 //Saradush sewers
                 shadow01 //regular
                 shadowsu //summoned shadow (shadow altar)
-                uhcreat  //with the kids in umar cave
+                sumshad	 // summons ?
+				uhcreat  //with the kids in umar cave
                 lshadfi  //From BP, apparently
                 lshadow  //likewise
 //				krshadm  // DSoA - Not Tested
@@ -1249,6 +1255,7 @@ ACTION_FOR_EACH file IN
 				a#sdsha2 // Song and Silence
 				a#sdsha3 // Song and Silence
 				a#sdsha4 // Song and Silence
+				acq10119 // AC_Quest
 				specx1 	 // TDD
 				va#shdgl // Tower of Deception
 BEGIN
@@ -1315,8 +1322,10 @@ BEGIN
             script04 = bpwdasgt
             script05 = bpmag14m //maybe we should not strip this for the shadow jailer
 			script06 = DW2MS0GE
-			script07 = DW2MS3GE
+			script07 = DW2MS1GE
+			script08 = DW2MS3GE
 			skipfile01 = va#shdgl
+			skipfile02 = sumshad		
         END
         LPF cold_spell_immunities END
       END
@@ -1376,12 +1385,17 @@ ACTION_FOR_EACH file IN
                 _kelet_a
                 //skelpetr //The tourist attraction in Durlag's Tower
                 //_kelpetr
-				appar	 // CtB
+				appar
 				cadskel1 // RoT
 				CBAPPAR1 // CtB
 			    cmske03  // Dark Horizons
 			    cmske04  // Dark Horizons
+			    crcre001 // The Old Gold
+			    crcre005 // The Old Gold
+			    crcre006 // The Old Gold
+			    crcre007 // The Old Gold
 				dragbr2  // TDD
+				dW#mulsk // stratagems
 				gholske1 // RoT
 				golbon01
 				hgskl02
@@ -1424,6 +1438,7 @@ BEGIN
  		  script10 = DW2MS1GE
  		  script11 = DW2MC1GE
  		  script12 = DW2MC3MO
+		  script13 = DW2RS0MO
 		  skipfile01 = ranske1
 		  skipfile02 = ranske2
 		  skipfile03 = ranske3
@@ -1433,6 +1448,10 @@ BEGIN
 		  skipfile07 = appar
 		  skipfile08 = CBAPPAR1
 		  skipfile09 = skellord
+		  skipfile10 = crcre001
+		  skipfile11 = crcre005
+		  skipfile12 = crcre006
+		  skipfile13 = crcre007
      END
     BUT_ONLY
   END
@@ -1451,6 +1470,7 @@ ACTION_FOR_EACH file IN
                 skelice  //ice
                 _skelice
                 bpskelar //BP
+				skelet02
                 skeletb  //bassilus
                 _skeletb
                 skelets  //throwing daggers
@@ -1461,6 +1481,10 @@ ACTION_FOR_EACH file IN
                 _kelet_c
 				CMSKE01  // Dark Horizons
 				CMSKE02  // Dark Horizons
+			    crcre002 // The Old Gold
+			    crcre003 // The Old Gold
+			    crcre008 // The Old Gold
+				dW#mulsa // stratagems
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1487,6 +1511,11 @@ BEGIN
           script14 = DW2RC0MW
           script15 = DW2RP0MW
           script16 = DW2RP1MW
+          script17 = DW2RC0MO
+          script18 = DW2RM1MO
+		  script19 = DW2RP2MO
+		  skipfile01 = crcre003
+		  skipfile02 = crcre008		  
       END
     BUT_ONLY
   END
@@ -1580,6 +1609,7 @@ BEGIN
 		  script16 = DW2MS1GW
 		  script17 = DW1MELGE
 		  script18 = DW2MS3GE
+		  script19 = DW2RM0GE
 		  skipfile01 = endske01
 		  skipfile02 = endske02
 		  skipfile03 = endske03
@@ -1592,6 +1622,7 @@ END
 
 // Skeleton Warrior, ranged
 ACTION_FOR_EACH file IN
+			   anscelet
 			   firmon02
                skelwa03
                _kelwa03
@@ -1605,7 +1636,10 @@ ACTION_FOR_EACH file IN
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
-      LPF make_skeleton_warrior END
+      LPF make_skeleton_warrior 
+	  STR_VAR
+	  notenf01 = anscelet
+	  END
       LPF RR#MDCSC
         STR_VAR
           newscript = fl#sklwr
@@ -1625,6 +1659,7 @@ BEGIN
 		  script14 = DW2RS1GE
 		  script15 = DW2RS2GE
           script16 = 0xuddg
+		  skipfile01 = anscelet  
 	END
     BUT_ONLY
   END
@@ -1755,7 +1790,7 @@ BEGIN
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
         REPLACE_CRE_ITEM fl#wigh #0 #0 #0 none weapon1
     PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS/SETUP-INFINITYANIMATIONS.TP2~ ~400~ BEGIN // Infinity Animation Compatibility (IAv5b)
-        WRITE_SHORT 0x28 30464 //animation: ghoul
+        WRITE_LONG 0x28 30464 //animation: ghoul
 	END
         LPF RR#MDCRE
           INT_VAR
@@ -1838,6 +1873,8 @@ ACTION_FOR_EACH file IN
                 firwra01 //Greater Wraith at Firkraag's
                 //telslav //Demon Wraith's slaves; not undead, apparently
                 wraith01 //regular
+				WRAITHSU
+				wrashi01
 				BHWRAITH // Mod added
 				cbmalr6a // CtB
 				psqtpa1  // Planar Sphere mod
@@ -1899,6 +1936,8 @@ BEGIN
 			notenf04 = psqtpa1
 			notenf05 = psqtpa2
 			notenf06 = psqtpa3
+			notenf07 = WRAITHSU
+			notenf08 = wrashi01
         END
         LPF RR#MDCSC
           STR_VAR
@@ -1912,6 +1951,7 @@ BEGIN
 			script07 = DW2MS4GE
 			script08 = DW2MS4GW
 			script09 = DW2MS1GE
+			skipfile01 = WRAITHSU
         END
         LPF hover_immunities END
         LPF cold_spell_immunities END
@@ -1941,7 +1981,7 @@ COPY_EXISTING b1-6.itm "override/fl#wrai.itm"
 ACTION_IF GAME_INCLUDES ~tob~ BEGIN
   //Spawned creature inside the Shadow Temple
   COPY_EXISTING wraith01.cre "override/fl#sdwra.cre"
-    WRITE_ASCIIL 0x248 gensht01 sdshadow fl#higmc
+    WRITE_ASCIIL 0x248 gensht01 sdshadow fl#higmc NONE
 
   //Spawned creatures outside the Shadow Temple
   COPY_EXISTING wraith01.cre "override/fl#stwra.cre"
@@ -2004,9 +2044,9 @@ ACTION_FOR_EACH file IN
                 zombie_e
                 _ombie_e
 				sewerf2  //BG1 Sewerfolk
-				//CRCRE004 // Mod added
-				//CRCRE009 // Mod added
 				c#q06002 // BGQE
+				crcre004 // The Old Gold
+				CRCRE009 // The Old Gold
 				d0monty2 // Quest Pack
 				ja#zomb1 // Mod added
 				LCADEAD2 // Spellpack
@@ -2080,6 +2120,7 @@ BEGIN
           STR_VAR
             notenf01 = zombsexx
             notenf02 = zombx1	
+			notenf03 = CRCRE009
         END
         PATCH_IF "%SOURCE_RES%" STRING_MATCHES_REGEXP "_?zombie[bw]" = 0 BEGIN
           LPF promote_script STR_VAR script = "_?zombie[bw]" END
@@ -2098,6 +2139,8 @@ BEGIN
 			skipfile04 = LCADEAD4
 			skipfile05 = LCADEAD5
 			skipfile06 = LCADEAD6
+			skipfile07 = crcre004
+			skipfile08 = CRCRE009
         END
         LPF cold_spell_immunities END
       END
