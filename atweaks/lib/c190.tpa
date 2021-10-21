@@ -283,6 +283,8 @@ COPY ~atweaks/spl/elementals/rr#eimfb.spl~ ~override~                           
 COPY ~atweaks/spl/elementals/rr#eimhe.spl~ ~override~                              // Heat Emission, 1d20 (Imix)
 COPY ~atweaks/spl/elementals/rr#eimfs.spl~ ~override~                              // Fire Shield: Red, triple strength, Part1 (Imix)
 COPY ~atweaks/spl/elementals/rr#eimfd.spl~ ~override~                              // Fire Shield: Red, triple strength, Part2 (Imix)
+COPY_EXISTING ~rr#eimhe.spl~ ~override/rr#eiems.spl~                               // Heat Emission, 1d8 (fire salamander) -- compatibility with Stratagems/IWDification
+		WRITE_LONG 0x1aa 8														   // 1d8
 
 COPY ~atweaks/spl/elementals/rr#ezafb.spl~ ~override~                              // Fireball, 12d6 (Zaaman Rul)
 COPY ~atweaks/spl/elementals/rr#ezafa.spl~ ~override~                              // Flame Arrow, double damage (Zaaman Rul)
@@ -510,7 +512,6 @@ END                                                                             
 
 
 // Ensure that the mental combat script is assigned to all elementals summoned by arcane spellcasters. Also, these elementals need to start out as NEUTRAL
-// ACTION_IF NOT MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~5900~ BEGIN -- useless, can be desactivated by concole Command : CLUAConsole:SetGlobal("RR#NOEMC","GLOBAL",1)
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~elairsu1~                                                             // Air Elemental (mage summon)
             ~elairsu2~                                                             // Air Elemental (mage summon)
@@ -543,14 +544,15 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                    // assign override AI script
+//PATCH_IF NOT MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~5900~ BEGIN // Stratagems remove mental combat but can also be desactivated by concole Command : CLUAConsole:SetGlobal("RR#NOEMC","GLOBAL",1)
+  WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                    // assign override AI script
+//END                                                                                // ends PATCH_IF stratagems
 WRITE_BYTE  0x270 128                                                              // set initial allegiance to NEUTRAL
 ADD_CRE_ITEM ~RIDRING~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~                  // selection circle removal ring
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-//END                                                                              // ends ACTION_IF stratagems
 
 
 
@@ -731,19 +733,9 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 // =============================================================================== // Compatibility with IWDification Begins here
-ACTION_IF FILE_EXISTS_IN_GAME ~cdifire6.cre~ BEGIN                                 // if the file exists
-COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Create Compatible weapon with IWDification
-      LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 timing = 2 duration = 0 STR_VAR resource = ~cdifire6~ END
-	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~rr#hfire~ END
-
-COPY_EXISTING ~cdi6salf.cre~ ~override~											   // Fire Salamander from IWDification wizard summon spell
-  REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification version
-END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-
 ACTION_IF FILE_EXISTS_IN_GAME ~ms6salf.cre~ BEGIN								   // Compatibility with IWDification - Stratagems Begins here
 COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
-      LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~rr#ehems~ END
-	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 1 timing = 2 duration = 138 STR_VAR resource = ~spwi418d~ END
+	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 9 timing = 2 STR_VAR resource = ~rr#eiems~ END
 
 COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDification - Stratagems wizard summon spell
   REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
@@ -850,21 +842,11 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 // =============================================================================== // Compatibility with IWDification Begins here
-COPY_EXISTING ~RR#EFRSA.itm~ ~override/RR#EFRSI.itm~							   // Compatibility with IWDification Begins here
-    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 timing = 2 duration = 0 STR_VAR resource = ~cdifros6~ END
-    LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 215 target = 1 parameter2 = 1 timing = 2 duration = 0 STR_VAR resource = ~RR#HCOLD~ END
-	LPF DELETE_EFFECT INT_VAR match_opcode = 232 END
-
-COPY_EXISTING ~cdi6salc.cre~ ~override~											   // Ice Salamander from IWDification wizard summon spell
-  REPLACE_CRE_ITEM ~RR#EFRSI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification version
-BUT_ONLY IF_EXISTS
-
 COPY_EXISTING ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDification - Stratagems wizard summon spell
   REMOVE_CRE_ITEM ~CSALRING~                                                       // IWDification - Stratagems Salamanders visual effect (already included)
 BUT_ONLY IF_EXISTS
 
-COPY_EXISTING ~cdi6salc.cre~ ~override~											   // Ice Salamander from IWDification wizard summon spell
-			  ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDification - Stratagems wizard summon spell
+COPY_EXISTING ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDification - Stratagems wizard summon spell
   WRITE_BYTE 0x24 63                                                               // new hit point value
   WRITE_BYTE 0x26 63                                                               // new max hit point value
   WRITE_SHORT 0x14 2000                                                            // new XP value
@@ -1220,7 +1202,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2845 SAY NAME2 #2847                                                    // Lesser Air Elemental
-WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR_SMALL~))                 // use the proper avatar (ELEMENTAL_AIR_SMALL)
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR_SMALL~))                  // use the proper avatar (ELEMENTAL_AIR_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#eairw~ #0 ~innate~ ( 1 )                                   // adds 1x Air Elemental Whirlwind
@@ -1302,7 +1284,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR~))                       // use the proper avatar (ELEMENTAL_AIR)
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR~))                        // use the proper avatar (ELEMENTAL_AIR)
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~ELAIRSU1~) BEGIN                       // special case, this particular Air Elemental needs to be renamed
   SAY NAME1 #2831 SAY NAME2 #2832                                                  // Air Elemental
 END                                                                                // ends ELAIRSU1 specific block
@@ -1314,7 +1296,7 @@ PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~AIRASPEC~) OR ("%SOURCE_RES%" STRIN
   REMOVE_CRE_ITEM ~%TUTU_VAR%MAGE06~                                               // Remove the haste ring
   ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                            // revise weapon immunities
   WRITE_BYTE 0x2E 6                                                                // major color (Dark Silver)
-  WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR_SMALL~))               // use the proper avatar (ELEMENTAL_AIR_SMALL)
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR_SMALL~))                // use the proper avatar (ELEMENTAL_AIR_SMALL)
   WRITE_BYTE 0x53 "1"                                                              // set attacks per round to 1
   FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                     // Null soundset (code borrowed from Nythrun with thanks)
       WRITE_LONG s1 ~-1~
@@ -1584,7 +1566,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2850 SAY NAME2 #2851                                                    // Lesser Earth Elemental
-WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_SMALL~))               // use the proper avatar (ELEMENTAL_EARTH_SMALL)
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_SMALL~))                // use the proper avatar (ELEMENTAL_EARTH_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
@@ -1665,7 +1647,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
-  WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))               // use the proper avatar (ELEMENTAL_EARTH_IWD)
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))                // use the proper avatar (ELEMENTAL_EARTH_IWD)
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -1718,7 +1700,8 @@ STR_VAR                                                                         
 "script11"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script12"   = "DW2MC4MW"                                                          // Stratagems melee AI script
 "script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
-"script14"   = "DW2MC0MW"
+"script14"   = "DW2MC0MW"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 "skipfile01" = "SHEARTH"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
@@ -1751,7 +1734,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2853 SAY NAME2 #2856                                                    // Greater Earth Elemental
-WRITE_SHORT 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                    // use the proper avatar (ELEMENTAL_EARTH)
+WRITE_LONG 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                     // use the proper avatar (ELEMENTAL_EARTH)
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~UDEARTH~) BEGIN                        // special case, Underdark portal spawn
   WRITE_ASCII 0x248 ~DWEARTH~ #8                                                   // override script
   WRITE_ASCII 0x250 ~~ #8                                                          // class script
@@ -1842,7 +1825,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2116 SAY NAME2 @2116                                                    // Elder Earth Elemental
-WRITE_SHORT 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                    // use the proper avatar (ELEMENTAL_EARTH)
+WRITE_LONG 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                     // use the proper avatar (ELEMENTAL_EARTH)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#equa~ #0 ~innate~ ( 1 )                                    // adds 1x Earthquake
@@ -1938,7 +1921,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2878 SAY NAME2 #2879                                                    // Lesser Fire Elemental
-WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_SMALL~))                // use the proper avatar (ELEMENTAL_FIRE_SMALL)
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_SMALL~))                 // use the proper avatar (ELEMENTAL_FIRE_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
@@ -2020,7 +2003,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
-  WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the proper avatar (ELEMENTAL_FIRE_IWD)
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the proper avatar (ELEMENTAL_FIRE_IWD)
 END                                                          					  
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -2130,7 +2113,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2876 SAY NAME2 #2877                                                    // Greater Fire Elemental
-WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the proper avatar (ELEMENTAL_FIRE)
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the proper avatar (ELEMENTAL_FIRE)
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~UDFIRE~) BEGIN                         // special case, Underdark portal spawn
   WRITE_ASCII 0x248 ~DWFIRE~ #8                                                    // override script
   WRITE_ASCII 0x250 ~~ #8                                                          // class script
@@ -2190,6 +2173,7 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC4MW"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script16"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "tg#did5"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -2218,7 +2202,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2117 SAY NAME2 @2117                                                    // Elder Fire Elemental
-WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the proper avatar (ELEMENTAL_FIRE)
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the proper avatar (ELEMENTAL_FIRE)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
@@ -2342,7 +2326,7 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2126 SAY NAME2 @2126 
 PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
-  WRITE_SHORT 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER_SMALL~))			   // Use The animation ELEMENTAL_WATER_SMALL
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER_SMALL~))			   // Use The animation ELEMENTAL_WATER_SMALL
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -2406,6 +2390,10 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+SAY NAME1 @2119 SAY NAME2 @2119
+PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER~))			   		   // Use The IWD animation ELEMENTAL_WATER
+END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM tg#wel2
@@ -2474,6 +2462,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY SELECT_COMMON1 @471 SAY BATTLE_CRY1 @471 SAY BATTLE_CRY2 @472 SAY ATTACK1 @473 SAY ATTACK2 @474 SAY DAMAGE @475 SAY DYING @476 SAY SELECT_ACTION1 @477
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~WATER_WEIRD~))			   			   // Forced Use of WATER_WEIRD
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_EFFECTS
@@ -2551,6 +2540,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~WATER_WEIRD~))			   			   // Forced use of WATER_WEIRD
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_EFFECTS
@@ -3326,6 +3316,7 @@ STR_VAR                                                                         
 "script06"   = "DVMELEE"                                                           // Spell Revisions melee AI script
 "script07"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script08"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script09"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 "skipfile01" = "AR#AIRGD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
@@ -3878,7 +3869,7 @@ END                                                                             
 
 // Conjure Lesser X Elemental (arcane version)
 
-ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_LESSER_WATER_ELEMENTAL")="-1") THEN BEGIN // For compatibility
+ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_LESSER_WATER_ELEMENTAL") < 0) THEN BEGIN // For compatibility
  ACTION_DEFINE_ASSOCIATIVE_ARRAY l_elmnt BEGIN
 //   rr#var0    rr#var1      rr#file
 //   resref      desc          file
@@ -3888,8 +3879,7 @@ ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_LESSER_WATER_ELEMENTAL")="-1")
  END 
 END ELSE BEGIN
 
- OUTER_SET code=IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_LESSER_WATER_ELEMENTAL")
- OUTER_SET code=code - 2000
+ OUTER_SET code=(IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_LESSER_WATER_ELEMENTAL") - 2000)
  COPY_EXISTING ~SPwi%code%.spl~ override
    READ_LONG 0x50 desc_wat
  COPY_EXISTING spwi516.spl override
@@ -3952,7 +3942,7 @@ END                                                                             
 
 
 // Conjure X Elemental (arcane version)
-ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL")="-1") THEN BEGIN // For compatibility
+ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL") < 0) THEN BEGIN // For compatibility
   ACTION_DEFINE_ASSOCIATIVE_ARRAY m_elmnt BEGIN
 //   rr#var0    rr#var1     rr#var2      rr#file
 //   resref1    resref2     resref3        file
@@ -3961,8 +3951,7 @@ ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL")="-1") THEN B
      SPEART1,   SPEART2,    SPEART3   =>  spwi622                                  // Conjure Earth Elemental (mage)
   END 
 END ELSE BEGIN
-  OUTER_SET code=IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL")
-   OUTER_SET code=code - 2000
+  OUTER_SET code=(IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL")-2000)
    COPY_EXISTING ~SPwi%code%.spl~ override
      READ_ASCII 0x216 SPEWAT1
      READ_ASCII 0x246 SPEWAT2
@@ -4029,8 +4018,7 @@ ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")="-1") AND (IDS
   END 
 END ELSE BEGIN
   ACTION_IF !(IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL") < 0) BEGIN
-   OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")
-   OUTER_SET code=code - 1000
+   OUTER_SET code=(IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL") - 1000)
    COPY_EXISTING ~SPpr%code%.spl~ override
      READ_ASCII 0x216 airpr1
      READ_ASCII 0x246 airpr2
@@ -4038,8 +4026,7 @@ END ELSE BEGIN
   END
 
   ACTION_IF !(IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_WATER_ELEMENTAL") < 0) BEGIN
-   OUTER_SET cde=IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_WATER_ELEMENTAL")
-   OUTER_SET cde=cde - 1000
+   OUTER_SET cde=(IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_WATER_ELEMENTAL") - 1000)
    COPY_EXISTING ~SPpr%cde%.spl~ override
      READ_ASCII 0x216 watpr1
      READ_ASCII 0x246 watpr2
@@ -4051,8 +4038,8 @@ END ELSE BEGIN
 //   resref1    resref2     resref3        file
      SPFIR1P,   SPFIR2P,    SPFIR3P   =>  sppr605                                  // Conjure Fire Elemental (priest)
      SPEART1P,  SPEART2P,   SPEART3P  =>  sppr702                                  // Conjure Earth Elemental (priest)
-	 ~%watpr1%~, ~%watpr2%~,  ~%watpr3%~   =>  ~SPpr%cde%~						   // Conjure Water Elemental (priest)
 	 ~%airpr1%~, ~%airpr2%~,  ~%airpr3%~   =>  ~SPpr%code%~						   // Conjure Air Elemental (priest)
+	 ~%watpr1%~, ~%watpr2%~,  ~%watpr3%~   =>  ~SPpr%cde%~						   // Conjure Water Elemental (priest)
   END 
 END                                                                                 // ends ACTION_DEFINE_ASSOCIATIVE_ARRAY
 ACTION_PHP_EACH p_elmnt AS rr#var => rr#file BEGIN
@@ -4161,11 +4148,9 @@ LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 =
 
 ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN				   // Compatibility with Stratagems treat HLA as innate
 
- OUTER_SET codes=IDS_OF_SYMBOL ("spell" "HLA_CLERIC_ELEMENTAL_SWARM")
- OUTER_SET codes=codes - 4000
+ OUTER_SET codes=(IDS_OF_SYMBOL ("spell" "HLA_CLERIC_ELEMENTAL_SWARM") - 4000)
  OUTER_SPRINT hla_ES "SPCL%codes%"
- OUTER_SET codeg=IDS_OF_SYMBOL ("spell" "HLA_CLERIC_GREATER_ELEMENTAL_SWARM")
- OUTER_SET codeg=codeg - 4000
+ OUTER_SET codeg=(IDS_OF_SYMBOL ("spell" "HLA_CLERIC_GREATER_ELEMENTAL_SWARM") - 4000)
  OUTER_SPRINT hla_GES "SPCL%codeg%"
   
  COPY_EXISTING ~SPCL%codes%.spl~  ~override~                                         // Elemental Summoning
@@ -4253,8 +4238,7 @@ COPY_EXISTING ~scrl7z.itm~  ~override~                                          
 SAY UNIDENTIFIED_DESC @2202 SAY DESC @2202
 
 ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL") > 0) THEN BEGIN 	   // For compatibility with Water Elemental (arcane spell)
-  OUTER_SET code=IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL")
-  OUTER_SET code=code - 2000
+  OUTER_SET code=(IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL") - 2000)
   OUTER_SPRINT scrollW "%WIZARD_CONJURE_WATER_ELEMENTAL_SCROLL%"
   COPY_EXISTING ~SPwi%code%.spl~ override
   SAY UNIDENTIFIED_DESC @2213 SAY DESC @2213
@@ -4276,8 +4260,7 @@ COPY_EXISTING ~sppr732.spl~  ~override~                                         
 SAY UNIDENTIFIED_DESC @2208 SAY DESC @2208
 
 ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL") > 0) THEN BEGIN 	   // For compatibility with Air Elemental (divine spell)
-  OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL")
-  OUTER_SET code=code - 1000
+  OUTER_SET code=(IDS_OF_SYMBOL ("spell" "CLERIC_CONJURE_AIR_ELEMENTAL") - 1000)
   COPY_EXISTING ~SPpr%code%.spl~ override
   SAY UNIDENTIFIED_DESC @2205 SAY DESC @2205
 END
