@@ -37,10 +37,6 @@ BEGIN                                                                           
   END                                                                               // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END
 
-COPY_EXISTING ~FAMIMP25.cre~ ~override~ //Familiar special case
-			  ~FAMIMP.cre~ ~override~
-	WRITE_SHORT 0x14 0 	  //Xp
-																				// ends ACTION_FOR_EACH block
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
             ~TCIMP01~                                                           	// Imp (Classic Adventures)
@@ -144,6 +140,7 @@ END
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
 			  ~DW#VIBON~                                                           // Bone Fiend (SCS & Wheels)
+			  ~DW#BFSUM~                                                           // Bone Fiend (SCS & Wheels)
 			  ~cbgrbone~                                                           // Bone Fiend (SoS)
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
@@ -322,7 +319,7 @@ END
 ACTION_FOR_EACH ~file~ IN
              ~DEADDEM2~                                                            // Quasit
               ~DQUAS01~                                                            // Quasit
-              ~FAMQUAS~                                                            // Quasit
+            ~FAMQUAS~                                                            // Quasit
 			 ~FAMQUA25~                                                            // Quasit
               ~GORTAN5~                                                            // Quasit
              ~IMPQUA01~                                                            // Quasit
@@ -337,10 +334,6 @@ BEGIN
   END
 END
 
-COPY_EXISTING ~FAMQUA25.cre~ ~override~ //Familiar special case
-			  ~FAMQUAS.cre~ ~override~
-	WRITE_SHORT 0x14 0 	 //Xp = 0
-	WRITE_SHORT 0x270 0x4 //Ally
 
 // Cambion
 
@@ -410,9 +403,6 @@ ACTION_IF FiendsOriginal = 0 BEGIN
 //			   ~e3demon2~                                                           // Alu-Fiend (Fade NPC) Not tested
 			   ~FINALUF~                                                            // Alu-Fiend (Ascension)	
 			   ~nsaluf01~                                                           // Alu-Fiend (Saerileth)
-			   ~ntindfi1~                                                           // Alu-Fiend (NTotSC)
-			   ~ntindfi2~                                                           // Alu-Fiend (NTotSC)
-			   ~ntindfig~                                                           // Alu-Fiend (NTotSC)
 			   ~YUGALU01~                                                           // Alu-Fiend (Longer Road)
 //			   ~xsdemon~                                                            // Alu-Fiend (Exem) Not tested
   BEGIN
@@ -432,6 +422,8 @@ ACTION_FOR_EACH ~file~ IN
               ~DEMMAU01~                                                           // Maurezhi
                ~GORTAN6~                                                           // Maurezhi (Watcher's Keep Tanar'ri group)
               ~OBSDEM04~                                                           // Maurezhi (Planar Sphere)
+			  ~ntindfi1~                                                           // Maurezhi (NTotSC)
+			  ~ntindfi2~                                                           // Maurezhi (NTotSC)
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
@@ -463,6 +455,7 @@ END
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
 			  ~FINSUCC~                                                            // Succubus (Ascension)
+			  ~ntindfig~                                                           // Succubus (NTotSC)
 			  ~nssuc01~                                                            // Succubus (Saerileth)
 			  ~nssuc02~                                                            // Succubus (Saerileth)
 //			  ~sd_hrzr2~                                                           // Succubus (Shed's Mods) Not tested
@@ -735,6 +728,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
 			   ~CADDEM9~                                                            // Balor (RoT)
                ~dembalr1~                                                           // Balor (TDD) 
                ~dsroach~                                                            // Balor (DSotSC) 
+			   ~DW#BASUM~                                                           // Balor (Stratagems)
 			   ~DW#DRCTX~                                                           // Balor (Stratagems)
 			   ~DW#GRBAL~                                                           // Balor (Wheels)
 			   ~DW#SBAIM~                                                           // Balor (Stratagems)
