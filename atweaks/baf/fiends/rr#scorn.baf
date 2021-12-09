@@ -24,9 +24,9 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
                 SetGlobal("RR#EACheck","LOCALS",2)
+                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
-                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -50,9 +50,9 @@ IF
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
+                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
-                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -64,9 +64,9 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
                 SetGlobal("RR#Hostile","LOCALS",0)
+                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
-                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
