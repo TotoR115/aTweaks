@@ -158,7 +158,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~IDRYAD03~                                                           // Elyme (one of Irenicus captive Dryads)
               ~dr01mod~                                                            // Dryad (PofQuestPack)
               ~drmod~                                                              // Dryad (PofQuestPack)
-              ~RE_DRYAD~                                                              // Dryad (PofQuestPack)
+              ~RE_DRYAD~                                                           // Dryad (PofQuestPack)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -311,7 +311,7 @@ STR_VAR                                                                         
 "script10"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script11"   = "DW2MP2GE"                                                          // Stratagems Melee script
 "script12"   = "DW2MP0GE"                                                          // Stratagems Melee script
-"script13"   = "wqxhama"                                                           // ??? script
+"skipfile01" = "wqxhama"														   // White queen special script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~entangle_immunities~ END                                    // add immunity to Entangle spells and abilities
 // =============================================================================== // the actual work ends here
@@ -467,7 +467,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~NYMPHSU~                                                            // default summoned Nymph
               ~NYMPHSUM~                                                           // summoned Nymph
 			  ~dvnymph~                                                            // Spell Revisions' summoned Nymph
-              ~WQXNYM~
+              ~WQXNYM~															   // White Queen
 			  ~dw#nymsu~                                                           // SCSII summoned Nymph
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
