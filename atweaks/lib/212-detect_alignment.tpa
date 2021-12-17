@@ -177,6 +177,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~SPWI208~                                                            // Know Alignment (Arcane version)
              ~RR#WI208~                                                            // Know Alignment (RR version used by Keeper of the Law)
               ~rr#ekal~                                                            // Know Alignment (aTweaks version used by the Elemental Princes)
+              ~VXFL~                                                               // Know Alignment (varshoon)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.spl~ BEGIN                                   // if the designated file with a SPL extension exists
 COPY_EXISTING ~%file%.spl~ ~override~

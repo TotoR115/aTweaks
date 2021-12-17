@@ -1266,6 +1266,7 @@ WRITE_BYTE 0x275 3                                                              
 //////////////////
 
 
+
 COMPILE ~atweaks/baf/mephits/rr#mair.baf~                                          // Air Mephit AI script
 COMPILE ~atweaks/baf/mephits/rr#mdus.baf~                                          // Dust Mephit AI script
 COMPILE ~atweaks/baf/mephits/rr#mear.baf~                                          // Earth Mephit AI script
@@ -1280,8 +1281,6 @@ COMPILE ~atweaks/baf/mephits/rr#mrad.baf~                                       
 COMPILE ~atweaks/baf/mephits/rr#msal.baf~                                          // Salt Mephit AI script
 COMPILE ~atweaks/baf/mephits/rr#msmo.baf~                                          // Smoke Mephit AI script
 COMPILE ~atweaks/baf/mephits/rr#mste.baf~                                          // Steam Mephit AI script
-
-
 
 
 ///////////////////////////////////
@@ -1426,3 +1425,31 @@ PATCH_INCLUDE ~aTweaks/lib/fj_spl_itm_reindex.tpp~                              
   END                                                                                         
 END                                                                                           // ends file size check
 BUT_ONLY_IF_IT_CHANGES
+
+
+////////////////////////////////////////
+// Item Revisions
+////////////////////////////////////////
+ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 BEGIN                               		// Item Revisions mod check
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
+  COPY_EXISTING ~sw1h01.itm~ ~override/rr#fake.itm~
+	WRITE_LONG 0X1e "-1"
+	SAY NAME2 ~Fake item~
+END
+
+//////////// Compatibility with IR: script check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
+ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
+  COPY_EXISTING ~rr#mfir.bcs~ ~override~
+	DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+      ~clck26~
+      ~rr#fake~ // I am a bit leazy but this will do the trick and is easier in this case than R_B_B
+    REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+	  ~clck24~
+	  ~rr#fake~ // idem
+	END	
+  BUT_ONLY
+END
+
+END                                                                                // ends Item Revisions compatibility block

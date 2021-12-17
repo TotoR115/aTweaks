@@ -2124,7 +2124,7 @@ BEGIN                                                                           
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-PATCH_IF valid AND (LONG_AT 0x28 = 32558 OR LONG_AT 0x28 = 4352) BEGIN 									   // RAVER
+PATCH_IF valid AND (LONG_AT 0x28 = 32558 OR LONG_AT 0x28 = 4352) BEGIN 									   // RAVER and TANARRI
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
 // =============================================================================== // the actual work starts from here
   WRITE_LONG 0x28 "4352"                                                           // Sets avatar to TANARRI (winged demon)
@@ -2351,6 +2351,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
              ~DEMMAU01~                                                            // Maurezhi
               ~GORTAN6~                                                            // Maurezhi
              ~OBSDEM04~                                                            // Maurezhi
+             ~ntindfi1~                                                            // Maurezhi (NTotSC)
+             ~ntindfi2~                                                            // Maurezhi (NTotSC)		 
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2405,6 +2407,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~GORBAT5~                                                            // Bone Fiend
               ~MELSUM02~                                                           // Bone Fiend - Demon knight ??
 			  ~DW#VIBON~                                                           // Bone Fiend (SCS & Wheels)
+			  ~DW#BFSUM~                                                           // Bone Fiend (Stratagems)
               ~fl#hsbfn~                                                           // Fiendish Gating
               ~rr#hsbfn~                                                           // Fiendish Gating
 			  ~cbgrbone~                                                           // Bone Fiend (SoS)
@@ -2870,6 +2873,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~nssuc01~                                                           // Succubus (Saerileth)
 			   ~nssuc02~                                                           // Succubus (Saerileth)
 			  ~sd_hrzr2~                                                           // Succubus (Shed's Mods)
+			  ~ntindfig~                                                           // Succubus (NTotSC)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~

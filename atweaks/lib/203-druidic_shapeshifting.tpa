@@ -12,15 +12,16 @@ ACTION_FOR_EACH ~file~ IN
               ~spcl644~                                                            // Shapeshifter Greater Werewolf Transformation
               ~sppr731~                                                            // Druid Fire Elemental Transformation
               ~sppr732~                                                            // Druid Earth Elemental Transformation
-              li#drair                                                             // Air Elemental Transformation (Refinements)
-              li#drear                                                             // Earth (Refinements)
-              li#drfir                                                             // Fire (Refinements)
-              li#drwat                                                             // Water (Refinements)
-              li#plsal                                                             // Fire Salamander refresher (Refinements)
-              li#plspd                                                             // Spider (Refinements)
-              li#plwyv                                                             // Wyvern (Refinements)
-              li#were                                                              // Werewolf (Refinements)
-              li#werei                                                             // Werewolf 2 (Refinements)
+              ~li#drair~                                                           // Air Elemental Transformation (Refinements)
+              ~li#drear~                                                           // Earth (Refinements)
+              ~li#drfir~                                                           // Fire (Refinements)
+              ~li#drwat~                                                           // Water (Refinements)
+              ~li#plsal~                                                           // Fire Salamander refresher (Refinements)
+              ~li#plspd~                                                           // Spider (Refinements)
+              ~li#plwyv~                                                           // Wyvern (Refinements)
+              ~li#were~                                                            // Werewolf (Refinements)
+              ~li#werei~                                                           // Werewolf 2 (Refinements)
+			  
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.spl~ BEGIN
     COPY_EXISTING ~%file%.spl~ ~override~
@@ -51,11 +52,29 @@ ACTION_FOR_EACH ~file~ IN
              ~plysala~                                                             // Fire Salamander shape attack
               ~drufir~                                                             // Fire Elemental shape attack
               ~druear~                                                             // Earth Elemental shape attack
-              li#druai                                                             // Air elemental shape (Refinements)
-              li#druea                                                             // Earth (Refinements)
-              li#drufi                                                             // Fire (Refinements)
-              li#druwa                                                             // Water (Refinements)
-              li#brbr                                                              // Refinements' BRBRP
+            ~li#druai~                                                             // Air elemental shape (Refinements)
+            ~li#druea~                                                             // Earth (Refinements)
+            ~li#drufi~                                                             // Fire (Refinements)
+            ~li#druwa~                                                             // Water (Refinements)
+             ~li#brbr~                                                             // Refinements' BRBRP
+			 ~FUDRU3A~                                                             // PHORD_druids
+			 ~FUDRU3B~                                                             // PHORD_druids
+			 ~FUDRU3C~                                                             // PHORD_druids
+			 ~FUDRU1A~                                                             // PHORD_druids
+			 ~FUDRU1B~                                                             // PHORD_druids
+			 ~FUDRU1C~                                                             // PHORD_druids
+			 ~FUDRU2A~                                                             // PHORD_druids
+			 ~FUDRU2B~                                                             // PHORD_druids
+			 ~FUDRU2C~                                                             // PHORD_druids
+			 ~FUDRU4A~                                                             // PHORD_druids
+			 ~FUDRU4B~                                                             // PHORD_druids
+			 ~FUDRU4C~                                                             // PHORD_druids
+			 ~FUDRU5A~                                                             // PHORD_druids
+			 ~FUDRU5B~                                                             // PHORD_druids
+			 ~FUDRU5C~                                                             // PHORD_druids
+			 ~FUDRU6A~                                                             // PHORD_druids
+			 ~FUDRU6B~                                                             // PHORD_druids
+			 ~FUDRU6C~                                                             // PHORD_druids			  
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.itm~ BEGIN
     COPY_EXISTING ~%file%.itm~ ~override~

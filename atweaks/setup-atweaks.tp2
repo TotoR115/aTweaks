@@ -266,7 +266,8 @@ BEGIN @152 DESIGNATED 152 //PnP Fiends, mod-added fiends are also affected
 GROUP @1   //PnP Tweaks
 SUBCOMPONENT @150
 
-COPY_EXISTING sw1h01.itm "override/fl#atfiends1.mrk"                               //Installation marker 
+COPY_EXISTING sw1h01.itm "override/fl#atfiends1.mrk"                               //Installation marker
+COPY_EXISTING sw1h01.itm "override/fl#atfiends2.mrk"                               //Installation marker 
 OUTER_SET FiendsOriginal = 0
 OUTER_SET FiendsScripts = 0
 
@@ -277,7 +278,8 @@ BEGIN @153 DESIGNATED 153 //PnP Fiends, only scripts
 GROUP @1   //PnP Tweaks
 SUBCOMPONENT @150
 
-COPY_EXISTING sw1h01.itm "override/fl#atfiends1.mrk"                               //Installation marker 
+COPY_EXISTING sw1h01.itm "override/fl#atfiends1.mrk"                               //Installation marker
+COPY_EXISTING sw1h01.itm "override/fl#atfiends2.mrk"                               //Installation marker
 OUTER_SET FiendsOriginal = 0
 OUTER_SET FiendsScripts = 1
 
@@ -294,9 +296,9 @@ REQUIRE_PREDICATE FILE_EXISTS_IN_GAME fl#atfiends1.mrk @94
 
 INCLUDE "atweaks/lib/154-fiend_summoning_revised.tpa"
 
-///////////////////////////
+///////////////////////////////////
 // Further Revised Fiend summoning 
-///////////////////////////
+///////////////////////////////////
 
 BEGIN @155 DESIGNATED 155 // Revised Fiend summoning
 GROUP @1   // PnP tweaks 

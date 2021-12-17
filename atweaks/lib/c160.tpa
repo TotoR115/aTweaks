@@ -123,6 +123,10 @@ COPY "atweaks/spl/base.spl" "override/fl#banfa.spl" //Fear aura
 
 
 // Death Knight
+ACTION_IF (MOD_IS_INSTALLED ~stratagems.TP2~ ~6510~) BEGIN // With Stratagems installed MELSUM02 is a dethknight
+  OUTER_SPRINT Melbf MELSUM02
+END ELSE OUTER_SPRINT Melbf ""
+
 ACTION_FOR_EACH file IN
                deathk //Death Knight from Durlag's Tower
                _deathk
@@ -134,8 +138,9 @@ ACTION_FOR_EACH file IN
                _ooddeat
 			   cmskel03 //Dark Horizons
 			   cmskel04 //Dark Horizons
-			   CADDEM20 //RoT
-			   CB3579DK //CtB
+//			   CADDEM20 //RoT
+//			   CB3579DK //CtB
+			   "%Melbf%"
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -192,6 +197,8 @@ BEGIN
             newalign = 51
 
             enforce = 1
+        STR_VAR
+			notenf01 = MELSUM02
         END
         PATCH_IF "%file%" STRING_MATCHES_REGEXP "_?g?ooddeat$" BEGIN
           PATCH_IF "%file%" STRING_MATCHES_REGEXP "_?deathk$" = 0 BEGIN
@@ -357,6 +364,9 @@ ACTION_FOR_EACH file IN
                 gooddeat
                 _deathk
                 _ooddeat
+				cmskel03
+				cmskel04
+				"%Melbf%"
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -398,6 +408,7 @@ ACTION_IF GAME_INCLUDES ~tob~ BEGIN
                 deathkni.cre "override/fl#wkkn3.cre"
 				uddeath.cre  override
 				deathkni.cre override
+
     PATCH_INCLUDE "atweaks/lib/fj_cre_validity.tpp"
     PATCH_IF valid BEGIN
       r = RANDOM(1 6)
@@ -421,19 +432,19 @@ ACTION_IF GAME_INCLUDES ~tob~ BEGIN
   BUT_ONLY
   
   COPY_EXISTING udsac.bcs override
-    DECOMPILE_BCS_TO_BAF
+    DECOMPILE_AND_PATCH BEGIN
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~("uddeath",[2929.1562],12)~ ~("fl#udkn1",[2929.1562],12)~
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~("uddeath",[2724.1143],12)~ ~("fl#udkn2",[2724.1143],12)~
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~("uddeath",[3280.1348],12)~ ~("fl#udkn3",[3280.1348],12)~
-    COMPILE_BAF_TO_BCS
+	END
   BUT_ONLY
   
   COPY_EXISTING ar3007.bcs override
-    DECOMPILE_BCS_TO_BAF
+    DECOMPILE_AND_PATCH BEGIN
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~("deathkni",[550.390],0)~ ~("fl#wkkn1",[550.390],0)~
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~("deathkni",[383.505],12)~ ~("fl#wkkn2",[383.505],12)~
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~("deathkni",[574.683],10)~ ~("fl#wkkn3",[574.683],10)~
-    COMPILE_BAF_TO_BCS
+    END
   BUT_ONLY
 END
 
@@ -617,6 +628,7 @@ BEGIN
 			script10 = DW1MELGE
 			script11 = DW2MP0GW	
 			script12 = DW2MM0GE	
+			script13 = DW2MP0GE	
 			skipfile01 = ghoulsu	
         END
       END
@@ -1531,7 +1543,8 @@ ACTION_IF !MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN //Not a skeleton in this case
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
-        LPF make_skeleton INT_VAR newxpv = 0 END
+        WRITE_LONG 0x28 25603 // enforce skeleton animation
+		LPF make_skeleton INT_VAR newxpv = 0 END
         LPF make_summon END
         WRITE_ASCII SCRIPT_OVERRIDE "fl#sklsu" #8 // Swaps to fl#lowm for hostile summons
       BUT_ONLY
@@ -1875,7 +1888,7 @@ ACTION_FOR_EACH file IN
                 wraith01 //regular
 				WRAITHSU
 				wrashi01
-				BHWRAITH // Mod added
+				BHWRAITH // Mod added (BONEHILL?)
 				cbmalr6a // CtB
 				psqtpa1  // Planar Sphere mod
 				psqtpa2  // Planar Sphere mod
@@ -2687,7 +2700,6 @@ COMPILE ~atweaks/baf/undead/fl#death.baf~
 		"atweaks/baf/undead/TRevn_01.baf"
 
 
-
 //Write the queued-up values
 ACTION_PHP_EACH f_AddSecType AS file => SecTypeToAdd BEGIN
   COPY_EXISTING "%file%" override
@@ -2774,3 +2786,33 @@ COPY_EXISTING skelwasu.itm "override/fl#swasu.itm"
      
 
 COMPILE "atweaks/baf/fiends/fl#adead.baf"
+
+////////////////////////////////////////
+// Item Revisions
+////////////////////////////////////////
+
+ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 BEGIN                               		// Item Revisions mod check
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
+  COPY_EXISTING ~sw1h01.itm~ ~override/rr#fake.itm~
+	WRITE_LONG 0X1e "-1"
+	SAY NAME2 ~Fake item~
+END
+
+//////////// Compatibility with IR: script's check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
+ACTION_FOR_EACH script IN fl#gmum fl#bansh fl#death fl#bg1kn BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
+    COPY_EXISTING ~%script%.bcs~ ~override~
+	  DECOMPILE_AND_PATCH BEGIN
+      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		~clck26~
+		~rr#fake~ // I am a bit leazy but this will do the trick and is easier in this case than R_B_B
+      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		~clck24~
+		~rr#fake~ // idem
+	  END	
+    BUT_ONLY
+  END
+END
+
+END                                                                                // ends Item Revisions compatibility block

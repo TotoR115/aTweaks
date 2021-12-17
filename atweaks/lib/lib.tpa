@@ -605,13 +605,13 @@ COPY_EXISTING ~amul15.itm~   ~override~ // Shield Amulet
   END
   BUT_ONLY_IF_IT_CHANGES
 
-ACTION_IF (MOD_IS_INSTALLED ITEM_PACK.TP2 2) OR (MOD_IS_INSTALLED ITEM_REV.TP2 0) THEN BEGIN // Checks for the Tweaked Items component of Daulmakan's Item Pack or Item Revision
-  COPY_EXISTING ~amul15.itm~   ~override~                                          // Shield Amulet
-    LPF ADD_ITEM_EQEFFECT
-      INT_VAR opcode = 206 target = 1 timing = 2
+// ACTION_IF (MOD_IS_INSTALLED ITEM_PACK.TP2 2) THEN BEGIN // Checks for the Tweaked Items component of Daulmakan's Item Pack
+  COPY_EXISTING ~amul15.itm~   ~override~                                          // Shield Amulet - just in case the amulet was changed by a mod
+    LPF CLONE_EFFECT
+      INT_VAR silent = 1 match_opcode = 142 match_timing = 2 match_target = 1 opcode = 206
       STR_VAR resource = RR#WI112
     END
-END
+// END
 END // ends initial ACTION_IF check
 END // ends function definition
 
@@ -1750,6 +1750,13 @@ END                                                                             
 
 
 // Entangle spell and ability immunities
+  ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CHARM_PLANTS") > 0) BEGIN					// SpellPack Charm plants
+    OUTER_SET code=(IDS_OF_SYMBOL ("spell" "WIZARD_CHARM_PLANTS") - 2000 )
+    OUTER_SPRINT spchpl "SPwi%code%"
+  END ELSE BEGIN
+    OUTER_SPRINT spchpl ""
+  END
+
 DEFINE_PATCH_FUNCTION entangle_immunities BEGIN
     PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
                 ~SPPR105~                                                              // Entangle (Priest)
@@ -1757,6 +1764,7 @@ DEFINE_PATCH_FUNCTION entangle_immunities BEGIN
                 ~SPIN688~                                                              // Plant Growth (Black Dragon)
                 ~RR#SMENT~                                                             // Shambler Entangle (RR)
                 ~RR#FENTG~                                                             // Hamadryad Entangle (aTweaks)
+				~%spchpl%~                                                             // Charm plants (SpellPack)
 BEGIN                                                                                  // execute the following
 READ_ASCII 0 sig (3)
   PATCH_MATCH "%sig%" WITH

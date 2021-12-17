@@ -238,28 +238,156 @@ ACTION_IF GAME_INCLUDES ~soa~ BEGIN
   BUT_ONLY
 END
 
+////////////////////////////////////////
+// Stratagems
+////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////
-// Dialogue changes
-//////////////////////////////////////////////////////////////////////
+// Create scripts and creatures outside the ACTION_IF in case SCSII is installed after
+COMPILE ~atweaks/baf/fiends/fl#nabsu.baf~
+        ~atweaks/baf/fiends/fl#corsu.baf~
+        ~atweaks/baf/fiends/fl#glasu.baf~
+        ~atweaks/baf/fiends/fl#gelsu.baf~
+        ~atweaks/baf/fiends/fl#balsu.baf~
+        ~atweaks/baf/fiends/fl#pitsu.baf~
+        ~atweaks/baf/fiends/fl#arcsu.baf~
+        ~atweaks/baf/fiends/fl#nycsu.baf~
+        ~atweaks/baf/fiends/fl#ultsu.baf~
 
-ACTION_FOR_EACH file IN
-                gorbat1 // Ka'rashur (Baatezu Leader in Watcher's Keep)
-                gortan1 // Tahazzar (Tanar'ri Leader in Watcher's Keep)
-BEGIN
-  ACTION_IF FILE_EXISTS_IN_GAME ~%file%.dlg~ BEGIN
-    COPY_EXISTING ~%file%.dlg~ override
-     PATCH_IF SOURCE_SIZE > 0x01 BEGIN
-       DECOMPILE_AND_PATCH BEGIN
-         REPLACE_TEXTUALLY EXACT_MATCH
-           ~SetGlobal("BatEnemy","GLOBAL",1)~
-           ~SetGlobal("BatEnemy","GLOBAL",1) Enemy() Help()~
-         REPLACE_TEXTUALLY EXACT_MATCH
-           ~SetGlobal("TanEnemy","GLOBAL",1)~
-           ~SetGlobal("TanEnemy","GLOBAL",1) Enemy() Help()~
-       END
-     END
-   BUT_ONLY
+COPY_EXISTING demnab01.cre ~override/fl#nabsu.cre~
+              telcor1.cre  ~override/fl#corsu.cre~
+              demgla01.cre ~override/fl#glasu.cre~
+              rr#hgel.cre  ~override/fl#gelsu.cre~
+              dembal01.cre ~override/fl#balsu.cre~
+              dempit01.cre ~override/fl#pitsu.cre~
+              fl#sarca.cre ~override/fl#arcsu.cre~
+              fl#snyca.cre ~override/fl#nycsu.cre~
+              fl#sultr.cre ~override/fl#ultsu.cre~
+  WRITE_LONG 0x10 2 // Clear flags, leave only "no corpse"
+  WRITE_ASCIIE 0x248 "%DEST_RES%" #8 // Summoned script
+  WRITE_ASCII  0x250 ~~ #8 // Class
+  WRITE_ASCII  0x258 ~~ #8 // Race
+  WRITE_ASCII  0x260 ~~ #8 // General
+  WRITE_ASCII  0x268 ~~ #8 // Default
+  WRITE_BYTE   0x270 255 // Enemy
+  WRITE_BYTE   0x275 1 // Male
+  WRITE_ASCIIE 0x280 ~%DEST_RES%~ #32 // Script name
+  // Make all items unstealable&undroppable
+  READ_LONG 0x2bc io
+  FOR (i=0;i<LONG_AT 0x2c0;++i) BEGIN
+    WRITE_BYTE io + 0x14*i + 0x10 THIS BOR 10
+  END
+  PATCH_IF FILE_EXISTS_IN_GAME dw#sumfi.itm AND
+           !FILE_CONTAINS_EVALUATED ("%SOURCE_FILE%" "dw#sumfi")
+  BEGIN
+    ADD_CRE_ITEM "dw#sumfi" #0 #0 #0 none boots
+  END
+
+// Commandeer SCSII's fiend-summoning spells and
+// have them summon SCSII-aTweaks hybrids
+ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.spl AND FILE_EXISTS_IN_GAME fl#atfiends2.mrk BEGIN
+  OUTER_SPRINT $crefile(dw#cacof) fl#nabsu // spcaco
+  OUTER_SPRINT $crefile(dw#HLBF) fl#corsu
+  OUTER_SPRINT $crefile(dw#sumgl) fl#glasu // spfiend
+  OUTER_SPRINT $crefile(dw#HLco) fl#gelsu
+  OUTER_SPRINT $crefile(dw#hlba) fl#balsu
+  OUTER_SPRINT $crefile(dw#pitsu) fl#pitsu // spgate
+  OUTER_SPRINT $crefile(dw#gatem) fl#pitsu
+  OUTER_SPRINT $crefile(dw#gatep) fl#pitsu
+  OUTER_SPRINT $crefile(dw#sumya) fl#arcsu
+  OUTER_SPRINT $crefile(dw#sumyn) fl#nycsu
+  OUTER_SPRINT $crefile(dw#sumyu) fl#ultsu
+
+  COPY_EXISTING ~dw#HLBF.eff~ ~override/dw#cacof.eff~
+				~dw#HLco.eff~ ~override/dw#sumgl.eff~
+				~dw#hlba.eff~ ~override/dw#pitsu.eff~
+
+  COPY_EXISTING dw#cacof.spl override
+				dw#sumfi.spl override
+				dw#sfc1.spl override
+				dw#sfc2.spl override
+				dw#gatem.spl override
+				dw#gatep.spl override
+	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spcaco~ ~dw#cacof~ (8)
+	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spfiend~ ~dw#sumgl~ (8)
+	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spgate~ ~dw#pitsu~ (8)
+	
+
+  ACTION_FOR_EACH res IN
+                  dw#cacof
+                  dw#HLBF
+                  dw#sumya
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME "%res%.eff" BEGIN
+      COPY_EXISTING fl#sarca.eff "override/%res%.eff"
+        WRITE_ASCIIE 0x30 $crefile("%DEST_RES%") #8
+      BUT_ONLY
+    END
+  END
+
+  ACTION_FOR_EACH res IN
+                  dw#sumgl
+                  dw#HLco
+                  dw#sumyn
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME "%res%.eff" BEGIN
+      COPY_EXISTING fl#snyca.eff "override/%res%.eff"
+        WRITE_ASCIIE 0x30 $crefile("%DEST_RES%") #8
+      BUT_ONLY
+    END
+  END
+
+  ACTION_FOR_EACH res IN
+                  dw#hlba
+                  dw#pitsu
+                  dw#gatem
+                  dw#gatep
+                  dw#sumyu
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME "%res%.eff" BEGIN
+      COPY_EXISTING fl#sultr.eff "override/%res%.eff"
+        WRITE_ASCIIE 0x30 $crefile("%DEST_RES%") #8
+      BUT_ONLY
+    END
+  END
+
+  OUTER_SET $name(dw#cacof) = 17320
+  OUTER_SET $name(dw#HLBF) = 17320
+  OUTER_SET $name(dw#sumya) = 17320
+  OUTER_SET $name(dw#sumgl) = 17360
+  OUTER_SET $name(dw#HLco) = 17360
+  OUTER_SET $name(dw#sumyn) = 17360
+  OUTER_SET $name(dw#hlba) = 14260
+  OUTER_SET $name(dw#pitsu) = 14260
+  OUTER_SET $name(dw#gatem) = 14260
+  OUTER_SET $name(dw#gatep) = 14260
+  OUTER_SET $name(dw#sumyu) = 14260
+END
+////////////////////////////////////////
+// Item Revisions
+////////////////////////////////////////
+
+ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 BEGIN                               		// Item Revisions mod check
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
+  COPY_EXISTING ~sw1h01.itm~ ~override/rr#fake.itm~
+	WRITE_LONG 0X1e "-1"
+	SAY NAME2 ~Fake item~
+END
+
+//////////// Compatibility with IR: script's check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
+ACTION_FOR_EACH script IN rr#snaba fl#sarca fl#snyca fl#sultr fl#arcsu fl#nycsu fl#ultsu fl#nabsu BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
+    COPY_EXISTING ~%script%.bcs~ ~override~
+	  DECOMPILE_AND_PATCH BEGIN
+      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		~clck26~
+		~rr#fake~ // I am a bit leazy but this will do the trick and is easier in this case than R_B_B
+      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		~clck24~
+		~rr#fake~ // idem
+	  END	
+    BUT_ONLY
   END
 END
 
+END                                                                                // ends Item Revisions compatibility block

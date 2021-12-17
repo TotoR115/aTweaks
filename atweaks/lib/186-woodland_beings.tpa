@@ -39,3 +39,29 @@ END                                                                             
 COMPILE ~atweaks/baf/fey/rr#sdrya.baf~                                             // Summoned Dryad AI script
         ~atweaks/baf/fey/rr#shama.baf~                                             // Summoned Hamadryad AI script
         ~atweaks/baf/fey/rr#snymp.baf~                                             // Summoned Nymph AI script
+		
+////////////////////////////////////////
+// Item Revisions
+////////////////////////////////////////
+
+ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 BEGIN                               		// Item Revisions mod check
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
+  COPY_EXISTING ~sw1h01.itm~ ~override/rr#fake.itm~
+	WRITE_LONG 0X1e "-1"
+	SAY NAME2 ~Fake item~
+END
+
+//////////// Compatibility with IR: script's check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
+COPY_EXISTING ~rr#snymp.bcs~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+  REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+	~clck26~
+	~rr#fake~ // I am a bit leazy but this will do the trick and is easier in this case than R_B_B
+  REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+	~clck24~
+	~rr#fake~ // idem
+  END	
+BUT_ONLY
+
+END                                                                                // ends Item Revisions compatibility block

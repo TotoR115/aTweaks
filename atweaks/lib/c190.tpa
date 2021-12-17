@@ -1646,7 +1646,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+PATCH_IF (GAME_IS ~bgee bg2ee eet iwdee~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))                // use the proper avatar (ELEMENTAL_EARTH_IWD)
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -2002,7 +2002,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+PATCH_IF (GAME_IS ~bgee bg2ee eet iwdee~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the proper avatar (ELEMENTAL_FIRE_IWD)
 END                                                          					  
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -2325,7 +2325,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2126 SAY NAME2 @2126 
-PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+PATCH_IF (GAME_IS ~bgee bg2ee eet iwdee~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER_SMALL~))			   // Use The animation ELEMENTAL_WATER_SMALL
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -2391,7 +2391,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2119 SAY NAME2 @2119
-PATCH_IF (GAME_IS ~bgee bg2ee eet~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+PATCH_IF (GAME_IS ~bgee bg2ee eet iwdee~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER~))			   		   // Use The IWD animation ELEMENTAL_WATER
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -3552,8 +3552,6 @@ COMPILE ~atweaks/baf/elementals/rr#echan.baf~                                   
 COMPILE ~atweaks/baf/elementals/rr#esunn.baf~                                      // Sunnis AI script
 COMPILE ~atweaks/baf/elementals/rr#ezaam.baf~                                      // Zaaman Rul AI script
 COMPILE ~atweaks/baf/elementals/rr#ewizs.baf~                                      // Mental Combat AI script (for elementals summoned by arcane spellcasters)
-
-
 
 
 
@@ -5063,6 +5061,7 @@ END                                                                             
 // Item Revisions
 
 ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 THEN BEGIN                               // Item Revisions mod check
+
 //==================================================================================
 // Lesser Elementals summoned from items shold not use CREs from the wizard spells because of mental combat issues
 
@@ -5082,5 +5081,28 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_PHP_EACH
 //==================================================================================
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
+  COPY_EXISTING ~sw1h01.itm~ ~override/rr#fake.itm~
+	WRITE_LONG 0X1e "-1"
+	SAY NAME2 ~Fake item~
+END
+
+//////////// Compatibility with IR: script check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
+ACTION_FOR_EACH script IN rr#ensal rr#echan BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
+    COPY_EXISTING ~%script%.bcs~ ~override~
+	  DECOMPILE_AND_PATCH BEGIN
+      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+        ~clck26~
+        ~rr#fake~ // I am a bit leazy but this will do the trick and is easier in this case than R_B_B
+      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		~clck24~
+		~rr#fake~ // idem
+	  END
+    BUT_ONLY
+  END
+END
+
 END                                                                                // ends Item Revisions compatibility block
 
