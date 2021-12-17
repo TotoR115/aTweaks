@@ -1,5 +1,5 @@
 
-// Give Shambling Mounds ther proper soundset
+// Give Shambling Mounds their proper soundset
 // This tweak restores the proper soundset to Shambling Mounds. The files already existed, but were unused in the unmodded game (SHAMB01-SHAMB07.WAV)
 ACTION_FOR_EACH ~file~ IN
               ~hgmound~                                                            // Shambling mound
@@ -72,14 +72,16 @@ ACTION_FOR_EACH ~file~ IN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END             // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-      FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                 // Null soundset (code borrowed from Nythrun with thanks)
+	  PATCH_IF LONG_AT 0x28 = 57488 BEGIN // IC_merilith - animation's Check for compatibility
+	    FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                               // Null soundset (code borrowed from Nythrun with thanks)
         WRITE_LONG s1 ~-1~
-      END
-      SAY INITIAL_MEETING @431 SAY BATTLE_CRY1 @431 SAY BATTLE_CRY2 @432
-      SAY ATTACK1 @433 SAY ATTACK2 @434 SAY ATTACK3 @435 SAY ATTACK4 @436
-      SAY DAMAGE @437 SAY DYING @438 SAY HURT @439 SAY SELECT_COMMON1 @440
-      SAY SELECT_COMMON2 @431 SAY SELECT_COMMON3 @432
-    BUT_ONLY_IF_IT_CHANGES
+        END
+        SAY INITIAL_MEETING @431 SAY BATTLE_CRY1 @431 SAY BATTLE_CRY2 @432
+        SAY ATTACK1 @433 SAY ATTACK2 @434 SAY ATTACK3 @435 SAY ATTACK4 @436
+        SAY DAMAGE @437 SAY DYING @438 SAY HURT @439 SAY SELECT_COMMON1 @440
+        SAY SELECT_COMMON2 @431 SAY SELECT_COMMON3 @432
+ 	  END // IC_merilith - animation's Check for compatibility     
+	BUT_ONLY_IF_IT_CHANGES
   END
 END
 
@@ -122,8 +124,8 @@ BEGIN
       FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                 // Null soundset (code borrowed from Nythrun with thanks)
         WRITE_LONG s1 ~-1~
       END
-      SAY BATTLE_CRY1 @442 SAY BATTLE_CRY2 @443 SAY
-      SELECT_COMMON1 @441 SAY SELECT_ACTION1 @444
+      SAY BATTLE_CRY1 @442 SAY BATTLE_CRY2 @443 
+	  SAY SELECT_COMMON1 @441 SAY SELECT_ACTION1 @444
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -221,10 +223,10 @@ COPY ~atweaks/wav/rr#suc01.wav~ ~override~                                      
 ACTION_FOR_EACH ~file~ IN
               ~DEMSUC01~                                                           // Succubus
               ~GORSUC01~                                                           // Succubus
-               ~GORTAN2~                                                           // Succubus
+              ~GORTAN2~                                                           // Succubus
               ~GORWOM01~                                                           // Nalmissra
-                ~KIRINH~                                                           // Kirinhale, the Succubus in Durlag's Tower (BGT)
-               ~_KIRINH~                                                           // Kirinhale, the Succubus in Durlag's Tower (Tutu)
+              ~KIRINH~                                                           // Kirinhale, the Succubus in Durlag's Tower (BGT)
+              ~_KIRINH~                                                           // Kirinhale, the Succubus in Durlag's Tower (Tutu)
 			  ~FINSUCC~                                                            // Succubus (Ascension)
 			  ~nssuc01~                                                            // Succubus (Saerileth)
 			  ~nssuc02~                                                            // Succubus (Saerileth)
@@ -238,11 +240,13 @@ ACTION_FOR_EACH ~file~ IN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END             // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-      FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                 // Null soundset (code borrowed from Nythrun with thanks)
+      PATCH_IF LONG_AT 0x28 = 8192 BEGIN // SIRINE - animation's Check for compatibility
+	    FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                 // Null soundset (code borrowed from Nythrun with thanks)
         WRITE_LONG s1 ~-1~
-      END
-      SAY BATTLE_CRY1 @461  SAY BATTLE_CRY2 @462 SAY SELECT_COMMON1 @461
-      SAY SELECT_COMMON2 @462 SAY SELECT_ACTION1 @463 SAY SELECT_ACTION2 @464
+        END
+        SAY BATTLE_CRY1 @461  SAY BATTLE_CRY2 @462 SAY SELECT_COMMON1 @461
+        SAY SELECT_COMMON2 @462 SAY SELECT_ACTION1 @463 SAY SELECT_ACTION2 @464
+	  END // SIRINE - animation's Check for compatibility
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -279,6 +283,8 @@ ACTION_FOR_EACH ~file~ IN
 			~cdi6salc~                                                             // Ice Salamander (iwd)
 			~ms6salc~                                                              // Ice Salamander (stratagems)
 			~dw#visal~                                                             // Ice Salamander (Stratagems)
+			~ntsalmi1~                                                             // Ice Salamander (NTotSC)
+			~ntsalmi2~                                                             // Ice Salamander (NTotSC)
 			~ntsalmi3~                                                             // Ice Salamander (NTotSC)
 			~ntsalmic~                                                             // Ice Salamander (NTotSC)
 		    ~va#isala~                                                             // Ice Salamander (Tower of Deception)
@@ -291,7 +297,7 @@ BEGIN
       FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                 // Null soundset (code borrowed from Nythrun with thanks)
         WRITE_LONG s1 ~-1~
       END
-      SAY BATTLE_CRY1 #55438 SAY BATTLE_CRY2 #55437 SAY ATTACK1 #55440SAY ATTACK2 #55439
+      SAY BATTLE_CRY1 #55438 SAY BATTLE_CRY2 #55437 SAY ATTACK1 #55440 SAY ATTACK2 #55439
       SAY DAMAGE #55441 SAY DYING #55442 SAY SELECT_COMMON1 #55437 SAY SELECT_ACTION1 #55438
     BUT_ONLY_IF_IT_CHANGES
   END
@@ -313,9 +319,10 @@ ACTION_FOR_EACH ~file~ IN
             ~elemhydr~                                                             // Olhydra
             ~elwatg01~                                                             // Greater Water Elemental
             ~rr#ewwei~                                                             // aTweaks' Water Weird
+            ~rr#ewate~                                                             // Elder Water Elemental (aTweaks)
 			~rr#ewatl~                                                             // Lesser Water Elemental (aTweaks)
-			~rr#ewats~                                                             // Lesser Water Elemental (aTweaks_summon)
 			~rr#ewatr~                                                             // Water Elemental (aTweaks)
+			~rr#ewats~                                                             // Lesser Water Elemental (aTweaks_summon)
 			~DW#WATE2~                                                             // Water Elemental (stratagems water elemental summoning)
 			~DW#WATE3~                                                             // Greater Water Elemental (stratagems water elemental summoning)
 			~DW#WATE4~                                                             // Elder Water Elemental (stratagems water elemental summoning)
@@ -324,20 +331,21 @@ ACTION_FOR_EACH ~file~ IN
 			~ELWATPR3~                                                             // Elder Water Elemental (mih_sp  water elemental summoning)
 			~es8watr~															   // Lesser Water Elemental (IWDification - Stratagems)
 			~cdi8watr~                                                             // Lesser Water Elemental (IWDification)
+            ~li#druwa~                                                             // Elemental transformation water (Refinements)
             ~tg#wel2~                                                              // Water Elemental (Refinements)
+            ~tg#wel3~                                                              // Greater Water Elemental (Refinements)
 			~mh#wat08~                                                             // Lesser Water Elemental (mih_eq)
 			~MH#wat20~                                                             // Water Elemental (mih_eq)
-            ~tg#wel3~                                                              // Greater Water Elemental (Refinements)
-			~WATERELT~                                                             // Greater Water Elemental (TS)
-            ~li#druwa~                                                             // Elemental transformation water (Refinements)
-BEGIN
+			~ELEMWAG~                                                              // Greater Water Elemental (TS)
+ 			~WATERELT~                                                             // Greater Water Elemental (TS)
+			BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END             // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
       FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                 // Null soundset (code borrowed from Nythrun with thanks)
         WRITE_LONG s1 ~-1~
       END
-      SAY SELECT_COMMON1 @471 SAY BATTLE_CRY1 @471 SAY BATTLE_CRY2 @472SAY ATTACK1 @473
+      SAY SELECT_COMMON1 @471 SAY BATTLE_CRY1 @471 SAY BATTLE_CRY2 @472 SAY ATTACK1 @473
       SAY ATTACK2 @474 SAY DAMAGE @475 SAY DYING @476 SAY SELECT_ACTION1 @477
     BUT_ONLY_IF_IT_CHANGES
   END
