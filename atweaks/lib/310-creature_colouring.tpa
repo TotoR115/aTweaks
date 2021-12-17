@@ -1,3 +1,5 @@
+
+// Iron Golem
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~GOLIRO01~                                                             // Iron Golem
             ~GORGRD01~                                                             // Guardian (Iron) Golem (Watcher's Keep)
@@ -32,6 +34,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~kpgol07~ 
               ~tomegol4~ 
               ~yacasas~
+              ~dw#vigol~
+              ~h#giron~
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -98,6 +102,7 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 
+
 // Stone Golem
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -107,6 +112,9 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~KPGOL05~                                                           // Stone Golem (d'Arnise Keep)
                ~STGOL01~                                                           // Stone Golem (Planar Prison)
               ~TOMEGOL3~                                                           // Stone Golem (Golem Manual)
+              ~DW#DRCTG~                                                           // Stone Golem (Stratagems)
+              ~H#GSTONE~                                                           // Stone Golem (Stratagems)
+              ~UDDOOR07~                                                           // Stone Golem (Stratagems - Improved Drow component)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -182,6 +190,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~KPGOL06~                                                           // Flesh Golem (d'Arnise Keep)
               ~TOMEGOL1~                                                           // Flesh Golem (Golem Manual)
                 ~XGOLEM~                                                           // Flesh Golem (Xzar's quest)
+                ~XGOLEM1~                                                           // Flesh Golem
+                ~H#GFLES~                                                           // Flesh Golem
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -326,6 +336,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~GOLJUG01~                                                           // Juggernaut Golem
               ~JUGJUG01~                                                           // Juggernaut Golem (Jermien's quest, Umar Hills)
               ~JUGJUG02~                                                           // Juggernaut Golem (Jermien's quest, Umar Hills)
+              ~TOMEGOL4~                                                           // Juggernaut Golem (Golem Manual)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -472,8 +483,8 @@ END                                                                             
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~MEPRAD01~                                                           // Radiant Mephit
               ~MEPRAD02~                                                           // Radiant Mephit
-              ~RR#MRAD~                                                            // Radiant Mephit (gated)
-              ~FAMRAD~                                                             // Radiant Mephit - familiar
+               ~RR#MRAD~                                                           // Radiant Mephit (gated)
+                ~FAMRAD~                                                             // Radiant Mephit - familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -549,8 +560,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~OBSFIR02~                                                           // Fire Mephit
                ~RR#MFIR~                                                           // Fire Mephit (gated)
 			    ~A7Q5FM~                                                           // Fire Mephit (Afaaq)
-			  ~O#brimP1~
-			  ~O#brimP2~
+			  ~O#brimP1~                                                           // Fire Mephit (Sellswords)
+			  ~O#brimP2~                                                           // Fire Mephit (Sellswords)
                ~FAMFIRE~                                                            // Fire Mephit - familiar
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -773,7 +784,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~ELEMEP05~                                                           // Magma Mephit
               ~OBSFIR03~                                                           // Magma Mephit
                ~RR#MMAG~                                                           // Magma Mephit (gated)
-			  ~O#brimP3~
+			  ~O#brimP3~                                                           // Magma Mephit (Sellswords)
 			    ~A7Q5MM~                                                           // Magma Mephit (afaaq)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -1531,6 +1542,9 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~TROLGI02~                                                           // Giant Troll
               ~TROLLENS~                                                           // Giant Troll
               ~CHALTROL~                                                           // Giant Troll
+              ~DW#MS6GT~                                                           // Giant Troll (IWDification ms6)
+              ~O#LLTRO1~                                                           // Giant Troll (Sellswords)
+              ~O#LLTRO2~                                                           // Giant Troll (Sellswords)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1576,6 +1590,7 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
+
 
 // Snow Troll
 
@@ -1657,6 +1672,7 @@ END                                                                             
 // Ice Troll
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+              ~KPTROL06~                                                           // Ice Troll
               ~trolic01~                                                           // Ice Troll
               ~trolic02~                                                           // Ice Troll (BP)
               ~icetrlz2~                                                           // Ice Troll (BP)
@@ -1668,7 +1684,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-PATCH_IF LONG_AT 0x28 = 32512 BEGIN 									           // TROLL
+PATCH_IF (LONG_AT 0x28 = 32512 OR LONG_AT 0x28 = 32527) BEGIN 									           // TROLL or Small TROLL
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -1797,6 +1813,7 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~MUMGRE01~                                                           // Greater Mummy
+			  ~RIFTCR03~ 														   //  Greater Mummy		
 			  ~MUMMYX1~ 														   //  Greater Mummy (TDD)		
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -1933,6 +1950,8 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
+
+
 // Nabassu
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -1976,7 +1995,7 @@ PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                 
 PATCH_IF valid AND LONG_AT 0x28 = 4352 BEGIN 									   // TANARRI
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
 // =============================================================================== // the actual work starts from here
-  WRITE_SHORT 0x28 "4352"                                                          // Sets avatar to TANARRI (winged demon)
+  // WRITE_LONG 0x28 "4352"                                                           // Sets avatar to TANARRI (winged demon)
   WRITE_BYTE  0x2E "34"                                                            // major color (Light Green/Dark Blue)
   LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
   INT_VAR opcode_to_delete = "51" END                                              // mark opcode #51 (Colour: Strong/Dark by RGB) for deletion
@@ -2026,7 +2045,7 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
 END
 PATCH_IF NOT FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~DVDEATHK~) BEGIN            // don't alter avatar or coloring if this is SR's Death Knight
 // =============================================================================== // the actual work starts from here
-  WRITE_SHORT 0x28 "4352"                                                          // Sets avatar to TANARRI (winged demon)
+  WRITE_LONG 0x28 "4352"                                                          // Sets avatar to TANARRI (winged demon)
   WRITE_BYTE  0x2E "34"                                                            // major color (Light Green/Dark Blue)
   LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
   INT_VAR opcode_to_delete = "51" END                                              // mark opcode #51 (Colour: Strong/Dark by RGB) for deletion
@@ -2065,6 +2084,9 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 
+
+
+
 // Pit Fiend
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -2102,10 +2124,10 @@ BEGIN                                                                           
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-PATCH_IF valid AND LONG_AT 0x28 = 32558 BEGIN // RAVER
+PATCH_IF valid AND (LONG_AT 0x28 = 32558 OR LONG_AT 0x28 = 4352) BEGIN 									   // RAVER
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
 // =============================================================================== // the actual work starts from here
-  WRITE_SHORT 0x28 "4352"                                                          // Sets avatar to TANARRI (winged demon)
+  WRITE_LONG 0x28 "4352"                                                           // Sets avatar to TANARRI (winged demon)
   WRITE_BYTE  0x2E "47"                                                            // major color (dark red)
   LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
   INT_VAR opcode_to_delete = "51" END                                              // mark opcode #51 (Colour: Strong/Dark by RGB) for deletion
@@ -2144,6 +2166,7 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
+
 
 
 // Balor
@@ -2270,18 +2293,18 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~zy18balk~ 
                ~zy18ball~ 
                ~zy18balm~
-               ~fl#balsu~                                                           //aTweaks fiend intended for SCSII
-               ~fl#hsbal~                                                           //Fiendish Gating     
-               ~rr#hsbal~                                                           //Fiendish Gating     
-			   ~ACQ17003~                                                           // Balor (Ascalon's Quest Pack)			   
+               ~fl#balsu~                                                          //aTweaks fiend intended for SCSII
+               ~fl#hsbal~                                                          //Fiendish Gating     
+               ~rr#hsbal~                                                          //Fiendish Gating     
+			   ~ACQ17003~                                                          // Balor (Ascalon's Quest Pack)			   
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-PATCH_IF valid AND LONG_AT 0x28 = 4352 BEGIN // TANARRI
+PATCH_IF valid AND LONG_AT 0x28 = 4352 BEGIN 									   // TANARRI
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
 // =============================================================================== // the actual work starts from here
-  WRITE_SHORT 0x28 "4352"                                                          // Sets avatar to TANARRI (winged demon)
+  // WRITE_LONG 0x28 "4352"                                                           // Sets avatar to TANARRI (winged demon)
   WRITE_BYTE  0x2E "35"                                                            // major color (orange)
   LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
   INT_VAR opcode_to_delete = "51" END                                              // mark opcode #51 (Colour: Strong/Dark by RGB) for deletion
@@ -2379,8 +2402,8 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~DBONEF01~                                                           // Bone Fiend
-               ~GORBAT5~                                                           // Bone Fiend
-              ~MELSUM02~                                                           // Bone Fiend
+              ~GORBAT5~                                                            // Bone Fiend
+              ~MELSUM02~                                                           // Bone Fiend - Demon knight ??
 			  ~DW#VIBON~                                                           // Bone Fiend (SCS & Wheels)
               ~fl#hsbfn~                                                           // Fiendish Gating
               ~rr#hsbfn~                                                           // Fiendish Gating
@@ -2389,7 +2412,7 @@ BEGIN                                                                           
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-PATCH_IF valid AND LONG_AT 0x28 = 60192 BEGIN // IC_SKELETONB
+PATCH_IF valid AND LONG_AT 0x28 = 60192 BEGIN 									   // IC_SKELETONB
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
 // =============================================================================== // the actual work starts from here
   WRITE_BYTE  0x2E "36"                                                            // major color (light dirty yellow)
@@ -2649,7 +2672,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                          
   "effsource" = ""                                                                 // effsource: none
 END                                                                                // ends LAUNCH_PATCH_FUNCTION
 END                                                                                // ends PATCH_FOR_EACH
-WRITE_SHORT 0x28 "4352"                                                            // Sets avatar to TANARRI (winged demon)
+WRITE_LONG 0x28 "4352"                                                            // Sets avatar to TANARRI (winged demon)
 WRITE_BYTE  0x2E "47"                                                              // major color (dark red)
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -2703,7 +2726,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   			   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2737,7 +2760,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   			   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2782,7 +2805,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   			   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2810,7 +2833,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   			   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -2827,6 +2850,7 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
+
 
 // Succubus
 
@@ -2849,7 +2873,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   // Sirine
+PATCH_IF LONG_AT 0x28 = 8192 BEGIN 									   			   // Sirine
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
@@ -3717,7 +3741,7 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY
  INT_VAR do_message = 1
 END
 // =============================================================================== // the actual work starts from here
-  WRITE_SHORT 0x28 "29460"                                                         // Sets avatar to BURNING_MAN
+  WRITE_LONG 0x28 "29460"                                                          // Sets avatar to BURNING_MAN
   LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
   INT_VAR opcode_to_delete = "8" END                                               // mark opcode #8 (Colour: Change by RGB) for deletion
   LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
@@ -3812,7 +3836,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                          
   STR_VAR                                                                          // initialize string variables
   "effsource" = ""                                                                 // effsource: none
 END                                                                                // ends FUNCTION call
-  WRITE_BYTE 0x2E 31                                                               // major color (Light Sea Blue)
+  WRITE_BYTE 0x2E 68                                                               // major color (Light Sea Blue)
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
