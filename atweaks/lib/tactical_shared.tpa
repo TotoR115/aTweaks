@@ -11,6 +11,12 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME fl#labelled_weapons.mrk BEGIN
   COPY_EXISTING sw1h01.itm "override/fl#labelled_weapons.mrk"
 END
 
+ACTION_IF NOT FILE_EXISTS_IN_GAME fl#labelled_item.mrk BEGIN
+  INCLUDE "atweaks/lib/ds/item_labels.tpa"
+  LAF item_labels END
+  COPY_EXISTING sw1h01.itm "override/fl#labelled_item.mrk"
+END
+
 ACTION_IF !FILE_EXISTS_IN_GAME rr#trat.cre BEGIN
   COPY ~atweaks/cre/rr#trat.cre~ ~override~                                         // Targeting Rat (script aid)
   COMPILE ~atweaks/baf/rr#trat.baf~                                                 // Targeting Rat AI script

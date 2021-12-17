@@ -425,10 +425,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#Fear","LOCALS",1)
@@ -451,10 +449,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#Fear","LOCALS",1)
@@ -477,10 +473,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#Fear","LOCALS",1)
@@ -503,10 +497,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#Fear","LOCALS",1)
@@ -529,10 +521,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#Fear","LOCALS",1)
@@ -555,10 +545,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#Fear","LOCALS",1)
@@ -580,12 +568,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#PTou","LOCALS",1)
@@ -607,12 +590,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#PTou","LOCALS",1)
@@ -634,12 +612,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#PTou","LOCALS",1)
@@ -661,12 +634,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#PTou","LOCALS",1)
@@ -688,12 +656,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#PTou","LOCALS",1)
@@ -715,12 +678,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 IncrementGlobal("RR#PTou","LOCALS",1)
@@ -744,12 +702,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -771,12 +724,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -798,12 +746,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -825,12 +768,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -852,12 +790,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -879,12 +812,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)

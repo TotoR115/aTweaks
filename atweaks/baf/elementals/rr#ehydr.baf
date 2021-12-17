@@ -338,6 +338,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -385,6 +387,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -432,6 +436,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -479,6 +485,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -526,6 +534,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -573,6 +583,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -620,6 +632,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -667,6 +681,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -714,6 +730,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -747,8 +765,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -771,8 +788,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -795,8 +811,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -822,8 +837,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -845,8 +859,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -868,8 +881,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -891,8 +903,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -914,8 +925,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -937,8 +947,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -960,8 +969,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -983,8 +991,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1006,8 +1013,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1029,8 +1035,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1052,8 +1057,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1077,8 +1081,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1102,8 +1105,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1125,8 +1127,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1148,8 +1149,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1171,8 +1171,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1194,8 +1193,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1217,8 +1215,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1240,8 +1237,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)

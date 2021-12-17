@@ -188,7 +188,7 @@ WARRIOR_WHIRLWIND                       OFFENSIVE_MODIFIER                   4
 WARRIOR_GREATER_WHIRLWIND               OFFENSIVE_MODIFIER                   5
 WARRIOR_SMITE                           OFFENSIVE_MODIFIER                   5
 MONK_QUIVERING_PALM                     OFFENSIVE_MODIFIER                   5
-WIZARD_TENSERS_TRANSFORMATION           OFFENSIVE_MODIFIER                   1
+WIZARD_TENSERS_TRANSFORMATION           STRENGTH_MODIFIER                    1
 WIZARD_STRENGTH                         STRENGTH_MODIFIER                    2
 CLERIC_STRENGTH_OF_ONE                  STRENGTH_MODIFIER                    2
 CLERIC_HOLY_POWER                       STRENGTH_MODIFIER                    3

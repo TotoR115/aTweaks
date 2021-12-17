@@ -837,7 +837,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -856,7 +856,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -875,7 +875,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -894,7 +894,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -913,7 +913,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -932,7 +932,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -951,7 +951,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -970,7 +970,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -989,7 +989,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1008,7 +1008,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1027,7 +1027,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1046,7 +1046,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!HasItemEquiped("AMUL21",LastSeenBy(Myself)) // Amulet of Power
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1600,9 +1600,7 @@ IF
         Global("RR#Smnr","LOCALS",0)
 	Exists(LastSummonerOf(Myself))
         !CheckStatGT(LastSummonerOf(Myself),0,PROTECTION_FROM_EVIL)
-	!HasItemEquipedReal("STAF11",LastSummonerOf(Myself)) // Staff of the Magi
-	!HasItemEquiped("WA2AMU",LastSummonerOf(Myself)) // Sensate Amulet
-	!HasItemEquiped("LICH",LastSummonerOf(Myself)) // Lich innate Protection from Evil
+	!CheckStatGT(LastSummonerOf(Myself),0,ITEM_PROTFROMEVIL)
         !StateCheck(LastSummonerOf(Myself),STATE_REALLY_DEAD)
         !StateCheck(Myself,STATE_INVISIBLE)
         See(LastSummonerOf(Myself))
@@ -1650,9 +1648,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
         !StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
         CheckStat(LastSeenBy(Myself),0,PROTECTION_FROM_EVIL)
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi
-	!HasItemEquiped("WA2AMU",LastSeenBy(Myself)) // Sensate Amulet
-	!HasItemEquiped("LICH",LastSeenBy(Myself)) // Lich innate Protection from Evil
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PROTFROMEVIL)
 	!CheckStatGT(LastSeenBy(Myself),1,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Improved Mantle or higher
         CheckStatLT(LastSeenBy(Myself),100,RESISTSLASHING)
 THEN

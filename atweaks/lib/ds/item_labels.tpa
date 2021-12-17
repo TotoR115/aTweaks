@@ -1,0 +1,115 @@
+INCLUDE ~atweaks/lib/ds/ds.tph~
+
+DEFINE_ACTION_FUNCTION item_labels // borrow from Strataegems and addapted
+BEGIN
+   OUTER_SPRINT opcodelist ""
+   COPY ~%MOD_FOLDER%/ssl/libdata.txt~ ~%MOD_FOLDER%/ssl~
+       READ_2DA_ENTRIES_NOW stats_data 5
+       SET see_name_code=0
+       FOR (i=0;i<stats_data;i+=1) BEGIN
+          READ_2DA_ENTRY_FORMER stats_data i 0 parameter
+          READ_2DA_ENTRY_FORMER stats_data i 1 opcode
+          READ_2DA_ENTRY_FORMER stats_data i 2 trigger
+          READ_2DA_ENTRY_FORMER stats_data i 3 statname
+          READ_2DA_ENTRY_FORMER stats_data i 4 markername
+          PATCH_MATCH opcode WITH
+          101 BEGIN
+             SPRINT $101_stat(~%parameter%~) ~%statname%~
+             SPRINT opcodelist "%opcodelist% %parameter%"
+             PATCH_IF "%markername%" STRING_COMPARE "*" BEGIN
+                LPF warning STR_VAR warning="In item_labels, you've tried to give a bespoke name to a 101-type item. You can only do this with 206-types." END
+             END
+             INNER_ACTION BEGIN
+                LAF ds_resolve_stat STR_VAR id= EVAL "%statname%" RET "NEW_STAT_%statname%"=stat_ind END   // make sure they're all in SPLSTATE or STATS so scripts compile
+             END
+          END
+		  100 BEGIN
+             SPRINT $100_stat(~%parameter%~) ~%statname%~
+             SPRINT opcodelist "%opcodelist% %parameter%"
+             PATCH_IF "%markername%" STRING_COMPARE "*" BEGIN
+                LPF warning STR_VAR warning="In item_labels, you've tried to give a bespoke name to a 100-type item. You can only do this with 206-types." END
+             END
+             INNER_ACTION BEGIN
+                LAF ds_resolve_stat STR_VAR id= EVAL "%statname%" RET "NEW_STAT_%statname%"=stat_ind END   // make sure they're all in SPLSTATE or STATS so scripts compile
+			 END
+          END
+          206 BEGIN
+             TO_UPPER parameter
+             SPRINT $206_stat(~%parameter%~) ~%statname%~
+             SET see_name_code+=1
+             INNER_ACTION BEGIN
+                LAF ds_resolve_stat STR_VAR id= EVAL "%statname%" RET "NEW_STAT_%statname%"=stat_ind END   // make sure they're all in SPLSTATE or STATS so scripts compile
+                ACTION_IF "%markername%" STRING_COMPARE "*" BEGIN
+                    LAF ds_resolve_stat STR_VAR id= EVAL "%markername%" END
+                END
+             END
+          END
+          DEFAULT
+             LPF warning STR_VAR warning=~Unrecognised opcode in %MOD_FOLDER%/ssl/libdata.txt~ END
+          END
+       END
+
+  ACTION_IF MOD_IS_INSTALLED "STRATAGEMS.TP2" "5900" BEGIN
+	ACTION_DEFINE_ASSOCIATIVE_ARRAY rr_ds_item BEGIN
+	 
+    ~5~ => ~ITEM_CHARM~
+	~13~ => ~ITEM_SLAY~
+	~24~ => ~ITEM_PANIC~
+	~25~ => ~ITEM_POISON~
+	~38~ => ~ITEM_SILENCE~
+	~39~ => ~ITEM_SLEEP~
+	~40~ => ~ITEM_SLOW~
+	~45~ => ~ITEM_STUN~
+	~5~ => ~ITEM_SLAY~
+	~09~ => ~ITEM_HOLD~ 
+	~128~ => ~ITEM_CONFUSION~ 
+	~134~ => ~ITEM_PETRIFY~
+	~175~ => ~ITEM_HOLD~
+	~185~ => ~ITEM_HOLD~
+	~216~ => ~ITEM_LEVELDRAIN~
+	~217~ => ~ITEM_SLEEP~
+	~78~ => ~ITEM_DISEASE~
+	~74~ => ~ITEM_BLIND~
+	// ~9~ => ~ITEM_PROTFROMEVIL~
+	// ~spwi112~ => ~ITEM_MM~
+	END
+	END ELSE BEGIN
+	ACTION_DEFINE_ASSOCIATIVE_ARRAY rr_ds_item BEGIN
+
+	~78~ => ~ITEM_DISEASE~
+	~74~ => ~ITEM_BLIND~
+	// ~9~ => ~ITEM_PROTFROMEVIL~
+	END
+  END	
+
+  // DEFINE_ACTION_FUNCTION ds_set_vars RET is_tobex enhanced_edition BEGIN
+   ACTION_IF FILE_EXISTS "tobex.dll" BEGIN
+	OUTER_SET ds_opcode = 318
+	OUTER_SET ds_special = 0
+	OUTER_TEXT_SPRINT ds_stats "stats"
+   END ELSE ACTION_IF GAME_IS "BGEE BG2EE EET" BEGIN
+	OUTER_SET ds_opcode = 328
+	OUTER_SET ds_special = 1
+	OUTER_TEXT_SPRINT ds_stats "SPLSTATE"
+   END 
+  // END
+
+    COPY_EXISTING_REGEXP GLOB ~.*\.itm~ override
+	  PATCH_PHP_EACH rr_ds_item AS parameters => ds_item BEGIN
+		SET ds_item=IDS_OF_SYMBOL ("%ds_stats%" "%ds_item%")
+		LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 101 match_parameter2 = EVAL "%parameters%" opcode = EVAL "%ds_opcode%" parameter1 = 1 parameter2 = "%ds_item%" special = EVAL "ds_special" END
+	  END
+      INNER_ACTION BEGIN
+	    OUTER_SET item_evil = IDS_OF_SYMBOL ("%ds_stats%" "ITEM_PROTFROMEVIL")
+	  END
+	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 100 match_parameter1 = 9 match_parameter2 = 7 opcode = EVAL "%ds_opcode%" parameter1 = 1 parameter2 = "%item_evil%" special = EVAL "ds_special" END	 
+	  PATCH_IF NOT MOD_IS_INSTALLED "STRATAGEMS.TP2" "5900" BEGIN
+		INNER_ACTION BEGIN
+		  OUTER_SET item_mm = IDS_OF_SYMBOL ("%ds_stats%" "ITEM_MM")
+		END
+		LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 opcode = EVAL "%ds_opcode%" parameter1 = 1 parameter2 = "%item_mm%" special = EVAL "ds_special" STR_VAR match_resource = "spwi112" END
+	  END
+    BUT_ONLY
+   BUT_ONLY
+END
+

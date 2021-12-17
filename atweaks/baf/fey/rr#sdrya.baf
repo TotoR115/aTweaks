@@ -294,16 +294,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -334,16 +325,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -374,16 +356,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -413,16 +386,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -452,16 +416,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -491,16 +446,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -533,16 +479,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -575,16 +512,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -617,16 +545,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -659,16 +578,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -701,16 +611,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -743,16 +644,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -785,16 +677,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -827,16 +710,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -869,16 +743,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -911,16 +776,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)

@@ -202,13 +202,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #50
 		SetInterrupt(FALSE)
@@ -852,6 +846,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -880,6 +876,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -908,6 +906,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -936,6 +936,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -964,6 +966,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -992,6 +996,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1020,6 +1026,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1048,6 +1056,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1076,6 +1086,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1104,6 +1116,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1138,11 +1152,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	See(SecondNearestEnemyOf(Myself))
 	!General(LastSeenBy(Myself),UNDEAD)
         !Race(LastSeenBy(Myself),SLIME)
@@ -1154,11 +1164,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	See(ThirdNearestEnemyOf(Myself))
 	!General(LastSeenBy(Myself),UNDEAD)
         !Race(LastSeenBy(Myself),SLIME)
@@ -1170,11 +1176,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1208,10 +1210,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1246,10 +1245,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1284,10 +1280,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1322,10 +1315,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1360,10 +1350,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1398,10 +1385,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1430,13 +1414,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1463,13 +1441,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1496,13 +1468,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1529,13 +1495,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1562,13 +1522,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1595,13 +1549,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1622,11 +1570,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1647,11 +1591,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1672,11 +1612,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1697,11 +1633,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1722,11 +1654,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1747,11 +1675,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1782,6 +1706,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1824,6 +1750,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1867,6 +1795,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1910,6 +1840,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1953,6 +1885,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1996,6 +1930,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -2039,6 +1975,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -2082,6 +2020,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -2125,6 +2065,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -2168,6 +2110,8 @@ IF
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
 	  HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -2465,9 +2409,7 @@ IF
         Global("RR#Smnr","LOCALS",0)
 	Exists(LastSummonerOf(Myself))
         !CheckStatGT(LastSummonerOf(Myself),0,PROTECTION_FROM_EVIL)
-	!HasItemEquipedReal("STAF11",LastSummonerOf(Myself)) // Staff of the Magi
-	!HasItemEquiped("WA2AMU",LastSummonerOf(Myself)) // Sensate Amulet
-	!HasItemEquiped("LICH",LastSummonerOf(Myself)) // Lich innate Protection from Evil
+	!CheckStatGT(LastSummonerOf(Myself),0,ITEM_PROTFROMEVIL)
         !StateCheck(LastSummonerOf(Myself),STATE_REALLY_DEAD)
         !StateCheck(Myself,STATE_INVISIBLE)
         See(LastSummonerOf(Myself))
@@ -2536,9 +2478,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
 	!Class(LastSeenBy(Myself),INNOCENT)
         CheckStat(LastSeenBy(Myself),0,PROTECTION_FROM_EVIL)
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi
-	!HasItemEquiped("WA2AMU",LastSeenBy(Myself)) // Sensate Amulet
-	!HasItemEquiped("LICH",LastSeenBy(Myself)) // Lich innate Protection from Evil
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PROTFROMEVIL)
 	!CheckStatGT(LastSeenBy(Myself),2,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Absolute Immunity or PfMW
         CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
 THEN

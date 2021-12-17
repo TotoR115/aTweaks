@@ -151,13 +151,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -184,15 +178,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -219,15 +205,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -254,15 +232,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -289,15 +259,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -324,15 +286,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -349,8 +303,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -367,8 +320,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -385,8 +337,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -403,8 +354,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -421,8 +371,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -439,8 +388,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -457,8 +405,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -475,8 +422,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -493,8 +439,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -511,8 +456,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)

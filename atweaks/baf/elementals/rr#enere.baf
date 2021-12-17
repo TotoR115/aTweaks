@@ -109,11 +109,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -130,11 +126,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -151,11 +143,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -172,11 +160,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -193,11 +177,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -214,11 +194,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -235,11 +211,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -256,11 +228,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -277,11 +245,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -298,11 +262,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -319,11 +279,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -340,11 +296,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -366,11 +318,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -390,11 +338,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -414,11 +358,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -438,11 +378,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -462,11 +398,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -486,11 +418,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)

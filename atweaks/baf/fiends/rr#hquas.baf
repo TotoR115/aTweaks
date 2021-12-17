@@ -133,10 +133,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -158,10 +156,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -183,10 +179,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -208,10 +202,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -233,10 +225,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -258,10 +248,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -283,10 +271,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -308,10 +294,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -333,10 +317,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)
@@ -358,10 +340,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Illusion
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#Fear","LOCALS",1)

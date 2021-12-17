@@ -259,9 +259,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSBREATH)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-        !HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#DEntg","LOCALS",1)
@@ -278,9 +276,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSBREATH)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-        !HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#DEntg","LOCALS",1)
@@ -297,9 +293,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSBREATH)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-        !HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#DEntg","LOCALS",1)
@@ -316,9 +310,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSBREATH)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-        !HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#DEntg","LOCALS",1)
@@ -335,9 +327,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSBREATH)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-        !HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#DEntg","LOCALS",1)
@@ -354,9 +344,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSBREATH)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-        !HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#DEntg","LOCALS",1)
@@ -421,11 +409,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HEL03",LastSeenBy(Myself)) // Darkveil (RR)
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -449,11 +434,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HEL03",LastSeenBy(Myself)) // Darkveil (RR)
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -477,11 +459,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HEL03",LastSeenBy(Myself)) // Darkveil (RR)
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -505,11 +484,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HEL03",LastSeenBy(Myself)) // Darkveil (RR)
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -533,11 +509,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HEL03",LastSeenBy(Myself)) // Darkveil (RR)
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",12)
@@ -561,11 +534,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!HasItemEquiped("CLCK30",LastSeenBy(Myself)) // Cloak of Bravery
-	!HasItemEquipedReal("SW1H32",LastSeenBy(Myself)) // Dragonslayer
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquiped("RR#HEL03",LastSeenBy(Myself)) // Darkveil (RR)
-	!HasItemEquiped("RR#HELMD",LastSeenBy(Myself)) // Dead Man's Face (RR)
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
+	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -598,15 +568,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -638,15 +600,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -678,15 +632,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -718,15 +664,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -758,15 +696,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -798,15 +728,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -833,15 +755,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -868,15 +782,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -903,15 +809,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -938,15 +836,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -973,15 +863,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1008,15 +890,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1043,15 +917,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1078,15 +944,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1113,15 +971,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1148,15 +998,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1183,15 +1025,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1218,15 +1052,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1253,15 +1079,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1288,15 +1106,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1323,15 +1133,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1358,15 +1160,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)

@@ -363,6 +363,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -416,6 +418,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -469,6 +473,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -517,6 +523,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -565,6 +573,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -613,6 +623,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -661,6 +673,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -709,6 +723,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -757,6 +773,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -805,6 +823,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -853,6 +873,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -901,6 +923,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -949,6 +973,8 @@ IF
       HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
       HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
       HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
+	  HasItemEquiped("MSWORD",LastSeenBy(Myself)) // Mordenkainen's Force Blade -IWDification
+	  HasItemEquiped("MOONBLA",LastSeenBy(Myself)) // Moonblade -IWDification
       HasItemEquiped("MELFMET",LastSeenBy(Myself)) // Melf's Minute Meteors
     !StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
     !StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
@@ -1361,11 +1387,7 @@ IF
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
     !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -1402,11 +1424,7 @@ IF
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
     !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -1443,11 +1461,7 @@ IF
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
     !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -1484,11 +1498,7 @@ IF
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
     !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -1525,11 +1535,7 @@ IF
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
     !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -1566,11 +1572,7 @@ IF
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
     !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-    !HasItemEquiped("AMUL22",LastSeenBy(Myself)) // Periapt of Proof Against Poison
-    !HasItemEquiped("HELM30",LastSeenBy(Myself)) // Thieves' Hood
-    !HasItemEquiped("RING39",LastSeenBy(Myself)) // Ring of Gaxx
-    !HasItemEquiped("RING46",LastSeenBy(Myself)) // Ring of Anti-Venom
-    !HasItemEquiped("SW1H34",LastSeenBy(Myself)) // Bastard Sword +1: Albruin
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -1826,16 +1828,7 @@ IF
     !CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-    !HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-    !HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-    !HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-    !HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-    !HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-    !HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-    !HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-    !HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-    !HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
@@ -1867,16 +1860,7 @@ IF
     !CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-    !HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-    !HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-    !HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-    !HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-    !HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-    !HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-    !HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-    !HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-    !HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
@@ -1908,16 +1892,7 @@ IF
     !CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-    !HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-    !HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-    !HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-    !HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-    !HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-    !HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-    !HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-    !HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-    !HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
+    !CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)

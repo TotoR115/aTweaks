@@ -174,8 +174,7 @@ IF
         Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -190,8 +189,7 @@ IF
         Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -206,8 +204,7 @@ IF
         Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -225,8 +222,7 @@ IF
           Class(LastSeenBy(Myself),PALADIN_ALL)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -240,8 +236,7 @@ IF
 	See([PC.0.0.FIGHTER_ALL]) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -255,8 +250,7 @@ IF
 	See(SecondNearest([PC.0.0.FIGHTER_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -270,8 +264,7 @@ IF
 	See(ThirdNearest([PC.0.0.FIGHTER_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -285,8 +278,7 @@ IF
 	See([PC.0.0.RANGER_ALL]) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -300,8 +292,7 @@ IF
 	See(SecondNearest([PC.0.0.RANGER_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -315,8 +306,7 @@ IF
 	See(ThirdNearest([PC.0.0.RANGER_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -330,8 +320,7 @@ IF
 	See([PC.0.0.PALADIN_ALL]) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -345,8 +334,7 @@ IF
 	See(SecondNearest([PC.0.0.PALADIN_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -360,8 +348,7 @@ IF
 	See(ThirdNearest([PC.0.0.PALADIN_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -375,8 +362,7 @@ IF
 	See(StrongestOf([PC])) // try to blind the strongest party member
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -390,8 +376,7 @@ IF
 	See(Player1) // prioritize PCs
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -405,8 +390,7 @@ IF
 	See(Player2) // prioritize PCs
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -420,8 +404,7 @@ IF
 	See(Player3) // prioritize PCs
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -435,8 +418,7 @@ IF
 	See(Player4) // prioritize PCs
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -450,8 +432,7 @@ IF
 	See(Player5) // prioritize PCs
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -465,8 +446,7 @@ IF
 	See(Player6) // prioritize PCs
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -480,8 +460,7 @@ IF
 	See([GOODCUTOFF])
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -495,8 +474,7 @@ IF
 	See(SecondNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -510,8 +488,7 @@ IF
 	See(ThirdNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -525,8 +502,7 @@ IF
 	See(FourthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -540,8 +516,7 @@ IF
 	See(FifthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -555,8 +530,7 @@ IF
 	See(SixthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)

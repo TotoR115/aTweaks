@@ -105,10 +105,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -126,10 +123,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -147,10 +141,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -172,10 +163,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -193,10 +181,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -214,10 +199,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -235,10 +217,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -256,10 +235,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -277,10 +253,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -298,10 +271,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -319,10 +289,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -340,10 +307,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -361,10 +325,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -382,10 +343,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -403,10 +361,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -424,10 +379,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -445,10 +397,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -466,10 +415,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -487,10 +433,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -514,10 +457,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -541,10 +481,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -568,10 +505,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -595,10 +529,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -622,10 +553,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN
@@ -649,10 +577,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 THEN

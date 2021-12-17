@@ -670,11 +670,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -701,11 +697,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -732,11 +724,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -763,11 +751,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -794,11 +778,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -825,11 +805,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -856,11 +832,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -887,11 +859,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -918,11 +886,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -949,11 +913,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -980,11 +940,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1011,11 +967,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1042,11 +994,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1073,11 +1021,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1107,11 +1051,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1141,11 +1081,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1175,11 +1111,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1209,11 +1141,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1243,11 +1171,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1277,11 +1201,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit

@@ -374,7 +374,8 @@ IF
 	DifficultyGT(EASY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!HasItemEquiped("MISC5X",LastSeenBy(Myself)) // Harper Pin
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -426,11 +427,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -455,11 +452,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -484,11 +477,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -513,11 +502,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -542,11 +527,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -571,11 +552,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
-	!HasItemEquiped("LEAT20",LastSeenBy(Myself)) // Aeger's Hide +3
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
-	!HasItemEquipedReal("SW2H21",LastSeenBy(Myself)) // Psion's Blade +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -603,12 +580,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -636,12 +608,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -669,12 +636,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -702,12 +664,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -735,12 +692,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -768,12 +720,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",LastSeenBy(Myself)) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -792,10 +739,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate Mail +1
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -818,10 +762,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate Mail +1
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -844,10 +785,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate Mail +1
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -870,10 +808,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate Mail +1
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -896,10 +831,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate Mail +1
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -922,10 +854,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquipedReal("NPSW01",LastSeenBy(Myself)) // Sword of Arvoreen
-	!HasItemEquiped("RING09",LastSeenBy(Myself)) // Ring of Free Action
-	!HasItemEquiped("NPPLAT",LastSeenBy(Myself)) // Firecam Full Plate Mail +1
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself)) // Spider's Bane
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -1101,8 +1030,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -1129,8 +1057,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -1157,8 +1084,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -1186,8 +1112,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -1214,8 +1139,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -1242,8 +1166,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -1264,7 +1187,8 @@ IF
 	See([GOODCUTOFF])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!HasItemEquiped("MISC5X",LastSeenBy(Myself)) // Harper Pin
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -1289,7 +1213,8 @@ IF
 	See(SecondNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!HasItemEquiped("MISC5X",LastSeenBy(Myself)) // Harper Pin
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -1314,7 +1239,8 @@ IF
 	See(ThirdNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!HasItemEquiped("MISC5X",LastSeenBy(Myself)) // Harper Pin
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -1339,7 +1265,8 @@ IF
 	See(FourthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!HasItemEquiped("MISC5X",LastSeenBy(Myself)) // Harper Pin
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -1364,7 +1291,8 @@ IF
 	See(FifthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!HasItemEquiped("MISC5X",LastSeenBy(Myself)) // Harper Pin
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -1389,7 +1317,8 @@ IF
 	See(SixthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!HasItemEquiped("MISC5X",LastSeenBy(Myself)) // Harper Pin
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -1462,13 +1391,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1494,15 +1417,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1528,15 +1443,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1562,15 +1469,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1596,15 +1495,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1630,15 +1521,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!HasItemEquiped("HELM06",LastSeenBy(Myself)) // Helm of Charm Protection
-	!HasItemEquiped("NPCHAN",LastSeenBy(Myself)) // Corthala Family Armor
-	!HasItemEquiped("SHLD25",LastSeenBy(Myself)) // Shield of Harmony +2
-	!HasItemEquipedReal("SW2H14",LastSeenBy(Myself)) // Lilarcor
-	!HasItemEquipedReal("SPER07",LastSeenBy(Myself)) // Spear of the Unicorn +2
-	!HasItemEquipedReal("SW1H35",LastSeenBy(Myself)) // Adjatha The Drinker +2
-	!HasItemEquipedReal("STAF11",LastSeenBy(Myself)) // Staff of the Magi +5
-	!HasItemEquipedReal("MISCBC",LastSeenBy(Myself)) // Blackrazor
-	!HasItemEquipedReal("SW1H54",LastSeenBy(Myself)) // The Equalizer
+	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
