@@ -545,7 +545,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 //PATCH_IF NOT MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~5900~ BEGIN // Stratagems remove mental combat but can also be desactivated by concole Command : CLUAConsole:SetGlobal("RR#NOEMC","GLOBAL",1)
-  WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                    // assign override AI script
+WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                    // assign override AI script
 //END                                                                                // ends PATCH_IF stratagems
 WRITE_BYTE  0x270 128                                                              // set initial allegiance to NEUTRAL
 ADD_CRE_ITEM ~RIDRING~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~                  // selection circle removal ring
@@ -553,6 +553,7 @@ ADD_CRE_ITEM ~RIDRING~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~               
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
+
 
 
 
@@ -615,8 +616,9 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "servsu"                                                            // Aerial Servant AI script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script06"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script05"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script06"   = "BPWTSIGT"                                                          // Big Picture generic AI script
+"script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
@@ -631,7 +633,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
              ~hgsal01~                                                             // Fire Salamander
             ~icsalfir~                                                             // Fire Salamander (Planar Sphere)
              ~plysala~                                                             // Fire Salamander (Avenger kit shapechange)
-			~wrmons01~                                                             // Fire Salamander (Hell Wrath, possibly unused?)
+            ~wrmons01~                                                             // Fire Salamander (Hell Wrath, possibly unused?)
             ~a7q5fs02~                                                             // Fire Salamander (afaaq)
 			~a7q5fs03~                                                             // Fire Salamander (afaaq)
 			~a7q5fs04~                                                             // Fire Salamander (afaaq)
@@ -722,7 +724,7 @@ PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~icsalfir~)
 OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~hgsal01~) 
 OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~plysala~) 
 OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~wrmons01~)) BEGIN                            // special case, add a death variable to SoA Fire Salamanders
-  WRITE_ASCII 0x280 ~icsalfir~ #32                                                 // assign new death variable
+WRITE_ASCII 0x280 ~icsalfir~ #32                                                   // assign new death variable
 END
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~plysala~) BEGIN                        // special case, the Avenger kit Fire Salamander form needs 2 APR since it can't dual-wield
   WRITE_BYTE 0x53 2                                                                // base number of attacks
@@ -743,8 +745,7 @@ COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDi
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 // =============================================================================== // the compatibility work ends here
 
-
-// Frost/Ice Salamander
+// Ice / Frost Salamander
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~salgrice~                                                             // Frost Salamander
@@ -1187,8 +1188,8 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~ELAIRL01~                                                             // Lesser Air Elemental (8 HD)
+            ~ELAIRSU1~                                                             // Lesser Air Elemental (8 HD, summoned, wizard version)
             ~ELAIRSUW~                                                             // Lesser Air Elemental (8 HD, summoned, wizard version)
-			~ELAIRSU1~                                                             // Lesser Air Elemental (8 HD, summoned, priest version)
             ~ELARIL01~                                                             // Lesser Air Elemental (8 HD, Bioware's typo?)
             ~GORAIR01~                                                             // Lesser Air Elemental (8 HD, Watcher's Keep)
             ~SUMELAIR~                                                             // Lesser Air Elemental (8 HD, summoned, Staff of Air)
@@ -1356,11 +1357,12 @@ STR_VAR                                                                         
 "script10"   = "_TASIGHT"                                                          // generic AI script (Tutu)
 "script11"   = "DVMELEE"                                                           // Spell Revisions melee AI script
 "script12"   = "BPWTSIGT"                                                          // Big Picture generic AI script
-"script13"   = "CRESHOUT"                                                          // Big Picture shout script
-"script14"   = "HUMANSHT"                                                          // Big Picture shout script
-"script15"   = "BPWDASGT"                                                          // Big Picture generic AI script
-"script16"   = "DW2MC4GW"                                                          // Stratagems melee AI script
-"script17"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script13"   = "DVMELEE"                                                           // Spell Revisions melee AI script
+"script14"   = "CRESHOUT"                                                          // Big Picture shout script
+"script15"   = "HUMANSHT"                                                          // Big Picture shout script
+"script16"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script17"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script18"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
@@ -1465,6 +1467,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~SUAIR~                                                             // Air Elemental (Suldanesselar, Tree of Life guardian)
             ~SWAAIR02~                                                             // Air Elemental (20+ HD, summoned, Elemental Summoning HLA)
               ~UDELDA~                                                             // Air Elemental (Underdark portal guardian)
+            ~ELAIRSU4~                                                             // Air Elemental (20+ HD, summoned, bg2 Fixpack wizard version) -- BG2 fixpack
             ~li#druai~                                         	                   // Elemental transformation air (Refinements)
 			~MH#air20~                                                             // Elemental transformation air (made in heaven quest & encounters)
 			~DRAIRPR4~                                                             // Air Elemental (20 HD, Divine Remix)
@@ -1646,8 +1649,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-PATCH_IF (GAME_IS ~bgee bg2ee eet iwdee~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
-  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))                // use the proper avatar (ELEMENTAL_EARTH_IWD)
+PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~) > 0 )) BEGIN			   // Compatibility with IA and ee
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))                // use the IA avatar (ELEMENTAL_EARTH_IWD)
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -2002,8 +2005,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-PATCH_IF (GAME_IS ~bgee bg2ee eet iwdee~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
-  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the proper avatar (ELEMENTAL_FIRE_IWD)
+PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~) > 0 )) BEGIN			   // Compatibility with IA and ee
+  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the IA avatar (ELEMENTAL_FIRE_IWD)
 END                                                          					  
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -2325,7 +2328,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2126 SAY NAME2 @2126 
-PATCH_IF (GAME_IS ~bgee bg2ee eet iwdee~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER_SMALL~) > 0 )) BEGIN		   // Compatibility with IA and ee
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER_SMALL~))			   // Use The animation ELEMENTAL_WATER_SMALL
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -2391,7 +2394,7 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2119 SAY NAME2 @2119
-PATCH_IF (GAME_IS ~bgee bg2ee eet iwdee~ OR MOD_IS_INSTALLED ~SETUP-INFINITYANIMATIONS.TP2~ ~550~) BEGIN
+PATCH_IF (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER~)>0) BEGIN					   // Compatibility with IA and ee
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER~))			   		   // Use The IWD animation ELEMENTAL_WATER
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -3556,6 +3559,8 @@ COMPILE ~atweaks/baf/elementals/rr#ewizs.baf~                                   
 
 
 
+
+
 ////////////////////
 // Revised spells //
 ////////////////////
@@ -3768,14 +3773,20 @@ END                                                                             
 // Fix Bioware's mixup with Conjure (Lesser) Air Elemental EFFs
 
 COPY_EXISTING ~splesair.eff~  ~override~                                           // Conjure Lesser Air Elemental (8 HD)
-  WRITE_ASCII 0x30 "ELAIRSUW" #8                                                   // resref (creature to be summoned)
+  WRITE_ASCII 0x30 "ELAIRSU1" #8                                                   // resref (creature to be summoned)
 BUT_ONLY_IF_IT_CHANGES
 
 COPY_EXISTING ~spair1.eff~  ~override~                                             // Conjure Air Elemental (12 HD, mage version)
   WRITE_ASCII 0x30 "ELAIRSU2" #8                                                   // resref (creature to be summoned)
 BUT_ONLY_IF_IT_CHANGES
 
+COPY_EXISTING ~spair2.eff~  ~override~                                             // Conjure Air Elemental (16 HD, mage version)
+  WRITE_ASCII 0x30 "ELAIRSU3" #8                                                   // resref (creature to be summoned)
+BUT_ONLY_IF_IT_CHANGES
 
+COPY_EXISTING ~spair3.eff~  ~override~                                             // Conjure Air Elemental (20 HD, mage version)
+  WRITE_ASCII 0x30 "ELAIRSU4" #8                                                   // resref (creature to be summoned)
+BUT_ONLY_IF_IT_CHANGES
 
 // Summoned elementals should not leave corpses behind after they are slain
 // Also, they should not be targetable while the summoning animation plays
@@ -3886,8 +3897,8 @@ END ELSE BEGIN
    READ_LONG 0x50 desc_air
  COPY_EXISTING spwi521.spl override
    READ_LONG 0x50 desc_ear   
- COPY_EXISTING ~SPLESAIR.eff~ ~override\SPLESWAT.eff~										  // Creating eff for Lesser Water Elemental
-  WRITE_ASCII 0x30 rr#ewats                                                                   // Lesser Water Elemental (aTweaks_summon)
+ COPY_EXISTING ~SPLESAIR.eff~ ~override\SPLESWAT.eff~									  // Creating eff for Lesser Water Elemental
+  WRITE_ASCII 0x30 rr#ewats                                                               // Lesser Water Elemental (aTweaks_summon)
 PRINT  ~desc_air~
  ACTION_DEFINE_ASSOCIATIVE_ARRAY l_elmnt BEGIN
 //   rr#var_0    rr#var_1      rr#file
@@ -4156,58 +4167,58 @@ ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN				   // Com
   LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = "-1" END                        // delete old summoning effects
   DEFINE_ASSOCIATIVE_ARRAY es_hla BEGIN
   //   prob1     prob2       resref
-     100,       91    =>   RR#ESWE                                                 // Elder Elementals
-      90,        0    =>   RR#ESWG                                                 // Greater Elementals
+     100,       91    =>   RR#ESWE                                                   // Elder Elementals
+      90,        0    =>   RR#ESWG                                                   // Greater Elementals
   END                                                                                // ends DEFINE_ASSOCIATIVE_ARRAY
   PHP_EACH es_hla AS value  => resref BEGIN
   LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
-   INT_VAR                                                                          // initialize variables
-    "opcode" = "146"                                                               // effect: #146 (Cast Spell at Target)
-    "target" = "1"                                                                 // target
-    "timing" = "1"                                                                 // timing mode
-    "parameter2" = "1"                                                             // param2
-    "duration" = "0"                                                               // duration
-    "sectype" = "0"                                                                // secondary type
-    "probability1" = EVALUATE_BUFFER "%value_0%"                                   // probability1
-    "probability2" = EVALUATE_BUFFER "%value_1%"                                   // probability2
-    "insert_point" = "0"                                                           // insert point (0 = add new effect to the top)
+   INT_VAR                                                                           // initialize variables
+    "opcode" = "146"                                                                 // effect: #146 (Cast Spell at Target)
+    "target" = "1"                                                                   // target
+    "timing" = "1"                                                                   // timing mode
+    "parameter2" = "1"                                                               // param2
+    "duration" = "0"                                                                 // duration
+    "sectype" = "0"                                                                  // secondary type
+    "probability1" = EVALUATE_BUFFER "%value_0%"                                     // probability1
+    "probability2" = EVALUATE_BUFFER "%value_1%"                                     // probability2
+    "insert_point" = "0"                                                             // insert point (0 = add new effect to the top)
    STR_VAR
-    "resource"  =  EVALUATE_BUFFER "%resref%"                                      // resref
-    "effsource" = ""                                                               // effsource: none
-   END                                                                                // ends LAUNCH_PATCH_FUNCTION
+    "resource"  =  EVALUATE_BUFFER "%resref%"                                        // resref
+    "effsource" = ""                                                                 // effsource: none
+   END                                                                               // ends LAUNCH_PATCH_FUNCTION
   END                                                                                // ends PHP_EACH
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = EVAL ~%hla_ES%~ END
   
   // Greater Elemental Summoning
 
- COPY_EXISTING ~SPCL%codeg%.spl~  ~override~                                            // Greater Elemental Summoning
+ COPY_EXISTING ~SPCL%codeg%.spl~  ~override~                                         // Greater Elemental Summoning
   SAY NAME1 #63768 SAY NAME2 #63768  SAY DESC @2211 SAY UNIDENTIFIED_DESC @2211      // retain old name but set new description
   LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = "-1" END                        // delete old summoning effects
   DEFINE_ASSOCIATIVE_ARRAY ges_hla BEGIN
   //   prob1     prob2       resref
-     100,       67    =>   SUMSUNN                                                 // Sunnis
-      66,       34    =>   SUMCHAN                                                 // Chan
-      33,        0    =>   SUMZAAM                                                 // Zaaman Rul
+     100,       67    =>   SUMSUNN                                                   // Sunnis
+      66,       34    =>   SUMCHAN                                                   // Chan
+      33,        0    =>   SUMZAAM                                                   // Zaaman Rul
   END                                                                                // ends DEFINE_ASSOCIATIVE_ARRAY
   PHP_EACH ges_hla AS value  => resref BEGIN
   LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
-   INT_VAR                                                                          // initialize variables
-    "opcode" = "177"                                                               // effect: #177 (Use EFF File)
-    "target" = "1"                                                                 // target
-    "timing" = "0"                                                                 // timing mode
-    "duration" = "120"                                                             // duration
-    "parameter2" = "2"                                                             // param2
-    "sectype" = "0"                                                                // secondary type
-    "probability1" = EVALUATE_BUFFER "%value_0%"                                   // probability1
-    "probability2" = EVALUATE_BUFFER "%value_1%"                                   // probability2
-    "insert_point" = "0"                                                           // insert point (0 = add new effect to the top)
+   INT_VAR                                                                           // initialize variables
+    "opcode" = "177"                                                                 // effect: #177 (Use EFF File)
+    "target" = "1"                                                                   // target
+    "timing" = "0"                                                                   // timing mode
+    "duration" = "120"                                                               // duration
+    "parameter2" = "2"                                                               // param2
+    "sectype" = "0"                                                                  // secondary type
+    "probability1" = EVALUATE_BUFFER "%value_0%"                                     // probability1
+    "probability2" = EVALUATE_BUFFER "%value_1%"                                     // probability2
+    "insert_point" = "0"                                                             // insert point (0 = add new effect to the top)
    STR_VAR
-    "resource"  =  EVALUATE_BUFFER "%resref%"                                      // resref
-    "effsource" = ""                                                               // effsource: none
+    "resource"  =  EVALUATE_BUFFER "%resref%"                                        // resref
+    "effsource" = ""                                                                 // effsource: none
   END                                                                                // ends LAUNCH_PATCH_FUNCTION
   END                                                                                // ends PHP_EACH
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = EVAL ~%hla_GES%~ END
-END																					// Ends compatibility with Stratagems
+END																					 // Ends compatibility with Stratagems
 
 // Updated spell and item descriptions
 
@@ -4231,11 +4242,11 @@ COPY_EXISTING ~scrl7y.itm~  ~override~                                          
 SAY UNIDENTIFIED_DESC @2201 SAY DESC @2201
 
 COPY_EXISTING ~spwi622.spl~  ~override~
-SAY UNIDENTIFIED_DESC @2202 SAY DESC @2202                                           // Conjure Earth Elemental (arcane spell)
-COPY_EXISTING ~scrl7z.itm~  ~override~                                            // Conjure Earth Elemental (scroll)
+SAY UNIDENTIFIED_DESC @2202 SAY DESC @2202                                          // Conjure Earth Elemental (arcane spell)
+COPY_EXISTING ~scrl7z.itm~  ~override~                                              // Conjure Earth Elemental (scroll)
 SAY UNIDENTIFIED_DESC @2202 SAY DESC @2202
 
-ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL") > 0) THEN BEGIN 	   // For compatibility with Water Elemental (arcane spell)
+ACTION_IF (IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL") > 0) THEN BEGIN // For compatibility with Water Elemental (arcane spell)
   OUTER_SET code=(IDS_OF_SYMBOL ("spell" "WIZARD_CONJURE_WATER_ELEMENTAL") - 2000)
   OUTER_SPRINT scrollW "%WIZARD_CONJURE_WATER_ELEMENTAL_SCROLL%"
   COPY_EXISTING ~SPwi%code%.spl~ override
@@ -5061,7 +5072,6 @@ END                                                                             
 // Item Revisions
 
 ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 THEN BEGIN                               // Item Revisions mod check
-
 //==================================================================================
 // Lesser Elementals summoned from items shold not use CREs from the wizard spells because of mental combat issues
 

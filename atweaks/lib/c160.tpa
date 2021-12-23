@@ -123,7 +123,7 @@ COPY "atweaks/spl/base.spl" "override/fl#banfa.spl" //Fear aura
 
 
 // Death Knight
-ACTION_IF (MOD_IS_INSTALLED ~stratagems.TP2~ ~6510~) BEGIN // With Stratagems installed MELSUM02 is a dethknight
+ACTION_IF (MOD_IS_INSTALLED ~stratagems.TP2~ ~6510~) BEGIN // With Stratagems installed MELSUM02 is a demon knight, transform it in death knight
   OUTER_SPRINT Melbf MELSUM02
 END ELSE OUTER_SPRINT Melbf ""
 
@@ -494,11 +494,11 @@ BEGIN
           script06 = _tasight
           script07 = _ghastd
           script08 = _movep1
-          script09 = bpwtsigt
-		  script10 = bpundead
-		  script11 = DW2MP1GE
+          script09 = DW2MP1GE
+          script10 = bpwtsigt
+		  script11 = bpundead
 		  skipfile01 = CDI4GHST
-		  skipfile02 = ghasts
+          skipfile02 = ghasts
           skipfile03 = _ghasts
           skipfile04 = rr#ghast
 		  skipfile05 = ghastgsu
@@ -620,10 +620,10 @@ BEGIN
             script02 = _dasight
             script03 = _tasight
             script04 = wtasight
-            script05 = bpwtsigt
-            script06 = bpwdasgt
-			script07 = ghoul
-			script08 = DW2MC0GE
+            script05 = ghoul
+            script06 = DW2MC0GE
+            script07 = bpwtsigt
+            script08 = bpwdasgt
 			script09 = DW2MC0GW
 			script10 = DW1MELGE
 			script11 = DW2MP0GW	
@@ -723,9 +723,9 @@ BEGIN
             script05 = gholor01
             script06 = wdasight
             script07 = riftcr01
-            script08 = bpwtsigt
-            script09 = bpwdasgt
-			script10 = DW2MP2GE
+            script08 = DW2MP2GE
+            script09 = bpwtsigt
+			script10 = bpwdasgt
 			script11 = DW2MP2GW
 			script12 = DW2MP0GE
 			script13 = DW2MP1GE
@@ -833,7 +833,7 @@ OUTER_SET $f_AddSecType(fl#glord.spl) = FearSecType
 
 // Mummy
 ACTION_FOR_EACH file IN
-		mummy 
+		mummy
 		mummy01
 		FSMUMM
 		FSMUMM2
@@ -1255,7 +1255,7 @@ ACTION_FOR_EACH file IN
                 shadow01 //regular
                 shadowsu //summoned shadow (shadow altar)
                 sumshad	 // summons ?
-				uhcreat  //with the kids in umar cave
+                uhcreat  //with the kids in umar cave
                 lshadfi  //From BP, apparently
                 lshadow  //likewise
 //				krshadm  // DSoA - Not Tested
@@ -1374,7 +1374,7 @@ COPY_EXISTING b1-10.itm "override/fl#shad.itm"
 
 
 
-ACTION_IF (FILE_EXISTS_IN_GAME dw#drow.mrk OR MOD_IS_INSTALLED ~stratagems.TP2~ ~8140~) BEGIN
+ACTION_IF MOD_IS_INSTALLED ~stratagems.TP2~ ~8140~ BEGIN
   OUTER_SPRINT fluddoor ""
 END ELSE OUTER_SPRINT fluddoor uddoor07
 
@@ -1386,7 +1386,7 @@ ACTION_FOR_EACH file IN
                 rskel03 //Ranger plot
                 skelet01 //regular
                 ttskel   //tutorial
-                "%fluddoor%" //drow party by the UD exit; Golem if Stratagems/SCSII's Improved Drow is installed (vide supra)
+                "%fluddoor%" //drow party by the UD exit; Golem if Stratagems Improved Drow is installed (vide supra)
                 iskelet  //Candlekeep tutorial
                 _iskelet
                 skelet
@@ -1464,7 +1464,7 @@ BEGIN
 		  skipfile11 = crcre005
 		  skipfile12 = crcre006
 		  skipfile13 = crcre007
-     END
+      END
     BUT_ONLY
   END
 END
@@ -1609,20 +1609,19 @@ BEGIN
           script03 = _tasight
           script04 = wtarsgt
           script05 = wdasight
-          script06 = dw#range
-          script07 = _wtarsgt
-          script08 = bpwtsigt
-          script09 = bpwtrsgt
-          script10 = bpwdasgt
-          script11 = bpwtasgt
-		  script12 = DW2MS1GE
-		  script13 = DW2MS0GE
-		  script14 = DW2MP1GE
-		  script15 = DW2MS2GE
-		  script16 = DW2MS1GW
-		  script17 = DW1MELGE
-		  script18 = DW2MS3GE
-		  script19 = DW2RM0GE
+          script06 = _wtarsgt
+          script07 = bpwtsigt
+          script08 = bpwtrsgt
+          script09 = bpwdasgt
+          script10 = bpwtasgt
+          script11 = DW2MS1GE
+          script12 = DW2MS0GE
+		  script13 = DW2MP1GE
+		  script14 = DW2MS2GE
+		  script15 = DW2MS1GW
+		  script16 = DW1MELGE
+		  script17 = DW2MS3GE
+		  script18 = DW2RM0GE
 		  skipfile01 = endske01
 		  skipfile02 = endske02
 		  skipfile03 = endske03
@@ -1802,7 +1801,7 @@ BEGIN
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
         REPLACE_CRE_ITEM fl#wigh #0 #0 #0 none weapon1
-    PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS/SETUP-INFINITYANIMATIONS.TP2~ ~400~ BEGIN // Infinity Animation Compatibility (IAv5b)
+    PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS.TP2~ ~400~ BEGIN // Infinity Animation Compatibility (IAv5b)
         WRITE_LONG 0x28 30464 //animation: ghoul
 	END
         LPF RR#MDCRE
@@ -1900,10 +1899,10 @@ BEGIN
       PATCH_IF valid BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none lring
-        PATCH_IF NOT "%SOURCE_RES%" STRING_EQUAL_CASE ~chwraith~ BEGIN
+        PATCH_IF !"%SOURCE_RES%" STRING_EQUAL_CASE ~chwraith~ BEGIN
           REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none rring //Standard undead immunities
         END
-        PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~telslav~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa1~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa2~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa3~)) BEGIN
+        PATCH_IF !(("%SOURCE_RES%" STRING_EQUAL_CASE ~telslav~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa1~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa2~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa3~)) BEGIN
           REPLACE_CRE_ITEM fl#wrai #0 #0 #0 none weapon1
         END
         LPF RR#MDCRE
@@ -2490,7 +2489,6 @@ BEGIN
   END
 END
 
-
 // Fix XP for RIFTCR group
 ACTION_FOR_EACH file IN
                 riftcr01
@@ -2698,6 +2696,7 @@ COMPILE ~atweaks/baf/undead/fl#death.baf~
         "atweaks/baf/undead/fl#skwsu.baf"
         "atweaks/baf/undead/fl#sklsu.baf"
 		"atweaks/baf/undead/TRevn_01.baf"
+
 
 
 //Write the queued-up values

@@ -605,13 +605,12 @@ COPY_EXISTING ~amul15.itm~   ~override~ // Shield Amulet
   END
   BUT_ONLY_IF_IT_CHANGES
 
-// ACTION_IF (MOD_IS_INSTALLED ITEM_PACK.TP2 2) THEN BEGIN // Checks for the Tweaked Items component of Daulmakan's Item Pack
-  COPY_EXISTING ~amul15.itm~   ~override~                                          // Shield Amulet - just in case the amulet was changed by a mod
+  COPY_EXISTING ~amul15.itm~   ~override~                                          // Shield Amulet - just in case the amulet was changed by a mod (IRR or item pack)
     LPF CLONE_EFFECT
-      INT_VAR silent = 1 match_opcode = 142 match_timing = 2 match_target = 1 opcode = 206
-      STR_VAR resource = RR#WI112
+      INT_VAR silent = 1 match_opcode = 206 
+      STR_VAR match_resource = ~spwi112~ resource = ~RR#WI112~
     END
-// END
+
 END // ends initial ACTION_IF check
 END // ends function definition
 
@@ -651,7 +650,7 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
 	SPRINT IWDprdf ""
   END
 // End : Add Spells from IWDification mod or stratagems mods
-  PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
+    PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
                 ~SPIN561~                                                              // Fire Giant Lava Pit (FIRE_GIANT_LAVA)
                 ~SPIN819~                                                              // Lava Burst (LAVA_BURST)
                 ~SPWI022~                                                              // Lava Pit (TRAP_MUCK)
@@ -666,17 +665,17 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
                 ~SPIN169~                                                              // Fireball
                 ~SPWI001~                                                              // Fireball
                 ~SPWI957~                                                              // Fireball
-                ~WAND05~                                                               // Fireball (IRR)
-				~RR#WI304~                                                             // Pit Fiend Fireball
+                 ~WAND05~                                                               // Fireball (IRR)
+               ~RR#WI304~                                                              // Pit Fiend Fireball
                 ~SPWI523~                                                              // Sunfire
                 ~CDSLSUN~                                                              // Sunfire (mod)
                 ~A#KOS09~                                                              // Sunfire (Divine Remix)
-				~RR#WI103~                                                             // RR's burning hand
+			   ~RR#WI103~                                                             // RR's burning hand
                ~RR#WI523~                                                              // RR's Sunfire (Blazing Glory buckler)
                 ~SPWI712~                                                              // Delayed Blast Fireball
                 ~A#KOS14~                                                              // Delayed Blast Fireball (Divine Remix)  
                 ~SPWI810~                                                              // Incendiary Cloud
-                ~DW#TRPIN~                                                             // Incendiary Cloud (Stratagems)
+               ~DW#TRPIN~                                                             // Incendiary Cloud (Stratagems)
                 ~SPWI911~                                                              // Meteor Swarm
                 ~SPWI922~                                                              // Dragon's Breath
                 ~SPIN719~                                                              // Meteor Swarm
@@ -694,10 +693,10 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
                 ~rr#ezafb~                                                             // Fireball, 12d6 (Zaaman Rul)
                 ~rr#eburn~                                                             // Burn (Fire Elemental on-hit effect)
                 ~rr#englf~                                                             // Engulf, part 1 (Greater Fire Elemental on-hit effect)
-				~%IWDprdf%~													 		   // Produe Fire (IWDification)
-				~%IWDbbb%~													 		   // Beltyn's Burning Blood (IWDification)
-				~%IWDshrf%~													 		   // Shroud of Flame (IWDification)
-				~%IWDsuns%~													 		   // Sunscorch (IWDification)
+			   ~%IWDprdf%~													 		   // Produe Fire (IWDification)
+			    ~%IWDbbb%~													 		   // Beltyn's Burning Blood (IWDification)
+			   ~%IWDshrf%~													 		   // Shroud of Flame (IWDification)
+			   ~%IWDsuns%~													 		   // Sunscorch (IWDification)
 BEGIN                                                                                  // execute the following
 PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                       // if the file exists
 READ_ASCII 0 sig (3)
@@ -762,25 +761,25 @@ DEFINE_PATCH_FUNCTION cold_spell_immunities BEGIN
 	SPRINT IWDIcel ""
   END
 // End : Add Spells from IWDification mod or stratagems mods
-  PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
+    PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
                 ~SPWI404~                                                              // Ice Storm
                ~RR#WI404~                                                              // aTweaks/RR Ice Storm
                 ~SPWI503~                                                              // Cone of Cold
-                ~d1#wi503~                                                             // Cone of Cold (mod)
+               ~d1#wi503~                                                             // Cone of Cold (mod)
                 ~DVCONEC~                                                              // Cone of Cold (IR)
-                ~RR#WI503~                                                             // Cone of Cold (aTweaks/RR)
-                ~SPCRYO01~                                                             // Cone of Cold (mod)
+               ~RR#WI503~                                                             // Cone of Cold (aTweaks/RR)
+               ~SPCRYO01~                                                             // Cone of Cold (mod)
                 ~SPIN133~                                                              // Cone of Cold (mod)
                 ~SPIN158~                                                              // Cone of Cold (mod)
                 ~SPIN162~                                                              // Cone of Cold (mod)
                 ~SPIN833~                                                              // Dragon Cone of Cold
-                ~WAND06~                                                               // Cone of Cold (IR)
+                 ~WAND06~                                                               // Cone of Cold (IR)
                 ~rr#icew~                                                              // aTweaks' Wall of Ice
                ~rr#efrzn~                                                              // aTweaks' Freeze (Cryonax)
                ~rr#ehyis~                                                              // aTweaks' Ice Storn (Olhydra's version)
-				~%IWDofrs%~     													   // Otiluke's Freezing Sphere (IWDification)
-				~%IWDsss%~     														   // Snilloc's Snowball Swarm (IWDification)
-				~%IWDIcel%~     													   // Icelance (IWDification)
+			  ~%IWDofrs%~     													   // Otiluke's Freezing Sphere (IWDification)
+			   ~%IWDsss%~     														   // Snilloc's Snowball Swarm (IWDification)
+			  ~%IWDIcel%~     													   // Icelance (IWDification)
 BEGIN                                                                                  // execute the following
 PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                       // if the file exists
 READ_ASCII 0 sig (3)
@@ -831,7 +830,7 @@ DEFINE_PATCH_FUNCTION electrical_spell_immunities BEGIN
     SPRINT IWDstch ""
   END
 // End : Add Spells from IWDification mod or stratagems mods
-  PATCH_FOR_EACH ~spell~ IN                                                         // grant immunity to each of the following spells
+    PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
 			   ~CDSTAF12~                                                             // Lightning Bolt
 			   ~SPCL722~                                                              // Lightning Bolt
 			   ~SPIN579~                                                              // Lightning Bolt
@@ -847,7 +846,7 @@ DEFINE_PATCH_FUNCTION electrical_spell_immunities BEGIN
 			   ~SPWI308~                                                              // Lightning Bolt
 			   ~SPWI399~                                                              // Lightning Bolt
 			   ~SPWI997~                                                              // Lightning Bolt
-			   ~RR#WI308~                                                             // RR/aTweaks Lightning Bolt
+               ~RR#WI308~                                                              // RR/aTweaks Lightning Bolt
 			   ~SPDR601~                                                              // Chain Lightning
 			   ~SPWI615~                                                              // Chain Lightning
 			   ~SPBLUN29~                                                             // Chain Lightning
@@ -968,7 +967,7 @@ DEFINE_PATCH_FUNCTION poison_spell_immunities BEGIN
                 ~SPWI016~                                                              // Cloudkill (trap)
                 ~SPWI502~                                                              // Cloudkill
                 ~dvckill~                                                              // Cloudkill (IR/SR)
-				~RR#WI502~                                                             // RR/aTweaks Cloudkill
+               ~RR#WI502~                                                              // RR/aTweaks Cloudkill
                 ~SPIN979~                                                              // Golem Gas Cloud
                 ~SPIN642~                                                              // Poisonous Cloud
 BEGIN                                                                                  // execute the following
@@ -1058,11 +1057,11 @@ DEFINE_PATCH_FUNCTION cure_spell_immunities BEGIN
   PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
                 ~SPPR103~                                                              // Cure Light Wounds
                 ~A#JUSTCL~                                                             // Cure Light Wounds (Divine Remix)
-                  ~ca#culw~                                                            // Cure Light Wounds (PnP Deva)              
-                  ~L#KORIEP~                                                           // Cure Light Wounds (mod) 
-                  ~A7Q6CURE~                                                           // Cure Light Wounds (afaaq)  
+                ~ca#culw~                                                            // Cure Light Wounds (PnP Deva)              
+                ~L#KORIEP~                                                           // Cure Light Wounds (mod) 
+                ~A7Q6CURE~                                                           // Cure Light Wounds (afaaq)  
                 ~%srcumo%~                                                              // Cure Medium Wounds  (Spell Revisions)
-				  ~%IWDcumw%~                                                          // Cure moderate Wounds  (IWDification)
+				~%IWDcumw%~                                                          // Cure moderate Wounds  (IWDification)
                 ~%IWDcume%~                                                              // Cure Medium Wounds
                 ~SPPR401~                                                              // Cure Serious Wounds
                 ~CA#CURSW~                                                             // Cure Serious Wounds (PnP Deva)
@@ -1162,8 +1161,8 @@ DEFINE_PATCH_FUNCTION cloud_spell_immunities BEGIN
             ~SPWI614~                                                                  // Death Fog
             ~A#CYR11~                                                                  // Death Fog (Divine Remix)
             ~SPWI810~                                                                  // Incendiary Cloud
-            ~DW#TRPIN~                                                                 // Incendiary Cloud (Stratagems)
-            ~%IWDcldp%~                                                                // Cloud of Pestilence (IWDification)            
+           ~DW#TRPIN~                                                                 // Incendiary Cloud (Stratagems)
+          ~%IWDcldp%~                                                                // Cloud of Pestilence (IWDification)            
 			~SPIN673~                                                                  // Cloudkill
 			~dvckill~                                                                  // Cloudkill (IR/SR)
             ~SPIN940~                                                                  // Stinking Cloud (mephit)
@@ -1522,7 +1521,7 @@ READ_ASCII 0 sig (3)
         "effsource" = ""                                                               // effsource: none
       END                                                                              // ends LAUNCH_PATCH_FUNCTION
 	  END                                                                              // ends PATCH_IF FILE_EXISTS_IN_GAME block      
-	  END                                                                              // ends PATCH_FOR_EACH
+      END                                                                              // ends PATCH_FOR_EACH
     END                                                                                // ends WITH ITM block
     DEFAULT                                                                            // do nothing
 END                                                                                    // ends PATCH_MATCH

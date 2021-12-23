@@ -72,6 +72,8 @@ STR_VAR                                                                         
 "skipfile15" = "RR#NOSKIP"                                                        // skip script patching for a designated file
 
 
+
+
 BEGIN                                                                              // Start FUNCTION
 
 READ_ASCII  0x248 ~aiovr~                                                          // old override script

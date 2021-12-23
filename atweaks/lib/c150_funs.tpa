@@ -158,7 +158,7 @@ DEFINE_PATCH_FUNCTION make_hellcat BEGIN
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script05"   = "BPDEMON"                                                       // Big Picture Demon AI
         "script06"   = "DW2MP4MO"                                                      // Stratagems melee script
-		"skipfile01" = "GORCAMB6"                                                      // skip script patching for a designated file
+        "skipfile01" = "GORCAMB6"                                                      // skip script patching for a designated file
         "skipfile02" = "GORCAMB7"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
@@ -223,7 +223,7 @@ DEFINE_PATCH_FUNCTION make_erinyes BEGIN
           "enfc01"   = "DERINY01"                                                      // enforced creature 1 (uses strict PnP values)
           "enfc02"   = "GORBAT2"                                                       // enforced creature 2 (uses strict PnP values)
           "enfc03"   = "jumjum"                                                        // enforced creature 3 (uses strict PnP values)
-          "enfc04"    = "wardtief"                                                      // enforced creature 4 (uses strict PnP values)
+          "enfc04"   = "wardtief"                                                      // enforced creature 4 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -310,7 +310,7 @@ DEFINE_PATCH_FUNCTION make_bone_fiend BEGIN
         "script05"   = "DEMBAL01"                                                      // Big Picture script (misassigned?)
         "script06"   = "DW2MC4GE"                                                      // Stratagems melee script
         "script07"   = "DW#BONEF"                                                      // Stratagems Bone Fiend script
-        "skipfile01"   = "DW#BFSUM"                                                    // Stratagems Bone Fiend script
+        "skipfile01" = "DW#BFSUM"                                                      // Stratagems Bone Fiend script
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -669,7 +669,7 @@ DEFINE_PATCH_FUNCTION make_pit_fiend INT_VAR enforce = 0 BEGIN
         INT_VAR opcode_to_delete = "292" END                                           // mark opcode #292 (Protection from Backstab) for deletion
     END
     PATCH_IF LONG_AT 0x28 = 32558 BEGIN 				   	   						   // Animation Compatibility
-      WRITE_LONG 0x28 "4352"                                                           // special case, Pit Fiends should use the TANARRI (winged demon) avatar
+    WRITE_LONG 0x28 "4352"                                                            // special case, Pit Fiends should use the TANARRI (winged demon) avatar
 	END	
     END
     // =============================================================================== // the actual work ends here
@@ -1278,6 +1278,7 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
 		  "script23"   = "F_TANARI"                                                    // Drizzt Saga demon script
 		  "script24"   = "WTASI2"                                                    // RoT melee script
 		  "script25"   = "F_DEMDRG"                                                      // Drizzt Saga demon script
+		  "script25"   = "F_ERRTU"                                                      // Drizzt Saga demon script
 		  "skipfile01" = "tg#dem2"                                                     // Refinement Demon
       END                                                                              // ends FUNCTION call
     END
@@ -1441,7 +1442,7 @@ DEFINE_PATCH_FUNCTION make_glabrezu INT_VAR enforce = 0 BEGIN
 
 
 DEFINE_PATCH_FUNCTION make_marilith BEGIN
-  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                     // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
     PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                     // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
     // =============================================================================== // the actual work starts from here
@@ -1460,7 +1461,7 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
       LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                 // Starts FUNCTION call (aTweaks' Creature Modification function)
         INT_VAR                                                                        // Initialize variables
            newxpv
-          "rr#bsimm" = "1"                                                             // Backstab immunity (1 = enable)
+         "rr#bsimm"  = "1"                                                             // Backstab immunity (1 = enable)
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
           "newhp"    = "96"                                                            // new hit point value
           "newac"    = "-9"                                                            // new Armor Class value
@@ -1544,7 +1545,8 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
       LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END   // mark opcode #176 (Movement Modifier II) for deletion
     END
     WRITE_BYTE  0x2E "26"                                                              // major color (wood)
-	PATCH_IF !(LONG_AT 0x28 = 20552) BEGIN											   // Compatibility with Marilith_IWD animation from IA
+	
+	PATCH_IF (!(LONG_AT 0x28 = 20522) AND !(LONG_AT 0x28 = 20562)) BEGIN				   // Compatibility with Marilith_IWD animation from IA
       WRITE_LONG 0x28 "57488"                                                          // special case, all Mariliths should use the proper avatar
 	END
     // =============================================================================== // the actual work ends here
@@ -1631,11 +1633,11 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
           "notenf03" = "caddem1"                                                       // non-enforced creature 3 (uses best stat values)
           "notenf04" = "CADDEM16"                                                      // non-enforced creature 4 (uses best stat values)
           "notenf05" = "CADDEM21"                                                      // non-enforced creature 5 (uses best stat values)
-          "notenf07" = "endragor"                                                      // non-enforced creature 6 (uses best stat values)
-          "notenf08" = "errtu"                                                         // non-enforced creature 7 (uses best stat values)
-          "notenf09" = "f_demdrg"                                                      // non-enforced creature 8 (uses best stat values)
-          "notenf10" = "f_tanari"                                                      // non-enforced creature 9 (uses best stat values)
-          "notenf11" = "holytana"                                                      // non-enforced creature 10 (uses best stat values)
+          "notenf06" = "endragor"                                                      // non-enforced creature 6 (uses best stat values)
+          "notenf07" = "errtu"                                                         // non-enforced creature 7 (uses best stat values)
+          "notenf08" = "f_demdrg"                                                      // non-enforced creature 8 (uses best stat values)
+          "notenf09" = "f_tanari"                                                      // non-enforced creature 9 (uses best stat values)
+          "notenf10" = "holytana"                                                      // non-enforced creature 10 (uses best stat values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -1765,6 +1767,24 @@ DEFINE_PATCH_FUNCTION make_nycaloth BEGIN
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
     LAUNCH_PATCH_FUNCTION acid_spell_immunities END                                    // grant immunities to acid-based area effect spells
     WRITE_LONG 0x14 25000
+    PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~NABASSU~)) > 0) BEGIN 						   // Infinity Animation Compatibility (IAv5b)
+      WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~NABASSU~))	              		   	   // Use IA nabassu apperance
+	END ELSE BEGIN
+	  LAUNCH_PATCH_FUNCTION ADD_CRE_EFFECT                                       // Starts FUNCTION call (add new creature effect built-in function)
+      INT_VAR                                                                          // initialize numeric variables
+		"opcode" = "51"                                                                  // effect: #51 (Colour: Strong/Dark by RGB)
+		"target" = "1"                                                                   // target: 1 (self)
+		"timing" = "9"                                                                   // timing mode: 9 (permanent after death)
+		"duration" = "0"                                                                 // duration: 0
+		"sectype" = "0"                                                                  // secondary type: none
+		"parameter1" = "-168490496"                                                      // param1: (color designation)
+		"parameter2" = "2"                                                               // param2: 2 (location - major color)
+		"probability1" = "100"                                                           // probability1: 100%
+      STR_VAR                                                                          // initialize string variables
+		"effsource" = ""                                                                 // effsource: none
+      END                                                                              // ends FUNCTION call
+	END
+
     REPLACE_CRE_ITEM fl#nyca #0 #0 #0 none weapon1 EQUIP
     REPLACE_TEXTUALLY CASE_INSENSITIVE immune3 immune2
     LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 292 END                         //Immunity to backstab 

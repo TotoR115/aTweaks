@@ -191,6 +191,13 @@ COPY ~atweaks/itm/mephits/rr#mstw1.itm~ ~override~                              
 
 
 
+
+
+
+
+
+
+
 //////////////////////////
 // Creature modifications
 //////////////////////////
@@ -1266,7 +1273,6 @@ WRITE_BYTE 0x275 3                                                              
 //////////////////
 
 
-
 COMPILE ~atweaks/baf/mephits/rr#mair.baf~                                          // Air Mephit AI script
 COMPILE ~atweaks/baf/mephits/rr#mdus.baf~                                          // Dust Mephit AI script
 COMPILE ~atweaks/baf/mephits/rr#mear.baf~                                          // Earth Mephit AI script
@@ -1281,6 +1287,8 @@ COMPILE ~atweaks/baf/mephits/rr#mrad.baf~                                       
 COMPILE ~atweaks/baf/mephits/rr#msal.baf~                                          // Salt Mephit AI script
 COMPILE ~atweaks/baf/mephits/rr#msmo.baf~                                          // Smoke Mephit AI script
 COMPILE ~atweaks/baf/mephits/rr#mste.baf~                                          // Steam Mephit AI script
+
+
 
 
 ///////////////////////////////////

@@ -29,19 +29,18 @@ ACTION_FOR_EACH ~file~ IN
 //			~SAHIMP02~                                                             // Imp
 //			   ~UDIMP~                                                             // Imp
 BEGIN                                                                              // execute the following
-  ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                 // if the file exists
+  ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_imp END
       WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
-  END                                                                               // ends ACTION_IF FILE_EXISTS_IN_GAME block
-END
-
+  END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
-            ~TCIMP01~                                                           	// Imp (Classic Adventures)
-			~lrimp1~                                                             	// Imp (Longer Road)
-			~lrimp2~                                                             	// Imp (Longer Road)
+               ~TCIMP01~                                                           // Imp (Classic Adventures)
+				~lrimp1~                                                             	// Imp (Longer Road)
+				~lrimp2~                                                             	// Imp (Longer Road)
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
@@ -97,7 +96,7 @@ EXTEND_TOP ~GORCAMB6.BCS~  ~aTweaks/inlined/rr#fcatx.baf~
 
 ACTION_FOR_EACH ~file~ IN
               ~DERINY01~                                                           // Erinyes
-              ~GORBAT2~                                                            // Erinyes
+               ~GORBAT2~                                                           // Erinyes
 //			  ~gorwom02~                                                           // The Huntress
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
@@ -139,7 +138,6 @@ BEGIN
     BUT_ONLY_IF_IT_CHANGES
   END
 END
-
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
 			  ~DW#VIBON~                                                           // Bone Fiend (SCS & Wheels)
@@ -211,7 +209,6 @@ BEGIN
     BUT_ONLY_IF_IT_CHANGES
   END
 END
-
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
 			   ~CADDEM15~                                                           // Cornugon (RoT)
@@ -257,7 +254,6 @@ ACTION_IF GAME_INCLUDES ~tob~ BEGIN
   BUT_ONLY_IF_IT_CHANGES
 END
 
-
 // Pit Fiend
 
 ACTION_FOR_EACH ~file~ IN
@@ -290,7 +286,6 @@ BEGIN
 END
 
 // Pit Fiend, mod
-
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
 				  ~caddem11~                                                         //Pit Fiend  (RoT)
@@ -326,7 +321,7 @@ END
 ACTION_FOR_EACH ~file~ IN
              ~DEADDEM2~                                                            // Quasit
               ~DQUAS01~                                                            // Quasit
-            ~FAMQUAS~                                                            // Quasit familiar
+			  ~FAMQUAS~                                                            // Quasit familiar
 			 ~FAMQUA25~                                                            // Quasit familiar
               ~GORTAN5~                                                            // Quasit
              ~IMPQUA01~                                                            // Quasit
@@ -446,7 +441,7 @@ END
 ACTION_FOR_EACH ~file~ IN
               ~DEMMAU01~                                                           // Maurezhi
                ~GORTAN6~                                                           // Maurezhi (Watcher's Keep Tanar'ri group)
-              ~OBSDEM04~                                                            // Maurezhi (Planar Sphere)
+              ~OBSDEM04~                                                           // Maurezhi
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
@@ -553,8 +548,8 @@ ACTION_FOR_EACH ~file~ IN
                ~RUMAR02~                                                           // Nabassu
                 ~UDNABA~                                                           // Nabassu
               ~TANARI01~                                                           // Tanar'ri (Nabassu within the Planar Sphere)
-                 ~%cultanar%~                                                      // Aec'Letec (BGT)
-                ~_%cultanar%~                                                      // Aec'Letec (Tutu)
+            ~%cultanar%~														   // Aec'Letec (BGT)
+           ~_%cultanar%~														   // Aec'Letec (Tutu)
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
@@ -566,7 +561,7 @@ END
 
 ACTION_FOR_EACH file IN
                 ~demnabsu~                                                           //Summoned Nabassu
-				~tg#dem2~                                                            // Nabassu (Refinement) only usefull if summon revision not installed
+				 ~tg#dem2~                                                           // Nabassu (Refinement) only usefull if summon revision not installed
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
@@ -592,6 +587,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
                 ~dw#drctz~                                                         // Stratagems Nabassu
 //				~esp04~                                                            // Nabassu (Improved Volcano) Not tested
 				~f_demdrg~                                                         // Greater Tanari (Drizzt Saga)
+                ~F_errtu~                                                          // Errtu (Drizzt Saga)			   
                 ~f_tanari~                                                         // Tanari (Drizzt Saga) 
 				~FINNABAS~                                                         // Nabassu (Ascension)
                 ~holytana~                                                         // Tanari (RoT)  
@@ -832,7 +828,6 @@ BEGIN
     BUT_ONLY
   END
 END
-
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
                 shadfi03 //VCv21
@@ -1198,7 +1193,7 @@ COPY_EXISTING demnab01.cre ~override/fl#nabsu.cre~
 
 // Commandeer SCSII's fiend-summoning spells and
 // have them summon SCSII-aTweaks hybrids
-ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.spl AND !FiendsOriginal BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.eff AND !FiendsOriginal BEGIN
   OUTER_SPRINT $crefile(dw#cacof) fl#nabsu
   OUTER_SPRINT $crefile(dw#sumbf) fl#corsu
   OUTER_SPRINT $crefile(dw#sumgl) fl#glasu
@@ -1210,7 +1205,6 @@ ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.spl AND !FiendsOriginal BEGIN
   OUTER_SPRINT $crefile(dw#sumya) fl#arcsu
   OUTER_SPRINT $crefile(dw#sumyn) fl#nycsu
   OUTER_SPRINT $crefile(dw#sumyu) fl#ultsu
-
 
   ACTION_FOR_EACH res IN
                   dw#cacof
@@ -1298,7 +1292,7 @@ END*/
 /*
 //SCSII colours these dudes green, but we turn them into glabrezus and mariliths -- not needed since v34
 ACTION_IF GAME_INCLUDES ~soa~ AND
-          (FILE_EXISTS_IN_GAME dw#bate2.spl OR
+          (FILE_EXISTS_IN_GAME dw#fiends_notinnate.mrk OR
           FILE_EXISTS_IN_GAME dw#fiends_innate.mrk OR
           FILE_EXISTS_IN_GAME dw#fiends.mrk) BEGIN
   COPY_EXISTING abydem01.cre override

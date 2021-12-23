@@ -179,6 +179,8 @@ BEGIN
         newclass = 135 //Skeleton Warrior (for ID)
         newgen = 4 //undead
         newrace = 115 //Skeleton
+
+        enforce
       STR_VAR
         enf_regexp
         notenf_regexp

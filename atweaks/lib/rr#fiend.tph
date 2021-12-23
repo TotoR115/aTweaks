@@ -194,7 +194,7 @@ COPY ~aTweaks/SPL/RR#DBFLA.SPL~ ~override~                                      
   SAY NAME1 @682 SAY NAME2 @682
 COPY ~aTweaks/SPL/RR#DBFLE.SPL~ ~override~                                         // Death Throes (Balor)
   SAY NAME1 @683 SAY NAME2 @683
-COPY ~aTweaks/SPL/RR#VORPL.SPL~ ~override~                                         // Vorpal Hit (Balor) with -2 save vs death as all vorpal)
+COPY ~aTweaks/SPL/RR#VORPL.SPL~ ~override~                                         // Vorpal Hit (Balor)
 COPY ~aTweaks/EFF/RR#VORPL.EFF~ ~override~                                         // Vorpal Hit immunity (for slimes, constructs, incorporeal creatures...)
 
 
@@ -204,6 +204,7 @@ COPY ~aTweaks/EFF/RR#VORPL.EFF~ ~override~                                      
 COPY_EXISTING ~SPPR409.SPL~ ~override~ // Death Ward
 LPF add_conditional_immunity INT_VAR f_Condition = 101 STR_VAR f_Spell = RR#VORPL END
 BUT_ONLY_IF_IT_CHANGES
+
 
 COPY ~aTweaks/SPL/RR#CNSTR.SPL~ ~override/RR#DGRAB.SPL~                            // Grab ability (Glabrezu)
 SAY NAME1 @684 SAY NAME2 @684
@@ -555,7 +556,7 @@ LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END  
 
 COPY_EXISTING spwi112.spl "override/RR#WI112.spl"                                  //Magic Missile
   LPF RR#SP2IN INT_VAR rr#rinvis = 1 END 
-LAUNCH_ACTION_FUNCTION magic_missile_shield END                                    // Make the Shield spell and amulet protect against the cloned Magic Missile
+LAUNCH_ACTION_FUNCTION magic_missile_shield END                                     // Make the Shield spell and amulet protect against the cloned Magic Missile
   
 COPY_EXISTING spwi104.spl "override/RR#WI104.spl"                                  //Charm Person
   LPF RR#SP2IN INT_VAR rr#rinvis = 1 END
@@ -591,7 +592,7 @@ COPY ~aTweaks/ITM/RR#DGLAB.ITM~ ~override~                                      
 COPY ~aTweaks/ITM/RR#DMARI.ITM~ ~override~                                         // Marilith melee attack
 
 COPY ~atweaks/itm/rr#dbalr.itm~ ~override~                                         // Balor Vorpal Sword (right hand)
-  LAUNCH_PATCH_FUNCTION ~entangle_immunities~ END                                  // add immunity to Entangle spells and abilities
+  LAUNCH_PATCH_FUNCTION ~entangle_immunities~ END                                    // add immunity to Entangle spells and abilities
   WRITE_BYTE 0x31 90 // PROFICIENCYLONGSWORD
 
 COPY ~atweaks/itm/rr#dbal2.itm~ ~override~                                         // Balor Flaming Whip (left hand)
