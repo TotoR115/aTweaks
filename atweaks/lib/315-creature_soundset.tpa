@@ -72,7 +72,7 @@ ACTION_FOR_EACH ~file~ IN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END             // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-	  PATCH_IF LONG_AT 0x28 = 57488 BEGIN // IC_merilith - animation's Check for compatibility
+	  PATCH_IF LONG_AT 0x28 = 57488 BEGIN 										   // IC_merilith - animation's Check for compatibility
 	    FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                               // Null soundset (code borrowed from Nythrun with thanks)
         WRITE_LONG s1 ~-1~
         END
@@ -80,7 +80,7 @@ ACTION_FOR_EACH ~file~ IN
         SAY ATTACK1 @433 SAY ATTACK2 @434 SAY ATTACK3 @435 SAY ATTACK4 @436
         SAY DAMAGE @437 SAY DYING @438 SAY HURT @439 SAY SELECT_COMMON1 @440
         SAY SELECT_COMMON2 @431 SAY SELECT_COMMON3 @432
- 	  END // IC_merilith - animation's Check for compatibility     
+ 	  END 																		   // IC_merilith - animation's Check for compatibility     
 	BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -178,7 +178,7 @@ BEGIN
 END
 
 
-// Standardize Sirine soundsets
+// Standardize Sirine soundsets with BG1 as ref
 ACTION_FOR_EACH ~file~ IN
                 ~SIRINE~                                                           // Sirine (BGT)
                ~_SIRINE~                                                           // Sirine (Tutu)
@@ -208,8 +208,8 @@ BEGIN
         WRITE_LONG s1 ~-1~
       END
       SAY BATTLE_CRY1 #6018 SAY BATTLE_CRY2 #6019 SAY BATTLE_CRY3 #5176
-      SAY ATTACK1 #5178 SAY ATTACK2 #6022 SAY SELECT_COMMON1 #5176
-      SAY SELECT_COMMON2 #5177 SAY SELECT_ACTION1 #6022
+      SAY ATTACK1 #6020 SAY ATTACK2 #6022 SAY ATTACK3 #5178 SAY DAMAGE #6023
+      SAY DYING #6024 SAY SELECT_COMMON1 #5176 SAY SELECT_COMMON2 #5177 SAY SELECT_ACTION1 #6022 
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -220,6 +220,11 @@ COPY ~atweaks/wav/rr#suc01.wav~ ~override~                                      
      ~atweaks/wav/rr#suc02.wav~ ~override~                                         // NWN Succubus Select Common 2 (Your soul shall be mine!)
      ~atweaks/wav/rr#suc03.wav~ ~override~                                         // NWN Succubus Action Acknowledgement 1 (Hahaha!)
      ~atweaks/wav/rr#suc04.wav~ ~override~                                         // NWN Succubus Action Acknowledgement 2 (Oh yes!)
+     ~atweaks/wav/rr#suc05.wav~ ~override~                                         // NWN Succubus Attack1
+     ~atweaks/wav/rr#suc06.wav~ ~override~                                         // NWN Succubus Attack2
+     ~atweaks/wav/rr#suc07.wav~ ~override~                                         // NWN Succubus Damage
+     ~atweaks/wav/rr#suc08.wav~ ~override~                                         // NWN Succubus Hurt
+     ~atweaks/wav/rr#suc09.wav~ ~override~                                         // NWN Succubus Dying
 
 ACTION_FOR_EACH ~file~ IN
               ~DEMSUC01~                                                           // Succubus
@@ -237,17 +242,18 @@ ACTION_FOR_EACH ~file~ IN
 			  ~sd_hrzr2~                                                           // Succubus (Shed's Mods) Not tested
               ~x#amelia~                                                           // Amelia, the Succubus added by BG1 NPCs during Coran's quest
 			  ~yugsuc01~                                                           // Succubus (Longer Road)
+			  ~ntindfig~														   // Succubus (NTotSC Improved Lesser Fiends)
 			  BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END             // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
-      PATCH_IF LONG_AT 0x28 = 8192 BEGIN // SIRINE - animation's Check for compatibility
+      PATCH_IF (LONG_AT 0x28 = 8192 OR LONG_AT 0x28 = 21136) BEGIN 				   // animation's Check (SIRINE or SUCCUBUS_NWN) for compatibility
 	    FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                 // Null soundset (code borrowed from Nythrun with thanks)
         WRITE_LONG s1 ~-1~
         END
-        SAY BATTLE_CRY1 @461  SAY BATTLE_CRY2 @462 SAY SELECT_COMMON1 @461
-        SAY SELECT_COMMON2 @462 SAY SELECT_ACTION1 @463 SAY SELECT_ACTION2 @464
-	  END // SIRINE - animation's Check for compatibility
+        SAY INITIAL_MEETING @464 SAY BATTLE_CRY1 @461  SAY BATTLE_CRY2 @462 SAY ATTACK1 ~~ [RR#SUC05] SAY ATTACK2 ~~ [RR#SUC06]
+		SAY DAMAGE ~~ [RR#SUC07] SAY HURT ~~ [RR#SUC08] SAY DYING ~~ [RR#SUC09] SAY SELECT_COMMON1 @461 SAY SELECT_COMMON2 @462 SAY SELECT_ACTION1 @463 SAY SELECT_ACTION2 @464
+	  END
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -271,6 +277,28 @@ BEGIN
       PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~SHOAL~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~_SHOAL~)) BEGIN  // additional sounds for Shoal
         SAY INITIAL_MEETING #4829 SAY DAMAGE #12526 SAY DYING #12527 SAY SELECT_COMMON4 #4830
       END
+    BUT_ONLY_IF_IT_CHANGES
+  END
+END
+
+// Standardize Maurezhi soundsets
+ACTION_FOR_EACH ~file~ IN
+              ~DEMMAU01~                                                           // Maurezhi
+               ~GORTAN6~                                                           // Maurezhi (Watcher's Keep Tanar'ri group)
+              ~OBSDEM04~                                                           // Maurezhi
+			  ~ntindfi1~                                                           // Maurezhi (NTotSC Improved Lesser Fiends)
+			  ~ntindfi2~                                                           // Maurezhi (NTotSC Improved Lesser Fiends)
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
+    COPY_EXISTING ~%file%.cre~ ~override~
+      LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END             // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+      PATCH_IF (LONG_AT 0x28 = 30464 OR LONG_AT 0x28 = 21626) BEGIN				   // animation's Check (GHOUL or MAUREZHI) for compatibility
+	    FOR (s1 = 0xa4; s1 < 0x234; s1 += 0x4) BEGIN                                 // Null soundset (code borrowed from Nythrun with thanks)
+          WRITE_LONG s1 ~-1~
+        END
+        SAY INITIAL_MEETING #61750  SAY MORALE #61757 SAY UNHAPPY_BREAKING #61757 SAY BATTLE_CRY1 #61752
+	    SAY BATTLE_CRY2 #61754 SAY DAMAGE #61755 SAY DYING #61756 SAY SELECT_COMMON1 #61751 SAY SELECT_COMMON2 #61753
+	  END
     BUT_ONLY_IF_IT_CHANGES
   END
 END
