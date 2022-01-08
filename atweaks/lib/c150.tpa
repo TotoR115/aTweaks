@@ -236,7 +236,7 @@ END
 COPY ~atweaks/cre/RR#SGELU.CRE~ ~override/RR#HGEL.CRE~ 
 
 ACTION_FOR_EACH file IN
-//			   ~gelugeon~                                                          // Gelugon (BP): Not Tested
+			   ~gelugeon~                                                          // Gelugon (BP): Not Tested
 			   ~gelugon1~                                                          // Gelugon (TDD)
 			   ~RR#HGEL~                                                           // Gelugon (atweaks)
 BEGIN
@@ -397,7 +397,7 @@ BEGIN
   END
 END
 
-ACTION_IF (MOD_IS_INSTALLED ~NTOTSC.TP2~ ~10~) BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~NTOTSC.TP2~ ~10~) BEGIN							   // Compatibility with NTOTSC Improved Lesser Fiends component
   OUTER_SPRINT ntalufi1 ""
   OUTER_SPRINT ntalufi2 ""
   OUTER_SPRINT ntalufig ""
@@ -411,7 +411,7 @@ ACTION_IF (MOD_IS_INSTALLED ~NTOTSC.TP2~ ~10~) BEGIN
   OUTER_SPRINT ntMaur1 ""
   OUTER_SPRINT ntMaur2 ""
   OUTER_SPRINT ntsucug ""
-END
+END																				   // Compatibility with NTOTSC Improved Lesser Fiends component
 
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
@@ -485,7 +485,7 @@ END
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
 			  ~FINSUCC~                                                            // Succubus (Ascension)
-			  ~%ntsucug%~                                                           // Succubus (NTotSC)
+			  ~%ntsucug%~                                                          // Succubus (NTotSC)
 			  ~nssuc01~                                                            // Succubus (Saerileth)
 			  ~nssuc02~                                                            // Succubus (Saerileth)
 //			  ~sd_hrzr2~                                                           // Succubus (Shed's Mods) Not tested
