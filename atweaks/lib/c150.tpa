@@ -1301,6 +1301,195 @@ ACTION_IF GAME_INCLUDES ~soa~ AND
 END*/ 
 
 ////////////////////////////////////////
+// Ascension fiends can gating other fiend
+////////////////////////////////////////
+
+
+
+ACTION_IF MOD_IS_INSTALLED ASCENSION.TP2 0 BEGIN                               		// Ascension mod check
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY rr_script_ascension BEGIN
+  ~FINSUCC~ => ~RR#FISUC~
+  ~FINNABAS~ => ~RR#FINAB~
+  ~FINGLAB~ => ~RR#FIGLA~
+  ~FINMARIL~ => ~RR#FIMAR~
+  ~FINBALOR~ => ~RR#FIBAL~
+  END
+
+ACTION_PHP_EACH rr_script_ascension AS file => script BEGIN
+  COPY_EXISTING "%file%.cre" override
+	REPLACE_TEXTUALLY "%file%" "%script%" (8)
+  END
+
+
+// Create gating spells
+
+//Balor: summon 1-6 (4) lesser (alu-fiend, cambion, succubus), 1-4 (2) greater (nabassu) or 1 true tanar'ri (balor, marilith, glabrezu)
+COPY ~atweaks/spl/base.spl~ "override/fl#gtbal.spl"
+  LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter1 = 1 probability1 = 33 STR_VAR resource = fl#gtba1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter1 = 1 probability1 = 66 probability2 = 34 STR_VAR resource = fl#gtba2 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 parameter1 = 1 probability1 = 100 probability2 = 67 STR_VAR resource = fl#gtba3 END
+
+COPY_EXISTING spwi905.spl "override/fl#gtba1.spl"
+  LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END
+  LPF prep_for_gate END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 33 STR_VAR resource = rr#hsbal END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 66 probability2 = 34 STR_VAR resource = rr#hsgla END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 100 probability2 = 67 STR_VAR resource = rr#hsmar END
+
+COPY_EXISTING spwi905.spl "override/fl#gtba2.spl"
+  LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END
+  LPF prep_for_gate END
+  FOR (i=0;i<2;++i) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 STR_VAR resource = rr#hsnab END
+  END
+
+COPY_EXISTING spwi905.spl "override/fl#gtba3.spl"
+  LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END
+  LPF prep_for_gate END
+  probability1 = 0
+  probability2 = 0
+  PATCH_FOR_EACH resource IN rr#hsalu rr#hscam rr#hssuc BEGIN
+    probability2 = probability1 > 0 ? probability2 + 33 : probability2
+    probability2 = probability2 = 33 ? probability2 + 1 : probability2
+    probability1 += 33
+    probability1 = probability1 = 99 ? 100 : probability1
+    FOR (i=0;i<4;++i) BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 probability2 STR_VAR resource END
+    END
+  END
+
+COPY_EXISTING spcaco.eff "override/rr#hsbal.eff"
+              spcaco.eff "override/rr#hsmar.eff"
+              spcaco.eff "override/rr#hsgla.eff"
+              spcaco.eff "override/rr#hsnab.eff"
+              spcaco.eff "override/rr#hsalu.eff"
+              spcaco.eff "override/rr#hscam.eff"
+              spcaco.eff "override/rr#hssuc.eff"
+  WRITE_ASCIIE 0x30 "%DEST_RES%" #8  // resref: destanation file
+
+//Marilith: summon 1-6 (4) lesser, 1-4 (2) greater or 1 true tanar'ri
+//Mariliths can use the Balor spell
+
+//Glabrezu: summon 1 true tanar'ri (balor, marilith, glabrezu)
+COPY_EXISTING spwi905.spl "override/fl#gtgla.spl"
+  LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END
+  LPF prep_for_gate END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 33 STR_VAR resource = rr#hsbal END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 66 probability2 = 34 STR_VAR resource = rr#hsgla END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 100 probability2 = 67 STR_VAR resource = rr#hsmar END
+
+//Nabassu: summon 3 cambions or 1 nabassu
+COPY_EXISTING spwi905.spl "override/fl#gtnab.spl"
+  LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END
+  LPF prep_for_gate END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 50 STR_VAR resource = rr#hscam END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 50 STR_VAR resource = rr#hscam END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 50 STR_VAR resource = rr#hscam END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter2 = 2 timing = 1 probability1 = 100 probability2 = 51 STR_VAR resource = rr#hsnab END
+
+//Succubus: summon 1 balor
+COPY_EXISTING spwi905.spl "override/fl#gtsuc.spl"
+  LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END
+  LPF prep_for_gate END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 1 STR_VAR resource = rr#hsbal END
+
+//Create creatures
+
+OUTER_SPRINT $script(rr#hsbal) rr#hbalr
+OUTER_SPRINT $script(rr#hsgla) rr#hglab
+OUTER_SPRINT $script(rr#hsmar) rr#hmari
+OUTER_SPRINT $script(rr#hsnab) rr#hnaba
+OUTER_SPRINT $script(rr#hssuc) rr#hsucc
+OUTER_SPRINT $script(rr#hsalu) rr#haluf
+OUTER_SPRINT $script(rr#hscam) rr#hcamb
+
+COPY_EXISTING telbal1.cre  "override/rr#hsbal.cre"
+              demgla01.cre "override/rr#hsgla.cre"
+              demosum1.cre "override/rr#hsmar.cre"  
+              demnab01.cre "override/rr#hsnab.cre"
+              gorsuc01.cre "override/rr#hssuc.cre"
+              alufie01.cre "override/rr#hsalu.cre"
+              cambion1.cre "override/rr#hscam.cre"
+  WRITE_ASCII_LIST 0x248 $script("%DEST_RES%") ~~ ~~ ~~ ~~
+  WRITE_BYTE   0x270 128                                                           //Initially neutral
+  WRITE_LONG   0x001c 0                                                            //gold carried
+  WRITE_ASCIIE 0x280 ~%DEST_RES%~ #32                                              //script name
+  WRITE_ASCII  0x2cc ~~ #8
+  LPF DELETE_CRE_ITEM STR_VAR item_to_delete = "rndtre.." END
+  ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~              // item which makes fiends invisible and untargetable while they gate in
+  READ_LONG 0x2bc io
+  FOR (i=0;i<LONG_AT 0x2c0;++i) BEGIN                                              //Make all items unstealable&undroppable
+    WRITE_BYTE io + 0x14*i + 0x10 THIS BOR 10
+  END
+  PATCH_IF FILE_EXISTS_IN_GAME dw#sumfi.itm AND !FILE_CONTAINS_EVALUATED ("%SOURCE_FILE%" "dw#sumfi") BEGIN
+    ADD_CRE_ITEM "dw#sumfi" #0 #0 #0 none boots
+  END
+
+<<<<<<<< atweaks/fl-inlined/Placeholder4Gating.baf
+IF
+  False()
+  Global("flPlaceholder4Gating","LOCALS",0)
+THEN
+  RESPONSE #100
+    Continue()
+END
+>>>>>>>>
+
+<<<<<<<< atweaks/fl-inlined/Placeholder24Gating.baf
+IF
+  False()
+  Global("Placeholder24Gating","LOCALS",0)
+THEN
+  RESPONSE #100
+    Continue()
+END
+>>>>>>>>
+
+COPY_EXISTING rr#hbalr.bcs "override\RR#FIBAL.bcs"
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder4Gating.baf~ ~atweaks/baf/fiends/gate_balor.baf~
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder24Gating.baf~ ~atweaks/baf/fiends/gate_balor2.baf~
+  DECOMPILE_BCS_TO_BAF
+    REPLACE 10000758 @758
+  COMPILE_BAF_TO_BCS
+
+COPY_EXISTING rr#hglab.bcs "override\RR#FIGLA.bcs"
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder4Gating.baf~ ~atweaks/baf/fiends/gate_glabrezu.baf~
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder24Gating.baf~ ~atweaks/baf/fiends/gate_glabrezu2.baf~
+  DECOMPILE_BCS_TO_BAF
+    REPLACE 10000758 @758
+    REPLACE 10000790 @790
+  COMPILE_BAF_TO_BCS
+
+COPY_EXISTING rr#hnaba.bcs "override\RR#FINAB.bcs"
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder4Gating.baf~ ~atweaks/baf/fiends/gate_nabassu.baf~
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder24Gating.baf~ ~atweaks/baf/fiends/gate_nabassu2.baf~
+  DECOMPILE_BCS_TO_BAF
+    REPLACE 10000758 @758
+    REPLACE 10000790 @790
+  COMPILE_BAF_TO_BCS
+
+COPY_EXISTING rr#hmari.bcs "override\RR#FIMAR.bcs"
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder4Gating.baf~ ~atweaks/baf/fiends/gate_marilith.baf~
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder24Gating.baf~ ~atweaks/baf/fiends/gate_balor2.baf~
+  DECOMPILE_BCS_TO_BAF
+    REPLACE 10000758 @758
+    REPLACE 10000790 @790
+  COMPILE_BAF_TO_BCS
+
+COPY_EXISTING rr#hsucc.bcs "override\RR#FISUC.bcs"
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder4Gating.baf~ ~atweaks/baf/fiends/gate_succubus.baf~
+  REPLACE_BCS_BLOCK ~atweaks/fl-inlined/Placeholder24Gating.baf~ ~atweaks/baf/fiends/gate_succubus2.baf~
+  DECOMPILE_BCS_TO_BAF
+    REPLACE 10000758 @758
+    REPLACE 10000790 @790
+  COMPILE_BAF_TO_BCS
+
+END                               													// End Ascension mod check compatibility block
+
+
+////////////////////////////////////////
 // Item Revisions
 ////////////////////////////////////////
 
@@ -1319,7 +1508,7 @@ ACTION_FOR_EACH script IN rr#haluf rr#hcamb rr#hmari rr#hnaba BEGIN
 	  DECOMPILE_AND_PATCH BEGIN
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
 		~clck26~
-		~rr#fake~ // I am a bit leazy but this will do the trick and is easier in this case than R_B_B
+		~rr#fake~ // I am a bit lazy but this will do the trick and is easier in this case than R_B_B
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
 		~clck24~
 		~rr#fake~ // idem

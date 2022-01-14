@@ -64,13 +64,13 @@ DEFINE_PATCH_FUNCTION make_imp BEGIN
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "DEMIMP"                                                        // fourth AI script name
         "script05"   = "BPWDASGT"                                                      // Big Picture script
-        "script05"   = "BPDEMON"                                                       // Big Picture Demon script
-        "script06"   = "GENSHT01"                                                      // generic shout script
-        "script07"   = "DW2MP0GE"                                                      // Stratagems melee script
-        "script08"   = "DW2RP0MO"                                                      // Stratagems melee script
-		"script09"   = "DW2MS0MO"                                                      // Stratagems melee script
-		"script10"   = "DW#MG647"                                                      // Stratagems melee script
-		"script11"   = "DW#MG458"                                                      // Stratagems melee script
+        "script06"   = "BPDEMON"                                                       // Big Picture Demon script
+        "script07"   = "GENSHT01"                                                      // generic shout script
+        "script08"   = "DW2MP0GE"                                                      // Stratagems melee script
+        "script09"   = "DW2RP0MO"                                                      // Stratagems melee script
+		"script10"   = "DW2MS0MO"                                                      // Stratagems melee script
+		"script11"   = "DW#MG647"                                                      // Stratagems melee script
+		"script12"   = "DW#MG458"                                                      // Stratagems melee script
         "skipfile01" = "RUMAR03"                                                       // skip script patching for a designated file
         "skipfile02" = "MEKIMP01"                                                      // skip script patching for a designated file
         "skipfile03" = "FAMIMP25"                                                      // skip script patching for a designated file
@@ -156,8 +156,8 @@ DEFINE_PATCH_FUNCTION make_hellcat BEGIN
         "script01"   = ""                                                              // first AI script name
         "script02"   = "None"                                                          // second AI script name
         "script03"   = "WTASIGHT"                                                      // third AI script name
-        "script05"   = "BPDEMON"                                                       // Big Picture Demon AI
-        "script06"   = "DW2MP4MO"                                                      // Stratagems melee script
+        "script04"   = "BPDEMON"                                                       // Big Picture Demon AI
+        "script05"   = "DW2MP4MO"                                                      // Stratagems melee script
         "skipfile01" = "GORCAMB6"                                                      // skip script patching for a designated file
         "skipfile02" = "GORCAMB7"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
@@ -400,7 +400,7 @@ DEFINE_PATCH_FUNCTION make_abishai BEGIN
 		"script11"   = "ABISHAI"                                                       // RoT Demon AI
 		"script12"   = "PSBAAT01"                                                      // Planar Sphere Demon AI
 		"script13"   = "GNTEAM2M"                                                      // AI
-		"script13"   = "NSABISH"                                                      // aggro AI Saerileth
+		"script14"   = "NSABISH"                                                      // aggro AI Saerileth
 		"skipfile01" = "duegabis"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
@@ -963,7 +963,7 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
           "enfc03"   = "GORALU01"                                                      // enforced creature 3 (uses strict PnP values)
           "enfc04"   = "TELALU1"                                                       // enforced creature 4 (uses strict PnP values)
           "enfc05"   = "TELSUC1"                                                       // enforced creature 5 (uses strict PnP values)
-          "enfc08"   = "nsaluf01"                                                      // enforced creature 8 (uses strict PnP values)
+          "enfc06"   = "nsaluf01"                                                      // enforced creature 8 (uses strict PnP values)
      END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -1185,12 +1185,12 @@ DEFINE_PATCH_FUNCTION make_succubus BEGIN
         "script09"   = "BPDEMON"                                                       // Big Picture demon script
         "script10"   = "INITDLG"                                                       // dialogue initialization script (BGT Kirinhale)
         "script11"   = "_INITDLG"                                                      // dialogue initialization script (Tutu Kirinhale)
-		"script12"   = "FINSUCC"                                                       // Ascension demon script
-        "script13"   = "DW2MC0GE"                                                      // Stratagems melee script
-        "script14"   = "DW2MC2GW"                                                      // Stratagems melee script
-		"script15"   = "ntfiends"                                                      // NTotSC Scripts
-		"script16"   = "ntsuccub"                                                      // NTotSC Scripts
+        "script12"   = "DW2MC0GE"                                                      // Stratagems melee script
+        "script13"   = "DW2MC2GW"                                                      // Stratagems melee script
+		"script14"   = "ntfiends"                                                      // NTotSC Scripts
+		"script15"   = "ntsuccub"                                                      // NTotSC Scripts
 		"skipfile01" = "X#AMELIA"                                                      // BG1 NPC Project melee script
+		"skipfile02" = "FINSUCC"                                                       // Ascension demon script
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -1270,7 +1270,7 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
           "enfc09"   = "tg#dem2"                                                       // enforced creature 9 (uses strict PnP values)
           "enfc10"   = "demnabr1"                                                      // enforced creature 10 (uses strict PnP values)
           "enfc11"   = "demnabr2"                                                      // enforced creature 11 (uses strict PnP values)
-          "enfc11"   = "z#gnabas"                                                      // enforced creature 12 (uses strict PnP values)
+          "enfc12"   = "z#gnabas"                                                      // enforced creature 12 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     PATCH_IF "%file%" STRING_COMPARE_CASE demnabsu BEGIN
@@ -1296,14 +1296,14 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
 		  "script17"   = "DW1MELGE"                                                    // Stratagems melee script
 		  "script18"   = "DW2MM2GE"                                                    // Stratagems melee script
           "script19"   = "TANARI_"                                                     // EET
-		  "script20"   = "FINNABAS"                                                    // Ascension demon script
- 		  "script21"   = "DEMBAL01"                                                    // TDD demon script
- 		  "script22"   = "DEMNAB2"                                                     // RoT Gauntlet demon script
-		  "script23"   = "F_TANARI"                                                    // Drizzt Saga demon script
-		  "script24"   = "WTASI2"                                                      // RoT melee script
-		  "script25"   = "F_DEMDRG"                                                    // Drizzt Saga demon script
+ 		  "script20"   = "DEMBAL01"                                                    // TDD demon script
+ 		  "script21"   = "DEMNAB2"                                                     // RoT Gauntlet demon script
+		  "script22"   = "F_TANARI"                                                    // Drizzt Saga demon script
+		  "script23"   = "WTASI2"                                                      // RoT melee script
+		  "script24"   = "F_DEMDRG"                                                    // Drizzt Saga demon script
 		  "script25"   = "F_ERRTU"                                                     // Drizzt Saga demon script
 		  "skipfile01" = "tg#dem2"                                                     // Refinement Demon
+		  "skipfile02" = "FINNABAS"                                                    // Ascension demon script
       END                                                                              // ends FUNCTION call
     END
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
@@ -1446,16 +1446,16 @@ DEFINE_PATCH_FUNCTION make_glabrezu INT_VAR enforce = 0 BEGIN
 		  "script16"   = "DW2MC3GE"                                                    // Stratagems melee script
 		  "script17"   = "DW2MS0GE"                 		                           // Stratagems melee script
           "script18"   = "DW2MC0GE"                                                    // Stratagems melee script
-		  "script19"   = "FINGLAB"													   // Ascension demon script
-		  "script20"   = "DEMGLAB4"                                                    // RoT demon script
-		  "script21"   = "DEMGLAB3"                                                    // RoT demon script
-		  "script22"   = "DEMPTJ"                                                      // TDD demon script
-		  "script23"   = "BSGLABRE"                                                    // BST demon script
-		  "script24"   = "KISHDEMO"                                                    // NPC stronghold demon script
-		  "script25"   = "WTASI2"                                                      // RoT melee script
-		  "script26"   = "WTASI3"                                                      // RoT melee script
+		  "script19"   = "DEMGLAB4"                                                    // RoT demon script
+		  "script20"   = "DEMGLAB3"                                                    // RoT demon script
+		  "script21"   = "DEMPTJ"                                                      // TDD demon script
+		  "script22"   = "BSGLABRE"                                                    // BST demon script
+		  "script23"   = "KISHDEMO"                                                    // NPC stronghold demon script
+		  "script24"   = "WTASI2"                                                      // RoT melee script
+		  "script25"   = "WTASI3"                                                      // RoT melee script
 		  "skipfile01" = "CULTMO1"                                                     // RoT Demon
 		  "skipfile02" = "PSGLAB"                                                     // RoT Demon
+		  "skipfile03" = "FINGLAB"													   // Ascension demon script
 		END                                                                            // ends FUNCTION call
     END
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
@@ -1553,14 +1553,14 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
 		"script13"   = "DW2MS3GE"                                             		   // Stratagems melee script
 		"script14"   = "DW2MS0GE"                                                      // Stratagems melee script
 		"script15"   = "DW2MS4GE"                                                      // Stratagems melee script
-		"script16"   = "FINMARIL"                 		                               // Ascension demon script
-		"script17"   = "F_MARI"                                                        // Drizzt Saga Demon script
-		"script18"   = "WTASI2"                                                        // Drizzt Saga Demon script
-		"script19"   = "O#DAEFIG"                                                        // melee script
+		"script16"   = "F_MARI"                                                        // Drizzt Saga Demon script
+		"script17"   = "WTASI2"                                                        // Drizzt Saga Demon script
+		"script18"   = "O#DAEFIG"                                                        // melee script
 		"skipfile01" = "Z_2spe2"                                                       // Tales of Anegh Demon
 		"skipfile02" = "PSMARI1"                                                       // Planar Sphere Mod
 		"skipfile03" = "PSMARI2"                                                       // Planar Sphere Mod
-		"skipfile03" = "YUXBOSSA"                                                      // TDD Mod
+		"skipfile04" = "YUXBOSSA"                                                      // TDD Mod
+		"skipfile05" = "FINMARIL"                 		                               // Ascension demon script
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -1690,32 +1690,32 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
         "script15"   = "BPDEMON"                                                       // Big Picture demon script
         "script16"   = "BPTANARI"                                                      // Big Picture Tanar'ri script
         "script17"   = "dw#subal"                                                      // Stratagems Suldanesselar Balor script
-		"script18"   = "FINBALOR"													   // Ascension demon script
- 		"script19"   = "Z#GBALOR"                                                      // Spellhold Gauntlet script
- 		"script20"   = "R#DEMON"                                                       // Improved Asylum script
- 		"script21"   = "DEMBAL03"                                                      // RoT Demon script
- 		"script22"   = "DEMBAL04"                                                      // RoT Demon script
- 		"script23"   = "VA#BALOR"                                                      // Tower of Deception script
- 		"script24"   = "Z_2BALOR"                                                      // Tales of Anegh script
- 		"script25"   = "WTASI2"                                                        // Tales of Anegh script
- 		"script26"   = "F_TANARI"                                                      // Drizzt Saga demon script
- 		"script27"   = "ERRTU"                                                         // TDD demon script
- 		"script28"   = "F_DEMDRG"                                                      // Drizzt Saga demon script
-		"script29"   = "Z#GBALOR"                                                      // Tales of Anegh script
-		"script30"   = "DW2MS2GE"                                                      // Tales of Anegh script
- 		"script31"   = "DW2MS0GE"                                                      // Tales of Anegh script
-        "script32"   = "DW2MS4GE"                                                      // Stratagems melee script
-        "script33"   = "DW2MC4GE"                                                      // Stratagems melee script
- 		"script34"   = "DW2MC0GE"                                                      // Stratagems melee script
- 		"script35"   = "DW2MC3GE"                                                      // Stratagems melee script
- 		"script36"   = "DW2MS3GE"                                                      // Stratagems melee script
- 		"script37"   = "DW2MM2GE"                                                      // Tales of Anegh script
+ 		"script18"   = "Z#GBALOR"                                                      // Spellhold Gauntlet script
+ 		"script19"   = "R#DEMON"                                                       // Improved Asylum script
+ 		"script20"   = "DEMBAL03"                                                      // RoT Demon script
+ 		"script21"   = "DEMBAL04"                                                      // RoT Demon script
+ 		"script22"   = "VA#BALOR"                                                      // Tower of Deception script
+ 		"script23"   = "Z_2BALOR"                                                      // Tales of Anegh script
+ 		"script24"   = "WTASI2"                                                        // Tales of Anegh script
+ 		"script25"   = "F_TANARI"                                                      // Drizzt Saga demon script
+ 		"script26"   = "ERRTU"                                                         // TDD demon script
+ 		"script27"   = "F_DEMDRG"                                                      // Drizzt Saga demon script
+		"script28"   = "Z#GBALOR"                                                      // Tales of Anegh script
+		"script29"   = "DW2MS2GE"                                                      // Tales of Anegh script
+ 		"script30"   = "DW2MS0GE"                                                      // Tales of Anegh script
+        "script31"   = "DW2MS4GE"                                                      // Stratagems melee script
+        "script32"   = "DW2MC4GE"                                                      // Stratagems melee script
+ 		"script33"   = "DW2MC0GE"                                                      // Stratagems melee script
+ 		"script34"   = "DW2MC3GE"                                                      // Stratagems melee script
+ 		"script35"   = "DW2MS3GE"                                                      // Stratagems melee script
+ 		"script36"   = "DW2MM2GE"                                                      // Tales of Anegh script
         "skipfile01" = "GORTAN1"                                                       // skip script patching for a designated file
         "skipfile02" = "M05DEMON"                                                      // skip script patching for a designated file
         "skipfile03" = "GORDEMC1"                                                      // skip script patching for a designated file
         "skipfile04" = "tg#did3"                                                       // skip script patching for a designated file
         "skipfile05" = "tg#did4"                                                       // skip script patching for a designated file
         "skipfile06" = "DW#BASUM"                                                      // skip script patching for a designated file
+		"skipfile07" = "FINBALOR"													   // Ascension demon script
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
       SET_BG2_PROFICIENCY PROFICIENCYLONGSWORD 1

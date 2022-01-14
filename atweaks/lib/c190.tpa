@@ -1467,7 +1467,6 @@ ACTION_FOR_EACH ~file~ IN                                                       
                ~SUAIR~                                                             // Air Elemental (Suldanesselar, Tree of Life guardian)
             ~SWAAIR02~                                                             // Air Elemental (20+ HD, summoned, Elemental Summoning HLA)
               ~UDELDA~                                                             // Air Elemental (Underdark portal guardian)
-            ~ELAIRSU4~                                                             // Air Elemental (20+ HD, summoned, bg2 Fixpack wizard version) -- BG2 fixpack
             ~li#druai~                                         	                   // Elemental transformation air (Refinements)
 			~MH#air20~                                                             // Elemental transformation air (made in heaven quest & encounters)
 			~DRAIRPR4~                                                             // Air Elemental (20 HD, Divine Remix)
@@ -5105,7 +5104,7 @@ ACTION_FOR_EACH script IN rr#ensal rr#echan BEGIN
 	  DECOMPILE_AND_PATCH BEGIN
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
         ~clck26~
-        ~rr#fake~ // I am a bit leazy but this will do the trick and is easier in this case than R_B_B
+        ~rr#fake~ // I am a bit lazy but this will do the trick and is easier in this case than R_B_B
       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
 		~clck24~
 		~rr#fake~ // idem
