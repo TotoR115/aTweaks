@@ -19,6 +19,13 @@ LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END  
 
 COPY ~atweaks/spl/rr#niinv.spl~ ~override~                                         // Natural Invisibility
   SAY NAME1 @2100 SAY NAME2 @2100
+	ACTION_IF !GAME_IS ~BGEE IWDEE EET~ BEGIN
+	  LPF CLONE_EFFECT INT_VAR match_opcode = 20 match_parameter2 = 1 opcode = 33 parameter2 = 0 parameter1 = 4 timing = 0 END
+	  LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 34 END
+	  LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 35 END
+	  LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 36 END
+	  LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 37 END
+	END
 
 COPY ~atweaks/spl/elementals/rr#emcbt.spl~ ~override~                              // New Mental Combat spell (used for arcane spellcasters when summoning elementals)
   READ_LONG  0x64 "abil_off"
@@ -135,6 +142,22 @@ COPY ~atweaks/eff/elementals/rr#enbg2.eff~ ~override~                           
 
 // Add immunity to Beguiling Aura to items and spells which use blindness
 
+// Begin : Add Spells from IWDification mod or stratagems mods
+  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") > 0) BEGIN
+    OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH")
+    OUTER_SET code=code - 1000
+    OUTER_SPRINT IWDsuns "SPpr%code%"
+  END ELSE BEGIN
+    OUTER_SPRINT IWDsuns ""
+  END
+  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") > 0) BEGIN
+    OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE")
+    OUTER_SET code=code - 1000
+    OUTER_SPRINT IWDcldp "SPpr%code%"
+  END ELSE BEGIN
+    OUTER_SPRINT IWDcldp ""
+  END // end : Add Spells from IWDification mod or stratagems mods
+
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
                 ~spdr101.spl~
                 ~spin595.spl~
@@ -157,6 +180,11 @@ ACTION_FOR_EACH ~file~ IN                                                       
                    ~sorb.itm~
                  ~sw1h51.itm~
                  ~wand19.itm~
+                 ~wand19.itm~
+                 ~wand19.itm~
+			  ~%IWDsuns%.spl~												 		     // Sunscorch (IWDification)
+			  ~%IWDcldp%.spl~                                                            // Cloud of Pestilence (IWDification)
+
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%~ BEGIN                                       // if the designated file with a SPL extension exists
 COPY_EXISTING ~%file%~ ~override~
@@ -199,6 +227,8 @@ COPY ~atweaks/spl/elementals/rr#ewwsl.spl~ ~override~                           
 
 COPY ~atweaks/bam/elementals/rr#eairw.bam~ ~override~                              // Whirlwind BAM icon
 COPY ~atweaks/spl/elementals/rr#eairw.spl~ ~override~                              // Whirlwind (Air Elemental)
+COPY ~atweaks/bam/elementals/rr#whirl.bam~ ~override~                      		   // Whirlwind BAM animation
+COPY ~atweaks/vvc/rr#whirl.vvc~ ~override~ 			                     		   // Whirlwind VVC animation
 
 COPY ~atweaks/spl/elementals/rr#ecncl.spl~ ~override~                              // Elemental Concealment
 SAY NAME1 @2123 SAY NAME2 @2123
@@ -283,7 +313,7 @@ COPY ~atweaks/spl/elementals/rr#eimfb.spl~ ~override~                           
 COPY ~atweaks/spl/elementals/rr#eimhe.spl~ ~override~                              // Heat Emission, 1d20 (Imix)
 COPY ~atweaks/spl/elementals/rr#eimfs.spl~ ~override~                              // Fire Shield: Red, triple strength, Part1 (Imix)
 COPY ~atweaks/spl/elementals/rr#eimfd.spl~ ~override~                              // Fire Shield: Red, triple strength, Part2 (Imix)
-COPY_EXISTING ~rr#eimhe.spl~ ~override/rr#eiems.spl~                               // Heat Emission, 1d8 (fire salamander) -- compatibility with Stratagems/IWDification
+COPY_EXISTING ~rr#eimhe.spl~ ~override/rr#eiems.spl~                               // Heat Emission, 1d8 (fire salamander) -- compatibility with Stratagems and IWDification
 		WRITE_LONG 0x1aa 8														   // 1d8
 
 COPY ~atweaks/spl/elementals/rr#ezafb.spl~ ~override~                              // Fireball, 12d6 (Zaaman Rul)
@@ -3677,7 +3707,7 @@ COPY_EXISTING ~spcl634.spl~ ~override~                                          
   BUT_ONLY_IF_IT_CHANGES
 
 
-ACTION_IF FILE_EXISTS_IN_GAME ssppr732.spl BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~sppr732.spl~ BEGIN
 COPY_EXISTING ~sppr732.spl~ ~override~                                             // Earth Elemental Transformation
 READ_LONG  0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
