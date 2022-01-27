@@ -618,7 +618,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -638,7 +638,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -658,7 +658,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -679,7 +679,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
         !SpellCast(LastSeenBy(Myself),WIZARD_VOCALIZE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
@@ -700,7 +700,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -720,7 +720,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -740,7 +740,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -760,7 +760,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -780,7 +780,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -800,7 +800,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -820,7 +820,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN
@@ -840,7 +840,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
         !Range([EVILCUTOFF.0.DEMONIC.MAGE_ALL.0.0.MASK_CHAOTIC],15) // don't use Silence if (gated) Cambions are nearby
 THEN

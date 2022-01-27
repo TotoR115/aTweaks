@@ -207,6 +207,7 @@ IF
     HaveSpellRES("rr#ecncl") // Elemental Concealment
     !StateCheck(Myself,STATE_INVISIBLE)
     !Global("dvgldust","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1)
     !CheckStatGT(Player1,0,TRUE_SIGHT)
     !CheckStatGT(Player2,0,TRUE_SIGHT)
     !CheckStatGT(Player3,0,TRUE_SIGHT)
@@ -386,10 +387,12 @@ IF
     HaveSpellRES("rr#ecncl") // Elemental Concealment
     !StateCheck(Myself,STATE_INVISIBLE)
     !Global("dvgldust","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1)
     !CheckStatGT(NearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(SecondNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(ThirdNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(FourthNearestEnemyOf(Myself),0,TRUE_SIGHT)
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(SixthNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(SeventhNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(EighthNearestEnemyOf(Myself),0,TRUE_SIGHT)

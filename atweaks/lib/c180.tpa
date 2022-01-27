@@ -164,10 +164,14 @@ LAUNCH_PATCH_FUNCTION cloud_spell_immunities END                                
 
 
 COPY ~atweaks/itm/mephits/rr#maiw1.itm~ ~override~                                 // Air Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#mduw1.itm~ ~override~                                 // Dust Mephit melee attack and special traits
+  LPF set_enchantment END
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 COPY ~atweaks/itm/mephits/rr#meaw1.itm~ ~override~                                 // Earth Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#meaw1.itm~ ~override/rr#meaw2.itm~                    // spawn Earth Mephit's second melee attack (Grow ability result)
+  LPF set_enchantment END
 READ_LONG 0x64 abil_off
 READ_SHORT 0x68 abil_num
 FOR (i = 0; i < "%abil_num%"; i += 1) BEGIN                                        // parse each ability
@@ -178,15 +182,25 @@ FOR (i = 0; i < "%abil_num%"; i += 1) BEGIN                                     
   END
 END
 COPY ~atweaks/itm/mephits/rr#mfiw1.itm~ ~override~                                 // Fire Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#micw1.itm~ ~override~                                 // Ice Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#mliw1.itm~ ~override~                                 // Lightning Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#mmaw1.itm~ ~override~                                 // Magma Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#mmiw1.itm~ ~override~                                 // Mineral Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#mmsw1.itm~ ~override~                                 // Mist Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#mozw1.itm~ ~override~                                 // Ooze Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#mraw1.itm~ ~override~                                 // Radiant Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#msaw1.itm~ ~override~                                 // Salt Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#msmw1.itm~ ~override~                                 // Smoke Mephit melee attack and special traits
+  LPF set_enchantment END
 COPY ~atweaks/itm/mephits/rr#mstw1.itm~ ~override~                                 // Steam Mephit melee attack and special traits
 
 
@@ -1272,21 +1286,28 @@ WRITE_BYTE 0x275 3                                                              
 // New AI Scripts
 //////////////////
 
+ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
+	OUTER_SPRINT ~State~ ~SpellState~
+	OUTER_SPRINT ~Num~ ~~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~State~ ~StatGT~
+	OUTER_SPRINT ~Num~ ~0,~
+END
 
-COMPILE ~atweaks/baf/mephits/rr#mair.baf~                                          // Air Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mdus.baf~                                          // Dust Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mear.baf~                                          // Earth Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mfir.baf~                                          // Fire Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mice.baf~                                          // Ice Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mlig.baf~                                          // Lightning Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mmag.baf~                                          // Magma Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mmin.baf~                                          // Mineral Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mmst.baf~                                          // Mist Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mooz.baf~                                          // Ooze Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mrad.baf~                                          // Radiant Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#msal.baf~                                          // Salt Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#msmo.baf~                                          // Smoke Mephit AI script
-COMPILE ~atweaks/baf/mephits/rr#mste.baf~                                          // Steam Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mair.baf~                                          // Air Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mdus.baf~                                          // Dust Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mear.baf~                                          // Earth Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mfir.baf~                                          // Fire Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mice.baf~                                          // Ice Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mlig.baf~                                          // Lightning Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mmag.baf~                                          // Magma Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mmin.baf~                                          // Mineral Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mmst.baf~                                          // Mist Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mooz.baf~                                          // Ooze Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mrad.baf~                                          // Radiant Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#msal.baf~                                          // Salt Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#msmo.baf~                                          // Smoke Mephit AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mste.baf~                                          // Steam Mephit AI script
 
 
 
@@ -1447,7 +1468,6 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
 END
 
 //////////// Compatibility with IR: script check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
-ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
   COPY_EXISTING ~rr#mfir.bcs~ ~override~
 	DECOMPILE_AND_PATCH BEGIN
     REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
@@ -1458,6 +1478,5 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
 	  ~rr#fake~ // idem
 	END	
   BUT_ONLY
-END
 
 END                                                                                // ends Item Revisions compatibility block

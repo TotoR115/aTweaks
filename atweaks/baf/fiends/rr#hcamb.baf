@@ -80,6 +80,7 @@ IF
 	!StateCheck(Myself,STATE_INVISIBLE)
         !HaveSpell(WIZARD_INVISIBILITY) // this is needed for the teleport away strategy
 	!Global("dvgldust","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1)
 	!StateCheck(Myself,STATE_BLIND)
 	!GlobalTimerNotExpired("RR#HIDE","LOCALS")
 THEN
@@ -96,6 +97,7 @@ IF
 	HasItem("POTN10",Myself) // Potion of Invisibility
 	!StateCheck(Myself,STATE_INVISIBLE)
 	!Global("dvgldust","LOCALS",1)
+!Global("LCNOINVI","LOCALS",1)
 	!CheckStatGT(Player1,0,TRUE_SIGHT)
 	!CheckStatGT(Player2,0,TRUE_SIGHT)
 	!CheckStatGT(Player3,0,TRUE_SIGHT)
@@ -126,6 +128,7 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	!Global("dvgldust","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1)
 	!CheckStatGT(Player1,0,TRUE_SIGHT)
 	!CheckStatGT(Player2,0,TRUE_SIGHT)
 	!CheckStatGT(Player3,0,TRUE_SIGHT)
@@ -233,6 +236,7 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	!Global("dvgldust","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1)
 	!CheckStatGT(Player1,0,TRUE_SIGHT)
 	!CheckStatGT(Player2,0,TRUE_SIGHT)
 	!CheckStatGT(Player3,0,TRUE_SIGHT)
@@ -362,8 +366,8 @@ IF
 	DifficultyGT(EASY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -392,7 +396,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -415,7 +419,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -438,7 +442,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -461,7 +465,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -484,7 +488,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -507,7 +511,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_SLOWED)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SLOW)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SLOW)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	CheckStatGT(LastSeenBy(Myself),-4,SAVEVSSPELL)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
@@ -540,8 +544,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -560,7 +564,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -587,7 +591,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -614,7 +618,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -642,7 +646,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -669,7 +673,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -696,7 +700,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -717,8 +721,8 @@ IF
 	See([GOODCUTOFF])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -743,8 +747,8 @@ IF
 	See(SecondNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -769,8 +773,8 @@ IF
 	See(ThirdNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -795,8 +799,8 @@ IF
 	See(FourthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -821,8 +825,8 @@ IF
 	See(FifthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -847,8 +851,8 @@ IF
 	See(SixthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -884,8 +888,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 THEN
 	RESPONSE #100
@@ -910,8 +914,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 THEN
 	RESPONSE #100
@@ -936,8 +940,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -961,8 +965,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 THEN
 	RESPONSE #100
@@ -987,8 +991,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 THEN
 	RESPONSE #100
@@ -1013,8 +1017,8 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 	!HasItemEquiped("IMOENHP1",LastSeenBy(Myself)) // Imoen's Belt
 THEN
 	RESPONSE #100
@@ -1048,7 +1052,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1081,7 +1085,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1113,7 +1117,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1145,7 +1149,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1177,7 +1181,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1210,7 +1214,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1235,7 +1239,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1260,7 +1264,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1285,7 +1289,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1309,7 +1313,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1333,7 +1337,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1357,7 +1361,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1383,7 +1387,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1408,7 +1412,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1434,7 +1438,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1460,7 +1464,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1486,7 +1490,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1512,7 +1516,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)

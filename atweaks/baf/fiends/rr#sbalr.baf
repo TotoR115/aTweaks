@@ -45,9 +45,9 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
                 SetGlobal("RR#EACheck","LOCALS",2)
-                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -71,9 +71,9 @@ IF
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
-                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -85,9 +85,9 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
                 SetGlobal("RR#Hostile","LOCALS",0)
-                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -1423,8 +1423,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1445,8 +1445,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1467,8 +1467,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1489,8 +1489,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1511,8 +1511,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1533,8 +1533,8 @@ IF
 	CheckStatGT(LastSeenBy(Myself),1,MORALEBREAK)
 	CheckStat(LastSeenBy(Myself),0,WIZARD_RESIST_FEAR)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PANIC)
-	!CheckStatGT(LastSeenBy(Myself),0,RESIST_FEAR)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
+	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1684,7 +1684,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_STUN)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1708,7 +1708,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_STUN)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1732,7 +1732,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_STUN)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1756,7 +1756,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_STUN)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1780,7 +1780,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_STUN)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1804,7 +1804,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Conjuration
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!HasItem("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_STUN)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_STUN)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1823,7 +1823,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1842,7 +1842,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1861,7 +1861,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1880,7 +1880,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1899,7 +1899,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1918,7 +1918,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1937,7 +1937,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1956,7 +1956,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1975,7 +1975,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1994,7 +1994,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -2808,7 +2808,7 @@ IF
         Global("RR#Smnr","LOCALS",0)
 	Exists(LastSummonerOf(Myself))
         !CheckStatGT(LastSummonerOf(Myself),0,PROTECTION_FROM_EVIL)
-	!CheckStatGT(LastSummonerOf(Myself),0,ITEM_PROTFROMEVIL)
+	!Check%State%(LastSummonerOf(Myself),%Num%ITEM_PROTFROMEVIL)
         !StateCheck(LastSummonerOf(Myself),STATE_REALLY_DEAD)
         !StateCheck(Myself,STATE_INVISIBLE)
         See(LastSummonerOf(Myself))
@@ -2853,7 +2853,7 @@ END
 IF
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
         CheckStat(LastSeenBy(Myself),0,PROTECTION_FROM_EVIL)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PROTFROMEVIL)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PROTFROMEVIL)
 	!CheckStatGT(LastSeenBy(Myself),3,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no PfMW
         CheckStatLT(LastSeenBy(Myself),100,RESISTSLASHING)
 THEN

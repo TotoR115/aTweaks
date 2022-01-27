@@ -332,7 +332,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -364,7 +364,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -396,7 +396,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -428,7 +428,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -460,7 +460,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -492,7 +492,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -524,7 +524,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -556,7 +556,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -588,7 +588,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -620,7 +620,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStatGT(LastSeenBy(Myself),0,ENTANGLE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_HOLD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_HOLD)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -657,7 +657,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -693,7 +693,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -729,7 +729,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -765,7 +765,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -801,7 +801,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -837,7 +837,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -866,7 +866,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -895,7 +895,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -924,7 +924,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -952,7 +952,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -980,7 +980,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1008,7 +1008,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1039,7 +1039,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1070,7 +1070,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1101,7 +1101,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1132,7 +1132,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1163,7 +1163,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1194,7 +1194,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1225,7 +1225,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1256,7 +1256,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1287,7 +1287,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1318,7 +1318,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)

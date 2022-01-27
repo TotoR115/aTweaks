@@ -96,11 +96,13 @@ IF
       See(NearestEnemyOf(Myself))
     !GlobalTimerNotExpired("rr#niinv","LOCALS") // Natural Invisibility is automatically re-applied once per round (note: this is not a spell and shouldn't be treated as such)
     !StateCheck(Myself,STATE_INVISIBLE)
-    !Global("dvgldust","LOCALS",1) // Natural Invisibility should check for Glitterdust
+    !Global("dvgldust","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1) // Natural Invisibility should check for Glitterdust
     !CheckStatGT(NearestEnemyOf(Myself),0,TRUE_SIGHT) // also have it check for True Seeing, otherwise, it's too unbalanced
     !CheckStatGT(SecondNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(ThirdNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(FourthNearestEnemyOf(Myself),0,TRUE_SIGHT)
+    !CheckStatGT(FifthNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(SixthNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(SeventhNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(EighthNearestEnemyOf(Myself),0,TRUE_SIGHT)
@@ -118,7 +120,8 @@ IF
     !Allegiance(Myself,GOODCUTOFF)
     !GlobalTimerNotExpired("rr#niinv","LOCALS") // Natural Invisibility is automatically re-applied once per round (note: this is not a spell and shouldn't be treated as such)
     !StateCheck(Myself,STATE_INVISIBLE)
-    !Global("dvgldust","LOCALS",1) // Natural Invisibility should check for Glitterdust
+    !Global("dvgldust","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1) // Natural Invisibility should check for Glitterdust
     !CheckStatGT(Player1,0,TRUE_SIGHT) // also have it check for True Seeing, otherwise, it's too unbalanced
     !CheckStatGT(Player2,0,TRUE_SIGHT)
     !CheckStatGT(Player3,0,TRUE_SIGHT)

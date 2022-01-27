@@ -205,7 +205,7 @@ CheckStatLT([PC.0.0.MAGE],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 !CheckStatGT([PC.0.0.MAGE],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.MAGE],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.MAGE],%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT([PC.0.0.MAGE],25)
 Range([PC.0.0.MAGE],5)
 THEN
@@ -240,7 +240,7 @@ CheckStatLT([PC.0.0.MAGE_THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 !CheckStatGT([PC.0.0.MAGE_THIEF],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.MAGE_THIEF],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.MAGE_THIEF],%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT([PC.0.0.MAGE_THIEF],25)
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
@@ -275,7 +275,7 @@ CheckStatLT([PC.0.0.THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 !CheckStatGT([PC.0.0.THIEF],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.THIEF],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.THIEF],%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT([PC.0.0.THIEF],25)
 Range([PC.0.0.THIEF],5)
 THEN
@@ -310,7 +310,7 @@ CheckStatLT([PC.0.0.BARD],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 !CheckStatGT([PC.0.0.BARD],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.BARD],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.BARD],%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT([PC.0.0.BARD],25)
 Range([PC.0.0.BARD],5)
 THEN
@@ -345,7 +345,7 @@ CheckStatLT(NearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(NearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(NearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(NearestEnemyOf(Myself),25)
 Range(NearestEnemyOf(Myself),5)
 THEN
@@ -380,7 +380,7 @@ CheckStatLT(SecondNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SecondNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SecondNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SecondNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(SecondNearestEnemyOf(Myself),25)
 Range(SecondNearestEnemyOf(Myself),5)
 THEN
@@ -415,7 +415,7 @@ CheckStatLT(ThirdNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(ThirdNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(ThirdNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(ThirdNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(ThirdNearestEnemyOf(Myself),25)
 Range(ThirdNearestEnemyOf(Myself),5)
 THEN
@@ -450,7 +450,7 @@ CheckStatLT(FourthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FourthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FourthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FourthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(FourthNearestEnemyOf(Myself),25)
 Range(FourthNearestEnemyOf(Myself),5)
 THEN
@@ -485,7 +485,7 @@ CheckStatLT(FifthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FifthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FifthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FifthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(FifthNearestEnemyOf(Myself),25)
 Range(FifthNearestEnemyOf(Myself),5)
 THEN
@@ -520,7 +520,7 @@ CheckStatLT(SixthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SixthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SixthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SixthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(SixthNearestEnemyOf(Myself),25)
 Range(SixthNearestEnemyOf(Myself),5)
 THEN
@@ -556,7 +556,7 @@ CheckStatLT([PC.0.0.MAGE],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 !CheckStatGT([PC.0.0.MAGE],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.MAGE],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.MAGE],%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT([PC.0.0.MAGE],25)
 
 THEN
@@ -591,7 +591,7 @@ CheckStatLT([PC.0.0.MAGE_THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 !CheckStatGT([PC.0.0.MAGE_THIEF],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.MAGE_THIEF],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.MAGE_THIEF],%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT([PC.0.0.MAGE_THIEF],25)
 
 THEN
@@ -626,7 +626,7 @@ CheckStatLT([PC.0.0.THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 !CheckStatGT([PC.0.0.THIEF],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.THIEF],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.THIEF],%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT([PC.0.0.THIEF],25)
 
 THEN
@@ -661,7 +661,7 @@ CheckStatLT([PC.0.0.BARD],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 !CheckStatGT([PC.0.0.BARD],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.BARD],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.BARD],%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT([PC.0.0.BARD],25)
 
 THEN
@@ -696,7 +696,7 @@ CheckStatLT(NearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(NearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(NearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(NearestEnemyOf(Myself),25)
 
 THEN
@@ -731,7 +731,7 @@ CheckStatLT(SecondNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SecondNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SecondNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SecondNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(SecondNearestEnemyOf(Myself),25)
 
 THEN
@@ -766,7 +766,7 @@ CheckStatLT(ThirdNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(ThirdNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(ThirdNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(ThirdNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(ThirdNearestEnemyOf(Myself),25)
 
 THEN
@@ -801,7 +801,7 @@ CheckStatLT(FourthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FourthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FourthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FourthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(FourthNearestEnemyOf(Myself),25)
 
 THEN
@@ -836,7 +836,7 @@ CheckStatLT(FifthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FifthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FifthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FifthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(FifthNearestEnemyOf(Myself),25)
 
 THEN
@@ -871,7 +871,7 @@ CheckStatLT(SixthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SixthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SixthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SixthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 !HPPercentGT(SixthNearestEnemyOf(Myself),25)
 
 THEN
@@ -905,7 +905,7 @@ CheckStatLT([PC.0.0.MAGE],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 !CheckStatGT([PC.0.0.MAGE],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.MAGE],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.MAGE],%Num%ITEM_PROTFROMEVIL)
 Range([PC.0.0.MAGE],5)
 THEN
 RESPONSE #100
@@ -939,7 +939,7 @@ CheckStatLT([PC.0.0.MAGE_THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 !CheckStatGT([PC.0.0.MAGE_THIEF],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.MAGE_THIEF],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.MAGE_THIEF],%Num%ITEM_PROTFROMEVIL)
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
 RESPONSE #100
@@ -973,7 +973,7 @@ CheckStatLT([PC.0.0.THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 !CheckStatGT([PC.0.0.THIEF],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.THIEF],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.THIEF],%Num%ITEM_PROTFROMEVIL)
 Range([PC.0.0.THIEF],5)
 THEN
 RESPONSE #100
@@ -1007,7 +1007,7 @@ CheckStatLT([PC.0.0.BARD],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 !CheckStatGT([PC.0.0.BARD],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.BARD],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.BARD],%Num%ITEM_PROTFROMEVIL)
 Range([PC.0.0.BARD],5)
 THEN
 RESPONSE #100
@@ -1042,7 +1042,7 @@ CheckStatLT([PC.0.0.MAGE],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 !CheckStatGT([PC.0.0.MAGE],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.MAGE],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.MAGE],%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1076,7 +1076,7 @@ CheckStatLT([PC.0.0.MAGE_THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 !CheckStatGT([PC.0.0.MAGE_THIEF],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.MAGE_THIEF],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.MAGE_THIEF],%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1110,7 +1110,7 @@ CheckStatLT([PC.0.0.THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 !CheckStatGT([PC.0.0.THIEF],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.THIEF],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.THIEF],%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1144,7 +1144,7 @@ CheckStatLT([PC.0.0.BARD],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 !CheckStatGT([PC.0.0.BARD],0,PROTECTION_FROM_EVIL)
-!CheckStatGT([PC.0.0.BARD],0,ITEM_PROTFROMEVIL)
+!Check%State%([PC.0.0.BARD],%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1177,7 +1177,7 @@ CheckStatLT(NearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(NearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(NearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(NearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1211,7 +1211,7 @@ CheckStatLT(SecondNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SecondNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SecondNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SecondNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(SecondNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1245,7 +1245,7 @@ CheckStatLT(ThirdNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(ThirdNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(ThirdNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(ThirdNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(ThirdNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1279,7 +1279,7 @@ CheckStatLT(FourthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FourthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FourthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FourthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(FourthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1313,7 +1313,7 @@ CheckStatLT(FifthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FifthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FifthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FifthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(FifthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1347,7 +1347,7 @@ CheckStatLT(SixthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SixthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SixthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SixthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(SixthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1382,7 +1382,7 @@ CheckStatLT(NearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(NearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(NearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1416,7 +1416,7 @@ CheckStatLT(SecondNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SecondNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SecondNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SecondNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1450,7 +1450,7 @@ CheckStatLT(ThirdNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(ThirdNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(ThirdNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(ThirdNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1484,7 +1484,7 @@ CheckStatLT(FourthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FourthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FourthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FourthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1518,7 +1518,7 @@ CheckStatLT(FifthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FifthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FifthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FifthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1552,7 +1552,7 @@ CheckStatLT(SixthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SixthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SixthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SixthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1584,7 +1584,7 @@ CheckStatLT(NearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(NearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(NearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(NearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1617,7 +1617,7 @@ CheckStatLT(SecondNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SecondNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SecondNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SecondNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(SecondNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1650,7 +1650,7 @@ CheckStatLT(ThirdNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(ThirdNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(ThirdNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(ThirdNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(ThirdNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1683,7 +1683,7 @@ CheckStatLT(FourthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FourthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FourthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FourthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(FourthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1716,7 +1716,7 @@ CheckStatLT(FifthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FifthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FifthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FifthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(FifthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1749,7 +1749,7 @@ CheckStatLT(SixthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SixthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SixthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SixthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 Range(SixthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
@@ -1783,7 +1783,7 @@ CheckStatLT(NearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(NearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(NearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1816,7 +1816,7 @@ CheckStatLT(SecondNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SecondNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SecondNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SecondNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1849,7 +1849,7 @@ CheckStatLT(ThirdNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(ThirdNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(ThirdNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(ThirdNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1882,7 +1882,7 @@ CheckStatLT(FourthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FourthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FourthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FourthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1915,7 +1915,7 @@ CheckStatLT(FifthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FifthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FifthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FifthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1948,7 +1948,7 @@ CheckStatLT(SixthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SixthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SixthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SixthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 
 THEN
 RESPONSE #100
@@ -1977,7 +1977,7 @@ CheckStatLT(NearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(NearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(NearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 ActionListEmpty()
 THEN
 RESPONSE #100
@@ -2007,7 +2007,7 @@ CheckStatLT(SecondNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SecondNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SecondNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SecondNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 ActionListEmpty()
 THEN
 RESPONSE #100
@@ -2037,7 +2037,7 @@ CheckStatLT(ThirdNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(ThirdNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(ThirdNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(ThirdNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 ActionListEmpty()
 THEN
 RESPONSE #100
@@ -2067,7 +2067,7 @@ CheckStatLT(FourthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FourthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FourthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FourthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 ActionListEmpty()
 THEN
 RESPONSE #100
@@ -2097,7 +2097,7 @@ CheckStatLT(FifthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(FifthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(FifthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(FifthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 ActionListEmpty()
 THEN
 RESPONSE #100
@@ -2127,7 +2127,7 @@ CheckStatLT(SixthNearestEnemyOf(Myself),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(SixthNearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(SixthNearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(SixthNearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 ActionListEmpty()
 THEN
 RESPONSE #100
@@ -2214,7 +2214,7 @@ ActionListEmpty()
 Allegiance(Myself,ENEMY)
 !Allegiance(NearestEnemyOf(Myself),EVILCUTOFF)
 !CheckStatGT(NearestEnemyOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_PROTFROMEVIL)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
@@ -2226,7 +2226,7 @@ See(LastAttackerOf(Myself))
 !Allegiance(Myself,ENEMY)
 AttackedBy([ANYONE],DEFAULT)
 !CheckStatGT(LastAttackerOf(Myself),0,PROTECTION_FROM_EVIL)
-!CheckStatGT(LastAttackerOf(Myself),0,ITEM_PROTFROMEVIL)
+!Check%State%(LastAttackerOf(Myself),%Num%ITEM_PROTFROMEVIL)
 ActionListEmpty()
 THEN
 RESPONSE #100

@@ -150,7 +150,7 @@ IF
 	!StateCheck(Player1,STATE_REALLY_DEAD)
         !StateCheck(Player1,STATE_INVISIBLE)
 	!CheckStatGT(Player1,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player1,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player1,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -174,7 +174,7 @@ IF
 	!StateCheck(Player2,STATE_REALLY_DEAD)
         !StateCheck(Player2,STATE_INVISIBLE)
 	!CheckStatGT(Player2,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player2,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player2,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -198,7 +198,7 @@ IF
 	!StateCheck(Player3,STATE_REALLY_DEAD)
         !StateCheck(Player3,STATE_INVISIBLE)
 	!CheckStatGT(Player3,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player3,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player3,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -222,7 +222,7 @@ IF
 	!StateCheck(Player4,STATE_REALLY_DEAD)
         !StateCheck(Player4,STATE_INVISIBLE)
 	!CheckStatGT(Player4,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player4,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player4,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -246,7 +246,7 @@ IF
 	!StateCheck(Player5,STATE_REALLY_DEAD)
         !StateCheck(Player5,STATE_INVISIBLE)
 	!CheckStatGT(Player5,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player5,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player5,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -270,7 +270,7 @@ IF
 	!StateCheck(Player6,STATE_REALLY_DEAD)
         !StateCheck(Player6,STATE_INVISIBLE)
 	!CheckStatGT(Player6,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player6,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player6,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -372,7 +372,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -403,7 +403,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -434,7 +434,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -465,7 +465,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -496,7 +496,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -527,7 +527,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -551,7 +551,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -575,7 +575,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -599,7 +599,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -622,7 +622,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -645,7 +645,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -668,7 +668,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -694,7 +694,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -720,7 +720,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -746,7 +746,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -772,7 +772,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -798,7 +798,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -824,7 +824,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -850,7 +850,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -876,7 +876,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -902,7 +902,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -928,7 +928,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -939,7 +939,7 @@ IF
 	StateCheck([EVILCUTOFF.HUMANOID.0.0.0.MALE],STATE_CHARMED)
 	!StateCheck([EVILCUTOFF.HUMANOID.0.0.0.MALE],STATE_PANIC)
 	!CheckStatGT([EVILCUTOFF.HUMANOID.0.0.0.MALE],0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT([EVILCUTOFF.HUMANOID.0.0.0.MALE],0,ITEM_LEVELDRAIN)
+	!Check%State%([EVILCUTOFF.HUMANOID.0.0.0.MALE],%Num%ITEM_LEVELDRAIN)
 	See([EVILCUTOFF.HUMANOID.0.0.0.MALE])
 	False()
 THEN
@@ -951,7 +951,7 @@ IF
 	StateCheck(SecondNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_CHARMED)
 	!StateCheck(SecondNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_PANIC)
 	!CheckStatGT(SecondNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(SecondNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,ITEM_LEVELDRAIN)
+	!Check%State%(SecondNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),%Num%ITEM_LEVELDRAIN)
 	See(SecondNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]))
 	False()
 THEN
@@ -963,7 +963,7 @@ IF
 	StateCheck(ThirdNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_CHARMED)
 	!StateCheck(ThirdNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_PANIC)
 	!CheckStatGT(ThirdNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(ThirdNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,ITEM_LEVELDRAIN)
+	!Check%State%(ThirdNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),%Num%ITEM_LEVELDRAIN)
 	See(ThirdNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]))
 	False()
 THEN
@@ -975,7 +975,7 @@ IF
 	StateCheck(FourthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_CHARMED)
 	!StateCheck(FourthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_PANIC)
 	!CheckStatGT(FourthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(FourthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,ITEM_LEVELDRAIN)
+	!Check%State%(FourthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),%Num%ITEM_LEVELDRAIN)
 	See(FourthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]))
 	False()
 THEN
@@ -987,7 +987,7 @@ IF
 	StateCheck(FifthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_CHARMED)
 	!StateCheck(FifthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_PANIC)
 	!CheckStatGT(FifthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(FifthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,ITEM_LEVELDRAIN)
+	!Check%State%(FifthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),%Num%ITEM_LEVELDRAIN)
 	See(FifthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]))
 	False()
 THEN
@@ -999,7 +999,7 @@ IF
 	StateCheck(SixthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_CHARMED)
         !StateCheck(SixthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),STATE_PANIC)
 	!CheckStatGT(SixthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(SixthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),0,ITEM_LEVELDRAIN)
+	!Check%State%(SixthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]),%Num%ITEM_LEVELDRAIN)
 	See(SixthNearest([EVILCUTOFF.HUMANOID.0.0.0.MALE]))
 	False()
 THEN
@@ -1012,7 +1012,7 @@ IF
         !StateCheck(Player6,STATE_PANIC)
 	Gender(Player6,MALE)
 	!CheckStatGT(Player6,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player6,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player6,%Num%ITEM_LEVELDRAIN)
 	See(Player6)
 	False()
 THEN
@@ -1025,7 +1025,7 @@ IF
         !StateCheck(Player5,STATE_PANIC)
 	Gender(Player5,MALE)
 	!CheckStatGT(Player5,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player5,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player5,%Num%ITEM_LEVELDRAIN)
 	See(Player5)
 	False()
 THEN
@@ -1038,7 +1038,7 @@ IF
         !StateCheck(Player4,STATE_PANIC)
 	Gender(Player4,MALE)
 	!CheckStatGT(Player4,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player4,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player4,%Num%ITEM_LEVELDRAIN)
 	See(Player4)
 	False()
 THEN
@@ -1051,7 +1051,7 @@ IF
         !StateCheck(Player3,STATE_PANIC)
 	Gender(Player3,MALE)
 	!CheckStatGT(Player3,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player3,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player3,%Num%ITEM_LEVELDRAIN)
 	See(Player3)
 	False()
 THEN
@@ -1064,7 +1064,7 @@ IF
         !StateCheck(Player2,STATE_PANIC)
 	Gender(Player2,MALE)
 	!CheckStatGT(Player2,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player2,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player2,%Num%ITEM_LEVELDRAIN)
 	See(Player2)
 	False()
 THEN
@@ -1077,7 +1077,7 @@ IF
         !StateCheck(Player1,STATE_PANIC)
 	Gender(Player1,MALE)
 	!CheckStatGT(Player1,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player1,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player1,%Num%ITEM_LEVELDRAIN)
 	See(Player1)
 	False()
 THEN
@@ -1121,7 +1121,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
         !StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!CheckStatGT(LastSeenBy(Myself),0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_LEVELDRAIN)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1142,7 +1142,7 @@ IF
 	!StateCheck(Player1,STATE_REALLY_DEAD)
         !StateCheck(Player1,STATE_INVISIBLE)
 	!CheckStatGT(Player1,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player1,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player1,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1163,7 +1163,7 @@ IF
 	!StateCheck(Player2,STATE_REALLY_DEAD)
         !StateCheck(Player2,STATE_INVISIBLE)
 	!CheckStatGT(Player2,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player2,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player2,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1184,7 +1184,7 @@ IF
 	!StateCheck(Player3,STATE_REALLY_DEAD)
         !StateCheck(Player3,STATE_INVISIBLE)
 	!CheckStatGT(Player3,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player3,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player3,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1205,7 +1205,7 @@ IF
 	!StateCheck(Player4,STATE_REALLY_DEAD)
         !StateCheck(Player4,STATE_INVISIBLE)
 	!CheckStatGT(Player4,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player4,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player4,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1226,7 +1226,7 @@ IF
 	!StateCheck(Player5,STATE_REALLY_DEAD)
         !StateCheck(Player5,STATE_INVISIBLE)
 	!CheckStatGT(Player5,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player5,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player5,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1247,7 +1247,7 @@ IF
 	!StateCheck(Player6,STATE_REALLY_DEAD)
         !StateCheck(Player6,STATE_INVISIBLE)
 	!CheckStatGT(Player6,0,SCRIPTINGSTATE3) // Negative Plane protection
-	!CheckStatGT(Player6,0,ITEM_LEVELDRAIN)
+	!Check%State%(Player6,%Num%ITEM_LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1275,7 +1275,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1299,7 +1299,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1323,7 +1323,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1347,7 +1347,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1373,7 +1373,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1399,7 +1399,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1425,7 +1425,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1451,7 +1451,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1477,7 +1477,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1503,7 +1503,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1576,7 +1576,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		NoAction()

@@ -555,13 +555,19 @@ END                                                                             
 // New AI Scripts
 //////////////////
 
+ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
+	OUTER_SPRINT ~State~ ~SpellState~
+	OUTER_SPRINT ~Num~ ~~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~State~ ~StatGT~
+	OUTER_SPRINT ~Num~ ~0,~
+END
 
-COMPILE ~atweaks/baf/fey/rr#fdrya.baf~                                             // hostile Dryad AI script
-COMPILE ~atweaks/baf/fey/rr#fhama.baf~                                             // hostile Hamadryad AI script
-COMPILE ~atweaks/baf/fey/rr#fsiri.baf~                                             // hostile Sirine AI script
-COMPILE ~atweaks/baf/fey/rr#fnymp.baf~                                             // hostile Nymph AI script
-COMPILE ~atweaks/baf/fey/rr#snymp.baf~                                             // summoned Nymph AI script
-
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fey/rr#fdrya.baf~                              // hostile Dryad AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fey/rr#fhama.baf~		                        // hostile Hamadryad AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fey/rr#fsiri.baf~ 				                // hostile Sirine AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fey/rr#fnymp.baf~				                // hostile Nymph AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fey/rr#snymp.baf~	                            // summoned Nymph AI script
 
 
 /////////////

@@ -24,9 +24,9 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
                 SetGlobal("RR#EACheck","LOCALS",2)
-                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -50,9 +50,9 @@ IF
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
-                DialogueInterrupt(FALSE)						
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -64,9 +64,9 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
                 SetGlobal("RR#Hostile","LOCALS",0)
-                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -310,7 +310,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -337,7 +337,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -364,7 +364,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -391,7 +391,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -418,7 +418,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -445,7 +445,7 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -949,7 +949,7 @@ IF
         Global("RR#Smnr","LOCALS",0)
 	Exists(LastSummonerOf(Myself))
         !CheckStatGT(LastSummonerOf(Myself),0,PROTECTION_FROM_EVIL)
-	!CheckStatGT(LastSummonerOf(Myself),0,ITEM_PROTFROMEVIL)
+	!Check%State%(LastSummonerOf(Myself),%Num%ITEM_PROTFROMEVIL)
         !StateCheck(LastSummonerOf(Myself),STATE_REALLY_DEAD)
         !StateCheck(Myself,STATE_INVISIBLE)
         See(LastSummonerOf(Myself))
@@ -1015,7 +1015,7 @@ END
 IF
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
         CheckStat(LastSeenBy(Myself),0,PROTECTION_FROM_EVIL)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PROTFROMEVIL)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PROTFROMEVIL)
 	!CheckStatGT(LastSeenBy(Myself),2,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Absolute Immunity or PfMW
         CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
 THEN

@@ -17,6 +17,7 @@
 238 101 Disintegrate       ITEM_DISINTEGRATE        *
 78 	101 disease            ITEM_DISEASE             *
 74	101 Blindness		   ITEM_BLIND		        *
+76	101 Feeblemindedness   ITEM_FEEBL		        *
 9 	100 Protectevil		   ITEM_PROTFROMEVIL		*
 spwi112 206 MagicMissile   ITEM_MM                  *
 spin774 206 PsiMaze        ITEM_PSIMAZE             ITEM_PSIONIC_SEEN

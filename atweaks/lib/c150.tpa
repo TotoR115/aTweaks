@@ -933,27 +933,35 @@ END
 // New AI Scripts
 ////////////////////////////////////////////////////////////////////////////////
 
-COMPILE ~atweaks/baf/fiends/rr#hquas.baf~ // Quasit
-        ~atweaks/baf/fiends/rr#haluf.baf~ // Alu-Fiend
-        ~atweaks/baf/fiends/rr#hcamb.baf~ // Cambion
-        ~atweaks/baf/fiends/rr#hmaur.baf~ // Maurezhi
-        ~atweaks/baf/fiends/rr#hsucc.baf~ // Succubus
-        ~atweaks/baf/fiends/rr#hnaba.baf~ // Nabassu
-        ~atweaks/baf/fiends/rr#hglab.baf~ // Glabrezu
-        ~atweaks/baf/fiends/rr#hmari.baf~ // Marilith
-        ~atweaks/baf/fiends/rr#hbalr.baf~ // Balor
-        ~atweaks/baf/fiends/rr#himp.baf~  // Imp
-        ~atweaks/baf/fiends/rr#hfcat.baf~ // Hellcat
-        ~atweaks/baf/fiends/rr#herin.baf~ // Erinyes
-        ~atweaks/baf/fiends/rr#hbfnd.baf~ // Bone Fiend
-        ~atweaks/baf/fiends/rr#habis.baf~ // Abishai
-        ~atweaks/baf/fiends/rr#hcorn.baf~ // Cornugon
-        ~atweaks/baf/fiends/rr#hgelu.baf~ // Gelugon
-        ~atweaks/baf/fiends/rr#hpitf.baf~ // Pit Fiend
-        ~atweaks/baf/fiends/rr#karas.baf~ // Ka'rashur's reinforcement summoning script
-        ~atweaks/baf/fiends/rr#tahaz.baf~ // Tahazzar's reinforcement summoning script
-        ~atweaks/baf/fiends/fl#shafi.baf~ // Shadow Fiend
-        ~atweaks/baf/fiends/fl#shaf2.baf~ // Devil Shade
+ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
+	OUTER_SPRINT ~State~ ~SpellState~
+	OUTER_SPRINT ~Num~ ~~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~State~ ~StatGT~
+	OUTER_SPRINT ~Num~ ~0,~
+END
+
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fiends/rr#hquas.baf~ // Quasit
+						~atweaks/baf/fiends/rr#haluf.baf~ // Alu-Fiend
+						~atweaks/baf/fiends/rr#hcamb.baf~ // Cambion
+						~atweaks/baf/fiends/rr#hmaur.baf~ // Maurezhi
+						~atweaks/baf/fiends/rr#hsucc.baf~ // Succubus
+						~atweaks/baf/fiends/rr#hnaba.baf~ // Nabassu
+						~atweaks/baf/fiends/rr#hglab.baf~ // Glabrezu
+						~atweaks/baf/fiends/rr#hmari.baf~ // Marilith
+						~atweaks/baf/fiends/rr#hbalr.baf~ // Balor
+						~atweaks/baf/fiends/rr#himp.baf~  // Imp
+						~atweaks/baf/fiends/rr#hfcat.baf~ // Hellcat
+						~atweaks/baf/fiends/rr#herin.baf~ // Erinyes
+						~atweaks/baf/fiends/rr#hbfnd.baf~ // Bone Fiend
+						~atweaks/baf/fiends/rr#habis.baf~ // Abishai
+						~atweaks/baf/fiends/rr#hcorn.baf~ // Cornugon
+						~atweaks/baf/fiends/rr#hgelu.baf~ // Gelugon
+						~atweaks/baf/fiends/rr#hpitf.baf~ // Pit Fiend
+						~atweaks/baf/fiends/rr#karas.baf~ // Ka'rashur's reinforcement summoning script
+						~atweaks/baf/fiends/rr#tahaz.baf~ // Tahazzar's reinforcement summoning script
+						~atweaks/baf/fiends/fl#shafi.baf~ // Shadow Fiend
+						~atweaks/baf/fiends/fl#shaf2.baf~ // Devil Shade
 
 ACTION_IF GAME_INCLUDES ~tob~ BEGIN
   // Make Ka'rashur use aTweaks' Pit Fiend script once he goes hostile

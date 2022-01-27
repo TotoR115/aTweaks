@@ -144,7 +144,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -169,7 +169,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -194,7 +194,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -222,7 +222,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -246,7 +246,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -270,7 +270,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -294,7 +294,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -318,7 +318,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -342,7 +342,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -366,7 +366,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -390,7 +390,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -414,7 +414,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -438,7 +438,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -462,7 +462,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -488,7 +488,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],10) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -514,7 +514,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -538,7 +538,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -562,7 +562,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -586,7 +586,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -610,7 +610,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -634,7 +634,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -658,7 +658,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
         OR(5)
 	  !Range([EVILCUTOFF],15) // try to avoid using cloud spells near allies
 	  CheckStatGT([EVILCUTOFF],0,MINORGLOBE) // minor globe protects from wall of fog
@@ -680,7 +680,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -697,7 +697,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -714,7 +714,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -731,7 +731,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -748,7 +748,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -765,7 +765,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -782,7 +782,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -799,7 +799,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -816,7 +816,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),9,SAVEVSDEATH) // target the most susceptible victims first
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -833,7 +833,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -850,7 +850,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -867,7 +867,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -884,7 +884,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -901,7 +901,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -918,7 +918,7 @@ IF
 	CheckStatGT(LastSeenBy(Myself),0,SAVEVSDEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)

@@ -765,7 +765,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -788,7 +788,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -811,7 +811,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -837,7 +837,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -859,7 +859,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -881,7 +881,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -903,7 +903,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -925,7 +925,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -947,7 +947,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -969,7 +969,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -991,7 +991,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1013,7 +1013,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1035,7 +1035,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1057,7 +1057,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1081,7 +1081,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1105,7 +1105,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1127,7 +1127,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1149,7 +1149,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1171,7 +1171,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1193,7 +1193,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1215,7 +1215,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1237,7 +1237,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)

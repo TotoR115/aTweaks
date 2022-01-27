@@ -1231,8 +1231,9 @@ BEGIN
 END
 
 COPY_EXISTING "trollreg.itm" "override/RevnREG.itm"
-  WRITE_SHORT 0x1c 1
+  WRITE_SHORT 0x1c 3
   LPF ALTER_EFFECT INT_VAR match_opcode = 98 parameter1 = 3 parameter2 = 3 END
+  SAY NAME1 #1292
 
 COPY_EXISTING "REVENT1.itm" override
   LPF DELETE_EFFECT INT_VAR match_opcode = 98 END
@@ -2599,9 +2600,21 @@ ACTION_IF GAME_INCLUDES ~soa~ BEGIN
   BUT_ONLY
 END
 
-
+////////////////////////////////////////////////////////////////////////////////
+// New AI Scripts
+////////////////////////////////////////////////////////////////////////////////
 
 // Scripts
+
+ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
+	OUTER_SPRINT ~State~ ~SpellState~
+	OUTER_SPRINT ~Num~ ~~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~State~ ~StatGT~
+	OUTER_SPRINT ~Num~ ~0,~
+END
+
+
 ACTION_IF BG1 AND !BGT AND !EET BEGIN
   OUTER_SPRINT DurlagArea fw0516
 <<<<<<<< ...atweaks/fl-inlined/bg1kn_new.baf
@@ -2675,27 +2688,27 @@ END
   BUT_ONLY
 END
 
-COMPILE ~atweaks/baf/undead/fl#death.baf~
-        ~atweaks/baf/undead/fl#mum.baf~
-        ~atweaks/baf/undead/fl#ghoul.baf~
-        ~atweaks/baf/undead/fl#ghast.baf~
-        "atweaks/baf/undead/fl#dksw5.baf"
-        "atweaks/baf/undead/fl#glord.baf"
-        "atweaks/baf/undead/fl#sklwm.baf"
-        "atweaks/baf/undead/fl#sklwr.baf"
-        "atweaks/baf/undead/fl#bansh.baf"
-		"atweaks/baf/undead/fl#gmum.baf"
-        "atweaks/baf/undead/fl#lowm.baf"
-        "atweaks/baf/undead/fl#zomse.baf"
-        "atweaks/baf/undead/fl#lowr.baf"
-		"atweaks/baf/undead/fl#zlord.baf"
-		"atweaks/baf/undead/fl#zsel.baf"
-        "atweaks/baf/undead/fl#midmc.baf"
-        "atweaks/baf/undead/fl#higmc.baf"
-        "atweaks/baf/undead/fl#saham.baf"
-        "atweaks/baf/undead/fl#skwsu.baf"
-        "atweaks/baf/undead/fl#sklsu.baf"
-		"atweaks/baf/undead/TRevn_01.baf"
+COMPILE EVALUATE_BUFFER ~atweaks/baf/undead/fl#death.baf~
+						~atweaks/baf/undead/fl#mum.baf~
+						~atweaks/baf/undead/fl#ghoul.baf~
+						~atweaks/baf/undead/fl#ghast.baf~
+						"atweaks/baf/undead/fl#dksw5.baf"
+						"atweaks/baf/undead/fl#glord.baf"
+						"atweaks/baf/undead/fl#sklwm.baf"
+						"atweaks/baf/undead/fl#sklwr.baf"
+						"atweaks/baf/undead/fl#bansh.baf"
+						"atweaks/baf/undead/fl#gmum.baf"
+						"atweaks/baf/undead/fl#lowm.baf"
+						"atweaks/baf/undead/fl#zomse.baf"
+						"atweaks/baf/undead/fl#lowr.baf"
+						"atweaks/baf/undead/fl#zlord.baf"
+						"atweaks/baf/undead/fl#zsel.baf"
+						"atweaks/baf/undead/fl#midmc.baf"
+						"atweaks/baf/undead/fl#higmc.baf"
+						"atweaks/baf/undead/fl#saham.baf"
+						"atweaks/baf/undead/fl#skwsu.baf"
+						"atweaks/baf/undead/fl#sklsu.baf"
+						"atweaks/baf/undead/TRevn_01.baf"
 
 
 

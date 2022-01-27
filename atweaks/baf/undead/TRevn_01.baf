@@ -4,7 +4,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("RevnDie","LOCALS",1)
-		SetGlobalTimer("RevnDeath","LOCALS",6)
+		SetGlobalTimer("RevnDeath","LOCALS",12)
 		DestroyItem("monhp1")  // Necklace
 END
 
@@ -27,7 +27,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("RevnDie","LOCALS",2)
-		SetGlobalTimer("RevnBack","LOCALS",6)
+		SetGlobalTimer("RevnBack","LOCALS",12)
 		ForceSpellRES("fl#die",Myself)  // No such index
 		DestroyItem("RevnReg")  // Ring
 		PlayDead(300)

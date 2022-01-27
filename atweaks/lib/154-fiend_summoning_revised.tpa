@@ -202,16 +202,24 @@ BUT_ONLY
 // Scripts, summons
 //////////////////////////////////////////////////////////////////////
 
-COMPILE ~atweaks/baf/fiends/rr#snaba.baf~ // Summoned Nabassu AI script
-        ~atweaks/baf/fiends/rr#scorn.baf~ // Summoned Cornugon AI script
-        ~atweaks/baf/fiends/rr#tempt.baf~ // Summoned Glabrezu script for tempting mortals
-        ~atweaks/baf/fiends/rr#sglab.baf~ // Summoned Glabrezu AI script
-        ~atweaks/baf/fiends/rr#sgelu.baf~ // Summoned Gelugon AI script
-        ~atweaks/baf/fiends/rr#spitf.baf~ // Summoned Pit Fiend AI script
-        ~atweaks/baf/fiends/rr#sbalr.baf~ // Summoned Balor AI script
-        ~atweaks/baf/fiends/fl#sarca.baf~ // Summoned Arcanaloth AI script
-        ~atweaks/baf/fiends/fl#snyca.baf~ // Summoned Nycaloth AI script
-        ~atweaks/baf/fiends/fl#sultr.baf~ // Summoned Ultroloth AI script
+ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
+	OUTER_SPRINT ~State~ ~SpellState~
+	OUTER_SPRINT ~Num~ ~~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~State~ ~StatGT~
+	OUTER_SPRINT ~Num~ ~0,~
+END
+
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fiends/rr#snaba.baf~ // Summoned Nabassu AI script
+						~atweaks/baf/fiends/rr#scorn.baf~ // Summoned Cornugon AI script
+						~atweaks/baf/fiends/rr#tempt.baf~ // Summoned Glabrezu script for tempting mortals
+						~atweaks/baf/fiends/rr#sglab.baf~ // Summoned Glabrezu AI script
+						~atweaks/baf/fiends/rr#sgelu.baf~ // Summoned Gelugon AI script
+						~atweaks/baf/fiends/rr#spitf.baf~ // Summoned Pit Fiend AI script
+						~atweaks/baf/fiends/rr#sbalr.baf~ // Summoned Balor AI script
+						~atweaks/baf/fiends/fl#sarca.baf~ // Summoned Arcanaloth AI script
+						~atweaks/baf/fiends/fl#snyca.baf~ // Summoned Nycaloth AI script
+						~atweaks/baf/fiends/fl#sultr.baf~ // Summoned Ultroloth AI script
 
 // Replace RunAwayFrom() with RandomWalkContinuous()
 // Reasoning: RunAwayFrom() often tends to slow down the game
@@ -243,15 +251,16 @@ END
 ////////////////////////////////////////
 
 // Create scripts and creatures outside the ACTION_IF in case SCSII is installed after
-COMPILE ~atweaks/baf/fiends/fl#nabsu.baf~
-        ~atweaks/baf/fiends/fl#corsu.baf~
-        ~atweaks/baf/fiends/fl#glasu.baf~
-        ~atweaks/baf/fiends/fl#gelsu.baf~
-        ~atweaks/baf/fiends/fl#balsu.baf~
-        ~atweaks/baf/fiends/fl#pitsu.baf~
-        ~atweaks/baf/fiends/fl#arcsu.baf~
-        ~atweaks/baf/fiends/fl#nycsu.baf~
-        ~atweaks/baf/fiends/fl#ultsu.baf~
+
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fiends/fl#nabsu.baf~
+						~atweaks/baf/fiends/fl#corsu.baf~
+						~atweaks/baf/fiends/fl#glasu.baf~
+						~atweaks/baf/fiends/fl#gelsu.baf~
+						~atweaks/baf/fiends/fl#balsu.baf~
+						~atweaks/baf/fiends/fl#pitsu.baf~
+						~atweaks/baf/fiends/fl#arcsu.baf~
+						~atweaks/baf/fiends/fl#nycsu.baf~
+						~atweaks/baf/fiends/fl#ultsu.baf~
 
 COPY_EXISTING demnab01.cre ~override/fl#nabsu.cre~
               telcor1.cre  ~override/fl#corsu.cre~

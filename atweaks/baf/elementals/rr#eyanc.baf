@@ -102,7 +102,8 @@ END
 IF
     !GlobalTimerNotExpired("rr#niinv","LOCALS") // Natural Invisibility is automatically re-applied once per round (note: this is not a spell and shouldn't be treated as such)
     !StateCheck(Myself,STATE_INVISIBLE)
-    !Global("dvgldust","LOCALS",1) // Natural Invisibility should check for Glitterdust
+    !Global("dvgldust","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1) // Natural Invisibility should check for Glitterdust
     !CheckStatGT(Player1,0,TRUE_SIGHT) // also have it check for True Seeing, otherwise, it's too unbalanced
     !CheckStatGT(Player2,0,TRUE_SIGHT)
     !CheckStatGT(Player3,0,TRUE_SIGHT)
@@ -917,7 +918,7 @@ IF
     !CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
@@ -948,7 +949,7 @@ IF
     !CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
@@ -979,7 +980,7 @@ IF
     !CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_CHARM)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_CHARM)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)

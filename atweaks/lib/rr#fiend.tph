@@ -180,6 +180,9 @@ COPY ~aTweaks/SPL/RR#CNSTR.SPL~ ~override~                                      
 COPY ~aTweaks/EFF/RR#CNSTR.EFF~ ~override~                                         // Constrict ability immunity (for large and incorporeal creatures)
 COPY ~aTweaks/VVC/RR#CNSTR.VVC~ ~override~                                         // Constrict/Grab/Flaming Whip ability VVC animation
 COPY ~aTweaks/BAM/RR#CNSTR.BAM~ ~override~                                         // Constrict/Grab/Flaming Whip ability BAM graphics
+COPY ~aTweaks/VVC/RR#WHIP.VVC~ ~override~                                          // Whip VVC animation
+COPY ~aTweaks/BAM/RR#WHIP.BAM~ ~override~                                          // Whip BAM graphics
+COPY ~aTweaks/WAV/RR#WHIP.WAV~ ~override~                                          // Whip sound
 COPY ~aTweaks/SPL/RR#DPDIS.SPL~ ~override~                                         // Pit Fiend disease (-4 to STR, non-cumulative)
   WRITE_BYTE 0x27 fl#Disease                                                       // Custom Disease SecType 
 
@@ -575,9 +578,12 @@ COPY_EXISTING sppr705.spl "override/RR#PR705.spl"                               
 COPY ~atweaks/itm/rr#dinv.itm~  ~override~                                         // item which makes fiends untargetable until the gating animation finishes
 COPY ~aTweaks/ITM/RR#GHAST.ITM~ ~override~                                         // spawned Ghast melee attack
 COPY ~aTweaks/ITM/RR#DQUAS.ITM~ ~override~                                         // Quasit melee attack
+  LPF set_enchantment END
 COPY ~aTweaks/ITM/RR#DNABA.ITM~ ~override~                                         // Nabassu melee attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 
 COPY ~aTweaks/ITM/RR#DGLAB.ITM~ ~override~                                         // Glabrezu melee attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
   LPF DELETE_ITEM_EFFECT INT_VAR opcode_to_delete = 146 END
   opcode = 177
   target = 2
@@ -590,33 +596,45 @@ COPY ~aTweaks/ITM/RR#DGLAB.ITM~ ~override~                                      
   END
 
 COPY ~aTweaks/ITM/RR#DMARI.ITM~ ~override~                                         // Marilith melee attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
 
 COPY ~atweaks/itm/rr#dbalr.itm~ ~override~                                         // Balor Vorpal Sword (right hand)
+  LPF set_enchantment INT_VAR enchantment = 5 END
   LAUNCH_PATCH_FUNCTION ~entangle_immunities~ END                                    // add immunity to Entangle spells and abilities
   WRITE_BYTE 0x31 90 // PROFICIENCYLONGSWORD
 
 COPY ~atweaks/itm/rr#dbal2.itm~ ~override~                                         // Balor Flaming Whip (left hand)
+  LPF set_enchantment INT_VAR enchantment = 5 END
   WRITE_BYTE 0x31 100 // PROFICIENCYFLAILMORNINGSTAR
 
 
 COPY ~aTweaks/ITM/RR#DIMP.ITM~  ~override~                                         // Imp melee attack
+  LPF set_enchantment END
 COPY ~aTweaks/ITM/RR#DFCAT.ITM~ ~override~                                         // Fell Cat melee attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~aTweaks/ITM/RR#DABIS.ITM~ ~override~                                         // Abishai melee attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~aTweaks/ITM/RR#DBFND.ITM~ ~override~                                         // Bone Fiend melee attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~aTweaks/ITM/RR#DCORN.ITM~ ~override~                                         // Cornugon melee attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/rr#dmaur.itm~ ~override~                                         // Maurezhi melee attack
-
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~atweaks/itm/rr#dgelu.itm~ ~override~                                         // Gelugon spear attack (main hand)
+  LPF set_enchantment INT_VAR enchantment = 4 END
 COPY ~atweaks/itm/rr#dgel2.itm~ ~override~                                         // Gelugon tail attack (off-hand)
+  LPF set_enchantment INT_VAR enchantment = 4 END
 
 
 
 COPY ~aTweaks/ITM/RR#DPITF.ITM~ ~override~                                         // Pit Fiend melee attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY_EXISTING ~DEMSUC01.ITM~  ~override~                                           // Succubus melee attack
 LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EFFECT~                                         // delete effect
 INT_VAR                                                                            // initialize variables
 "opcode_to_delete" = "-1"                                                          // effect: -1 (all effects)
 END
+  LPF set_enchantment INT_VAR enchantment = 2 END
 BUT_ONLY_IF_IT_CHANGES
 
 

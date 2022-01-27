@@ -109,7 +109,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -126,7 +126,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -143,7 +143,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -160,7 +160,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -177,7 +177,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -194,7 +194,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -211,7 +211,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -228,7 +228,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -245,7 +245,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -262,7 +262,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -279,7 +279,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -296,7 +296,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
     !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
 THEN
@@ -318,7 +318,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -338,7 +338,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -358,7 +358,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -378,7 +378,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -398,7 +398,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -418,7 +418,7 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+    !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)

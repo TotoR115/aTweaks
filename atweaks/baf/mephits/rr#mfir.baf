@@ -367,8 +367,8 @@ IF
 	See([GOODCUTOFF.0.0.MAGE_ALL])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -392,8 +392,8 @@ IF
 	See(SecondNearest([GOODCUTOFF.0.0.MAGE_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -417,8 +417,8 @@ IF
 	See([GOODCUTOFF.0.0.BARD_ALL])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -442,8 +442,8 @@ IF
 	See(SecondNearest([GOODCUTOFF.0.0.BARD_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -467,8 +467,8 @@ IF
 	See([GOODCUTOFF.0.0.CLERIC_ALL])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -492,8 +492,8 @@ IF
 	See(SecondNearest([GOODCUTOFF.0.0.CLERIC_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -517,8 +517,8 @@ IF
 	See([GOODCUTOFF.0.0.DRUID_ALL])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -542,8 +542,8 @@ IF
 	See(SecondNearest([GOODCUTOFF.0.0.DRUID_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -567,8 +567,8 @@ IF
 	See(MostDamagedOf([PC]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -592,8 +592,8 @@ IF
 	See([GOODCUTOFF])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_MM)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
+	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield

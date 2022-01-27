@@ -1,6 +1,8 @@
 INCLUDE ~atweaks/lib/ds/ds.tph~
 
-DEFINE_ACTION_FUNCTION item_labels // borrow from Strataegems and addapted
+// borrow and adapted from Stratagems for aTweaks
+
+DEFINE_ACTION_FUNCTION item_labels 
 BEGIN
    OUTER_SPRINT opcodelist ""
    COPY ~%MOD_FOLDER%/ssl/libdata.txt~ ~%MOD_FOLDER%/ssl~
@@ -49,7 +51,7 @@ BEGIN
           END
        END
 
-  ACTION_IF NOT MOD_IS_INSTALLED "STRATAGEMS.TP2" "5900" BEGIN
+ ACTION_IF NOT MOD_IS_INSTALLED "STRATAGEMS.TP2" "5900" BEGIN
 	ACTION_DEFINE_ASSOCIATIVE_ARRAY rr_ds_item BEGIN
 	 
     ~5~ => ~ITEM_CHARM~
@@ -70,6 +72,7 @@ BEGIN
 	~217~ => ~ITEM_SLEEP~
 	~78~ => ~ITEM_DISEASE~
 	~74~ => ~ITEM_BLIND~
+	~76~ => ~ITEM_FEEBL~
 	// ~9~ => ~ITEM_PROTFROMEVIL~
 	// ~spwi112~ => ~ITEM_MM~
 	END
@@ -78,6 +81,7 @@ BEGIN
 
 	~78~ => ~ITEM_DISEASE~
 	~74~ => ~ITEM_BLIND~
+	~76~ => ~ITEM_FEEBL~
 	// ~9~ => ~ITEM_PROTFROMEVIL~
 	END
   END	
@@ -85,27 +89,29 @@ BEGIN
    ACTION_IF FILE_EXISTS "tobex.dll" BEGIN
 	OUTER_SET ds_opcode = 318
 	OUTER_SET ds_special = 0
+	OUTER_SET ds_parameter1 = 1
 	OUTER_TEXT_SPRINT ds_stats "stats"
    END ELSE ACTION_IF GAME_IS "BGEE BG2EE EET IWDEE" BEGIN
 	OUTER_SET ds_opcode = 328
 	OUTER_SET ds_special = 1
-	OUTER_TEXT_SPRINT ds_stats "SPLSTATE"
+	OUTER_SET ds_parameter1 = 0
+	OUTER_TEXT_SPRINT ds_stats "splstate"
    END 
 
     COPY_EXISTING_REGEXP GLOB ~.*\.itm~ override
 	  PATCH_PHP_EACH rr_ds_item AS parameters => ds_item BEGIN
 		SET ds_item=IDS_OF_SYMBOL ("%ds_stats%" "%ds_item%")
-		LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 101 match_parameter2 = EVAL "%parameters%" opcode = EVAL "%ds_opcode%" parameter1 = 1 parameter2 = "%ds_item%" special = EVAL "ds_special" END
+		LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 101 match_parameter2 = EVAL "%parameters%" opcode = EVAL "%ds_opcode%" parameter1 = EVAL "%ds_parameter1%" parameter2 = "%ds_item%" special = EVAL "ds_special" END
 	  END
       INNER_ACTION BEGIN
 	    OUTER_SET item_evil = IDS_OF_SYMBOL ("%ds_stats%" "ITEM_PROTFROMEVIL")
 	  END
-	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 100 match_parameter1 = 9 match_parameter2 = 7 opcode = EVAL "%ds_opcode%" parameter1 = 1 parameter2 = "%item_evil%" special = EVAL "ds_special" END	 
+	  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 100 match_parameter1 = 9 match_parameter2 = 7 opcode = EVAL "%ds_opcode%" parameter1 = EVAL "%ds_parameter1%" parameter2 = "%item_evil%" special = EVAL "ds_special" END	 
 	  PATCH_IF NOT MOD_IS_INSTALLED "STRATAGEMS.TP2" "5900" BEGIN
 		INNER_ACTION BEGIN
 		  OUTER_SET item_mm = IDS_OF_SYMBOL ("%ds_stats%" "ITEM_MM")
 		END
-		LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 opcode = EVAL "%ds_opcode%" parameter1 = 1 parameter2 = "%item_mm%" special = EVAL "ds_special" STR_VAR match_resource = "spwi112" END
+		LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 opcode = EVAL "%ds_opcode%" parameter1 = EVAL "%ds_parameter1%" parameter2 = "%item_mm%" special = EVAL "ds_special" STR_VAR match_resource = "spwi112" END
 	  END
     BUT_ONLY
    BUT_ONLY

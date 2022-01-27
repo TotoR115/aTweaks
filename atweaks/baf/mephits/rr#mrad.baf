@@ -670,7 +670,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -697,7 +697,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -724,7 +724,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -751,7 +751,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -778,7 +778,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -805,7 +805,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -832,7 +832,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -859,7 +859,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -886,7 +886,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -913,7 +913,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -940,7 +940,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -967,7 +967,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -994,7 +994,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1021,7 +1021,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1051,7 +1051,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1081,7 +1081,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1111,7 +1111,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1141,7 +1141,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1171,7 +1171,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -1201,7 +1201,7 @@ IF
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_CONFUSION)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit

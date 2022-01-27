@@ -42,9 +42,9 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
                 SetGlobal("RR#EACheck","LOCALS",2)
-                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -68,9 +68,9 @@ IF
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
-                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -82,9 +82,9 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
                 SetGlobal("RR#Hostile","LOCALS",0)
-                DialogueInterrupt(FALSE)
 		LeaveParty()
 		ChangeEnemyAlly(Myself,ALLY)
+                DialogueInterrupt(FALSE)
 		SetInterrupt(TRUE)
 END
 
@@ -837,7 +837,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -856,7 +856,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -875,7 +875,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -894,7 +894,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -913,7 +913,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -932,7 +932,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -951,7 +951,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -970,7 +970,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -989,7 +989,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1008,7 +1008,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1027,7 +1027,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1046,7 +1046,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_SILENCE)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_SILENCE)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 THEN
 	RESPONSE #100
@@ -1600,7 +1600,7 @@ IF
         Global("RR#Smnr","LOCALS",0)
 	Exists(LastSummonerOf(Myself))
         !CheckStatGT(LastSummonerOf(Myself),0,PROTECTION_FROM_EVIL)
-	!CheckStatGT(LastSummonerOf(Myself),0,ITEM_PROTFROMEVIL)
+	!Check%State%(LastSummonerOf(Myself),%Num%ITEM_PROTFROMEVIL)
         !StateCheck(LastSummonerOf(Myself),STATE_REALLY_DEAD)
         !StateCheck(Myself,STATE_INVISIBLE)
         See(LastSummonerOf(Myself))
@@ -1648,7 +1648,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
         !StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
         CheckStat(LastSeenBy(Myself),0,PROTECTION_FROM_EVIL)
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_PROTFROMEVIL)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PROTFROMEVIL)
 	!CheckStatGT(LastSeenBy(Myself),1,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Improved Mantle or higher
         CheckStatLT(LastSeenBy(Myself),100,RESISTSLASHING)
 THEN

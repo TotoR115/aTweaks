@@ -463,7 +463,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -486,7 +486,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -509,7 +509,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -532,7 +532,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -555,7 +555,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -578,7 +578,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -601,7 +601,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -624,7 +624,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -647,7 +647,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -670,7 +670,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 THEN
@@ -841,7 +841,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -859,7 +859,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -877,7 +877,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -895,7 +895,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -913,7 +913,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -931,7 +931,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -949,7 +949,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -967,7 +967,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -985,7 +985,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1003,7 +1003,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!CheckStatGT(NearestEnemyOf(Myself),0,ITEM_BLIND)
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -1582,7 +1582,7 @@ IF
         !Class(LastSeenBy(Myself),DRUID_ALL)
         !Kit(LastSeenBy(Myself),CAVALIER)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
-	!CheckStatGT(LastSeenBy(Myself),0,ITEM_POISON)
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
         !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)

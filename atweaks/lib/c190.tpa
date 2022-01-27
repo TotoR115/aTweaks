@@ -496,40 +496,73 @@ BUT_ONLY
 
 COPY ~atweaks/itm/rr#dinv.itm~  ~override~                                         // item which makes creatures untargetable until the gating animation finishes
 COPY ~atweaks/itm/elementals/rr#easer.itm~ ~override~                              // Aerial Servant attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
 	WRITE_BYTE 0x98 0															   // Nerf Aerial Servant atk by removing strength Bonus as the attack is a grabbing attack and do not use strength modifier (Aerial don't accept atk command in PnP)
 COPY ~atweaks/itm/elementals/rr#efsal.itm~ ~override~                              // Fire Salamander spear attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~atweaks/itm/elementals/rr#efsa2.itm~ ~override~                              // Fire Salamander tail attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~atweaks/itm/elementals/rr#efrsa.itm~ ~override~                              // Frost Salamander claw attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#efrs2.itm~ ~override~                              // Frost Salamander bite attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#eista.itm~ ~override~                              // Invisible Stalker attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#ensal.itm~ ~override~                              // Salamander Noble spear attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#ensa2.itm~ ~override~                              // Salamander Noble tail attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#ewwei.itm~ ~override~                              // Water Weird attack
 COPY ~atweaks/itm/elementals/rr#eairl.itm~ ~override~                              // Lesser Air Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~atweaks/itm/elementals/rr#eairr.itm~ ~override~                              // Air Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#eairg.itm~ ~override~                              // Greater Air Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
 COPY ~atweaks/itm/elementals/rr#eaire.itm~ ~override~                              // Elder Air Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#eearl.itm~ ~override~                              // Lesser Earth Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~atweaks/itm/elementals/rr#eearr.itm~ ~override~                              // Earth Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#eearg.itm~ ~override~                              // Greater Earth Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
 COPY ~atweaks/itm/elementals/rr#eeare.itm~ ~override~                              // Elder Earth Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#efirl.itm~ ~override~                              // Lesser Fire Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~atweaks/itm/elementals/rr#efirr.itm~ ~override~                              // Fire Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#efirg.itm~ ~override~                              // Greater Fire Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
 COPY ~atweaks/itm/elementals/rr#efire.itm~ ~override~                              // Elder Fire Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#ewatl.itm~ ~override~                              // Lesser Water Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~atweaks/itm/elementals/rr#ewatr.itm~ ~override~                              // Water Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#ewatg.itm~ ~override~                              // Greater Water Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
 COPY ~atweaks/itm/elementals/rr#ewate.itm~ ~override~                              // Elder Water Elemental attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#eicer.itm~ ~override~                              // Ice Paraelemental attack
+  LPF set_enchantment INT_VAR enchantment = 3 END
 COPY ~atweaks/itm/elementals/rr#ecryo.itm~ ~override~                              // Cryonax attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#eimix.itm~ ~override~                              // Imix attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#eogre.itm~ ~override~                              // Ogremoch attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#ehydr.itm~ ~override~                              // Olhydra attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#eyanc.itm~ ~override~                              // Yan-C-Bin attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#echan.itm~ ~override~                              // Chan attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#esunn.itm~ ~override~                              // Sunnis attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 COPY ~atweaks/itm/elementals/rr#ezaam.itm~ ~override~                              // Zaaman Rul attack
+  LPF set_enchantment INT_VAR enchantment = 5 END
 
 
 // Special Spell Revisions compatibility block. Needs to go way up here so that the spell is backed up before aTweaks alters it
@@ -1758,6 +1791,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~ELECALI1~                                                             // Earth Elemental (TDD)
 			~ELECALI3~                                                             // Earth Elemental (TDD)
 			~ELECALI5~                                                             // Earth Elemental (TDD)
+            ~cdidree~                                                              // Earth Elemental (IWFification druid class update)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -1825,6 +1859,7 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC0MO"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC0GE"                                                          // Stratagems melee AI script
+"skipfile01" = "cdidree"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -2137,6 +2172,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~a7q5fes~                                                              // Greater Fire Elemental (16 HD) (afaaq)
 			~ELECALI2~                                                             // Greater Fire Elemental (TDD)
 			~ELECALI4~                                                             // Greater Fire Elemental (TDD)
+            ~cdidrfe~                                                              // Fire Elemental (IWDification Druid class update)			
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2205,6 +2241,7 @@ STR_VAR                                                                         
 "script15"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script16"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "tg#did5"
+"skipfile02" = "cdidrfe"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
@@ -2486,6 +2523,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~ELEMWAG~                                                              // Greater Water Elemental (TS)
 			~WATERELT~                                                             // Greater Water Elemental (TS)
 			~ELWATPR2~                                                             // Water Elemental (16 HD, mih_sp)
+            ~cdidrwe~                                                              // Water Elemental (IWFification druid class update)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2546,6 +2584,7 @@ STR_VAR                                                                         
 "script09"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 "script10"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 "script11"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"skipfile01" = "cdidrwe"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 LPF add_water_elemental_effects END
 // =============================================================================== // the actual work ends here
@@ -3560,28 +3599,35 @@ END
 // New AI Scripts
 //////////////////
 
+ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
+	OUTER_SPRINT ~State~ ~SpellState~
+	OUTER_SPRINT ~Num~ ~~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~State~ ~StatGT~
+	OUTER_SPRINT ~Num~ ~0,~
+END
 
-COMPILE ~atweaks/baf/elementals/rr#easer.baf~                                      // Aerial Servant AI script
-COMPILE ~atweaks/baf/elementals/rr#efsal.baf~                                      // Fire Salamander AI script
-COMPILE ~atweaks/baf/elementals/rr#efrsa.baf~                                      // Frost Salamander AI script
-COMPILE ~atweaks/baf/elementals/rr#eista.baf~                                      // Invisible Stalker AI script
-COMPILE ~atweaks/baf/elementals/rr#enere.baf~                                      // Nereid AI script
-COMPILE ~atweaks/baf/elementals/rr#ensal.baf~                                      // Salamander Noble AI script
-COMPILE ~atweaks/baf/elementals/rr#ewwei.baf~                                      // Water Weird AI script
-COMPILE ~atweaks/baf/elementals/rr#eair.baf~                                       // Air Elemental AI script
-COMPILE ~atweaks/baf/elementals/rr#eear.baf~                                       // Earth Elemental AI script
-COMPILE ~atweaks/baf/elementals/rr#efir.baf~                                       // Fire Elemental AI script
-COMPILE ~atweaks/baf/elementals/rr#ewat.baf~                                       // Water Elemental AI script
-COMPILE ~atweaks/baf/elementals/rr#eice.baf~                                       // Ice Paraelemental AI script
-COMPILE ~atweaks/baf/elementals/rr#ecryo.baf~                                      // Cryonax AI script
-COMPILE ~atweaks/baf/elementals/rr#eimix.baf~                                      // Imix AI script
-COMPILE ~atweaks/baf/elementals/rr#eogre.baf~                                      // Ogremoch AI script
-COMPILE ~atweaks/baf/elementals/rr#ehydr.baf~                                      // Olhydra AI script
-COMPILE ~atweaks/baf/elementals/rr#eyanc.baf~                                      // Yan-C-Bin AI script
-COMPILE ~atweaks/baf/elementals/rr#echan.baf~                                      // Chan AI script
-COMPILE ~atweaks/baf/elementals/rr#esunn.baf~                                      // Sunnis AI script
-COMPILE ~atweaks/baf/elementals/rr#ezaam.baf~                                      // Zaaman Rul AI script
-COMPILE ~atweaks/baf/elementals/rr#ewizs.baf~                                      // Mental Combat AI script (for elementals summoned by arcane spellcasters)
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#easer.baf~                                      // Aerial Servant AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#efsal.baf~                                      // Fire Salamander AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#efrsa.baf~                                      // Frost Salamander AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eista.baf~                                      // Invisible Stalker AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#enere.baf~                                      // Nereid AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ensal.baf~                                      // Salamander Noble AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ewwei.baf~                                      // Water Weird AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eair.baf~                                       // Air Elemental AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eear.baf~                                       // Earth Elemental AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#efir.baf~                                       // Fire Elemental AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ewat.baf~                                       // Water Elemental AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eice.baf~                                       // Ice Paraelemental AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ecryo.baf~                                      // Cryonax AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eimix.baf~                                      // Imix AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eogre.baf~                                      // Ogremoch AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ehydr.baf~                                      // Olhydra AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eyanc.baf~                                      // Yan-C-Bin AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#echan.baf~                                      // Chan AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#esunn.baf~                                      // Sunnis AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ezaam.baf~                                      // Zaaman Rul AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ewizs.baf~                                      // Mental Combat AI script (for elementals summoned by arcane spellcasters)
 
 
 
