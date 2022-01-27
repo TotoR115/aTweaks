@@ -500,6 +500,15 @@ Jet de sauvegarde : non
 
 Ce sort ouvre un portail spécial vers le plan élémentaire de la Terre, invoquant un élémentaire de terre au voisinage du jeteur de sorts. Un élémentaire de 12 dés de vie répond toujours à la convocation. De plus, il y a 35 % de chance qu'un Élémentaire Majeur de 16 dés de vie apparaisse en sus, et 5 % de chance qu'un Ancien Élémentaire de 20 dés de vie apparaisse. Une fois l'élémentaire apparu, le lanceur du sortilège doit se concentrer durant trois rounds sur la créature afin de s'assurer qu'elle ne se retournera pas contre lui (15 % de chance pour que l'élémentaire l'attaque). Cependant, une fois ce moment passé, l'élémentaire accomplira la volonté du lanceur jusqu'à ce qu'il soit tué, ou jusqu'à expiration du sort. Tous les ordres donnés à l'élémentaire le sont par voie télépathique, ce qui évite de perdre du temps à cause d'une mauvaise communication, et ne nécessite pas de connaître le langage utilisé par la créature convoquée.~
 
+@2213 = ~Conjuration d'un Élémentaire d'Eau (Conjuration/Convocation)
+Niveau : 6
+Portée : champ visuel du lanceur
+Durée : 1 tour / niveau
+Temps d'incantation : spécial
+Zone d'effet : spéciale
+Jet de sauvegarde : non
+
+Ce sort ouvre un portail spécial vers le plan élémentaire de l'eau, invoquant un élémentaire d'eau au voisinage du jeteur de sorts. Un élémentaire de 12 dés de vie répond toujours à la convocation. De plus, il y a 35 % de chance qu'un Élémentaire Majeur de 16 dés de vie apparaisse en sus, et 5 % de chance qu'un Ancien Élémentaire de 20 dés de vie apparaisse. Une fois l'élémentaire apparu, le lanceur du sortilège doit se concentrer durant trois rounds sur la créature afin de s'assurer qu'elle ne se retournera pas contre lui (15 % de chance pour que l'élémentaire l'attaque). Cependant, une fois ce moment passé, l'élémentaire accomplira la volonté du lanceur jusqu'à ce qu'il soit tué, ou jusqu'à expiration du sort. Tous les ordres donnés à l'élémentaire le sont par voie télépathique, ce qui évite de perdre du temps à cause d'une mauvaise communication, et ne nécessite pas de connaître le langage utilisé par la créature convoquée.~
 
 // Versions divines
 

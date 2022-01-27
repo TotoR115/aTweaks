@@ -558,6 +558,16 @@ Rzut obronny: brak
 
 Po rzuceniu tego zaklęcia, mag otwiera specjalną bramę do Sfery Żywiołu Ziemi i przywołuje żywiołaka o 12 kostkach, który pojawia się w jego polu widzenia. Jest 35% szans na to, że żywiołak będzie miał 16 kostek. Istnieje 5% szans na to, że sprowadzony zostanie WIększy żywiołak o 20 kostkach. Po pojawieniu się żywiołaka, czarodziej musi skupić się na nim przez 3 rundy, aby upewnić się, że nie zwróci się on przeciw niemu (istnieje 15% szans na utratę kontroli). Jednak po upływie tego czasu, żywiołak będzie wypełniał polecenia maga aż do chwili śmierci lub zakończenia działania czaru. Wszystkie polecenia wydawane są telepatycznie, więc nie trzeba znać języka przyzwanej istoty ani obawiać się braku zrozumienia rozkazów.~
 
+@2213 = ~Sprowadzenie żywiołaka wody (Sprowadzanie/Przywoływanie)
+Poziom: 6
+Zasięg: pole widzenia
+Czas działania: 1 tura/poziom
+Czas rzucania: specjalny
+Obszar działania: specjalny
+Rzut obronny: brak
+
+Po rzuceniu tego zaklęcia, mag otwiera specjalną bramę do Sfery Żywiołu wody i przywołuje żywiołaka o 12 kostkach, który pojawia się w jego polu widzenia. Jest 35% szans na to, że żywiołak będzie miał 16 kostek. Istnieje 5% szans na to, że sprowadzony zostanie WIększy żywiołak o 20 kostkach. Po pojawieniu się żywiołaka, czarodziej musi skupić się na nim przez 3 rundy, aby upewnić się, że nie zwróci się on przeciw niemu (istnieje 15% szans na utratę kontroli). Jednak po upływie tego czasu, żywiołak będzie wypełniał polecenia maga aż do chwili śmierci lub zakończenia działania czaru. Wszystkie polecenia wydawane są telepatycznie, więc nie trzeba znać języka przyzwanej istoty ani obawiać się braku zrozumienia rozkazów.~
+
 // Wersje objawień
 
 @2203 = ~Sprowadzenie żywiołaka ognia (Sprowadzanie/Przywoływanie)

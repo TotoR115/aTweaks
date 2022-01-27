@@ -440,6 +440,16 @@ Tiempo de lanzamiento: Especial
 Tirada de salvación: Ninguna
 
 Al ejecutar un conjuro de elemental de tierra, el lanzador abre un umbral especial con el Plano Elemental del Tierra y una criatura procedente de él es atraída hasta las cercanías del lanzador. Un elemental de 12 Dados de Golpe siempre responde al llamado. Además hay un 35% de que aparezca un Gran elemental de 16 y un 5% de que se acerque un Elemental Anciano de 20. Una vez que el elemental aparece el lanzador debe concentrarse sobre la creatura durante 3 asaltos en orden de asegurarse que el elemental no se le pondrá en contra. (Hay un 15% de chances de perder el control). Sin embargo, después de este tiempo pase el elemental llevará a cabo las órdenes del lanzador hasta que muera o expire el conjuro. Todas las órdenes que se dé al elemental serán transmitidas telepáticamente, por lo que la comunicación no supondrá ningún retraso y no es necesario conocer el idioma de la criatura convocada.~
+@2213  = ~Conjurar elemental de agua
+(Conjuración/Convocación)
+Nivel: 6
+Alcance: Alcance visual del lanzador
+Duración: 1 turno/nivel
+Tiempo de lanzamiento: Especial
+Área de efecto: Especial
+Tirada de salvación: Ninguna
+
+Al ejecutar un conjuro de elemental de agua, el lanzador abre un umbral especial con el Plano Elemental del agua y una criatura procedente de él es atraída hasta las cercanías del lanzador. Un elemental de 12 Dados de Golpe siempre responde al llamado. Además hay un 35% de que aparezca un Gran elemental de 16 y un 5% de que se acerque un Elemental Anciano de 20. Una vez que el elemental aparece el lanzador debe concentrarse sobre la creatura durante 3 asaltos en orden de asegurarse que el elemental no se le pondrá en contra. (Hay un 15% de chances de perder el control). Sin embargo, después de este tiempo pase el elemental llevará a cabo las órdenes del lanzador hasta que muera o expire el conjuro. Todas las órdenes que se dé al elemental serán transmitidas telepáticamente, por lo que la comunicación no supondrá ningún retraso y no es necesario conocer el idioma de la criatura convocada.~
 @2203  = ~Conjurar elemental de fuego
 (Conjuración/Convocación)
 Nivel: 6

@@ -558,6 +558,16 @@ Rzut obronny: brak
 
 Po rzuceniu tego zaklêcia, mag otwiera specjaln¹ bramê do Sfery ¯ywio³u Ziemi i przywo³uje ¿ywio³aka o 12 kostkach, który pojawia siê w jego polu widzenia. Jest 35% szans na to, ¿e ¿ywio³ak bêdzie mia³ 16 kostek. Istnieje 5% szans na to, ¿e sprowadzony zostanie WIêkszy ¿ywio³ak o 20 kostkach. Po pojawieniu siê ¿ywio³aka, czarodziej musi skupiæ siê na nim przez 3 rundy, aby upewniæ siê, ¿e nie zwróci siê on przeciw niemu (istnieje 15% szans na utratê kontroli). Jednak po up³ywie tego czasu, ¿ywio³ak bêdzie wype³nia³ polecenia maga a¿ do chwili œmierci lub zakoñczenia dzia³ania czaru. Wszystkie polecenia wydawane s¹ telepatycznie, wiêc nie trzeba znaæ jêzyka przyzwanej istoty ani obawiaæ siê braku zrozumienia rozkazów.~
 
+@2213 = ~Sprowadzenie zywiolaka wody (Sprowadzanie/Przywolywanie)
+Poziom: 6
+Zasieg: pole widzenia
+Czas dzialania: 1 tura/poziom
+Czas rzucania: specjalny
+Obszar dzialania: specjalny
+Rzut obronny: brak
+
+Po rzuceniu tego zaklecia, mag otwiera specjalna brame do Sfery Zywiolu wody i przywoluje zywiolaka o 12 kostkach, który pojawia sie w jego polu widzenia. Jest 35% szans na to, ze zywiolak bedzie mial 16 kostek. Istnieje 5% szans na to, ze sprowadzony zostanie WIekszy zywiolak o 20 kostkach. Po pojawieniu sie zywiolaka, czarodziej musi skupic sie na nim przez 3 rundy, aby upewnic sie, ze nie zwróci sie on przeciw niemu (istnieje 15% szans na utrate kontroli). Jednak po uplywie tego czasu, zywiolak bedzie wypelnial polecenia maga az do chwili smierci lub zakonczenia dzialania czaru. Wszystkie polecenia wydawane sa telepatycznie, wiec nie trzeba znac jezyka przyzwanej istoty ani obawiac sie braku zrozumienia rozkazów.~
+
 // Wersje objawieñ
 
 @2203 = ~Sprowadzenie ¿ywio³aka ognia (Sprowadzanie/Przywo³ywanie)

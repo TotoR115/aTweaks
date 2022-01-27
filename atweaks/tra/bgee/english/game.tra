@@ -282,9 +282,21 @@ A successful saving throw vs. breath halves the damage and negates all secondary
 @746 = ~You are of no use to me, mortal, and you shall have to find your amusement elsewhere, as well.~ //Note to translators: this string is currently unused and there's no guarantee it will ever be used, or won't be altered. There is no need to translate it unless you really want to.
 @747 = ~Pyrotechnics~
 @748 = ~Blast of Fear~
+@749 = ~Elminster's Ecologies: Appendix IIIa
 
+This time-worn tome is written by the sage Elminster, and apparently part of a much larger body of work containing detailed studies of most of the strange creatures from around Faerun.
 
+The appendix seems to refer to newly-discovered variations on normal breeds of creatures.  Of particular interest:
 
+"Dense Puddings - a relative of the slimes and molds, this pudding is relatively normal...except when exposed to electricity or fire.  When this occurs, it splits into new puddings and can therefore be very dangerous."
+
+"Fire Trolls - a new form of troll thought to have been created by sorcerous Fire Giants for use as servants and guards.  They are similar to regular trolls in most respects except for their lava-temperature skin and burning touch.  Once they are defeated, they can only be permanently killed by cold or acid."
+
+"Fission Slime - an off-shoot of the slimes and molds, this particular slime will split into new and independent creatures when hit.  It is vulnerable to fire, which will kill it permanently."
+
+"Magic Golems - this rare type of golem is formed from pure magical energy and is completely immune to spellcraft as well as enchanted weapons.  To my knowledge, only weapons without enchantments have any effects on this creature."
+
+"Mariliths - while this is apparently a legitimate form of demon, it is one that only an exceptional few have encountered and survived.  The Marilith is a six-armed demon with a human female front half and the back half of a snake.  She is incredibly quick and deadly, and on top of her martial prowess with six swords, she casts spells as well.  Fighters should beware: this demon is immune to normal weapons and minor enchantments."~
 // Revised Fiend summoning
 
 @751 = ~Cacofiend (Conjuration/Summoning)
@@ -508,6 +520,22 @@ The summoned creatures aid the caster by whatever means they possess, staying un
 @1906 = ~Toxic Vapors~
 @1907 = ~Speak With Plants~
 
+	// PnP Plant
+
+@1910 = ~Suffocate~
+@1911 = ~Pacifier Spores~
+@1912 = ~Hallucinator Spores~
+@1913 = ~Petrifying Gaze~
+@1914 = ~Poison Breath~
+@1915 = ~Touch of Tranquility~
+@1916 = ~Spore Explosion~
+@1917 = ~Sprint~
+@1918 = ~Gaze of Pestilence~
+@1919 = ~Fire Breath~
+@1920 = ~Frost Breath~
+@1921 = ~Acid Spit~
+@1922 = ~Constrict~
+
 
 // PnP Elementals
 
@@ -612,6 +640,18 @@ Area of Effect: Special
 Saving Throw: None
 
 Upon casting a conjure earth elemental spell, the caster opens a special gate to the elemental plane of Earth, and an earth elemental is summoned to the vicinity of the spellcaster.  One 12 hit dice elemental always answers the summons. Furthermore, there is a 35% chance that an additional 16 HD Greater Elemental appears and a 5% chance than an additional 20 hit dice Elder Elemental is summoned.  Once the elemental appears the caster must concentrate on the creature for 3 rounds in order to assure that the elemental will not turn on him (15% chance that the elemental will turn on the caster).  However, after this period has passed the elemental will do the bidding of the caster until it is slain, or the duration of the spell runs out.  All of the commands given to the elemental are done so telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature.~
+
+@2214 = ~Conjure Water Elemental
+(Conjuration/Summoning)
+Level: 6
+Range: Visual sight of caster
+Duration: 1 turn/level
+Casting Time: Special
+Area of Effect: Special
+Saving Throw: None
+
+Upon casting a conjure water elemental spell, the caster opens a special gate to the elemental plane of Water, and an water elemental is summoned to the vicinity of the spellcaster.  One 12 hit dice elemental always answers the summons. Furthermore, there is a 35% chance that an additional 16 HD Greater Elemental appears and a 5% chance than an additional 20 hit dice Elder Elemental is summoned.  Once the elemental appears the caster must concentrate on the creature for 3 rounds in order to assure that the elemental will not turn on him (15% chance that the elemental will turn on the caster).  However, after this period has passed the elemental will do the bidding of the caster until it is slain, or the duration of the spell runs out.  All of the commands given to the elemental are done so telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature.~
+
 
 // Divine versions
 
@@ -721,6 +761,17 @@ Saving Throw: None
 
 Upon casting a conjure earth elemental spell, the caster opens a special gate to the elemental plane of Earth, and an earth elemental is summoned to the vicinity of the spellcaster.  One 12 hit dice elemental always answers the summons. Furthermore, there is a 35% chance that an additional 16 HD Greater Elemental appears and a 5% chance than an additional 20 hit dice Elder Elemental is summoned.  All of the commands given to the elemental are done telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature. Priests do not have to engage in a battle of the wits to control their summoned elemental (unlike mages).  The elemental will remain under the caster's control until slain or until the spell duration expires.~
 
+@2213 = ~Conjure Air Elemental
+(Conjuration/Summoning)
+Level: 7
+Sphere: Elemental, Summoning
+Range: Visual sight of caster
+Duration: 1 turn/level
+Casting Time: 1 round
+Area of Effect: Special
+Saving Throw: None
+
+Upon casting a conjure air elemental spell, the caster opens a special gate to the elemental plane of Air, and an air elemental is summoned to the vicinity of the spellcaster.  One 12 hit dice elemental always answers the summons. Furthermore, there is a 35% chance that an additional 16 HD Greater Elemental appears and a 5% chance than an additional 20 hit dice Elder Elemental is summoned.  All of the commands given to the elemental are done telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature. Priests do not have to engage in a battle of the wits to control their summoned elemental (unlike mages).  The elemental will remain under the caster's control until slain or until the spell duration expires.~
 
 
 // Scribe Scrolls ability and assorted dialogue (8200-8300)
