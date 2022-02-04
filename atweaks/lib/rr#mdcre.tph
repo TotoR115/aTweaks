@@ -17,7 +17,6 @@ INT_VAR                                                                         
 "newsvp"   = "20"                                                                  // new Save vs. Polymorph
 "newsvb"   = "20"                                                                  // new Save vs. Breath
 "newsvs"   = "20"                                                                  // new Save vs. Spell
-"newmr"    = "0"                                                                   // new Magic Resistance value
 "newlvl1"  = "0"                                                                   // new level (first class)
 "newlvl2"  = "0"                                                                   // new level (second)
 "newlvl3"  = "0"                                                                   // new level (third)
@@ -25,6 +24,7 @@ INT_VAR                                                                         
 "newcr"    = "0"                                                                   // new Resist Cold value
 "newer"    = "0"                                                                   // new Resist Electricity value
 "newar"    = "0"                                                                   // new Resist Acid value
+"newmr"    = "0"                                                                   // new Resist Magic value
 "newrs"    = "0"                                                                   // new Resist Slashing
 "newrc"    = "0"                                                                   // new Resist Crushing
 "newrp"    = "0"                                                                   // new Resist Piercing
@@ -36,10 +36,11 @@ INT_VAR                                                                         
 "newdex"   = "0"                                                                   // new Dexterity value
 "newcon"   = "0"                                                                   // new Constitution value
 "newchr"   = "0"                                                                   // new Charisma value
-"newmor"   = "20"                                                                  // new morale value
-"newmorb"  = "1"                                                                   // new morale break value
+"newmor"   = "99"                                                                  // new morale value
+"newmorb"  = "99"                                                                  // new morale break value
 "newmorr"  = "99"                                                                  // new morale recovery value
-"newgen"   = "999"
+"newalle"  = "999"                                                                 // new Allegiance value
+"newgen"   = "999"                                                                 // new general value
 "newrace"  = "999"                                                                 // new race
 "newclass" = "999"                                                                 // new class
 "newgendr" = "999"                                                                 // new gender
@@ -106,27 +107,27 @@ BEGIN                                                                           
 READ_LONG  0x14  "oldxpv"                                                          // XP value
 READ_SHORT 0x24  "curhp"                                                           // current hit points
 READ_SHORT 0x26  "maxhp"                                                           // maximum hit points
-READ_SSHORT 0x46  "natac"                                                           // natural Armor Class
-READ_SSHORT 0x48  "effac"                                                           // effective Armor Class
-READ_SBYTE  0x52  "oldth"                                                           // THAC0 value
-READ_SBYTE  0x53  "oldapr"                                                          // number of attacks per round
-READ_SBYTE  0x54  "oldsvd"                                                          // Save vs. Death
-READ_SBYTE  0x55  "oldsvw"                                                          // Save vs. Wand
-READ_SBYTE  0x56  "oldsvp"                                                          // Save vs. Polymorph
-READ_SBYTE  0x57  "oldsvb"                                                          // Save vs. Breath
-READ_SBYTE  0x58  "oldsvs"                                                          // Save vs. Spell
-READ_SBYTE  0x59  "oldfr"                                                           // Resist Fire value
-READ_SBYTE  0x5a  "oldcr"                                                           // Resist Cold value
-READ_SBYTE  0x5b  "older"                                                           // Resist Electricity value
-READ_SBYTE  0x5c  "oldar"                                                           // Resist Acid value
-READ_SBYTE  0x5d  "oldmr"
-READ_SBYTE  0x60   oldrs
-READ_SBYTE  0x61   oldrc
-READ_SBYTE  0x62   oldrp
-READ_SBYTE  0x63   oldrm                                                            // Magic Resistance value
-READ_BYTE  0x234 "oldlvl1"
-READ_BYTE  0x235  oldlvl2
-READ_BYTE  0x236  oldlvl3                                                          // level (first class)
+READ_SSHORT 0x46  "natac"                                                          // natural Armor Class
+READ_SSHORT 0x48  "effac"                                                          // effective Armor Class
+READ_SBYTE  0x52  "oldth"                                                          // THAC0 value
+READ_SBYTE  0x53  "oldapr"                                                         // number of attacks per round
+READ_SBYTE  0x54  "oldsvd"                                                         // Save vs. Death
+READ_SBYTE  0x55  "oldsvw"                                                         // Save vs. Wand
+READ_SBYTE  0x56  "oldsvp"                                                         // Save vs. Polymorph
+READ_SBYTE  0x57  "oldsvb"                                                         // Save vs. Breath
+READ_SBYTE  0x58  "oldsvs"                                                         // Save vs. Spell
+READ_SBYTE  0x59  "oldfr"                                                          // Resist Fire value
+READ_SBYTE  0x5a  "oldcr"                                                          // Resist Cold value
+READ_SBYTE  0x5b  "older"                                                          // Resist Electricity value
+READ_SBYTE  0x5c  "oldar"                                                          // Resist Acid value
+READ_SBYTE  0x5d  "oldmr"                                                          // Magic Resistance value
+READ_SBYTE  0x60  "oldrs"                                                          // Slashing Resistance value
+READ_SBYTE  0x61  "oldrc"                                                          // Crushing Resistance value
+READ_SBYTE  0x62  "oldrp"                                                          // Piercing Resistance value
+READ_SBYTE  0x63  "oldrm"                                                          // Missiles Resistance value
+READ_BYTE  0x234 "oldlvl1"                                                         // level (first class)
+READ_BYTE  0x235 "oldlvl2"                                                         // level (second class)
+READ_BYTE  0x236 "oldlvl3"                                                         // level (third class)
 READ_BYTE  0x237 "oldsex"                                                          // Sex
 READ_BYTE  0x238 "oldstr"                                                          // Strength
 READ_BYTE  0x239 "oldstrx"                                                         // Exceptional Strength
@@ -138,7 +139,8 @@ READ_BYTE  0x23e "oldchr"                                                       
 READ_BYTE  0x23f "oldmor"                                                          // morale
 READ_BYTE  0x240 "oldmorb"                                                         // morale break
 READ_BYTE  0x242 "oldmorr"                                                         // morale recovery
-READ_BYTE  0x271  oldgen                                                           // general
+READ_BYTE  0x270 "oldalle"                                                         // Allegiance
+READ_BYTE  0x271 "oldgen"                                                          // general
 READ_BYTE  0x272 "oldrace"                                                         // race
 READ_BYTE  0x273 "oldclass"                                                        // class
 READ_BYTE  0x275 "oldgendr"                                                        // gender
@@ -211,35 +213,35 @@ END
 PATCH_IF ("%older%" < "%newer%") OR ("%enforce%" = "1") BEGIN                                             
   WRITE_BYTE 0x5b "%newer%"                                                        // set new Resist Electricity value
 END
-PATCH_IF ("%older%" < "%newer%") OR ("%enforce%" = "1") BEGIN                                             
-  WRITE_BYTE 0x5b "%newer%"                                                        // set new Resist Electricity value
-END
 PATCH_IF ("%oldar%" < "%newar%") OR ("%enforce%" = "1") BEGIN
   WRITE_BYTE 0x5c "%newar%"                                                        // set new Resist Acid value
 END
 PATCH_IF ("%oldmr%" < "%newmr%") OR ("%enforce%" = "1") BEGIN
-  WRITE_BYTE 0x5d "%newmr%"                                                        // set new Magic Resistance value
+  WRITE_BYTE 0x5d "%newmr%"                                                        // set new Resist Magic value
 END
-PATCH_IF   (oldrs   <   newrs)   OR    enforce   =  1   BEGIN
-  WRITE_BYTE 0x60   newrs
+PATCH_IF ("%oldrs%" < "%newrs%") OR ("%enforce%" = "1") BEGIN
+  WRITE_BYTE 0x60 "%newrs%"                                                        // set new Resist Slashing value
 END
-PATCH_IF   (oldrc   <   newrc)   OR    enforce   =  1   BEGIN
-  WRITE_BYTE 0x61   newrc
+PATCH_IF ("%oldrc%" < "%newrc%") OR ("%enforce%" = "1") BEGIN
+  WRITE_BYTE 0x61 "%newrc%"                                                        // set new Resist Crushing value
 END
-PATCH_IF   (oldrp   <   newrp)   OR    enforce   =  1   BEGIN
-  WRITE_BYTE 0x62   newrp
+PATCH_IF ("%oldrp%" < "%newrp%") OR ("%enforce%" = "1") BEGIN
+  WRITE_BYTE 0x62 "%newrp%"                                                        // set new Resist Piercing value
 END
-PATCH_IF   (oldrm   <   newrm)   OR    enforce   =  1   BEGIN
-  WRITE_BYTE 0x63   newrm
+PATCH_IF ("%oldrm%" < "%newrm%") OR ("%enforce%" = "1") BEGIN
+  WRITE_BYTE 0x63 "%newrm%"                                                        // set new Resist Missiles value
 END
 PATCH_IF ("%oldlvl1%" < "%newlvl1%") OR ("%enforce%" = "1") BEGIN
   WRITE_BYTE 0x234 "%newlvl1%"                                                     // set new level (first class) value
 END
-PATCH_IF   (oldlvl2   <   newlvl2)   OR    enforce   =  1   BEGIN
-  WRITE_BYTE 0x235   newlvl2
+PATCH_IF ("%oldlvl2%" < "%newlvl2%") OR ("%enforce%" = "1") BEGIN
+  WRITE_BYTE 0x235 "%newlvl2%"                                                     // set new level (second class) value
 END
-PATCH_IF   (oldlvl3   <   newlvl3)   OR    enforce   =  1   BEGIN
-  WRITE_BYTE 0x236   newlvl3
+PATCH_IF ("%oldlvl3%" < "%newlvl3%") OR ("%enforce%" = "1") BEGIN
+  WRITE_BYTE 0x236 "%newlvl3%"                                                     // set new level (third class) value
+END
+PATCH_IF (("%oldsex%" != "%newsex%") AND ("%newsex%" != "99")) OR (("%enforce%" = "1") AND ("%newsex%" != "99")) BEGIN
+  WRITE_BYTE 0x237 "%newsex%"                                                      // set new Sex value
 END
 PATCH_IF ("%oldstr%" < "%newstr%") OR ("%enforce%" = "1") BEGIN
   WRITE_BYTE 0x238 "%newstr%"                                                      // set new Strength value
@@ -262,7 +264,7 @@ END
 PATCH_IF ("%oldchr%" < "%newchr%") OR ("%enforce%" = "1") BEGIN
   WRITE_BYTE 0x23e "%newchr%"                                                      // set new Charisma value
 END
-PATCH_IF ("%oldmor%" < "%newmor%") OR (("%enforce%" = "1") AND ("%newmor%" != "99")) BEGIN
+PATCH_IF (("%oldmor%" < "%newmor%")AND ("newmor" != "99")) OR (("%enforce%" = "1") AND ("%newmor%" != "99")) BEGIN
   WRITE_BYTE 0x23f "%newmor%"                                                      // set new morale value
 END
 PATCH_IF (("%oldmorb%" > "%newmorb%") AND ("newmorb" != "99")) OR (("%enforce%" = "1") AND ("%newmorb%" != "99")) BEGIN
@@ -271,8 +273,11 @@ END
 PATCH_IF (("%oldmorr%" > "%newmorr%") AND ("newmorr" != "99")) OR (("%enforce%" = "1") AND ("%newmorr%" != "99")) BEGIN
   WRITE_BYTE 0x242 "%newmorr%"                                                     // set new morale recovery value
 END
-PATCH_IF newgen != 999 BEGIN
-  WRITE_BYTE 0x271   newgen
+PATCH_IF "%newalle%" != 999 BEGIN
+  WRITE_BYTE 0x270 "%newalle%"                                                     // set new Allegiance value
+END
+PATCH_IF "%newgen%" != 999 BEGIN
+  WRITE_BYTE 0x271 "%newgen%"                                                     // set new general value
 END
 PATCH_IF (("%oldrace%" != "newrace") AND ("newrace" != "999")) OR (("%enforce%" = "1") AND ("%newrace%" != "999")) BEGIN
   WRITE_BYTE 0x272 "%newrace%"                                                     // set new race value
@@ -290,10 +295,7 @@ PATCH_IF (("%oldhide%" < "%newhide%") AND ("newhide" != "999")) OR (("%enforce%"
   WRITE_BYTE 0x45 "%newhide%"                                                     // set new Hide in Shadows value
 END
 PATCH_IF (("%oldmsil%" < "%newmsil%") AND ("newmsil" != "999")) OR (("%enforce%" = "1") AND ("%newmsil%" != "999")) BEGIN
-  WRITE_BYTE 0x68 "%newhide%"                                                     // set new Hide in Shadows value
-END
-PATCH_IF (("%oldsex%" != "%newsex%") AND ("%newsex%" != "99")) OR (("%enforce%" = "1") AND ("%newsex%" != "99")) BEGIN
-  WRITE_BYTE 0x237 "%newsex%"                                                      // set new Sex value
+  WRITE_BYTE 0x68 "%newmsil%"                                                     // set new Hide in Shadows value
 END
 
 PATCH_IF ("%newmove%" != "999") BEGIN                                              // creature movement rate
@@ -317,7 +319,7 @@ END                                                                             
 PATCH_IF ("%rr#ptwf%" = "1") BEGIN                                                 // perfect two weapon fighting (for creatures with multiple weapons)
 SET_BG2_PROFICIENCY ~PROFICIENCY2WEAPON~ 3                                         // grant 3 stars in Two Weapon Fighting
 LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
-  INT_VAR                                                                          // note: BG1 animations have their movement rate set too slow by default
+  INT_VAR
     opcode = "305"                                                                 // effect: #305 (Off-Hand THAC0 Modifier)
     target = "1"                                                                   // target: 1 (self)
     timing = "9"                                                                   // timing mode: 9 (permanent after death)

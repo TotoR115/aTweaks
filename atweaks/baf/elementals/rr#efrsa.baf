@@ -1,33 +1,4 @@
 IF
-    Global("RR#Active","LOCALS",0)
-    OR(3)
-      AttackedBy([ANYONE],DEFAULT)
-      TookDamage()
-      Help([EVILCUTOFF.0.ELEMENTAL])
-THEN
-    RESPONSE #100
-        SetGlobal("RR#Active","LOCALS",1)
-        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-        Enemy()
-        Help()
-END
-
-IF
-    Global("RR#Active","LOCALS",0)
-    Allegiance(Myself,EVILCUTOFF)
-	OR(3)
-      See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
-      See("icsalfir") // Fire Salamander
-      See("salgrfir") // Salamander Noble
-THEN
-    RESPONSE #100
-        SetGlobal("RR#Active","LOCALS",1)
-        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-        Enemy()
-        Help()
-END
-
-IF
     OR(4)
       Global("RR#Active","LOCALS",0)
       !Allegiance(Myself,EVILCUTOFF) // better way to check for charm because STATE_CHARMED persists when the creature is attacked and becomes red circled again
@@ -66,10 +37,10 @@ END
 
 IF
     !GlobalTimerNotExpired("RR#Taunt","LOCALS")
+    See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
     OR(2)
       HasItemEquiped("RR#EFSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Fire Salamander
       HasItemEquiped("RR#ENSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Salamander Noble
-    See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
     !StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
     !StateCheck(Myself,STATE_INVISIBLE)
 THEN
@@ -179,14 +150,13 @@ THEN
 END
 
 IF
+	See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
     OR(2)
       HasItemEquiped("RR#EFSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Fire Salamander
       HasItemEquiped("RR#ENSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Salamander Noble
-    See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
-    False()
 THEN
     RESPONSE #100
-        NoAction()
+        AttackReevaluate(LastSeenBy(Myself),30)
 END
 
 IF

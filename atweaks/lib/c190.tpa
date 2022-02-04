@@ -701,7 +701,6 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~a7q5fs05~                                                             // Fire Salamander (afaaq)
 			~a7q5fs06~                                                             // Fire Salamander (afaaq)
 			~firesal1~                                                             // Fire Salamander (RoT)
-			~cdi6salf~                                                             // Fire Salamander (IWDification)
 			~ms6salf~                                                              // Fire Salamander (IWDification - Stratagems)
 			~nthells1~                                                             // Fire Salamander (NTotSC)
 			~nthells2~                                                             // Fire Salamander (NTotSC)
@@ -754,7 +753,7 @@ INT_VAR                                                                         
 "newalign" = "51"                                                                  // new alignment (Chaotic Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR                                                                            // Initialize strings
-"notenf01" = "nthellsa"                                                             // non-enforced creature 1 (uses best stat values)
+"notenf01" = "nthellsa"                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -774,9 +773,7 @@ STR_VAR                                                                         
 "script13"   = "DW2MP2MW"                                                          // Stratagems melee AI script
 "script14"   = "DW2MP0GE"                                                          // Stratagems melee AI script
 "script15"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
-"skipfile01" = "cdi6salf"                                                          // Fire Salamander summoned (IWDification)
-"skipfile02" = "ms6salf"                                                           // Fire Salamander summoned (IWDification - Stratagems)
-"skipfile03" = "plysala"                                                           // special case, the Avenger kit Fire Salamander form
+"skipfile01" = "plysala"                                                           // special case, the Avenger kit Fire Salamander form
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
 LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
@@ -803,6 +800,10 @@ COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Create Compatib
 COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDification - Stratagems wizard summon spell
   REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
   REMOVE_CRE_ITEM ~FSALRING~                                                       // IWDification - Stratagems Salamanders visual effect (already included)
+  LPF ~RR#MDCRE~ INT_VAR "newxpv" = "0" END
+  LPF make_summon END
+  WRITE_ASCII SCRIPT_OVERRIDE "rr#salf" #8
+BUT_ONLY
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 // =============================================================================== // the compatibility work ends here
 
@@ -812,7 +813,6 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~salgrice~                                                             // Frost Salamander
             ~icsalcol~                                                             // Ice Salamander (Planar Sphere)
             ~telicesa~                                                             // Ice Salamander (unused?)
-			~cdi6salc~                                                             // Ice Salamander (IWDification)
 			~ms6salc~                                                              // Ice Salamander (IWDification - Stratagems)
 			~dw#visal~                                                             // Ice Salamander (SCS)
 			~ntsalmi1~                                                             // Ice Salamander (NTotSC)
@@ -867,8 +867,8 @@ INT_VAR                                                                         
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR                                                                            // Initialize strings
 "notenf01" = "icesal2"                                                             // non-enforced creature 1 (uses best stat values)
-"notenf02" = "ntsalmi1"                                                             // non-enforced creature 1 (uses best stat values)
-"notenf03" = "ntsalmi2"                                                             // non-enforced creature 1 (uses best stat values)
+"notenf02" = "ntsalmi1"                                                            // non-enforced creature 2 (uses best stat values)
+"notenf03" = "ntsalmi2"                                                            // non-enforced creature 3 (uses best stat values)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -886,8 +886,6 @@ STR_VAR                                                                         
 "script11"   = "DW2MP0MO"                                                          // Stratagems melee AI script
 "script12"   = "DW2MP0GE"                                                          // Stratagems melee AI script
 "script13"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
-"skipfile01" = "cdi6salc"                                                          // Ice Salamander summoned (IWDification)
-"skipfile02" = "ms6salc"                                                           // Ice Salamander summoned (IWDification - Stratagems)
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
 LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
@@ -904,22 +902,25 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 // =============================================================================== // Compatibility with IWDification Begins here
+ACTION_IF FILE_EXISTS_IN_GAME ~ms6salc.cre~ BEGIN								   // Compatibility with IWDification - Stratagems Begins here
 COPY_EXISTING ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDification - Stratagems wizard summon spell
   REMOVE_CRE_ITEM ~CSALRING~                                                       // IWDification - Stratagems Salamanders visual effect (already included)
-BUT_ONLY IF_EXISTS
-
-COPY_EXISTING ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDification - Stratagems wizard summon spell
-  WRITE_BYTE 0x24 63                                                               // new hit point value
-  WRITE_BYTE 0x26 63                                                               // new max hit point value
-  WRITE_SHORT 0x14 2000                                                            // new XP value
-  WRITE_BYTE 0x52 13                                                               // new THAC0 value
-  WRITE_BYTE 0x54 10                                                               // new Save vs. Death
-  WRITE_BYTE 0x55 12                                                               // new Save vs. Wand
-  WRITE_BYTE 0x56 11                                                               // new Save vs. Polymorph
-  WRITE_BYTE 0x57 12                                                               // new Save vs. Breath
-  WRITE_BYTE 0x58 13                                                               // new Save vs. Spell
-  WRITE_BYTE 0x234 7                                                               // new level (first class)
-BUT_ONLY IF_EXISTS						   										   // Compatibility with IWDification ends here
+  LPF ~RR#MDCRE~ INT_VAR 
+  "newxpv"   = "0"                                                                 // new XP value
+/*  "newhp"    = "63"                                                                // new hit point value
+  "newth"    = "13"                                                                // new THAC0 value
+  "newsvd"   = "10"                                                                // new Save vs. Death
+  "newsvw"   = "12"                                                                // new Save vs. Wand
+  "newsvp"   = "11"                                                                // new Save vs. Polymorph
+  "newsvb"   = "12"                                                                // new Save vs. Breath
+  "newsvs"   = "13"                                                                // new Save vs. Spell
+  "newlvl1"  = "7"                                                                 // new level (first class)*/
+  "enforce"  = "1"                                                                 // values are enforced for all creatures
+  END
+  LPF make_summon END
+  WRITE_ASCII SCRIPT_OVERRIDE "rr#salc" #8
+BUT_ONLY
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 // =============================================================================== // the compatibility work ends here
 
 
@@ -3610,6 +3611,8 @@ END
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#easer.baf~                                      // Aerial Servant AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#efsal.baf~                                      // Fire Salamander AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#efrsa.baf~                                      // Frost Salamander AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#salf.baf~                                       // Summoned Fire Salamander AI script (IWDififcation)
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#salc.baf~                                       // Summoned Frost Salamander AI script (IWDififcation)
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eista.baf~                                      // Invisible Stalker AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#enere.baf~                                      // Nereid AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ensal.baf~                                      // Salamander Noble AI script
@@ -4996,26 +4999,29 @@ END                                                                             
 
 // IWDification
 
-<<<<<<<<atweaks/inlined/baf/elementals/salelsu.baf
-IF
-	HasItem("RR#DINV",Myself)  // No such index
-THEN
-	RESPONSE #100
-		DestroyItem("RR#DINV")  // No such index
-		Continue()
+// in pnp Frost and Fire salamander fight on sight. MS6 summons both witch is not sensible
+
+ACTION_IF FILE_EXISTS_IN_GAME MSUMMO6.2DA BEGIN
+COPY_EXISTING ~RR#ENSAL.itm~ ~override/RR#ENSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
+	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 9 timing = 2 STR_VAR resource = ~rr#eiems~ END
+
+COPY_EXISTING "salgrfir.cre" "override/rr#saln.cre"
+  REPLACE_CRE_ITEM ~RR#ENSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
+  LPF ~RR#MDCRE~ INT_VAR 
+  "newxpv"   = "0"                                                                 // new XP value
+  "enforce"  = "1"                                                                 // values are enforced for all creatures
+  END
+  LPF make_summon END
+  WRITE_ASCII SCRIPT_OVERRIDE "rr#salf" #8
+BUT_ONLY
+
+COPY_EXISTING "MSUMMO6.2DA" override
+	REPLACE_TEXTUALLY ~MS6SALC~ ~rr#saln~
+BUT_ONLY
+	
+APPEND ~MSUMMO7.2DA~ ~3 MS6SALC~
+
 END
->>>>>>>>
-
-EXTEND_TOP ~cdisalfi.bcs~  ~atweaks/inlined/baf/elementals/salelsu.baf~
-EXTEND_TOP ~cdisalfr.bcs~  ~atweaks/inlined/baf/elementals/salelsu.baf~
-
-
-// IWDification/Stratagems
-COPY_EXISTING ~ms6salc.cre~ override
-			  ~ms6salf.cre~ override
-REMOVE_CRE_ITEM ~RR#DINV~ 										                 // item which makes creatures invisible and untargetable while they gate in
-BUT_ONLY IF_EXISTS
-
 // Spell Revisions
 
 // Restore the original descriptions for spells that show SR's creature stats

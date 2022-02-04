@@ -3,7 +3,7 @@ IF
     OR(3)
       AttackedBy([ANYONE],DEFAULT)
       TookDamage()
-      Help([EVILCUTOFF.0.ELEMENTAL])
+	  Help([EVILCUTOFF.0.ELEMENTAL.ELEMENTAL_FIRE])
 THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
@@ -408,12 +408,11 @@ THEN
 END
 
 IF
-    HasItemEquiped("RR#EFRSA",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Frost Salamander
     See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
-    False()
+    HasItemEquiped("RR#EFRSA",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Frost Salamander
 THEN
     RESPONSE #100
-        NoAction()
+        AttackReevaluate(LastSeenBy(Myself),30)
 END
 
 IF
@@ -432,9 +431,9 @@ END
 IF
     !StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
     !StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-    Allegiance(LastSeenBy(Myself),GOODCUTOFF) // safety check
     !CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle or higher
     CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
+    Allegiance(LastSeenBy(Myself),GOODCUTOFF) // safety check
 THEN
     RESPONSE #100
         AttackReevaluate(LastSeenBy(Myself),30)
@@ -442,7 +441,7 @@ END
 
 IF
     !GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
-    Help([EVILCUTOFF.0.ELEMENTAL])
+    Help([EVILCUTOFF.0.ELEMENTAL.ELEMENTAL_FIRE])
     InMyArea(LastHelp(Myself))
     !StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
 THEN

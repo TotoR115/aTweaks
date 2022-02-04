@@ -3,7 +3,7 @@ IF
     OR(3)
       AttackedBy([ANYONE],DEFAULT)
       TookDamage()
-      Help([EVILCUTOFF.0.ELEMENTAL.ELEMENTAL_FIRE])
+	  Help([EVILCUTOFF.0.ELEMENTAL.ELEMENTAL_FIRE])
 THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
@@ -19,7 +19,7 @@ IF
     OR(3)
       See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
       See("icsalcol") // Frost Salamander
-      See("icsalcol") // Frost Salamander
+      See("salgrice") // Frost Salamander
 THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
@@ -966,12 +966,11 @@ THEN
 END
 
 IF
-    HasItemEquiped("RR#EFRSA",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Frost Salamander
     See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
-    False()
+    HasItemEquiped("RR#EFRSA",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Frost Salamander
 THEN
     RESPONSE #100
-        NoAction()
+        AttackReevaluate(LastSeenBy(Myself),30)
 END
 
 IF

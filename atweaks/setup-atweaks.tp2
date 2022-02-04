@@ -294,6 +294,8 @@ GROUP @1   // PnP tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME fl#atfiends1.mrk @94
 
+COPY_EXISTING sw1h01.itm "override/fl#fiendsum.mrk"                               //Installation marker
+
 INCLUDE "atweaks/lib/154-fiend_summoning_revised.tpa"
 
 ///////////////////////////////////
@@ -303,7 +305,7 @@ INCLUDE "atweaks/lib/154-fiend_summoning_revised.tpa"
 BEGIN @155 DESIGNATED 155 // Further Revised Fiend summoning
 GROUP @1   // PnP tweaks 
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
-REQUIRE_PREDICATE MOD_IS_INSTALLED ~atweaks/setup-atweaks.tp2~ ~154~ @89
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME fl#fiendsum.mrk @89
 
 INCLUDE "atweaks/lib/155-fiend_summoning_further.tpa"
 
@@ -395,13 +397,13 @@ INCLUDE "atweaks/lib/c188.tpa"
 ///////////////////////
 // PnP Plant creatures
 ///////////////////////
-
-BEGIN @189 DESIGNATED 189 // PnP Ooze creatures
+*/
+BEGIN @189 DESIGNATED 189 // PnP Plant creatures
 GROUP @1 // PnP Tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
 INCLUDE "atweaks/lib/c189.tpa"
-*/
+
 
 
 //////////////////

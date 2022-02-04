@@ -641,7 +641,7 @@ Saving Throw: None
 
 Upon casting a conjure earth elemental spell, the caster opens a special gate to the elemental plane of Earth, and an earth elemental is summoned to the vicinity of the spellcaster.  One 12 hit dice elemental always answers the summons. Furthermore, there is a 35% chance that an additional 16 HD Greater Elemental appears and a 5% chance than an additional 20 hit dice Elder Elemental is summoned.  Once the elemental appears the caster must concentrate on the creature for 3 rounds in order to assure that the elemental will not turn on him (15% chance that the elemental will turn on the caster).  However, after this period has passed the elemental will do the bidding of the caster until it is slain, or the duration of the spell runs out.  All of the commands given to the elemental are done so telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature.~
 
-@2214 = ~Conjure Water Elemental
+@2213 = ~Conjure Water Elemental
 (Conjuration/Summoning)
 Level: 6
 Range: Visual sight of caster
@@ -681,7 +681,7 @@ Upon casting a conjure earth elemental spell, the caster opens a special gate to
 
 @2205 = ~Conjure Air Elemental
 (Conjuration/Summoning)
-Level: 6
+Level: 7
 Sphere: Elemental, Summoning
 Range: Visual sight of caster
 Duration: 1 turn/level
@@ -761,7 +761,7 @@ Saving Throw: None
 
 Upon casting a conjure earth elemental spell, the caster opens a special gate to the elemental plane of Earth, and an earth elemental is summoned to the vicinity of the spellcaster.  One 12 hit dice elemental always answers the summons. Furthermore, there is a 35% chance that an additional 16 HD Greater Elemental appears and a 5% chance than an additional 20 hit dice Elder Elemental is summoned.  All of the commands given to the elemental are done telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature. Priests do not have to engage in a battle of the wits to control their summoned elemental (unlike mages).  The elemental will remain under the caster's control until slain or until the spell duration expires.~
 
-@2213 = ~Conjure Air Elemental
+@2214 = ~Conjure Air Elemental
 (Conjuration/Summoning)
 Level: 7
 Sphere: Elemental, Summoning

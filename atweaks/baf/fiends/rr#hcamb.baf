@@ -367,7 +367,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
-	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%WIZARD_SHIELD)
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
@@ -722,7 +722,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
-	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -748,7 +748,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
-	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -774,7 +774,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
-	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -800,7 +800,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
-	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -826,7 +826,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
-	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
@@ -852,7 +852,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_MM)
-	!Check%State%(LastSeenBy(Myself),0,WIZARD_SHIELD)
+	!Check%State%(LastSeenBy(Myself),%Num%WIZARD_SHIELD)
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,SCRIPTINGSTATE5)  // Wizard Shield
 	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)

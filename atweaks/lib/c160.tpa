@@ -1157,14 +1157,15 @@ BEGIN
       PATCH_INCLUDE "atweaks/lib/fj_cre_validity.tpp"
       PATCH_IF valid BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
+		REMOVE_CRE_ITEM ~REVENT2~
+		ADD_MEMORIZED_SPELL ~rr#pgaze~ #0 ~innate~ ( 1 )                                   // adds 1x Paralysing Gaze
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
 		PATCH_IF NOT "%SOURCE_RES%" STRING_EQUAL_CASE ~firmon04~ BEGIN
-          REPLACE_CRE_ITEM REVENT1 #0 #0 #0 none weapon1 EQUIP
-          REPLACE_CRE_ITEM REVENT2 #0 #0 #0 none weapon2
+          REPLACE_CRE_ITEM rr#revnt #0 #0 #0 none weapon1 EQUIP
 		END
-		REPLACE_CRE_ITEM RevnREG #0 #0 #0 none amulet
-		REPLACE_CRE_ITEM monhp1 #0 #0 #0 none belt
+		REPLACE_CRE_ITEM monhp1  #0 #0 #0 none amulet
+		REPLACE_CRE_ITEM fl#rvreg #0 #0 #0 none belt
          LPF unturnable END
 		 LPF RR#MDCRE
 			INT_VAR
@@ -1208,13 +1209,13 @@ BEGIN
 
         LPF RR#MDCSC
           STR_VAR
-            newscript = TRevn_01
+            newscript = rr#revnt
 			script01 = ""
 			script02 = "None"
         END
         LPF RR#MDCSC
           STR_VAR
-            newscript = fl#higmc
+            newscript = fl#revnt
             script01 = wtasight
             script02 = _tasight
 			script03 = bpwtsigt
@@ -1230,18 +1231,37 @@ BEGIN
   END
 END
 
-COPY_EXISTING "trollreg.itm" "override/RevnREG.itm"
+COPY_EXISTING "trollreg.itm" "override/fl#rvreg.itm"
   WRITE_SHORT 0x1c 3
-  LPF ALTER_EFFECT INT_VAR match_opcode = 98 parameter1 = 3 parameter2 = 3 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 98 parameter1 = 2 parameter2 = 3 END
   SAY NAME1 #1292
 
-COPY_EXISTING "REVENT1.itm" override
-  LPF DELETE_EFFECT INT_VAR match_opcode = 98 END
+COPY_EXISTING "REVENT2.itm" "override/rr#revnt"
+  LPF set_enchantment INT_VAR enchantment = 3 END
 
-COPY 	 "atweaks\itm\undead\fl#Revn1.itm" override
-COPY 	 "atweaks\spl\fl#die.spl" override
-COPY 	 "atweaks\spl\fl#back.spl" override
-COPY 	 "atweaks\spl\fl#itm.spl" override
+COPY 	 "atweaks\spl\fl#die.spl" "override/fl#rvdie.spl"
+	LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = "rr#rvdie" END
+COPY 	 "atweaks\spl\fl#back.spl" "override/fl#rvbac.spl"
+	LPF ALTER_EFFECT STR_VAR match_resource = "REVNREG" resource = "rr#rvreg" END
+COPY 	 "atweaks\spl\fl#itm.spl" "override/fl#rvitm.spl"
+COPY 	 "atweaks\itm\undead\fl#Revn1.itm" "override/rr#rvdie.itm"
+
+COPY_EXISTING ~spwi604.spl~ ~override/rr#rgaze.spl~  								// Revenent Gaze
+  SET gaze_pro = IDS_OF_SYMBOL (~PROJECTL~ ~gaze~) + 1
+  SAY NAME1 #75326
+  WRITE_ASCII 0x10 "none" #8														// no casting animation
+  WRITE_SHORT 0x22 0 																// Gaze Range
+  WRITE_SHORT 0x80 30 																// Gaze Range
+  READ_LONG  0x64 ab_off
+  READ_SHORT 0x68 ab_num
+  FOR(i=0; i<ab_num; i+=1) BEGIN
+    WRITE_SHORT (ab_off+i*0x28+0x26) %gaze_pro%                                     // use gaze projectile
+  END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 134 opcode = 109 parameter1 = 0 parameter2 = 2 END
+  LPF ALTER_EFFECT INT_VAR savingthrow = 1 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 109 opcode = 139 parameter1 = RESOLVE_STR_REF(@1026) END
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ 
+  INT_VAR "rr#ctime" = "0" "rr#rinvs"   = "1" "rr#renew"   = "1" END                // Execute the "spell to innate ablity" function
 
 
 // Shadow
@@ -2708,8 +2728,8 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/undead/fl#death.baf~
 						"atweaks/baf/undead/fl#saham.baf"
 						"atweaks/baf/undead/fl#skwsu.baf"
 						"atweaks/baf/undead/fl#sklsu.baf"
-						"atweaks/baf/undead/TRevn_01.baf"
-
+						"atweaks/baf/undead/rr#revnt.baf"
+						"atweaks/baf/undead/fl#revnt.baf"
 
 
 //Write the queued-up values
