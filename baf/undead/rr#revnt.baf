@@ -1,0 +1,55 @@
+IF
+	GlobalLT("Revn_Die","LOCALS",2)
+	HitBy([ANYONE],FIRE)
+THEN
+	RESPONSE #100
+		SetGlobal("Revn_Die","LOCALS",1)
+		SetGlobalTimer("Revn_Death","LOCALS",12)
+		DestroyItem("monhp1")  // Necklace
+		Continue()
+END
+
+IF
+	HPLT(Myself,4)
+	Global("Revn_Die","LOCALS",0)
+	StateCheck(Myself,STATE_FLAME_DEATH)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	HPLT(Myself,4)
+	Global("Revn_Die","LOCALS",0)
+	OR(3)
+		StateCheck(Myself,STATE_FROZEN_DEATH)
+		StateCheck(Myself,STATE_STONE_DEATH)
+		!StateCheck(Myself,STATE_FLAME_DEATH)
+THEN
+	RESPONSE #100
+		SetGlobal("Revn_Die","LOCALS",2)
+		SetGlobalTimer("Revn_Back","LOCALS",12)
+		ForceSpellRES("fl#rvdie",Myself)  // No such index
+		DestroyItem("fl#rvreg")  // Ring
+		PlayDead(300)
+		Continue()
+END
+
+IF
+	Global("Revn_Die","LOCALS",2)
+	GlobalTimerExpired("Revn_Back","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Revn_Die","LOCALS",0)
+		ForceSpellRES("fl#rvbac",Myself)  // No such index
+END
+
+IF
+	Global("Revn_Die","LOCALS",1)
+	GlobalTimerExpired("Revn_Death","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Revn_Die","LOCALS",0)
+		ForceSpellRES("fl#rvitm",Myself)  // No such index
+END
+

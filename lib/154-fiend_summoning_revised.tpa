@@ -1,0 +1,402 @@
+
+//////////////////////////////////////////////////////////////////////
+// Creature changes, summons
+//////////////////////////////////////////////////////////////////////
+
+OUTER_SPRINT $sscript(demnabsu) rr#snaba
+OUTER_SPRINT $sscript(demglasu) rr#sglab
+OUTER_SPRINT $sscript(dempitsu) rr#spitf
+
+COPY_EXISTING demnabsu.cre ~override/demnabsu.cre~
+              telcor1.cre  ~override/rr#scorn.cre~
+              demglasu.cre ~override/demglasu.cre~
+              rr#hgel.cre  ~override/rr#sgelu.cre~
+              dempitsu.cre ~override/dempitsu.cre~
+              telbal1.cre  ~override/rr#sbalr.cre~
+              fl#sultr.cre ~override/fl#sultr.cre~
+              fl#snyca.cre ~override/fl#snyca.cre~
+              fl#sarca.cre ~override/fl#sarca.cre~
+  WRITE_LONG 0x10 2 // Clear flags, leave only "no corpse"
+  WRITE_LONG 0x14 0 // XP is handled by script
+  PATCH_IF VARIABLE_IS_SET $sscript("%DEST_RES%") BEGIN
+    WRITE_ASCIIE 0x248 $sscript("%DEST_RES%") #8 // Summoned script
+  END ELSE BEGIN
+    WRITE_ASCIIE 0x248 "%DEST_RES%" #8
+  END
+  WRITE_ASCII  0x250 ~~ #8 // Class
+  WRITE_ASCII  0x258 ~~ #8 // Race
+  WRITE_ASCII  0x260 ~~ #8 // General
+  WRITE_ASCII  0x268 ~~ #8 // Default
+  WRITE_BYTE   0x270 128 // Initially neutral
+  WRITE_BYTE   0x275 9 // SUMMONED_DEMON
+  WRITE_ASCIIE 0x280 ~%DEST_RES%~ #32 // Script name
+  // Make all items unstealable&undroppable
+  READ_LONG 0x2bc io
+  FOR (i=0;i<LONG_AT 0x2c0;++i) BEGIN
+    WRITE_BYTE io + 0x14*i + 0x10 THIS BOR 10
+  END
+  PATCH_IF FILE_EXISTS_IN_GAME dw#sumfi.itm AND
+           !FILE_CONTAINS_EVALUATED ("%SOURCE_FILE%" "dw#sumfi")
+  BEGIN
+    ADD_CRE_ITEM dw#sumfi #0 #0 #0 none boots
+  END
+
+
+//////////////////////////////////////////////////////////////////////
+// Spell changes, summons
+//////////////////////////////////////////////////////////////////////
+
+COPY_EXISTING spcaco.eff override // Summon Cacofiend
+              spfiend.eff override // Summon Fiend
+              spgate.eff override // Gate
+  WRITE_LONG  0x18 0 // Power (in case the spell is cast directly on a Rakshasa or something)
+BUT_ONLY
+
+////////////////////////////////////////
+//Cacofiend
+////////////////////////////////////////
+
+COPY_EXISTING spwi707.spl override // Cacofiend
+  SAY NAME1 #17320 SAY NAME2 #17320
+  SAY DESC @751 SAY UNIDENTIFIED_DESC @751
+  WRITE_SHORT 0x1e BIT8 // Exclude diviners
+  WRITE_SHORT 0x22 14 // Casting animation: conj
+  WRITE_SHORT 0x25 2 // School: conj
+  GET_OFFSET_ARRAY aa 0x64 4 0x68 2 0 0 0x28
+  PHP_EACH aa AS i => off BEGIN
+    WRITE_SHORT off + 0x0e 30 // Range
+    WRITE_SHORT off + 0x12 7 // Casting time
+  END
+  LPF fiend_summoning_spell
+    INT_VAR
+      duration = 120
+    STR_VAR
+      lawful = rr#scorn
+      lcneutral = fl#sarca
+      chaotic = spcaco
+  END
+BUT_ONLY
+
+COPY_EXISTING spcaco.eff override // Summon Nabassu
+  WRITE_ASCII 0x30 DEMNABSU #8 // Resref
+BUT_ONLY
+
+COPY_EXISTING spcaco.eff ~override/rr#scorn.eff~ // Summon Cornugon
+              spcaco.eff ~override/fl#sarca.eff~ // Summon Arcanaloth
+  WRITE_ASCIIE 0x30 "%DEST_RES%" #8 // Resref
+BUT_ONLY
+
+////////////////////////////////////////
+// Summon Fiend
+////////////////////////////////////////
+
+COPY_EXISTING spwi807.spl override // Summon Fiend
+  SAY NAME1 #17360 SAY NAME2 #17360
+  SAY DESC @752 SAY UNIDENTIFIED_DESC @752
+  GET_OFFSET_ARRAY aa 0x64 4 0x68 2 0 0 0x28
+  PHP_EACH aa AS i => off BEGIN
+    WRITE_SHORT off + 0x0e 30 // Range
+    WRITE_SHORT off + 0x12 8 // Casting time
+  END
+  LPF fiend_summoning_spell
+    INT_VAR
+      duration = 198
+    STR_VAR
+      lawful = rr#sgelu
+      lcneutral = fl#snyca
+      chaotic = spfiend
+  END
+BUT_ONLY
+
+COPY_EXISTING spfiend.eff override // Summon Glabrezu
+  WRITE_ASCII 0x30 DEMGLASU #8 // Resref
+
+COPY_EXISTING spfiend.eff ~override/rr#sgelu.eff~ // Summon Gelugon
+              spfiend.eff ~override/fl#snyca.eff~ // Summon Nycaloth
+  WRITE_ASCIIE 0x30 "%DEST_RES%" #8 // Resref
+BUT_ONLY
+
+////////////////////////////////////////
+// Gate
+////////////////////////////////////////
+
+COPY_EXISTING spwi905.spl override // Gate (Wizard)
+  SAY NAME1 #14260 SAY NAME2 #14260
+  SAY DESC @753 SAY UNIDENTIFIED_DESC @753
+  WRITE_ASCII 0x3a fl#905c #8 // New spellbook icon
+  GET_OFFSET_ARRAY aa 0x64 4 0x68 2 0 0 0x28
+  PHP_EACH aa AS i => off BEGIN
+    WRITE_ASCII off + 0x4 fl#905b #8 // New icon (stone background)
+    WRITE_SHORT off + 0x0e 30 // Range
+    WRITE_SHORT off + 0x12 9 // Casting time
+  END
+  LPF fiend_summoning_spell
+    INT_VAR
+      duration = 396
+    STR_VAR
+      lawful = spgate
+      lcneutral = fl#sultr
+      chaotic = rr#sbalr
+  END
+BUT_ONLY
+
+COPY_EXISTING sppr703.spl override // Gate (Cleric)
+  SAY NAME1 #14260 SAY NAME2 #14260
+  SAY DESC @754 SAY UNIDENTIFIED_DESC @754
+  WRITE_ASCII 0x3a fl#905c #8 // New spellbook icon
+  WRITE_ASCII 0x10 CAS_P03 #8 // Casting sound
+  WRITE_SHORT 0x25 2 // Spell school (Conjuration)
+  WRITE_SHORT 0x22 14 // Casting graphics (Conjuration)
+  GET_OFFSET_ARRAY aa 0x64 4 0x68 2 0 0 0x28
+  PHP_EACH aa AS i => off BEGIN
+    WRITE_ASCII off + 0x4 fl#905b #8 // New icon (stone background)
+    WRITE_SHORT off + 0x0e 30 // Range
+    WRITE_SHORT off + 0x12 5 // Casting time
+  END
+  LPF fiend_summoning_spell
+    INT_VAR
+      duration = 396
+    STR_VAR
+      lawful = spgate
+      lcneutral = fl#sultr
+      chaotic = rr#sbalr
+  END
+BUT_ONLY
+
+COPY_EXISTING spgate.eff override // Summon Pit Fiend
+  WRITE_ASCII 0x30 DEMPITSU #8 // Resref
+BUT_ONLY
+
+COPY_EXISTING spgate.eff ~override/rr#sbalr.eff~ // Summon Balor
+              spgate.eff ~override/fl#sultr.eff~ // Summon Ultroloth
+  WRITE_ASCIIE 0x30 "%DEST_RES%" #8 // Resref
+BUT_ONLY
+
+////////////////////////////////////////
+// Scroll changes
+////////////////////////////////////////
+
+COPY_EXISTING scrl8i.itm override // Cacofiend scroll
+  SAY NAME1 #17320 SAY NAME2 #17320
+  SAY DESC @751 SAY UNIDENTIFIED_DESC @751
+  WRITE_BYTE 0x2d THIS BAND BNOT BIT2 // Remove illusionist flag
+  WRITE_BYTE 0x2d THIS BOR BIT0 // Add diviner flag
+BUT_ONLY
+
+COPY_EXISTING scrl9b.itm override // Summon Fiend scroll
+  SAY NAME1 #17360 SAY NAME2 #17360
+  SAY DESC @752 SAY UNIDENTIFIED_DESC @752
+BUT_ONLY
+
+COPY_EXISTING scrl9n.itm override // Gate scroll
+  WRITE_ASCII 0x3a fl#905a #8 // New scroll icon
+  SAY NAME1 #14260 SAY NAME2 #14260
+  SAY DESC @753 SAY UNIDENTIFIED_DESC @753
+  GET_OFFSET_ARRAY aa ITM_V10_HEADERS
+  PHP_EACH aa AS i => off BEGIN
+    WRITE_ASCII off + 0x4 fl#905a #8
+  END
+BUT_ONLY
+
+//////////////////////////////////////////////////////////////////////
+// Scripts, summons
+//////////////////////////////////////////////////////////////////////
+
+ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
+	OUTER_SPRINT ~State~ ~SpellState~
+	OUTER_SPRINT ~Num~ ~~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~State~ ~StatGT~
+	OUTER_SPRINT ~Num~ ~0,~
+END
+
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fiends/rr#snaba.baf~ // Summoned Nabassu AI script
+						~atweaks/baf/fiends/rr#scorn.baf~ // Summoned Cornugon AI script
+						~atweaks/baf/fiends/rr#tempt.baf~ // Summoned Glabrezu script for tempting mortals
+						~atweaks/baf/fiends/rr#sglab.baf~ // Summoned Glabrezu AI script
+						~atweaks/baf/fiends/rr#sgelu.baf~ // Summoned Gelugon AI script
+						~atweaks/baf/fiends/rr#spitf.baf~ // Summoned Pit Fiend AI script
+						~atweaks/baf/fiends/rr#sbalr.baf~ // Summoned Balor AI script
+						~atweaks/baf/fiends/fl#sarca.baf~ // Summoned Arcanaloth AI script
+						~atweaks/baf/fiends/fl#snyca.baf~ // Summoned Nycaloth AI script
+						~atweaks/baf/fiends/fl#sultr.baf~ // Summoned Ultroloth AI script
+
+// Replace RunAwayFrom() with RandomWalkContinuous()
+// Reasoning: RunAwayFrom() often tends to slow down the game
+COPY_EXISTING runenemy.bcs override // Innocent bystander run away script
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~RunAwayFrom(LastSeenBy(Myself),30)~
+                      ~RandomWalkContinuous()~
+  END
+BUT_ONLY
+
+// Make innocent bystanders run away from summoned fiends
+EXTEND_TOP runenemy.bcs ~atweaks/baf/fiends/runenemy.baf~
+
+ACTION_IF GAME_INCLUDES ~soa~ BEGIN
+  // Note: this is basically a bugfix, as ApplySpell() casts the
+  // spell at 1st level even if the caster's level is higher
+  COPY_EXISTING mage20b.bcs override // High level mage script
+                hellgen.bcs override // Enslaved Genie (Tears of Bhaal)
+    DECOMPILE_AND_PATCH BEGIN
+      REPLACE_TEXTUALLY
+        ~ApplySpell(Myself,WIZARD_PROTECTION_FROM_EVIL)~
+        ~ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_EVIL)~
+    END
+  BUT_ONLY
+END
+
+////////////////////////////////////////
+// Stratagems
+////////////////////////////////////////
+
+// Create scripts and creatures outside the ACTION_IF in case SCSII is installed after
+
+COMPILE EVALUATE_BUFFER ~atweaks/baf/fiends/fl#nabsu.baf~
+						~atweaks/baf/fiends/fl#corsu.baf~
+						~atweaks/baf/fiends/fl#glasu.baf~
+						~atweaks/baf/fiends/fl#gelsu.baf~
+						~atweaks/baf/fiends/fl#balsu.baf~
+						~atweaks/baf/fiends/fl#pitsu.baf~
+						~atweaks/baf/fiends/fl#arcsu.baf~
+						~atweaks/baf/fiends/fl#nycsu.baf~
+						~atweaks/baf/fiends/fl#ultsu.baf~
+
+COPY_EXISTING demnab01.cre ~override/fl#nabsu.cre~
+              telcor1.cre  ~override/fl#corsu.cre~
+              demgla01.cre ~override/fl#glasu.cre~
+              rr#hgel.cre  ~override/fl#gelsu.cre~
+              dembal01.cre ~override/fl#balsu.cre~
+              dempit01.cre ~override/fl#pitsu.cre~
+              fl#sarca.cre ~override/fl#arcsu.cre~
+              fl#snyca.cre ~override/fl#nycsu.cre~
+              fl#sultr.cre ~override/fl#ultsu.cre~
+  WRITE_LONG 0x10 2 // Clear flags, leave only "no corpse"
+  WRITE_ASCIIE 0x248 "%DEST_RES%" #8 // Summoned script
+  WRITE_ASCII  0x250 ~~ #8 // Class
+  WRITE_ASCII  0x258 ~~ #8 // Race
+  WRITE_ASCII  0x260 ~~ #8 // General
+  WRITE_ASCII  0x268 ~~ #8 // Default
+  WRITE_BYTE   0x270 255 // Enemy
+  WRITE_BYTE   0x275 1 // Male
+  WRITE_ASCIIE 0x280 ~%DEST_RES%~ #32 // Script name
+  // Make all items unstealable&undroppable
+  READ_LONG 0x2bc io
+  FOR (i=0;i<LONG_AT 0x2c0;++i) BEGIN
+    WRITE_BYTE io + 0x14*i + 0x10 THIS BOR 10
+  END
+  PATCH_IF FILE_EXISTS_IN_GAME dw#sumfi.itm AND
+           !FILE_CONTAINS_EVALUATED ("%SOURCE_FILE%" "dw#sumfi")
+  BEGIN
+    ADD_CRE_ITEM "dw#sumfi" #0 #0 #0 none boots
+  END
+
+// Commandeer SCSII's fiend-summoning spells and
+// have them summon SCSII-aTweaks hybrids
+ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.spl AND FILE_EXISTS_IN_GAME fl#atfiends2.mrk BEGIN
+  OUTER_SPRINT $crefile(dw#cacof) fl#nabsu // spcaco
+  OUTER_SPRINT $crefile(dw#HLBF) fl#corsu
+  OUTER_SPRINT $crefile(dw#sumgl) fl#glasu // spfiend
+  OUTER_SPRINT $crefile(dw#HLco) fl#gelsu
+  OUTER_SPRINT $crefile(dw#hlba) fl#balsu
+  OUTER_SPRINT $crefile(dw#pitsu) fl#pitsu // spgate
+  OUTER_SPRINT $crefile(dw#gatem) fl#pitsu
+  OUTER_SPRINT $crefile(dw#gatep) fl#pitsu
+  OUTER_SPRINT $crefile(dw#sumya) fl#arcsu
+  OUTER_SPRINT $crefile(dw#sumyn) fl#nycsu
+  OUTER_SPRINT $crefile(dw#sumyu) fl#ultsu
+
+  COPY_EXISTING ~dw#HLBF.eff~ ~override/dw#cacof.eff~
+				~dw#HLco.eff~ ~override/dw#sumgl.eff~
+				~dw#hlba.eff~ ~override/dw#pitsu.eff~
+
+  COPY_EXISTING dw#cacof.spl override
+				dw#sumfi.spl override
+				dw#sfc1.spl override
+				dw#sfc2.spl override
+				dw#gatem.spl override
+				dw#gatep.spl override
+	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spcaco~ ~dw#cacof~ (8)
+	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spfiend~ ~dw#sumgl~ (8)
+	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spgate~ ~dw#pitsu~ (8)
+	
+
+  ACTION_FOR_EACH res IN
+                  dw#cacof
+                  dw#HLBF
+                  dw#sumya
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME "%res%.eff" BEGIN
+      COPY_EXISTING fl#sarca.eff "override/%res%.eff"
+        WRITE_ASCIIE 0x30 $crefile("%DEST_RES%") #8
+      BUT_ONLY
+    END
+  END
+
+  ACTION_FOR_EACH res IN
+                  dw#sumgl
+                  dw#HLco
+                  dw#sumyn
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME "%res%.eff" BEGIN
+      COPY_EXISTING fl#snyca.eff "override/%res%.eff"
+        WRITE_ASCIIE 0x30 $crefile("%DEST_RES%") #8
+      BUT_ONLY
+    END
+  END
+
+  ACTION_FOR_EACH res IN
+                  dw#hlba
+                  dw#pitsu
+                  dw#gatem
+                  dw#gatep
+                  dw#sumyu
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME "%res%.eff" BEGIN
+      COPY_EXISTING fl#sultr.eff "override/%res%.eff"
+        WRITE_ASCIIE 0x30 $crefile("%DEST_RES%") #8
+      BUT_ONLY
+    END
+  END
+
+  OUTER_SET $name(dw#cacof) = 17320
+  OUTER_SET $name(dw#HLBF) = 17320
+  OUTER_SET $name(dw#sumya) = 17320
+  OUTER_SET $name(dw#sumgl) = 17360
+  OUTER_SET $name(dw#HLco) = 17360
+  OUTER_SET $name(dw#sumyn) = 17360
+  OUTER_SET $name(dw#hlba) = 14260
+  OUTER_SET $name(dw#pitsu) = 14260
+  OUTER_SET $name(dw#gatem) = 14260
+  OUTER_SET $name(dw#gatep) = 14260
+  OUTER_SET $name(dw#sumyu) = 14260
+END
+////////////////////////////////////////
+// Item Revisions
+////////////////////////////////////////
+
+ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 BEGIN                               		// Item Revisions mod check
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
+  COPY_EXISTING ~sw1h01.itm~ ~override/rr#fake.itm~
+	WRITE_LONG 0X1e "-1"
+	SAY NAME2 ~Fake item~
+END
+
+//////////// Compatibility with IR: script's check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
+ACTION_FOR_EACH script IN rr#snaba fl#sarca fl#snyca fl#sultr fl#arcsu fl#nycsu fl#ultsu fl#nabsu BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
+    COPY_EXISTING ~%script%.bcs~ ~override~
+	  DECOMPILE_AND_PATCH BEGIN
+      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		~clck26~
+		~rr#fake~ // I am a bit leazy but this will do the trick and is easier in this case than R_B_B
+      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		~clck24~
+		~rr#fake~ // idem
+	  END	
+    BUT_ONLY
+  END
+END
+
+END                                                                                // ends Item Revisions compatibility block
