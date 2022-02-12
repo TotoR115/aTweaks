@@ -101,7 +101,6 @@ IF
     HaveSpellRES("rr#ecncl") // Elemental Concealment
     !StateCheck(Myself,STATE_INVISIBLE)
     !Global("dvgldust","LOCALS",1)
-	!Global("LCNOINVI","LOCALS",1)
     !CheckStatGT(Player1,0,TRUE_SIGHT)
     !CheckStatGT(Player2,0,TRUE_SIGHT)
     !CheckStatGT(Player3,0,TRUE_SIGHT)
@@ -120,13 +119,37 @@ THEN
 END
 
 IF
+  ActionListEmpty()
+  Allegiance(Myself,GOODCUTOFF)
+  !Range(LastSummonerOf(Myself),10)
+  !See(LastSummonerOf(Myself))
+  CombatCounter(0)
+  !Exists([EVILCUTOFF.0.0.0.0.0.0])
+THEN
+  RESPONSE #100
+    SetGlobal("rr#getclosetome","LOCALS",1)
+    FollowObjectFormation(LastSummonerOf(Myself), 3, 6)
+END
+
+IF
+  Global("rr#getclosetome","LOCALS",1)
+  OR(2)
+     Exists([EVILCUTOFF.0.0.0.0.0.0])
+     !CombatCounter(0)
+THEN
+  RESPONSE #100
+    SetGlobal("rr#getclosetome","LOCALS",0)
+    ClearActions(Myself)
+    Continue()
+END
+
+IF
     ActionListEmpty()
     Allegiance(Myself,GOODCUTOFF)
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
     HaveSpellRES("rr#ecncl") // Elemental Concealment
     !StateCheck(Myself,STATE_INVISIBLE)
     !Global("dvgldust","LOCALS",1)
-	!Global("LCNOINVI","LOCALS",1)
     !CheckStatGT(NearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(SecondNearestEnemyOf(Myself),0,TRUE_SIGHT)
     !CheckStatGT(ThirdNearestEnemyOf(Myself),0,TRUE_SIGHT)

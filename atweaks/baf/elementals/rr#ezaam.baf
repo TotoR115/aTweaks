@@ -97,7 +97,7 @@ IF
     OR(3)
       RandomNum(6,1) // this summoning block is semi-randomised
 	  HPPercentLT(Myself,71)
-      NumCreatureGT(NearestEnemyOf(Myself),4) // if four or more enemies are nearby
+      NumCreatureGT(NearestEnemyOf(Myself),3) // if four or more enemies are nearby
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -105,6 +105,31 @@ THEN
 		ForceSpellRES("rr#ezaam",Myself) // Summon Allies (Zaaman Rul)
 		RemoveSpellRES("rr#ezaam") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
+END
+
+IF
+  ActionListEmpty()
+  Allegiance(Myself,GOODCUTOFF)
+  !Range(LastSummonerOf(Myself),10)
+  !See(LastSummonerOf(Myself))
+  CombatCounter(0)
+  !Exists([EVILCUTOFF.0.0.0.0.0.0])
+THEN
+  RESPONSE #100
+    SetGlobal("rr#getclosetome","LOCALS",1)
+    FollowObjectFormation(LastSummonerOf(Myself), 3, 6)
+END
+
+IF
+  Global("rr#getclosetome","LOCALS",1)
+  OR(2)
+     Exists([EVILCUTOFF.0.0.0.0.0.0])
+     !CombatCounter(0)
+THEN
+  RESPONSE #100
+    SetGlobal("rr#getclosetome","LOCALS",0)
+    ClearActions(Myself)
+    Continue()
 END
 
 IF

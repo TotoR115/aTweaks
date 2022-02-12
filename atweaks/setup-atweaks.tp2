@@ -397,13 +397,13 @@ INCLUDE "atweaks/lib/c188.tpa"
 ///////////////////////
 // PnP Plant creatures
 ///////////////////////
-*/
+
 BEGIN @189 DESIGNATED 189 // PnP Plant creatures
 GROUP @1 // PnP Tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
 INCLUDE "atweaks/lib/c189.tpa"
-
+*/
 
 
 //////////////////

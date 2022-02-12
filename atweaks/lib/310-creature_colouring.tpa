@@ -2030,44 +2030,6 @@ LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                          
 END                                                                                // ends LAUNCH_PATCH_FUNCTION
 END                                                                                // ends PATCH_FOR_EACH
 // =============================================================================== // the actual work ends here
-END ELSE PATCH_IF valid AND LONG_AT 0x28 = 4097 BEGIN 							   // NABASSU
-  PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                   // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
-// =============================================================================== // the actual work starts from here
-  // WRITE_LONG 0x28 "4097"                                                        // Sets avatar to TANARRI (winged demon)
-  // WRITE_BYTE  0x2E "34"                                                            // major color (Light Green/Dark Blue)
-  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
-  INT_VAR opcode_to_delete = "51" END                                              // mark opcode #51 (Colour: Strong/Dark by RGB) for deletion
-  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode (remove any existent tint)
-  INT_VAR opcode_to_delete = "52" END                                              // mark opcode #52 (Colour: Very Bright by RGB) for deletion
-  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call (add new creature effect built-in function)
-  INT_VAR                                                                          // initialize numeric variables
-  "opcode" = "51"                                                                  // effect: #51 (Colour: Strong/Dark by RGB)
-  "target" = "1"                                                                   // target: 1 (self)
-  "timing" = "9"                                                                   // timing mode: 9 (permanent after death)
-  "duration" = "0"                                                                 // duration: 0
-  "sectype" = "0"                                                                  // secondary type: none
-  "parameter1" = "180812288"                                                       // param1: (color designation)
-  "parameter2" = "2"                                                               // param2: 2 (location - major color)
-  "probability1" = "100"                                                           // probability1: 100%
-  STR_VAR                                                                          // initialize string variables
-  "effsource" = ""                                                                 // effsource: none
-  END                                                                              // ends FUNCTION call
-PATCH_FOR_EACH ~rr#color~ IN  ~50~ BEGIN                                           // grant immunity to the color glow/pulse effects (they disrupt aTweaks' re-coloring)
-LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call
-  INT_VAR                                                                          // initialize variables
-  "opcode" = "101"                                                                 // effect: #101 (Protection from Opcode)
-  "target" = "1"                                                                   // target: 1 (self)
-  "timing" = "9"                                                                   // timing mode: 9 (permanent after death)
-  "duration" = "0"                                                                 // duration: 0
-  "parameter2" = EVALUATE_BUFFER "%rr#color%"                                      // param2: evaluated opcode
-  "sectype" = "0"                                                                  // secondary type: none
-  "probability1" = "100"                                                           // probability1: 100%
-  STR_VAR                                                                          // initialize strings
-  "resource"  = ""                                                                 // resref: none
-  "effsource" = ""                                                                 // effsource: none
-END                                                                                // ends LAUNCH_PATCH_FUNCTION
-END                                                                                // ends PATCH_FOR_EACH
-
 END                                                                                // ends file validity check
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block

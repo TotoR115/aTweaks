@@ -301,19 +301,63 @@ END
 PATCH_IF ("%newmove%" != "999") BEGIN                                              // creature movement rate
   LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END   // mark opcode #126 (Movement Modifier) for deletion
   LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END   // mark opcode #176 (Movement Modifier II) for deletion
-LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
+PATCH_IF (LONG_AT 0x28 = 0x54B6) OR (LONG_AT 0x28 = 0x54B7) BEGIN 		   		   // WOLF_FIXED or WOLF_WORG_FIXED
+  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call (add new creature effect built-in function)
   INT_VAR                                                                          // note: BG1 animations have their movement rate set too slow by default
     opcode = "176"                                                                 // effect: #176 (Movement Modifier (II))
     target = "1"                                                                   // target: 1 (self)
     timing = "9"                                                                   // timing mode: 9 (permanent after death)
     duration = "0"                                                                 // duration: 0
     sectype = "0"                                                                  // secondary type: none
-    parameter1 = "%newmove%"                                                       // param1: (statistic modifier)
+    parameter1 = "%newmove%" - 2                                                   // param1: (statistic modifier)
     parameter2 = "1"                                                               // param2: 1 (type)
     probability1 = "100"                                                           // probability1: 100%
   STR_VAR
     effsource = ""                                                                 // effsource: none
-END                                                                                // end FUNCTION call
+  END                                                                              // end FUNCTION call
+END ELSE PATCH_IF (LONG_AT 0x28 = 0x54B3) OR (LONG_AT 0x28 = 0x5587) BEGIN 		   // WAR_DOG_FIXED or GREATER_BASILISK_FIXED
+  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call (add new creature effect built-in function)
+  INT_VAR                                                                          // note: BG1 animations have their movement rate set too slow by default
+    opcode = "176"                                                                 // effect: #176 (Movement Modifier (II))
+    target = "1"                                                                   // target: 1 (self)
+    timing = "9"                                                                   // timing mode: 9 (permanent after death)
+    duration = "0"                                                                 // duration: 0
+    sectype = "0"                                                                  // secondary type: none
+    parameter1 = "%newmove%" - 4                                                   // param1: (statistic modifier)
+    parameter2 = "1"                                                               // param2: 1 (type)
+    probability1 = "100"                                                           // probability1: 100%
+  STR_VAR
+    effsource = ""                                                                 // effsource: none
+  END                                                                              // end FUNCTION call
+END ELSE PATCH_IF (LONG_AT 0x28 = 0x54B0) OR (LONG_AT 0x28 = 0x54B1) OR (LONG_AT 0x28 = 0x54B2) BEGIN // BEAR_BLACK_FIXED or BEAR_CAVE_FIXED or BEAR_POLAR_FIXED
+  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call (add new creature effect built-in function)
+  INT_VAR                                                                          // note: BG1 animations have their movement rate set too slow by default
+    opcode = "176"                                                                 // effect: #176 (Movement Modifier (II))
+    target = "1"                                                                   // target: 1 (self)
+    timing = "9"                                                                   // timing mode: 9 (permanent after death)
+    duration = "0"                                                                 // duration: 0
+    sectype = "0"                                                                  // secondary type: none
+    parameter1 = "%newmove%" - 6                                                   // param1: (statistic modifier)
+    parameter2 = "1"                                                               // param2: 1 (type)
+    probability1 = "100"                                                           // probability1: 100%
+  STR_VAR
+    effsource = ""                                                                 // effsource: none
+  END                                                                              // end FUNCTION call
+END ELSE BEGIN
+  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call (add new creature effect built-in function)
+  INT_VAR                                                                          // note: BG1 animations have their movement rate set too slow by default
+    opcode = "176"                                                                 // effect: #176 (Movement Modifier (II))
+    target = "1"                                                                   // target: 1 (self)
+    timing = "9"                                                                   // timing mode: 9 (permanent after death)
+    duration = "0"                                                                 // duration: 0
+    sectype = "0"                                                                  // secondary type: none
+    parameter1 = "%newmove%"                                                   // param1: (statistic modifier)
+    parameter2 = "1"                                                               // param2: 1 (type)
+    probability1 = "100"                                                           // probability1: 100%
+  STR_VAR
+    effsource = ""                                                                 // effsource: none
+  END                                                                              // end FUNCTION call
+END                                                                                // end PATCH_IF LONG_AT
 END                                                                                // end PATCH_IF
 
 PATCH_IF ("%rr#ptwf%" = "1") BEGIN                                                 // perfect two weapon fighting (for creatures with multiple weapons)

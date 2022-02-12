@@ -125,7 +125,7 @@ IF
     OR(3)
       RandomNum(6,1) // this summoning block is semi-randomised
       HPPercentLT(Myself,71)
-      NumCreatureGT(NearestEnemyOf(Myself),4) // if four or more enemies are nearby
+      NumCreatureGT(NearestEnemyOf(Myself),3) // if four or more enemies are nearby
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)

@@ -514,6 +514,19 @@ BEGIN
     BUT_ONLY
   END
 END
+ACTION_FOR_EACH file IN
+				~ghasts~
+				~_ghasts~
+BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+	  COPY_EXISTING "%file%.cre" override
+		LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+		LPF make_summon END
+		WRITE_ASCII SCRIPT_OVERRIDE "fl#ghasu" #8
+      BUT_ONLY
+	END
+END
+
 
 ACTION_IF FILE_EXISTS_IN_GAME rr#ghast.bcs BEGIN
   COPY_EXISTING rr#ghast.bcs override
@@ -1236,7 +1249,7 @@ COPY_EXISTING "trollreg.itm" "override/fl#rvreg.itm"
   LPF ALTER_EFFECT INT_VAR match_opcode = 98 parameter1 = 2 parameter2 = 3 END
   SAY NAME1 #1292
 
-COPY_EXISTING "REVENT2.itm" "override/rr#revnt"
+COPY_EXISTING "REVENT2.itm" "override/rr#revnt.itm"
   LPF set_enchantment INT_VAR enchantment = 3 END
 
 COPY 	 "atweaks\spl\fl#die.spl" "override/fl#rvdie.spl"
@@ -1699,16 +1712,18 @@ BEGIN
 END
 
 // Skeleton Warrior, summoned
-ACTION_FOR_EACH file IN
-                skelwasu
-BEGIN
-  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
-    COPY_EXISTING "%file%.cre" override
-      LPF make_skeleton_warrior INT_VAR newxpv = 0 END
-      LPF make_summon END
-      WRITE_ASCII SCRIPT_OVERRIDE "fl#skwsu" #8 // Swaps to fl#sklwm for hostile summons
-    BUT_ONLY
-  END
+ACTION_IF !MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN // Do not touch if spell revision is installed
+	ACTION_FOR_EACH file IN
+					skelwasu
+	BEGIN
+	  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+		COPY_EXISTING "%file%.cre" override
+		  LPF make_skeleton_warrior INT_VAR newxpv = 0 END
+		  LPF make_summon END
+		  WRITE_ASCII SCRIPT_OVERRIDE "fl#skwsu" #8 // Swaps to fl#sklwm for hostile summons
+		BUT_ONLY
+	  END
+	END
 END
 
 COPY "atweaks/spl/undead/fl#skelw.spl" override
@@ -2712,6 +2727,7 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/undead/fl#death.baf~
 						~atweaks/baf/undead/fl#mum.baf~
 						~atweaks/baf/undead/fl#ghoul.baf~
 						~atweaks/baf/undead/fl#ghast.baf~
+						~atweaks/baf/undead/fl#ghasu.baf~
 						"atweaks/baf/undead/fl#dksw5.baf"
 						"atweaks/baf/undead/fl#glord.baf"
 						"atweaks/baf/undead/fl#sklwm.baf"

@@ -320,7 +320,6 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
 // Sirine
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -467,7 +466,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~HGNYMPH~                                                            // Nymph
               ~NYMPHSU~                                                            // default summoned Nymph
               ~NYMPHSUM~                                                           // summoned Nymph
-			  ~dvnymph~                                                            // Spell Revisions' summoned Nymph
+//			  ~dvnymph~                                                            // do not touch - Spell Revisions' summoned Nymph
               ~WQXNYM~															   // White Queen
 			  ~dw#nymsu~                                                           // SCSII summoned Nymph
 BEGIN                                                                              // execute the following
@@ -542,14 +541,23 @@ STR_VAR                                                                         
 "script13"   = "BPWTSIGT"                                                          // Big Picture generic AI script
 "script14"   = "DW2MS2GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~NYMPHSU~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~dvnymph~)) BEGIN // special case, summoned Nymphs need a different script
-  WRITE_ASCII 0x248 ~RR#SNYMP~ #8                                                  // override AI script
-END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-
+ACTION_FOR_EACH file IN
+				~NYMPHSUM~
+				~NYMPHSU~
+				~dw#nymsu~
+BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+	  COPY_EXISTING "%file%.cre" override
+		LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+		LPF make_summon END
+		WRITE_ASCII SCRIPT_OVERRIDE "RR#SNYMP" #8
+      BUT_ONLY
+	END
+END
 
 //////////////////
 // New AI Scripts
@@ -674,7 +682,7 @@ END                                                                             
 
 
 ACTION_IF GAME_INCLUDES ~soa~ BEGIN
-  // Vaelasa should summond Dryads instead of Sirines
+  // Vaelasa should summoned Dryads instead of Sirines
 
   COPY_EXISTING ~dry01.cre~    ~override/rr#fdrya.cre~                               // Hostile Dryad
     WRITE_LONG 0x10 2                                                                // clear flags, leave only "no corpse"

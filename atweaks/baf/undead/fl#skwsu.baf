@@ -40,6 +40,31 @@ Attack(LastSeenBy(Myself))
 END
 
 IF
+  ActionListEmpty()
+  Allegiance(Myself,GOODCUTOFF)
+  !Range(LastSummonerOf(Myself),10)
+  !See(LastSummonerOf(Myself))
+  CombatCounter(0)
+  !Exists([EVILCUTOFF.0.0.0.0.0.0])
+THEN
+  RESPONSE #100
+    SetGlobal("rr#getclosetome","LOCALS",1)
+    FollowObjectFormation(LastSummonerOf(Myself), 3, 6)
+END
+
+IF
+  Global("rr#getclosetome","LOCALS",1)
+  OR(2)
+     Exists([EVILCUTOFF.0.0.0.0.0.0])
+     !CombatCounter(0)
+THEN
+  RESPONSE #100
+    SetGlobal("rr#getclosetome","LOCALS",0)
+    ClearActions(Myself)
+    Continue()
+END
+
+IF
 ActionListEmpty()
 See(NearestEnemyOf(Myself))
 OR(2)

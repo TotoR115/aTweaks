@@ -140,7 +140,11 @@ COPY_EXISTING spwi905.spl override // Gate (Wizard)
   END
 BUT_ONLY
 
-COPY_EXISTING sppr703.spl override // Gate (Cleric)
+ACTION_IF MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN
+  COPY_EXISTING sppr703.spl ~override/rr#srbk2.spl~                               // Backup SR's Priest Gate Spell
+END
+
+COPY_EXISTING sppr703.spl override // Gate (Cleric) Change for Cacofiend as PnP
   SAY NAME1 #14260 SAY NAME2 #14260
   SAY DESC @754 SAY UNIDENTIFIED_DESC @754
   WRITE_ASCII 0x3a fl#905c #8 // New spellbook icon
@@ -157,9 +161,9 @@ COPY_EXISTING sppr703.spl override // Gate (Cleric)
     INT_VAR
       duration = 396
     STR_VAR
-      lawful = spgate
-      lcneutral = fl#sultr
-      chaotic = rr#sbalr
+      lawful = rr#sgelu
+      lcneutral = fl#snyca
+      chaotic = spfiend
   END
 BUT_ONLY
 
@@ -370,6 +374,12 @@ ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.spl AND FILE_EXISTS_IN_GAME fl#atfiends2.
   OUTER_SET $name(dw#gatem) = 14260
   OUTER_SET $name(dw#gatep) = 14260
   OUTER_SET $name(dw#sumyu) = 14260
+END
+////////////////////////////////////////
+// Spell Revisions
+////////////////////////////////////////
+ACTION_IF MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN
+  COPY_EXISTING ~rr#srbk12.spl~  ~override/sppr703.spl~                               // Restore SR's Priest Gate Spell
 END
 ////////////////////////////////////////
 // Item Revisions
