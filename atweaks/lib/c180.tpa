@@ -1286,14 +1286,6 @@ WRITE_BYTE 0x275 3                                                              
 // New AI Scripts
 //////////////////
 
-ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
-	OUTER_SPRINT ~State~ ~SpellState~
-	OUTER_SPRINT ~Num~ ~~
-	END ELSE BEGIN 
-	OUTER_SPRINT ~State~ ~StatGT~
-	OUTER_SPRINT ~Num~ ~0,~
-END
-
 COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mair.baf~                                          // Air Mephit AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mdus.baf~                                          // Dust Mephit AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/mephits/rr#mear.baf~                                          // Earth Mephit AI script

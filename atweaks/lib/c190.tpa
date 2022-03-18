@@ -1130,7 +1130,7 @@ INT_VAR                                                                         
 "newmr"    = "25"                                                                  // new Magic Resistance value
 "newfr"    = "100"                                                                 // new Resist Fire value
 "newcr"    = "0"                                                                   // new Resist Cold value
-"newlvl1"  = "7"                                                                   // new level (first class)
+"newlvl1"  = "12"                                                                   // new level (first class)
 "newstr"   = "18"                                                                  // new Strength value
 "newstrx"  = "100"                                                                 // new Exceptional Strength value
 "newdex"   = "16"                                                                  // new Dexterity value
@@ -3599,14 +3599,6 @@ END
 //////////////////
 // New AI Scripts
 //////////////////
-
-ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
-	OUTER_SPRINT ~State~ ~SpellState~
-	OUTER_SPRINT ~Num~ ~~
-	END ELSE BEGIN 
-	OUTER_SPRINT ~State~ ~StatGT~
-	OUTER_SPRINT ~Num~ ~0,~
-END
 
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#easer.baf~                                      // Aerial Servant AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#efsal.baf~                                      // Fire Salamander AI script

@@ -94,8 +94,7 @@ END                                                                             
 // Detect good
 OUTER_SPRINT DetectG ""
 ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_DETECT_GOOD") > 0 BEGIN 
- OUTER_SET code = IDS_OF_SYMBOL ("spell" "CLERIC_DETECT_GOOD")
- OUTER_SET code = code - 1000
+ OUTER_SET code = (IDS_OF_SYMBOL ("spell" "CLERIC_DETECT_GOOD") - 1000)
  OUTER_SPRINT DetectG SPPR%code%
 END
 

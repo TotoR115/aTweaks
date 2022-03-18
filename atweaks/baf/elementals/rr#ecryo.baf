@@ -25,13 +25,21 @@ THEN
 END
 
 IF
-    OR(3)
-      Global("RR#Active","LOCALS",0)
+    OR(2)
       StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
       StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
 THEN
     RESPONSE #100
         NoAction()
+END
+
+IF
+Allegiance(Myself,EVILCUTOFF)
+Global("rr#Active","LOCALS",0)
+!Detect(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+NoAction()
 END
 
 IF
@@ -901,89 +909,75 @@ THEN
 		SetInterrupt(TRUE)
 END
 
-
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
     HaveSpellRES("rr#wi503") // Cone of Cold
-	See(NearestEnemyOf(Myself))
+	See([PC.0.0.MAGE_ALL])
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
-		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#wi503",LastSeenBy(Myself)) // Cone of Cold
-		RemoveSpellRES("rr#wi503") // remove one instance of the spell upon casting
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
     HaveSpellRES("rr#wi503") // Cone of Cold
-	See(SecondNearestEnemyOf(Myself))
+	See([PC.0.0.THIEF])
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
-		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#wi503",LastSeenBy(Myself)) // Cone of Cold
-		RemoveSpellRES("rr#wi503") // remove one instance of the spell upon casting
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
     HaveSpellRES("rr#wi503") // Cone of Cold
-	See(ThirdNearestEnemyOf(Myself))
+	See([PC.0.0.BARD])
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
-		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#wi503",LastSeenBy(Myself)) // Cone of Cold
-		RemoveSpellRES("rr#wi503") // remove one instance of the spell upon casting
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
     HaveSpellRES("rr#wi503") // Cone of Cold
-	See(FourthNearestEnemyOf(Myself))
+	See([PC])
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
-		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#wi503",LastSeenBy(Myself)) // Cone of Cold
-		RemoveSpellRES("rr#wi503") // remove one instance of the spell upon casting
-		SetInterrupt(TRUE)
-END
-
-IF
-	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-    HaveSpellRES("rr#wi503") // Cone of Cold
-	See(FifthNearestEnemyOf(Myself))
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
-	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
-THEN
-	RESPONSE #100
-		SetInterrupt(FALSE)
-		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#wi503",LastSeenBy(Myself)) // Cone of Cold
-		RemoveSpellRES("rr#wi503") // remove one instance of the spell upon casting
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
 		SetInterrupt(TRUE)
 END
 
@@ -991,16 +985,107 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
     HaveSpellRES("rr#wi503") // Cone of Cold
 	See(SixthNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
-		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#wi503",LastSeenBy(Myself)) // Cone of Cold
-		RemoveSpellRES("rr#wi503") // remove one instance of the spell upon casting
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+    HaveSpellRES("rr#wi503") // Cone of Cold
+	See(FifthNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("rr#wi503","LOCALS",1)
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+    HaveSpellRES("rr#wi503") // Cone of Cold
+	See(FourthNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+    HaveSpellRES("rr#wi503") // Cone of Cold
+	See(ThirdNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+    HaveSpellRES("rr#wi503") // Cone of Cold
+	See(SecondNearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),10)
+	!Range(LastSeenBy(Myself),4)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
+		SetInterrupt(TRUE)
+END
+
+IF
+	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+    HaveSpellRES("rr#wi503") // Cone of Cold
+	See(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),10)
+	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobalTimer("RR#Cast","LOCALS",54)
+		ForceSpellRES("rr#wi503",LastSeenBy(Myself))  // cone of Cold
 		SetInterrupt(TRUE)
 END
 

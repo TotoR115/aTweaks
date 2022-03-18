@@ -1478,6 +1478,7 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
     // =============================================================================== // the actual work starts from here
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~HELMNOAN~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
+    REMOVE_CRE_ITEM ~MARILI~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
     REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
     REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
     REPLACE_CRE_ITEM ~RR#DMARI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a less powerful weapon (closer to PnP damage output)
@@ -1495,6 +1496,7 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
           "newhp"    = "96"                                                            // new hit point value
           "newac"    = "-9"                                                            // new Armor Class value
+          "newth"    = "9"                                                            // new THAC0 value
           "newapr"   = "1"                                                             // new number of attacks per round
           "newsvd"   = "7"                                                             // new Save vs. Death
           "newsvw"   = "9"                                                             // new Save vs. Wand
@@ -1505,7 +1507,7 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
           "newfr"    = "100"                                                           // new Resist Fire value
           "newcr"    = "50"                                                            // new Resist Cold value
           "newer"    = "100"                                                           // new Resist Electricity value
-          "newlvl1"  = "13"                                                            // new level (first class)
+          "newlvl1"  = "12"                                                            // new level (first class)
           "newstr"   = "19"                                                            // new Strength value
           "newint"   = "18"                                                            // new Intelligence value
           "newwis"   = "15"                                                            // new Wisdom value
@@ -1612,13 +1614,14 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
       LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                 // Starts FUNCTION call (aTweaks' Creature Modification function)
         INT_VAR                                                                        // Initialize variables
+           newxpv
          "rr#sinv"  = "1"                                                              // See invisible creatures (1 = enable)
          "rr#bsimm" = "1"                                                              // Backstab immunity (1 = enable)
          "newmove"  = "11"                                                             // new movement rate
          "rr#bump"  = "1"                                                              // NPC bump (1 = enable)
-           newxpv
           "newhp"    = "104"                                                           // new hit point value
           "newac"    = "-8"                                                            // new Armor Class value
+          "newth"    = "7"                                                            // new THAC0 value
           "newapr"   = "1"                                                             // new number of attacks per round
           "newsvd"   = "5"                                                             // new Save vs. Death
           "newsvw"   = "7"                                                             // new Save vs. Wand
@@ -1949,7 +1952,7 @@ DEFINE_PATCH_FUNCTION make_shadow_fiend BEGIN
         newxp        = 2000
         newhp        = 59
         newac        = 5
-        newth        = 12
+        newth        = 13
         newapr       = 2
         newsvd       = 13
         newsvw       = 15

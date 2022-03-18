@@ -42,12 +42,14 @@ ADD_SECTYPE fl#Fear @1027
 //Add new projectiles; this is also non-cumulative
 
 ADD_PROJECTILE ~aTweaks/PRO/RR#SPAIN.PRO~                                          // New projectile for Symbol Pain (party friendly)
-ADD_PROJECTILE ~atweaks/pro/fl#cnenp.pro~                                          //Invisible, cone-shaped projectile, party-friendly
-ADD_PROJECTILE ~atweaks/pro/fl#sight.pro~                                          //Like INAREANP, but extends roughly as far as you can see
+ADD_PROJECTILE ~atweaks/pro/fl#cnenp.pro~                                          // Invisible, 90° cone-shaped projectile, party-friendly
+ADD_PROJECTILE ~atweaks/pro/fl#shout.pro~                                          // shoutt, 30° cone-shaped projectile, party-friendly
+ADD_PROJECTILE ~atweaks/pro/fl#sight.pro~                                          // Like INAREANP, but extends roughly as far as you can see
 ADD_PROJECTILE ~atweaks/pro/rr#pyrot.pro~                                          // New projectile for Pyrotechnics
 ADD_PROJECTILE ~atweaks/pro/rr#fcsng.pro~                                          // New projectile for Charming Song
 ADD_PROJECTILE ~atweaks/pro/rr#icew.pro~                                           // New projectile for Wall of Ice
 ADD_PROJECTILE ~atweaks/pro/rr#vrpo.pro~                                           // New projectile for Wall of Ice
+ADD_PROJECTILE ~atweaks/pro/rr#cloud.pro~                                          // cloud spell effect with party-friendly
 
 //We forcibly reload all PRO variables, because there's a bug in WeiDU 231
 COPY_EXISTING missile.ids override
@@ -98,6 +100,7 @@ COPY ~atweaks/vvc/rr#cfire.vvc~ ~override~                                      
 COPY ~atweaks/bam/elementals/rr#cwatr.bam~ ~override~                              // IWD Conjure Water Elemetnal BAM animation
 COPY ~atweaks/vvc/rr#cwatr.vvc~ ~override~                                         // IWD Conjure Water Elemetnal VVC animation
 
+COPY ~atweaks/bam/rr#shout.bam~ ~override~                              		   // IWD shoutt BAM animation
 
 
 

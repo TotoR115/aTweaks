@@ -933,14 +933,6 @@ END
 // New AI Scripts
 ////////////////////////////////////////////////////////////////////////////////
 
-ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
-	OUTER_SPRINT ~State~ ~SpellState~
-	OUTER_SPRINT ~Num~ ~~
-	END ELSE BEGIN 
-	OUTER_SPRINT ~State~ ~StatGT~
-	OUTER_SPRINT ~Num~ ~0,~
-END
-
 COMPILE EVALUATE_BUFFER ~atweaks/baf/fiends/rr#hquas.baf~ // Quasit
 						~atweaks/baf/fiends/rr#haluf.baf~ // Alu-Fiend
 						~atweaks/baf/fiends/rr#hcamb.baf~ // Cambion

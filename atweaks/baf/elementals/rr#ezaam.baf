@@ -33,13 +33,21 @@ THEN
 END
 
 IF
-    OR(3)
-      Global("RR#Active","LOCALS",0)
+    OR(2)
       StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
       StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
 THEN
     RESPONSE #100
         NoAction()
+END
+
+IF
+Allegiance(Myself,EVILCUTOFF)
+Global("rr#Active","LOCALS",0)
+!Detect(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+NoAction()
 END
 
 IF
@@ -929,6 +937,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -957,6 +966,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -987,6 +997,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1017,6 +1028,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1047,6 +1059,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1077,6 +1090,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1107,6 +1121,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1137,6 +1152,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1167,6 +1183,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1197,6 +1214,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1227,6 +1245,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
 THEN
@@ -1260,6 +1279,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1290,6 +1310,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1320,6 +1341,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1350,6 +1372,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1380,6 +1403,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1410,6 +1434,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
+	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)

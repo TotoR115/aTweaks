@@ -398,6 +398,7 @@ IF
     CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
     RESPONSE #100
@@ -421,6 +422,7 @@ IF
     CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
     RESPONSE #100
@@ -444,6 +446,7 @@ IF
     CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
     RESPONSE #100
@@ -467,6 +470,7 @@ IF
     CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
     RESPONSE #100
@@ -490,6 +494,7 @@ IF
     CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
     RESPONSE #100
@@ -513,6 +518,7 @@ IF
     CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
     !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
+	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
 	!HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
 THEN
     RESPONSE #100
@@ -970,7 +976,7 @@ IF
     HasItemEquiped("RR#EFRSA",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Frost Salamander
 THEN
     RESPONSE #100
-        AttackReevaluate(LastSeenBy(Myself),30)
+        NoAction(LastSeenBy(Myself),30)
 END
 
 IF

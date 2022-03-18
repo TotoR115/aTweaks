@@ -20,6 +20,20 @@ SetInterrupt(TRUE)
 END
 
 IF
+Global("fl_weapon","LOCALS",0)
+THEN
+RESPONSE #30
+TakeItemReplace("fl#BLUN","SKELWASU",Myself)
+Continue()
+RESPONSE #30
+TakeItemReplace("fl#AXE1","SKELWASU",Myself)
+Continue()
+RESPONSE #40
+SetGlobal("fl_weapon","LOCALS",1)
+Continue()
+END
+
+IF
 !StateCheck(Myself,STATE_REALLY_DEAD)
 !GlobalTimerNotExpired("flAura","LOCALS")
 THEN

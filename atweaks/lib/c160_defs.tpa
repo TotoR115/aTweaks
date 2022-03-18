@@ -155,7 +155,7 @@ BEGIN
         newsvp = 8
         newsvb = 8
         newsvs = 10
-        newlvl1 = 12
+        newlvl1 = 9
         newlvl2 = 0
         newlvl3 = 0
         newmr = 90
@@ -168,7 +168,7 @@ BEGIN
         newrp = 50
         newrm = 50
         newstr = 18
-        newstrx = 50
+        newstrx = 51
         newint = 16
         newwis = 9
         newdex = 16

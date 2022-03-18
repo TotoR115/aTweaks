@@ -983,14 +983,16 @@ ACTION_DEFINE_ARRAY array_as_argument BEGIN fl#clrsp END
 LAF add_blindness_immunity END
   
 //Shout
+COPY "atweaks/bam/fl#shout.bam" "override"
 COPY "atweaks/spl/base.spl" "override/fl#shout.spl"
   SAY NAME1 @738 //Shout
+  WRITE_ASCII 0x76 ~fl#shout~ #8 //BAM
   WRITE_ASCII 0x10 ~CAS_M06~ #8 //casting sound
   WRITE_BYTE  0x19 BIT2 //flags: hostile
   WRITE_SHORT 0x22 15 //evocation (animation)
   WRITE_SHORT 0x25 6 //evoker (school)
   WRITE_BYTE  0x27 11 //disabling (secondary type)
-  LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_Projectile = fl#cnenp END
+  LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_Projectile = fl#shout END
   target = 2
   power = 4
   resist_dispel = 1

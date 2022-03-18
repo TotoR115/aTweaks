@@ -33,13 +33,21 @@ THEN
 END
 
 IF
-    OR(3)
-      Global("RR#Active","LOCALS",0)
+    OR(2)
       StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
       StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
 THEN
     RESPONSE #100
         NoAction()
+END
+
+IF
+Allegiance(Myself,EVILCUTOFF)
+Global("rr#Active","LOCALS",0)
+!Detect(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+NoAction()
 END
 
 IF
@@ -1138,7 +1146,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
-    !GlobalTimerNotExpired("rr#sfog","LOCALS")
+    !GlobalTimerNotExpired("rr#cloud","LOCALS")
     HaveSpellRES("rr#echsf") // Solid Fog
     !CheckStat([GOODCUTOFF],0,179) // Wind Wall is active
     !CheckStat(SecondNearest([GOODCUTOFF]),0,179)
@@ -1169,7 +1177,7 @@ THEN
     RESPONSE #100
         SetInterrupt(FALSE)
         SetGlobalTimer("RR#Cast","LOCALS",6)
-        SetGlobalTimer("rr#sfog","LOCALS",12) // use Solid Fog once per 2 rounds
+        SetGlobalTimer("rr#cloud","LOCALS",12) // use Solid Fog once per 2 rounds
         ForceSpellRES("rr#echsf",LastSeenBy(Myself)) // Solid Fog
         RemoveSpellRES("rr#echsf") // remove one instance of the spell upon casting
         SetInterrupt(TRUE)
@@ -1178,7 +1186,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
-    !GlobalTimerNotExpired("rr#sfog","LOCALS")
+    !GlobalTimerNotExpired("rr#cloud","LOCALS")
     HaveSpellRES("rr#echsf") // Solid Fog
     !CheckStat([GOODCUTOFF],0,179) // Wind Wall is active
     !CheckStat(SecondNearest([GOODCUTOFF]),0,179)
@@ -1199,13 +1207,12 @@ IF
     CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
         SetGlobalTimer("RR#Cast","LOCALS",6)
-        SetGlobalTimer("rr#sfog","LOCALS",12) // use Solid Fog once per 2 rounds
+        SetGlobalTimer("rr#cloud","LOCALS",12) // use Solid Fog once per 2 rounds
         ForceSpellRES("rr#echsf",LastSeenBy(Myself)) // Solid Fog
         RemoveSpellRES("rr#echsf") // remove one instance of the spell upon casting
         SetInterrupt(TRUE)
@@ -1214,7 +1221,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
-    !GlobalTimerNotExpired("rr#sfog","LOCALS")
+    !GlobalTimerNotExpired("rr#cloud","LOCALS")
     HaveSpellRES("rr#echsf") // Solid Fog
     !CheckStat([GOODCUTOFF],0,179) // Wind Wall is active
     !CheckStat(SecondNearest([GOODCUTOFF]),0,179)
@@ -1235,13 +1242,12 @@ IF
     CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
         SetGlobalTimer("RR#Cast","LOCALS",6)
-        SetGlobalTimer("rr#sfog","LOCALS",12) // use Solid Fog once per 2 rounds
+        SetGlobalTimer("rr#cloud","LOCALS",12) // use Solid Fog once per 2 rounds
         ForceSpellRES("rr#echsf",LastSeenBy(Myself)) // Solid Fog
         RemoveSpellRES("rr#echsf") // remove one instance of the spell upon casting
         SetInterrupt(TRUE)
@@ -1250,7 +1256,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
-    !GlobalTimerNotExpired("rr#sfog","LOCALS")
+    !GlobalTimerNotExpired("rr#cloud","LOCALS")
     HaveSpellRES("rr#echsf") // Solid Fog
     !CheckStat([GOODCUTOFF],0,179) // Wind Wall is active
     !CheckStat(SecondNearest([GOODCUTOFF]),0,179)
@@ -1271,13 +1277,12 @@ IF
     CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
         SetGlobalTimer("RR#Cast","LOCALS",6)
-        SetGlobalTimer("rr#sfog","LOCALS",12) // use Solid Fog once per 2 rounds
+        SetGlobalTimer("rr#cloud","LOCALS",12) // use Solid Fog once per 2 rounds
         ForceSpellRES("rr#echsf",LastSeenBy(Myself)) // Solid Fog
         RemoveSpellRES("rr#echsf") // remove one instance of the spell upon casting
         SetInterrupt(TRUE)
@@ -1286,7 +1291,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
-    !GlobalTimerNotExpired("rr#sfog","LOCALS")
+    !GlobalTimerNotExpired("rr#cloud","LOCALS")
     HaveSpellRES("rr#echsf") // Solid Fog
     !CheckStat([GOODCUTOFF],0,179) // Wind Wall is active
     !CheckStat(SecondNearest([GOODCUTOFF]),0,179)
@@ -1307,13 +1312,12 @@ IF
     CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
         SetGlobalTimer("RR#Cast","LOCALS",6)
-        SetGlobalTimer("rr#sfog","LOCALS",12) // use Solid Fog once per 2 rounds
+        SetGlobalTimer("rr#cloud","LOCALS",12) // use Solid Fog once per 2 rounds
         ForceSpellRES("rr#echsf",LastSeenBy(Myself)) // Solid Fog
         RemoveSpellRES("rr#echsf") // remove one instance of the spell upon casting
         SetInterrupt(TRUE)
@@ -1322,7 +1326,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
-    !GlobalTimerNotExpired("rr#sfog","LOCALS")
+    !GlobalTimerNotExpired("rr#cloud","LOCALS")
     HaveSpellRES("rr#echsf") // Solid Fog
     !CheckStat([GOODCUTOFF],0,179) // Wind Wall is active
     !CheckStat(SecondNearest([GOODCUTOFF]),0,179)
@@ -1343,13 +1347,12 @@ IF
     CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
         SetGlobalTimer("RR#Cast","LOCALS",6)
-        SetGlobalTimer("rr#sfog","LOCALS",12) // use Solid Fog once per 2 rounds
+        SetGlobalTimer("rr#cloud","LOCALS",12) // use Solid Fog once per 2 rounds
         ForceSpellRES("rr#echsf",LastSeenBy(Myself)) // Solid Fog
         RemoveSpellRES("rr#echsf") // remove one instance of the spell upon casting
         SetInterrupt(TRUE)
@@ -1358,7 +1361,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
-    !GlobalTimerNotExpired("rr#sfog","LOCALS")
+    !GlobalTimerNotExpired("rr#cloud","LOCALS")
     HaveSpellRES("rr#echsf") // Solid Fog
     !CheckStat([GOODCUTOFF],0,179) // Wind Wall is active
     !CheckStat(SecondNearest([GOODCUTOFF]),0,179)
@@ -1379,13 +1382,12 @@ IF
     CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
     !CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Alteration
     !HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+	!Check%State%(LastSeenBy(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
         SetGlobalTimer("RR#Cast","LOCALS",6)
-        SetGlobalTimer("rr#sfog","LOCALS",12) // use Solid Fog once per 2 rounds
+        SetGlobalTimer("rr#cloud","LOCALS",12) // use Solid Fog once per 2 rounds
         ForceSpellRES("rr#echsf",LastSeenBy(Myself)) // Solid Fog
         RemoveSpellRES("rr#echsf") // remove one instance of the spell upon casting
         SetInterrupt(TRUE)
@@ -1414,7 +1416,6 @@ IF
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
@@ -1451,7 +1452,6 @@ IF
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
@@ -1488,7 +1488,6 @@ IF
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
@@ -1525,7 +1524,6 @@ IF
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
@@ -1562,7 +1560,6 @@ IF
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
@@ -1599,7 +1596,6 @@ IF
     !Race(LastSeenBy(Myself),LICH)
     !Race(LastSeenBy(Myself),RAKSHASA)
     !Kit(LastSeenBy(Myself),CAVALIER)
-    !HasItemEquiped("CLCK26",LastSeenBy(Myself)) // Cloak of Mirroring
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
     !CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_TRAP)
     !CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Evocation
@@ -1612,6 +1608,7 @@ THEN
         RemoveSpellRES("rr#wi502") // remove one instance of the spell upon casting
         SetInterrupt(TRUE)
 END
+
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("RR#Cast","LOCALS")

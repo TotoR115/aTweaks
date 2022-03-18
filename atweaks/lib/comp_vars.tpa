@@ -43,3 +43,23 @@ END ELSE ACTION_IF GAME_IS ~eet~ BEGIN
 END ELSE BEGIN
   FAIL ~Game version not recognised. Halting installation.~
 END
+
+ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
+	OUTER_SPRINT ~State~ ~SpellState~
+	OUTER_SPRINT ~Num~ ~~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~State~ ~StatGT~
+	OUTER_SPRINT ~Num~ ~0,~
+END
+
+ACTION_IF FILE_EXISTS "cdax2h1.itm" BEGIN
+	OUTER_SPRINT ~fl#axe1~ ~cdax2h1~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~fl#axe1~ ~ax1h01~
+END
+
+ACTION_IF FILE_EXISTS "cdax2h2.itm" BEGIN
+	OUTER_SPRINT ~fl#axe2~ ~cdax2h2~
+	END ELSE BEGIN 
+	OUTER_SPRINT ~fl#axe2~ ~ax1h02~
+END

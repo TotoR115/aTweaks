@@ -140,6 +140,13 @@ ACTION_FOR_EACH file IN
 			   cmskel04 //Dark Horizons
 //			   CADDEM20 //RoT
 //			   CB3579DK //CtB
+			   YSDWFGR2 // Fishing For Trouble
+			   YSDWFGRD // Fishing For Trouble
+			   YSDWFKNT // Fishing For Trouble
+			   F_DEATHK // Drizzt Saga
+			   F_DEATHL // Drizzt Saga
+			   NTDEATH1 // NTotSC
+			   NTGGOTHA // NTotSC
 			   "%Melbf%"
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
@@ -158,7 +165,7 @@ BEGIN
         LPF unturnable END
         LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 193 END //Invisibility detection by script
         LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 0 END //AC bonus
-        LPF DELETE_CRE_ITEM STR_VAR item_to_delete = "sw2h02\|sw2hdeat\|_?sw2h05\|ringdemn\|_?shld06" END
+        LPF DELETE_CRE_ITEM STR_VAR item_to_delete = "sw2h02\sw2h11\|sw2hdeat\|_?sw2h05\|ringdemn\|_?shld06" END
         LPF RR#MDCRE
           INT_VAR
             newxpv = 10000
@@ -199,6 +206,8 @@ BEGIN
             enforce = 1
         STR_VAR
 			notenf01 = MELSUM02
+			notenf02 = F_DEATHK
+			notenf03 = NTGGHOTA
         END
         PATCH_IF "%file%" STRING_MATCHES_REGEXP "_?g?ooddeat$" BEGIN
           PATCH_IF "%file%" STRING_MATCHES_REGEXP "_?deathk$" = 0 BEGIN
@@ -225,6 +234,9 @@ BEGIN
 			  script14 = DW2MS2GE
 			  script15 = DW2MS1GE
 			  script16 = DW2MS5GE
+			  script17 = DW2MS0GE
+			  script17 = NTGGHOTA
+			  script18 = F_DEATHK
           END
         END
         LPF add_skeletal_traits END
@@ -361,11 +373,18 @@ OUTER_SET r = RANDOM(1 6)
 OUTER_SET c = RANDOM(1 100)
 ACTION_FOR_EACH file IN
                 deathk
-                gooddeat
                 _deathk
+                gooddeat
                 _ooddeat
 				cmskel03
 				cmskel04
+				ysdwfgr2
+				ysdwfgrd
+				ysdwfknt
+				f_deathk
+				f_deathl
+				ntdeath1
+				ntgghota
 				"%Melbf%"
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
@@ -742,6 +761,7 @@ BEGIN
 			script11 = DW2MP2GW
 			script12 = DW2MP0GE
 			script13 = DW2MP1GE
+			script14 = DW#GPSHM
         END
         LPF ADD_CRE_EFFECT
           INT_VAR
@@ -1225,10 +1245,6 @@ BEGIN
             newscript = rr#revnt
 			script01 = ""
 			script02 = "None"
-        END
-        LPF RR#MDCSC
-          STR_VAR
-            newscript = fl#revnt
             script01 = wtasight
             script02 = _tasight
 			script03 = bpwtsigt
@@ -1236,6 +1252,13 @@ BEGIN
 			script05 = bpwdrsgt
 			script06 = DW2RM3GE
 			script07 = DW2RC3GE
+			script07 = revenant
+        END
+        LPF RR#MDCSC
+          STR_VAR
+            newscript = fl#revnt
+			script01 = ""
+			script02 = "None"
          END
         LPF cold_spell_immunities END
 		LPF acid_spell_immunities END
@@ -1261,7 +1284,7 @@ COPY 	 "atweaks\itm\undead\fl#Revn1.itm" "override/rr#rvdie.itm"
 
 COPY_EXISTING ~spwi604.spl~ ~override/rr#rgaze.spl~  								// Revenent Gaze
   SET gaze_pro = IDS_OF_SYMBOL (~PROJECTL~ ~gaze~) + 1
-  SAY NAME1 #75326
+  SAY NAME1 @686
   WRITE_ASCII 0x10 "none" #8														// no casting animation
   WRITE_SHORT 0x22 0 																// Gaze Range
   WRITE_SHORT 0x80 30 																// Gaze Range
@@ -1312,7 +1335,7 @@ BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring //+1 or better only
-        REPLACE_CRE_ITEM fl#shad #0 #0 #0 none weapon1
+        REPLACE_CRE_ITEM fl#shad #0 #0 #0 none weapon1 EQUIP
         LPF RR#MDCRE
           INT_VAR
             newxpv = 420
@@ -1731,6 +1754,18 @@ COPY "atweaks/spl/undead/fl#skelw.spl" override
     WRITE_SHORT LONG_AT 0x64 + 0x28*i + 0x26 fl#sight
   END
 
+COPY_EXISTING "ax1h01.ITM" "override/fl#AXE1.ITM"
+  WRITE_BYTE 0x88 5
+  WRITE_BYTE 0x8a 2
+COPY_EXISTING "SKELWASU.ITM" "override/fl#AXE2.ITM"
+  WRITE_ASCII 0x22 "AX"
+  WRITE_BYTE 0x88 5
+  WRITE_BYTE 0x8a 2
+COPY_EXISTING "SKELWASU.ITM" "override/fl#BLUN.ITM"
+  WRITE_ASCII 0x22 "MS"  
+  WRITE_BYTE 0x88 3
+  WRITE_BYTE 0x8a 3
+  WRITE_SHORT 0x8e 6
 
 
 // Spectre
@@ -1746,7 +1781,7 @@ BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
-        REPLACE_CRE_ITEM fl#spect #0 #0 #0 none weapon1
+        REPLACE_CRE_ITEM fl#spect #0 #0 #0 none weapon1 EQUIP
         LPF RR#MDCRE
           INT_VAR
             newxpv = 3000
@@ -1759,7 +1794,7 @@ BEGIN
             newsvp = 8
             newsvb = 9
             newsvs = 8
-            newlvl1 = 8
+            newlvl1 = 7
             newlvl2 = 0
             newlvl3 = 0
             newmr = 0
@@ -1836,7 +1871,7 @@ BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
-        REPLACE_CRE_ITEM fl#wigh #0 #0 #0 none weapon1
+        REPLACE_CRE_ITEM fl#wigh #0 #0 #0 none weapon1 EQUIP
     PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS.TP2~ ~400~ BEGIN // Infinity Animation Compatibility (IAv5b)
         WRITE_LONG 0x28 30464 //animation: ghoul
 	END
@@ -1939,7 +1974,7 @@ BEGIN
           REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none rring //Standard undead immunities
         END
         PATCH_IF !(("%SOURCE_RES%" STRING_EQUAL_CASE ~telslav~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa1~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa2~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~psqtpa3~)) BEGIN
-          REPLACE_CRE_ITEM fl#wrai #0 #0 #0 none weapon1
+          REPLACE_CRE_ITEM fl#wrai #0 #0 #0 none weapon1 EQUIP
         END
         LPF RR#MDCRE
           INT_VAR
@@ -2126,7 +2161,7 @@ BEGIN
       PATCH_IF valid BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
-        REPLACE_CRE_ITEM fl#zomb #0 #0 #0 none weapon1
+        REPLACE_CRE_ITEM fl#zomb #0 #0 #0 none weapon1 EQUIP
         LPF RR#MDCRE
           INT_VAR
             newxpv = 65
@@ -2216,7 +2251,7 @@ BEGIN
       PATCH_IF valid BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
-        REPLACE_CRE_ITEM fl#zlord #0 #0 #0 none weapon1
+        REPLACE_CRE_ITEM fl#zlord #0 #0 #0 none weapon1 EQUIP
         LPF unturnable END
         LPF RR#MDCRE
 		  INT_VAR
@@ -2280,6 +2315,7 @@ END
 
 COPY_EXISTING b2-8.itm "override/fl#zlord.itm"
   LPF set_enchantment INT_VAR enchantment = 2 END
+  WRITE_BYTE 0x88 4
   FOR (i = 0; i < SHORT_AT 0x68; ++i) BEGIN
     WRITE_BYTE LONG_AT 0x64 + 0x38*i + 0x12 10 //speed
   END
@@ -2301,7 +2337,7 @@ BEGIN
         SAY NAME2 @1037
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
-        REPLACE_CRE_ITEM fl#zomju #0 #0 #0 none weapon1
+        REPLACE_CRE_ITEM fl#zomju #0 #0 #0 none weapon1 EQUIP
         LPF illusion_immunity END
         LPF ADD_CRE_EFFECT
           INT_VAR
@@ -2396,7 +2432,7 @@ BEGIN
       PATCH_IF valid BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
-        REPLACE_CRE_ITEM fl#zomse #0 #0 #0 none weapon1
+        REPLACE_CRE_ITEM fl#zomse #0 #0 #0 none weapon1 EQUIP
         LPF illusion_immunity END
         LPF unturnable END
         ADD_MEMORIZED_SPELL sppr102 #0 priest //Command
@@ -2466,7 +2502,7 @@ BEGIN
       PATCH_IF valid BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
-        REPLACE_CRE_ITEM fl#zsel #0 #0 #0 none weapon1
+        REPLACE_CRE_ITEM fl#zsel #0 #0 #0 none weapon1 EQUIP
         LPF illusion_immunity END
         LPF unturnable END
         ADD_MEMORIZED_SPELL sppr102 #0 priest //Command
@@ -2482,10 +2518,10 @@ BEGIN
             newsvd = 7
             newsvw = 9
             newsvp = 8
-            newsvb = 8
-            newsvs = 10
-            newlvl1 = 6
-            newlvl2 = 4
+            newsvb = 9
+            newsvs = 8
+            newlvl1 = 8
+            newlvl2 = 6
             newlvl3 = 0
             newmr = 50
             newfr = 50
@@ -2503,7 +2539,7 @@ BEGIN
             newdex = 17
             newcon = 18
             newchr = 9
-            newmor = 60
+            newmor = 20
             newalign = 0x33 //NE
             newclass = 8 //F/C
             newgen = 4 //undead
@@ -2588,6 +2624,8 @@ COPY_EXISTING b1-10.itm "override/fl#zomse.itm" //Sorry, but the zombie animatio
 
 COPY_EXISTING fl#zomse.itm "override/fl#zsel.itm"
   LPF set_enchantment INT_VAR enchantment = 2 END
+  WRITE_BYTE 0x88 6
+  WRITE_BYTE 0x8a 2
 
 COPY "atweaks/spl/base.spl" "override/fl#zomsd.spl"
   LPF ADD_SPELL_EFFECT
@@ -2640,14 +2678,6 @@ END
 ////////////////////////////////////////////////////////////////////////////////
 
 // Scripts
-
-ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
-	OUTER_SPRINT ~State~ ~SpellState~
-	OUTER_SPRINT ~Num~ ~~
-	END ELSE BEGIN 
-	OUTER_SPRINT ~State~ ~StatGT~
-	OUTER_SPRINT ~Num~ ~0,~
-END
 
 
 ACTION_IF BG1 AND !BGT AND !EET BEGIN

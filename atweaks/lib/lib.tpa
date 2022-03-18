@@ -693,6 +693,7 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
                 ~rr#ezafb~                                                             // Fireball, 12d6 (Zaaman Rul)
                 ~rr#eburn~                                                             // Burn (Fire Elemental on-hit effect)
                 ~rr#englf~                                                             // Engulf, part 1 (Greater Fire Elemental on-hit effect)
+				~RR#GWOF1~													 		   // Wall of Fire (Efreet)
 			   ~%IWDprdf%~													 		   // Produe Fire (IWDification)
 			    ~%IWDbbb%~													 		   // Beltyn's Burning Blood (IWDification)
 			   ~%IWDshrf%~													 		   // Shroud of Flame (IWDification)

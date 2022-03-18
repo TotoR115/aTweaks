@@ -36,14 +36,6 @@ COPY ~atweaks/cre/fey/rr#sdrya.cre~  ~override~                                 
      ~atweaks/cre/fey/rr#snymp.cre~  ~override~                                    // Summoned Nymph
 END                                                                                // ends IWD:EE check
 
-ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
-	OUTER_SPRINT ~State~ ~SpellState~
-	OUTER_SPRINT ~Num~ ~~
-	END ELSE BEGIN 
-	OUTER_SPRINT ~State~ ~StatGT~
-	OUTER_SPRINT ~Num~ ~0,~
-END
-
 COMPILE EVALUATE_BUFFER ~atweaks/baf/fey/rr#sdrya.baf~                                             // Summoned Dryad AI script
 						~atweaks/baf/fey/rr#shama.baf~                                             // Summoned Hamadryad AI script
 						~atweaks/baf/fey/rr#snymp.baf~                                             // Summoned Nymph AI script

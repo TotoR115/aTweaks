@@ -166,8 +166,6 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 ADD_MEMORIZED_SPELL ~rr#fchrm~ #0 ~innate~ ( 3 )                                   // adds 3x Charm Person
 ADD_MEMORIZED_SPELL ~rr#fspkp~ #0 ~innate~ ( 1 )                                   // adds 1x Speak With Plants
 ADD_MEMORIZED_SPELL ~rr#ddoor~ #0 ~innate~ ( 1 )                                   // adds 1x Dimension Door
@@ -253,8 +251,6 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 ADD_MEMORIZED_SPELL ~rr#fchrm~ #0 ~innate~ ( 3 )                                   // adds 3x Charm Person
 ADD_MEMORIZED_SPELL ~rr#fentg~ #0 ~innate~ ( 1 )                                   // adds 1x Entangle
 ADD_MEMORIZED_SPELL ~rr#fafrn~ #0 ~innate~ ( 1 )                                   // adds 1x Animal Friendship
@@ -336,10 +332,11 @@ ACTION_FOR_EACH ~file~ IN                                                       
                   ~_SIL~                                                           // Sil (Tutu)
 			  ~J#SIRIN1~ 														   //Sirine (Jarl Adv)
 			  ~J#SIRIN2~ 														   //Sirine (Jarl Adv)
-			    ~L#NDC1~
+			    ~L#NDC1~														   // Southern Edge
 			   ~NTSILUA~ 														   //Sirine (NTotSC)
 			  ~NTSIRIN2~ 														   //Sirine (NTotSC)
 			  ~NTSIRIN4~ 														   //Sirine (NTotSC)
+			  ~NTSIRINE~ 														   //Sirine (NTotSC)			  
 			    ~ISLSIR~ 														   //Sirine Queen (BGT)
 			    ~MEIALA~ 														   //Sirine (BGT)
 			  ~QSEROMOD~ 														   //Sirine (PofQuestPack)
@@ -476,8 +473,6 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 ADD_MEMORIZED_SPELL ~rr#ddor2~ #0 ~innate~ ( 1 )                                   // adds 1x Dimension Door (non-renewable)
 ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 2 )                                    // adds 2x Bless
 ADD_MEMORIZED_SPELL ~SPPR103~ #0 ~priest~ ( 2 )                                    // adds 2x Cure Light Wounds
@@ -563,13 +558,6 @@ END
 // New AI Scripts
 //////////////////
 
-ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
-	OUTER_SPRINT ~State~ ~SpellState~
-	OUTER_SPRINT ~Num~ ~~
-	END ELSE BEGIN 
-	OUTER_SPRINT ~State~ ~StatGT~
-	OUTER_SPRINT ~Num~ ~0,~
-END
 
 COMPILE EVALUATE_BUFFER ~atweaks/baf/fey/rr#fdrya.baf~                              // hostile Dryad AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/fey/rr#fhama.baf~		                        // hostile Hamadryad AI script
@@ -659,6 +647,32 @@ COPY_EXISTING ~rr#fhama.bcs~ ~override~
   REPLACE_BCS_BLOCK ~atweaks/inlined/baf/fey/vaelasa.baf~ ~questpack/phluafae/appendvae.baf~
 
 END                                                                                                        // ends Quest Pack check
+
+// The Calling compatibility block : add some black pearls to the game
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~cdbpearl.itm~)  BEGIN  // The Calling
+
+<<<<<<<<atweaks/inlined/baf/fey/black_peal.baf
+IF
+  HasItem("%tutu_var%misc36",Myself)
+  Global("CDPearls","LOCALS",0)
+THEN
+  RESPONSE #95
+    SetGlobal("CDPearls","LOCALS",1)
+    Continue()
+  RESPONSE #5
+    SetGlobal("CDPearls","LOCALS",1)
+    TakeItemReplace("cdbpearl","%tutu_var%misc36",Myself)
+    Continue()
+END
+>>>>>>>>
+
+
+EXTEND_TOP  ~rr#fsiri.bcs~  ~atweaks/inlined/baf/fey/black_peal.baf~ EVALUATE_BUFFER // give sirines a chance to have black pearls
+
+
+
+END                                                                                                        // ends The Calling check
 
 
 // Replace shouts with Help() in specific dialogue files

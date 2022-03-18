@@ -408,6 +408,16 @@ THEN
 END
 
 IF
+	See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
+    OR(2)
+      HasItemEquiped("RR#EFSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Fire Salamander
+      HasItemEquiped("RR#ENSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Salamander Noble
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
 	Global("RR#NOPND","GLOBAL",0) // opening doors is allowed
     Allegiance(Myself,EVILCUTOFF) // humanoids and some intelligent monsters can open unlocked doors
     !AreaType(OUTDOOR)
@@ -426,16 +436,6 @@ IF
     !CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle or higher
     CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
     Allegiance(LastSeenBy(Myself),GOODCUTOFF) // safety check
-THEN
-    RESPONSE #100
-        AttackReevaluate(LastSeenBy(Myself),30)
-END
-
-IF
-	See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
-    OR(2)
-      HasItemEquiped("RR#EFSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Fire Salamander
-      HasItemEquiped("RR#ENSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Salamander Noble
 THEN
     RESPONSE #100
         AttackReevaluate(LastSeenBy(Myself),30)
