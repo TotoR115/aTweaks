@@ -1,10 +1,9 @@
 IF
 HasItemEquiped("SW2H02",Myself)
 Global("fl_weapon","LOCALS",0)
-!Name("nevpupil",Myself)
 THEN
 RESPONSE #30
-TakeItemReplace("fl#BLUN","SW2H02",Myself)
+TakeItemReplace("fl#BLUN2","SW2H02",Myself)
 TakeItemReplace("BLUN07","",Myself)
 Continue()
 RESPONSE #30
@@ -19,10 +18,9 @@ END
 IF
 HasItemEquiped("SW2H01",Myself)
 Global("fl_weapon","LOCALS",0)
-!Name("nevm2",Myself)
 THEN
 RESPONSE #30
-TakeItemReplace("fl#BLUN","SW2H01",Myself)
+TakeItemReplace("fl#BLUN1","SW2H01",Myself)
 TakeItemReplace("BLUN06","",Myself)
 Continue()
 RESPONSE #30

@@ -23,10 +23,10 @@ IF
 Global("fl_weapon","LOCALS",0)
 THEN
 RESPONSE #30
-TakeItemReplace("fl#BLUN","SKELWASU",Myself)
+TakeItemReplace("fl#BLUN2","SKELWASU",Myself)
 Continue()
 RESPONSE #30
-TakeItemReplace("fl#AXE1","SKELWASU",Myself)
+TakeItemReplace("fl#AXE2","SKELWASU",Myself)
 Continue()
 RESPONSE #40
 SetGlobal("fl_weapon","LOCALS",1)

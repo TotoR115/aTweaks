@@ -654,7 +654,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~cdbpearl.itm~)  BEGIN  // The Calling
 
 <<<<<<<<atweaks/inlined/baf/fey/black_peal.baf
 IF
-  HasItem("%tutu_var%misc36",Myself)
+  HasItem("%TUTU_VAR%misc36",Myself)
   Global("CDPearls","LOCALS",0)
 THEN
   RESPONSE #95
@@ -662,7 +662,7 @@ THEN
     Continue()
   RESPONSE #5
     SetGlobal("CDPearls","LOCALS",1)
-    TakeItemReplace("cdbpearl","%tutu_var%misc36",Myself)
+    TakeItemReplace("cdbpearl","%TUTU_VAR%misc36",Myself)
     Continue()
 END
 >>>>>>>>
