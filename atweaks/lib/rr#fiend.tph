@@ -177,6 +177,7 @@ COPY ~aTweaks/EFF/RR#DCORN.EFF~ ~override~                                      
 COPY ~aTweaks/SPL/RR#WISH.SPL~  ~override~                                         // Custom Wish spell (Pit Fiend)
 COPY ~aTweaks/SPL/RR#CNSTR.SPL~ ~override~                                         // Constrict ability (Pit Fiend)
   SAY NAME1 @674 SAY NAME2 @674                                                    
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF(@674) END // Display the constrict string
 COPY ~aTweaks/EFF/RR#CNSTR.EFF~ ~override~                                         // Constrict ability immunity (for large and incorporeal creatures)
 COPY ~aTweaks/VVC/RR#CNSTR.VVC~ ~override~                                         // Constrict/Grab/Flaming Whip ability VVC animation
 COPY ~aTweaks/BAM/RR#CNSTR.BAM~ ~override~                                         // Constrict/Grab/Flaming Whip ability BAM graphics
@@ -243,6 +244,7 @@ COPY ~aTweaks/SPL/RR#CNSTR.SPL~ ~override/RR#DMCNS.SPL~                         
   READ_LONG  0x64 "abil_off"
   READ_SHORT 0x68 "abil_num"
   READ_LONG  0x6a "fx_off"
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF(@674) END // Display the constrict string
   FOR (index = 0 ; index < abil_num ; index = index + 1) BEGIN                     // cycle through abilities
    READ_SHORT  ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
    READ_SHORT  ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
@@ -597,6 +599,8 @@ COPY ~aTweaks/ITM/RR#DGLAB.ITM~ ~override~                                      
 
 COPY ~aTweaks/ITM/RR#DMARI.ITM~ ~override~                                         // Marilith melee attack
   LPF set_enchantment INT_VAR enchantment = 4 END
+COPY ~aTweaks/ITM/RR#DMARL.ITM~ ~override~                                         // Marilith tail attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
 
 COPY ~atweaks/itm/rr#dbalr.itm~ ~override~                                         // Balor Vorpal Sword (right hand)
   LPF set_enchantment INT_VAR enchantment = 5 END
@@ -624,7 +628,9 @@ COPY ~atweaks/itm/rr#dgelu.itm~ ~override~                                      
   LPF set_enchantment INT_VAR enchantment = 4 END
 COPY ~atweaks/itm/rr#dgel2.itm~ ~override~                                         // Gelugon tail attack (off-hand)
   LPF set_enchantment INT_VAR enchantment = 4 END
-
+COPY ~atweaks/itm/rr#clck1.itm~ ~override~                                         // alu-fiend armor +2
+COPY ~atweaks/itm/rr#clck2.itm~ ~override~                                         // alu-fiend armor +4
+COPY ~atweaks/itm/RR#PLAT2.itm~ ~override~                                         // Cambion plate armor +2
 
 
 COPY ~aTweaks/ITM/RR#DPITF.ITM~ ~override~                                         // Pit Fiend melee attack

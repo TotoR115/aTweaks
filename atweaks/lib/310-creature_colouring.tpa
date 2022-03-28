@@ -2859,22 +2859,15 @@ END                                                                             
 // Succubus
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-              ~DEMSUC01~                                                           // Succubus
+              // ~DEMSUC01~                                                        // Succubus - already have a different color
               ~GORSUC01~                                                           // Succubus
-               ~GORTAN2~                                                           // Succubus
+               // ~GORTAN2~                                                        // Succubus - already have a different color
               ~GORWOM01~                                                           // Nalmissra
-                ~KIRINH~                                                           // Kirinhale, the Succubus in Durlag's Tower (BGT)
-               ~_KIRINH~                                                           // Kirinhale, the Succubus in Durlag's Tower (Tutu)
+                // ~KIRINH~                                                        // Kirinhale, the Succubus in Durlag's Tower (BGT) - already have a different color
+               // ~_KIRINH~                                                        // Kirinhale, the Succubus in Durlag's Tower (Tutu) - already have a different color
               ~RR#HSSUC~                                                           // aTweaks Succubus (Fiendish Gating)
-              ~x#amelia~                                                           // Amelia, the Succubus added by BG1 NPCs during Coran's quest
+              // ~x#amelia~                                                        // Amelia, the Succubus added by BG1 NPCs during Coran's quest - already have a different color
 			  ~yugsuc01~                                                           // Succubus (Longer Road)
-			   ~FINSUCC~                                                           // Succubus (Ascension)
-			  ~pstana02~                                                           // Succubus (Planar Sphere)
-			  ~pstana2a~                                                           // Succubus (Planar Sphere)
-               ~nssuc01~                                                           // Succubus (Saerileth)
-			   ~nssuc02~                                                           // Succubus (Saerileth)
-			  ~sd_hrzr2~                                                           // Succubus (Shed's Mods)
-			  ~ntindfig~                                                           // Succubus (NTotSC)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~

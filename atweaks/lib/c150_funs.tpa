@@ -184,6 +184,16 @@ DEFINE_PATCH_FUNCTION make_erinyes BEGIN
     // =============================================================================== // the actual work starts from here
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~HELMNOAN~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
+	PATCH_IF FILE_EXISTS_IN_GAME "WINGS01.ITM" BEGIN
+      INNER_ACTION BEGIN
+	    COPY_EXISTING ~WINGS01.ITM~ ~override/RR#WING1.ITM~
+		WRITE_BYTE 0x18 0															   // not droppable
+		WRITE_BYTE 0x1b 2															   // no critical hit immunity
+		LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 7 parameter1 = 79 parameter2 = 54 timing = 2 probability1 = 100 END 
+      END
+	  ADD_CRE_ITEM ~RR#WING1~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~              // add wings
+      WRITE_LONG 0x28 "24849"                                                          // Sets avatar to FIGHTER_FEMALE_ELF	  
+	END
     REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
     REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
     newxpv = 7000
@@ -222,8 +232,6 @@ DEFINE_PATCH_FUNCTION make_erinyes BEGIN
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DERINY01"                                                      // enforced creature 1 (uses strict PnP values)
           "enfc02"   = "GORBAT2"                                                       // enforced creature 2 (uses strict PnP values)
-          "enfc03"   = "jumjum"                                                        // enforced creature 3 (uses strict PnP values)
-          "enfc04"   = "wardtief"                                                      // enforced creature 4 (uses strict PnP values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -234,7 +242,7 @@ DEFINE_PATCH_FUNCTION make_erinyes BEGIN
         "script03"   = "WTASIGHT"                                                      // third AI script name
         "script04"   = "ERINYES"                                                       // fourth AI script name
         "script05"   = "BPDEMON"                                                       // Big Picture Demon AI
-		"skipfile01" = "jumjum"                                                      // skip script patching for a designated file
+		"skipfile01" = "jumjum"                                                        // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
     LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -525,8 +533,8 @@ DEFINE_PATCH_FUNCTION make_gelugon BEGIN
 	LAUNCH_PATCH_FUNCTION ~RR#MDCRE~
       INT_VAR
         newxpv
-          "rr#ptwf"  = "2"                                                             // perfect two weapon fighting
-          "newmove"  = "11"                                                            // new movement rate                                                            // new movement rate
+          "rr#ptwf"  = "1"                                                             // perfect two weapon fighting
+          "newmove"  = "11"                                                            // new movement rate
           "newhp"    = "88"                                                            // new hit point value
           "newac"    = "-3"                                                            // new Armor Class value
           "newth"    = "9"                                                             // new THAC0 value
@@ -791,9 +799,33 @@ DEFINE_PATCH_FUNCTION make_cambion BEGIN
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~SEEINVIS~                                                         // removes SEEINVIS.ITM (no detect invisibility in PnP)
     REMOVE_CRE_ITEM ~HELMNOAN~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-    ADD_CRE_ITEM ~DWDUST~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~                   // unequipp armor in order to enable arcane spellcasting
-    PATCH_IF !FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~RINGDEMN~) BEGIN               // if the creature doesn't possess Fiend immunities
-      ADD_CRE_ITEM ~RR#DCAM2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~               // add Cambion immunities (as all fiends except not immune to normal weapons)
+    PATCH_IF !(LONG_AT 0x28 = 21058) BEGIN 											   // Infinity Animation Compatibility (IAv5b)
+      WRITE_LONG 0x28 "24832"                                                          // Sets avatar to FIGHTER_MALE_HUMAN
+	  WRITE_BYTE 0x2F 83                                                               // skin color (Dark Adamantite Grey)
+	  WRITE_BYTE 0x32 105                                                              // Hair color (White)
+      WRITE_BYTE 0x2c 0                                                                // Metal Color (Red Tinted Black)
+      WRITE_BYTE 0x2d 34                                                               // Minor color (Ghostly Green)
+      WRITE_BYTE 0x2e 46                                                               // Major color (Light Red)
+      WRITE_BYTE 0x30 97                                                               // Leather color (Light Minty Blue)
+      WRITE_BYTE 0x31 18                                                               // Armor color (Light Sea Blue)
+      INNER_ACTION BEGIN
+	    COPY_EXISTING ~helm01.ITM~ ~override/RR#HELM1.ITM~
+		  WRITE_BYTE 0x18 0															   // not droppable
+		  WRITE_BYTE 0x1b 2															   // no critical hit immunity
+		  WRITE_ASCII 0x22 ~J1~ #2													   // helm with long horns
+		  LPF ALTER_EFFECT INT_VAR match_opcode = 7 parameter1 = 83 END 			   // All colors (Dark Adamantite Grey)
+		  LPF ALTER_EFFECT INT_VAR match_opcode = 7 match_parameter2 = 48 parameter1 = 46 END // Wings color (Light Red)
+	  END
+	  ADD_CRE_ITEM ~RR#HELM1~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~              // add horns
+	  
+	END
+	PATCH_IF FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~CHAN01~) BEGIN
+	  ADD_CRE_ITEM ~RR#PLAT2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~               // replace armor with a plate +2 that enable arcane spellcasting
+	  ADD_CRE_ITEM ~dwdust~ #0 #0 #0 ~UNSTEALABLE~ ~inv10~
+    END
+	PATCH_IF FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~CHAN07~) BEGIN
+	  ADD_CRE_ITEM ~RR#PLAT2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~               // replace armor with a plate +2 that enable arcane spellcasting
+	  ADD_CRE_ITEM ~CHAN07~ #0 #0 #0 ~UNSTEALABLE~ ~inv10~
     END
     READ_BYTE 0x6e bg1lswrd                                                            // BG1 Proficiency slot (Large Sword)
     PATCH_IF (%bg1lswrd% < 1) BEGIN                                                    // if the creature has no Large Sword proficiency
@@ -824,18 +856,19 @@ DEFINE_PATCH_FUNCTION make_cambion BEGIN
           "newcr"    = "50"                                                            // new Resist Cold value
           "newer"    = "100"                                                           // new Resist Electricity value
           "newlvl1"  = "6"                                                             // new level (first class)
+          "newlvl2"  = "6"                                                             // new level (second class)
           "newstr"   = "18"                                                            // new Strength value
-          "newstrx"  = "76"                                                            // new Exceptional Strength value
+          "newstrx"  = "100"                                                           // new Exceptional Strength value
           "newint"   = "16"                                                            // new Intelligence value
           "newwis"   = "8"                                                             // new Wisdom value
           "newdex"   = "16"                                                            // new Dexterity value
           "newcon"   = "17"                                                            // new Constitution value
-          "newchr"   = "18"                                                            // new Charisma value
+          "newchr"   = "19"                                                            // new Charisma value
           "newmor"   = "14"                                                            // new morale value
           "newmorb"  = "5"                                                             // new morale break value
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
-          "newclass" = "1"                                                             // new class (Mage)
+          "newclass" = "13"                                                            // new class (MAGE_THIEF)
           "newalign" = "51"                                                            // new alignment (Chaotic Evil)
           "newhide"  = "80"                                                            // new Hide in Shadows value
           "newmsil"  = "80"                                                            // new Move Silently value
@@ -889,22 +922,22 @@ DEFINE_PATCH_FUNCTION make_cambion BEGIN
         "skipfile10" = "nscamb03"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
-    LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-    LAUNCH_PATCH_FUNCTION electrical_spell_immunities END                              // grant immunities to electricity-based area effect spells
+		LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                // grant immunities to fire-based area effect spells
+		LAUNCH_PATCH_FUNCTION electrical_spell_immunities END                          // grant immunities to electricity-based area effect spells
+		LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                      // delete the EFF with the designated opcode
+			INT_VAR opcode_to_delete = "193" END                                       // mark opcode #193 (Invisible Detection by Script) for deletion
+    END
     PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~GORCAMB~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~PWARDEN~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~AGCAMB01~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~AGCAMB02~)) BEGIN  // special case, don't alter the Warden's, Aesgareth's spell selection and Aurora Demon's spells
-      LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
-        INT_VAR opcode_to_delete = "193" END                                           // mark opcode #193 (Invisible Detection by Script) for deletion
-      END
-    REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-    REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-    ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~wizard~                                          // adds 1x Blindness
-    ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~wizard~                                          // adds 1x Blindness
-    ADD_MEMORIZED_SPELL ~SPWI112~ #0 ~wizard~                                          // adds 1x Magic Missile
-    ADD_MEMORIZED_SPELL ~SPWI112~ #0 ~wizard~                                          // adds 1x Magic Missile
-    ADD_MEMORIZED_SPELL ~SPWI206~ #1 ~wizard~                                          // adds 1x Invisibility
-    ADD_MEMORIZED_SPELL ~SPWI212~ #1 ~wizard~                                          // adds 1x Mirror Image
-    ADD_MEMORIZED_SPELL ~SPWI305~ #2 ~wizard~                                          // adds 1x Haste
-    ADD_MEMORIZED_SPELL ~SPWI312~ #2 ~wizard~                                          // adds 1x Slow
+		WRITE_LONG 0x244 0x4000000												   	   // Add a Mage Kit: Illusionist
+		REMOVE_KNOWN_SPELLS                                                            // Remove all known spells from the current creature
+		REMOVE_MEMORIZED_SPELLS                                                        // Remove all memorized spells from the current creature
+		ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~wizard~ ( 3 )                                // adds 3x Blindness
+		ADD_MEMORIZED_SPELL ~SPWI112~ #0 ~wizard~ ( 2 )                                // adds 2x Magic Missile
+		ADD_MEMORIZED_SPELL ~SPWI206~ #1 ~wizard~ ( 2 )                                // adds 2x Invisibility
+		ADD_MEMORIZED_SPELL ~SPWI212~ #1 ~wizard~                                      // adds 1x Mirror Image
+		ADD_MEMORIZED_SPELL ~SPWI305~ #2 ~wizard~                                      // adds 1x Haste
+		ADD_MEMORIZED_SPELL ~SPWI312~ #2 ~wizard~                                      // adds 1x Slow
+		ADD_MEMORIZED_SPELL ~SPWI322~ #2 ~wizard~                                      // adds 1x Detect Illusion
     END
     // =============================================================================== // the actual work ends here
   END                                                                                  // ends file validity check
@@ -917,11 +950,26 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
     PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                     // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
     // =============================================================================== // the actual work starts from here
     PATCH_IF !(LONG_AT 0x28 = 21059) BEGIN 											   // Infinity Animation Compatibility (IAv5b)
-      WRITE_LONG 0x28 "25104"                                                          // Sets avatar to MAGE_FEMALE_HUMAN
+      WRITE_LONG 0x28 "25105"                                                          // Sets avatar to MAGE_FEMALE_ELF
 	END
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~HELMNOAN~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-    ADD_CRE_ITEM ~CLCK14~ #0 #0 #0 ~UNSTEALABLE~ ~ARMOR~                               // replace armor with a robe to enable arcane spellcasting
+    PATCH_IF FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~CHAN08~) BEGIN                  // if the creature does possess chain armor
+	  ADD_CRE_ITEM ~RR#CLCK2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~               // replace armor with a robe +4 to enable arcane spellcasting
+	  ADD_CRE_ITEM ~clck14~ #0 #0 #0 ~UNSTEALABLE~ ~inv10~
+	END ELSE PATCH_IF FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~LEAT07~) BEGIN		   // if the creature does possess leather armor
+	  ADD_CRE_ITEM ~RR#CLCK1~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~               // replace armor with a robe +2 to enable arcane spellcasting	  
+	  ADD_CRE_ITEM ~clck14~ #0 #0 #0 ~UNSTEALABLE~ ~inv10~
+	END
+	PATCH_IF FILE_EXISTS_IN_GAME "WINGS01.ITM" BEGIN
+      INNER_ACTION BEGIN
+	    COPY_EXISTING ~WINGS01.ITM~ ~override/RR#WING2.ITM~
+		  WRITE_BYTE 0x18 0															   // not droppable
+		  WRITE_BYTE 0x1b 2															   // no critical hit immunity
+		  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 7 parameter1 = 30 parameter2 = 54 timing = 2 probability1 = 100 END 
+	  END
+	  ADD_CRE_ITEM ~RR#WING2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~             // add wings
+	END
     newxpv = 6000
     LPM update_fiend_xp
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
@@ -964,7 +1012,7 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
           "enfc04"   = "TELALU1"                                                       // enforced creature 4 (uses strict PnP values)
           "enfc05"   = "TELSUC1"                                                       // enforced creature 5 (uses strict PnP values)
           "enfc06"   = "nsaluf01"                                                      // enforced creature 8 (uses strict PnP values)
-     END                                                                              // ends FUNCTION call
+     END                                                                               // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
       STR_VAR                                                                          // Initialize strings
@@ -992,40 +1040,30 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
         "skipfile02" = "AGALUF02"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
     PATCH_IF FiendsScripts = 0 BEGIN                                                   // Only do this if we're not just adding aTweaks scripting
-    LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-    LAUNCH_PATCH_FUNCTION electrical_spell_immunities END                              // grant immunities to electricity-based area effect spells
+		LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                // grant immunities to fire-based area effect spells
+		LAUNCH_PATCH_FUNCTION electrical_spell_immunities END                          // grant immunities to electricity-based area effect spells
+		LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                      // delete the EFF with the designated opcode
+			INT_VAR opcode_to_delete = "193" END                                       // mark opcode #193 (Invisible Detection by Script) for deletion
+    END
     PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~AGALUF01~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~AGALUF02~)) BEGIN  // special case, don't alter Aurora Demon's spells
-      LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
-        INT_VAR opcode_to_delete = "193" END                                           // mark opcode #193 (Invisible Detection by Script) for deletion
-      END
-    REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-    REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-    ADD_KNOWN_SPELL     ~SPWI201~ #1 ~wizard~                                          // add Blur as known
-    ADD_KNOWN_SPELL     ~SPWI403~ #3 ~wizard~                                          // add Fire Shield (Blue) as known
-    ADD_KNOWN_SPELL     ~SPWI420~ #3 ~wizard~                                          // add Minor Sequencer as known
-    ADD_KNOWN_SPELL     ~SPWI522~ #4 ~wizard~                                          // add Minor Spell Turning as known
-    ADD_KNOWN_SPELL     ~SPWI617~ #5 ~wizard~                                          // add Contingency as known
-    ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~wizard~                                          // adds 1x Blindness
-    ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~wizard~                                          // adds 1x Blindness
-    ADD_MEMORIZED_SPELL ~SPWI112~ #0 ~wizard~                                          // adds 1x Magic Missile
-    ADD_MEMORIZED_SPELL ~SPWI112~ #0 ~wizard~                                          // adds 1x Magic Missile
-    ADD_MEMORIZED_SPELL ~SPWI212~ #1 ~wizard~                                          // adds 1x Mirror Image
-    ADD_MEMORIZED_SPELL ~SPWI212~ #1 ~wizard~                                          // adds 1x Mirror Image
-    ADD_MEMORIZED_SPELL ~SPWI212~ #1 ~wizard~                                          // adds 1x Mirror Image
-    ADD_MEMORIZED_SPELL ~SPWI219~ #1 ~wizard~                                          // adds 1x Vocalize
-    ADD_MEMORIZED_SPELL ~SPWI312~ #2 ~wizard~                                          // adds 1x Slow
-    ADD_MEMORIZED_SPELL ~SPWI312~ #2 ~wizard~                                          // adds 1x Slow
-    ADD_MEMORIZED_SPELL ~SPWI314~ #2 ~wizard~                                          // adds 1x Vampiric Touch
-    ADD_MEMORIZED_SPELL ~SPWI314~ #2 ~wizard~                                          // adds 1x Vampiric Touch
-    ADD_MEMORIZED_SPELL ~SPWI405~ #3 ~wizard~                                          // adds 1x Improved Invisibility
-    ADD_MEMORIZED_SPELL ~SPWI405~ #3 ~wizard~                                          // adds 1x Improved Invisibility
-    ADD_MEMORIZED_SPELL ~SPWI408~ #3 ~wizard~                                          // adds 1x Stoneskin
-    ADD_MEMORIZED_SPELL ~SPWI408~ #3 ~wizard~                                          // adds 1x Stoneskin
-    ADD_MEMORIZED_SPELL ~SPWI507~ #4 ~wizard~                                          // adds 1x Hold Monster
-    ADD_MEMORIZED_SPELL ~SPWI507~ #4 ~wizard~                                          // adds 1x Hold Monster
-    ADD_MEMORIZED_SPELL ~SPWI508~ #4 ~wizard~                                          // adds 1x Chaos
-    ADD_MEMORIZED_SPELL ~SPWI508~ #4 ~wizard~                                          // adds 1x Chaos
-    ADD_MEMORIZED_SPELL ~SPWI611~ #5 ~wizard~                                          // adds 1x Protection From Magical Weapons
+		REMOVE_KNOWN_SPELLS                                                            // Remove all known spells from the current creature
+		REMOVE_MEMORIZED_SPELLS                                                        // Remove all memorized spells from the current creature
+		ADD_KNOWN_SPELL     ~SPWI201~ #1 ~wizard~                                      // add Blur as known
+		ADD_KNOWN_SPELL     ~SPWI403~ #3 ~wizard~                                      // add Fire Shield (Blue) as known
+		ADD_KNOWN_SPELL     ~SPWI420~ #3 ~wizard~                                      // add Minor Sequencer as known
+		ADD_KNOWN_SPELL     ~SPWI522~ #4 ~wizard~                                      // add Minor Spell Turning as known
+		ADD_KNOWN_SPELL     ~SPWI617~ #5 ~wizard~                                      // add Contingency as known
+		ADD_MEMORIZED_SPELL ~SPWI106~ #0 ~wizard~ (2)                                  // adds 2x Blindness
+		ADD_MEMORIZED_SPELL ~SPWI112~ #0 ~wizard~ (2)                                  // adds 2x Magic Missile
+		ADD_MEMORIZED_SPELL ~SPWI212~ #1 ~wizard~ (3)                                  // adds 3x Mirror Image
+		ADD_MEMORIZED_SPELL ~SPWI219~ #1 ~wizard~                                      // adds 1x Vocalize
+		ADD_MEMORIZED_SPELL ~SPWI312~ #2 ~wizard~ (2)                                  // adds 2x Slow
+		ADD_MEMORIZED_SPELL ~SPWI314~ #2 ~wizard~ (2)                                  // adds 2x Vampiric Touch
+		ADD_MEMORIZED_SPELL ~SPWI405~ #3 ~wizard~ (2)                                  // adds 2x Improved Invisibility
+		ADD_MEMORIZED_SPELL ~SPWI408~ #3 ~wizard~ (2)                                  // adds 2x Stoneskin
+		ADD_MEMORIZED_SPELL ~SPWI507~ #4 ~wizard~ (2)                                  // adds 2x Hold Monster
+		ADD_MEMORIZED_SPELL ~SPWI508~ #4 ~wizard~ (2)                                  // adds 2x Chaos
+		ADD_MEMORIZED_SPELL ~SPWI611~ #5 ~wizard~                                      // adds 1x Protection From Magical Weapons
 	END
     // =============================================================================== // the actual work ends here
   END                                                                                  // ends file validity check
@@ -1206,8 +1244,8 @@ DEFINE_PATCH_FUNCTION make_succubus BEGIN
       ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~                // add immunity to +1 weapons and below
     END
     PATCH_IF !("%SOURCE_RES%" STRING_EQUAL_CASE ~x#amelia~) BEGIN                      // special case for Amelia, the Succubus added by BG1 NPCs during Coran's quest, don't change animation
-	  PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~SUCCUBUS_NWN~)) > 0) BEGIN 				   // Infinity Animation Compatibility (IAv5b)
-        WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~SUCCUBUS_NWN~))	              	   // Use IA succubus apperance
+	  PATCH_IF (LONG_AT 0x28 = (IDS_OF_SYMBOL (~animate~ ~SUCCUBUS_NWN~))) BEGIN 	   // NWN Succubus animation - Infinity Animation (IAv5b)
+        WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~SIRINE~))	              	       // undo IA succubus change
 	  END
 	END
     // =============================================================================== // the actual work ends here
@@ -1349,7 +1387,7 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
 END
 
 
-DEFINE_PATCH_FUNCTION make_glabrezu INT_VAR enforce = 0 BEGIN
+DEFINE_PATCH_FUNCTION make_glabrezu BEGIN
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
     PATCH_INCLUDE ~aTweaks/lib/fj_cre_reindex.tpp~                                     // Nythrun's CRE reindex macro (this also calls the EFF macro if needed)
@@ -1478,10 +1516,11 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
     // =============================================================================== // the actual work starts from here
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~HELMNOAN~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-    REMOVE_CRE_ITEM ~MARILI~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
+    REMOVE_CRE_ITEM ~MARILI~                                                           // removes MARILI.ITM (vanilla off-hand weapon)
     REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
     REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
     REPLACE_CRE_ITEM ~RR#DMARI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a less powerful weapon (closer to PnP damage output)
+    REPLACE_CRE_ITEM ~RR#DMARL~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 	                   // replace left hand weapon with a Tail attack
     ADD_CRE_ITEM ~IPSION~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                              // add protection from all mind-affecting spells
     PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~OBSDEM01~) BEGIN                       // special case for Lea'liyl (named Marilith within the Planar Sphere)
       ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~                // add immunity to +1 weapons and below
@@ -1492,12 +1531,14 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
       LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                 // Starts FUNCTION call (aTweaks' Creature Modification function)
         INT_VAR                                                                        // Initialize variables
            newxpv
-         "rr#bsimm"  = "1"                                                             // Backstab immunity (1 = enable)
+          "rr#ptwf"  = "1"                                                             // perfect two weapon fighting
+          "rr#bsimm" = "1"                                                             // Backstab immunity (1 = enable)
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
+          "newmove"  = "11"                                                            // new movement rate
           "newhp"    = "96"                                                            // new hit point value
           "newac"    = "-9"                                                            // new Armor Class value
-          "newth"    = "9"                                                            // new THAC0 value
-          "newapr"   = "1"                                                             // new number of attacks per round
+          "newth"    = "9"                                                             // new THAC0 value
+          "newapr"   = "4"                                                             // new number of attacks per round
           "newsvd"   = "7"                                                             // new Save vs. Death
           "newsvw"   = "9"                                                             // new Save vs. Wand
           "newsvp"   = "8"                                                             // new Save vs. Polymorph
@@ -1557,7 +1598,7 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
 		"script15"   = "DW2MS4GE"                                                      // Stratagems melee script
 		"script16"   = "F_MARI"                                                        // Drizzt Saga Demon script
 		"script17"   = "WTASI2"                                                        // Drizzt Saga Demon script
-		"script18"   = "O#DAEFIG"                                                        // melee script
+		"script18"   = "O#DAEFIG"                                                      // melee script
 		"skipfile01" = "Z_2spe2"                                                       // Tales of Anegh Demon
 		"skipfile02" = "PSMARI1"                                                       // Planar Sphere Mod
 		"skipfile03" = "PSMARI2"                                                       // Planar Sphere Mod

@@ -123,7 +123,7 @@ COPY "atweaks/spl/base.spl" "override/fl#banfa.spl" //Fear aura
 
 
 // Death Knight
-ACTION_IF (MOD_IS_INSTALLED ~stratagems.TP2~ ~6510~) BEGIN // With Stratagems installed MELSUM02 is a demon knight, transform it in death knight
+ACTION_IF (MOD_IS_INSTALLED ~stratagems.TP2~ ~6510~) BEGIN // With Stratagems installed MELSUM02 is a demon knight
   OUTER_SPRINT Melbf MELSUM02
 END ELSE OUTER_SPRINT Melbf ""
 
@@ -1245,14 +1245,14 @@ BEGIN
             newscript = rr#revnt
 			script01 = ""
 			script02 = "None"
-            script01 = wtasight
-            script02 = _tasight
-			script03 = bpwtsigt
-			script04 = bpwtrsgt
-			script05 = bpwdrsgt
-			script06 = DW2RM3GE
-			script07 = DW2RC3GE
-			script07 = revenant
+            script03 = wtasight
+            script04 = _tasight
+			script05 = bpwtsigt
+			script06 = bpwtrsgt
+			script07 = bpwdrsgt
+			script08 = DW2RM3GE
+			script09 = DW2RC3GE
+			script10 = revenant
         END
         LPF RR#MDCSC
           STR_VAR
@@ -1632,6 +1632,8 @@ ACTION_FOR_EACH file IN
 			   tanskw1
                bgskel02 //BG1
                bgskelwa //BG1
+               ichary //BG1
+               _ichary //BG1
 //			   bpduehi  // BP - Not Tested
 //			   c#ajske2 // Ajantis for BG2 - Not Tested
 			   cmskel01 // Dark Horizons
@@ -1684,6 +1686,8 @@ BEGIN
 		  skipfile03 = endske03
 		  skipfile04 = endske04
 		  skipfile05 = ranske7
+		  skipfile06 = ichary
+		  skipfile07 = _ichary
       END
     BUT_ONLY
   END
@@ -1863,7 +1867,9 @@ COPY_EXISTING b1-8.itm "override/fl#spect.itm"
 
 // Wight
 ACTION_FOR_EACH file IN
-                nevm1 //Nev's
+                Knightsk //BG1
+                _nightsk //BG1
+               nevm1 //Nev's
 				MH#WIGHT //Made in heaven Q&E
 				MH#WGHT5 //Made in heaven Q&E
 				MH#WGHT6 //Made in heaven Q&E
@@ -1876,7 +1882,9 @@ BEGIN
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM immune1 #0 #0 #0 none rring
-        REPLACE_CRE_ITEM fl#wigh #0 #0 #0 none weapon1 EQUIP
+		PATCH_IF !FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~SPER03~) BEGIN                  // if the creature does possess sper03.itm
+          REPLACE_CRE_ITEM fl#wigh #0 #0 #0 none weapon1 EQUIP
+		END
     PATCH_IF NOT MOD_IS_INSTALLED ~INFINITYANIMATIONS.TP2~ ~400~ BEGIN // Infinity Animation Compatibility (IAv5b)
         WRITE_LONG 0x28 30464 //animation: ghoul
 	END
@@ -1920,6 +1928,8 @@ BEGIN
             notenf01 = MH#WIGHT5
 			notenf02 = MH#WIGHT6
 			notenf03 = MH#WIGHT7
+			notenf04 = Knightsk
+			notenf05 = _nightsk
         END
         LPF RR#MDCSC
           STR_VAR
@@ -2435,6 +2445,9 @@ BEGIN
     COPY_EXISTING "%file%.cre" override
       PATCH_INCLUDE "atweaks/lib/fj_cre_validity.tpp"
       PATCH_IF valid BEGIN
+	  PATCH_IF LONG_AT 0x28 = 0xee10 BEGIN 	// zombie_blue_iwd from IA can't cast spells
+		WRITE_LONG 0x28 0xec00
+	  END
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM fl#zomse #0 #0 #0 none weapon1 EQUIP
@@ -2505,6 +2518,9 @@ BEGIN
     COPY_EXISTING "%file%.cre" override
       PATCH_INCLUDE "atweaks/lib/fj_cre_validity.tpp"
       PATCH_IF valid BEGIN
+	  PATCH_IF LONG_AT 0x28 = 0xee10 BEGIN 	// zombie_blue_iwd from IA can't cast spells
+		WRITE_LONG 0x28 0xec20
+	  END
         PATCH_INCLUDE "atweaks/lib/fj_cre_reindex.tpp"
         REPLACE_CRE_ITEM "%ring95%" #0 #0 #0 none lring //Standard undead immunities
         REPLACE_CRE_ITEM fl#zsel #0 #0 #0 none weapon1 EQUIP
@@ -2798,6 +2814,7 @@ OUTER_SET $f_RemoveSecType(161) = FearSecType
 
 LAF integrate_sectypes END
 
+ACTION_IF !FILE_EXISTS_IN_GAME "fl#adead.spl" BEGIN
 //Custom Animate Dead
 COPY_EXISTING sppr301.spl  "override/fl#adead.spl"
   READ_LONG  0x64 ao
@@ -2866,10 +2883,8 @@ COPY_EXISTING skelwasu.itm "override/fl#swasu.itm"
     LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 233 target = 1 parameter1 = enchantment parameter2 = 109 timing = 2 END //Detectable enchantment
   END
 
-     
-
-COMPILE "atweaks/baf/fiends/fl#adead.baf"
-
+  COMPILE "atweaks/baf/fiends/fl#adead.baf"
+END
 ////////////////////////////////////////
 // Item Revisions
 ////////////////////////////////////////

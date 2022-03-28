@@ -119,6 +119,9 @@ ACTION_IF FiendsOriginal = 0 BEGIN
       BUT_ONLY
     END
   END
+  COPY_EXISTING "jumjum.itm" override											  
+    LPF set_enchantment INT_VAR enchantment = 2 END								  // Erinyes have magical weapons
+  BUT_ONLY IF_EXISTS
 END
 
 // Bone Fiend
@@ -418,7 +421,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
 			   ~AGALUF01~                                                           // Alu-Fiend (Aurora)
 			   ~AGALUF02~                                                           // Alu-Fiend (Aurora)
 //			   ~e3demon2~                                                           // Alu-Fiend (Fade NPC) Not tested
-			   ~FINALUF~                                                            // Alu-Fiend (Ascension)	
+			   ~FINALUF~                                                            // Alu-Fiend (Ascension) Leave untouched	
 			   ~nsaluf01~                                                           // Alu-Fiend (Saerileth)
 			   ~YUGALU01~                                                           // Alu-Fiend (Longer Road)
 //			   ~xsdemon~                                                            // Alu-Fiend (Exem) Not tested

@@ -10,6 +10,13 @@ ACTION_FOR_EACH ~file~ IN
              ~ca#shm01~                                                            // Lesser Shambler from Caedwyr's Geomantic Sorcerer mod
              ~ca#shm02~                                                            // Shambling Mound from Caedwyr's Geomantic Sorcerer mod
              ~ca#shm03~                                                            // Greater Shambler from Caedwyr's Geomantic Sorcerer mod
+             ~RR#SHM01~                                                            // Lesser Shambler - RR_mod
+             ~RR#SHM02~                                                            // Greater Shambler - RR_mod
+             ~RR#SHM03~                                                            // Elder Shambler - RR_mod
+             ~SSHAMB~                                                              // Lesser Shambler - RR_mod
+             ~SUMOUND~                                                             // Lesser Shambler - RR_mod
+             ~SMOUND02~                                                            // Greater Shambler - IR mod - Staff of the woodlands +4
+             ~WQXMOU~                                                              // Greater Shambler - White Queen
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
@@ -162,8 +169,8 @@ ACTION_FOR_EACH ~file~ IN
              ~rr#snymp~                                                            // aTweaks' summoned Nymph
               ~NYMPHSUM~                                                           // summoned Nymph
 			  ~dvnymph~                                                            // Spell Revisions' summoned Nymph
-              ~WQXNYM~
-			  ~dw#nymsu~                                                           // SCSII summoned Nymph
+              ~WQXNYM~                                                             // Nymph (White Queen)
+			  ~dw#nymsu~                                                           // summoned Nymph (SCSII)
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
@@ -193,7 +200,7 @@ ACTION_FOR_EACH ~file~ IN
                   ~_SIL~                                                           // Sil (Tutu)
 			  ~J#SIRIN1~ 														   //Sirine (Jarl Adv)
 			  ~J#SIRIN2~ 														   //Sirine (Jarl Adv)
-			    ~L#NDC1~
+			    ~L#NDC1~ 														   //Sirine (Southern Edge)
 			   ~NTSILUA~ 														   //Sirine (NTotSC)
 			  ~NTSIRIN2~ 														   //Sirine (NTotSC)
 			  ~NTSIRIN4~ 														   //Sirine (NTotSC)

@@ -22,7 +22,7 @@ IF
 	  TookDamage()
 	  Help([EVILCUTOFF.0.IMP.0.0.0.MASK_CHAOTIC]) // Quasits
 	  Help([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC]) // Tanar'ri fiends
-          Name("RR#HSCAM",Myself) // indicates gated fiend
+      Name("RR#HSCAM",Myself) // indicates gated fiend
 THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
@@ -70,8 +70,31 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-                ApplySpell(Myself,RESTORE_FULL_HEALTH) // heal up
-                Rest()
+        ApplySpell(Myself,RESTORE_FULL_HEALTH) // heal up
+        Rest()
+END
+
+IF
+    !GlobalTimerNotExpired("rr#Cast","LOCALS")
+	HaveSpell(WIZARD_DETECT_ILLUSION)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	OR(11)
+	  StateCheck([GOODCUTOFF],1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(SecondNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(ThirdNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(FourthNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(FifthNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(SixthNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(SeventhNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(EighthNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(NinthNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  StateCheck(TenthNearest([GOODCUTOFF]),1077936144) // Invisible, Improved Invisibility, Mirror Image
+	  See([GOODCUTOFF.0.0.0.0.ILLUSIONARY])
+THEN
+	RESPONSE #100
+        SetGlobalTimer("rr#Cast","LOCALS",6)
+		Spell(Myself,WIZARD_DETECT_ILLUSION)
 END
 
 IF
@@ -97,7 +120,7 @@ IF
 	HasItem("POTN10",Myself) // Potion of Invisibility
 	!StateCheck(Myself,STATE_INVISIBLE)
 	!Global("dvgldust","LOCALS",1)
-!Global("LCNOINVI","LOCALS",1)
+	!Global("LCNOINVI","LOCALS",1)
 	!CheckStatGT(Player1,0,TRUE_SIGHT)
 	!CheckStatGT(Player2,0,TRUE_SIGHT)
 	!CheckStatGT(Player3,0,TRUE_SIGHT)
@@ -119,10 +142,10 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	AreaCheck("AR0602") // Irenicus' Dungeon
 	Range([GOODCUTOFF],20) // safety check for teleport away strategy
-        OR(2)
-          NumCreatureGT([GOODCUTOFF],3) // more than 3 party members are nearby
-          HPPercentLT(Myself,76) // lost a quarter of hit points already
-        HaveSpell(WIZARD_INVISIBILITY) // Teleport away to buff up undisturbed
+    OR(2)
+      NumCreatureGT([GOODCUTOFF],3) // more than 3 party members are nearby
+      HPPercentLT(Myself,76) // lost a quarter of hit points already
+    HaveSpell(WIZARD_INVISIBILITY) // Teleport away to buff up undisturbed
 	!StateCheck(Myself,STATE_INVISIBLE)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -141,28 +164,28 @@ THEN
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[1170.175]) // Ilych's room
+        ForceSpellPointRES("RR#TELWX",[1170.175]) // Ilych's room
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[1200.850]) // Library
+        ForceSpellPointRES("RR#TELWX",[1200.850]) // Library
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[2750.2000]) // Otyugh's chamber
+        ForceSpellPointRES("RR#TELWX",[2750.2000]) // Otyugh's chamber
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[3550.1150]) // Portal room
+        ForceSpellPointRES("RR#TELWX",[3550.1150]) // Portal room
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	AreaCheck("AR0602") // Irenicus' Dungeon
 	Range([GOODCUTOFF],20) // safety check for teleport away strategy
-        OR(2)
-          NumCreatureGT([GOODCUTOFF],3) // more than 3 party members are nearby
-          HPPercentLT(Myself,76) // lost a quarter of hit points already
+    OR(2)
+      NumCreatureGT([GOODCUTOFF],3) // more than 3 party members are nearby
+      HPPercentLT(Myself,76) // lost a quarter of hit points already
 	!StateCheck(Myself,STATE_INVISIBLE) // don't teleport away while invisible
 	!StateCheck(Myself,STATE_MIRRORIMAGE)
 	HaveSpell(WIZARD_MIRROR_IMAGE) // Teleport away to buff up undisturbed
@@ -181,30 +204,30 @@ THEN
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[1170.175]) // Ilych's room
+        ForceSpellPointRES("RR#TELWX",[1170.175]) // Ilych's room
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[1200.850]) // Library
+        ForceSpellPointRES("RR#TELWX",[1200.850]) // Library
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[2750.2000]) // Otyugh's chamber
+        ForceSpellPointRES("RR#TELWX",[2750.2000]) // Otyugh's chamber
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[3550.1150]) // Portal room
+        ForceSpellPointRES("RR#TELWX",[3550.1150]) // Portal room
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	AreaCheck("AR0602") // Irenicus' Dungeon
 	Range([GOODCUTOFF],20) // safety check for teleport away strategy
-        OR(2)
-          NumCreatureGT([GOODCUTOFF],3) // more than 3 party members are nearby
-          HPPercentLT(Myself,76) // lost a quarter of hit points already
+    OR(2)
+      NumCreatureGT([GOODCUTOFF],3) // more than 3 party members are nearby
+      HPPercentLT(Myself,76) // lost a quarter of hit points already
 	!StateCheck(Myself,STATE_INVISIBLE) // don't teleport away while invisible
-	HaveSpell(WIZARD_HASTE)
+	HaveSpell(WIZARD_HASTE) // Teleport away to buff up undisturbed
 	!StateCheck(Myself,STATE_HASTED)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
@@ -213,24 +236,24 @@ THEN
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[1170.175]) // Ilych's room
+        ForceSpellPointRES("RR#TELWX",[1170.175]) // Ilych's room
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[1200.850]) // Library
+        ForceSpellPointRES("RR#TELWX",[1200.850]) // Library
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[2750.2000]) // Otyugh's chamber
+        ForceSpellPointRES("RR#TELWX",[2750.2000]) // Otyugh's chamber
 	RESPONSE #25
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Telwx","LOCALS",6) // teleport cooldown timer
-                ForceSpellPointRES("RR#TELWX",[3550.1150]) // Portal room
+        ForceSpellPointRES("RR#TELWX",[3550.1150]) // Portal room
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        HaveSpell(WIZARD_INVISIBILITY)
+    HaveSpell(WIZARD_INVISIBILITY)
 	!StateCheck(Myself,STATE_INVISIBLE)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -248,7 +271,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                Spell(Myself,WIZARD_INVISIBILITY)
+        Spell(Myself,WIZARD_INVISIBILITY)
 END
 
 IF
@@ -287,7 +310,7 @@ END
 
 IF
 	StateCheck(Myself,STATE_INVISIBLE)
-	  HaveSpell(WIZARD_HASTE)
+	HaveSpell(WIZARD_HASTE)
 	!StateCheck(Myself,STATE_HASTED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
