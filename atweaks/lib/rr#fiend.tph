@@ -199,15 +199,18 @@ COPY ~aTweaks/SPL/RR#DBFLA.SPL~ ~override~                                      
 COPY ~aTweaks/SPL/RR#DBFLE.SPL~ ~override~                                         // Death Throes (Balor)
   SAY NAME1 @683 SAY NAME2 @683
 COPY ~aTweaks/SPL/RR#VORPL.SPL~ ~override~                                         // Vorpal Hit (Balor)
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 savingthrow = 4 savebonus = "-2" END // add a saving throw at -2 to avoid some frustration...
+  LPF ALTER_EFFECT INT_VAR match_opcode = 141 savingthrow = 4 savebonus = "-2" END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 13 savingthrow = 4 savebonus = "-2" END
 COPY ~aTweaks/EFF/RR#VORPL.EFF~ ~override~                                         // Vorpal Hit immunity (for slimes, constructs, incorporeal creatures...)
 
 
 
-// Make Death Ward protect against the Balors' Vorpal Hits
+// Make Death Ward protect against the Balors' Vorpal Hits - not any more, seem better to add a saving throw at -2 like planetar sword. In any case, protection can be installed with component 211
 
-COPY_EXISTING ~SPPR409.SPL~ ~override~ // Death Ward
+/*COPY_EXISTING ~SPPR409.SPL~ ~override~ // Death Ward
 LPF add_conditional_immunity INT_VAR f_Condition = 101 STR_VAR f_Spell = RR#VORPL END
-BUT_ONLY_IF_IT_CHANGES
+BUT_ONLY_IF_IT_CHANGES*/
 
 
 COPY ~aTweaks/SPL/RR#CNSTR.SPL~ ~override/RR#DGRAB.SPL~                            // Grab ability (Glabrezu)
@@ -631,7 +634,23 @@ COPY ~atweaks/itm/rr#dgel2.itm~ ~override~                                      
 COPY ~atweaks/itm/rr#clck1.itm~ ~override~                                         // alu-fiend armor +2
 COPY ~atweaks/itm/rr#clck2.itm~ ~override~                                         // alu-fiend armor +4
 COPY ~atweaks/itm/RR#PLAT2.itm~ ~override~                                         // Cambion plate armor +2
+COPY_EXISTING ~helm01.ITM~ ~override/RR#HELM1.ITM~
+	WRITE_BYTE 0x18 0															   // not droppable
+	WRITE_BYTE 0x1b 2															   // no critical hit immunity
+	WRITE_ASCII 0x22 ~J1~ #2													   // helm with long horns
+	LPF ALTER_EFFECT INT_VAR match_opcode = 7 parameter1 = 83 END 			   	   // All colors (Dark Adamantite Grey)
+	LPF ALTER_EFFECT INT_VAR match_opcode = 7 match_parameter2 = 48 parameter1 = 46 END // Wings color (Light Red)
 
+ACTION_IF FILE_EXISTS_IN_GAME "WINGS01.ITM" BEGIN
+  COPY_EXISTING ~WINGS01.ITM~ ~override/RR#WING1.ITM~
+	WRITE_BYTE 0x18 0															   // not droppable
+	WRITE_BYTE 0x1b 2															   // no critical hit immunity
+	LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 7 parameter1 = 79 parameter2 = 54 timing = 2 probability1 = 100 END 
+  COPY_EXISTING ~WINGS01.ITM~ ~override/RR#WING2.ITM~
+	WRITE_BYTE 0x18 0															   // not droppable
+	WRITE_BYTE 0x1b 2															   // no critical hit immunity
+	LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 7 parameter1 = 30 parameter2 = 54 timing = 2 probability1 = 100 END 
+END
 
 COPY ~aTweaks/ITM/RR#DPITF.ITM~ ~override~                                         // Pit Fiend melee attack
   LPF set_enchantment INT_VAR enchantment = 5 END

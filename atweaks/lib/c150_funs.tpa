@@ -184,13 +184,7 @@ DEFINE_PATCH_FUNCTION make_erinyes BEGIN
     // =============================================================================== // the actual work starts from here
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~HELMNOAN~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-	PATCH_IF FILE_EXISTS_IN_GAME "WINGS01.ITM" BEGIN
-      INNER_ACTION BEGIN
-	    COPY_EXISTING ~WINGS01.ITM~ ~override/RR#WING1.ITM~
-		WRITE_BYTE 0x18 0															   // not droppable
-		WRITE_BYTE 0x1b 2															   // no critical hit immunity
-		LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 7 parameter1 = 79 parameter2 = 54 timing = 2 probability1 = 100 END 
-      END
+	PATCH_IF FILE_EXISTS_IN_GAME "RR#WING1.ITM" BEGIN
 	  ADD_CRE_ITEM ~RR#WING1~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~              // add wings
       WRITE_LONG 0x28 "24849"                                                          // Sets avatar to FIGHTER_FEMALE_ELF	  
 	END
@@ -808,16 +802,7 @@ DEFINE_PATCH_FUNCTION make_cambion BEGIN
       WRITE_BYTE 0x2e 46                                                               // Major color (Light Red)
       WRITE_BYTE 0x30 97                                                               // Leather color (Light Minty Blue)
       WRITE_BYTE 0x31 18                                                               // Armor color (Light Sea Blue)
-      INNER_ACTION BEGIN
-	    COPY_EXISTING ~helm01.ITM~ ~override/RR#HELM1.ITM~
-		  WRITE_BYTE 0x18 0															   // not droppable
-		  WRITE_BYTE 0x1b 2															   // no critical hit immunity
-		  WRITE_ASCII 0x22 ~J1~ #2													   // helm with long horns
-		  LPF ALTER_EFFECT INT_VAR match_opcode = 7 parameter1 = 83 END 			   // All colors (Dark Adamantite Grey)
-		  LPF ALTER_EFFECT INT_VAR match_opcode = 7 match_parameter2 = 48 parameter1 = 46 END // Wings color (Light Red)
-	  END
-	  ADD_CRE_ITEM ~RR#HELM1~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~              // add horns
-	  
+	  ADD_CRE_ITEM ~RR#HELM1~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~              // add horns 
 	END
 	PATCH_IF FILE_CONTAINS_EVALUATED (~%SOURCE_FILE%~ ~CHAN01~) BEGIN
 	  ADD_CRE_ITEM ~RR#PLAT2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~               // replace armor with a plate +2 that enable arcane spellcasting
@@ -961,13 +946,7 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
 	  ADD_CRE_ITEM ~RR#CLCK1~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~ARMOR~               // replace armor with a robe +2 to enable arcane spellcasting	  
 	  ADD_CRE_ITEM ~clck14~ #0 #0 #0 ~UNSTEALABLE~ ~inv10~
 	END
-	PATCH_IF FILE_EXISTS_IN_GAME "WINGS01.ITM" BEGIN
-      INNER_ACTION BEGIN
-	    COPY_EXISTING ~WINGS01.ITM~ ~override/RR#WING2.ITM~
-		  WRITE_BYTE 0x18 0															   // not droppable
-		  WRITE_BYTE 0x1b 2															   // no critical hit immunity
-		  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 7 parameter1 = 30 parameter2 = 54 timing = 2 probability1 = 100 END 
-	  END
+	PATCH_IF FILE_EXISTS_IN_GAME "RR#WING2.ITM" BEGIN
 	  ADD_CRE_ITEM ~RR#WING2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~HELMET~             // add wings
 	END
     newxpv = 6000

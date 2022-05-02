@@ -99,7 +99,7 @@
 @514 = ~Ce sort soigne tous les membres du groupe, qui récupèrent 1D8 + 10 points de vie.~
 
 
-// PnP Fiends
+// Démons version papier
 
 @651 = ~Meurs, Baatezu !~
 @652 = ~Contemple le véritable pouvoir !~
@@ -211,7 +211,7 @@ Cet appendice particulier s'intéresse aux nouvelles variantes de monstres commun
 "Marilith. Bien qu'il s'agisse d'un démon, quelques personnes ont réussi à survivre à la rencontre avec une telle créature. Pourvue d'un buste et d'une tête de femme humaine, la Marilith dispose de 6 bras et le reste de son corps est celui d'un serpent. Incroyablement rapide, elle est experte avec ses six épées. Inutile d'ajouter qu'elle peut en plus lancer des sorts. Guerriers, attention : ce démon est immunisé aux armes normales et aux enchantements mineurs."~
 
 
-// Revised Fiend summoning
+// invocation de Démons modifiée
 
 @751 = ~Cacofiélon (Conjuration / Convocation)
 Niveau : 7
@@ -243,7 +243,7 @@ Jet de sauvegarde : aucun
 
 Ce sortilège convoquera l'un des plus puissants résidents des Plans Abyssaux. La nature du démon correspond à l'alignement de son convocateur. Un Fiélon du Puits apparaît si le lanceur est d'alignement loyal, tandis qu'un Balor apparaît si le lanceur est d'alignement chaotique. Si le lanceur n'est ni loyal, ni chaotique, un Ultroloth est alors convoqué. En tous cas, le lanceur du sort n'a aucun contrôle sur les actes du démon convoqué. Quiconque n'est pas protégé contre le mal (avec le sortilège adéquat) peut être attaqué par la créature, y compris les badauds innocents, ainsi que le lanceur du sortilège et ses alliés. Notez que le lanceur supporte toute répercussion sur son alignement et sa réputation des actes du démon convoqué.~
 
-// Note: the Priest version of Gate is different in terms of spell level and casting time
+// Note: La version du sort de Portail des Prètres est différent en terme de niveau et de temps d'invocation
 
 @754 = ~Portail (Conjuration / Convocation)
 Niveau : 7
@@ -292,7 +292,7 @@ Jet de sauvegarde : aucun
 
 Ce sortilège convoquera l'un des plus puissants résidents des Plans Abyssaux. Durant le lancement du sort, le magicien doit choisir la nature du démon qui sera convoqué. Si le lanceur est d'alignement loyal, il peut choisir de convoquer un baatezu fiélon du puits ou un yugoloth Ultroloth. Un lanceur d'alignement chaotique peut choisir de convoquer un tanar'ri Balor ou un yugoloth Ultroloth. Un lanceur qui n'est ni loyal ni chaotique peut choisir entre ces trois catégories de démons. En tous cas, le lanceur du sort n'a aucun contrôle sur les actes du démon convoqué. Quiconque n'est pas protégé contre le mal (avec le sortilège adéquat) peut être attaqué par la créature, y compris les badauds innocents, ainsi que le lanceur du sortilège et ses alliés. Notez que le lanceur supporte toute répercussion sur son alignement et sa réputation des actes du démon convoqué.~
 
-// Note: the Priest version of Gate is different in terms of spell level and casting time
+// Note: La version du sort de Portail des Prètres est différent en terme de niveau et de temps d'invocation
 
 @764 = ~Portail (Conjuration / Convocation)
 Niveau : 7
@@ -399,6 +399,29 @@ Les créatures convoquées aident le lanceur par tous les moyens dont elles dispos
 @1906 = ~Vapeurs toxiques~
 @1907 = ~Parler avec les plantes~
 
+// Plantes & Bêtes version papier
+
+@1910 = ~Suffocation~
+@1911 = ~Spores Pacificateurs~
+@1912 = ~Spores Hallucinatoires~
+@1913 = ~Regards Pétrifiant~
+@1914 = ~Souffle Empoisonné~
+@1915 = ~Absorbtion de l'Electricité~
+@1916 = ~Spores Explosifs~
+@1917 = ~Sprint~
+@1918 = ~Regard Pestilentiel~
+@1919 = ~Souffle de Feu~
+@1920 = ~Souffle glacé~
+@1921 = ~Giclée d'acide~
+@1922 = ~Constriction~
+@1923 = ~La magie curative n'a aucun effet sur quiconque affecté par le regard du boalisk ~
+@1924 = ~Affligé par le regard du boalisk~
+@1925 = ~À l'agonie à cause du regard du boalisk~
+@1926 = ~Succombe du regard du boalisk~
+@1927 = ~Enfoui~
+@1928 = ~Hombres~
+@1929 = ~Ours Géant~
+@1930 = ~Smilodon~
 
 // Élémentaires version papier
 

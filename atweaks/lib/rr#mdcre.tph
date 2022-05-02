@@ -9,8 +9,8 @@ INT_VAR                                                                         
 "newmove"  = "999"                                                                 // new movement rate
 "newxpv"   = "0"                                                                   // new XP value
 "newhp"    = "0"                                                                   // new hit point value
-"newac"    = "10"                                                                  // new Armor Class value
-"newth"    = "20"                                                                  // new THAC0 value
+"newac"    = "99"                                                                  // new Armor Class value
+"newth"    = "99"                                                                  // new THAC0 value
 "newapr"   = "99"                                                                  // new number of attacks per round
 "newsvd"   = "20"                                                                  // new Save vs. Death
 "newsvw"   = "20"                                                                  // new Save vs. Wand
@@ -176,13 +176,13 @@ END
 PATCH_IF ("%maxhp%" < "%newhp%") OR (("%enforce%" = "1") AND ("%newhp%" != "0")) BEGIN
   WRITE_SHORT 0x26 "%newhp%"                                                       // set maximum hit points
 END
-PATCH_IF ("%natac%" > "%newac%") OR (("%enforce%" = "1") AND ("%newac%" != "10")) BEGIN
+PATCH_IF ("%natac%" > "%newac%") OR (("%enforce%" = "1") AND ("%newac%" != "99")) BEGIN
   WRITE_SHORT 0x46 "%newac%"                                                       // set natural Armor Class
 END
-PATCH_IF ("%effac%" > "%newac%") OR (("%enforce%" = "1") AND ("%newac%" != "10")) BEGIN
+PATCH_IF ("%effac%" > "%newac%") OR (("%enforce%" = "1") AND ("%newac%" != "99")) BEGIN
   WRITE_SHORT 0x48 "%newac%"                                                       // set effective Armor Class
 END
-PATCH_IF ("%oldth%" > "%newth%") OR (("%enforce%" = "1") AND ("%newth%" != "20")) BEGIN
+PATCH_IF ("%oldth%" > "%newth%") OR (("%enforce%" = "1") AND ("%newth%" != "99")) BEGIN
   WRITE_BYTE 0x52 "%newth%"                                                        // set new THAC0 value
 END
 PATCH_IF (("%oldapr%" < "%newapr%") AND ("newapr" != "99")) OR (("%enforce%" = "1") AND ("%newapr%" != "99")) BEGIN
