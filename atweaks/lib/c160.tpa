@@ -1459,10 +1459,6 @@ ACTION_FOR_EACH file IN
 				CBAPPAR1 // CtB
 			    cmske03  // Dark Horizons
 			    cmske04  // Dark Horizons
-			    crcre001 // The Old Gold
-			    crcre005 // The Old Gold
-			    crcre006 // The Old Gold
-			    crcre007 // The Old Gold
 				dragbr2  // TDD
 				dW#mulsk // stratagems
 				gholske1 // RoT
@@ -1517,10 +1513,6 @@ BEGIN
 		  skipfile07 = appar
 		  skipfile08 = CBAPPAR1
 		  skipfile09 = skellord
-		  skipfile10 = crcre001
-		  skipfile11 = crcre005
-		  skipfile12 = crcre006
-		  skipfile13 = crcre007
       END
     BUT_ONLY
   END
@@ -1550,9 +1542,6 @@ ACTION_FOR_EACH file IN
                 _kelet_c
 				CMSKE01  // Dark Horizons
 				CMSKE02  // Dark Horizons
-			    crcre002 // The Old Gold
-			    crcre003 // The Old Gold
-			    crcre008 // The Old Gold
 				dW#mulsa // stratagems
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
@@ -1583,8 +1572,6 @@ BEGIN
           script17 = DW2RC0MO
           script18 = DW2RM1MO
 		  script19 = DW2RP2MO
-		  skipfile01 = crcre003
-		  skipfile02 = crcre008		  
       END
     BUT_ONLY
   END
@@ -1597,6 +1584,13 @@ ACTION_IF !MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN //Not a skeleton in this case
 				  LCADEAD0 //Spellpack Animate Dead
 				  LCADEAD1 //Spellpack Animate Dead
 				  LCADEAD7 //Spellpack Animate Dead
+				  crcre001 //The old gold
+				  crcre002 //The old gold range
+				  crcre003 //The old gold range
+				  crcre005 //The old gold
+				  crcre006 //The old gold
+				  crcre007 //The old gold
+				  crcre008 //The old gold range
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
@@ -2250,6 +2244,19 @@ COPY_EXISTING b1-8.itm "override/fl#zomb.itm"
   FOR (i = 0; i < SHORT_AT 0x68; ++i) BEGIN
     WRITE_BYTE LONG_AT 0x64 + 0x38*i + 0x12 10 //speed
   END
+ACTION_FOR_EACH file IN
+			 crcre004 //The old gold
+			 crcre009 //The old gold
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+      WRITE_LONG 0x28 25603 // enforce skeleton animation
+	  LPF ~RR#MDCRE~ INT_VAR "newxpv" = "0" END
+      LPF make_summon END
+      WRITE_ASCII SCRIPT_OVERRIDE "fl#sklsu" #8 // Swaps to fl#lowm for hostile summons
+    BUT_ONLY
+  END
+END
 
 // Zombie, Lord
 ACTION_FOR_EACH file IN
@@ -2893,7 +2900,7 @@ ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 BEGIN                               		
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
   COPY_EXISTING ~sw1h01.itm~ ~override/rr#fake.itm~
-	WRITE_LONG 0X1e "-1"
+	WRITE_LONG 0x1e "-1"
 	SAY NAME2 ~Fake item~
 END
 

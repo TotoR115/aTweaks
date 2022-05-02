@@ -83,6 +83,7 @@ SetGlobalTimer("whatthe","LOCALS",0)
 END
 
 IF
+Allegiance(Myself,EVILCUTOFF)
 Global("flActive","LOCALS",0)
 !Detect(NearestEnemyOf(Myself))
 THEN

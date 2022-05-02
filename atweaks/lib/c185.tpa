@@ -831,7 +831,7 @@ ACTION_IF MOD_IS_INSTALLED ITEM_REV.TP2 0 BEGIN                               		
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
   COPY_EXISTING ~sw1h01.itm~ ~override/rr#fake.itm~
-	WRITE_LONG 0X1e "-1"
+	WRITE_LONG 0x1e "-1"
 	SAY NAME2 ~Fake item~
 END
 

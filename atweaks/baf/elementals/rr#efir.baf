@@ -49,13 +49,21 @@ THEN
 END
 
 IF
-    OR(3)
-      Global("RR#Active","LOCALS",0)
+    OR(2)
       StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
       StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
 THEN
     RESPONSE #100
         NoAction()
+END
+
+IF
+Allegiance(Myself,EVILCUTOFF)
+Global("rr#Active","LOCALS",0)
+!Detect(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+NoAction()
 END
 
 IF
