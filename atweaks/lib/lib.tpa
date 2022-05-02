@@ -649,13 +649,6 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
   END ELSE BEGIN
 	SPRINT IWDprdf ""
   END
-  PATCH_IF (IDS_OF_SYMBOL ("spell" "CLERIC_WALL_OF_FIRE") > 0) BEGIN
-	SET code=IDS_OF_SYMBOL ("spell" "CLERIC_WALL_OF_FIRE")
-    SET code=code - 1000
-    SPRINT wallf "SPpr%code%"
-  END ELSE BEGIN
-	SPRINT wallf ""
-  END
 // End : Add Spells from IWDification mod or stratagems mods
     PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
                 ~SPIN561~                                                              // Fire Giant Lava Pit (FIRE_GIANT_LAVA)
@@ -667,7 +660,9 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
                 ~SPWI940~                                                              // Agannazar's Scorcher
                 ~SPWI304~                                                              // Fireball
                 ~DVFBALL~                                                              // Fireball (IRR + SRR)
+                ~SPIN138~                                                              // Fireball
                 ~SPIN160~                                                              // Breath Fireball
+                ~SPIN169~                                                              // Fireball
                 ~SPWI001~                                                              // Fireball
                 ~SPWI957~                                                              // Fireball
                  ~WAND05~                                                               // Fireball (IRR)
@@ -703,7 +698,6 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
 			    ~%IWDbbb%~													 		   // Beltyn's Burning Blood (IWDification)
 			   ~%IWDshrf%~													 		   // Shroud of Flame (IWDification)
 			   ~%IWDsuns%~													 		   // Sunscorch (IWDification)
-			   ~%wallf%~													 		   // Wall of Fire (SpellPack)
 BEGIN                                                                                  // execute the following
 PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                       // if the file exists
 READ_ASCII 0 sig (3)
@@ -1772,7 +1766,6 @@ DEFINE_PATCH_FUNCTION entangle_immunities BEGIN
                 ~RR#FENTG~                                                             // Hamadryad Entangle (aTweaks)
 				~%spchpl%~                                                             // Charm plants (SpellPack)
 BEGIN                                                                                  // execute the following
-PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                   // if the file exists
 READ_ASCII 0 sig (3)
   PATCH_MATCH "%sig%" WITH
       ~CRE~ BEGIN                                                                      // CRE file parsed
@@ -1807,9 +1800,9 @@ READ_ASCII 0 sig (3)
     END                                                                                // ends WITH ITM block
     DEFAULT                                                                            // do nothing
 END                                                                                    // ends PATCH_MATCH
-END                                                                                	   // ends PATCH_IF FILE_EXISTS_IN_GAME block
 END                                                                                    // ends PATCH_FOR_EACH
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
+
 
 
 // Insect spell immunities
@@ -1824,7 +1817,6 @@ DEFINE_PATCH_FUNCTION insect_spell_immunities BEGIN
                  ~CA#IPLAG~                                                            // Insect Plague (PnP Deva)
                  ~U#HFDTPD~                                                            // Insect Plague (Ruad)
 BEGIN                                                                                  // execute the following
-PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                   // if the file exists
 READ_ASCII 0 sig (3)
   PATCH_MATCH "%sig%" WITH
       ~CRE~ BEGIN                                                                      // CRE file parsed
@@ -1876,7 +1868,6 @@ READ_ASCII 0 sig (3)
     END                                                                                // ends WITH SPL block
     DEFAULT                                                                            // do nothing
 END                                                                                    // ends PATCH_MATCH
-END                                                                                	   // ends PATCH_IF FILE_EXISTS_IN_GAME block
 END                                                                                    // ends PATCH_FOR_EACH
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
