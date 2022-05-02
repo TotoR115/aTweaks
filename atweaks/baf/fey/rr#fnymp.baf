@@ -27,6 +27,7 @@ THEN
 END
 
 IF
+	!Allegiance(Myself,NEUTRAL)
 	OR(4)
 	  Global("RR#Active","LOCALS",0)
           !Allegiance(Myself,EVILCUTOFF) // better way to check for charm because STATE_CHARMED persists when the creature is attacked and becomes red circled again
