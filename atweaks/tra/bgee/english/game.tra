@@ -520,14 +520,14 @@ The summoned creatures aid the caster by whatever means they possess, staying un
 @1906 = ~Toxic Vapors~
 @1907 = ~Speak With Plants~
 
-// PnP Plants & Beasts
+	// PnP Plant
 
 @1910 = ~Suffocate~
 @1911 = ~Pacifier Spores~
 @1912 = ~Hallucinator Spores~
 @1913 = ~Petrifying Gaze~
 @1914 = ~Poison Breath~
-@1915 = ~Electricity Absorption~
+@1915 = ~Touch of Tranquility~
 @1916 = ~Spore Explosion~
 @1917 = ~Sprint~
 @1918 = ~Gaze of Pestilence~
@@ -535,14 +535,7 @@ The summoned creatures aid the caster by whatever means they possess, staying un
 @1920 = ~Frost Breath~
 @1921 = ~Acid Spit~
 @1922 = ~Constrict~
-@1923 = ~Curative magic has no effect on someone afflicted with boalisk gaze~
-@1924 = ~Stricken by boalisk gaze~
-@1925 = ~Close to dying from boalisk gaze~
-@1926 = ~Succumbs to boalisk gaze~
-@1927 = ~Burrow~
-@1928 = ~Shades~
-@1929 = ~Giant Bear~
-@1930 = ~Smilodon~
+
 
 // PnP Elementals
 
