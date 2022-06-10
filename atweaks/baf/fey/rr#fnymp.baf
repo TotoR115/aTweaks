@@ -1,5 +1,6 @@
 IF
 	Global("RR#Active","LOCALS",0)
+    !Allegiance(Myself,GOODCUTOFF)
 	OR(3)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
@@ -10,12 +11,11 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
 	Global("RR#Active","LOCALS",0)
-        Allegiance(Myself,EVILCUTOFF)
+    Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
 THEN
 	RESPONSE #100
@@ -23,14 +23,13 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
 	!Allegiance(Myself,NEUTRAL)
 	OR(4)
 	  Global("RR#Active","LOCALS",0)
-          !Allegiance(Myself,EVILCUTOFF) // better way to check for charm because STATE_CHARMED persists when the creature is attacked and becomes red circled again
+      !Allegiance(Myself,EVILCUTOFF) // better way to check for charm because STATE_CHARMED persists when the creature is attacked and becomes red circled again
 	  StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
 	  StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
 THEN
@@ -58,15 +57,16 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other allies may hear it and join the battle
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Help","LOCALS",12)
 		Help()
-		Continue()
 END
 
 IF
+	Allegiance(Myself,EVILCUTOFF)
 	!See([GOODCUTOFF])
         InMyArea(Player1)
         !Detect(Player1)
@@ -107,6 +107,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
 	  StateCheck(Myself,STATE_BLIND)
 	  StateCheck(Myself,STATE_POISONED)
@@ -114,6 +115,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -126,9 +128,10 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	Allegiance(Myself,EVILCUTOFF)
 	See([EVILCUTOFF])
 	OR(2)
-          StateCheck(LastSeenBy(Myself),STATE_POISONED)
+      StateCheck(LastSeenBy(Myself),STATE_POISONED)
 	  StateCheck(LastSeenBy(Myself),STATE_BLIND)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
@@ -136,6 +139,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -147,6 +151,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([EVILCUTOFF]))
 	OR(2)
           StateCheck(LastSeenBy(Myself),STATE_POISONED)
@@ -157,6 +162,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -168,6 +174,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([EVILCUTOFF]))
 	OR(2)
           StateCheck(LastSeenBy(Myself),STATE_POISONED)
@@ -178,6 +185,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -189,6 +197,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	Allegiance(Myself,EVILCUTOFF)
 	See(FourthNearest([EVILCUTOFF]))
 	OR(2)
           StateCheck(LastSeenBy(Myself),STATE_POISONED)
@@ -199,6 +208,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -210,6 +220,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	Allegiance(Myself,EVILCUTOFF)
 	See(FifthNearest([EVILCUTOFF]))
 	OR(2)
           StateCheck(LastSeenBy(Myself),STATE_POISONED)
@@ -220,6 +231,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -231,6 +243,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SixthNearest([EVILCUTOFF]))
 	OR(2)
           StateCheck(LastSeenBy(Myself),STATE_POISONED)
@@ -241,6 +254,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -258,7 +272,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        HPPercentLT(Myself,71)
+    HPPercentLT(Myself,71)
 	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
 	OR(2)
 	  !Range(NearestEnemyOf(Myself),12)
@@ -266,6 +280,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -280,6 +295,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.0.0.MAGE_ALL])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -306,6 +322,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.0.0.MAGE_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -332,6 +349,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.0.0.MAGE_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -358,6 +376,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.0.0.BARD_ALL])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -384,6 +403,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.0.0.BARD_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -410,6 +430,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.0.0.BARD_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -436,6 +457,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.0.0.CLERIC_ALL])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -462,6 +484,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.0.0.CLERIC_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -488,6 +511,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.0.0.CLERIC_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -514,6 +538,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.0.0.DRUID_ALL])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -540,6 +565,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.0.0.DRUID_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -566,6 +592,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.0.0.DRUID_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
@@ -592,6 +619,7 @@ IF
         AreaType(OUTDOOR)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 	See([GOODCUTOFF])
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -619,6 +647,7 @@ IF
         AreaType(OUTDOOR)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 	See(SecondNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -646,6 +675,7 @@ IF
         AreaType(OUTDOOR)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 	See(ThirdNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -673,6 +703,7 @@ IF
         AreaType(OUTDOOR)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 	See(FourthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -700,6 +731,7 @@ IF
         AreaType(OUTDOOR)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 	See(FifthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -727,6 +759,7 @@ IF
         AreaType(OUTDOOR)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 	See(SixthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -755,6 +788,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -793,6 +827,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -831,6 +866,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -869,6 +905,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -907,6 +944,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -945,6 +983,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -982,6 +1021,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL])
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -1013,6 +1053,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL]))
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -1044,6 +1085,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL]))
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -1075,6 +1117,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID.0.RANGER_ALL])
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1105,6 +1148,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID.0.RANGER_ALL]))
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1135,6 +1179,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID.0.RANGER_ALL]))
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1165,6 +1210,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID])
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1198,6 +1244,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1231,6 +1278,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1264,6 +1312,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(FourthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1297,6 +1346,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(FifthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1330,6 +1380,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SixthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1363,6 +1414,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SeventhNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1396,6 +1448,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(EighthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1429,6 +1482,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(NinthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1462,6 +1516,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	See(TenthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1499,6 +1554,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!StateCheck(Myself,STATE_SILENCED)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1515,6 +1571,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
@@ -1532,6 +1589,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
@@ -1549,6 +1607,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
@@ -1566,6 +1625,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
@@ -1583,6 +1643,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
@@ -1600,6 +1661,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_BLESS)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
@@ -1611,8 +1673,9 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
+    !Allegiance(Myself,GOODCUTOFF)
 	Help([EVILCUTOFF.0.FAIRY]) // other fey creatures
-        InMyArea(LastHelp(Myself))
+    InMyArea(LastHelp(Myself))
 	!StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100

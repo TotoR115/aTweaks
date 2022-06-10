@@ -139,61 +139,7 @@ COPY ~atweaks/spl/elementals/rr#enbg2.spl~ ~override~                           
 COPY ~atweaks/eff/elementals/rr#enbga.eff~ ~override~                              // Beguiling Aura EFF 1 (for targeting only male characters)
 COPY ~atweaks/eff/elementals/rr#enbg2.eff~ ~override~                              // Beguiling Aura EFF 2 (for elven and half-elven charm immunity)
   SAY 0x1C @1903                                                                   // Resists charm effect
-
-// Add immunity to Beguiling Aura to items and spells which use blindness
-
-// Begin : Add Spells from IWDification mod or stratagems mods
-  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") > 0) BEGIN
-    OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH")
-    OUTER_SET code=code - 1000
-    OUTER_SPRINT IWDsuns "SPpr%code%"
-  END ELSE BEGIN
-    OUTER_SPRINT IWDsuns ""
-  END
-  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") > 0) BEGIN
-    OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE")
-    OUTER_SET code=code - 1000
-    OUTER_SPRINT IWDcldp "SPpr%code%"
-  END ELSE BEGIN
-    OUTER_SPRINT IWDcldp ""
-  END // end : Add Spells from IWDification mod or stratagems mods
-
-ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-                ~spdr101.spl~
-                ~spin595.spl~
-                ~spin878.spl~
-                ~spin893.spl~
-                ~spin929.spl~
-                ~spin931.spl~
-                ~sppr704.spl~
-                ~sppr707.spl~
-                ~spwi106.spl~
-                ~spwi118.spl~
-                ~spwi224.spl~
-                ~spwi714.spl~
-                ~spwi815.spl~
-                ~spwi958.spl~
-                ~spwm178.spl~
-                ~chalcy2.itm~
-                ~gorwom4.itm~
-                 ~halb06.itm~
-                   ~sorb.itm~
-                 ~sw1h51.itm~
-                 ~wand19.itm~
-			  ~%IWDsuns%.spl~												 		     // Sunscorch (IWDification)
-			  ~%IWDcldp%.spl~                                                            // Cloud of Pestilence (IWDification)
-
-BEGIN                                                                              // execute the following
-ACTION_IF FILE_EXISTS_IN_GAME ~%file%~ BEGIN                                       // if the designated file with a SPL extension exists
-COPY_EXISTING ~%file%~ ~override~
-  PATCH_IF (SOURCE_SIZE > 0x71) THEN BEGIN                                         // protects against invalid files
-// =============================================================================== // the actual work starts from here
-  LPF add_conditional_immunity INT_VAR f_Condition = 74 STR_VAR f_Spell = rr#enbg2 END
-// =============================================================================== // the actual work ends here
-END                                                                                // ends file size check
-BUT_ONLY_IF_IT_CHANGES
-END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-END                                                                                // ends ACTION_FOR_EACH block
+ LAF add_blindness_immunity STR_VAR f_Spell = "rr#enbg2" END
 
 COPY ~aTweaks/VVC/RR#SKISS.VVC~ ~override~                                         // Kiss VVC animation
 COPY ~aTweaks/BAM/RR#SKISS.BAM~ ~override~                                         // Kiss BAM graphics
@@ -230,6 +176,7 @@ COPY ~atweaks/vvc/rr#whirl.vvc~ ~override~ 			                     		   // Whirl
 
 COPY ~atweaks/spl/elementals/rr#ecncl.spl~ ~override~                              // Elemental Concealment
 SAY NAME1 @2123 SAY NAME2 @2123
+LPF DELETE_EFFECT INT_VAR match_opcode = 139 END							   	   // Remove string: invisibile - useless
 
 COPY ~atweaks/spl/elementals/rr#equa.spl~ ~override~                               // Earthquake (note: this filename must be 7 characters or less)
   READ_LONG  0x64 ab_off
@@ -336,6 +283,11 @@ COPY ~atweaks/spl/rr#pyrot.spl~ ~override~                                      
 COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         // Wall of Fog animation
 COPY ~atweaks/spl/mephits/rr#mmswf.spl~ ~override~                                 // Wall of Fog
   SAY NAME1 @1855 SAY NAME2 @1855
+  READ_LONG  0x64 ab_off
+  READ_SHORT 0x68 ab_num
+  FOR(i=0; i<ab_num; i+=1) BEGIN
+    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#cloud%                                    // use new projectile (party friendly)
+  END 
 
 
 // Solid Fog
@@ -343,6 +295,12 @@ COPY ~atweaks/spl/mephits/rr#mmswf.spl~ ~override~                              
 COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         // Fog VVC animation
 COPY ~atweaks/spl/elementals/rr#echsf.spl~ ~override~                              // Solid Fog
   SAY NAME1 @2128 SAY NAME2 @2128
+  LPF CLONE_EFFECT INT_VAR match_opcode = 158 opcode = 142 parameter2 = 145 END			   // Add Grease icon in character sheets -- it is already there, on protrait thanks to grease overlay...
+  READ_LONG  0x64 ab_off
+  READ_SHORT 0x68 ab_num
+  FOR(i=0; i<ab_num; i+=1) BEGIN
+    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#cloud%                                    // use new projectile (party friendly)
+  END 
 
 
 // Stun for 3 rounds (Yan-C-Bin on hit effect)
@@ -397,6 +355,10 @@ COPY ~atweaks/spl/elementals/rr#esuis.spl~ ~override~                           
 COPY_EXISTING ~spwi103.spl~  ~override/rr#wi103.spl~                               // Clone Burning Hands into an innate ability
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
+COPY_EXISTING ~spwi104.spl~  ~override/rr#ersug.spl~                               // Change Charm Person into renewable Suggestion
+  SAY NAME1 @708 SAY NAME2 @708                                                    // Suggestion
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END      // Execute the "spell to innate ablity" function
+
 COPY_EXISTING ~spwi213.spl~  ~override/rr#wi213.spl~                               // Clone Stinking Cloud into an innate ability
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
@@ -413,7 +375,7 @@ COPY_EXISTING ~spwi306.spl~  ~override/rr#wi306.spl~                            
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi403.spl~  ~override/rr#wi403.spl~                               // Clone Fire Shield:Blue into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi404.spl~  ~override/rr#wi404.spl~                               // Clone Ice Storm into an innate ability
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
@@ -438,10 +400,6 @@ LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END  
 
 COPY_EXISTING ~spwi625.spl~  ~override/rr#wi625.spl~                               // Clone Stone to Flesh into an innate ability
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
-
-COPY_EXISTING ~spwi104.spl~  ~override/rr#ersug.spl~                               // Change Charm Person into renewable Suggestion
-  SAY NAME1 @708 SAY NAME2 @708                                                    // Suggestion
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END      // Execute the "spell to innate ablity" function
 
 
 
@@ -483,13 +441,53 @@ BEGIN                                                                           
 END                                                                                // ends PATCH_FOR_EACH
 BUT_ONLY_IF_IT_CHANGES
 
-COPY_EXISTING rr#etrai.itm ~override/fl#etrsu.itm~                                 // As RR#ETRAI, but lacking immunity to Death Spell (for use by summoned elementals)
+COPY_EXISTING "rr#etrai.itm" ~override/fl#etrsu.itm~                                 // As RR#ETRAI, but lacking immunity to Death Spell (for use by summoned elementals)
   GET_OFFSET_ARRAY ea ITM_V10_GEN_EFFECTS
   PHP_EACH ea AS _ => off BEGIN
     READ_SHORT off opcode
     READ_ASCII off + 0x14 resref
     PATCH_IF opcode = 206 AND "%resref%" STRING_EQUAL_CASE "SPWI605" BEGIN
-      WRITE_BYTE off + 0x12 0                                                       // null the probability
+      WRITE_BYTE off + 0x12 0                                                      // null the probability
+    END
+  END
+BUT_ONLY
+
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrae.itm~                                 // As RR#ETRAI, but for air elementals
+			  "fl#etrsu.itm" ~override/fl#etras.itm~                                 // As RR#ETRAI, but for air elementals
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etree.itm~                                 // As RR#ETRAI, but for earth elementals
+			  "fl#etrsu.itm" ~override/fl#etres.itm~                                 // As RR#ETRAI, but for air elementals
+LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
+LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrfe.itm~                                 // As RR#ETRAI, but for fire elementals
+		      "fl#etrsu.itm" ~override/fl#etrfs.itm~                                 // As RR#ETRAI, but for air elementals
+LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrwe.itm~                                 // As RR#ETRAI, but for water elementals
+			  "fl#etrsu.itm" ~override/fl#etrws.itm~                                 // As RR#ETRAI, but for air elementals
+LAUNCH_PATCH_FUNCTION add_water_elemental_effects END
+
+COPY ~atweaks/itm/elementals/rr#etrai.itm~ ~override/rr#etrsl.itm~                 // fire and noble salamander traits "Ring"
+LAUNCH_PATCH_FUNCTION ~fire_salamander_immunities~ END                             // add salamander immunities
+WRITE_SHORT 0x1c 10 // Ring
+
+COPY ~atweaks/itm/elementals/rr#etrai.itm~ ~override/rr#etrfr.itm~                 // fire and noble salamander traits "Ring"
+LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
+WRITE_SHORT 0x1c 10 // Ring
+
+
+COPY_EXISTING "rr#etrsl.itm" ~override/rr#etrss.itm~                                 // As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
+			  "rr#etrfr.itm" ~override/rr#etrsf.itm~                                 // As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
+  GET_OFFSET_ARRAY ea ITM_V10_GEN_EFFECTS
+  PHP_EACH ea AS _ => off BEGIN
+    READ_SHORT off opcode
+    READ_ASCII off + 0x14 resref
+    PATCH_IF opcode = 206 AND "%resref%" STRING_EQUAL_CASE "SPWI605" BEGIN
+      WRITE_BYTE off + 0x12 0                                                      // null the probability
     END
   END
 BUT_ONLY
@@ -497,7 +495,7 @@ BUT_ONLY
 COPY ~atweaks/itm/rr#dinv.itm~  ~override~                                         // item which makes creatures untargetable until the gating animation finishes
 COPY ~atweaks/itm/elementals/rr#easer.itm~ ~override~                              // Aerial Servant attack
   LPF set_enchantment INT_VAR enchantment = 4 END
-	WRITE_BYTE 0x98 0															   // Nerf Aerial Servant atk by removing strength Bonus as the attack is a grabbing attack and do not use strength modifier (Aerial don't accept atk command in PnP)
+	WRITE_BYTE 0x98 0															   // Nerf Aerial Servant atk by removing strength Bonus as the attack is a grabbing attack and should not use strength modifier (Aerial don't accept atk command in PnP)
 COPY ~atweaks/itm/elementals/rr#efsal.itm~ ~override~                              // Fire Salamander spear attack
   LPF set_enchantment INT_VAR enchantment = 2 END
 COPY ~atweaks/itm/elementals/rr#efsa2.itm~ ~override~                              // Fire Salamander tail attack
@@ -622,6 +620,9 @@ END                                                                             
 // Creature modifications
 //////////////////////////
 
+//////////////////////////
+// Elemental kin
+//////////////////////////
 
 // Aerial Servant
 
@@ -681,7 +682,11 @@ STR_VAR                                                                         
 "script06"   = "BPWTSIGT"                                                          // Big Picture generic AI script
 "script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+LAUNCH_PATCH_FUNCTION ~hover_immunities~ END                                       // grant immunities to ground-based spells
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrsu" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -720,7 +725,7 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REPLACE_CRE_ITEM ~RR#EFSAL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#EFSA2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // tail attack
-REMOVE_CRE_ITEM ~RING95~                                                           // Salamanders are not undead, they have their own specific set of immunities
+REPLACE_CRE_ITEM ~RR#etrsl~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "7"                                                                   // new movement rate
@@ -775,9 +780,9 @@ STR_VAR                                                                         
 "script15"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
 "skipfile01" = "plysala"                                                           // special case, the Avenger kit Fire Salamander form
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
+// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~icsalfir~) 
 OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~hgsal01~) 
 OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~plysala~) 
@@ -786,6 +791,10 @@ WRITE_ASCII 0x280 ~icsalfir~ #32                                                
 END
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~plysala~) BEGIN                        // special case, the Avenger kit Fire Salamander form needs 2 APR since it can't dual-wield
   WRITE_BYTE 0x53 2                                                                // base number of attacks
+END
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "rr#etrss" #0 #0 #0 ~UNDROPPABLE~ ~LRING~                     	   // no immunity to Death Spell
 END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -830,9 +839,10 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 SAY NAME1 #72145 SAY NAME2 #72146                                                  // Frost Salamander
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~RING95~                                                           // Salamanders are not undead, they have their own specific set of immunities
 REPLACE_CRE_ITEM ~RR#EFRSA~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#EFRS2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // bite attack
-REMOVE_CRE_ITEM ~RING95~                                                           // Salamanders are not undead, they have their own specific set of immunities
+REPLACE_CRE_ITEM ~RR#etrsl~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "9"                                                                   // new movement rate
@@ -887,14 +897,18 @@ STR_VAR                                                                         
 "script12"   = "DW2MP0GE"                                                          // Stratagems melee AI script
 "script13"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~salgrice~) BEGIN                       // special case, the Frost Salamanders in Abazigal's lair need a diferent script setup
   WRITE_ASCII 0x248 ~DEADABAZ~ #8                                                  // override script (already set in ARE file so we can't use that slot)
   WRITE_ASCII 0x250 ~RR#EFRSA~ #8                                                  // class script
 END
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~icsalcol~) BEGIN                       // special case, add a death variable to SoA Frost Salamanders
   WRITE_ASCII 0x280 ~icsalcol~ #32                                                 // assign new death variable
+END
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "rr#etrsf" #0 #0 #0 ~UNDROPPABLE~ ~LRING~                   	   // no immunity to Death Spell
 END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -907,14 +921,6 @@ COPY_EXISTING ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDif
   REMOVE_CRE_ITEM ~CSALRING~                                                       // IWDification - Stratagems Salamanders visual effect (already included)
   LPF ~RR#MDCRE~ INT_VAR 
   "newxpv"   = "0"                                                                 // new XP value
-/*  "newhp"    = "63"                                                                // new hit point value
-  "newth"    = "13"                                                                // new THAC0 value
-  "newsvd"   = "10"                                                                // new Save vs. Death
-  "newsvw"   = "12"                                                                // new Save vs. Wand
-  "newsvp"   = "11"                                                                // new Save vs. Polymorph
-  "newsvb"   = "12"                                                                // new Save vs. Breath
-  "newsvs"   = "13"                                                                // new Save vs. Spell
-  "newlvl1"  = "7"                                                                 // new level (first class)*/
   "enforce"  = "1"                                                                 // values are enforced for all creatures
   END
   LPF make_summon END
@@ -991,7 +997,11 @@ STR_VAR                                                                         
 "script09"   = "DW1MELMO"                                                          // Stratagems melee AI script
 "script10"   = "DW#SUMEI"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+LAUNCH_PATCH_FUNCTION ~hover_immunities~ END                                       // grant immunities to ground-based spells
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrsu" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1111,7 +1121,7 @@ ADD_MEMORIZED_SPELL ~rr#ecfir~ #0 ~innate~ ( 1 )                                
 ADD_MEMORIZED_SPELL ~rr#enlfr~ #0 ~innate~ ( 1 )                                   // adds 1x Lower Fire Resistance
 REPLACE_CRE_ITEM ~RR#ENSAL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#ENSA2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // tail attack
-REMOVE_CRE_ITEM ~RING95~                                                           // Salamanders are not undead, they have their own specific set of immunities
+REPLACE_CRE_ITEM ~RR#strai~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "14"                                                                  // new movement rate
@@ -1164,9 +1174,13 @@ STR_VAR                                                                         
 "script09"   = "DW2MP4MO"                                                          // Stratagems melee AI script
 "script10"   = "DW2MP3MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
+// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrss" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1239,12 +1253,14 @@ STR_VAR                                                                         
 "newscript"  = "RR#EWWEI"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
-END                                                                                // ends FUNCTION call
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
+//////////////////////////
+// Elementals
+//////////////////////////
 
 // Lesser Air Elemental (8 HD)
 
@@ -1269,7 +1285,7 @@ WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR_SMALL~))               
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#eairw~ #0 ~innate~ ( 1 )                                   // adds 1x Air Elemental Whirlwind
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add air elemental traits
 REPLACE_CRE_ITEM ~RR#EAIRL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -1322,8 +1338,12 @@ STR_VAR                                                                         
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script16"   = "WIZELSU2"                                                          // ?? mental combat
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etras" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1368,8 +1388,9 @@ END                                                                             
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#eairw~ #0 ~innate~ ( 1 )                                   // adds 1x Air Elemental Whirlwind
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add air elemental traits
 REPLACE_CRE_ITEM ~RR#EAIRR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
@@ -1426,8 +1447,12 @@ STR_VAR                                                                         
 "script17"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script18"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etras" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1462,8 +1487,9 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#eairw~ #0 ~innate~ ( 1 )                                   // adds 1x Air Elemental Whirlwind
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add air elemental traits
 REPLACE_CRE_ITEM ~RR#EAIRG~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
@@ -1514,8 +1540,12 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etras" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1544,7 +1574,7 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#eairw~ #0 ~innate~ ( 1 )                                   // adds 1x Air Elemental Whirlwind
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add air elemental traits
 REPLACE_CRE_ITEM ~RR#EAIRE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -1603,8 +1633,12 @@ STR_VAR                                                                         
 "skipfile01"   = "li#druai"
 "skipfile02"   = "AR#ELAIK"
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etras" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1633,7 +1667,7 @@ SAY NAME1 #2850 SAY NAME2 #2851                                                 
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_SMALL~))                // use the proper avatar (ELEMENTAL_EARTH_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
 REPLACE_CRE_ITEM ~RR#EEARL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -1687,9 +1721,13 @@ STR_VAR                                                                         
 "script16"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script17"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1715,8 +1753,9 @@ PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~) > 0 )) BEGIN			   // 
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
 REPLACE_CRE_ITEM ~RR#EEARR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
@@ -1768,9 +1807,13 @@ STR_VAR                                                                         
 "script15"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 "skipfile01" = "SHEARTH"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1808,8 +1851,9 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#equa~ #0 ~innate~ ( 1 )                                    // adds 1x Earthquake
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
 REPLACE_CRE_ITEM ~RR#EEARG~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
@@ -1862,9 +1906,13 @@ STR_VAR                                                                         
 "script15"   = "DW2MC0GE"                                                          // Stratagems melee AI script
 "skipfile01" = "cdidree"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1896,7 +1944,7 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#equa~ #0 ~innate~ ( 1 )                                    // adds 1x Earthquake
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
 REPLACE_CRE_ITEM ~RR#EEARE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -1958,9 +2006,13 @@ STR_VAR                                                                         
 "skipfile01" = "DRUEAR01"                                                          // skip script patching for a designated file
 "skipfile02" = "AR#ELEAK"
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1990,7 +2042,7 @@ SAY NAME1 #2878 SAY NAME2 #2879                                                 
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_SMALL~))                 // use the proper avatar (ELEMENTAL_FIRE_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
 REPLACE_CRE_ITEM ~RR#EFIRL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -2043,9 +2095,13 @@ STR_VAR                                                                         
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script16"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2073,8 +2129,9 @@ PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~) > 0 )) BEGIN			   // C
 END                                                          					  
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
 REPLACE_CRE_ITEM ~RR#EFIRR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
@@ -2125,9 +2182,13 @@ STR_VAR                                                                         
 "script14"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "SHFIRE"                                                            // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2188,8 +2249,9 @@ END                                                                             
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
 REPLACE_CRE_ITEM ~RR#EFIRG~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
@@ -2244,9 +2306,13 @@ STR_VAR                                                                         
 "skipfile01" = "tg#did5"
 "skipfile02" = "cdidrfe"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2274,7 +2340,7 @@ WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the p
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
 REPLACE_CRE_ITEM ~RR#EFIRE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -2336,35 +2402,18 @@ STR_VAR                                                                         
 "skipfile01" = "DRUFIR01"                                                          // skip script patching for a designated file
 "skipfile02" = "AR#ELFIK"
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
-
-DEFINE_PATCH_FUNCTION add_water_elemental_effects BEGIN
-  LAUNCH_PATCH_FUNCTION entangle_immunities END
-  LAUNCH_PATCH_FUNCTION web_immunity END
-  LPF ADD_CRE_EFFECT
-    INT_VAR
-      opcode = 52 //Character tint
-      target = 1
-      parameter1 = 0x02000000
-      parameter2 = 0x2
-      timing = 9
-  END
-  LPF ADD_CRE_EFFECT
-    INT_VAR
-      opcode = 66 //Translucency
-      target = 1
-      parameter1 = 100
-      timing = 9
-  END
-END
 
 // Lesser Water Elemental (8 HD)
 
@@ -2378,6 +2427,7 @@ COPY    ~atweaks/cre/elementals/rr#ewatl.cre~ ~override/rr#ewats.cre~           
   WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                  // assign override AI script
   WRITE_BYTE  0x270 128                                                            // set initial allegiance to NEUTRAL
   ADD_CRE_ITEM ~RIDRING~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~                // selection circle removal ring
+  ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 
@@ -2399,7 +2449,10 @@ END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_EFFECTS
-ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+// ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
+REPLACE_CRE_ITEM ~RR#EWATL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
@@ -2437,7 +2490,11 @@ STR_VAR                                                                         
 "script03"   = "DW2RM0MW"                                                          // Stratagems melee script
 "script04"   = "DW2MC4GE"                                                          // Stratagems melee script
 END                                                                                // ends FUNCTION call
-LPF add_water_elemental_effects END
+// LPF add_water_elemental_effects END
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrws" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2452,7 +2509,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~rr#ewatr~                                                             // Water Elemental (aTweaks)
             ~tg#wel2~                                                              // Water Elemental (Refinements)
 			~DW#WATE2~                                                             // Water Elemental (Stratagems)
-			~ELWATPR~                                                             // Water Elemental (12 HD, mih_sp)
+			~ELWATPR~                                                              // Water Elemental (12 HD, mih_sp)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2464,11 +2521,12 @@ PATCH_IF (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER~)>0) BEGIN					   // Compati
 END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-REMOVE_CRE_ITEM tg#wel2
+REMOVE_CRE_ITEM ~TG#WEL2~
 REMOVE_CRE_EFFECTS
-ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
-REPLACE_CRE_ITEM rr#etrai #0 #0 #0 none helmet
-REPLACE_CRE_ITEM rr#ewatr #0 #0 #0 none weapon1
+// ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
+REPLACE_CRE_ITEM ~RR#EWATR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
@@ -2508,7 +2566,11 @@ STR_VAR                                                                         
 "script04"   = "DW2MC4GE"                                                          // Stratagems melee script
 "script05"   = "DW2RM0GE"                                                          // Stratagems melee script
 END                                                                                // ends FUNCTION call
-LPF add_water_elemental_effects END
+// LPF add_water_elemental_effects END
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrws" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2536,10 +2598,11 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_EFFECTS
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-REMOVE_CRE_ITEM ~WALLPASS~ tg#wel3
-ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+REMOVE_CRE_ITEM ~WALLPASS~ ~TG#WEL2~
+// ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
 REPLACE_CRE_ITEM ~RR#EWATG~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
@@ -2587,7 +2650,11 @@ STR_VAR                                                                         
 "script11"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "skipfile01" = "cdidrwe"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LPF add_water_elemental_effects END
+// LPF add_water_elemental_effects END
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrws" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2615,8 +2682,11 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_EFFECTS
 ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
-ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
+REPLACE_CRE_ITEM ~RR#EWATE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
+REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
+// ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -2659,7 +2729,11 @@ STR_VAR                                                                         
 "script05"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "skipfile01"   = "li#druwa"
 END                                                                                // ends FUNCTION call
-LPF add_water_elemental_effects END
+// LPF add_water_elemental_effects END
+READ_BYTE 0x275 gender
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrws" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2679,7 +2753,8 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
@@ -2738,7 +2813,9 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
@@ -2796,7 +2873,8 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
@@ -2853,7 +2931,8 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
+ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
@@ -2999,7 +3078,7 @@ ADD_MEMORIZED_SPELL ~rr#eimfb~ #0 ~innate~ ( 1 )                                
 ADD_MEMORIZED_SPELL ~rr#eimfs~ #0 ~innate~ ( 3 )                                   // adds 3x Fire Shield:Red, triple strength
 ADD_MEMORIZED_SPELL ~rr#eimix~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Allies
 REMOVE_CRE_ITEM ~ELEMPRIN~                                                         // Elemental Prince traits are handled differently
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
 REPLACE_CRE_ITEM ~RR#EIMIX~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -3050,9 +3129,9 @@ STR_VAR                                                                         
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -3080,7 +3159,7 @@ ADD_MEMORIZED_SPELL ~rr#wi408~ #0 ~innate~ ( 3 )                                
 ADD_MEMORIZED_SPELL ~rr#wi604~ #0 ~innate~ ( 3 )                                   // adds 3x Flesh to Stone
 ADD_MEMORIZED_SPELL ~rr#eogre~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Allies
 REMOVE_CRE_ITEM ~ELEMPRIN~                                                         // Elemental Prince traits are handled differently
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
 REPLACE_CRE_ITEM ~RR#EOGRE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -3132,9 +3211,9 @@ STR_VAR                                                                         
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "16" END      // remove spurious haste opcode
-LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
 // =============================================================================== // the actual work ends here
@@ -3163,7 +3242,7 @@ ADD_MEMORIZED_SPELL ~rr#mmswf~ #0 ~innate~ ( 3 )                                
 ADD_MEMORIZED_SPELL ~rr#ehydr~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Allies
 REMOVE_CRE_ITEM ~WALLPASS~                                                         // remove wallpass item
 REMOVE_CRE_ITEM ~ELEMPRIN~                                                         // Elemental Prince traits are handled differently
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
 REPLACE_CRE_ITEM ~RR#EHYDR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -3242,7 +3321,7 @@ ADD_MEMORIZED_SPELL ~rr#telwr~ #0 ~innate~ ( 1 )                                
 ADD_MEMORIZED_SPELL ~rr#eairw~ #0 ~innate~ ( 1 )                                   // adds 1x Air Elemental Whirlwind
 ADD_MEMORIZED_SPELL ~rr#eyanc~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Allies
 REMOVE_CRE_ITEM ~ELEMPRIN~                                                         // Elemental Prince traits are handled differently
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add air elemental traits
 REPLACE_CRE_ITEM ~RR#EYANC~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -3294,8 +3373,8 @@ STR_VAR                                                                         
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
 LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
 LAUNCH_PATCH_FUNCTION missile_weapon_immunity END                                  // missile weapon immunity
 LAUNCH_PATCH_FUNCTION cloud_spell_immunities END                                   // grant immunities to gas-based area effect spells
@@ -3334,7 +3413,7 @@ ADD_MEMORIZED_SPELL ~rr#wi213~ #0 ~innate~ ( 3 )                                
 ADD_MEMORIZED_SPELL ~rr#wi502~ #0 ~innate~ ( 3 )                                   // adds 3x Cloudkill
 ADD_MEMORIZED_SPELL ~rr#echan~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Allies (Chan)
 REMOVE_CRE_ITEM ~ELEMPRIN~                                                         // Elemental Prince traits are handled differently
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add air elemental traits
 REPLACE_CRE_ITEM ~RR#ECHAN~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -3391,8 +3470,8 @@ STR_VAR                                                                         
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
 LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
 LAUNCH_PATCH_FUNCTION cloud_spell_immunities END                                   // grant immunities to gas-based area effect spells
 // =============================================================================== // the actual work ends here
@@ -3422,7 +3501,7 @@ ADD_MEMORIZED_SPELL ~rr#esuis~ #0 ~innate~ ( 4 )                                
 ADD_MEMORIZED_SPELL ~rr#wi625~ #0 ~innate~ ( 3 )                                   // adds 3x Stone to Flesh
 ADD_MEMORIZED_SPELL ~rr#esunn~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Allies (Sunnis)
 REMOVE_CRE_ITEM ~ELEMPRIN~                                                         // Elemental Prince traits are handled differently
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
 REPLACE_CRE_ITEM ~RR#ESUNN~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -3480,9 +3559,9 @@ STR_VAR                                                                         
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
-LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
 LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -3512,7 +3591,7 @@ ADD_MEMORIZED_SPELL ~rr#ezafa~ #0 ~innate~ ( 3 )                                
 ADD_MEMORIZED_SPELL ~rr#ezafs~ #0 ~innate~ ( 3 )                                   // adds 3x Fire Shield:Red, double strength
 ADD_MEMORIZED_SPELL ~rr#ezaam~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Allies (Zaaman Rul)
 REMOVE_CRE_ITEM ~ELEMPRIN~                                                         // Elemental Prince traits are handled differently
-ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
+ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
 REPLACE_CRE_ITEM ~RR#EZAAM~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
@@ -3567,9 +3646,9 @@ STR_VAR                                                                         
 "skipfile01" = "AR#FIRGD"
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
 LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -3624,6 +3703,17 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#esunn.baf~                   
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ezaam.baf~                                      // Zaaman Rul AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ewizs.baf~                                      // Mental Combat AI script (for elementals summoned by arcane spellcasters)
 
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GDJIN.baf~                     // Djinni AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNDJN.baf~                     // Noble Djinni AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GDAO.baf~                      // Dao AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNDAO.baf~                     // Noble Dao AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GEFRT.baf~                     // Efreeti AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNEFR.baf~                     // Noble Efreeti AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GGRDS.baf~                     // Guardian AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GMARD.baf~                     // Marid AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNMRD.baf~                     // Noble Marid AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SDJIN.baf~                     // Summoned Djinni script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SEFRT.baf~                     // Summoned Efreeti AI script
 
 
 
@@ -3920,15 +4010,14 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~DW#WATE2~                                                             // Water Elemental (stratagems water elemental summoning)
 			~DW#WATE3~                                                             // Greater Water Elemental (stratagems water elemental summoning)
 			~DW#WATE4~                                                             // Elder Water Elemental (stratagems water elemental summoning)
+			~ELWATPR~                                                              // Elder Water Elemental (stratagems water elemental summoning)
+			~ELWATPR2~                                                             // Elder Water Elemental (stratagems water elemental summoning)
+			~ELWATPR3~                                                             // Elder Water Elemental (stratagems water elemental summoning)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the designated file with a CRE extension exists
 COPY_EXISTING ~%file%.cre~ ~override~
   PATCH_IF (SOURCE_SIZE > 0x2d3) THEN BEGIN                                        // protects against invalid files
 // =============================================================================== // the actual work starts from here
-    READ_BYTE 0x275 gender
-    PATCH_IF gender = 6 OR gender = 20 BEGIN                                       // If SUMMONED
-      REPLACE_CRE_ITEM fl#etrsu #0 #0 #0 undroppable helmet                        // no immunity to Death Spell
-    END
     READ_BYTE 0x10 "flags"                                                         // read initial flags
     PATCH_IF (("%flags%" BAND "0b00000010") = "0b00000000") BEGIN                  // if bit 1 isn't set 
       WRITE_BYTE "0x10" ("%flags%" BOR "0b00000010")                               // set bit 1 (enable No Corpse flag)
@@ -4889,19 +4978,6 @@ COPY_EXISTING ~ar1500.are~ ~override~                                           
   END
 BUT_ONLY_IF_IT_CHANGES
 
-// Replace the Lesser Air Elemental which occasionally spawns in Spellhold with an Aerial Servant
-
-COPY_EXISTING ~ar1500.are~ ~override~                                              // Spellhold, outside
-  READ_LONG 0x60 spawn_off
-  READ_SHORT 0x64 spawn_num
-  FOR (n=0; n < "%spawn_num%"; n+=1) BEGIN
-  READ_ASCII  ("%spawn_off%" + "%n%"*0xc8 + 0x2c) "cre_file"
-    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "ELAIRL01") BEGIN
-      WRITE_ASCII ("%spawn_off%" + "%n%"*0xc8 + 0x2c) ~rr#easer~ #8
-    END
-  END
-BUT_ONLY_IF_IT_CHANGES
-
 
 // Replace the Burning Men near Imix with Elder Fire Elementals
 
@@ -4963,7 +5039,6 @@ COPY_EXISTING ~ar6001.are~ ~override~                                           
 BUT_ONLY_IF_IT_CHANGES
 
 
-
 /////////////////////////////
 // Compatibility adjustments
 /////////////////////////////
@@ -4991,8 +5066,8 @@ END                                                                             
 
 // IWDification
 
-// in pnp Frost and Fire salamander fight on sight. MS6 summons both witch is not sensible
-
+// in PnP Frost and Fire salamander don't get along. MS6 summons both witch is not sensible
+// replace frost salamander by noble salamander
 ACTION_IF FILE_EXISTS_IN_GAME MSUMMO6.2DA BEGIN
 COPY_EXISTING ~RR#ENSAL.itm~ ~override/RR#ENSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
 	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 9 timing = 2 STR_VAR resource = ~rr#eiems~ END
@@ -5010,7 +5085,8 @@ BUT_ONLY
 COPY_EXISTING "MSUMMO6.2DA" override
 	REPLACE_TEXTUALLY ~MS6SALC~ ~rr#saln~
 BUT_ONLY
-	
+
+// Add frost salamander as 7th level summon witch is better as PnP Frost salamander are strongher
 APPEND ~MSUMMO7.2DA~ ~3 MS6SALC~
 
 END

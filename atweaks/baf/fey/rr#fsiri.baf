@@ -12,6 +12,7 @@ END
 
 IF
 	Global("RR#Active","LOCALS",0)
+    !Allegiance(Myself,GOODCUTOFF)
 	OR(3)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
@@ -22,12 +23,11 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
 	Global("RR#Active","LOCALS",0)
-        Allegiance(Myself,EVILCUTOFF)
+    Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
 THEN
 	RESPONSE #100
@@ -35,7 +35,6 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
@@ -45,14 +44,14 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Gas","LOCALS",6)
-                ForceSpellRES("rr#ftvap",Myself) // Toxic Vapors
+        ForceSpellRES("rr#ftvap",Myself) // Toxic Vapors
 END
 
 IF
 	!Allegiance(Myself,NEUTRAL)
 	OR(4)
 	  Global("RR#Active","LOCALS",0)
-          !Allegiance(Myself,EVILCUTOFF) // better way to check for charm because STATE_CHARMED persists when the creature is attacked and becomes red circled again
+      !Allegiance(Myself,EVILCUTOFF) // better way to check for charm because STATE_CHARMED persists when the creature is attacked and becomes red circled again
 	  StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
 	  StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
 THEN
@@ -74,21 +73,22 @@ IF
 THEN
   RESPONSE #100
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-                ApplySpell(Myself,RESTORE_FULL_HEALTH) // heal up
-                Rest()
+        ApplySpell(Myself,RESTORE_FULL_HEALTH) // heal up
+        Rest()
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other allies may hear it and join the battle
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Help","LOCALS",12)
 		Help()
-		Continue()
 END
 
 IF
+	Allegiance(Myself,EVILCUTOFF)
 	!See([GOODCUTOFF])
         InMyArea(Player1)
         !Detect(Player1)
@@ -129,6 +129,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	Allegiance(Myself,EVILCUTOFF)
 	HaveSpellRES("rr#wi405") // Improved Invisibility
 	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
 	!Global("dvgldust","LOCALS",1)
@@ -154,20 +155,21 @@ IF
 	!GlobalTimerNotExpired("RR#Tact","LOCALS")
 	OR(2)
 	  RandomNum(3,1)
-          !HaveSpellRES("rr#fcsng") // Charming Song
+      !HaveSpellRES("rr#fcsng") // Charming Song
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Tact","LOCALS",6)
-                SetGlobal("RR#Bhave","LOCALS",1) // Fog Cloud
+        SetGlobal("RR#Bhave","LOCALS",1) // Fog Cloud
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See([PC.0.0.RANGER]) // single-class ranger
-        Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
+    Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -185,12 +187,13 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([PC.0.0.RANGER])) // single-class ranger
-        Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
+    Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -208,12 +211,13 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([PC.0.0.RANGER])) // single-class ranger
-        Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
+    Kit(LastSeenBy(Myself),FERALAN) // archer kit, highest priority
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -231,10 +235,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(StrongestOf([PC])) // try to blind the strongest party member
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL) // if it's a warrior
@@ -257,10 +262,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See([PC.0.0.FIGHTER_ALL]) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -279,10 +285,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([PC.0.0.FIGHTER_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -301,10 +308,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([PC.0.0.FIGHTER_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -323,10 +331,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See([PC.0.0.RANGER_ALL]) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -345,10 +354,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([PC.0.0.RANGER_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -367,10 +377,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([PC.0.0.RANGER_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -389,10 +400,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See([PC.0.0.PALADIN_ALL]) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -411,10 +423,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([PC.0.0.PALADIN_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -433,10 +446,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([PC.0.0.PALADIN_ALL])) // prioritize warriors
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -455,10 +469,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(StrongestOf([PC])) // try to blind the strongest party member
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -477,10 +492,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	Range(SecondNearest([GOODCUTOFF]),10)
 	Range([GOODCUTOFF],10) // at least two party members are nearby
 	See([GOODCUTOFF])
@@ -501,10 +517,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	Range(SecondNearest([GOODCUTOFF]),10)
 	Range([GOODCUTOFF],10) // at least two party members are nearby
 	See(SecondNearest([GOODCUTOFF]))
@@ -525,10 +542,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -547,10 +565,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -569,10 +588,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -591,10 +611,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(FourthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -613,10 +634,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(FifthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -635,10 +657,11 @@ THEN
 END
 
 IF
-        Global("RR#Bhave","LOCALS",1) // Fog Cloud
+    Global("RR#Bhave","LOCALS",1) // Fog Cloud
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcld") // Fog Cloud
+	Allegiance(Myself,EVILCUTOFF)
 	See(SixthNearest([GOODCUTOFF]))
 	!StateCheck(LastSeenBy(Myself),STATE_HARMLESS)
 	!StateCheck(LastSeenBy(Myself),STATE_BLIND)
@@ -660,6 +683,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player1)
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	OR(3)
@@ -667,13 +691,13 @@ IF
           Class(LastSeenBy(Myself),RANGER_ALL)
           Class(LastSeenBy(Myself),PALADIN_ALL)
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!Race(LastSeenBy(Myself),HALF_ELF) // high priority blocks should filter out half-elves too
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-        CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
+    CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS) 
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
@@ -697,6 +721,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player2)
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	OR(3)
@@ -704,13 +729,13 @@ IF
           Class(LastSeenBy(Myself),RANGER_ALL)
           Class(LastSeenBy(Myself),PALADIN_ALL)
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!Race(LastSeenBy(Myself),HALF_ELF) // high priority blocks should filter out half-elves too
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-        CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
+    CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS) 
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
@@ -734,6 +759,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player3)
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	OR(3)
@@ -741,13 +767,13 @@ IF
           Class(LastSeenBy(Myself),RANGER_ALL)
           Class(LastSeenBy(Myself),PALADIN_ALL)
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!Race(LastSeenBy(Myself),HALF_ELF) // high priority blocks should filter out half-elves too
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-        CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
+    CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS) 
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
@@ -771,6 +797,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player4)
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	OR(3)
@@ -778,13 +805,13 @@ IF
           Class(LastSeenBy(Myself),RANGER_ALL)
           Class(LastSeenBy(Myself),PALADIN_ALL)
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!Race(LastSeenBy(Myself),HALF_ELF) // high priority blocks should filter out half-elves too
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-        CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
+    CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS) 
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
@@ -808,6 +835,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player5)
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	OR(3)
@@ -815,13 +843,13 @@ IF
           Class(LastSeenBy(Myself),RANGER_ALL)
           Class(LastSeenBy(Myself),PALADIN_ALL)
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!Race(LastSeenBy(Myself),HALF_ELF) // high priority blocks should filter out half-elves too
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-        CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
+    CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS) 
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
@@ -845,6 +873,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player6)
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	OR(3)
@@ -852,13 +881,13 @@ IF
           Class(LastSeenBy(Myself),RANGER_ALL)
           Class(LastSeenBy(Myself),PALADIN_ALL)
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!Race(LastSeenBy(Myself),HALF_ELF) // high priority blocks should filter out half-elves too
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
-        CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
+    CheckStatGT(LastSeenBy(Myself),10,SAVEVSSPELL) // highest priority - PC warriors with poor saving throws
 	!CheckStat(LastSeenBy(Myself),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS) 
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Enchantment
@@ -881,6 +910,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL])
@@ -911,6 +941,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(SecondNearest([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL]))
@@ -941,6 +972,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(ThirdNearest([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL]))
@@ -971,6 +1003,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See([GOODCUTOFF.HUMANOID.0.RANGER_ALL])
@@ -1000,6 +1033,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(SecondNearest([GOODCUTOFF.HUMANOID.0.RANGER_ALL]))
@@ -1029,6 +1063,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(ThirdNearest([GOODCUTOFF.HUMANOID.0.RANGER_ALL]))
@@ -1058,12 +1093,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See([GOODCUTOFF.HUMANOID])
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1090,12 +1126,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(SecondNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1122,12 +1159,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(ThirdNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1154,12 +1192,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(FourthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1186,12 +1225,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(FifthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1218,12 +1258,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(SixthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1250,12 +1291,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(SeventhNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1282,12 +1324,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(EighthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1314,12 +1357,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(NinthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1346,12 +1390,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fcsng") // Charming Song
+	Allegiance(Myself,EVILCUTOFF)
 	!StateCheck(Myself,STATE_SILENCED) // cannot sing while silenced
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
 	See(TenthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
-        !Kit(LastSeenBy(Myself),INQUISITOR)
-        !Kit(LastSeenBy(Myself),CAVALIER)
+    !Kit(LastSeenBy(Myself),INQUISITOR)
+    !Kit(LastSeenBy(Myself),CAVALIER)
 	!Race(LastSeenBy(Myself),ELF)
 	!StateCheck(LastSeenBy(Myself),STATE_DISABLED)
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1378,6 +1423,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck([EVILCUTOFF.0.0.MAGE],STATE_CHARMED)
 	See([EVILCUTOFF.0.0.MAGE])
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1403,6 +1449,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(SecondNearest([EVILCUTOFF.0.0.MAGE]),STATE_CHARMED)
 	See(SecondNearest([EVILCUTOFF.0.0.MAGE]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1428,6 +1475,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(ThirdNearest([EVILCUTOFF.0.0.MAGE]),STATE_CHARMED)
 	See(ThirdNearest([EVILCUTOFF.0.0.MAGE]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1452,6 +1500,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(FourthNearest([EVILCUTOFF.0.0.MAGE]),STATE_CHARMED)
 	See(FourthNearest([EVILCUTOFF.0.0.MAGE]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1477,6 +1526,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(FifthNearest([EVILCUTOFF.0.0.MAGE]),STATE_CHARMED)
 	See(FifthNearest([EVILCUTOFF.0.0.MAGE]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1502,6 +1552,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(SixthNearest([EVILCUTOFF.0.0.MAGE]),STATE_CHARMED)
 	See(SixthNearest([EVILCUTOFF.0.0.MAGE]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1527,6 +1578,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck([EVILCUTOFF.0.0.MAGE_THIEF],STATE_CHARMED)
 	See([EVILCUTOFF.0.0.MAGE_THIEF])
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1552,6 +1604,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(SecondNearest([EVILCUTOFF.0.0.MAGE_THIEF]),STATE_CHARMED)
 	See(SecondNearest([EVILCUTOFF.0.0.MAGE_THIEF]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1577,6 +1630,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(ThirdNearest([EVILCUTOFF.0.0.MAGE_THIEF]),STATE_CHARMED)
 	See(ThirdNearest([EVILCUTOFF.0.0.MAGE_THIEF]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1602,6 +1656,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck([EVILCUTOFF.0.0.BARD_ALL],STATE_CHARMED)
 	See([EVILCUTOFF.0.0.BARD_ALL])
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1627,6 +1682,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(SecondNearest([EVILCUTOFF.0.0.BARD_ALL]),STATE_CHARMED)
 	See(SecondNearest([EVILCUTOFF.0.0.BARD_ALL]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1652,6 +1708,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck([EVILCUTOFF.0.0.THIEF],STATE_CHARMED)
 	See([EVILCUTOFF.0.0.THIEF])
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1677,6 +1734,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck(SecondNearest([EVILCUTOFF.0.0.THIEF]),STATE_CHARMED)
 	See(SecondNearest([EVILCUTOFF.0.0.THIEF]))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1702,6 +1760,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck([EVILCUTOFF.0.0.CLERIC_MAGE],STATE_CHARMED)
 	See([EVILCUTOFF.0.0.CLERIC_MAGE])
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1727,6 +1786,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck([EVILCUTOFF.0.0.CLERIC],STATE_CHARMED)
 	See([EVILCUTOFF.0.0.CLERIC])
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1752,6 +1812,7 @@ END
 IF
 	!GlobalTimerNotExpired("rr#trnq","LOCALS") // note: this isn't a regular spell, it's a 1x/round touch attack
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Allegiance(Myself,EVILCUTOFF)
 	StateCheck([EVILCUTOFF.0.0.DRUID],STATE_CHARMED)
 	See([EVILCUTOFF.0.0.DRUID])
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
@@ -1781,12 +1842,13 @@ IF
 	!HaveSpellRES("rr#fcld") // Fog Cloud
 	HaveSpellRES("rr#pjell") // Polymorph Mustard Jelly
 	CheckStat(Myself,0,POLYMORPHED) // not polymorphed
+	Detect(NearestEnemyOf(Myself))
 	OR(5)
-          HitBy([GOODCUTOFF],MAGIC)
-          HitBy([GOODCUTOFF],ELECTRICITY)
-          HitBy([GOODCUTOFF],PIERCING)
+      HitBy([GOODCUTOFF],MAGIC)
+      HitBy([GOODCUTOFF],ELECTRICITY)
+      HitBy([GOODCUTOFF],PIERCING)
 	  !HasItem("AROW01",Myself) // Arrow
-          HPPercentLT(Myself,41)
+      HPPercentLT(Myself,41)
 THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
@@ -1800,6 +1862,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	!GlobalTimerNotExpired("RR#Poly","LOCALS") // polymorph timer
+	Detect(NearestEnemyOf(Myself))
 	!HaveSpellRES("rr#fcsng") // Charming Song
 	!HaveSpellRES("rr#wi405") // Improved Invisibility
 	!HaveSpellRES("rr#fcld") // Fog Cloud
@@ -1812,9 +1875,9 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Poly","LOCALS",12) // polymorph timer
-                ForceSpellRES("rr#pjell",Myself) // Polymorph Mustard Jelly
+        ForceSpellRES("rr#pjell",Myself) // Polymorph Mustard Jelly
 		RemoveSpellRES("rr#pjell") // remove one instance of the spell upon casting
-                DestroyItem("rr#fsiri") // Sirine's Boots (destroyed to restore slow movement rate for the Mustard Jelly form)
+        DestroyItem("rr#fsiri") // Sirine's Boots (destroyed to restore slow movement rate for the Mustard Jelly form)
 		SetInterrupt(TRUE)
 	RESPONSE #65
 		SetGlobalTimer("RR#Poly","LOCALS",12) // polymorph timer
@@ -2460,25 +2523,31 @@ END
 
 IF
 	Global("RR#Melee","LOCALS",0)
+    Allegiance(Myself,EVILCUTOFF)
     Allegiance(LastSeenBy(Myself),GOODCUTOFF) // safety check
 	!HasItemEquiped("shld24",LastSeenBy(Myself)) // Reflection Shield +1
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_PHYSICAL_MIRROR)
+	!Range(LastSeenBy(Myself),4) //if we are not within melee range
 THEN
 	RESPONSE #100
-		AttackReevaluate(LastSeenBy(Myself),30)
+EquipRanged()
+AttackReevaluate(LastSeenBy(Myself),30)
 END
 
 IF
 	Global("RR#Melee","LOCALS",1)
+    Allegiance(Myself,EVILCUTOFF)
 	Allegiance(LastSeenBy(Myself),GOODCUTOFF) // safety check
 	Range(LastSeenBy(Myself),4) //if we are within melee range
 THEN
 	RESPONSE #100
-		AttackReevaluate(LastSeenBy(Myself),30)
+EquipMostDamagingMelee()
+AttackReevaluate(LastSeenBy(Myself),30)
 END
 
 IF
   Global("RR#Melee","LOCALS",1)
+    Allegiance(Myself,EVILCUTOFF)
   Allegiance(LastSeenBy(Myself),GOODCUTOFF)
 THEN
   RESPONSE #100
@@ -2487,8 +2556,9 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
+    Allegiance(Myself,EVILCUTOFF)
 	Help([EVILCUTOFF.0.FAIRY]) // other fey creatures
-        InMyArea(LastHelp(Myself))
+    InMyArea(LastHelp(Myself))
 	!StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100

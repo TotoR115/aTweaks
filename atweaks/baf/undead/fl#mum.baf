@@ -131,66 +131,6 @@ Attack(LastSeenBy(Myself))
 END
 
 IF
-See(Player1)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer1","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer1","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player2)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer2","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer2","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player3)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer3","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer3","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player4)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer4","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer4","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player5)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer5","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer5","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player6)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer6","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer6","LOCALS",6)
-Continue()
-END
-
-IF
 See([PC.0.0.MAGE])
 OR(2)
 CheckStatGT(Myself,0,CLERIC_HALLOW)
@@ -219,9 +159,11 @@ Allegiance(Myself,ENEMY)
 HPPercentLT([PC.0.0.MAGE],25)
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -253,9 +195,11 @@ Allegiance(Myself,ENEMY)
 HPPercentLT([PC.0.0.MAGE_THIEF],25)
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -287,9 +231,11 @@ Allegiance(Myself,ENEMY)
 HPPercentLT([PC.0.0.THIEF],25)
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -321,9 +267,11 @@ Allegiance(Myself,ENEMY)
 HPPercentLT([PC.0.0.BARD],25)
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -560,9 +508,9 @@ Allegiance(Myself,ENEMY)
 HPPercentLT([PC.0.0.MAGE],25)
 
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -596,9 +544,9 @@ Allegiance(Myself,ENEMY)
 HPPercentLT([PC.0.0.MAGE_THIEF],25)
 
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_THIEF])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -632,9 +580,9 @@ Allegiance(Myself,ENEMY)
 HPPercentLT([PC.0.0.THIEF],25)
 
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -668,9 +616,9 @@ Allegiance(Myself,ENEMY)
 HPPercentLT([PC.0.0.BARD],25)
 
 THEN
-RESPONSE #100
-MoveToObject([PC.0.0.BARD])
-RESPONSE #100
+RESPONSE #70
+MoveToObject([PC.0.0.BARD_ALL])
+RESPONSE #30
 Continue()
 END
 
@@ -918,9 +866,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -951,9 +901,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -984,9 +936,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -1017,9 +971,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -1249,9 +1205,9 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -1284,9 +1240,9 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_THIEF])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -1319,9 +1275,9 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -1354,9 +1310,9 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 
 THEN
-RESPONSE #100
-MoveToObject([PC.0.0.BARD])
-RESPONSE #100
+RESPONSE #70
+MoveToObject([PC.0.0.BARD_ALL])
+RESPONSE #30
 Continue()
 END
 
@@ -1597,9 +1553,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -1629,9 +1587,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -1661,9 +1621,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -1693,9 +1655,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -1918,9 +1882,9 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -1952,9 +1916,9 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_THIEF])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -1986,9 +1950,9 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -2020,9 +1984,9 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 
 THEN
-RESPONSE #100
-MoveToObject([PC.0.0.BARD])
-RESPONSE #100
+RESPONSE #70
+MoveToObject([PC.0.0.BARD_ALL])
+RESPONSE #30
 Continue()
 END
 
@@ -2258,9 +2222,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2291,9 +2257,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2324,9 +2292,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2357,9 +2327,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2581,9 +2553,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2613,9 +2587,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2645,9 +2621,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2677,9 +2655,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2895,9 +2875,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2927,9 +2909,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2959,9 +2943,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2991,9 +2977,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -3206,9 +3194,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -3235,9 +3225,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -3264,9 +3256,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -3293,9 +3287,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -3477,66 +3473,6 @@ THEN
 RESPONSE #100
 MoveToObject(NearestDoor)
 OpenDoor(NearestDoor)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player1)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer1","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player1)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player2)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer2","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player2)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player3)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer3","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player3)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player4)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer4","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player4)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player5)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer5","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player5)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player6)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer6","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player6)
 END
 
 IF

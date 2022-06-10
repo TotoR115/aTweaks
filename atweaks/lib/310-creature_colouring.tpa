@@ -2693,7 +2693,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~DRYAD01~                                                            // Dryad (unused?)
               ~DRYAD02~                                                            // Dryad (unused?)
               ~DRYAD03~                                                            // Dryad (unused?)
-              ~IDRYAD02~                                                           // Cania (one of Irenicus captive Dryads)
+              // ~IDRYAD02~                                                           // Cania (one of Irenicus captive Dryads)
               ~rr#sdrya~                                                           // aTweaks' summoned Dryad
               ~dr01mod~                                                            // PofQuestPack
               ~drmod~                                                              // PofQuestPack
@@ -2722,7 +2722,7 @@ END                                                                             
 // Hamadryad
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-              ~VAELASA~                                                            // Vaelasa (Fairy Queen in Windsper Hills)
+              // ~VAELASA~                                                            // Vaelasa (Fairy Queen in Windsper Hills)
               ~DRYADHA~                                                            // Hamadryad (BGT)
               ~_DRYADHA~                                                           // Hamadryad (Tutu)
               ~HAMASU~                                                             // deault summoned Hamadryad (unused?)
@@ -2759,8 +2759,9 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~rr#snymp~                                                           // aTweaks' summoned Nymph
               ~dvnymph~                                                            // Spell Revisions' summoned Nymph
              ~dw#nymsu~                                                            // SCSII summoned Nymph
-              ~NYMPHSUM~
-              ~WQXNYM~
+              ~NYMPHSUM~                                                           // summoned Nymph
+              ~WQXNYM~                                                             // White Queen Nymph
+
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -2820,7 +2821,7 @@ END
   WRITE_BYTE 0x2F 15                                                               // skin color (Pastel Green)
   WRITE_BYTE 0x30 14                                                               // leather color (Dark Pure Silver)
   WRITE_BYTE 0x31 20                                                               // armor color (Dark Moldy Green)
-  WRITE_BYTE 0x32 5                                                                // hair color (Light Silver)
+  // WRITE_BYTE 0x32 5                                                             // hair color (Light Silver)
 // =============================================================================== // the actual work ends here
 END                                                                                // ends animation validity check
 BUT_ONLY_IF_IT_CHANGES

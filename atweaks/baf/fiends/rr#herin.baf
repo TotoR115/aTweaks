@@ -29,7 +29,6 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
@@ -42,7 +41,6 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF

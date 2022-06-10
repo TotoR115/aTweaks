@@ -4,8 +4,8 @@ ACTION_IF FILE_EXISTS ~atweaks/lib/temp.tpa~ BEGIN //stuff that's pending inclus
 END
 
 //Adds immunity to the provided spell to blindness-causing spells and items
-DEFINE_ACTION_FUNCTION add_blindness_immunity BEGIN
-// Begin : Add Spells from IWDification mod or stratagems mods
+DEFINE_ACTION_FUNCTION add_blindness_immunity STR_VAR f_Spell = "" BEGIN
+// Begin: Add Spells from IWDification mod or stratagems mods
   ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") > 0) BEGIN
     OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH")
     OUTER_SET code=code - 1000
@@ -19,39 +19,43 @@ DEFINE_ACTION_FUNCTION add_blindness_immunity BEGIN
     OUTER_SPRINT IWDcldp "SPpr%code%"
   END ELSE BEGIN
     OUTER_SPRINT IWDcldp ""
-  END
-// End : Add Spells from IWDification mod or stratagems mods
-  COPY_EXISTING spdr101.spl  override
-		spin595.spl  override
-		spin878.spl  override
-		spin893.spl  override
-		spin929.spl  override
-		spin931.spl  override
-		sppr704.spl  override
-		sppr707.spl  override
-		spwi106.spl  override
-		spwi118.spl  override
-		spwi224.spl  override
-		spwi714.spl  override
-		spwi815.spl  override
-		spwi958.spl  override
-		spwm178.spl  override
-		chalcy2.itm  override
-		gorwom4.itm  override
-		halb06.itm   override
-		sorb.itm     override
-		sw1h51.itm   override
-		wand19.itm   override
-	~%IWDsuns%.spl~  override													 		     // Sunscorch (IWDification)
-    ~%IWDcldp%.spl~  override                                                                // Cloud of Pestilence (IWDification)
-    PHP_EACH array_as_argument AS idx => f_Spell BEGIN
-      LPF add_conditional_immunity
-	INT_VAR f_Condition = 74
-	STR_VAR f_Spell
-      END
-    END
-    CLEAR_ARRAY array_as_argument
-  BUT_ONLY IF_EXISTS
+  END 
+// End: Add Spells from IWDification mod or stratagems mods
+  ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+                ~spdr101.spl~
+                ~spin595.spl~
+                ~spin878.spl~
+                ~spin893.spl~
+                ~spin929.spl~
+                ~spin931.spl~
+                ~sppr704.spl~
+                ~sppr707.spl~
+                ~spwi106.spl~
+                ~spwi118.spl~
+                ~spwi224.spl~
+                ~spwi714.spl~
+                ~spwi815.spl~
+                ~spwi958.spl~
+                ~spwm178.spl~
+                ~chalcy2.itm~
+                ~gorwom4.itm~
+                 ~halb06.itm~
+                   ~sorb.itm~
+                 ~sw1h51.itm~
+                 ~wand19.itm~
+			  ~%IWDsuns%.spl~												 		     // Sunscorch (IWDification)
+			  ~%IWDcldp%.spl~                                                            // Cloud of Pestilence (IWDification)
+  BEGIN                                                                              // execute the following
+  ACTION_IF FILE_EXISTS_IN_GAME ~%file%~ BEGIN                                       // if the designated file with a SPL extension exists
+    COPY_EXISTING ~%file%~ ~override~
+      PATCH_IF (SOURCE_SIZE > 0x71) THEN BEGIN                                         // protects against invalid files
+// =============================================================================== // the actual work starts from here
+      LPF add_conditional_immunity INT_VAR f_Condition = 74 STR_VAR f_Spell END
+// =============================================================================== // the actual work ends here
+      END                                                                                // ends file size check
+    BUT_ONLY_IF_IT_CHANGES
+  END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+  END                                                                                // ends ACTION_FOR_EACH block
 END
 
 //Deletes all extended effects from the source spell and sets casting time for all extended headers to f_CastingTime
@@ -480,7 +484,7 @@ DEFINE_PATCH_FUNCTION integrate_sectype_cre BEGIN
   FOR (i = 0; i < LONG_AT 0x2c8; ++i) BEGIN
     p = eo + 0x108 * i + 0x8
     READ_LONG p fx ELSE 999
-    PATCH_IF type = 206 BEGIN // Protecton from spell
+    PATCH_IF fx = 206 BEGIN // Protecton from spell
       READ_ASCII p + 0x14 rr ELSE nil
       TO_LOWER rr
       SET $extended_spell_immunity("%rr%") = 1
@@ -492,10 +496,10 @@ DEFINE_PATCH_FUNCTION integrate_sectype_cre BEGIN
   END
 
   // Then we see what, if anything, we need to do
-  PHP_EACH immunities AS type => i BEGIN
-    PATCH_IF VARIABLE_IS_SET $f_ImmunitySecType("%type%") BEGIN
+  PHP_EACH immunities AS fx => i BEGIN
+    PATCH_IF VARIABLE_IS_SET $f_ImmunitySecType("%fx%") BEGIN
       PHP_EACH f_AddSecType AS file => SecTypeToAdd BEGIN
-        PATCH_IF "%file%" STRING_MATCHES_REGEXP ".+\.spl$" = 0 AND SecTypeToAdd = $f_ImmunitySecType("%type%") BEGIN
+        PATCH_IF "%file%" STRING_MATCHES_REGEXP ".+\.spl$" = 0 AND SecTypeToAdd = $f_ImmunitySecType("%fx%") BEGIN
           INNER_PATCH "%file%" BEGIN
             READ_ASCII 0 spell (STRING_LENGTH "%file%" - 4)
           END
@@ -670,17 +674,17 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
                 ~SPIN160~                                                              // Breath Fireball
                 ~SPWI001~                                                              // Fireball
                 ~SPWI957~                                                              // Fireball
-                 ~WAND05~                                                               // Fireball (IRR)
+                 ~WAND05~                                                              // Fireball (IRR)
                ~RR#WI304~                                                              // Pit Fiend Fireball
                 ~SPWI523~                                                              // Sunfire
                 ~CDSLSUN~                                                              // Sunfire (mod)
                 ~A#KOS09~                                                              // Sunfire (Divine Remix)
-			   ~RR#WI103~                                                             // RR's burning hand
+			   ~RR#WI103~                                                              // RR's burning hand
                ~RR#WI523~                                                              // RR's Sunfire (Blazing Glory buckler)
                 ~SPWI712~                                                              // Delayed Blast Fireball
                 ~A#KOS14~                                                              // Delayed Blast Fireball (Divine Remix)  
                 ~SPWI810~                                                              // Incendiary Cloud
-               ~DW#TRPIN~                                                             // Incendiary Cloud (Stratagems)
+               ~DW#TRPIN~                                                              // Incendiary Cloud (Stratagems)
                 ~SPWI911~                                                              // Meteor Swarm
                 ~SPWI922~                                                              // Dragon's Breath
                 ~SPIN719~                                                              // Meteor Swarm
@@ -699,6 +703,7 @@ DEFINE_PATCH_FUNCTION fire_spell_immunities BEGIN
                 ~rr#eburn~                                                             // Burn (Fire Elemental on-hit effect)
                 ~rr#englf~                                                             // Engulf, part 1 (Greater Fire Elemental on-hit effect)
 				~RR#GWOF1~													 		   // Wall of Fire (Efreet)
+				~rr#gfbth~															   // Fire breath (Guardian Genie)
 			   ~%IWDprdf%~													 		   // Produe Fire (IWDification)
 			    ~%IWDbbb%~													 		   // Beltyn's Burning Blood (IWDification)
 			   ~%IWDshrf%~													 		   // Shroud of Flame (IWDification)
@@ -772,21 +777,21 @@ DEFINE_PATCH_FUNCTION cold_spell_immunities BEGIN
                 ~SPWI404~                                                              // Ice Storm
                ~RR#WI404~                                                              // aTweaks/RR Ice Storm
                 ~SPWI503~                                                              // Cone of Cold
-               ~d1#wi503~                                                             // Cone of Cold (mod)
+               ~d1#wi503~                                                              // Cone of Cold (mod)
                 ~DVCONEC~                                                              // Cone of Cold (IR)
-               ~RR#WI503~                                                             // Cone of Cold (aTweaks/RR)
-               ~SPCRYO01~                                                             // Cone of Cold (mod)
+               ~RR#WI503~                                                              // Cone of Cold (aTweaks/RR)
+               ~SPCRYO01~                                                              // Cone of Cold (mod)
                 ~SPIN133~                                                              // Cone of Cold (mod)
                 ~SPIN158~                                                              // Cone of Cold (mod)
                 ~SPIN162~                                                              // Cone of Cold (mod)
                 ~SPIN833~                                                              // Dragon Cone of Cold
-                 ~WAND06~                                                               // Cone of Cold (IR)
+                 ~WAND06~                                                              // Cone of Cold (IR)
                 ~rr#icew~                                                              // aTweaks' Wall of Ice
                ~rr#efrzn~                                                              // aTweaks' Freeze (Cryonax)
                ~rr#ehyis~                                                              // aTweaks' Ice Storn (Olhydra's version)
-			  ~%IWDofrs%~     													   // Otiluke's Freezing Sphere (IWDification)
+			  ~%IWDofrs%~     													   	   // Otiluke's Freezing Sphere (IWDification)
 			   ~%IWDsss%~     														   // Snilloc's Snowball Swarm (IWDification)
-			  ~%IWDIcel%~     													   // Icelance (IWDification)
+			  ~%IWDIcel%~     													   	   // Icelance (IWDification)
 BEGIN                                                                                  // execute the following
 PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                       // if the file exists
 READ_ASCII 0 sig (3)
@@ -977,6 +982,8 @@ DEFINE_PATCH_FUNCTION poison_spell_immunities BEGIN
                ~RR#WI502~                                                              // RR/aTweaks Cloudkill
                 ~SPIN979~                                                              // Golem Gas Cloud
                 ~SPIN642~                                                              // Poisonous Cloud
+                ~RR#SPOI1~                                                             // Spiders Class F poison
+                ~RR#spwrt~                                                             // Wraith Spiders Class F poison
 BEGIN                                                                                  // execute the following
 PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                       // if the file exists
 READ_ASCII 0 sig (3)
@@ -1446,6 +1453,12 @@ READ_ASCII 0 sig (3)
                 ~SPWI409~                                                              // Contagion
                 ~FL#CSDIS~                                                             // aTweaks' Cause Disease
                 ~RR#DPDIS~                                                             // aTweaks' Pit Fiend disease
+                ~fl#glor2~                                                             // aTweaks' Ghoul Lord disease
+                ~fl#mum~                                                               // aTweaks' Mummy disease
+                ~fl#gmum~                                                              // aTweaks' Greater Mummy disease
+                ~fl#zomsd~                                                             // aTweaks' Zombie Sea disease
+                ~rr#gassp~                                                             // aTweaks' (plant) Spore Explosion disease
+                ~rr#bogaz~                                                             // aTweaks' Boalisk disease
                 ~%IWDcdis%~                                                            // Cause Disease  (IWDification)
       BEGIN
       PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                 // if the file exists	  
@@ -1511,6 +1524,12 @@ READ_ASCII 0 sig (3)
                 ~SPWI409~                                                              // Contagion
                 ~FL#CSDIS~                                                             // aTweaks' Cause Disease
                 ~RR#DPDIS~                                                             // aTweaks' Pit Fiend disease
+                ~fl#glor2~                                                             // aTweaks' Ghoul Lord disease
+                ~fl#mum~                                                               // aTweaks' Mummy disease
+                ~fl#gmum~                                                              // aTweaks' Greater Mummy disease
+                ~fl#zomsd~                                                             // aTweaks' Zombie Sea disease
+                ~rr#gassp~                                                             // aTweaks' (plant) Spore Explosion disease
+                ~rr#bogaz~                                                             // aTweaks' Boalisk disease
                 ~%IWDcdis%~                                                            // Cause Disease  (IWDification)
       BEGIN
       PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                 // if the file exists	  
@@ -1678,8 +1697,11 @@ READ_ASCII 0 sig (3)
                    ~spletter~                                                          // Web (heartwood)
                    ~wand14~                                                            // Web (IR/IRR)
                    ~wtpin05~                                                           // Web (wtp familiar)
+                   ~rr#spweb~                                                          // aTweaks web tangle
+                   ~rr#spwr2~                                                          // Wraith web
+                   ~rr#wi215~                                                          // web (aTweaks)	 			   
       BEGIN
-	  PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                 		   // if the file exists
+	  PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                 // if the file exists
 	  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
       INT_VAR                                                                          // initialize variables
         "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
@@ -1733,6 +1755,9 @@ READ_ASCII 0 sig (3)
                    ~spletter~                                                          // Web (mod)
                    ~wand14~                                                            // Web (IRR)
                    ~wtpin05~                                                           // Web (wtp familiar)
+                   ~rr#spweb~                                                          // aTweaks web tangle
+                   ~rr#spwr2~                                                          // Wraith web
+                   ~rr#wi215~                                                          // web (aTweaks)	 			   
       BEGIN
       LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
       INT_VAR                                                                          // initialize variables
@@ -1772,7 +1797,7 @@ DEFINE_PATCH_FUNCTION entangle_immunities BEGIN
                 ~RR#FENTG~                                                             // Hamadryad Entangle (aTweaks)
 				~%spchpl%~                                                             // Charm plants (SpellPack)
 BEGIN                                                                                  // execute the following
-PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                   // if the file exists
+PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                   	   // if the file exists
 READ_ASCII 0 sig (3)
   PATCH_MATCH "%sig%" WITH
       ~CRE~ BEGIN                                                                      // CRE file parsed
@@ -1824,7 +1849,7 @@ DEFINE_PATCH_FUNCTION insect_spell_immunities BEGIN
                  ~CA#IPLAG~                                                            // Insect Plague (PnP Deva)
                  ~U#HFDTPD~                                                            // Insect Plague (Ruad)
 BEGIN                                                                                  // execute the following
-PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                   // if the file exists
+PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                   	   // if the file exists
 READ_ASCII 0 sig (3)
   PATCH_MATCH "%sig%" WITH
       ~CRE~ BEGIN                                                                      // CRE file parsed
@@ -1940,6 +1965,7 @@ DEFINE_PATCH_FUNCTION hover_immunities BEGIN
                  ~CA#EQ~                                                               // Earthquake (PnP Deva)
                  ~CDTLQAK~                                                             // Earthquake (mod)
                  ~SPWI101~                                                             // Grease
+				~rr#r2mud~														   	   // Rock to mud spell (Dao)
 BEGIN                                                                                  // execute the following
 READ_ASCII 0 sig (3)
   PATCH_MATCH "%sig%" WITH
@@ -2207,6 +2233,8 @@ READ_ASCII 0 sig (3)
     END                                                                                // ends WITH ITM block
     DEFAULT                                                                            // do nothing
 END                                                                                    // ends PATCH_MATCH
+LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                        // fire immunities
+LAUNCH_PATCH_FUNCTION extraplanar_traits END                                           // extraplanar traits
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
 
@@ -2270,6 +2298,7 @@ DEFINE_PATCH_FUNCTION earth_affinity BEGIN
                    ~rr#equa~                                                           // Earthquake (aTweaks)
                    ~CA#EQ~                                                             // Earthquake (PnP Deva)
                    ~CDTLQAK~                                                           // Earthquake (mod)
+				   ~rr#r2mud~														   // Rock to mud spell (Dao)
       BEGIN
       LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
       INT_VAR                                                                          // initialize variables
@@ -2345,6 +2374,27 @@ DEFINE_PATCH_FUNCTION earth_affinity BEGIN
   END
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
+// Water Elemental effect
+
+DEFINE_PATCH_FUNCTION add_water_elemental_effects BEGIN
+  LAUNCH_PATCH_FUNCTION entangle_immunities END
+  LAUNCH_PATCH_FUNCTION web_immunity END
+  LPF ADD_CRE_EFFECT
+    INT_VAR
+      opcode = 52 //Character tint
+      target = 1
+      parameter1 = 0x02000000
+      parameter2 = 0x2
+      timing = 9
+  END
+  LPF ADD_CRE_EFFECT
+    INT_VAR
+      opcode = 66 //Translucency
+      target = 1
+      parameter1 = 100
+      timing = 9
+  END
+END
 
 // Petrification immunity
 DEFINE_PATCH_FUNCTION petrification_immunity BEGIN

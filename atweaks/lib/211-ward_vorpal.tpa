@@ -1,5 +1,8 @@
 
 COPY_EXISTING ~sppr409.spl~ ~override~                                             // Death Ward
+  PATCH_IF FILE_EXISTS_IN_GAME "RR#VORPL" BEGIN
+    LPF add_conditional_immunity INT_VAR f_Condition = 101 STR_VAR f_Spell = RR#VORPL END
+  END
   READ_LONG  0x64 "abil_off" ELSE 0
   READ_SHORT 0x68 "abil_num" ELSE 0
   READ_LONG  0x6a "fx_off"   ELSE 0

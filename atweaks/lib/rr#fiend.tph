@@ -635,19 +635,19 @@ COPY ~atweaks/itm/rr#clck1.itm~ ~override~                                      
 COPY ~atweaks/itm/rr#clck2.itm~ ~override~                                         // alu-fiend armor +4
 COPY ~atweaks/itm/RR#PLAT2.itm~ ~override~                                         // Cambion plate armor +2
 COPY_EXISTING ~helm01.ITM~ ~override/RR#HELM1.ITM~
-	WRITE_BYTE 0x18 0															   // not droppable
+	WRITE_BYTE 0x18 40															   // not droppable
 	WRITE_BYTE 0x1b 2															   // no critical hit immunity
 	WRITE_ASCII 0x22 ~J1~ #2													   // helm with long horns
 	LPF ALTER_EFFECT INT_VAR match_opcode = 7 parameter1 = 83 END 			   	   // All colors (Dark Adamantite Grey)
-	LPF ALTER_EFFECT INT_VAR match_opcode = 7 match_parameter2 = 48 parameter1 = 46 END // Wings color (Light Red)
+	LPF ALTER_EFFECT INT_VAR match_opcode = 7 match_parameter2 = 48 parameter1 = 46 END // horn color (Light Red)
 
 ACTION_IF FILE_EXISTS_IN_GAME "WINGS01.ITM" BEGIN
   COPY_EXISTING ~WINGS01.ITM~ ~override/RR#WING1.ITM~
-	WRITE_BYTE 0x18 0															   // not droppable
+	WRITE_BYTE 0x18 40															   // not droppable
 	WRITE_BYTE 0x1b 2															   // no critical hit immunity
 	LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 7 parameter1 = 79 parameter2 = 54 timing = 2 probability1 = 100 END 
   COPY_EXISTING ~WINGS01.ITM~ ~override/RR#WING2.ITM~
-	WRITE_BYTE 0x18 0															   // not droppable
+	WRITE_BYTE 0x18 40															   // not droppable
 	WRITE_BYTE 0x1b 2															   // no critical hit immunity
 	LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 7 parameter1 = 30 parameter2 = 54 timing = 2 probability1 = 100 END 
 END
@@ -663,17 +663,23 @@ END
 BUT_ONLY_IF_IT_CHANGES
 
 
-COPY_EXISTING ~RINGDEMN.ITM~  ~override~                                           // Fiend immunity ring
+COPY_EXISTING ~RINGDEMN.ITM~  ~override/RR#DFIND.ITM~                               // Fiend immunity ring
 LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~                                       // remove equipping effect
 INT_VAR                                                                            // initialize variables
-"opcode_to_delete" = "101"                                                         // effect: #101 (Protection from Opcode)
+"opcode_to_delete" = "-1"                                                          // effect: -1 (all effects)
 END                                                                                // ends FUNCTION
+LAUNCH_PATCH_FUNCTION ADD_ITEM_EQEFFECT 
+INT_VAR opcode = 120 parameter2 = 2 target = 1 timing = 2 END 					   // Immunity to Normal Weapons
+LAUNCH_PATCH_FUNCTION ADD_ITEM_EQEFFECT 
+INT_VAR opcode = 173 parameter1 = 100 parameter2 = 0 target = 1 timing = 2 END 	   // Poison Resist
 PATCH_FOR_EACH ~effect~ IN                                                         // for each of the following opcodes
                    ~5~                                                             // Charm
+                  ~23~                                                             // Reset Morale
                   ~24~                                                             // Horror
                   ~25~                                                             // Poison
                   ~39~                                                             // Unconsciousness
                   ~45~                                                             // Stun
+                  // ~76~                                                             // Feebleminded
                  ~106~                                                             // Morale Break
                  ~128~                                                             // Confusion
                  ~210~                                                             // Stun 90 HP
@@ -708,7 +714,9 @@ PATCH_FOR_EACH ~icon~ IN                                                        
                   ~2~                                                              // Rigid Thinking
                   ~3~                                                              // Confusion
                  ~14~                                                              // Sleep
+                 ~36~                                                              // Panic
                  ~43~                                                              // Domination
+                 // ~48~                                                              // Feebleminded
                  ~47~                                                              // Chaos
                  ~55~                                                              // Stun
                 ~130~                                                              // Unconscious
@@ -726,13 +734,45 @@ END                                                                             
 LAUNCH_PATCH_FUNCTION extraplanar_traits END                                       // grant extraplanar traits
 LAUNCH_PATCH_FUNCTION poison_spell_immunities END                                  // grant immunities to poison-based area effect spells
 BUT_ONLY_IF_IT_CHANGES                                                   
+LAF item_labels STR_VAR item = "RR#DFIND" END
 
+COPY_EXISTING ~RR#DFIND.ITM~  ~override/RR#DBAAT.itm~                              // Baatezu immunities
+LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 
-COPY_EXISTING ~RINGDEMN.ITM~  ~override/rr#dcam2.itm~                              // Cambion immunities
+COPY_EXISTING ~RR#DFIND.ITM~  ~override/RR#DGELR.itm~                              // Gelugon immunities
+LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to Cold-based area effect spells
+
+COPY_EXISTING ~RR#DFIND.ITM~  ~override/RR#DTANA.itm~                              // Tanar'ri immunities
 LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~                                       // remove equipping effect
 INT_VAR                                                                            // initialize variables
 "opcode_to_delete" = "120"                                                         // effect: #120 (Protection from Melee Weapons)
 END                                                                                // ends FUNCTION
+LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                	   // grant immunities to fire-based area effect spells
+LAUNCH_PATCH_FUNCTION electrical_spell_immunities END                          	   // grant immunities to electricity-based area effect spells
+
+COPY_EXISTING ~RR#DTANA.ITM~  ~override/RR#DGLA2.itm~                              // Glabrezu immunities
+LAUNCH_PATCH_FUNCTION acid_spell_immunities END                                    // grant immunities to acid-based area effect spells
+
+COPY_EXISTING ~RR#DTANA.ITM~  ~override/RR#DBAL3.itm~                              // Balor immunities
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+LAUNCH_PATCH_FUNCTION insect_spell_immunities END                                  // add immunity to insect spells
+
+COPY_EXISTING ~RR#DFIND.ITM~  ~override/RR#DYUGO.itm~                              // Yugoloth immunities
+LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+LAUNCH_PATCH_FUNCTION acid_spell_immunities END                                    // grant immunities to Cold-based area effect spells
+
+COPY_EXISTING ~RR#DFIND.ITM~  ~override/RR#DSHA2.ITM~                              // Shadow Fiend immunity ring
+LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~                                       // remove equipping effect
+INT_VAR                                                                            // initialize variables
+"opcode_to_delete" = "-1"                                                          // effect: -1 (all effects)
+END                                                                                // ends FUNCTION
+LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+LAUNCH_PATCH_FUNCTION electrical_spell_immunities END                              // grant immunities to electricity-based area effect spells
+LAUNCH_PATCH_FUNCTION extraplanar_traits END                                       // grant extraplanar traits
+
+COPY_EXISTING ~RR#DSHA2.ITM~  ~override/RR#DIMP2.ITM~                              // Imp immunity ring
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 
 
 // New Creatures
@@ -1003,9 +1043,9 @@ COPY "atweaks/spl/base.spl" "override/fl#clrsp.spl"
   END
   LPF RR#SP2IN INT_VAR rr#rinvs = 1 END //General "make innate" treatment (overrides the casting time specified above)
 
-//Patch immunity to fl#clrsp into spells, items that cause blindness
-ACTION_DEFINE_ARRAY array_as_argument BEGIN fl#clrsp END  
-LAF add_blindness_immunity END
+// Patch immunity to fl#clrsp into spells, items that cause blindness
+// ACTION_DEFINE_ARRAY array_as_argument BEGIN fl#clrsp END  
+ LAF add_blindness_immunity STR_VAR f_Spell = "fl#clrsp" END
   
 //Shout
 COPY "atweaks/bam/fl#shout.bam" "override"

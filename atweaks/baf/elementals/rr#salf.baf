@@ -281,5 +281,6 @@ IF
     CheckStatLT(LastSeenBy(Myself),100,RESISTPIERCING)
 THEN
     RESPONSE #100
-        AttackReevaluate(LastSeenBy(Myself),30)
+EquipMostDamagingMelee()
+AttackReevaluate(LastSeenBy(Myself),30)
 END

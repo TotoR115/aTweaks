@@ -8,7 +8,6 @@ THEN
                 AddexperienceParty(21000) // Pit Fiend XP value
 END
 
-
 IF
   HasItem("dw#sumfi",Myself)
 THEN

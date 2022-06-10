@@ -1,4 +1,5 @@
 INCLUDE ~atweaks/lib/symbols.tpa~
+INCLUDE "atweaks/lib/ds/item_labels.tpa"
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME fl#labelled_weapons.mrk BEGIN
   INCLUDE "atweaks/lib/DS/label_weapons.tph"                                        //Lifted from SCSII
@@ -12,7 +13,6 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME fl#labelled_weapons.mrk BEGIN
 END
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME fl#labelled_item.mrk BEGIN
-  INCLUDE "atweaks/lib/ds/item_labels.tpa"
   LAF item_labels END
   COPY_EXISTING sw1h01.itm "override/fl#labelled_item.mrk"
 END
@@ -37,7 +37,7 @@ END
 ADD_SECTYPE RR#ETHER @707
 ADD_SECTYPE fl#Disease #2449
 ADD_SECTYPE fl#Fear @1027
-
+ADD_SECTYPE fl#Poison #14028
 
 //Add new projectiles; this is also non-cumulative
 

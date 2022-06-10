@@ -58,6 +58,7 @@ END
 
 IF
 	Global("RR#Active","LOCALS",0)
+    !Allegiance(Myself,GOODCUTOFF)
 	OR(3)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
@@ -68,12 +69,11 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
 	Global("RR#Active","LOCALS",0)
-        Allegiance(Myself,EVILCUTOFF)
+    Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
 THEN
 	RESPONSE #100
@@ -81,7 +81,6 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
@@ -116,12 +115,12 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other allies may hear it and join the battle
+    Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Help","LOCALS",12)
 		Help()
-		Continue()
 END
 
 IF
@@ -312,6 +311,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	Allegiance(Myself,EVILCUTOFF)
 	See(Player1)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)	
 	OR(3)
@@ -348,6 +348,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	Allegiance(Myself,EVILCUTOFF)
 	See(Player2)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
 	OR(3)
@@ -384,6 +385,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	Allegiance(Myself,EVILCUTOFF)
 	See(Player3)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
 	OR(3)
@@ -420,6 +422,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	Allegiance(Myself,EVILCUTOFF)
 	See(Player4)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
 	OR(3)
@@ -456,6 +459,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	Allegiance(Myself,EVILCUTOFF)
 	See(Player5)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
 	OR(3)
@@ -492,6 +496,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	Allegiance(Myself,EVILCUTOFF)
 	See(Player6)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
 	OR(3)
@@ -529,6 +534,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL])
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -558,6 +564,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL]))
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -587,6 +594,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL]))
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -616,6 +624,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID.0.RANGER_ALL])
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -644,6 +653,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID.0.RANGER_ALL]))
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -672,6 +682,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID.0.RANGER_ALL]))
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -700,6 +711,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID])
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -731,6 +743,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -762,6 +775,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -793,6 +807,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(FourthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -824,6 +839,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(FifthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -855,6 +871,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SixthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -886,6 +903,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SeventhNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -917,6 +935,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(EighthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -948,6 +967,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(NinthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -979,6 +999,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(TenthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1024,8 +1045,9 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
+    !Allegiance(Myself,GOODCUTOFF)
 	Help([EVILCUTOFF.0.FAIRY]) // other fey creatures
-        InMyArea(LastHelp(Myself))
+    InMyArea(LastHelp(Myself))
 	!StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100

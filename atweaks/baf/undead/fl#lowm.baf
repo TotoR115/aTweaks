@@ -121,66 +121,6 @@ Attack(LastSeenBy(Myself))
 END
 
 IF
-See(Player1)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer1","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer1","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player2)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer2","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer2","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player3)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer3","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer3","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player4)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer4","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer4","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player5)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer5","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer5","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player6)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer6","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer6","LOCALS",6)
-Continue()
-END
-
-IF
 See(NearestEnemyOf(Myself))
 Range(NearestEnemyOf(Myself),5)
 THEN
@@ -286,66 +226,6 @@ See(SixthNearestEnemyOf(Myself))
 THEN
 RESPONSE #100
 MoveToObject(SixthNearestEnemyOf(Myself))
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player1)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer1","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player1)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player2)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer2","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player2)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player3)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer3","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player3)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player4)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer4","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player4)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player5)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer5","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player5)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player6)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer6","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player6)
 END
 
 IF

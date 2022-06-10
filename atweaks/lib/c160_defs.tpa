@@ -13,6 +13,7 @@ BEGIN
     LPF RR#MDCRE
       INT_VAR
         newxpv
+		newmove  = 11                                                                  // new movement rate
         newhp = 32 //4d8
         newac = 4
         newth = 17

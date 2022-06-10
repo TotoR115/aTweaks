@@ -12,8 +12,6 @@ DifficultyGT(EASY)
 THEN
 RESPONSE #100
 SetGlobal("flSpawnMinions","%DurlagArea%",1)
-
-
 CreateCreature("%GGhoul%",[120.625],11)
 CreateCreature("%Skelwa%",[980.220],8)
 CreateCreature("%SkeletC%",[860.170],6)
@@ -191,66 +189,6 @@ Attack(LastSeenBy(Myself))
 END
 
 IF
-See(Player1)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer1","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer1","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player2)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer2","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer2","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player3)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer3","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer3","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player4)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer4","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer4","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player5)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer5","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer5","LOCALS",6)
-Continue()
-END
-
-IF
-See(Player6)
-Allegiance(Myself,EVILCUTOFF)
-!GlobalTimerNotExpired("flChasePlayer6","LOCALS")
-THEN
-RESPONSE #100
-SetGlobalTimer("flChasePlayer6","LOCALS",6)
-Continue()
-END
-
-IF
 !See([PC])
 Detect([PC])
 CheckStatLT(LastSeenBy(Myself),40,STEALTH)
@@ -276,9 +214,7 @@ END
 IF
 !See([PC])
 Detect(Player1)
-GlobalTimerNotExpired("flChasePlayer1","LOCALS")
 StateCheck(Player1,STATE_INVISIBLE)
-
 !GlobalTimerNotExpired("cast","LOCALS")
 !AreaCheck("ar3004")
 !AreaCheck("ar3005")
@@ -292,16 +228,13 @@ CheckStatLT(Myself,100,SPELLFAILUREMAGE)
 THEN
 RESPONSE #100
 SetGlobalTimer("cast","LOCALS",6)
-SetGlobalTimer("flChasePlayer1","LOCALS",0)
 SpellNoDec(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
 IF
 !See([PC])
 Detect(Player2)
-GlobalTimerNotExpired("flChasePlayer2","LOCALS")
 StateCheck(Player2,STATE_INVISIBLE)
-
 !GlobalTimerNotExpired("cast","LOCALS")
 !AreaCheck("ar3004")
 !AreaCheck("ar3005")
@@ -315,16 +248,13 @@ CheckStatLT(Myself,100,SPELLFAILUREMAGE)
 THEN
 RESPONSE #100
 SetGlobalTimer("cast","LOCALS",6)
-SetGlobalTimer("flChasePlayer2","LOCALS",0)
 SpellNoDec(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
 IF
 !See([PC])
 Detect(Player3)
-GlobalTimerNotExpired("flChasePlayer3","LOCALS")
 StateCheck(Player3,STATE_INVISIBLE)
-
 !GlobalTimerNotExpired("cast","LOCALS")
 !AreaCheck("ar3004")
 !AreaCheck("ar3005")
@@ -338,16 +268,13 @@ CheckStatLT(Myself,100,SPELLFAILUREMAGE)
 THEN
 RESPONSE #100
 SetGlobalTimer("cast","LOCALS",6)
-SetGlobalTimer("flChasePlayer3","LOCALS",0)
 SpellNoDec(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
 IF
 !See([PC])
 Detect(Player4)
-GlobalTimerNotExpired("flChasePlayer4","LOCALS")
 StateCheck(Player4,STATE_INVISIBLE)
-
 !GlobalTimerNotExpired("cast","LOCALS")
 !AreaCheck("ar3004")
 !AreaCheck("ar3005")
@@ -361,16 +288,13 @@ CheckStatLT(Myself,100,SPELLFAILUREMAGE)
 THEN
 RESPONSE #100
 SetGlobalTimer("cast","LOCALS",6)
-SetGlobalTimer("flChasePlayer4","LOCALS",0)
 SpellNoDec(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
 IF
 !See([PC])
 Detect(Player5)
-GlobalTimerNotExpired("flChasePlayer5","LOCALS")
 StateCheck(Player5,STATE_INVISIBLE)
-
 !GlobalTimerNotExpired("cast","LOCALS")
 !AreaCheck("ar3004")
 !AreaCheck("ar3005")
@@ -384,16 +308,13 @@ CheckStatLT(Myself,100,SPELLFAILUREMAGE)
 THEN
 RESPONSE #100
 SetGlobalTimer("cast","LOCALS",6)
-SetGlobalTimer("flChasePlayer5","LOCALS",0)
 SpellNoDec(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
 IF
 !See([PC])
 Detect(Player6)
-GlobalTimerNotExpired("flChasePlayer6","LOCALS")
 StateCheck(Player6,STATE_INVISIBLE)
-
 !GlobalTimerNotExpired("cast","LOCALS")
 !AreaCheck("ar3004")
 !AreaCheck("ar3005")
@@ -407,7 +328,6 @@ CheckStatLT(Myself,100,SPELLFAILUREMAGE)
 THEN
 RESPONSE #100
 SetGlobalTimer("cast","LOCALS",6)
-SetGlobalTimer("flChasePlayer6","LOCALS",0)
 SpellNoDec(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
@@ -1669,7 +1589,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player6,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player6)
 False()
@@ -1701,7 +1620,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player3,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player3)
 False()
@@ -1733,7 +1651,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player4,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player4)
 False()
@@ -1765,7 +1682,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player1,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player1)
 False()
@@ -1797,7 +1713,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player5,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player5)
 False()
@@ -1829,7 +1744,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player2,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player2)
 False()
@@ -1861,7 +1775,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(LastSeenBy(Myself),EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(LastSeenBy(Myself))
 THEN
@@ -1886,7 +1799,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player6,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player6)
 False()
@@ -1908,7 +1820,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player3,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player3)
 False()
@@ -1930,7 +1841,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player4,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player4)
 False()
@@ -1952,7 +1862,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player1,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player1)
 False()
@@ -1974,7 +1883,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player5,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player5)
 False()
@@ -1996,7 +1904,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(Player2,EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(Player2)
 False()
@@ -2018,7 +1925,6 @@ Allegiance(Myself,ENEMY)
 !Allegiance(LastSeenBy(Myself),EVILCUTOFF)
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 !StateCheck(Myself,STATE_SILENCED)
-
 GlobalLT("flSymbol","LOCALS",1)
 See(LastSeenBy(Myself))
 THEN
@@ -2580,9 +2486,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.MAGE],25)
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2615,9 +2523,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.MAGE_THIEF],25)
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2650,9 +2560,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.MAGE_ALL],25)
 Range([PC.0.0.MAGE_ALL],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_ALL],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -2685,9 +2597,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.THIEF],25)
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2720,9 +2634,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.BARD],25)
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2755,9 +2671,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.THIEF_ALL],25)
 Range([PC.0.0.THIEF_ALL],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2790,9 +2708,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.DRUID],25)
 Range([PC.0.0.DRUID],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.DRUID],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -2825,9 +2745,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.CLERIC],25)
 Range([PC.0.0.CLERIC],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.CLERIC],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -3173,11 +3095,10 @@ CheckStatLT([PC.0.0.MAGE],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 !HPPercentGT([PC.0.0.MAGE],25)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -3209,11 +3130,10 @@ CheckStatLT([PC.0.0.MAGE_THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 !HPPercentGT([PC.0.0.MAGE_THIEF],25)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_THIEF])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -3245,11 +3165,10 @@ CheckStatLT([PC.0.0.MAGE_ALL],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_ALL],EVILCUTOFF)
 !HPPercentGT([PC.0.0.MAGE_ALL],25)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_ALL])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -3281,11 +3200,10 @@ CheckStatLT([PC.0.0.THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 !HPPercentGT([PC.0.0.THIEF],25)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -3317,11 +3235,10 @@ CheckStatLT([PC.0.0.BARD],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 !HPPercentGT([PC.0.0.BARD],25)
-
 THEN
-RESPONSE #100
-MoveToObject([PC.0.0.BARD])
-RESPONSE #100
+RESPONSE #70
+MoveToObject([PC.0.0.BARD_ALL])
+RESPONSE #30
 Continue()
 END
 
@@ -3353,11 +3270,10 @@ CheckStatLT([PC.0.0.THIEF_ALL],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF_ALL],EVILCUTOFF)
 !HPPercentGT([PC.0.0.THIEF_ALL],25)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF_ALL])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -3389,11 +3305,10 @@ CheckStatLT([PC.0.0.DRUID],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.DRUID],EVILCUTOFF)
 !HPPercentGT([PC.0.0.DRUID],25)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.DRUID])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -3425,11 +3340,10 @@ CheckStatLT([PC.0.0.CLERIC],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.CLERIC],EVILCUTOFF)
 !HPPercentGT([PC.0.0.CLERIC],25)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.CLERIC])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -3461,7 +3375,6 @@ CheckStatLT([PC],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC],EVILCUTOFF)
 !HPPercentGT([PC],25)
-
 THEN
 RESPONSE #100
 MoveToObject([PC])
@@ -3497,7 +3410,6 @@ CheckStatLT(SecondNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearest([PC]),EVILCUTOFF)
 !HPPercentGT(SecondNearest([PC]),25)
-
 THEN
 RESPONSE #100
 MoveToObject(SecondNearest([PC]))
@@ -3533,7 +3445,6 @@ CheckStatLT(ThirdNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearest([PC]),EVILCUTOFF)
 !HPPercentGT(ThirdNearest([PC]),25)
-
 THEN
 RESPONSE #100
 MoveToObject(ThirdNearest([PC]))
@@ -3571,9 +3482,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.MAGE],50)
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -3606,9 +3519,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.MAGE_THIEF],50)
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -3641,9 +3556,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.MAGE_ALL],50)
 Range([PC.0.0.MAGE_ALL],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_ALL],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -3676,9 +3593,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.THIEF],50)
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -3711,9 +3630,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.BARD],50)
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -3746,9 +3667,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.THIEF_ALL],50)
 Range([PC.0.0.THIEF_ALL],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -3781,9 +3704,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.DRUID],50)
 Range([PC.0.0.DRUID],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.DRUID],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -3816,9 +3741,11 @@ Allegiance(Myself,ENEMY)
 !HPPercentGT([PC.0.0.CLERIC],50)
 Range([PC.0.0.CLERIC],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.CLERIC],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -4164,11 +4091,10 @@ CheckStatLT([PC.0.0.MAGE],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 !HPPercentGT([PC.0.0.MAGE],50)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -4200,11 +4126,10 @@ CheckStatLT([PC.0.0.MAGE_THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 !HPPercentGT([PC.0.0.MAGE_THIEF],50)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_THIEF])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -4236,11 +4161,10 @@ CheckStatLT([PC.0.0.MAGE_ALL],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_ALL],EVILCUTOFF)
 !HPPercentGT([PC.0.0.MAGE_ALL],50)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_ALL])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -4272,11 +4196,10 @@ CheckStatLT([PC.0.0.THIEF],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 !HPPercentGT([PC.0.0.THIEF],50)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -4308,11 +4231,10 @@ CheckStatLT([PC.0.0.BARD],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 !HPPercentGT([PC.0.0.BARD],50)
-
 THEN
-RESPONSE #100
-MoveToObject([PC.0.0.BARD])
-RESPONSE #100
+RESPONSE #70
+MoveToObject([PC.0.0.BARD_ALL])
+RESPONSE #30
 Continue()
 END
 
@@ -4344,11 +4266,10 @@ CheckStatLT([PC.0.0.THIEF_ALL],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF_ALL],EVILCUTOFF)
 !HPPercentGT([PC.0.0.THIEF_ALL],50)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF_ALL])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -4380,11 +4301,10 @@ CheckStatLT([PC.0.0.DRUID],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.DRUID],EVILCUTOFF)
 !HPPercentGT([PC.0.0.DRUID],50)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.DRUID])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -4416,11 +4336,10 @@ CheckStatLT([PC.0.0.CLERIC],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.CLERIC],EVILCUTOFF)
 !HPPercentGT([PC.0.0.CLERIC],50)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.CLERIC])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -4452,7 +4371,6 @@ CheckStatLT([PC],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC],EVILCUTOFF)
 !HPPercentGT([PC],50)
-
 THEN
 RESPONSE #100
 MoveToObject([PC])
@@ -4488,7 +4406,6 @@ CheckStatLT(SecondNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearest([PC]),EVILCUTOFF)
 !HPPercentGT(SecondNearest([PC]),50)
-
 THEN
 RESPONSE #100
 MoveToObject(SecondNearest([PC]))
@@ -4524,7 +4441,6 @@ CheckStatLT(ThirdNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearest([PC]),EVILCUTOFF)
 !HPPercentGT(ThirdNearest([PC]),50)
-
 THEN
 RESPONSE #100
 MoveToObject(ThirdNearest([PC]))
@@ -4561,9 +4477,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -4595,9 +4513,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -4629,9 +4549,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_ALL],EVILCUTOFF)
 Range([PC.0.0.MAGE_ALL],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_ALL],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -4663,9 +4585,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -4697,9 +4621,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -4731,9 +4657,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF_ALL],EVILCUTOFF)
 Range([PC.0.0.THIEF_ALL],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -4765,9 +4693,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.DRUID],EVILCUTOFF)
 Range([PC.0.0.DRUID],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.DRUID],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -4799,9 +4729,11 @@ Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.CLERIC],EVILCUTOFF)
 Range([PC.0.0.CLERIC],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.CLERIC],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -4933,11 +4865,10 @@ CheckStatLT([PC.0.0.MAGE],50,RESISTSLASHING)
 !StateCheck([PC.0.0.MAGE],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE],EVILCUTOFF)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -4968,11 +4899,10 @@ CheckStatLT([PC.0.0.MAGE_THIEF],50,RESISTSLASHING)
 !StateCheck([PC.0.0.MAGE_THIEF],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_THIEF],EVILCUTOFF)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_THIEF])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -5003,11 +4933,10 @@ CheckStatLT([PC.0.0.MAGE_ALL],50,RESISTSLASHING)
 !StateCheck([PC.0.0.MAGE_ALL],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.MAGE_ALL],EVILCUTOFF)
-
 THEN
-RESPONSE #100
+RESPONSE #75
 MoveToObject([PC.0.0.MAGE_ALL])
-RESPONSE #100
+RESPONSE #25
 Continue()
 END
 
@@ -5038,11 +4967,10 @@ CheckStatLT([PC.0.0.THIEF],50,RESISTSLASHING)
 !StateCheck([PC.0.0.THIEF],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF],EVILCUTOFF)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -5073,11 +5001,10 @@ CheckStatLT([PC.0.0.BARD],50,RESISTSLASHING)
 !StateCheck([PC.0.0.BARD],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.BARD],EVILCUTOFF)
-
 THEN
-RESPONSE #100
-MoveToObject([PC.0.0.BARD])
-RESPONSE #100
+RESPONSE #70
+MoveToObject([PC.0.0.BARD_ALL])
+RESPONSE #30
 Continue()
 END
 
@@ -5108,11 +5035,10 @@ CheckStatLT([PC.0.0.THIEF_ALL],50,RESISTSLASHING)
 !StateCheck([PC.0.0.THIEF_ALL],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.THIEF_ALL],EVILCUTOFF)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.THIEF_ALL])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -5143,11 +5069,10 @@ CheckStatLT([PC.0.0.DRUID],50,RESISTSLASHING)
 !StateCheck([PC.0.0.DRUID],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.DRUID],EVILCUTOFF)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.DRUID])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -5178,11 +5103,10 @@ CheckStatLT([PC.0.0.CLERIC],50,RESISTSLASHING)
 !StateCheck([PC.0.0.CLERIC],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC.0.0.CLERIC],EVILCUTOFF)
-
 THEN
-RESPONSE #100
+RESPONSE #70
 MoveToObject([PC.0.0.CLERIC])
-RESPONSE #100
+RESPONSE #30
 Continue()
 END
 
@@ -5213,7 +5137,6 @@ CheckStatLT([PC],50,RESISTSLASHING)
 !StateCheck([PC],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC],EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject([PC])
@@ -5248,7 +5171,6 @@ CheckStatLT(SecondNearest([PC]),50,RESISTSLASHING)
 !StateCheck(SecondNearest([PC]),STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(SecondNearest([PC]))
@@ -5283,7 +5205,6 @@ CheckStatLT(ThirdNearest([PC]),50,RESISTSLASHING)
 !StateCheck(ThirdNearest([PC]),STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(ThirdNearest([PC]))
@@ -5522,7 +5443,6 @@ CheckStatLT([PC],50,RESISTSLASHING)
 !StateCheck([PC],STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC],EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject([PC])
@@ -5557,7 +5477,6 @@ CheckStatLT(SecondNearest([PC]),50,RESISTSLASHING)
 !StateCheck(SecondNearest([PC]),STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(SecondNearest([PC]))
@@ -5592,7 +5511,6 @@ CheckStatLT(ThirdNearest([PC]),50,RESISTSLASHING)
 !StateCheck(ThirdNearest([PC]),STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(ThirdNearest([PC]))
@@ -5627,7 +5545,6 @@ CheckStatLT(FourthNearest([PC]),50,RESISTSLASHING)
 !StateCheck(FourthNearest([PC]),STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(FourthNearest([PC]))
@@ -5662,7 +5579,6 @@ CheckStatLT(FifthNearest([PC]),50,RESISTSLASHING)
 !StateCheck(FifthNearest([PC]),STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(FifthNearest([PC]))
@@ -5697,7 +5613,6 @@ CheckStatLT(SixthNearest([PC]),50,RESISTSLASHING)
 !StateCheck(SixthNearest([PC]),STATE_STONE_DEATH)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(SixthNearest([PC]))
@@ -5929,7 +5844,6 @@ CheckStatLT([PC],50,RESISTSLASHING)
 !CheckStatGT([PC],0,STONESKINS)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC],EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject([PC])
@@ -5963,7 +5877,6 @@ CheckStatLT(SecondNearest([PC]),50,RESISTSLASHING)
 !CheckStatGT(SecondNearest([PC]),0,STONESKINS)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(SecondNearest([PC]))
@@ -5997,7 +5910,6 @@ CheckStatLT(ThirdNearest([PC]),50,RESISTSLASHING)
 !CheckStatGT(ThirdNearest([PC]),0,STONESKINS)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(ThirdNearest([PC]))
@@ -6031,7 +5943,6 @@ CheckStatLT(FourthNearest([PC]),50,RESISTSLASHING)
 !CheckStatGT(FourthNearest([PC]),0,STONESKINS)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(FourthNearest([PC]))
@@ -6065,7 +5976,6 @@ CheckStatLT(FifthNearest([PC]),50,RESISTSLASHING)
 !CheckStatGT(FifthNearest([PC]),0,STONESKINS)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(FifthNearest([PC]))
@@ -6099,7 +6009,6 @@ CheckStatLT(SixthNearest([PC]),50,RESISTSLASHING)
 !CheckStatGT(SixthNearest([PC]),0,STONESKINS)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(SixthNearest([PC]))
@@ -6324,7 +6233,6 @@ CheckStatGT(Myself,5,CLERIC_HALLOW)
 CheckStatLT([PC],50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance([PC],EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject([PC])
@@ -6357,7 +6265,6 @@ CheckStatGT(Myself,5,CLERIC_HALLOW)
 CheckStatLT(SecondNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SecondNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(SecondNearest([PC]))
@@ -6390,7 +6297,6 @@ CheckStatGT(Myself,5,CLERIC_HALLOW)
 CheckStatLT(ThirdNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(ThirdNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(ThirdNearest([PC]))
@@ -6423,7 +6329,6 @@ CheckStatGT(Myself,5,CLERIC_HALLOW)
 CheckStatLT(FourthNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FourthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(FourthNearest([PC]))
@@ -6456,7 +6361,6 @@ CheckStatGT(Myself,5,CLERIC_HALLOW)
 CheckStatLT(FifthNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(FifthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(FifthNearest([PC]))
@@ -6489,7 +6393,6 @@ CheckStatGT(Myself,5,CLERIC_HALLOW)
 CheckStatLT(SixthNearest([PC]),50,RESISTSLASHING)
 Allegiance(Myself,ENEMY)
 !Allegiance(SixthNearest([PC]),EVILCUTOFF)
-
 THEN
 RESPONSE #100
 MoveToObject(SixthNearest([PC]))
@@ -7098,9 +7001,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.MAGE],30)
+AttackReevaluate(LastSeenBy(Myself),30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -7128,9 +7033,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE_THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_THIEF],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -7158,9 +7065,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.MAGE_ALL],5)
 THEN
-RESPONSE #100
+RESPONSE #75
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.MAGE_ALL],30)
+RESPONSE #25
+Continue()
 END
 
 IF
@@ -7188,9 +7097,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.THIEF],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -7218,9 +7129,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.BARD],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
-AttackReevaluate([PC.0.0.BARD],30)
+AttackReevaluate([PC.0.0.BARD_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -7248,9 +7161,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.THIEF_ALL],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.THIEF_ALL],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -7278,9 +7193,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.DRUID],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.DRUID],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -7308,9 +7225,11 @@ Allegiance(Myself,ENEMY)
 ActionListEmpty()
 Range([PC.0.0.CLERIC],5)
 THEN
-RESPONSE #100
+RESPONSE #70
 EquipMostDamagingMelee()
 AttackReevaluate([PC.0.0.CLERIC],30)
+RESPONSE #30
+Continue()
 END
 
 IF
@@ -7588,66 +7507,6 @@ THEN
 RESPONSE #100
 MoveToObject(NearestDoor)
 OpenDoor(NearestDoor)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player1)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer1","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player1)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player2)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer2","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player2)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player3)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer3","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player3)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player4)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer4","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player4)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player5)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer5","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player5)
-END
-
-IF
-!See([GOODCUTOFF])
-!Detect(Player6)
-Allegiance(Myself,EVILCUTOFF)
-GlobalTimerNotExpired("flChasePlayer6","LOCALS")
-THEN
-RESPONSE #100
-MoveToObject(Player6)
 END
 
 IF

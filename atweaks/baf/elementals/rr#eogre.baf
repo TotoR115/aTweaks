@@ -12,7 +12,6 @@ THEN
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
         Enemy()
         Help()
-        Continue()
 END
 
 IF
@@ -76,7 +75,6 @@ THEN
     RESPONSE #100
         SetGlobalTimer("RR#Help","LOCALS",12)
         Help()
-        Continue()
 END
 
 IF
@@ -879,7 +877,8 @@ IF
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
     !GlobalTimerNotExpired("rr#equa","LOCALS") // Earthquake timer
     HaveSpellRES("rr#equa") // Earthquake
-    Range([GOODCUTOFF],12) // at least one opponent is nearby
+	Detect(NearestEnemyOf(Myself))
+	Range(LastSeenBy(Myself),12)
     OR(3)
       CheckStatGT([GOODCUTOFF],4,LEVEL) // don't waste Earthquake on low level opponents
       CheckStatGT([GOODCUTOFF],4,LEVEL2)
@@ -903,6 +902,7 @@ IF
     !GlobalTimerNotExpired("RR#Cast","LOCALS")
     !GlobalTimerNotExpired("rr#equa","LOCALS") // Earthquake timer
     HaveSpellRES("rr#equa") // Earthquake
+ 	Detect([PC])
     Range([PC],12) // special block, for targeting singled-out party members (i.e. solo players)
     OR(2)
       NumCreatureGT([PC],1) // at least two party members are nearby (note: the NumCreatureGT() trigger doesn't work with NearestEnemyOf(Myself))
@@ -1616,7 +1616,8 @@ IF
     CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
 THEN
     RESPONSE #100
-        AttackReevaluate(LastSeenBy(Myself),15)
+EquipMostDamagingMelee()
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -1628,7 +1629,8 @@ IF
     CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
 THEN
     RESPONSE #100
-        AttackReevaluate(LastSeenBy(Myself),15)
+EquipMostDamagingMelee()
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF

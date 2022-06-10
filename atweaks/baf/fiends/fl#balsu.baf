@@ -2552,7 +2552,8 @@ IF
         CheckStatLT(LastSeenBy(Myself),100,RESISTSLASHING)
 THEN
 	RESPONSE #100
-		AttackReevaluate(LastSeenBy(Myself),15)
+EquipMostDamagingMelee()
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF

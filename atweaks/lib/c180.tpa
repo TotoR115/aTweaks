@@ -82,7 +82,7 @@ COPY ~atweaks/eff/mephits/rr#mozgt.eff~ ~override~                              
 
 COPY ~atweaks/spl/mephits/rr#mragt.spl~ ~override~                                 // Gate (Radiant Mephit)
 COPY ~atweaks/eff/mephits/rr#mragt.eff~ ~override~                                 // Gate EFF (Radiant Mephit)
-COPY ~atweaks/spl/mephits/rr#mracs.spl~ ~override~                                 // Color Spray (special Radiant Mephit version)
+// COPY ~atweaks/spl/mephits/rr#mracs.spl~ ~override~                                 // Color Spray (special Radiant Mephit version)
 COPY ~aTweaks/spl/rr#ddeti.spl~ ~override~                                         // Detect Illusion (Radiant Mephit & aTweaks' Marilith)
 
 COPY ~atweaks/spl/mephits/rr#msagt.spl~ ~override~                                 // Gate (Salt Mephit)
@@ -103,20 +103,76 @@ COPY ~atweaks/spl/mephits/rr#mstwj.spl~ ~override~                              
 COPY ~atweaks/vvc/rr#mstbr.vvc~ ~override~                                         // Boiling Rain Storm animation (Mist Mephit)
 COPY ~atweaks/spl/mephits/rr#mstbr.spl~ ~override~                                 // Boiling Rain Storm (Steam Mephit)
 
-
+//PnP Color Spray
+ACTION_IF !FILE_EXISTS_IN_GAME "fl#clrsp.spl" BEGIN
+COPY "atweaks/spl/base.spl" "override/RR#mracs.spl"
+  WRITE_LONG NAME1 12075 //Color Spray
+  WRITE_ASCII 0x10 CAS_M08 #8 //casting sound
+  WRITE_BYTE  0x19 BIT2 //flags: hostile
+  WRITE_SHORT 0x22 10 //alteration (animation)
+  WRITE_SHORT 0x25 8 //transmuter (school)
+  WRITE_BYTE  0x27 11 //disabling (secondary type)
+  LPF fill_headers END
+  LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_Projectile = 249 END
+  target = 2
+  power = 1
+  resist_dispel = 1
+  duration = 30
+  FOR (header=1;header<=20;++header) BEGIN //Sleep with no save, for those whose level <= yours and < 6th
+    dicenumber = header >= 5 ? 5 : header
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 39 target power resist_dispel duration dicenumber header END //Sleep
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 target power parameter2 = 14 resist_dispel duration dicenumber header END //icon (sleep)
+    PATCH_FOR_EACH parameter2 IN 5 3 1 0 BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 7 target power parameter1 = 34 parameter2 resist_dispel duration dicenumber header END //colour
+    END
+    PATCH_FOR_EACH parameter2 IN 6 4 2 BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 7 target power parameter1 = 35 parameter2 resist_dispel duration dicenumber header END   //colour
+    END
+  END
+  dicesize = 6
+  savingthrow = 1
+  FOR (header=6;header<=20;++header) BEGIN //Sleep with save, for those whose level <= yours but >= 6th
+    dicenumber = header
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 39 target power resist_dispel duration dicenumber dicesize savingthrow header END //Sleep
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 target power parameter2 = 14 resist_dispel duration dicenumber dicesize savingthrow header END //icon (sleep)
+    PATCH_FOR_EACH parameter2 IN 5 3 1 0 BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 7 target power parameter1 = 34 parameter2 resist_dispel duration dicenumber dicesize savingthrow header END //colour
+    END
+    PATCH_FOR_EACH parameter2 IN 6 4 2 BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 7 target power parameter1 = 35 parameter2 resist_dispel duration dicenumber dicesize savingthrow header END   //colour
+    END
+  END
+  duration = 12
+  FOR (header=1;header<=20;++header) BEGIN //Blindness with save, for those whose level > yours but < (yours +3)
+    dicenumber = header + 2
+    dicesize = header + 1
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 74 target power resist_dispel duration dicenumber dicesize savingthrow header END //Blindness
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 50 target power parameter1 = 0x7F7F7F00 parameter2 = 0x140000 resist_dispel duration = 1 dicenumber dicesize savingthrow header END //colour pulse
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 139 target power parameter1 = 14674 resist_dispel timing = 1 dicenumber dicesize savingthrow header END //display string: blinded
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 target power parameter2 = 8 resist_dispel duration dicenumber dicesize savingthrow header END //portrait icon: blind
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 174 target power timing = 4 duration resist_dispel dicenumber dicesize savingthrow header STR_VAR resource = eff_e07 END //play sound
+    //Apparently this causes more problems than it is worth
+    //LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target power duration resist_dispel dicenumber dicesize savingthrow header STR_VAR resource = EVAL "%DEST_RES%" END //non-cumulativity if you're blinded
+  END
+  duration = 6
+  FOR (header=1;header<=20;++header) BEGIN //Confusion with save, for those whose level >= (yours +3)
+    dicesize = header + 3
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 128 target power resist_dispel duration dicesize savingthrow header END //Confusion
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 139 target power parameter1 = 14782 resist_dispel duration dicesize savingthrow header END //confused
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 target power parameter2 = 3 resist_dispel duration dicesize savingthrow header END //confused
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 target power parameter2 = 1 resist_dispel duration dicesize savingthrow header STR_VAR resource = spconfus END //visual effect      
+  END
+  LPF RR#SP2IN INT_VAR rr#rinvs = 1 END //General "make innate" treatment (overrides the casting time specified above)
+END ELSE COPY_EXISTING ~fl#clrsp.SPL~  ~override/rr#mracs.spl~                               // Clone Color Spray into an innate ability (Radiant Mephit)
+ LAF add_blindness_immunity STR_VAR f_Spell = "rr#mracs" END
 
 //////////////////
 // Cloned spells
 //////////////////
 
-
-// Patch immunity to rr#mracs (Radiant Mephit Color Spray) into spells, items that cause blindness
-ACTION_DEFINE_ARRAY array_as_argument BEGIN rr#mracs END
-LAF add_blindness_immunity END
-
 COPY_EXISTING ~SPWI112.SPL~  ~override/rr#wi112.spl~                               // Clone Magic Missile into an innate ability (Fire Mephit)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
-LAUNCH_ACTION_FUNCTION magic_missile_shield END                                     // Make the Shield spell and amulet protect against the cloned Magic Missile
+LAUNCH_ACTION_FUNCTION magic_missile_shield END                                    // Make the Shield spell and amulet protect against the cloned Magic Missile
 
 COPY_EXISTING ~SPWI201.SPL~  ~override/rr#wi201.spl~                               // Clone Blur into an innate ability (Air Mephit)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
@@ -131,13 +187,13 @@ COPY_EXISTING ~SPWI224.SPL~  ~override/rr#wi224.spl~                            
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 
-
 /////////////
 // New items
 /////////////
 
 COPY ~atweaks/itm/mephits/rr#mrg1t.itm~ ~override~                                 // Mephit regeneration (1hp/turn)
 COPY ~atweaks/itm/mephits/rr#mimun.itm~ ~override~                                 // Mephit immunities amulet (shared by all mephits)
+LAUNCH_PATCH_FUNCTION ~hover_immunities~ END                                       // grant immunities to ground-based spells
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
 PATCH_FOR_EACH ~spell~ IN                                                          // for each of the following spells
            ~RR#MOZSC~                                                              // Stinking Cloud (aTweaks' Ooze Mephit)
@@ -235,8 +291,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -277,7 +333,7 @@ STR_VAR                                                                         
 "script07"   = "MEPAIR"                                                            // original Air Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -309,8 +365,8 @@ PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUST~) OR ("%SOURCE_RES%" ST
   REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
   REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 END                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -358,7 +414,7 @@ STR_VAR                                                                         
 "skipfile01" = "FAMDUST"                                                          // skip script patching for a designated file
 "skipfile02" = "FAMDUS25"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUST~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUS25~)) BEGIN
   WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
@@ -387,8 +443,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -431,7 +487,7 @@ STR_VAR                                                                         
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 "script09"   = "DW2MC0GE"                                                          // Stratagems melee script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells -- Mephit fly
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells -- Mephit fly
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -463,8 +519,8 @@ PATCH_IF NOT ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMFIRE~) BEGIN
   REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
   REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 END                                                           // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -509,7 +565,7 @@ STR_VAR                                                                         
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 "skipfile01" = "FAMFIRE"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMFIRE~) BEGIN
   WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
@@ -537,8 +593,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -583,7 +639,7 @@ STR_VAR                                                                         
 "script07"   = "MEPICE"                                                            // original Ice Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -610,8 +666,8 @@ PATCH_IF NOT ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMLIGHT~) BEGIN
   REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
   REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 END
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "36"                                                                  // new movement rate
@@ -655,7 +711,7 @@ STR_VAR                                                                         
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 "skipfile01" = "FAMLIGHT"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells - Lightning Mephit has no wings but races through the air like a lightning
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells - Lightning Mephit has no wings but races through the air like a lightning
 // =============================================================================== // the actual work ends here
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMLIGHT~) BEGIN
   WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
@@ -688,8 +744,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -734,7 +790,7 @@ STR_VAR                                                                         
 "script07"   = "MEPMAG"                                                            // original Magma Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -761,8 +817,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -806,7 +862,7 @@ STR_VAR                                                                         
 "script07"   = "MEPMIN"                                                            // original Air Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells -- Mephit fly
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells -- Mephit fly
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -835,8 +891,8 @@ PATCH_IF NOT ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMMIST~) BEGIN
   REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
   REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 END
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -882,7 +938,7 @@ STR_VAR                                                                         
 "script12"   = "DW2MS0GE"                                                          // Stratagems melee script
 "skipfile01" = "FAMMIST"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMMIST~) BEGIN
   WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
@@ -911,8 +967,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -958,7 +1014,7 @@ STR_VAR                                                                         
 "script07"   = "MEPOOZ"                                                            // original Ooze Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -987,8 +1043,8 @@ PATCH_IF NOT ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMRAD~) BEGIN
   REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
   REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 END                                                          // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -1031,7 +1087,7 @@ STR_VAR                                                                         
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 "skipfile01" = "FAMRAD"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMRAD~) BEGIN
   WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
@@ -1059,8 +1115,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -1103,7 +1159,7 @@ STR_VAR                                                                         
 "script07"   = "MEPSAL"                                                            // original Salt Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1136,8 +1192,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -1181,7 +1237,7 @@ STR_VAR                                                                         
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 "script09"   = "X#MEPSMO"                                                          // BG1 NPC script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 READ_LONG  0x10 "flags"                                                            // special case, Smoke Mephits should vanish upon death
 WRITE_LONG 0x10 ("%flags%" BOR 0b00000010)                                         // add "no corpse" flag
@@ -1207,8 +1263,8 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
+// LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
@@ -1251,7 +1307,7 @@ STR_VAR                                                                         
 "script07"   = "MEPSTE"                                                            // original Steam Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block

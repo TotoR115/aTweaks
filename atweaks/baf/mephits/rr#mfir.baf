@@ -11,7 +11,6 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
@@ -24,7 +23,6 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
@@ -74,7 +72,6 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Help","LOCALS",12)
 		Help()
-		Continue()
 END
 
 IF
@@ -984,7 +981,8 @@ IF
         CheckStatLT(LastSeenBy(Myself),100,RESISTSLASHING)
 THEN
 	RESPONSE #100
-		AttackReevaluate(LastSeenBy(Myself),30)
+EquipMostDamagingMelee()
+AttackReevaluate(LastSeenBy(Myself),30)
 END
 
 IF

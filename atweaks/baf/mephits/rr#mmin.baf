@@ -120,8 +120,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -141,8 +140,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -162,8 +160,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -186,8 +183,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -206,8 +202,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -226,8 +221,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -246,8 +240,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -266,8 +259,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -286,8 +278,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -306,8 +297,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -326,8 +316,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -346,8 +335,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -366,8 +354,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -386,8 +373,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -406,8 +392,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -426,8 +411,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -446,8 +430,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -466,8 +449,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -486,8 +468,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -506,8 +487,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -526,8 +506,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -546,8 +525,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -566,8 +544,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -586,8 +563,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -606,8 +582,7 @@ IF
 	CheckStat(LastSeenBy(Myself),0,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)  // Spell Immunity: Conjuration
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)

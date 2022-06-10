@@ -20,17 +20,17 @@ SetInterrupt(TRUE)
 END
 
 IF
+HasItemEquiped("SKELWASU",Myself)
 Global("fl_weapon","LOCALS",0)
 THEN
 RESPONSE #30
 TakeItemReplace("fl#BLUN2","SKELWASU",Myself)
-Continue()
+EquipMostDamagingMelee()
 RESPONSE #30
 TakeItemReplace("fl#AXE2","SKELWASU",Myself)
-Continue()
+EquipMostDamagingMelee()
 RESPONSE #40
 SetGlobal("fl_weapon","LOCALS",1)
-Continue()
 END
 
 IF

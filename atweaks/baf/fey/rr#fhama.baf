@@ -74,6 +74,7 @@ END
 
 IF
 	Global("RR#Active","LOCALS",0)
+    !Allegiance(Myself,GOODCUTOFF)
 	OR(3)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
@@ -84,12 +85,11 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
 	Global("RR#Active","LOCALS",0)
-        Allegiance(Myself,EVILCUTOFF)
+    Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
 THEN
 	RESPONSE #100
@@ -97,14 +97,13 @@ THEN
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
 		Help()
-		Continue()
 END
 
 IF
 	!Allegiance(Myself,NEUTRAL)
 	OR(4)
 	  Global("RR#Active","LOCALS",0)
-          !Allegiance(Myself,EVILCUTOFF) // better way to check for charm because STATE_CHARMED persists when the creature is attacked and becomes red circled again
+      !Allegiance(Myself,EVILCUTOFF) // better way to check for charm because STATE_CHARMED persists when the creature is attacked and becomes red circled again
 	  StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
 	  StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
 THEN
@@ -132,15 +131,16 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other allies may hear it and join the battle
+    Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Help","LOCALS",12)
 		Help()
-		Continue()
 END
 
 IF
+    Allegiance(Myself,EVILCUTOFF)
 	!See([GOODCUTOFF])
         InMyArea(Player1)
         !Detect(Player1)
@@ -314,7 +314,8 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -346,7 +347,8 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -371,14 +373,15 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -403,14 +406,15 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(FourthNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -435,14 +439,15 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(FifthNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -467,14 +472,15 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(SixthNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -499,14 +505,15 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(SeventhNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -531,14 +538,15 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(EighthNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -563,14 +571,15 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(NinthNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -595,14 +604,15 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-        !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+    !GlobalTimerNotExpired("RR#Entg","LOCALS") // Entangle refresh timer
+	Allegiance(Myself,EVILCUTOFF)
 	See(TenthNearest([GOODCUTOFF]))
 	!Race(LastSeenBy(Myself),ELEMENTAL)
 	!Race(LastSeenBy(Myself),SHADOW)
@@ -627,7 +637,7 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#Entg","LOCALS",18)  // Entangle refresh timer
-                ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
+        ForceSpellRES("rr#fentg",LastSeenBy(Myself)) // Entangle
 		RemoveSpellRES("rr#fentg") // remove one instance of the spell upon casting
 		SetInterrupt(TRUE)
 END
@@ -636,6 +646,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player1)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)	
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -672,6 +683,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player2)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -708,6 +720,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player3)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -744,6 +757,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player4)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -780,6 +794,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player5)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -816,6 +831,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	See(Player6)
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	OR(3)
           Class(LastSeenBy(Myself),FIGHTER_ALL)
           Class(LastSeenBy(Myself),RANGER_ALL)
@@ -851,6 +867,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL])
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -880,6 +897,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL]))
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -909,6 +927,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID.0.FIGHTER_ALL]))
 	!Class(LastSeenBy(Myself),MONK)
 	!Race(LastSeenBy(Myself),ELF)
@@ -938,6 +957,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID.0.RANGER_ALL])
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -966,6 +986,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID.0.RANGER_ALL]))
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -994,6 +1015,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID.0.RANGER_ALL]))
 	!Race(LastSeenBy(Myself),ELF)
         !StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1022,6 +1044,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF.HUMANOID])
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1053,6 +1076,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SecondNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1084,6 +1108,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(ThirdNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1115,6 +1140,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(FourthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1146,6 +1172,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(FifthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1177,6 +1204,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SixthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1208,6 +1236,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(SeventhNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1239,6 +1268,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(EighthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1270,6 +1300,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(NinthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1301,6 +1332,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fchrm") // Charm Person (Dryad and Hamadryad)
+	Allegiance(Myself,EVILCUTOFF)
 	See(TenthNearest([GOODCUTOFF.HUMANOID]))
 	!Class(LastSeenBy(Myself),MONK)
         !Kit(LastSeenBy(Myself),INQUISITOR)
@@ -1332,6 +1364,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fafrn") // Animal Friendship
+	Allegiance(Myself,EVILCUTOFF)
 	OR(2)
 	  See([NEUTRAL.ANIMAL])
 	  See([GOODCUTOFF.ANIMAL])
@@ -1358,6 +1391,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fafrn") // Animal Friendship
+	Allegiance(Myself,EVILCUTOFF)
 	OR(2)
 	  See(SecondNearest([NEUTRAL.ANIMAL]))
 	  See(SecondNearest([GOODCUTOFF.ANIMAL]))
@@ -1384,6 +1418,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fafrn") // Animal Friendship
+	Allegiance(Myself,EVILCUTOFF)
 	OR(2)
 	  See(ThirdNearest([NEUTRAL.ANIMAL]))
 	  See(ThirdNearest([GOODCUTOFF.ANIMAL]))
@@ -1410,6 +1445,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fafrn") // Animal Friendship
+	Allegiance(Myself,EVILCUTOFF)
 	OR(2)
 	  See(FourthNearest([NEUTRAL.ANIMAL]))
 	  See(FourthNearest([GOODCUTOFF.ANIMAL]))
@@ -1436,6 +1472,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fafrn") // Animal Friendship
+	Allegiance(Myself,EVILCUTOFF)
 	OR(2)
 	  See(FifthNearest([NEUTRAL.ANIMAL]))
 	  See(FifthNearest([GOODCUTOFF.ANIMAL]))
@@ -1462,6 +1499,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	HaveSpellRES("rr#fafrn") // Animal Friendship
+	Allegiance(Myself,EVILCUTOFF)
 	OR(2)
 	  See(SixthNearest([NEUTRAL.ANIMAL]))
 	  See(SixthNearest([GOODCUTOFF.ANIMAL]))
@@ -1502,8 +1540,9 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
+    !Allegiance(Myself,GOODCUTOFF)
 	Help([EVILCUTOFF.0.FAIRY]) // other fey creatures
-        InMyArea(LastHelp(Myself))
+    InMyArea(LastHelp(Myself))
 	!StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100

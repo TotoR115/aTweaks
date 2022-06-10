@@ -53,7 +53,7 @@ INT_VAR                                                                         
 "rr#sinv"  = "0"                                                                   // See invisible creatures
 "rr#bsimm" = "0"                                                                   // Backstab immunity
 "rr#infra" = "0"                                                                   // Infravision
-"rr#blur" = "0"                                                                   // Blur
+"rr#blur" = "0"                                                                    // Blur
 
 
 
