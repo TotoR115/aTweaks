@@ -13,7 +13,6 @@ HasItem("dw#sumfi",Myself)
 THEN
 RESPONSE #100
 DestroyItem("dw#sumfi")
-Continue()
 END
 
 IF

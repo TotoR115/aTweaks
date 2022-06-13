@@ -3,6 +3,17 @@
 // Creature changes, summons
 //////////////////////////////////////////////////////////////////////
 
+COPY_EXISTING ~demnabsu.cre~ ~override~
+  LPF make_nabassu END
+BUT_ONLY_IF_IT_CHANGES
+COPY_EXISTING ~demglasu.cre~ ~override~
+  LPF make_glabrezu END
+BUT_ONLY_IF_IT_CHANGES
+COPY_EXISTING ~dempitsu.cre~ ~override~
+  LPF make_pit_fiend END
+BUT_ONLY_IF_IT_CHANGES
+
+
 OUTER_SPRINT $sscript(demnabsu) rr#snaba
 OUTER_SPRINT $sscript(demglasu) rr#sglab
 OUTER_SPRINT $sscript(dempitsu) rr#spitf
@@ -45,6 +56,13 @@ COPY_EXISTING demnabsu.cre ~override/demnabsu.cre~
 //////////////////////////////////////////////////////////////////////
 // Spell changes, summons
 //////////////////////////////////////////////////////////////////////
+
+ACTION_IF MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN
+  COPY_EXISTING sppr703.spl ~override/rr#srbk2.spl~                               // Backup SR's Priest Gate Spell
+  COPY_EXISTING spwi707.spl ~override/rr#srbk3.spl~                               // Backup SR's Wizard Cacofiend Spell
+  COPY_EXISTING spcaco.eff ~override/rr#srbk2.eff~ 							      // Summon Cacofiend eff
+END
+
 
 COPY_EXISTING spcaco.eff override // Summon Cacofiend
               spfiend.eff override // Summon Fiend
@@ -140,9 +158,6 @@ COPY_EXISTING spwi905.spl override // Gate (Wizard)
   END
 BUT_ONLY
 
-ACTION_IF MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN
-  COPY_EXISTING sppr703.spl ~override/rr#srbk2.spl~                               // Backup SR's Priest Gate Spell
-END
 
 COPY_EXISTING sppr703.spl override // Gate (Cleric) Change for Cacofiend as PnP
   SAY NAME1 #14260 SAY NAME2 #14260
@@ -205,14 +220,6 @@ BUT_ONLY
 //////////////////////////////////////////////////////////////////////
 // Scripts, summons
 //////////////////////////////////////////////////////////////////////
-
-ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
-	OUTER_SPRINT ~State~ ~SpellState~
-	OUTER_SPRINT ~Num~ ~~
-	END ELSE BEGIN 
-	OUTER_SPRINT ~State~ ~StatGT~
-	OUTER_SPRINT ~Num~ ~0,~
-END
 
 COMPILE EVALUATE_BUFFER ~atweaks/baf/fiends/rr#snaba.baf~ // Summoned Nabassu AI script
 						~atweaks/baf/fiends/rr#scorn.baf~ // Summoned Cornugon AI script
@@ -379,8 +386,45 @@ END
 // Spell Revisions
 ////////////////////////////////////////
 ACTION_IF MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN
-  COPY_EXISTING ~rr#srbk12.spl~  ~override/sppr703.spl~                               // Restore SR's Priest Gate Spell
+  COPY_EXISTING ~rr#srbk2.spl~  ~override/sppr703.spl~                               // Restore SR's Priest Gate Spell
+  COPY_EXISTING ~rr#srbk3.spl~  ~override/spwi707.spl~                               // Restore SR's Wizard Cacofiend Spell
+  COPY_EXISTING ~rr#srbk2.eff~  ~override/spcaco.eff~                                // Summon Cacofiend eff
 END
+
+//Restore Protection from SUMMONED_DEMON to Protection from Evil
+ACTION_IF MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN
+  COPY_EXISTING spcl213.spl override
+                spcl233.spl override
+                sppr107.spl override
+                sppr408.spl override
+                spwi113.spl override
+    PATCH_IF SOURCE_SIZE > 0x71 BEGIN
+      READ_LONG  0x64 ao
+      READ_LONG  0x6a eo
+      READ_SHORT 0x70 ei
+      FOR (i = 0; i < SHORT_AT 0x68; ++i) BEGIN
+        WRITE_SHORT ao + 0x28 * i + 0x20 ei
+        READ_SHORT  ao + 0x28 * i + 0x1e ne
+        FOR (j = 0; j < ne; ++j) BEGIN
+          READ_SHORT eo + 0x30 * (ei + j) type
+          PATCH_IF type = 219 BEGIN
+            READ_ASCII     eo + 0x30 * (ei + j)       copy (0x30)
+            INSERT_BYTES   eo + 0x30 * (ei + j)       0x30
+              WRITE_ASCIIE eo + 0x30 * (ei + j)       "%copy%"
+              WRITE_SHORT  eo + 0x30 * (ei + j)       100
+              WRITE_LONG   eo + 0x30 * (ei + j) + 0x4 9
+              WRITE_LONG   eo + 0x30 * (ei + j) + 0x8 7
+            ++ne
+            j=ne
+          END
+        END
+        WRITE_SHORT ao + 0x28 * i + 0x1e ne
+        ei += ne
+      END
+    END
+  BUT_ONLY
+END
+
 ////////////////////////////////////////
 // Item Revisions
 ////////////////////////////////////////

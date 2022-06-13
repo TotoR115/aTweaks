@@ -659,17 +659,15 @@ LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EFFECT~                                      
 INT_VAR                                                                            // initialize variables
 "opcode_to_delete" = "-1"                                                          // effect: -1 (all effects)
 END
-  LPF set_enchantment INT_VAR enchantment = 2 END
+LAUNCH_PATCH_FUNCTION set_enchantment INT_VAR enchantment = 2 END
 BUT_ONLY_IF_IT_CHANGES
 
 
-COPY_EXISTING ~RINGDEMN.ITM~  ~override/RR#DFIND.ITM~                               // Fiend immunity ring
+COPY_EXISTING ~RINGDEMN.ITM~  ~override/RR#DFIND.ITM~                              // Fiend immunity ring
 LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~                                       // remove equipping effect
 INT_VAR                                                                            // initialize variables
 "opcode_to_delete" = "-1"                                                          // effect: -1 (all effects)
 END                                                                                // ends FUNCTION
-LAUNCH_PATCH_FUNCTION ADD_ITEM_EQEFFECT 
-INT_VAR opcode = 120 parameter2 = 2 target = 1 timing = 2 END 					   // Immunity to Normal Weapons
 LAUNCH_PATCH_FUNCTION ADD_ITEM_EQEFFECT 
 INT_VAR opcode = 173 parameter1 = 100 parameter2 = 0 target = 1 timing = 2 END 	   // Poison Resist
 PATCH_FOR_EACH ~effect~ IN                                                         // for each of the following opcodes
@@ -743,10 +741,6 @@ COPY_EXISTING ~RR#DFIND.ITM~  ~override/RR#DGELR.itm~                           
 LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to Cold-based area effect spells
 
 COPY_EXISTING ~RR#DFIND.ITM~  ~override/RR#DTANA.itm~                              // Tanar'ri immunities
-LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~                                       // remove equipping effect
-INT_VAR                                                                            // initialize variables
-"opcode_to_delete" = "120"                                                         // effect: #120 (Protection from Melee Weapons)
-END                                                                                // ends FUNCTION
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                	   // grant immunities to fire-based area effect spells
 LAUNCH_PATCH_FUNCTION electrical_spell_immunities END                          	   // grant immunities to electricity-based area effect spells
 

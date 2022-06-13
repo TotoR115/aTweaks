@@ -1792,23 +1792,23 @@ END
 
 
 DEFINE_PATCH_FUNCTION make_ultroloth BEGIN
-  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
     // =============================================================================== // the actual work starts from here
-    SAY NAME1 @733 SAY NAME2 @733                                                    //Ultroloth
+    SAY NAME1 @733 SAY NAME2 @733                                                      //Ultroloth
     WRITE_LONG 0x14 26000
-    WRITE_LONG 0x28 25088                                                            //MAGE_MALE_HUMAN
-    WRITE_BYTE 0x2c 30                                                               //Metal color, standard
-    WRITE_BYTE 0x2d 19                                                               //Minor, red
-    WRITE_BYTE 0x2e 65                                                               //Major, black
-    WRITE_BYTE 0x2f 63                                                               //Skin, a sort of grey-purple
-    WRITE_BYTE 0x30 65                                                               //Leather, black
-    WRITE_BYTE 0x31 28                                                               //Armour, standard
-    WRITE_BYTE 0x32 63                                                               //Hair, grey-purple
-    REPLACE_CRE_ITEM ~RR#DYUGO~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                       // replace fiend immunities with pnp Yugoloth immunities 
-    REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~            // add immunity to +2 weapons and below
-    REPLACE_CRE_ITEM fl#ultr #0 #0 #0 none weapon1 EQUIP
-    REPLACE_CRE_ITEM fl#yugro #0 #0 #0 none armor
+    WRITE_LONG 0x28 25088                                                              //MAGE_MALE_HUMAN
+    WRITE_BYTE 0x2c 30                                                                 //Metal color, standard
+    WRITE_BYTE 0x2d 19                                                                 //Minor, red
+    WRITE_BYTE 0x2e 65                                                                 //Major, black
+    WRITE_BYTE 0x2f 63                                                                 //Skin, a sort of grey-purple
+    WRITE_BYTE 0x30 65                                                                 //Leather, black
+    WRITE_BYTE 0x31 28                                                                 //Armour, standard
+    WRITE_BYTE 0x32 63                                                                 //Hair, grey-purple
+    REPLACE_CRE_ITEM ~RR#DYUGO~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                         // replace fiend immunities with pnp Yugoloth immunities 
+    REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~              // add immunity to +2 weapons and below
+    REPLACE_CRE_ITEM fl#ultr #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP
+    REPLACE_CRE_ITEM fl#yugro #0 #0 #0 ~UNDROPPABLE~ ~ARMOR~
     LAUNCH_PATCH_FUNCTION RR#MDCRE
       INT_VAR
         "newhp"        = 130
@@ -1845,11 +1845,15 @@ END
 
 
 DEFINE_PATCH_FUNCTION make_nycaloth BEGIN
-  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
     // =============================================================================== // the actual work starts from here
-    SAY NAME1 @734 SAY NAME2 @734                                                    //Nycaloth   
+    SAY NAME1 @734 SAY NAME2 @734                                                      //Nycaloth   
     WRITE_LONG 0x14 25000
+    REPLACE_CRE_ITEM ~RR#DYUGO~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                         // replace fiend immunities with pnp Yugoloth immunities 
+    REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~              // add immunity to +1 weapons and below
+    REPLACE_CRE_ITEM ~fl#nyca~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP
+    LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 292 END                           //Immunity to backstab 
     PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~NABASSU~)) > 0) BEGIN 						   // Infinity Animation Compatibility (IAv5b)
       WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~NABASSU~))	              		   	   // Use IA nabassu apperance  
 	  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call (add new creature effect built-in function)
@@ -1876,11 +1880,6 @@ DEFINE_PATCH_FUNCTION make_nycaloth BEGIN
 	    END
 	  END
 	END 						   													   // Infinity Animation Compatibility (IAv5b)
-    REPLACE_CRE_ITEM ~RR#DYUGO~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                       // replace fiend immunities with pnp Yugoloth immunities 
-    REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~            // add immunity to +2 weapons and below
-    REPLACE_CRE_ITEM ~fl#nyca~ #0 #0 #0 ~UNDROPPABLE~ ~weapon1~ EQUIP
-    // REPLACE_TEXTUALLY CASE_INSENSITIVE immune3 immune2
-    LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 292 END                         //Immunity to backstab 
     LAUNCH_PATCH_FUNCTION RR#MDCRE
       INT_VAR
         newhp        = 110
@@ -1917,28 +1916,27 @@ END
 
 
 DEFINE_PATCH_FUNCTION make_arcanaloth BEGIN
-  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
     // =============================================================================== // the actual work starts from here
-    SAY NAME1 @735 SAY NAME2 @735                                                    //Arcanaloth 
+    SAY NAME1 @735 SAY NAME2 @735                                                      //Arcanaloth 
     WRITE_LONG 0x14 20000
-    WRITE_LONG 0x28 25088                                                            //MAGE_MALE_HUMAN
-    WRITE_BYTE 0x2c 30                                                               //Metal color, standard
-    WRITE_BYTE 0x2d 60                                                               //Minor, purple
-    WRITE_BYTE 0x2e 58                                                               //Major, blue
-    WRITE_BYTE 0x2f 8                                                                //Skin, a sort of brown
-    WRITE_BYTE 0x30 58                                                               //Leather, blue
-    WRITE_BYTE 0x31 28                                                               //Armour, standard
-    WRITE_BYTE 0x32 8                                                                //Hair, brown
-    REPLACE_CRE_ITEM ~RR#DYUGO~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                       // replace fiend immunities with pnp Yugoloth immunities 
-    REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~            // add immunity to +1 weapons and below
-    REPLACE_CRE_ITEM ~fl#arca1~ #0 #0 #0 ~UNDROPPABLE~ ~weapon1~ EQUIP
-    REPLACE_CRE_ITEM ~fl#arca2~ #0 #0 #0 ~UNDROPPABLE~ ~shield~
+    WRITE_LONG 0x28 25088                                                              //MAGE_MALE_HUMAN
+    WRITE_BYTE 0x2c 30                                                                 //Metal color, standard
+    WRITE_BYTE 0x2d 60                                                                 //Minor, purple
+    WRITE_BYTE 0x2e 58                                                                 //Major, blue
+    WRITE_BYTE 0x2f 8                                                                  //Skin, a sort of brown
+    WRITE_BYTE 0x30 58                                                                 //Leather, blue
+    WRITE_BYTE 0x31 28                                                                 //Armour, standard
+    WRITE_BYTE 0x32 8                                                                  //Hair, brown
+    REPLACE_CRE_ITEM ~RR#DYUGO~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                         // replace fiend immunities with pnp Yugoloth immunities 
+    REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~LRING~              // add immunity to +2 weapons and below
+    REPLACE_CRE_ITEM ~fl#arca1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP
+    REPLACE_CRE_ITEM ~fl#arca2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~
     SET_BG2_PROFICIENCY PROFICIENCY2WEAPON 3
-    REPLACE_CRE_ITEM ~fl#yugro~ #0 #0 #0 ~UNDROPPABLE~ ~armor~
-    // REPLACE_TEXTUALLY CASE_INSENSITIVE immune3 immune2
-    LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 292 END                         //Immunity to backstab
-    LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 193 END                         //Invisibility detection
+    REPLACE_CRE_ITEM ~fl#yugro~ #0 #0 #0 ~UNDROPPABLE~ ~ARMOR~
+    LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 292 END                           //Immunity to backstab
+    LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 193 END                           //Invisibility detection
     LAUNCH_PATCH_FUNCTION RR#MDCRE
       INT_VAR
         newhp        = 120
@@ -1992,13 +1990,13 @@ END
 
 
 DEFINE_PATCH_FUNCTION make_shadow_fiend BEGIN
-  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                    // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+  PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
     // =============================================================================== // the actual work starts from here
-    REMOVE_CRE_ITEM ~IMMUNE1~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-    REMOVE_CRE_ITEM ~IMMUNE2~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-    REMOVE_CRE_ITEM ~RING95~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-    REPLACE_CRE_ITEM ~RR#DSHA2~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                       // replace fiend immunities with pnp Shadow Fiend immunities 
+    REMOVE_CRE_ITEM ~IMMUNE1~                                                          // removes HELMNOAN.ITM (no critical hit immunity in PnP)
+    REMOVE_CRE_ITEM ~IMMUNE2~                                                          // removes HELMNOAN.ITM (no critical hit immunity in PnP)
+    REMOVE_CRE_ITEM ~RING95~                                                           // removes HELMNOAN.ITM (no critical hit immunity in PnP)
+    REPLACE_CRE_ITEM ~RR#DSHA2~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                         // replace fiend immunities with pnp Shadow Fiend immunities 
 	REPLACE_CRE_ITEM fl#shaf1 #0 #0 #0 UNDROPPABLE weapon1 EQUIP
     REPLACE_CRE_ITEM fl#shaf2 #0 #0 #0 UNDROPPABLE shield
     // REMOVE_CRE_ITEM immune1 ring95
