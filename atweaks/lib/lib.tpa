@@ -3,61 +3,6 @@ ACTION_IF FILE_EXISTS ~atweaks/lib/temp.tpa~ BEGIN //stuff that's pending inclus
   INCLUDE ~atweaks/lib/temp.tpa~
 END
 
-//Adds immunity to the provided spell to blindness-causing spells and items
-DEFINE_ACTION_FUNCTION add_blindness_immunity STR_VAR f_Spell = "" BEGIN
-// Begin: Add Spells from IWDification mod or stratagems mods
-  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") > 0) BEGIN
-    OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH")
-    OUTER_SET code=code - 1000
-    OUTER_SPRINT IWDsuns "SPpr%code%"
-  END ELSE BEGIN
-    OUTER_SPRINT IWDsuns ""
-  END
-  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") > 0) BEGIN
-    OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE")
-    OUTER_SET code=code - 1000
-    OUTER_SPRINT IWDcldp "SPpr%code%"
-  END ELSE BEGIN
-    OUTER_SPRINT IWDcldp ""
-  END 
-// End: Add Spells from IWDification mod or stratagems mods
-  ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-                ~spdr101.spl~
-                ~spin595.spl~
-                ~spin878.spl~
-                ~spin893.spl~
-                ~spin929.spl~
-                ~spin931.spl~
-                ~sppr704.spl~
-                ~sppr707.spl~
-                ~spwi106.spl~
-                ~spwi118.spl~
-                ~spwi224.spl~
-                ~spwi714.spl~
-                ~spwi815.spl~
-                ~spwi958.spl~
-                ~spwm178.spl~
-                ~chalcy2.itm~
-                ~gorwom4.itm~
-                 ~halb06.itm~
-                   ~sorb.itm~
-                 ~sw1h51.itm~
-                 ~wand19.itm~
-			  ~%IWDsuns%.spl~												 		     // Sunscorch (IWDification)
-			  ~%IWDcldp%.spl~                                                            // Cloud of Pestilence (IWDification)
-  BEGIN                                                                              // execute the following
-  ACTION_IF FILE_EXISTS_IN_GAME ~%file%~ BEGIN                                       // if the designated file with a SPL extension exists
-    COPY_EXISTING ~%file%~ ~override~
-      PATCH_IF (SOURCE_SIZE > 0x71) THEN BEGIN                                         // protects against invalid files
-// =============================================================================== // the actual work starts from here
-      LPF add_conditional_immunity INT_VAR f_Condition = 74 STR_VAR f_Spell END
-// =============================================================================== // the actual work ends here
-      END                                                                                // ends file size check
-    BUT_ONLY_IF_IT_CHANGES
-  END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-  END                                                                                // ends ACTION_FOR_EACH block
-END
-
 //Deletes all extended effects from the source spell and sets casting time for all extended headers to f_CastingTime
 DEFINE_PATCH_FUNCTION prep_for_gate INT_VAR f_CastingTime = 1 BEGIN
   READ_LONG  0x64 ao
@@ -619,6 +564,118 @@ END // ends initial ACTION_IF check
 END // ends function definition
 
 
+//Adds immunity to the provided spell to blindness-causing spells and items
+DEFINE_ACTION_FUNCTION add_blindness_immunity STR_VAR f_Spell = "" BEGIN
+// Begin: Add Spells from IWDification mod or stratagems mods
+  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH") > 0) BEGIN
+    OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_SUNSCORCH")
+    OUTER_SET code=code - 1000
+    OUTER_SPRINT IWDsuns "SPpr%code%"
+  END ELSE BEGIN
+    OUTER_SPRINT IWDsuns ""
+  END
+  ACTION_IF (IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE") > 0) BEGIN
+    OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CLOUD_OF_PESTILENCE")
+    OUTER_SET code=code - 1000
+    OUTER_SPRINT IWDcldp "SPpr%code%"
+  END ELSE BEGIN
+    OUTER_SPRINT IWDcldp ""
+  END 
+// End: Add Spells from IWDification mod or stratagems mods
+  ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+                ~spdr101.spl~
+                ~spin595.spl~
+                ~spin878.spl~
+                ~spin893.spl~
+                ~spin929.spl~
+                ~spin931.spl~
+                ~sppr704.spl~
+                ~sppr707.spl~
+                ~spwi106.spl~
+                ~spwi118.spl~
+                ~spwi224.spl~
+                ~spwi714.spl~
+                ~spwi815.spl~
+                ~spwi958.spl~
+                ~spwm178.spl~
+                ~chalcy2.itm~
+                ~gorwom4.itm~
+                 ~halb06.itm~
+                   ~sorb.itm~
+                 ~sw1h51.itm~
+                 ~wand19.itm~
+			  ~%IWDsuns%.spl~												 		     // Sunscorch (IWDification)
+			  ~%IWDcldp%.spl~                                                            // Cloud of Pestilence (IWDification)
+  BEGIN                                                                              // execute the following
+  ACTION_IF FILE_EXISTS_IN_GAME ~%file%~ BEGIN                                       // if the designated file with a SPL extension exists
+    COPY_EXISTING ~%file%~ ~override~
+      PATCH_IF (SOURCE_SIZE > 0x71) THEN BEGIN                                         // protects against invalid files
+// =============================================================================== // the actual work starts from here
+      LPF add_conditional_immunity INT_VAR f_Condition = 74 STR_VAR f_Spell END
+// =============================================================================== // the actual work ends here
+      END                                                                                // ends file size check
+    BUT_ONLY_IF_IT_CHANGES
+  END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+  END                                                                                // ends ACTION_FOR_EACH block
+END
+
+
+// Magic Missile spell immunity
+DEFINE_PATCH_FUNCTION magic_missile_immunity BEGIN
+// Begin : Add Spells from IWDification mod or stratagems mods
+  PATCH_IF (IDS_OF_SYMBOL ("spell" "WIZARD_MORDENKAINENS_FORCE_MISSILES") > 0) BEGIN
+    SET code=IDS_OF_SYMBOL ("spell" "WIZARD_MORDENKAINENS_FORCE_MISSILES")
+    SET code=code - 2000
+    SPRINT IWDmfm "SPwi%code%"
+    SPRINT IWDmfmb "SPwi%code%B"
+  END ELSE BEGIN
+    SPRINT IWDmfm ""
+    SPRINT IWDmfmb ""
+  END
+// End : Add Spells from IWDification mod or stratagems mods
+    PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
+                ~SPWI003~                                                              // Magic Missile
+                ~SPWI112~                                                              // Magic Missile
+               ~RR#WI112~                                                              // aTweaks' Magic Missile
+			   ~%IWDmfm%~     													   	   // Mordenkainen's Force Missiles (IWDification)
+			  ~%IWDmfmb%~     														   // Mordenkainen's Force Missiles (IWDification)
+BEGIN                                                                                  // execute the following
+PATCH_IF FILE_EXISTS_IN_GAME ~%spell%.spl~ BEGIN                                       // if the file exists
+READ_ASCII 0 sig (3)
+  PATCH_MATCH "%sig%" WITH
+      ~CRE~ BEGIN                                                                      // CRE file parsed
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+    END                                                                                // ends WITH CRE block
+    ~ITM~ BEGIN                                                                        // ITM file parsed
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+    END                                                                                // ends WITH ITM block
+    DEFAULT                                                                            // do nothing
+END                                                                                    // ends PATCH_MATCH
+END                                                                                    // ends PATCH_IF FILE_EXISTS_IN_GAME block
+END                                                                                    // ends PATCH_FOR_EACH
+END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
 
 // Area effect spell immunities (prevents friendly fire and such)
@@ -906,7 +963,6 @@ END                                                                             
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
 
-
 // Acid spell immunities
 DEFINE_PATCH_FUNCTION acid_spell_immunities BEGIN
 // Begin : Add Spells from IWDification mod or stratagems mods
@@ -1021,6 +1077,7 @@ END                                                                             
 END                                                                                    // ends PATCH_IF FILE_EXISTS_IN_GAME block
 END                                                                                    // ends PATCH_FOR_EACH
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
+
 
 // Cure & cause wound spell immunities
 DEFINE_PATCH_FUNCTION cure_spell_immunities BEGIN
@@ -1953,6 +2010,7 @@ END                                                                             
 
 // Hover (flight) spell immunities
 DEFINE_PATCH_FUNCTION hover_immunities BEGIN
+READ_ASCII 0 sig (3)
     PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
                  ~SPIN561~                                                             // Fire Giant Lava Pit (FIRE_GIANT_LAVA)
                  ~SPIN819~                                                             // Lava Burst (LAVA_BURST)
@@ -1966,8 +2024,7 @@ DEFINE_PATCH_FUNCTION hover_immunities BEGIN
                  ~CDTLQAK~                                                             // Earthquake (mod)
                  ~SPWI101~                                                             // Grease
 				~rr#r2mud~														   	   // Rock to mud spell (Dao)
-BEGIN                                                                                  // execute the following
-READ_ASCII 0 sig (3)
+  BEGIN                                                                                  // execute the following
   PATCH_MATCH "%sig%" WITH
       ~CRE~ BEGIN                                                                      // CRE file parsed
       LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
@@ -2007,232 +2064,9 @@ END                                                                             
 
 // Fire Slamander immunities (these apply for the noble variety too, but not for Frost Salamanders)
 DEFINE_PATCH_FUNCTION fire_salamander_immunities BEGIN
-READ_ASCII 0 sig (3)
-  PATCH_MATCH "%sig%" WITH
-      ~CRE~ BEGIN                                                                      // CRE file parsed
-      PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
-                          ~5~                                                          // Charm
-                         ~39~                                                          // Unconsciousness
-                        ~109~                                                          // Hold Creature I
-                        ~175~                                                          // Hold Creature II
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%effect%"                                      // param2: effect
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
-                        ~0~                                                            // Charm
-                        ~1~                                                            // Dire Charm
-                       ~13~                                                            // Held
-                       ~14~                                                            // Sleep
-                       ~43~                                                            // Domination
-                      ~130~                                                            // Unconsciousness
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
-                        ~8364~                                                         // Dominated
-                        ~14001~                                                        // Sleep
-                        ~14102~                                                        // Held
-                        ~14672~                                                        // Charmed
-                        ~14780~                                                        // Dire Charmed
-                        ~20438~                                                        // Unconscious
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
-                      ~SPNWCHRM~                                                       // Charmed
-                      ~SPFLAYER~                                                       // Held (Mind Flayer)
-                      ~SPMINDAT~                                                       // Held
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
-                   ~SPPR208~                                                           // Hold Person (priest version)
-                   ~SPWI306~                                                           // Hold Person (wizard version)
-                   ~SPWM122~                                                           // Hold Person (Wild Mage)
-                   ~SPWM142~                                                           // Hold Person (Wild Mage)
-                   ~SPPR989~                                                           // Hold Person
-                   ~SPIN647~                                                           // Hold Person
-                   ~SPIN648~                                                           // Hold Person
-                   ~SPIN989~                                                           // Hold Person
-                   ~SPWI507~                                                           // Hold Monster
-                   ~CA#HMON~                                                           // Hold Monster (PnP Deva)
-                   ~RR#WI507~                                                          // Hold Monster (atweaks)
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-    END                                                                                // ends WITH CRE block
-    ~ITM~ BEGIN                                                                        // ITM file parsed
-      PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
-                          ~5~                                                          // Charm
-                         ~39~                                                          // Unconsciousness
-                        ~109~                                                          // Hold Creature I
-                        ~175~                                                          // Hold Creature II
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%effect%"                                      // param2: effect
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
-                        ~0~                                                            // Charm
-                        ~1~                                                            // Dire Charm
-                       ~13~                                                            // Held
-                       ~14~                                                            // Sleep
-                       ~43~                                                            // Domination
-                      ~130~                                                            // Unconsciousness
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
-                        ~8364~                                                         // Dominated
-                        ~14001~                                                        // Sleep
-                        ~14102~                                                        // Held
-                        ~14672~                                                        // Charmed
-                        ~14780~                                                        // Dire Charmed
-                        ~20438~                                                        // Unconscious
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
-        "duration" = "0"                                                               // duration: 0
-        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
-                      ~SPNWCHRM~                                                       // Charmed
-                      ~SPFLAYER~                                                       // Held (Mind Flayer)
-                      ~SPMINDAT~                                                       // Held
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
-        "duration" = "0"                                                               // duration: 0
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
-                   ~SPPR208~                                                           // Hold Person (priest version)
-                   ~SPWI306~                                                           // Hold Person (wizard version)
-                   ~SPWM122~                                                           // Hold Person (Wild Mage)
-                   ~SPWM142~                                                           // Hold Person (Wild Mage)
-                   ~SPPR989~                                                           // Hold Person
-                   ~SPIN647~                                                           // Hold Person
-                   ~SPIN648~                                                           // Hold Person
-                   ~SPIN989~                                                           // Hold Person
-                   ~SPWI507~                                                           // Hold Monster
-                   ~CA#HMON~                                                           // Hold Monster (PnP Deva)
-                   ~RR#WI507~                                                          // Hold Monster (atweaks)
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
-        "duration" = "0"                                                               // duration: 0
-        "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-    END                                                                                // ends WITH ITM block
-    DEFAULT                                                                            // do nothing
-END                                                                                    // ends PATCH_MATCH
+LAUNCH_PATCH_FUNCTION charm_immunity END                                        // fire immunities
+LAUNCH_PATCH_FUNCTION sleep_immunity END                                        // fire immunities
+LAUNCH_PATCH_FUNCTION hold_immunity END                                        // fire immunities
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                        // fire immunities
 LAUNCH_PATCH_FUNCTION extraplanar_traits END                                           // extraplanar traits
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
@@ -2241,57 +2075,117 @@ END                                                                             
 // Air Affinity
 
 DEFINE_PATCH_FUNCTION air_affinity BEGIN
+READ_ASCII 0 sig (3)
   DEFINE_ASSOCIATIVE_ARRAY flyers BEGIN
     118 => 4  // Wyvern
     123 => 4  // Beholder
     136 => 4  // Mist
     139 => 4  // Mephit
     146 => 4  // Dragon
-    147 => 4  // Genie
+    193 => 5  // Djinni
+    196 => 5  // Noble Djinni
     156 => 4  // Solar
     157 => 4  // Antisolar
     158 => 4  // Planatar
     159 => 4  // Darkplanatar
     186 => 5  // Elemental_Air
   END
-  PATCH_PHP_EACH flyers AS p1 => p2 BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "179"                                                               // effect: #179 (Damage vs. Creature Type Modifier)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "parameter1" = EVALUATE_BUFFER "%p1%"                                          // param1: IDS Entry
-        "parameter2" = EVALUATE_BUFFER "%p2%"                                          // param2: IDS File
-        "parameter3" = "4"                                                             // param3: damage bonus
-        "duration" = "0"                                                               // duration: 0
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "178"                                                               // effect: #178 (THAC0 vs. Creature Type Modifier)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "parameter1" = EVALUATE_BUFFER "%p1%"                                          // param1: IDS Entry
-        "parameter2" = EVALUATE_BUFFER "%p2%"                                          // param2: IDS File
-        "parameter3" = "1"                                                             // param3: THAC0 bonus
-        "duration" = "0"                                                               // duration: 0
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-  END                                                                                  // ends PATCH_PHP_EACH
+  PATCH_MATCH "%sig%" WITH
+    ~CRE~ BEGIN                                                                        // CRE file parsed
+	  PATCH_PHP_EACH flyers AS p1 => p2 BEGIN
+		  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                       // Starts FUNCTION call
+		  INT_VAR                                                                      // initialize variables
+			"opcode" = "179"                                                           // effect: #179 (Damage vs. Creature Type Modifier)
+			"target" = "1"                                                             // target: 1 (self)
+			"timing" = "9"                                                             // timing mode: 9 (permanent after death)
+			"parameter1" = EVALUATE_BUFFER "%p1%"                                      // param1: IDS Entry
+			"parameter2" = EVALUATE_BUFFER "%p2%"                                      // param2: IDS File
+			"parameter3" = "4"                                                         // param3: damage bonus
+			"duration" = "0"                                                           // duration: 0
+			"sectype" = "0"                                                            // secondary type: none
+			"probability1" = "100"                                                     // probability1: 100%
+		  STR_VAR                                                                      // initialize strings
+			"resource"  = ""                                                           // resref: none
+			"effsource" = ""                                                           // effsource: none
+		  END                                                                          // ends LAUNCH_PATCH_FUNCTION
+		  LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                       // Starts FUNCTION call
+		  INT_VAR                                                                      // initialize variables
+			"opcode" = "178"                                                           // effect: #178 (THAC0 vs. Creature Type Modifier)
+			"target" = "1"                                                             // target: 1 (self)
+			"timing" = "9"                                                             // timing mode: 9 (permanent after death)
+			"parameter1" = EVALUATE_BUFFER "%p1%"                                      // param1: IDS Entry
+			"parameter2" = EVALUATE_BUFFER "%p2%"                                      // param2: IDS File
+			"parameter3" = "1"                                                         // param3: THAC0 bonus
+			"duration" = "0"                                                           // duration: 0
+			"sectype" = "0"                                                            // secondary type: none
+			"probability1" = "100"                                                     // probability1: 100%
+		  STR_VAR                                                                      // initialize strings
+			"resource"  = ""                                                           // resref: none
+			"effsource" = ""                                                           // effsource: none
+		  END                                                                          // ends LAUNCH_PATCH_FUNCTION
+	  END                                                                              // ends PATCH_PHP_EACH
+    END                                                                                // ends WITH CRE block
+    ~ITM~ BEGIN                                                                        // ITM file parsed
+	  PATCH_PHP_EACH flyers AS p1 => p2 BEGIN
+		  LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                    // Starts FUNCTION call
+		  INT_VAR                                                                      // initialize variables
+			"opcode" = "179"                                                           // effect: #179 (Damage vs. Creature Type Modifier)
+			"target" = "1"                                                             // target: 1 (self)
+			"timing" = "2"                                                             // timing mode: 9 (permanent after death)
+			"parameter1" = EVALUATE_BUFFER "%p1%"                                      // param1: IDS Entry
+			"parameter2" = EVALUATE_BUFFER "%p2%"                                      // param2: IDS File
+			"parameter3" = "4"                                                         // param3: damage bonus
+			"duration" = "0"                                                           // duration: 0
+			"sectype" = "0"                                                            // secondary type: none
+			"probability1" = "100"                                                     // probability1: 100%
+		  STR_VAR                                                                      // initialize strings
+			"resource"  = ""                                                           // resref: none
+			"effsource" = ""                                                           // effsource: none
+		  END                                                                          // ends LAUNCH_PATCH_FUNCTION
+		  LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                    // Starts FUNCTION call
+		  INT_VAR                                                                      // initialize variables
+			"opcode" = "178"                                                           // effect: #178 (THAC0 vs. Creature Type Modifier)
+			"target" = "1"                                                             // target: 1 (self)
+			"timing" = "2"                                                             // timing mode: 9 (permanent after death)
+			"parameter1" = EVALUATE_BUFFER "%p1%"                                      // param1: IDS Entry
+			"parameter2" = EVALUATE_BUFFER "%p2%"                                      // param2: IDS File
+			"parameter3" = "1"                                                         // param3: THAC0 bonus
+			"duration" = "0"                                                           // duration: 0
+			"sectype" = "0"                                                            // secondary type: none
+			"probability1" = "100"                                                     // probability1: 100%
+		  STR_VAR                                                                      // initialize strings
+			"resource"  = ""                                                           // resref: none
+			"effsource" = ""                                                           // effsource: none
+		  END                                                                          // ends LAUNCH_PATCH_FUNCTION
+	  END                                                                              // ends PATCH_PHP_EACH
+    END                                                                                // ends WITH ITM block
+    DEFAULT                                                                            // do nothing
+END                                                                                    // ends PATCH_MATCH
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
 
 // Earth Affinity
 
 DEFINE_PATCH_FUNCTION earth_affinity BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY air_and_water BEGIN
+    118 => 4  // Wyvern
+    123 => 4  // Beholder
+    131 => 4  // Sahuagin
+    135 => 4  // Kuo-Toa
+    136 => 4  // Mist
+    139 => 4  // Mephit
+    146 => 4  // Dragon
+    193 => 5  // Djinni
+    196 => 5  // Noble Djinni
+    156 => 4  // Solar
+    157 => 4  // Antisolar
+    158 => 4  // Planatar
+    159 => 4  // Darkplanatar
+    186 => 5  // Elemental_Air
+    132 => 5  // Fairy_Nereid
+  END
+  PATCH_MATCH "%sig%" WITH
+      ~CRE~ BEGIN                                                                      // CRE file parsed
       PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
                   ~SPOGRE01~                                                           // Earthquake (Ogremoch)
                    ~SPPR720~                                                           // Earthquake (Priest version)
@@ -2314,23 +2208,7 @@ DEFINE_PATCH_FUNCTION earth_affinity BEGIN
         "effsource" = ""                                                               // effsource: none
       END                                                                              // ends LAUNCH_PATCH_FUNCTION
       END                                                                              // ends PATCH_FOR_EACH
-  DEFINE_ASSOCIATIVE_ARRAY air_and_water BEGIN
-    118 => 4  // Wyvern
-    123 => 4  // Beholder
-    131 => 4  // Sahuagin
-    135 => 4  // Kuo-Toa
-    136 => 4  // Mist
-    139 => 4  // Mephit
-    146 => 4  // Dragon
-    147 => 4  // Genie
-    156 => 4  // Solar
-    157 => 4  // Antisolar
-    158 => 4  // Planatar
-    159 => 4  // Darkplanatar
-    186 => 5  // Elemental_Air
-    132 => 5  // Fairy_Nereid
-  END
-  PATCH_PHP_EACH air_and_water AS p1 => p2 BEGIN
+    PATCH_PHP_EACH air_and_water AS p1 => p2 BEGIN
       LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
       INT_VAR                                                                          // initialize variables
         "opcode" = "179"                                                               // effect: #179 (Damage vs. Creature Type Modifier)
@@ -2361,7 +2239,7 @@ DEFINE_PATCH_FUNCTION earth_affinity BEGIN
         "resource"  = ""                                                               // resref: none
         "effsource" = ""                                                               // effsource: none
       END                                                                              // ends LAUNCH_PATCH_FUNCTION
-  END                                                                                  // ends PATCH_PHP_EACH
+    END                                                                                // ends PATCH_PHP_EACH
   READ_BYTE 0x234 "level" ELSE 0                                                       // note: this was added to fix the broken param3 values (WeiDU bug?)
   READ_LONG 0x2c4 "fx_off" ELSE 0
   READ_LONG 0x2c8 "fx_num" ELSE 0
@@ -2372,28 +2250,120 @@ DEFINE_PATCH_FUNCTION earth_affinity BEGIN
       WRITE_LONG ("%fx_off%" + 0x58 + ("%index%" * 0x108)) "-2"
     END
   END
+  END                                                                                // ends WITH CRE block
+    ~ITM~ BEGIN                                                                        // ITM file parsed
+      PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
+                  ~SPOGRE01~                                                           // Earthquake (Ogremoch)
+                   ~SPPR720~                                                           // Earthquake (Priest version)
+                   ~rr#equa~                                                           // Earthquake (aTweaks)
+                   ~CA#EQ~                                                             // Earthquake (PnP Deva)
+                   ~CDTLQAK~                                                           // Earthquake (mod)
+				   ~rr#r2mud~														   // Rock to mud spell (Dao)
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    PATCH_PHP_EACH air_and_water AS p1 => p2 BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "179"                                                               // effect: #179 (Damage vs. Creature Type Modifier)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 9 (permanent after death)
+        "parameter1" = EVALUATE_BUFFER "%p1%"                                          // param1: IDS Entry
+        "parameter2" = EVALUATE_BUFFER "%p2%"                                          // param2: IDS File
+        "parameter3" = "-2"                                                            // param3: damage bonus
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "178"                                                               // effect: #178 (THAC0 vs. Creature Type Modifier)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 9 (permanent after death)
+        "parameter1" = EVALUATE_BUFFER "%p1%"                                          // param1: IDS Entry
+        "parameter2" = EVALUATE_BUFFER "%p2%"                                          // param2: IDS File
+        "parameter3" = "-2"                                                            // param3: THAC0 bonus
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+    END                                                                                // ends PATCH_PHP_EACH
+  READ_BYTE 0x234 "level" ELSE 0                                                       // note: this was added to fix the broken param3 values (WeiDU bug?)
+  READ_LONG 0x2c4 "fx_off" ELSE 0
+  READ_LONG 0x2c8 "fx_num" ELSE 0
+  FOR (index = 0 ; index < fx_num ; index = index + 1) BEGIN
+    READ_LONG ("%fx_off%" + 0x08 + ("%index%" * 0x108)) "opcode"
+    READ_LONG ("%fx_off%" + 0x58 + ("%index%" * 0x108)) "param3"
+    PATCH_IF ((("%opcode%" = 178) OR ("%opcode%" = 179)) AND ("%param3%" != "-2")) BEGIN
+      WRITE_LONG ("%fx_off%" + 0x58 + ("%index%" * 0x108)) "-2"
+    END
+  END
+  END                                                                                // ends WITH ITM block
+  DEFAULT                                                                            // do nothing
+END                                                                                    // ends PATCH_MATCH
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
 // Water Elemental effect
 
 DEFINE_PATCH_FUNCTION add_water_elemental_effects BEGIN
-  LAUNCH_PATCH_FUNCTION entangle_immunities END
-  LAUNCH_PATCH_FUNCTION web_immunity END
-  LPF ADD_CRE_EFFECT
-    INT_VAR
-      opcode = 52 //Character tint
-      target = 1
-      parameter1 = 0x02000000
-      parameter2 = 0x2
-      timing = 9
-  END
-  LPF ADD_CRE_EFFECT
-    INT_VAR
-      opcode = 66 //Translucency
-      target = 1
-      parameter1 = 100
-      timing = 9
-  END
+READ_ASCII 0 sig (3)
+  PATCH_MATCH "%sig%" WITH
+      ~CRE~ BEGIN                                                                      // CRE file parsed
+	  LPF ADD_CRE_EFFECT
+		INT_VAR
+		  opcode = 52 //Character tint
+		  target = 1
+		  parameter1 = 0x02000000
+		  parameter2 = 0x2
+		  timing = 9
+	  END
+	  LPF ADD_CRE_EFFECT
+		INT_VAR
+		  opcode = 66 //Translucency
+		  target = 1
+		  parameter1 = 100
+		  timing = 9
+	  END
+	  END                                                                                // ends WITH CRE block
+      ~ITM~ BEGIN                                                                        // ITM file parsed
+	  LPF ADD_ITEM_EQEFFECT
+		INT_VAR
+		  opcode = 52 //Character tint
+		  target = 1
+		  parameter1 = 0x02000000
+		  parameter2 = 0x2
+		  timing = 2
+	  END
+	  LPF ADD_ITEM_EQEFFECT
+		INT_VAR
+		  opcode = 66 //Translucency
+		  target = 1
+		  parameter1 = 100
+		  timing = 2
+	  END
+	  END                                                                                // ends WITH ITM block
+    DEFAULT                                                                            // do nothing
+  END                                                                                  // ends PATCH_MATCH
+LAUNCH_PATCH_FUNCTION entangle_immunities END
+LAUNCH_PATCH_FUNCTION web_immunity END
 END
 
 // Petrification immunity
@@ -2446,7 +2416,7 @@ READ_ASCII 0 sig (3)
       INT_VAR                                                                          // initialize variables
         "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
         "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
         "duration" = "0"                                                               // duration: 0
         "parameter1" = "14665"                                                         // param1: strref (Petrified)
         "sectype" = "0"                                                                // secondary type: none
@@ -2679,6 +2649,607 @@ READ_ASCII 0 sig (3)
 END                                                                                    // ends PATCH_MATCH
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
+
+// Charm immunity
+DEFINE_PATCH_FUNCTION charm_immunity BEGIN
+READ_ASCII 0 sig (3)
+  PATCH_MATCH "%sig%" WITH
+      ~CRE~ BEGIN                                                                      // CRE file parsed
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "5"                                                             // param2: opcode #5 (Charm)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
+                        ~0~                                                            // Charm
+                        ~1~                                                            // Dire Charm
+                       ~43~                                                            // Domination
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
+                        ~8364~                                                         // Dominated
+                        ~14672~                                                        // Charmed
+                        ~14780~                                                        // Dire Charmed
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
+                      ~SPNWCHRM~                                                       // Charmed
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    END                                                                                // ends WITH CRE block
+    ~ITM~ BEGIN                                                                        // ITM file parsed
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "5"                                                             // param2: opcode #5 (Charm)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
+                        ~0~                                                            // Charm
+                        ~1~                                                            // Dire Charm
+                       ~43~                                                            // Domination
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
+                        ~8364~                                                         // Dominated
+                        ~14672~                                                        // Charmed
+                        ~14780~                                                        // Dire Charmed
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
+                      ~SPNWCHRM~                                                       // Charmed
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    END                                                                                // ends WITH ITM block
+    DEFAULT                                                                            // do nothing
+END                                                                                    // ends PATCH_MATCH
+END                                                                                    // ends DEFINE_PATCH_FUNCTION
+
+
+// Confusion immunity
+DEFINE_PATCH_FUNCTION confusion_immunity BEGIN
+READ_ASCII 0 sig (3)
+  PATCH_MATCH "%sig%" WITH
+      ~CRE~ BEGIN                                                                      // CRE file parsed
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "128"                                                           // param2: opcode #128 (Confusion)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "3"                                        					   // icon: confused
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
+                        ~14791~                                                        // Rigid Thinking
+                        ~14782~                                                        // Confused
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
+                      ~SPCONFUS~                                                       // Charmed
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
+                   ~SPPR709~                                                           // Confusion (priest version)
+                   ~SPWI401~                                                           // Confusion (wizard version)
+                   ~SPIN582~                                                           // Confusion
+                   ~SPIN704~                                                           // Confusion
+                   ~SPIN839~                                                           // Confusion
+                   ~SPIN976~                                                           // Confusion
+                   ~SPPR983~                                                           // Confusion
+                   ~MISC3M~                                                            // Confusion (Divine Remix)
+                   ~A#SHA07~                                                           // Confusion (Divine Remix)
+                   ~RR#WI401~                                                          // Confusion (atweaks)
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    END                                                                                // ends WITH CRE block
+    ~ITM~ BEGIN                                                                        // ITM file parsed
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "128"                                                           // param2: opcode #128 (Confusion)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "3"                                        					   // icon: confused
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
+                        ~14791~                                                        // Rigid Thinking
+                        ~14782~                                                        // Confused
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
+                      ~SPCONFUS~                                                       // Charmed
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
+                   ~SPPR709~                                                           // Confusion (priest version)
+                   ~SPWI401~                                                           // Confusion (wizard version)
+                   ~SPIN582~                                                           // Confusion
+                   ~SPIN704~                                                           // Confusion
+                   ~SPIN839~                                                           // Confusion
+                   ~SPIN976~                                                           // Confusion
+                   ~SPPR983~                                                           // Confusion
+                   ~MISC3M~                                                            // Confusion (Divine Remix)
+                   ~A#SHA07~                                                           // Confusion (Divine Remix)
+                   ~RR#WI401~                                                          // Confusion (atweaks)
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    END                                                                                // ends WITH ITM block
+    DEFAULT                                                                            // do nothing
+END                                                                                    // ends PATCH_MATCHLAUNCH_PATCH_FUNCTION poison_spell_immunities END                                      // all Plants creatures are immune to poison
+END                                                                                    // ends DEFINE_PATCH_FUNCTION
+
+
+// Polymorph immunity
+DEFINE_PATCH_FUNCTION polymorph_immunity BEGIN
+READ_ASCII 0 sig (3)
+  PATCH_MATCH "%sig%" WITH
+      ~CRE~ BEGIN                                                                      // CRE file parsed
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "135"                                                           // param2: opcode #135 (Polymorph)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "124"				                                           // icon: Polymorph
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
+                         ~339~                                                         // Polymorphed
+                         ~351~                                                         // Polymorphed
+                         ~809~                                                         // Polymorphed
+                         ~1482~                                                        // Polymorphed
+                        ~54332~                                                        // Polymorphed
+                        ~14128~                                                        // Polymorph
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
+                   ~SPIN538~                                                           // Polymorph Other
+                   ~SPWI415~                                                           // Polymorph Other
+                   ~CA#PAOO~                                                           // Polymorph Other (Pnp Celestial)
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    END                                                                                // ends WITH CRE block
+    ~ITM~ BEGIN                                                                        // ITM file parsed
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "135"                                                           // param2: opcode #135 (Polymorph)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = "124"				                                           // icon: Polymorph
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
+                         ~339~                                                         // Polymorphed
+                         ~351~                                                         // Polymorphed
+                         ~809~                                                         // Polymorphed
+                         ~1482~                                                        // Polymorphed
+                        ~54332~                                                        // Polymorphed
+                        ~14128~                                                        // Polymorph
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
+                   ~SPIN538~                                                           // Polymorph Other
+                   ~SPWI415~                                                           // Polymorph Other
+                   ~CA#PAOO~                                                           // Polymorph Other (Pnp Celestial)
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    END                                                                                // ends WITH ITM block
+    DEFAULT                                                                            // do nothing
+END                                                                                    // ends PATCH_MATCHLAUNCH_PATCH_FUNCTION poison_spell_immunities END                                      // all Plants creatures are immune to poison
+END                                                                                    // ends DEFINE_PATCH_FUNCTION
+
+
+// Vorpal immunity
+DEFINE_PATCH_FUNCTION vorpal_immunity BEGIN
+READ_ASCII 0 sig (3)
+  PATCH_MATCH "%sig%" WITH
+      ~CRE~ BEGIN                                                                      // CRE file parsed
+      PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
+                        ~55~                                                           // Slay
+                        ~13~                                                           // Kill Target
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = EVALUATE_BUFFER "%effect%"                                      // param2: effect
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
+                       ~124~                                                           // Polymorph
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
+                        ~64285~                                                        // Vorpal Hit
+                        ~14026~                                                        // Death
+                        ~10554~                                                        // Undead destroyed
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    END                                                                                // ends WITH CRE block
+    ~ITM~ BEGIN                                                                        // ITM file parsed
+      PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
+                        ~55~                                                           // Slay
+                        ~13~                                                           // Kill Target
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = EVALUATE_BUFFER "%effect%"                                      // param2: effect
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
+                       ~124~                                                           // Polymorph
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
+                        ~64285~                                                        // Vorpal Hit
+                        ~14026~                                                        // Death
+                        ~10554~                                                        // Undead destroyed
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = ""                                                               // resref: none
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
+    END                                                                                // ends WITH ITM block
+    DEFAULT                                                                            // do nothing
+  END                                                                                  // ends PATCH_MATCH
+END                                                                                    // ends DEFINE_PATCH_FUNCTION
+
+
 // Hold immunity
 DEFINE_PATCH_FUNCTION hold_immunity BEGIN
 READ_ASCII 0 sig (3)
@@ -2736,6 +3307,23 @@ READ_ASCII 0 sig (3)
         "effsource" = ""                                                               // effsource: none
       END                                                                              // ends LAUNCH_PATCH_FUNCTION
       END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
+                      ~SPFLAYER~                                                       // Held (Mind Flayer)
+                      ~SPMINDAT~                                                       // Held
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
     END                                                                                // ends WITH CRE block
     ~ITM~ BEGIN                                                                        // ITM file parsed
       PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
@@ -2790,10 +3378,28 @@ READ_ASCII 0 sig (3)
         "effsource" = ""                                                               // effsource: none
       END                                                                              // ends LAUNCH_PATCH_FUNCTION
       END                                                                              // ends PATCH_FOR_EACH
+      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
+                      ~SPFLAYER~                                                       // Held (Mind Flayer)
+                      ~SPMINDAT~                                                       // Held
+      BEGIN
+      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+      INT_VAR                                                                          // initialize variables
+        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
+        "target" = "1"                                                                 // target: 1 (self)
+        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
+        "duration" = "0"                                                               // duration: 0
+        "sectype" = "0"                                                                // secondary type: none
+        "probability1" = "100"                                                         // probability1: 100%
+      STR_VAR                                                                          // initialize strings
+        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
+        "effsource" = ""                                                               // effsource: none
+      END                                                                              // ends LAUNCH_PATCH_FUNCTION
+      END                                                                              // ends PATCH_FOR_EACH
     END                                                                                // ends WITH ITM block
     DEFAULT                                                                            // do nothing
 END                                                                                    // ends PATCH_MATCH
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
+
 
 // Stun immunity
 DEFINE_PATCH_FUNCTION stun_immunity BEGIN
@@ -2913,6 +3519,7 @@ READ_ASCII 0 sig (3)
 END                                                                                    // ends PATCH_MATCH
 END                                                                                    // ends DEFINE_PATCH_FUNCTION
 
+
 DEFINE_PATCH_FUNCTION add_skeletal_traits BEGIN
   READ_ASCII 0 sig (3)
   PATCH_IF "%sig%" STRING_EQUAL_CASE CRE AND SOURCE_SIZE > 0x2d3 BEGIN
@@ -2927,6 +3534,7 @@ DEFINE_PATCH_FUNCTION add_skeletal_traits BEGIN
   END
 END
 
+
 DEFINE_PATCH_FUNCTION unturnable BEGIN
   LPF ADD_CRE_EFFECT
     INT_VAR
@@ -2936,6 +3544,7 @@ DEFINE_PATCH_FUNCTION unturnable BEGIN
        paramater2 = 1
   END
 END
+
 
 DEFINE_PATCH_FUNCTION illusion_immunity BEGIN
   READ_ASCII 0 sig (3)
@@ -2947,10 +3556,8 @@ DEFINE_PATCH_FUNCTION illusion_immunity BEGIN
                   spwi223 //Deafness
                   spwm178 //Blindness (Wild mage)
   BEGIN
-    PATCH_MATCH sig
-    WITH
-      CRE
-      BEGIN
+    PATCH_MATCH sig WITH
+      ~CRE~ BEGIN
         LPF ADD_CRE_EFFECT
           INT_VAR
             opcode = 206
@@ -2961,8 +3568,7 @@ DEFINE_PATCH_FUNCTION illusion_immunity BEGIN
             resource = EVAL "%spell%"
         END
       END
-      ITM
-      BEGIN
+      ~ITM~ BEGIN
         LPF ADD_ITEM_EQEFFECT
           INT_VAR
             opcode = 206
@@ -2977,6 +3583,25 @@ DEFINE_PATCH_FUNCTION illusion_immunity BEGIN
     END
   END
 END
+
+
+// Plant traits
+DEFINE_PATCH_FUNCTION plant_traits BEGIN
+LAUNCH_PATCH_FUNCTION disease_immunity END                                             // all Plants creatures are immune to disease
+LAUNCH_PATCH_FUNCTION bleeding_immunity END                                            // all Plants creatures are immune to bleeding
+LAUNCH_PATCH_FUNCTION petrification_immunity END                                       // all Plants creatures are immune to petrification
+LAUNCH_PATCH_FUNCTION stun_immunity END                                                // all Plants creatures are immune to stun
+LAUNCH_PATCH_FUNCTION hold_immunity END                                                // all Plants creatures are immune to hold
+LAUNCH_PATCH_FUNCTION polymorph_immunity END                                           // all Plants creatures are immune to polymorph
+LAUNCH_PATCH_FUNCTION confusion_immunity END                                           // all Plants creatures are immune to confusion
+LAUNCH_PATCH_FUNCTION charm_immunity END                                               // all Plants creatures are immune to charm
+LAUNCH_PATCH_FUNCTION sleep_immunity END                                               // all Plants creatures are immune to sleep
+LAUNCH_PATCH_FUNCTION illusion_immunity END                                            // all Plants creatures are immune to illusion
+LAUNCH_PATCH_FUNCTION poison_immunity END                                              // all Plants creatures are immune to poison
+LAUNCH_PATCH_FUNCTION insect_spell_immunities END                                      // all Plants creatures are immune to Insect Plague and similar spells
+LAUNCH_PATCH_FUNCTION entangle_immunities END                                      	   // all Plants creatures are immune to entangle and similar spells
+END                                                                                    // ends DEFINE_PATCH_FUNCTION
+
 
 //Set enchantment, and account for detectable enchantment from DS
 DEFINE_PATCH_FUNCTION set_enchantment INT_VAR enchantment = 1 BEGIN
@@ -3221,190 +3846,3 @@ DEFINE_ACTION_MACRO bgee_language BEGIN
     LOAD_TRA ~atweaks/tra/bgee/%LANGUAGE%/game.tra~
   END
 END
-
-// Plant traits
-DEFINE_PATCH_FUNCTION plant_traits BEGIN
-READ_ASCII 0 sig (3)
-  PATCH_MATCH "%sig%" WITH
-      ~CRE~ BEGIN                                                                      // CRE file parsed
-      PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
-                        ~135~                                                          // Polymorph
-                        ~128~                                                          // Confusion
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%effect%"                                      // param2: effect
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
-                       ~124~                                                           // Polymorph
-                       ~3~                                                             // confused
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
-                         ~339~                                                         // Polymorphed
-                         ~351~                                                         // Polymorphed
-                         ~809~                                                         // Polymorphed
-                         ~1482~                                                        // Polymorphed
-                        ~54332~                                                        // Polymorphed
-                        ~14128~                                                        // Polymorph
-                        ~14791~                                                        // Rigid Thinking
-                        ~14782~                                                        // Confused
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~animation~ IN                                                    // prevent displaying each of the following animations
-                      ~SPCONFUS~                                                       // Charmed
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "296"                                                               // effect: #296 (Protection from Specific Animation)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = EVALUATE_BUFFER "%animation%"                                    // resref: animation
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~spell~ IN                                                        // grant immunity to each of the following spells
-                   ~SPPR709~                                                           // Confusion (priest version)
-                   ~SPWI401~                                                           // Confusion (wizard version)
-                   ~SPIN582~                                                           // Confusion
-                   ~SPIN704~                                                           // Confusion
-                   ~SPIN839~                                                           // Confusion
-                   ~SPIN976~                                                           // Confusion
-                   ~SPPR983~                                                           // Confusion
-                   ~MISC3M~                                                            // Confusion (Divine Remix)
-                   ~A#SHA07~                                                           // Confusion (Divine Remix)
-                   ~RR#WI401~                                                          // Confusion (atweaks)
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-    END                                                                                // ends WITH CRE block
-    DEFAULT                                                                            // do nothing
-END                                                                                    // ends PATCH_MATCH
-LAUNCH_PATCH_FUNCTION poison_spell_immunities END                                      // all Plants creatures are immune to poison
-LAUNCH_PATCH_FUNCTION disease_immunity END                                             // all Plants creatures are immune to disease
-LAUNCH_PATCH_FUNCTION bleeding_immunity END                                            // all Plants creatures are immune to bleeding
-LAUNCH_PATCH_FUNCTION petrification_immunity END                                       // all Plants creatures are immune to petrification
-LAUNCH_PATCH_FUNCTION stun_immunity END                                                // all Plants creatures are immune to stun
-LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                                   // all Plants creatures are immune to hold and charm
-LAUNCH_PATCH_FUNCTION sleep_immunity END                                               // all Plants creatures are immune to sleep
-LAUNCH_PATCH_FUNCTION illusion_immunity END                                            // all Plants creatures are immune to hold
-LAUNCH_PATCH_FUNCTION poison_immunity END                                              // all Plants creatures are immune to poison
-LAUNCH_PATCH_FUNCTION insect_spell_immunities END                                      // all Plants creatures are immune to Insect Plague and similar spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      	   // all Plants creatures are immune to entangle and similar spells
-END                                                                                    // ends DEFINE_PATCH_FUNCTION
-
-// Vorpal immunity
-DEFINE_PATCH_FUNCTION vorpal_immunity BEGIN
-READ_ASCII 0 sig (3)
-  PATCH_MATCH "%sig%" WITH
-      ~CRE~ BEGIN                                                                      // CRE file parsed
-      PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
-                        ~55~                                                           // Slay
-                        ~13~                                                           // Kill Target
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "101"                                                               // effect: #101 (Protection from Opcode)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%effect%"                                      // param2: effect
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
-                       ~124~                                                           // Polymorph
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~string~ IN                                                       // prevent displaying each of the following text strings
-                        ~64285~                                                        // Vorpal Hit
-                        ~14026~                                                        // Death
-                        ~10554~                                                        // Undead destroyed
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "267"                                                               // effect: #267 (Protection from Display Specific String)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter1" = EVALUATE_BUFFER "%string%"                                      // param1: string reference
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-    END                                                                                // ends WITH CRE block
-    DEFAULT                                                                            // do nothing
-  END                                                                                  // ends PATCH_MATCH
-END                                                                                    // ends DEFINE_PATCH_FUNCTION

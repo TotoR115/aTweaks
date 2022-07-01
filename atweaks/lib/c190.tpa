@@ -441,35 +441,6 @@ BEGIN                                                                           
 END                                                                                // ends PATCH_FOR_EACH
 BUT_ONLY_IF_IT_CHANGES
 
-COPY_EXISTING "rr#etrai.itm" ~override/fl#etrsu.itm~                                 // As RR#ETRAI, but lacking immunity to Death Spell (for use by summoned elementals)
-  GET_OFFSET_ARRAY ea ITM_V10_GEN_EFFECTS
-  PHP_EACH ea AS _ => off BEGIN
-    READ_SHORT off opcode
-    READ_ASCII off + 0x14 resref
-    PATCH_IF opcode = 206 AND "%resref%" STRING_EQUAL_CASE "SPWI605" BEGIN
-      WRITE_BYTE off + 0x12 0                                                      // null the probability
-    END
-  END
-BUT_ONLY
-
-COPY_EXISTING "rr#etrai.itm" ~override/rr#etrae.itm~                                 // As RR#ETRAI, but for air elementals
-			  "fl#etrsu.itm" ~override/fl#etras.itm~                                 // As RR#ETRAI, but for air elementals
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
-COPY_EXISTING "rr#etrai.itm" ~override/rr#etree.itm~                                 // As RR#ETRAI, but for earth elementals
-			  "fl#etrsu.itm" ~override/fl#etres.itm~                                 // As RR#ETRAI, but for air elementals
-LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
-COPY_EXISTING "rr#etrai.itm" ~override/rr#etrfe.itm~                                 // As RR#ETRAI, but for fire elementals
-		      "fl#etrsu.itm" ~override/fl#etrfs.itm~                                 // As RR#ETRAI, but for air elementals
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
-COPY_EXISTING "rr#etrai.itm" ~override/rr#etrwe.itm~                                 // As RR#ETRAI, but for water elementals
-			  "fl#etrsu.itm" ~override/fl#etrws.itm~                                 // As RR#ETRAI, but for air elementals
-LAUNCH_PATCH_FUNCTION add_water_elemental_effects END
-
 COPY ~atweaks/itm/elementals/rr#etrai.itm~ ~override/rr#etrsl.itm~                 // fire and noble salamander traits "Ring"
 LAUNCH_PATCH_FUNCTION ~fire_salamander_immunities~ END                             // add salamander immunities
 WRITE_SHORT 0x1c 10 // Ring
@@ -479,9 +450,9 @@ LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                  
 LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
 WRITE_SHORT 0x1c 10 // Ring
 
-
-COPY_EXISTING "rr#etrsl.itm" ~override/rr#etrss.itm~                                 // As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
-			  "rr#etrfr.itm" ~override/rr#etrsf.itm~                                 // As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
+COPY_EXISTING "rr#etrai.itm" ~override/fl#etrsu.itm~                               // As RR#ETRAI, but lacking immunity to Death Spell (for use by summoned elementals)
+			  "rr#etrsl.itm" ~override/rr#etrss.itm~                               // As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
+			  "rr#etrfr.itm" ~override/rr#etrsf.itm~                               // As RR#etrfr, but lacking immunity to Death Spell (for use by summons)
   GET_OFFSET_ARRAY ea ITM_V10_GEN_EFFECTS
   PHP_EACH ea AS _ => off BEGIN
     READ_SHORT off opcode
@@ -491,6 +462,25 @@ COPY_EXISTING "rr#etrsl.itm" ~override/rr#etrss.itm~                            
     END
   END
 BUT_ONLY
+
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrae.itm~                               // As RR#ETRAI, but for air elementals
+			  "fl#etrsu.itm" ~override/fl#etras.itm~                               // As fl#etrsu, but for air elementals
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etree.itm~                               // As RR#ETRAI, but for earth elementals
+			  "fl#etrsu.itm" ~override/fl#etres.itm~                               // As fl#etrsu, but for earth elementals
+LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
+LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrfe.itm~                               // As RR#ETRAI, but for fire elementals
+		      "fl#etrsu.itm" ~override/fl#etrfs.itm~                               // As fl#etrsu, but for fire elementals
+LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
+LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrwe.itm~                               // As RR#ETRAI, but for water elementals
+			  "fl#etrsu.itm" ~override/fl#etrws.itm~                               // As fl#etrsu, but for water elementals
+LAUNCH_PATCH_FUNCTION add_water_elemental_effects END
+
 
 COPY ~atweaks/itm/rr#dinv.itm~  ~override~                                         // item which makes creatures untargetable until the gating animation finishes
 COPY ~atweaks/itm/elementals/rr#easer.itm~ ~override~                              // Aerial Servant attack
@@ -816,7 +806,7 @@ BUT_ONLY
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 // =============================================================================== // the compatibility work ends here
 
-// Ice / Frost Salamander
+// Ice/Frost Salamander
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~salgrice~                                                             // Frost Salamander
@@ -1253,6 +1243,7 @@ STR_VAR                                                                         
 "newscript"  = "RR#EWWEI"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
+END                                                                                // ends FUNCTION call
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block

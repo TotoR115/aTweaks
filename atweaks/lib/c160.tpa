@@ -1717,6 +1717,7 @@ ACTION_FOR_EACH file IN
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
+	  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~SKELETON~))  // Use Skeleton animation, bow animation does not work with other skeletons
       LPF make_skeleton_warrior 
 	  STR_VAR
 	  notenf01 = anscelet
@@ -1742,7 +1743,6 @@ BEGIN
           script16 = 0xuddg
 		  skipfile01 = anscelet  
 	END
-	WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~SKELETON~))  // Use Skeleton animation, bow animation does not work with other skeletons
     BUT_ONLY
   END
 END
