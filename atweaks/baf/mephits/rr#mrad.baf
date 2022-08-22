@@ -505,8 +505,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -532,8 +531,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -559,8 +557,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -586,8 +583,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -613,8 +609,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit
@@ -640,8 +635,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Alteration
 	!HasItemEquiped("MORSWORD",LastSeenBy(Myself)) // Mordenkainen's Sword
 	!HasItemEquiped("MISC73",LastSeenBy(Myself)) // The Horn of Kazgaroth
-	!HasItemEquiped("NPMISC1",LastSeenBy(Myself))  // Jansen Spectroscopes
-	!HasItemEquiped("RR#HEL02",LastSeenBy(Myself))  // Cowl of Acuity
+	!Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 	OR(2)
 	  !Range([EVILCUTOFF],8) // try to avoid hitting allies
 	  HasItemEquiped("RR#MRAW1",[EVILCUTOFF]) // Radiant Mephit

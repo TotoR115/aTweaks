@@ -150,10 +150,10 @@ COPY ~atweaks/spl/elementals/rr#enkis.spl~ ~override~                           
 COPY ~atweaks/spl/elementals/rr#envsp.spl~ ~override~                              // Venom Spit (Nereid)
   SAY NAME1 @2108 SAY NAME2 @2108
 
-COPY ~atweaks/spl/elementals/rr#ensww.spl~ ~override~                              // Summon Water Weird (Nereid)
+COPY ~atweaks/spl/elementals/rr#ensww.spl~ ~override~                              // Summon Fake Water Weird (Nereid)
   SAY NAME1 @2109 SAY NAME2 @2109
-COPY ~atweaks/eff/elementals/rr#ensww.eff~ ~override~                              // Summon Water Weird EFF
-
+COPY ~atweaks/eff/elementals/rr#ensww.eff~ ~override~                              // Summon Fake Water Weird EFF
+  WRITE_ASCII 0x30 "RR#EWWEF"
 
 COPY ~atweaks/spl/elementals/rr#envlp.spl~ ~override~                              // Envelop
   SAY NAME1 @2111 SAY NAME2 @2111
@@ -441,14 +441,13 @@ BEGIN                                                                           
 END                                                                                // ends PATCH_FOR_EACH
 BUT_ONLY_IF_IT_CHANGES
 
-COPY ~atweaks/itm/elementals/rr#etrai.itm~ ~override/rr#etrsl.itm~                 // fire and noble salamander traits "Ring"
+COPY_EXISTING ~RING95.ITM~ ~override/rr#etrsl.itm~                 				   // fire and noble salamander traits "Ring"
+LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
 LAUNCH_PATCH_FUNCTION ~fire_salamander_immunities~ END                             // add salamander immunities
-WRITE_SHORT 0x1c 10 // Ring
-
-COPY ~atweaks/itm/elementals/rr#etrai.itm~ ~override/rr#etrfr.itm~                 // fire and noble salamander traits "Ring"
+COPY_EXISTING ~RING95.ITM~ ~override/rr#etrfr.itm~                 				   // frost salamander traits "Ring"
+LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
 LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
-WRITE_SHORT 0x1c 10 // Ring
 
 COPY_EXISTING "rr#etrai.itm" ~override/fl#etrsu.itm~                               // As RR#ETRAI, but lacking immunity to Death Spell (for use by summoned elementals)
 			  "rr#etrsl.itm" ~override/rr#etrss.itm~                               // As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
@@ -793,12 +792,11 @@ END                                                                             
 
 // =============================================================================== // Compatibility with IWDification Begins here
 ACTION_IF FILE_EXISTS_IN_GAME ~ms6salf.cre~ BEGIN								   // Compatibility with IWDification - Stratagems Begins here
-COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
-	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 9 timing = 2 STR_VAR resource = ~rr#eiems~ END
-
+// COPY_EXISTING ~RR#EFSAL.itm~ ~override/RR#EFSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
+// LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 9 timing = 2 STR_VAR resource = ~rr#eiems~ END
 COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDification - Stratagems wizard summon spell
-  REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
-  REMOVE_CRE_ITEM ~FSALRING~                                                       // IWDification - Stratagems Salamanders visual effect (already included)
+  // REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
+  REMOVE_CRE_ITEM ~FSALRING~                                                       // IWDification - Stratagems Salamanders visual effect - not for PnP
   LPF ~RR#MDCRE~ INT_VAR "newxpv" = "0" END
   LPF make_summon END
   WRITE_ASCII SCRIPT_OVERRIDE "rr#salf" #8
@@ -806,7 +804,7 @@ BUT_ONLY
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 // =============================================================================== // the compatibility work ends here
 
-// Ice/Frost Salamander
+// Ice / Frost Salamander
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~salgrice~                                                             // Frost Salamander
@@ -1015,7 +1013,7 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#enkis~ #0 ~innate~ ( 1 )                                   // adds 1x Drowning Kiss
 ADD_MEMORIZED_SPELL ~rr#envsp~ #0 ~innate~ ( 1 )                                   // adds 1x Venom Spit
-ADD_MEMORIZED_SPELL ~rr#ensww~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Water Weird
+ADD_MEMORIZED_SPELL ~rr#ensww~ #0 ~innate~ ( 1 )                                   // adds 1x Summon Fake Water Weird
 PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~SHOAL~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~_SHOAL~)) BEGIN // special case, Shoal the Nereid
   READ_ASCII  0x248 ~ovrscr~                                                       // old override script
   PATCH_IF ("%ovrscr%" STRING_EQUAL_CASE "None") OR ("%ovrscr%" STRING_EQUAL_CASE "") BEGIN            
@@ -1191,7 +1189,6 @@ COPY    ~atweaks/wav/rr#ewa07.wav~ ~override~                                   
 COPY    ~atweaks/cre/elementals/rr#ewwei.cre~ ~override~                           // Water Weird (hostile)
   SAY NAME1 @2110 SAY NAME2 @2110 SAY SELECT_COMMON1 @471 SAY BATTLE_CRY1 @471 SAY BATTLE_CRY2 @472 SAY ATTACK1 @473 SAY ATTACK2 @474 SAY DAMAGE @475 SAY DYING @476 SAY SELECT_ACTION1 @477
 
-
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
               ~rr#ewwei~                                                           // Water Weird
 BEGIN                                                                              // execute the following
@@ -1248,6 +1245,22 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
+
+COPY_EXISTING ~rr#ewwei.ITM~ ~override/rr#ewwef.itm~                 			   // Create alternate weapon for Fake water Weird (Nereid)
+  LPF DELETE_EFFECT INT_VAR match_opcode = 146 END								   // Remove Envelop effect
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 4 dicenumber = 1 damage_type = 2 END	   // Add 1D4 damages
+
+COPY_EXISTING ~rr#ewwei.cre~ ~override/rr#ewwef.cre~                           	   // Create Fake Water Weird (hostile)
+REPLACE_CRE_ITEM ~fl#etrsu~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // add elemental traits (summons)
+REPLACE_CRE_ITEM ~RR#EWWEF~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace with a more accurate weapon frFake Water Weird
+WRITE_BYTE 0x10 (THIS BOR BIT1)                        							   //Set 'No corpse' (BIT1)
+WRITE_LONG 0x14	0																   // new XP value (summons do not grant xp)
+WRITE_BYTE 0x52 17												 				   // new THAC0 value (hit like a 4HD Creature)
+WRITE_BYTE 0x275 6												 				   // Gender = SUMMONED - 6
+ADD_MEMORIZED_SPELL rr#usumn #0 innate (1)                       				   //'Unsummon' spell
+REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH "RR#EWWEI" "RR#EWWEF"
+
+
 
 //////////////////////////
 // Elementals
@@ -3679,6 +3692,7 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eista.baf~                   
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#enere.baf~                                      // Nereid AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ensal.baf~                                      // Salamander Noble AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ewwei.baf~                                      // Water Weird AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ewwef.baf~                                      // Fake Water Weird AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eair.baf~                                       // Air Elemental AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#eear.baf~                                       // Earth Elemental AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#efir.baf~                                       // Fire Elemental AI script
@@ -3693,18 +3707,6 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#echan.baf~                   
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#esunn.baf~                                      // Sunnis AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ezaam.baf~                                      // Zaaman Rul AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ewizs.baf~                                      // Mental Combat AI script (for elementals summoned by arcane spellcasters)
-
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GDJIN.baf~                     // Djinni AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNDJN.baf~                     // Noble Djinni AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GDAO.baf~                      // Dao AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNDAO.baf~                     // Noble Dao AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GEFRT.baf~                     // Efreeti AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNEFR.baf~                     // Noble Efreeti AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GGRDS.baf~                     // Guardian AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GMARD.baf~                     // Marid AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNMRD.baf~                     // Noble Marid AI script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SDJIN.baf~                     // Summoned Djinni script
-COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SEFRT.baf~                     // Summoned Efreeti AI script
 
 
 
@@ -4655,7 +4657,7 @@ ACTION_IF GAME_INCLUDES ~bg1~ THEN BEGIN
 END
 
 
-// Add more Nereids to the game
+// Add more Nereids and Water Weirds to the game
 
 <<<<<<<<atweaks/inlined/baf/elementals/bg3600.baf
 IF
@@ -4664,7 +4666,7 @@ THEN
     RESPONSE #100
         SetGlobal("rr#spw01","MYAREA",1)
         CreateCreature("rr#enere",[175.1780],13) // Nereid (left)
-        CreateCreature("rr#enere",[400.1820],8) // Nereid (right)
+        CreateCreature("rr#ewwei",[400.1820],8) // Water Weird (right)
 END
 >>>>>>>>
 
@@ -4675,7 +4677,7 @@ THEN
     RESPONSE #100
         SetGlobal("rr#spw01","MYAREA",1)
         CreateCreature("rr#enere",[1125.585],15) // Nereid (top)
-        CreateCreature("rr#enere",[1155.730],13) // Nereid (bottom)
+        CreateCreature("rr#ewwei",[1155.730],13) // Water Weird (bottom)
 END
 >>>>>>>>
 
@@ -4714,7 +4716,7 @@ THEN
         SetGlobal("rr#spw01","AR1700",1)
         CreateCreature("rr#enere",[1200.2530],0) // Nereid (top)
         CreateCreature("rr#enere",[1150.2600],14) // Nereid (middle)
-        CreateCreature("rr#enere",[1240.2650],13) // Nereid (bottom)
+        CreateCreature("rr#ewwei",[1240.2650],13) // Water Weird (bottom)
 END
 >>>>>>>>
 
@@ -4728,7 +4730,7 @@ THEN
         SetGlobal("rr#spw01","AR2300",1)
         CreateCreature("rr#enere",[2470.1110],0) // Nereid (top)
         CreateCreature("rr#enere",[2340.1135],14) // Nereid (middle)
-        CreateCreature("rr#enere",[2395.1220],13) // Nereid (bottom)
+        CreateCreature("rr#ewwei",[2395.1220],13) // Water Weird (bottom)
 END
 >>>>>>>>
 
@@ -5060,11 +5062,11 @@ END                                                                             
 // in PnP Frost and Fire salamander don't get along. MS6 summons both witch is not sensible
 // replace frost salamander by noble salamander
 ACTION_IF FILE_EXISTS_IN_GAME MSUMMO6.2DA BEGIN
-COPY_EXISTING ~RR#ENSAL.itm~ ~override/RR#ENSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
-	  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 9 timing = 2 STR_VAR resource = ~rr#eiems~ END
+// COPY_EXISTING ~RR#ENSAL.itm~ ~override/RR#ENSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
+// LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 9 timing = 2 STR_VAR resource = ~rr#eiems~ END
 
 COPY_EXISTING "salgrfir.cre" "override/rr#saln.cre"
-  REPLACE_CRE_ITEM ~RR#ENSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
+  // REPLACE_CRE_ITEM ~RR#ENSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
   LPF ~RR#MDCRE~ INT_VAR 
   "newxpv"   = "0"                                                                 // new XP value
   "enforce"  = "1"                                                                 // values are enforced for all creatures

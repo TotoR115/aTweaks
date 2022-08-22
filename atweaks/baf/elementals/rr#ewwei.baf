@@ -475,14 +475,7 @@ IF
 	!CheckStatGT(SixthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SixthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SixthNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SixthNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SixthNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SixthNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SixthNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SixthNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SixthNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SixthNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SixthNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(SixthNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(SixthNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -499,14 +492,7 @@ IF
 	!CheckStatGT(FifthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(FifthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(FifthNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",FifthNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",FifthNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",FifthNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",FifthNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",FifthNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",FifthNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",FifthNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",FifthNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(FifthNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(FifthNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -523,14 +509,7 @@ IF
 	!CheckStatGT(FourthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(FourthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(FourthNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",FourthNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",FourthNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",FourthNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",FourthNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",FourthNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",FourthNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",FourthNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",FourthNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(FourthNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(FourthNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -547,14 +526,7 @@ IF
 	!CheckStatGT(ThirdNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(ThirdNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -571,14 +543,7 @@ IF
 	!CheckStatGT(SecondNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(SecondNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -595,14 +560,7 @@ IF
 	!CheckStatGT([GOODCUTOFF.HUMANOID],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([GOODCUTOFF.HUMANOID],0,CLERIC_FREE_ACTION)
 	!CheckStat([GOODCUTOFF.HUMANOID],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[GOODCUTOFF.HUMANOID]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[GOODCUTOFF.HUMANOID]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[GOODCUTOFF.HUMANOID]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[GOODCUTOFF.HUMANOID]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[GOODCUTOFF.HUMANOID]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[GOODCUTOFF.HUMANOID]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[GOODCUTOFF.HUMANOID]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[GOODCUTOFF.HUMANOID]) // Ixil's Spike +6
+	!Check%State%([GOODCUTOFF.HUMANOID],%Num%ITEM_HOLD)
     See([GOODCUTOFF.HUMANOID])
     False()
 THEN
@@ -619,14 +577,7 @@ IF
 	!CheckStatGT(WorstAC([PC]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(WorstAC([PC]),0,CLERIC_FREE_ACTION)
 	!CheckStat(WorstAC([PC]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",WorstAC([PC])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",WorstAC([PC])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",WorstAC([PC])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",WorstAC([PC])) // Spider's Bane
-	!HasItemEquiped("SHLD25",WorstAC([PC])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",WorstAC([PC])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",WorstAC([PC])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",WorstAC([PC])) // Ixil's Spike +6
+	!Check%State%(WorstAC([PC]),%Num%ITEM_HOLD)
     See(WorstAC([PC])) // these blocks are optimized for targeting low AC characters
     False()
 THEN
@@ -641,14 +592,7 @@ IF
 	!CheckStatGT(ThirdNearest([PC.0.0.THIEF]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([PC.0.0.THIEF]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([PC.0.0.THIEF]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([PC.0.0.THIEF])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([PC.0.0.THIEF])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([PC.0.0.THIEF])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([PC.0.0.THIEF])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([PC.0.0.THIEF])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([PC.0.0.THIEF])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([PC.0.0.THIEF])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([PC.0.0.THIEF])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([PC.0.0.THIEF]),%Num%ITEM_HOLD)
     See(ThirdNearest([PC.0.0.THIEF])) // generally have poor saves vs. death
     False()
 THEN
@@ -663,14 +607,7 @@ IF
 	!CheckStatGT(SecondNearest([PC.0.0.THIEF]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([PC.0.0.THIEF]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([PC.0.0.THIEF]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([PC.0.0.THIEF])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([PC.0.0.THIEF])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([PC.0.0.THIEF])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([PC.0.0.THIEF])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([PC.0.0.THIEF])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([PC.0.0.THIEF])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([PC.0.0.THIEF])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([PC.0.0.THIEF])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([PC.0.0.THIEF]),%Num%ITEM_HOLD)
     See(SecondNearest([PC.0.0.THIEF])) // generally have poor saves vs. death
     False()
 THEN
@@ -685,14 +622,7 @@ IF
 	!CheckStatGT([PC.0.0.THIEF],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([PC.0.0.THIEF],0,CLERIC_FREE_ACTION)
 	!CheckStat([PC.0.0.THIEF],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[PC.0.0.THIEF]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[PC.0.0.THIEF]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[PC.0.0.THIEF]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[PC.0.0.THIEF]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[PC.0.0.THIEF]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[PC.0.0.THIEF]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[PC.0.0.THIEF]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[PC.0.0.THIEF]) // Ixil's Spike +6
+	!Check%State%([PC.0.0.THIEF],%Num%ITEM_HOLD)
     See([PC.0.0.THIEF]) // generally have poor saves vs. death
     False()
 THEN
@@ -707,14 +637,7 @@ IF
 	!CheckStatGT(ThirdNearest([PC.0.0.BARD_ALL]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([PC.0.0.BARD_ALL]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([PC.0.0.BARD_ALL]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([PC.0.0.BARD_ALL])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([PC.0.0.BARD_ALL])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([PC.0.0.BARD_ALL])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([PC.0.0.BARD_ALL])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([PC.0.0.BARD_ALL])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([PC.0.0.BARD_ALL])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([PC.0.0.BARD_ALL])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([PC.0.0.BARD_ALL])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([PC.0.0.BARD_ALL]),%Num%ITEM_HOLD)
     See(ThirdNearest([PC.0.0.BARD_ALL])) // generally have poor saves vs. death
     False()
 THEN
@@ -729,14 +652,7 @@ IF
 	!CheckStatGT(SecondNearest([PC.0.0.BARD_ALL]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([PC.0.0.BARD_ALL]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([PC.0.0.BARD_ALL]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([PC.0.0.BARD_ALL])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([PC.0.0.BARD_ALL])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([PC.0.0.BARD_ALL])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([PC.0.0.BARD_ALL])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([PC.0.0.BARD_ALL])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([PC.0.0.BARD_ALL])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([PC.0.0.BARD_ALL])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([PC.0.0.BARD_ALL])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([PC.0.0.BARD_ALL]),%Num%ITEM_HOLD)
     See(SecondNearest([PC.0.0.BARD_ALL])) // generally have poor saves vs. death
     False()
 THEN
@@ -751,14 +667,7 @@ IF
 	!CheckStatGT([PC.0.0.BARD_ALL],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([PC.0.0.BARD_ALL],0,CLERIC_FREE_ACTION)
 	!CheckStat([PC.0.0.BARD_ALL],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[PC.0.0.BARD_ALL]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[PC.0.0.BARD_ALL]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[PC.0.0.BARD_ALL]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[PC.0.0.BARD_ALL]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[PC.0.0.BARD_ALL]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[PC.0.0.BARD_ALL]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[PC.0.0.BARD_ALL]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[PC.0.0.BARD_ALL]) // Ixil's Spike +6
+	!Check%State%([PC.0.0.BARD_ALL],%Num%ITEM_HOLD)
     See([PC.0.0.BARD_ALL]) // generally have poor saves vs. death
     False()
 THEN
@@ -773,14 +682,7 @@ IF
 	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_THIEF]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_THIEF]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([PC.0.0.MAGE_THIEF]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([PC.0.0.MAGE_THIEF])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([PC.0.0.MAGE_THIEF])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([PC.0.0.MAGE_THIEF])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([PC.0.0.MAGE_THIEF])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([PC.0.0.MAGE_THIEF])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([PC.0.0.MAGE_THIEF])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([PC.0.0.MAGE_THIEF])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([PC.0.0.MAGE_THIEF])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([PC.0.0.MAGE_THIEF]),%Num%ITEM_HOLD)
     See(ThirdNearest([PC.0.0.MAGE_THIEF])) // generally have poor saves vs. death
     False()
 THEN
@@ -795,14 +697,7 @@ IF
 	!CheckStatGT(SecondNearest([PC.0.0.MAGE_THIEF]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([PC.0.0.MAGE_THIEF]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([PC.0.0.MAGE_THIEF]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([PC.0.0.MAGE_THIEF])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([PC.0.0.MAGE_THIEF])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([PC.0.0.MAGE_THIEF])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([PC.0.0.MAGE_THIEF])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([PC.0.0.MAGE_THIEF])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([PC.0.0.MAGE_THIEF])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([PC.0.0.MAGE_THIEF])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([PC.0.0.MAGE_THIEF])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([PC.0.0.MAGE_THIEF]),%Num%ITEM_HOLD)
     See(SecondNearest([PC.0.0.MAGE_THIEF])) // generally have poor saves vs. death
     False()
 THEN
@@ -817,14 +712,7 @@ IF
 	!CheckStatGT([PC.0.0.MAGE_THIEF],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([PC.0.0.MAGE_THIEF],0,CLERIC_FREE_ACTION)
 	!CheckStat([PC.0.0.MAGE_THIEF],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[PC.0.0.MAGE_THIEF]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[PC.0.0.MAGE_THIEF]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[PC.0.0.MAGE_THIEF]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[PC.0.0.MAGE_THIEF]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[PC.0.0.MAGE_THIEF]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[PC.0.0.MAGE_THIEF]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[PC.0.0.MAGE_THIEF]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[PC.0.0.MAGE_THIEF]) // Ixil's Spike +6
+	!Check%State%([PC.0.0.MAGE_THIEF],%Num%ITEM_HOLD)
     See([PC.0.0.MAGE_THIEF]) // generally have poor saves vs. death
     False()
 THEN
@@ -839,14 +727,7 @@ IF
 	!CheckStatGT(ThirdNearest([PC.0.0.MAGE]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([PC.0.0.MAGE]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([PC.0.0.MAGE]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([PC.0.0.MAGE])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([PC.0.0.MAGE])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([PC.0.0.MAGE])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([PC.0.0.MAGE])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([PC.0.0.MAGE])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([PC.0.0.MAGE])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([PC.0.0.MAGE])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([PC.0.0.MAGE])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([PC.0.0.MAGE]),%Num%ITEM_HOLD)
     See(ThirdNearest([PC.0.0.MAGE])) // generally have poor saves vs. death
     False()
 THEN
@@ -861,14 +742,7 @@ IF
 	!CheckStatGT(SecondNearest([PC.0.0.MAGE]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([PC.0.0.MAGE]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([PC.0.0.MAGE]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([PC.0.0.MAGE])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([PC.0.0.MAGE])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([PC.0.0.MAGE])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([PC.0.0.MAGE])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([PC.0.0.MAGE])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([PC.0.0.MAGE])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([PC.0.0.MAGE])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([PC.0.0.MAGE])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([PC.0.0.MAGE]),%Num%ITEM_HOLD)
     See(SecondNearest([PC.0.0.MAGE])) // generally have poor saves vs. death
     False()
 THEN
@@ -883,14 +757,7 @@ IF
 	!CheckStatGT([PC.0.0.MAGE],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([PC.0.0.MAGE],0,CLERIC_FREE_ACTION)
 	!CheckStat([PC.0.0.MAGE],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[PC.0.0.MAGE]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[PC.0.0.MAGE]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[PC.0.0.MAGE]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[PC.0.0.MAGE]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[PC.0.0.MAGE]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[PC.0.0.MAGE]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[PC.0.0.MAGE]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[PC.0.0.MAGE]) // Ixil's Spike +6
+	!Check%State%([PC.0.0.MAGE],%Num%ITEM_HOLD)
     See([PC.0.0.MAGE]) // generally have poor saves vs. death
     False()
 THEN
@@ -907,14 +774,7 @@ IF
 	!CheckStatGT(SixthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SixthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SixthNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SixthNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SixthNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SixthNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SixthNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SixthNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SixthNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SixthNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SixthNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(SixthNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(SixthNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -931,14 +791,7 @@ IF
 	!CheckStatGT(FifthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(FifthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(FifthNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",FifthNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",FifthNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",FifthNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",FifthNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",FifthNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",FifthNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",FifthNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",FifthNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(FifthNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(FifthNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -955,14 +808,7 @@ IF
 	!CheckStatGT(FourthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(FourthNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(FourthNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",FourthNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",FourthNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",FourthNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",FourthNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",FourthNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",FourthNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",FourthNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",FourthNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(FourthNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(FourthNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -979,14 +825,7 @@ IF
 	!CheckStatGT(ThirdNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(ThirdNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -1003,14 +842,7 @@ IF
 	!CheckStatGT(SecondNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([GOODCUTOFF.HUMANOID]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([GOODCUTOFF.HUMANOID]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([GOODCUTOFF.HUMANOID])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([GOODCUTOFF.HUMANOID])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([GOODCUTOFF.HUMANOID])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([GOODCUTOFF.HUMANOID])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([GOODCUTOFF.HUMANOID])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([GOODCUTOFF.HUMANOID])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([GOODCUTOFF.HUMANOID])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([GOODCUTOFF.HUMANOID])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([GOODCUTOFF.HUMANOID]),%Num%ITEM_HOLD)
     See(SecondNearest([GOODCUTOFF.HUMANOID]))
     False()
 THEN
@@ -1027,14 +859,7 @@ IF
 	!CheckStatGT([GOODCUTOFF.HUMANOID],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([GOODCUTOFF.HUMANOID],0,CLERIC_FREE_ACTION)
 	!CheckStat([GOODCUTOFF.HUMANOID],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[GOODCUTOFF.HUMANOID]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[GOODCUTOFF.HUMANOID]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[GOODCUTOFF.HUMANOID]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[GOODCUTOFF.HUMANOID]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[GOODCUTOFF.HUMANOID]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[GOODCUTOFF.HUMANOID]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[GOODCUTOFF.HUMANOID]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[GOODCUTOFF.HUMANOID]) // Ixil's Spike +6
+	!Check%State%([GOODCUTOFF.HUMANOID],%Num%ITEM_HOLD)
     See([GOODCUTOFF.HUMANOID])
     False()
 THEN
@@ -1051,14 +876,7 @@ IF
 	!CheckStatGT(WorstAC([PC]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(WorstAC([PC]),0,CLERIC_FREE_ACTION)
 	!CheckStat(WorstAC([PC]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",WorstAC([PC])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",WorstAC([PC])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",WorstAC([PC])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",WorstAC([PC])) // Spider's Bane
-	!HasItemEquiped("SHLD25",WorstAC([PC])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",WorstAC([PC])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",WorstAC([PC])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",WorstAC([PC])) // Ixil's Spike +6
+	!Check%State%(WorstAC([PC]),%Num%ITEM_HOLD)
     See(WorstAC([PC])) // these blocks are optimized for targeting low AC characters
     False()
 THEN
@@ -1073,14 +891,7 @@ IF
 	!CheckStatGT(ThirdNearest([PC.0.0.THIEF]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([PC.0.0.THIEF]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([PC.0.0.THIEF]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([PC.0.0.THIEF])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([PC.0.0.THIEF])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([PC.0.0.THIEF])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([PC.0.0.THIEF])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([PC.0.0.THIEF])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([PC.0.0.THIEF])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([PC.0.0.THIEF])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([PC.0.0.THIEF])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([PC.0.0.THIEF]),%Num%ITEM_HOLD)
     See(ThirdNearest([PC.0.0.THIEF])) // generally have poor saves vs. death
     False()
 THEN
@@ -1095,14 +906,7 @@ IF
 	!CheckStatGT(SecondNearest([PC.0.0.THIEF]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([PC.0.0.THIEF]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([PC.0.0.THIEF]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([PC.0.0.THIEF])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([PC.0.0.THIEF])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([PC.0.0.THIEF])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([PC.0.0.THIEF])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([PC.0.0.THIEF])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([PC.0.0.THIEF])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([PC.0.0.THIEF])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([PC.0.0.THIEF])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([PC.0.0.THIEF]),%Num%ITEM_HOLD)
     See(SecondNearest([PC.0.0.THIEF])) // generally have poor saves vs. death
     False()
 THEN
@@ -1117,14 +921,7 @@ IF
 	!CheckStatGT([PC.0.0.THIEF],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([PC.0.0.THIEF],0,CLERIC_FREE_ACTION)
 	!CheckStat([PC.0.0.THIEF],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[PC.0.0.THIEF]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[PC.0.0.THIEF]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[PC.0.0.THIEF]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[PC.0.0.THIEF]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[PC.0.0.THIEF]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[PC.0.0.THIEF]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[PC.0.0.THIEF]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[PC.0.0.THIEF]) // Ixil's Spike +6
+	!Check%State%([PC.0.0.THIEF],%Num%ITEM_HOLD)
     See([PC.0.0.THIEF]) // generally have poor saves vs. death
     False()
 THEN
@@ -1139,14 +936,7 @@ IF
 	!CheckStatGT(ThirdNearest([PC.0.0.BARD_ALL]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([PC.0.0.BARD_ALL]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([PC.0.0.BARD_ALL]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([PC.0.0.BARD_ALL])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([PC.0.0.BARD_ALL])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([PC.0.0.BARD_ALL])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([PC.0.0.BARD_ALL])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([PC.0.0.BARD_ALL])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([PC.0.0.BARD_ALL])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([PC.0.0.BARD_ALL])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([PC.0.0.BARD_ALL])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([PC.0.0.BARD_ALL]),%Num%ITEM_HOLD)
     See(ThirdNearest([PC.0.0.BARD_ALL])) // generally have poor saves vs. death
     False()
 THEN
@@ -1161,14 +951,7 @@ IF
 	!CheckStatGT(SecondNearest([PC.0.0.BARD_ALL]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([PC.0.0.BARD_ALL]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([PC.0.0.BARD_ALL]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([PC.0.0.BARD_ALL])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([PC.0.0.BARD_ALL])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([PC.0.0.BARD_ALL])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([PC.0.0.BARD_ALL])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([PC.0.0.BARD_ALL])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([PC.0.0.BARD_ALL])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([PC.0.0.BARD_ALL])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([PC.0.0.BARD_ALL])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([PC.0.0.BARD_ALL]),%Num%ITEM_HOLD)
     See(SecondNearest([PC.0.0.BARD_ALL])) // generally have poor saves vs. death
     False()
 THEN
@@ -1183,14 +966,7 @@ IF
 	!CheckStatGT([PC.0.0.BARD_ALL],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([PC.0.0.BARD_ALL],0,CLERIC_FREE_ACTION)
 	!CheckStat([PC.0.0.BARD_ALL],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[PC.0.0.BARD_ALL]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[PC.0.0.BARD_ALL]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[PC.0.0.BARD_ALL]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[PC.0.0.BARD_ALL]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[PC.0.0.BARD_ALL]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[PC.0.0.BARD_ALL]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[PC.0.0.BARD_ALL]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[PC.0.0.BARD_ALL]) // Ixil's Spike +6
+	!Check%State%([PC.0.0.BARD_ALL],%Num%ITEM_HOLD)
     See([PC.0.0.BARD_ALL]) // generally have poor saves vs. death
     False()
 THEN
@@ -1205,14 +981,7 @@ IF
 	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_THIEF]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([PC.0.0.MAGE_THIEF]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([PC.0.0.MAGE_THIEF]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([PC.0.0.MAGE_THIEF])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([PC.0.0.MAGE_THIEF])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([PC.0.0.MAGE_THIEF])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([PC.0.0.MAGE_THIEF])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([PC.0.0.MAGE_THIEF])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([PC.0.0.MAGE_THIEF])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([PC.0.0.MAGE_THIEF])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([PC.0.0.MAGE_THIEF])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([PC.0.0.MAGE_THIEF]),%Num%ITEM_HOLD)
     See(ThirdNearest([PC.0.0.MAGE_THIEF])) // generally have poor saves vs. death
     False()
 THEN
@@ -1227,14 +996,7 @@ IF
 	!CheckStatGT(SecondNearest([PC.0.0.MAGE_THIEF]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([PC.0.0.MAGE_THIEF]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([PC.0.0.MAGE_THIEF]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([PC.0.0.MAGE_THIEF])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([PC.0.0.MAGE_THIEF])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([PC.0.0.MAGE_THIEF])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([PC.0.0.MAGE_THIEF])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([PC.0.0.MAGE_THIEF])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([PC.0.0.MAGE_THIEF])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([PC.0.0.MAGE_THIEF])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([PC.0.0.MAGE_THIEF])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([PC.0.0.MAGE_THIEF]),%Num%ITEM_HOLD)
     See(SecondNearest([PC.0.0.MAGE_THIEF])) // generally have poor saves vs. death
     False()
 THEN
@@ -1249,14 +1011,7 @@ IF
 	!CheckStatGT([PC.0.0.MAGE_THIEF],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([PC.0.0.MAGE_THIEF],0,CLERIC_FREE_ACTION)
 	!CheckStat([PC.0.0.MAGE_THIEF],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[PC.0.0.MAGE_THIEF]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[PC.0.0.MAGE_THIEF]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[PC.0.0.MAGE_THIEF]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[PC.0.0.MAGE_THIEF]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[PC.0.0.MAGE_THIEF]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[PC.0.0.MAGE_THIEF]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[PC.0.0.MAGE_THIEF]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[PC.0.0.MAGE_THIEF]) // Ixil's Spike +6
+	!Check%State%([PC.0.0.MAGE_THIEF],%Num%ITEM_HOLD)
     See([PC.0.0.MAGE_THIEF]) // generally have poor saves vs. death
     False()
 THEN
@@ -1271,14 +1026,7 @@ IF
 	!CheckStatGT(ThirdNearest([PC.0.0.MAGE]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(ThirdNearest([PC.0.0.MAGE]),0,CLERIC_FREE_ACTION)
 	!CheckStat(ThirdNearest([PC.0.0.MAGE]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",ThirdNearest([PC.0.0.MAGE])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",ThirdNearest([PC.0.0.MAGE])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",ThirdNearest([PC.0.0.MAGE])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",ThirdNearest([PC.0.0.MAGE])) // Spider's Bane
-	!HasItemEquiped("SHLD25",ThirdNearest([PC.0.0.MAGE])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",ThirdNearest([PC.0.0.MAGE])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",ThirdNearest([PC.0.0.MAGE])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",ThirdNearest([PC.0.0.MAGE])) // Ixil's Spike +6
+	!Check%State%(ThirdNearest([PC.0.0.MAGE]),%Num%ITEM_HOLD)
     See(ThirdNearest([PC.0.0.MAGE])) // generally have poor saves vs. death
     False()
 THEN
@@ -1293,14 +1041,7 @@ IF
 	!CheckStatGT(SecondNearest([PC.0.0.MAGE]),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(SecondNearest([PC.0.0.MAGE]),0,CLERIC_FREE_ACTION)
 	!CheckStat(SecondNearest([PC.0.0.MAGE]),1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",SecondNearest([PC.0.0.MAGE])) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",SecondNearest([PC.0.0.MAGE])) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",SecondNearest([PC.0.0.MAGE])) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",SecondNearest([PC.0.0.MAGE])) // Spider's Bane
-	!HasItemEquiped("SHLD25",SecondNearest([PC.0.0.MAGE])) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",SecondNearest([PC.0.0.MAGE])) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",SecondNearest([PC.0.0.MAGE])) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",SecondNearest([PC.0.0.MAGE])) // Ixil's Spike +6
+	!Check%State%(SecondNearest([PC.0.0.MAGE]),%Num%ITEM_HOLD)
     See(SecondNearest([PC.0.0.MAGE])) // generally have poor saves vs. death
     False()
 THEN
@@ -1315,14 +1056,7 @@ IF
 	!CheckStatGT([PC.0.0.MAGE],0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT([PC.0.0.MAGE],0,CLERIC_FREE_ACTION)
 	!CheckStat([PC.0.0.MAGE],1,SCRIPTINGSTATE4) // Barbarian Rage, Berserker Enrage
-	!HasItemEquiped("RING09",[PC.0.0.MAGE]) // Ring of Free Action
-	!HasItemEquipedReal("NPSW01",[PC.0.0.MAGE]) // Sword of Arvoreen
-	!HasItemEquipedReal("SW1H27",[PC.0.0.MAGE]) // Arbane's Sword +2
-	!HasItemEquipedReal("SW2H06",[PC.0.0.MAGE]) // Spider's Bane
-	!HasItemEquiped("SHLD25",[PC.0.0.MAGE]) // Shield of Harmony +2
-	!HasItemEquipedReal("SPER07",[PC.0.0.MAGE]) // Spear of the Unicorn +2
-	!HasItemEquipedReal("BLUN30",[PC.0.0.MAGE]) // Flail of Ages +5
-	!HasItemEquipedReal("SPER12",[PC.0.0.MAGE]) // Ixil's Spike +6
+	!Check%State%([PC.0.0.MAGE],%Num%ITEM_HOLD)
     See([PC.0.0.MAGE]) // generally have poor saves vs. death
     False()
 THEN

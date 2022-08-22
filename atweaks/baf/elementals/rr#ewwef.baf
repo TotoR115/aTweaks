@@ -1,0 +1,239 @@
+IF
+    HasItem("RR#DINV",Myself) // invisibility item which prevents enemies from targeting not-yet-gated creatures
+THEN
+    RESPONSE #100
+        DestroyItem("RR#DINV")
+        Continue()
+END
+
+IF
+    Global("RR#Active","LOCALS",0)
+    OR(3)
+      AttackedBy([ANYONE],DEFAULT)
+      TookDamage()
+      Help([EVILCUTOFF.0.ELEMENTAL])
+THEN
+    RESPONSE #100
+        SetGlobal("RR#Active","LOCALS",1)
+        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+        Enemy()
+        Help()
+END
+
+IF
+    Global("RR#Active","LOCALS",0)
+    Allegiance(Myself,EVILCUTOFF)
+    See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
+THEN
+    RESPONSE #100
+        SetGlobal("RR#Active","LOCALS",1)
+        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+        Enemy()
+        Help()
+END
+
+IF
+    OR(2)
+      StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
+      StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+Allegiance(Myself,EVILCUTOFF)
+Global("rr#Active","LOCALS",0)
+!Detect(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+NoAction()
+END
+
+IF
+    Allegiance(Myself,EVILCUTOFF)
+    InMyArea("Shoal")
+    !Dead("Shoal")
+    Allegiance("Shoal",NEUTRAL)
+THEN
+    RESPONSE #100
+        ChangeEnemyAlly(Myself,NEUTRAL)
+        CreateVisualEffectObject("SPGFLSH1",Myself)
+        DisplayString(Myself,14065) // Unsummoned
+        DestroySelf()
+END
+
+IF
+
+    StateCheck(Myself,STATE_PANIC)  // needed because the AI can perform script actions (i.e. drink potions) while panicked, unlike the player
+THEN
+    RESPONSE #100
+        RandomWalkContinuous() // using this instead of NoAction() because otherwise panicked characters would stand in place
+END
+
+IF
+    Global("RR#Active","LOCALS",1)
+    !InActiveArea(Myself)
+    !See([GOODCUTOFF])
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !GlobalTimerNotExpired("RR#Rest","LOCALS") // re-initialize the rest timer
+THEN
+    RESPONSE #100
+        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+        ApplySpell(Myself,RESTORE_FULL_HEALTH) // heal up
+        Rest()
+END
+
+IF
+    !GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other elementals may hear it and join the battle
+    See([GOODCUTOFF])
+THEN
+    RESPONSE #100
+        SetGlobalTimer("RR#Help","LOCALS",12)
+        Help()
+END
+
+IF
+See(NearestEnemyOf(Myself))
+Range(NearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),30)
+END
+
+IF
+See(SecondNearestEnemyOf(Myself))
+Range(SecondNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+END
+
+IF
+See(ThirdNearestEnemyOf(Myself))
+Range(ThirdNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+END
+
+IF
+See(FourthNearestEnemyOf(Myself))
+Range(FourthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+END
+
+IF
+See(FifthNearestEnemyOf(Myself))
+Range(FifthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+END
+
+IF
+See(SixthNearestEnemyOf(Myself))
+Range(SixthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+END
+
+IF
+ActionListEmpty()
+See(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SecondNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(SecondNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(ThirdNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FourthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(FourthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FifthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(FifthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SixthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(SixthNearestEnemyOf(Myself))
+END
+
+IF
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),30)
+END
+
+IF
+See(LastAttackerOf(Myself))
+ActionListEmpty()
+!Allegiance(Myself,ENEMY)
+AttackedBy([ANYONE],DEFAULT)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(LastAttackerOf(Myself),30)
+END
+
+IF
+    !GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
+    Help([EVILCUTOFF.0.ELEMENTAL])
+    InMyArea(LastHelp(Myself))
+    !StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("RR#Move","LOCALS",6)
+        MoveToObject(LastHelp(Myself))
+END
+
+IF
+    !GlobalTimerNotExpired("RR#Move","LOCALS")
+THEN
+    RESPONSE #100
+        RandomWalkContinuous()
+END

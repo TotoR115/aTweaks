@@ -2064,9 +2064,9 @@ END                                                                             
 
 // Fire Slamander immunities (these apply for the noble variety too, but not for Frost Salamanders)
 DEFINE_PATCH_FUNCTION fire_salamander_immunities BEGIN
-LAUNCH_PATCH_FUNCTION charm_immunity END                                        // fire immunities
-LAUNCH_PATCH_FUNCTION sleep_immunity END                                        // fire immunities
-LAUNCH_PATCH_FUNCTION hold_immunity END                                        // fire immunities
+LAUNCH_PATCH_FUNCTION charm_immunity END                                        	   // Charm immunities
+LAUNCH_PATCH_FUNCTION sleep_immunity END                                        	   // Sleep immunities
+LAUNCH_PATCH_FUNCTION hold_immunity END                                        		   // Hold immunities
 LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                        // fire immunities
 LAUNCH_PATCH_FUNCTION extraplanar_traits END                                           // extraplanar traits
 END                                                                                    // ends DEFINE_PATCH_FUNCTION

@@ -107,8 +107,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -124,8 +123,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -141,8 +139,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -158,8 +155,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -175,8 +171,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -192,8 +187,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -209,8 +203,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -226,8 +219,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -243,8 +235,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -260,8 +251,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -277,8 +267,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -294,8 +283,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
     !Check%State%(LastSeenBy(Myself),%Num%ITEM_POISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -310,8 +298,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
@@ -330,8 +317,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
@@ -350,8 +336,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
@@ -370,8 +355,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
@@ -390,8 +374,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
@@ -410,8 +393,7 @@ IF
     !StateCheck(LastSeenBy(Myself),STATE_BLIND)
     !StateCheck(LastSeenBy(Myself),STATE_POISONED)
     CheckStatLT(LastSeenBy(Myself),100,RESISTPOISON)
-    !HasItemEquiped("NPMISC1",LastSeenBy(Myself)) // Jansen Spectroscopes
-    !HasItemEquiped("RR#HEL02",LastSeenBy(Myself)) // Cowl of Acuity
+    !Check%State%(NearestEnemyOf(Myself),%Num%ITEM_BLIND)
     !Class(LastSeenBy(Myself),MONK)
     !Class(LastSeenBy(Myself),DRUID_ALL)
     !Kit(LastSeenBy(Myself),CAVALIER)
