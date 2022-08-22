@@ -3,14 +3,14 @@
 // It also flags these abilities as non-magical which prevents Wild Magic and Dead Magic zones from affecting them
 
 ACTION_FOR_EACH spell IN
-                spin117 // Minsc Berserk
+                spin117 // Minsc Berserk - break casting sounds
                 spcl144 // Kensai Kai
                 spcl152 // Barbarian Rage
-                spcl211 // Paladin Lay On Hands
+                spcl211 // Paladin Lay On Hands - break casting sounds
                 spcl321 // Berserker Enrage
                 spcl321d // Berserker Enrage secondary effect (becoming winded)
-                spcl815 // Monk Lay On Hands
-                spin827 // Mazzy Lay On Hands
+                spcl815 // Monk Lay On Hands - break casting sounds
+                spin827 // Mazzy Lay On Hands - break casting sounds
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%spell%.spl" BEGIN
     COPY_EXISTING "%spell%.spl" override
@@ -20,6 +20,10 @@ BEGIN
           header_type = "-1"
           speed = 0
       END
+	  PATCH_IF !(BYTE_AT 0x10 = 0b0) BEGIN // add Casting sound if needed
+	    READ_ASCII 0x10 snd_10
+		 LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 174 probability1 = 100 duration = 1 target = 1 STR_VAR resource = EVAL ~%snd_10%~ END
+	  END
     BUT_ONLY
   END
 END
