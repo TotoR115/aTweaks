@@ -1160,6 +1160,7 @@ DEFINE_PATCH_FUNCTION make_succubus BEGIN
     // =============================================================================== // the actual work starts from here
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~HELMNOAN~                                                         // removes HELMNOAN.ITM (no critical hit immunity in PnP)
+    REMOVE_CRE_ITEM ~FINSUCC~                                                          // removes FINSUCC.ITM (Ascension Weapon, not PnP)
     REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
     REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 	REPLACE_CRE_ITEM ~RR#DTANA~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~						   // PnP TANARI immunities

@@ -277,7 +277,6 @@ COPY ~atweaks/spl/rr#pyrot.spl~ ~override~                                      
     WRITE_SHORT (ab_off+i*0x28+0x26) %rr#pyrot%                                    // use new projectile (party friendly)
   END 
 
-
 // Wall of Fog
 
 COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         // Wall of Fog animation
@@ -340,7 +339,6 @@ LPF insect_spell_immunities END
 COPY ~atweaks/spl/mephits/rr#maigw.spl~ ~override~                                 // Gust of Wind
   SAY NAME1 @1850 SAY NAME2 @1850
 
-
 // Know Alignment (custom version, to avoid compatibility issues with Spell Revisions)
 
 COPY ~atweaks/spl/elementals/rr#ekal.spl~ ~override~                               // Know Alignment
@@ -348,7 +346,6 @@ COPY ~atweaks/spl/elementals/rr#ekal.spl~ ~override~                            
 // Iron Skins (Sunnis' version)
 
 COPY ~atweaks/spl/elementals/rr#esuis.spl~ ~override~                              // Iron Skins
-
 
 // Clone spells into innate abilities
 
@@ -371,7 +368,7 @@ LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END  
 COPY_EXISTING ~spwi304.spl~  ~override/rr#wi304.spl~                               // Clone Fireball into an innate ability
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi306.spl~  ~override/rr#wi306.spl~                               // Clone Hold Person into an innate ability (used by Pit Fiend)
+COPY_EXISTING ~spwi306.spl~  ~override/rr#wi306.spl~                               // Clone Hold Person into an innate ability (used by Cryonax)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi403.spl~  ~override/rr#wi403.spl~                               // Clone Fire Shield:Blue into an innate ability
@@ -440,10 +437,12 @@ BEGIN                                                                           
   END                                                                              // ends LAUNCH_PATCH_FUNCTION
 END                                                                                // ends PATCH_FOR_EACH
 BUT_ONLY_IF_IT_CHANGES
+LAF item_labels STR_VAR item = "RR#etrai" END
 
 COPY_EXISTING ~RING95.ITM~ ~override/rr#etrsl.itm~                 				   // fire and noble salamander traits "Ring"
 LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
 LAUNCH_PATCH_FUNCTION ~fire_salamander_immunities~ END                             // add salamander immunities
+LAF item_labels STR_VAR item = "RR#etrsl" END
 COPY_EXISTING ~RING95.ITM~ ~override/rr#etrfr.itm~                 				   // frost salamander traits "Ring"
 LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
 LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
@@ -830,7 +829,7 @@ REMOVE_MEMORIZED_SPELLS                                                         
 REMOVE_CRE_ITEM ~RING95~                                                           // Salamanders are not undead, they have their own specific set of immunities
 REPLACE_CRE_ITEM ~RR#EFRSA~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#EFRS2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // bite attack
-REPLACE_CRE_ITEM ~RR#etrsl~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
+REPLACE_CRE_ITEM ~RR#etrfr~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Frost Salamanders traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "9"                                                                   // new movement rate
@@ -1109,7 +1108,7 @@ ADD_MEMORIZED_SPELL ~rr#ecfir~ #0 ~innate~ ( 1 )                                
 ADD_MEMORIZED_SPELL ~rr#enlfr~ #0 ~innate~ ( 1 )                                   // adds 1x Lower Fire Resistance
 REPLACE_CRE_ITEM ~RR#ENSAL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#ENSA2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // tail attack
-REPLACE_CRE_ITEM ~RR#strai~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
+REPLACE_CRE_ITEM ~RR#etrsl~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "14"                                                                  // new movement rate
@@ -1246,7 +1245,7 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-COPY_EXISTING ~rr#ewwei.ITM~ ~override/rr#ewwef.itm~                 			   // Create alternate weapon for Fake water Weird (Nereid)
+COPY_EXISTING ~rr#ewwei.ITM~ ~override/rr#ewwef.itm~                 			   // Create alternate PnP weapon for Fake water Weird (Nereid)
   LPF DELETE_EFFECT INT_VAR match_opcode = 146 END								   // Remove Envelop effect
   LPF ALTER_ITEM_HEADER INT_VAR dicesize = 4 dicenumber = 1 damage_type = 2 END	   // Add 1D4 damages
 

@@ -24,7 +24,7 @@ IF
 !GlobalTimerNotExpired("flAura","LOCALS")
 THEN
 RESPONSE #100
-ReallyForceSpellRES("fl#ghast",Myself)
+ReallyForceSpellRES("fl#ghaau",Myself)
 SetGlobalTimer("flAura","LOCALS",6)
 Continue()
 END

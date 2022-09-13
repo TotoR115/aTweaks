@@ -1115,6 +1115,7 @@ BEGIN
             script03 = d0mummy //quest pack, "gaze of despair"
 			script04 = DW2MC0GE
             script05 = "mummy01'"
+            script06 = "mummy01"
         END
         // LPF cold_spell_immunities END
       END
@@ -1646,8 +1647,6 @@ ACTION_FOR_EACH file IN
 //			   c#ajske2 // Ajantis for BG2 - Not Tested
 			   cmskel01 // Dark Horizons
 			   cmskel02 // Dark Horizons
-			   dw#angsk // Stratagems
-			   dw#diask // Stratagems
 			   dw#semsk // Stratagems
 			   fhlskl1  // The Luxley Family
 			   fhlskl2  // The Luxley Family
@@ -1708,6 +1707,8 @@ ACTION_FOR_EACH file IN
                skelwa03
                _kelwa03
                bgskel03 //BG1
+			   dw#angsk // Stratagems
+			   dw#diask // Stratagems
 			   mh#sadet //Made in heaven Q&E
 			   mh#sadis //Made in heaven Q&E
 			   tg#dud2  // Refinements
@@ -1718,7 +1719,11 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~SKELETON~))  // Use Skeleton animation, bow animation does not work with other skeletons
-      LPF make_skeleton_warrior 
+	  READ_LONG 0x2b8 "item_offset"
+      PATCH_IF SHORT_AT "item_offset" = "-1" BEGIN
+	    REPLACE_CRE_ITEM ~HELM08~ #0 #0 #0 ~NONE~ ~HELMET~              // add Normal helm for appearence
+	  END
+	  LPF make_skeleton_warrior 
 	  STR_VAR
 	  notenf01 = anscelet
 	  END

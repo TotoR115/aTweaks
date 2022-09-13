@@ -212,7 +212,7 @@ STR_VAR                                                                         
 END                                                                                // ends FUNCTION
 END                                                                                // ends PATCH_FOR_EACH block
 BUT_ONLY_IF_IT_CHANGES                                                   
-
+LAF item_labels STR_VAR item = "RR#mimun" END
 
 COPY ~atweaks/itm/mephits/rr#mgasi.itm~ ~override~                                 // gas imunity ring (shared by several mephits)
 LAUNCH_PATCH_FUNCTION cloud_spell_immunities END                                   // grant immunities to gas-based area effect spells

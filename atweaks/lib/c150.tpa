@@ -1352,6 +1352,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY rr_script_ascension BEGIN
 ACTION_PHP_EACH rr_script_ascension AS file => script BEGIN
   COPY_EXISTING "%file%.cre" override
 	REPLACE_TEXTUALLY "%file%" "%script%" (8)
+	WRITE_ASCII 0x280 "%file%" #8 //Restore Death Variable
   END
 
 
