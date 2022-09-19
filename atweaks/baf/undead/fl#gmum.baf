@@ -3567,7 +3567,7 @@ THEN
 RESPONSE #100
 SetGlobalTimer("cast","LOCALS",6)
 Spell(Myself,CLERIC_HARM)
-SetGlobalTimer("flTouchAttack","LOCAL",12)
+SetGlobalTimer("flTouchAttack","LOCALS",12)
 END
 
 IF

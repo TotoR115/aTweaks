@@ -1033,6 +1033,7 @@ DEFINE_PATCH_FUNCTION make_alu-fiend BEGIN
 		"script17"   = "NTINDFI2"                                                      // NTotSC 
 		"script18"   = "NTINDFIG"                                                      // NTotSC 
 		"script19"   = "NTINDFIF"                                                      // NTotSC Alu-fiend script
+		"script20"   = "GRPSHT01"                                                      // NTotSC Alu-fiend script
         "skipfile01" = "AGALUF01"                                                      // skip script patching for a designated file
         "skipfile02" = "AGALUF02"                                                      // skip script patching for a designated file
     END                                                                                // ends FUNCTION call
@@ -1228,6 +1229,7 @@ DEFINE_PATCH_FUNCTION make_succubus BEGIN
         "script13"   = "DW2MC2GW"                                                      // Stratagems melee script
 		"script14"   = "ntfiends"                                                      // NTotSC Scripts
 		"script15"   = "ntsuccub"                                                      // NTotSC Scripts
+		"script16"   = "GRPSHT01"                                                      // NTotSC Alu-fiend script
 		"skipfile01" = "X#AMELIA"                                                      // BG1 NPC Project melee script
 		"skipfile02" = "FINSUCC"                                                       // Ascension demon script
     END                                                                                // ends FUNCTION call

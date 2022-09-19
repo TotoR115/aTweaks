@@ -173,6 +173,7 @@ COPY ~atweaks/bam/elementals/rr#eairw.bam~ ~override~                           
 COPY ~atweaks/spl/elementals/rr#eairw.spl~ ~override~                              // Whirlwind (Air Elemental)
 COPY ~atweaks/bam/elementals/rr#whirl.bam~ ~override~                      		   // Whirlwind BAM animation
 COPY ~atweaks/vvc/rr#whirl.vvc~ ~override~ 			                     		   // Whirlwind VVC animation
+COPY ~atweaks/wav/rr#whirl.wav~ ~override~ 			                     		   // Whirlwind WAV sound effect
 
 COPY ~atweaks/spl/elementals/rr#ecncl.spl~ ~override~                              // Elemental Concealment
 SAY NAME1 @2123 SAY NAME2 @2123
@@ -1251,7 +1252,7 @@ COPY_EXISTING ~rr#ewwei.ITM~ ~override/rr#ewwef.itm~                 			   // Cr
 
 COPY_EXISTING ~rr#ewwei.cre~ ~override/rr#ewwef.cre~                           	   // Create Fake Water Weird (hostile)
 REPLACE_CRE_ITEM ~fl#etrsu~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // add elemental traits (summons)
-REPLACE_CRE_ITEM ~RR#EWWEF~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace with a more accurate weapon frFake Water Weird
+REPLACE_CRE_ITEM ~RR#EWWEF~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace with a more accurate weapon for Fake Water Weird
 WRITE_BYTE 0x10 (THIS BOR BIT1)                        							   //Set 'No corpse' (BIT1)
 WRITE_LONG 0x14	0																   // new XP value (summons do not grant xp)
 WRITE_BYTE 0x52 17												 				   // new THAC0 value (hit like a 4HD Creature)
