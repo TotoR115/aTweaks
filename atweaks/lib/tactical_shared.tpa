@@ -1,7 +1,7 @@
 INCLUDE ~atweaks/lib/symbols.tpa~
 INCLUDE "atweaks/lib/ds/item_labels.tpa"
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME fl#labelled_weapons.mrk BEGIN
+ACTION_IF NOT (FILE_EXISTS_IN_GAME fl#labelled_weapons.mrk OR MOD_IS_INSTALLED "setup-stratagems.tp2" "5900") BEGIN
   INCLUDE "atweaks/lib/DS/label_weapons.tph"                                        //Lifted from SCSII
   OUTER_SET ~weapon_enchantment_stat~=109
   OUTER_SET ~weapon_enchantment_type~=233
@@ -10,7 +10,7 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME fl#labelled_weapons.mrk BEGIN
   /// the ~type~ codes
   LAUNCH_ACTION_MACRO ~label_weapons~
   COPY_EXISTING sw1h01.itm "override/fl#labelled_weapons.mrk"
-END
+END ELSE COPY_EXISTING sw1h01.itm "override/fl#labelled_weapons.mrk"
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME fl#labelled_item.mrk BEGIN
   LAF item_labels END

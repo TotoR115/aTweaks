@@ -1292,7 +1292,7 @@ COPY_EXISTING "REVENT2.itm" "override/rr#revnt.itm"
 COPY 	 "atweaks\spl\fl#die.spl" "override/fl#rvdie.spl"
 	LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = "rr#rvdie" END
 COPY 	 "atweaks\spl\fl#back.spl" "override/fl#rvbac.spl"
-	LPF ALTER_EFFECT STR_VAR match_resource = "REVNREG" resource = "rr#rvreg" END
+	LPF ALTER_EFFECT STR_VAR match_resource = "REVNREG" resource = "fl#rvreg" END
 COPY 	 "atweaks\spl\fl#itm.spl" "override/fl#rvitm.spl"
 COPY 	 "atweaks\itm\undead\fl#Revn1.itm" "override/rr#rvdie.itm"
 
