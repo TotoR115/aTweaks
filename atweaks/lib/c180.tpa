@@ -361,16 +361,26 @@ ADD_CRE_ITEM ~RR#MIMUN~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                         
 REMOVE_CRE_ITEM ~MOVRAT10~                                                         // removes MOVRAT10.ITM (movement rate is handled differently)
 REMOVE_CRE_ITEM ~REGHP1~                                                           // removes REGHP1.ITM (mephit regeneration is handled differently in aTweaks)
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
-PATCH_IF NOT (("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUST~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUS25~)) BEGIN
-  REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-  REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-END                                                            // Remove all memorized spells from the current creature
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_MEMORIZED_SPELL ~rr#dmfea~ #0 ~innate~ ( 3 )                                   // adds 3x Glass Dust
 // LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
 // LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+newxpv = 1400
+PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUST~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUS25~) BEGIN
+  newxpv = 0
+  LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~                                        // delete the EFF with the designated opcode
+    INT_VAR opcode_to_delete = "-1" END                                            // all
+	REPLACE_CRE_ITEM ~FAMMY~ #0 #0 #0 ~UNDROPPABLE~ ~BELT~					   	   // Add Remove fog of war item
+END
+PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUS25~) BEGIN
+	ADD_MEMORIZED_SPELL ~spwi408~ #0 ~wizard~ ( 1 )                                // adds 1x Stoneskin
+	ADD_MEMORIZED_SPELL ~spwi714~ #0 ~wizard~ ( 1 )                                // adds 1x Prismatic Spray
+END
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
-"newxpv"   = "420"                                                                 // new XP value
+ newxpv			                                                                   // new XP value
 "newhp"    = "24"                                                                  // new hit point value
 "newac"    = "6"                                                                   // new Armor Class value
 "newth"    = "17"                                                                  // new THAC0 value
@@ -411,14 +421,11 @@ STR_VAR                                                                         
 "script06"   = "DW#MELEE"                                                          // SCSII melee script
 "script07"   = "MEPDUS"                                                            // original Dust Mephit script
 "script08"   = "HUMANSHT"                                                          // Big Picture shout script
-"skipfile01" = "FAMDUST"                                                          // skip script patching for a designated file
+"skipfile01" = "FAMDUST"                                                           // skip script patching for a designated file
 "skipfile02" = "FAMDUS25"                                                          // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 // LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
 // =============================================================================== // the actual work ends here
-PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUST~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~FAMDUS25~)) BEGIN
-  WRITE_SHORT 0x14 0                                                                // Remove all known spells from the current creature
-END
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -447,8 +454,8 @@ REMOVE_MEMORIZED_SPELLS                                                         
 // LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
-"newmove"  = "18"                                                                  // new movement rate
 "newxpv"   = "420"                                                                 // new XP value
+"newmove"  = "18"                                                                  // new movement rate
 "newhp"    = "26"                                                                  // new hit point value
 "newac"    = "5"                                                                   // new Armor Class value
 "newth"    = "17"                                                                  // new THAC0 value

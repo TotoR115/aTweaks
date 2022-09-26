@@ -181,9 +181,9 @@ COPY ~aTweaks/SPL/RR#CNSTR.SPL~ ~override~                                      
 COPY ~aTweaks/EFF/RR#CNSTR.EFF~ ~override~                                         // Constrict ability immunity (for large and incorporeal creatures)
 COPY ~aTweaks/VVC/RR#CNSTR.VVC~ ~override~                                         // Constrict/Grab/Flaming Whip ability VVC animation
 COPY ~aTweaks/BAM/RR#CNSTR.BAM~ ~override~                                         // Constrict/Grab/Flaming Whip ability BAM graphics
-COPY ~aTweaks/VVC/RR#WHIP.VVC~ ~override~                                          // Whip VVC animation
-COPY ~aTweaks/BAM/RR#WHIP.BAM~ ~override~                                          // Whip BAM graphics
-COPY ~aTweaks/WAV/RR#WHIP.WAV~ ~override~                                          // Whip sound
+// COPY ~aTweaks/VVC/RR#WHIP.VVC~ ~override~                                          // Whip VVC animation
+// COPY ~aTweaks/BAM/RR#WHIP.BAM~ ~override~                                          // Whip BAM graphics
+// COPY ~aTweaks/WAV/RR#WHIP.WAV~ ~override~                                          // Whip sound
 COPY ~aTweaks/SPL/RR#DPDIS.SPL~ ~override~                                         // Pit Fiend disease (-4 to STR, non-cumulative)
   WRITE_BYTE 0x27 fl#Disease                                                       // Custom Disease SecType 
 
@@ -370,6 +370,7 @@ COPY_EXISTING ~SPWISH38.SPL~  ~override/RR#WSH38.SPL~                           
   WRITE_SHORT  ("%abil_off%" + 0x26 + (0x28 * "%index%")) "254"                    // projectile: 254 (BIGNAREA)
   END
 
+COPY ~atweaks/spl/rr#im416.SPL~  ~override~										   // Polymorph Self: Black Bear and Spider (used by Imp)
 COPY_EXISTING ~SPWI104.SPL~  ~override/RR#DSUGG.SPL~                               // Change Charm Person into Suggestion (used by Imp)
   SAY NAME1 @708 SAY NAME2 @708                                                    // Suggestion
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
@@ -411,6 +412,7 @@ WRITE_SHORT 0x22 "11"                                                           
   END
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
+COPY ~atweaks/spl/rr#qu416.SPL~  ~override~										   // Polymorph Self: Wolf and Mustard jelly (used by Quasits)
 COPY_EXISTING ~SPWI205.SPL~  ~override/rr#dmfea.spl~                               // Change Horror into Blast of Fear (used by Quasits)
   SAY NAME1 @748 SAY NAME2 @748                                                    // Blast of Fear
 WRITE_ASCII 0x10 "CAS_M01" #8                                                      // casting sound: CAS_M01.WAV
@@ -504,6 +506,8 @@ LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                   
 
 COPY_EXISTING ~SPWI206.SPL~  ~override/RR#WI206.SPL~                               // Clone Invisibility into an innate ability (used by Erinyes)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+COPY_EXISTING ~SPWI206.SPL~  ~override/RR#WR206.SPL~                               // Clone Invisibility into an innate ability at will (used by imps and quasits)
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew"   = "1" END   // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPWI212.SPL~  ~override/RR#WI212.SPL~                               // Clone Mirror Image into an innate ability (used by Glabrezu)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
