@@ -486,7 +486,6 @@ ACTION_FOR_EACH file IN
 		ghasts   // Tiax' summoned ghast
 		_ghasts
 		Grael    // BG1 Grael
-		sewerf3  // BG1 Sewerfolk
 		besamen  // Quest Pack
 		bpghast  // BP
 		bgghast  // Aec'Letec's death ray, BGT // BP
@@ -2155,7 +2154,6 @@ ACTION_FOR_EACH file IN
                 _ombie_d
                 zombie_e
                 _ombie_e
-				sewerf2  //BG1 Sewerfolk
 				c#q06002 // BGQE
 				crcre004 // The Old Gold
 				CRCRE009 // The Old Gold

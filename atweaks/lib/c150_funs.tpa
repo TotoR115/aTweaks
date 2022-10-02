@@ -704,6 +704,7 @@ DEFINE_PATCH_FUNCTION make_pit_fiend INT_VAR enforce = 0 BEGIN
 		  "script14"   = "DEMPIT2"                                                     // RoT Demon AI
 		  "script15"   = "WTASI2"                                                      // RoT Demon AI
 		  "script16"   = "esxcd01"                                                     // Elistraee mod Demon AI
+		  "script17"   = "wqxdem"                                                      // White queen mod Demon AI
           "skipfile01" = "GORBAT1"                                                     // skip script patching for a designated file
           "skipfile02" = "tg#dem1"                                                     // skip script patching for a designated file 
           "skipfile03" = "CADDEM18"                                                    // skip script patching for a designated file 
@@ -1785,6 +1786,7 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
  		"script34"   = "DW2MC3GE"                                                      // Stratagems melee script
  		"script35"   = "DW2MS3GE"                                                      // Stratagems melee script
  		"script36"   = "DW2MM2GE"                                                      // Tales of Anegh script
+ 		"script37"   = "O#LLFIGH"                                                      // melee fighting script
         "skipfile01" = "GORTAN1"                                                       // skip script patching for a designated file
         "skipfile02" = "M05DEMON"                                                      // skip script patching for a designated file
         "skipfile03" = "GORDEMC1"                                                      // skip script patching for a designated file

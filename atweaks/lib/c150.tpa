@@ -332,6 +332,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
 				  ~z#gpit01~                                                         //Pit Fiend  (Spellhold Gauntlet)
 				  ~z#gpitfd~                                                         //Pit Fiend  (Spellhold Gauntlet)
 				  ~esxcd~                                                         	 //Pit Fiend  (Elistraee demon)
+//			        ~wqxdem~                                                         //Bound Demon (white queen)
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
@@ -806,6 +807,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
                ~errtu~                                                              // Balor (TDD)
 			   ~FINBALOR~                                                           // Balor (Ascension)
                ~godmari4~                                                           // Balor (RoT) 
+               ~O#LLDEM~                                                            // Balor (xxx)
 			   ~R#DEMON~                                                            // Balor (Improved Asylum)
                ~tannar2~                                                            // Balor (RoT) 
                ~tannar3~                                                            // Balor (RoT)  
