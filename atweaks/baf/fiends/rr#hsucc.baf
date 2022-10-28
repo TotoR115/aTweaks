@@ -1608,6 +1608,7 @@ THEN
 END
 
 IF
+    Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
 	!GlobalTimerNotExpired("RR#Move","LOCALS")
 	!StateCheck([EVILCUTOFF.HUMANOID.0.0.0.MALE],STATE_CHARMED)
 THEN

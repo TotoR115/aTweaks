@@ -35,7 +35,12 @@ BEGIN                                                                           
       WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-END                                                                                // ends ACTION_FOR_EACH block
+END                                                                         // ends ACTION_FOR_EACH block
+COPY_EXISTING ~FAMIMP.cre~ ~override~ 
+  WRITE_SHORT 0x24 24
+  WRITE_SHORT 0x26 24
+  WRITE_BYTE  0x234 3 
+BUT_ONLY
 ACTION_IF FiendsOriginal = 0 BEGIN
   ACTION_FOR_EACH file IN
                ~TCIMP01~                                                           // Imp (Classic Adventures)

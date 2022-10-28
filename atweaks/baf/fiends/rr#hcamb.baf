@@ -1845,6 +1845,7 @@ THEN
 END
 
 IF
+    Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
 	!GlobalTimerNotExpired("RR#Move","LOCALS")
 	!GlobalTimerNotExpired("RR#Telwx","LOCALS") // teleport cooldown timer
 THEN

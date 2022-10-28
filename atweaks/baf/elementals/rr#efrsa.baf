@@ -91,6 +91,16 @@ THEN
         DisplayStringHead(LastSeenBy(Myself),@2006) // I shall burn you to ashes, worm!
 END
 
+IF
+    OR(2)
+      HasItemEquiped("RR#EFSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Fire Salamander
+      HasItemEquiped("RR#ENSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Salamander Noble
+    See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
+THEN
+    RESPONSE #100
+		AttackReevaluate(LastSeenBy(Myself),15)
+END
+
 IF         // Note: Frost Salamanders have deliberately poor targeting. As per PnP they simply attack the closest creature. They do know how to avoid panicked and immune creatures though
     OR(6)  // note: this block specifically checks for Players in order to target unconscious opponents (if any) since they can't be seen otherwise
       See(Player1)
@@ -180,17 +190,6 @@ THEN
 END
 
 IF
-    OR(2)
-      HasItemEquiped("RR#EFSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Fire Salamander
-      HasItemEquiped("RR#ENSAL",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Salamander Noble
-    See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
-    False()
-THEN
-    RESPONSE #100
-        NoAction()
-END
-
-IF
 	Global("RR#NOPND","GLOBAL",0) // opening doors is allowed
     Allegiance(Myself,EVILCUTOFF) // humanoids and some intelligent monsters can open unlocked doors
     !AreaType(OUTDOOR)
@@ -226,6 +225,7 @@ THEN
 END
 
 IF
+    Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
     !GlobalTimerNotExpired("RR#Move","LOCALS")
 THEN
     RESPONSE #100

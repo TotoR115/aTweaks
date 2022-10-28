@@ -233,6 +233,7 @@ END
 
 IF
     !GlobalTimerNotExpired("RR#Move","LOCALS")
+    Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
 THEN
     RESPONSE #100
         RandomWalkContinuous()

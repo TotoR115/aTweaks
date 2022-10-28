@@ -363,7 +363,7 @@ REMOVE_CRE_ITEM ~REGHP1~                                                        
 REMOVE_CRE_ITEM ~IMMCLOUD~                                                         // removes IMMCLOUD.ITM (immunity to cloud spells is handled differently)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_MEMORIZED_SPELL ~rr#dmfea~ #0 ~innate~ ( 3 )                                   // adds 3x Glass Dust
+ADD_MEMORIZED_SPELL ~rr#mdugd~ #0 ~innate~ ( 3 )                                   // adds 3x Glass Dust
 // LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
 // LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
 newxpv = 1400

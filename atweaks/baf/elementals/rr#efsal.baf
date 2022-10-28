@@ -75,6 +75,14 @@ THEN
 END
 
 IF
+    HasItemEquiped("RR#EFRSA",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Frost Salamander
+    See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
+THEN
+    RESPONSE #100
+		AttackReevaluate(LastSeenBy(Myself),15)
+END
+
+IF
     OR(6)  // note: this block specifically checks for Players in order to target unconscious opponents (if any) since they can't be seen otherwise
       See(Player1)
       See(Player2)
@@ -406,15 +414,6 @@ THEN
 END
 
 IF
-    HasItemEquiped("RR#EFRSA",[0.0.ELEMENTAL.ELEMENTAL_FIRE]) // Frost Salamander
-    See([0.0.ELEMENTAL.ELEMENTAL_FIRE])
-    False()
-THEN
-    RESPONSE #100
-        NoAction()
-END
-
-IF
 	Global("RR#NOPND","GLOBAL",0) // opening doors is allowed
     Allegiance(Myself,EVILCUTOFF) // humanoids and some intelligent monsters can open unlocked doors
     !AreaType(OUTDOOR)
@@ -451,6 +450,7 @@ THEN
 END
 
 IF
+    Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
     !GlobalTimerNotExpired("RR#Move","LOCALS")
 THEN
     RESPONSE #100
