@@ -545,6 +545,38 @@ The summoned creatures aid the caster by whatever means they possess, staying un
 @1929 = ~Giant Bear~
 @1930 = ~Smilodon~
 
+// PnP spiders
+
+@1940 = ~Spider Spawn (Conjuration/Summoning)
+Level: 4
+Range: 40 yards
+Duration: 6 rounds + 1 round/level
+Casting Time: 6
+Area of Effect: Special
+Saving Throw: None
+
+Upon casting this spell the wizard conjures 1d3 spider eggs into existence, quickly producing fully grown spiders that remain under the wizard's telepathic control.  The type of spiders that appear depend upon the level of the wizard casting the spell.
+7th : Huge Spider
+9th : Giant Spider
+12th : Phase Spider
+16th+ : Astral Phase Spider (only one)
+These spider(s) will remain under the wizard's control until slain, or the spell duration expires.~
+@1941 = ~Astral Phase Spider~
+@1942 = ~Wyvern Call (Conjuration/Summoning) 
+Level: 6
+Range: 40 yards 
+Duration: 1 round/level
+Casting Time: 1 round
+Area of Effect: Special 
+Saving Throw: None 
+
+When this spell is cast the wizard opens up a magical channel that will summon 1d3 wyvern to his aid.  Those creatures will be totally under his mental control with no chance of it turning on him except, of course, through magical means like charm monster.  Those creatures will remain under the wizard's control, and will live and die at his command until the spell duration expires.~
+
+// PnP Oooze
+
+@1950 = ~Slime Zombie~
+@1951 = ~Olive Slime~
+
 // PnP Elementals
 
 @2001 = ~Hsss! The fiery one mussst die!~
