@@ -371,9 +371,9 @@ REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~rr#fdrya.bcs~ @1908                      
 INCLUDE ~atweaks/lib/186-woodland_beings.tpa~
 
 
-/*
+
 /////////////////////////////////////
-// PnP Spiders, Snakes and Ettercaps
+// PnP Spiders and Ettercaps
 /////////////////////////////////////
 
 BEGIN @187 DESIGNATED 187 // PnP Spiders, Snakes and Ettercaps
@@ -382,7 +382,7 @@ REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
 INCLUDE "atweaks/lib/c187.tpa"
 
-
+/*
 //////////////////////
 // PnP Ooze creatures
 //////////////////////
@@ -392,7 +392,7 @@ GROUP @1 // PnP Tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
 INCLUDE "atweaks/lib/c188.tpa"
-
+*/
 
 ///////////////////////
 // PnP Plant creatures
@@ -403,7 +403,7 @@ GROUP @1 // PnP Tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
 INCLUDE "atweaks/lib/c189.tpa"
-*/
+
 
 
 //////////////////
