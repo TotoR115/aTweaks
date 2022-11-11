@@ -1,0 +1,467 @@
+IF
+	See("ysKalun")  // Kalun Trimthorn - Kalun
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(Myself),30)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	OR(3)
+		Class(NearestEnemyOf(Myself),DRUID_ALL)
+		Class(NearestEnemyOf(Myself),RANGER_ALL)
+		Race(NearestEnemyOf(Myself),FAIRY)
+	NumCreatureGT([ENEMY],1)
+THEN
+	RESPONSE #100
+		ChangeEnemyAlly(Myself,NEUTRAL)
+END
+
+IF
+    Global("RR#Active","LOCALS",0)
+	!Allegiance(Myself,GOODCUTOFF)
+    OR(3)
+      AttackedBy([ANYONE],DEFAULT)
+      TookDamage()
+	  Heard([EVILCUTOFF.0.117],44)
+THEN
+    RESPONSE #100
+        SetGlobal("RR#Active","LOCALS",1)
+        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+        Enemy()
+        Shout(44)
+		Continue()
+END
+
+IF
+    Global("RR#Active","LOCALS",0)
+    Allegiance(Myself,EVILCUTOFF)
+    See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
+THEN
+    RESPONSE #100
+    SetGlobal("RR#Active","LOCALS",1)
+    SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+    Enemy()
+    Shout(44)
+    Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every rounds while in combat, others may hear it and join the battle
+	Allegiance(Myself,EVILCUTOFF)
+	See([GOODCUTOFF])
+THEN
+	RESPONSE #100
+		SetGlobalTimer("RR#Help","LOCALS",6)
+		Shout(44)
+		Continue()
+END
+
+IF
+!Detect(NearestEnemyOf(Myself))
+Global("RR#Rest","LOCALS",1)
+!GlobalTimerNotExpired("RR#RestTimer","LOCALS")
+THEN
+RESPONSE #100
+SetGlobal("RR#Rest","LOCALS",0)
+ApplySpell(Myself,RESTORE_FULL_HEALTH)
+Rest()
+END
+
+IF
+!GlobalTimerNotExpired("RR#RestTimer","LOCALS")
+Detect(NearestEnemyOf(Myself))
+Global("RR#Rest","LOCALS",0)
+THEN
+RESPONSE #100
+SetGlobalTimer("RR#RestTimer","LOCALS",2400)
+SetGlobal("RR#Rest","LOCALS",1)
+Continue()
+END
+
+IF
+Global("RR#Active","LOCALS",0)
+HitBy([GOODCUTOFF],0)
+!Allegiance(Myself,GOODCUTOFF)
+THEN
+RESPONSE #100
+SetGlobal("RR#Active","LOCALS",1)
+Enemy()
+Continue()
+END
+
+IF
+Global("RR#Active","LOCALS",0)
+Allegiance(Myself,EVILCUTOFF)
+See([GOODCUTOFF])
+THEN
+RESPONSE #100
+SetGlobal("RR#Active","LOCALS",1)
+Continue()
+END
+
+IF
+OR(13)
+HitBy([GOODCUTOFF],0)
+AttackedBy([GOODCUTOFF.0.0.0.0.SUMMONED],DEFAULT)
+AttackedBy([PC],DEFAULT)
+AttackedBy([FAMILIAR],DEFAULT)
+AttackedBy([ALLY],DEFAULT)
+AttackedBy([CONTROLLED],DEFAULT)
+AttackedBy([CHARMED],DEFAULT)
+SpellCastOnMe([GOODCUTOFF.0.0.0.0.SUMMONED],0)
+SpellCastOnMe([PC],0)
+SpellCastOnMe([FAMILIAR],0)
+SpellCastOnMe([ALLY],0)
+SpellCastOnMe([CONTROLLED],0)
+SpellCastOnMe([CHARMED],0)
+!GlobalTimerNotExpired("whatthe","LOCALS")
+!See([GOODCUTOFF])
+THEN
+RESPONSE #100
+Enemy()
+SetGlobalTimer("whatthe","LOCALS",12)
+Continue()
+END
+
+IF
+!See([GOODCUTOFF])
+GlobalTimerNotExpired("whatthe","LOCALS")
+THEN
+RESPONSE #100
+RandomWalkContinuous()
+END
+
+IF
+See([GOODCUTOFF])
+GlobalTimerNotExpired("whatthe","LOCALS")
+THEN
+RESPONSE #100
+ClearActions(Myself)
+SetGlobalTimer("whatthe","LOCALS",0)
+END
+
+IF
+Allegiance(Myself,EVILCUTOFF)
+Global("RR#Active","LOCALS",0)
+!Detect(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+NoAction()
+END
+
+IF
+StateCheck(Myself,STATE_PANIC)
+THEN
+RESPONSE #100
+RandomWalkContinuous()
+END
+
+IF
+StateCheck(Myself,STATE_CHARMED)
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+!Range(LastSeenBy(Myself),5)
+THEN
+RESPONSE #100
+MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+StateCheck(Myself,STATE_CHARMED)
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+Range(LastSeenBy(Myself),5)
+THEN
+RESPONSE #100
+Attack(LastSeenBy(Myself))
+END
+
+IF
+Allegiance(Myself,NEUTRAL)
+Range([GOODCUTOFF],10)
+!See([PC.0.0.DRUID_ALL])
+!See([PC.0.0.RANGER_ALL])
+!See([GOODCUTOFF.0.FAIRY])
+THEN
+RESPONSE #100
+Enemy()
+END
+
+IF
+Allegiance(Myself,NEUTRAL)
+AttackedBy([ANYONE],DEFAULT)
+!See([PC.0.0.DRUID_ALL])
+!See([PC.0.0.RANGER_ALL])
+!See([GOODCUTOFF.0.FAIRY])
+THEN
+RESPONSE #100
+Enemy()
+END
+
+IF
+HitBy([ANYONE],FIRE)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+PlaySound("WOLFF01")
+RunAwayFromNoInterrupt(LastAttackerOf(Myself),200)
+SetInterrupt(TRUE)
+END
+
+IF
+AreaType(OUTDOOR)
+Allegiance(Myself,ENEMY)
+HPPercentLT(Myself,30)
+!NumCreatureGT([ENEMY.0.117],1)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+RunAwayFromNoInterrupt([PC],120)
+SetInterrupt(TRUE)
+END
+
+IF
+AreaType(OUTDOOR)
+Allegiance(Myself,ENEMY)
+LevelPartyGT(3)
+!NumCreatureGT([0.0.117],2)
+Global("RR#neutral","LOCALS",0)
+THEN
+RESPONSE #100
+SetGlobal("RR#neutral","LOCALS",2)
+ChangeEnemyAlly(Myself,NEUTRAL)
+RandomWalkContinuous()
+END
+
+IF
+AreaType(OUTDOOR)
+Allegiance(Myself,ENEMY)
+!Detect([PC])
+Global("RR#neutral","LOCALS",0)
+THEN
+RESPONSE #100
+SetGlobal("RR#neutral","LOCALS",1)
+ChangeEnemyAlly(Myself,NEUTRAL)
+END
+
+IF
+	Detect([PC])
+	!Range(LastSeenBy(Myself),15)
+	!GlobalTimerNotExpired("RR#Move","LOCALS")
+	See([0.0.0.FOOD_CREATURE])
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(Myself),30)
+END
+
+IF
+See(NearestEnemyOf(Myself))
+Range(NearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),30)
+END
+
+IF
+See(SecondNearestEnemyOf(Myself))
+Range(SecondNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+END
+
+IF
+See(ThirdNearestEnemyOf(Myself))
+Range(ThirdNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+END
+
+IF
+See(FourthNearestEnemyOf(Myself))
+Range(FourthNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+END
+
+IF
+See(FifthNearestEnemyOf(Myself))
+Range(FifthNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+END
+
+IF
+See(SixthNearestEnemyOf(Myself))
+Range(SixthNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+END
+
+IF
+ActionListEmpty()
+See(NearestEnemyOf(Myself))
+Allegiance(Myself,EVILCUTOFF)
+THEN
+RESPONSE #100
+MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SecondNearestEnemyOf(Myself))
+Allegiance(Myself,EVILCUTOFF)
+THEN
+RESPONSE #100
+MoveToObject(SecondNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(ThirdNearestEnemyOf(Myself))
+Allegiance(Myself,EVILCUTOFF)
+THEN
+RESPONSE #100
+MoveToObject(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FourthNearestEnemyOf(Myself))
+Allegiance(Myself,EVILCUTOFF)
+THEN
+RESPONSE #100
+MoveToObject(FourthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FifthNearestEnemyOf(Myself))
+Allegiance(Myself,EVILCUTOFF)
+THEN
+RESPONSE #100
+MoveToObject(FifthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SixthNearestEnemyOf(Myself))
+Allegiance(Myself,EVILCUTOFF)
+THEN
+RESPONSE #100
+MoveToObject(SixthNearestEnemyOf(Myself))
+END
+
+IF
+See(LastAttackerOf(Myself))
+ActionListEmpty()
+!Allegiance(Myself,ENEMY)
+AttackedBy([ANYONE],DEFAULT)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(LastAttackerOf(Myself),30)
+END
+
+IF
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+Allegiance(Myself,EVILCUTOFF)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),30)
+END
+
+IF
+	!Allegiance(Myself,GOODCUTOFF)
+    !GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
+    Heard([EVILCUTOFF.0.117],44)
+    InMyArea(LastHeardBy(Myself))
+    !StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("RR#Move","LOCALS",6)
+        MoveToObject(LastHeardBy(Myself))
+END
+
+IF
+	Delay(2)
+	!GlobalTimerNotExpired("RR#Move","LOCALS")
+	OR(2)
+		!Detect([GOODCUTOFF])
+		Allegiance(Myself,NEUTRAL)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END
+
+IF
+Allegiance(Myself,NEUTRAL)
+Global("RR#neutral","LOCALS",1)
+Range([GOODCUTOFF],20)
+THEN
+RESPONSE #100
+Enemy()
+SetGlobal("RR#neutral","LOCALS",0)
+END
+
+IF
+Allegiance(Myself,NEUTRAL)
+Detect([GOODCUTOFF])
+LevelPartyLT(4)
+Global("RR#neutral","LOCALS",1)
+THEN
+RESPONSE #100
+Enemy()
+SetGlobal("RR#neutral","LOCALS",0)
+END
+
+IF
+AreaType(OUTDOOR)
+Allegiance(Myself,NEUTRAL)
+!Range([PC],20)
+See([0.0.117])
+!Range([0.0.117],15)
+Global("RR#neutral","LOCALS",1)
+THEN
+RESPONSE #100
+MoveToObject([0.0.117])
+Continue()
+END
+
+IF
+AreaType(OUTDOOR)
+Allegiance(Myself,NEUTRAL)
+!NumCreatureGT([0.0.117],1)
+Global("RR#neutral","LOCALS",1)
+THEN
+RESPONSE #100
+RandomWalkContinuous()
+END
+
+IF
+Allegiance(Myself,NEUTRAL)
+AttackedBy([ANYONE],DEFAULT)
+THEN
+RESPONSE #100
+Enemy()
+SetGlobal("RR#neutral","LOCALS",1)
+END

@@ -1,0 +1,184 @@
+IF
+HasItem("RR#DINV",Myself)
+THEN
+RESPONSE #100
+DestroyItem("RR#DINV")
+Continue()
+END
+
+IF
+    OR(2)
+      StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
+      StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+Allegiance(LastSummonerOf(Myself),ENEMY)
+OR(2)
+!StateCheck(LastSummonerOf(Myself),STATE_CHARMED)
+!Allegiance(Myself,GOODCUTOFF)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+Enemy()
+ChangeAIScript("rr#wdog",OVERRIDE)
+SetInterrupt(TRUE)
+END
+
+IF
+StateCheck(Myself,STATE_CHARMED)
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+THEN
+RESPONSE #100
+Attack(LastSeenBy(Myself))
+END
+
+IF
+    StateCheck(Myself,STATE_PANIC)  // needed because the AI can perform script actions (i.e. drink potions) while panicked, unlike the player
+THEN
+    RESPONSE #100
+        RandomWalkContinuous() // using this instead of NoAction() because otherwise panicked characters would stand in place
+END
+
+IF
+  ActionListEmpty()
+  !Range(LastSummonerOf(Myself),10)
+  !See(LastSummonerOf(Myself))
+  CombatCounter(0)
+  !Exists([EVILCUTOFF.0.0.0.0.0.0])
+THEN
+  RESPONSE #100
+    SetGlobal("rr#comeback","LOCALS",1)
+    FollowObjectFormation(LastSummonerOf(Myself), 3, 6)
+END
+
+IF
+  Global("rr#comeback","LOCALS",1)
+  OR(2)
+     Exists([EVILCUTOFF.0.0.0.0.0.0])
+     !CombatCounter(0)
+THEN
+  RESPONSE #100
+    SetGlobal("rr#comeback","LOCALS",0)
+    ClearActions(Myself)
+    Continue()
+END
+
+IF
+ActionListEmpty()
+See(NearestEnemyOf(Myself))
+Range(NearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),30)
+END
+
+IF
+ActionListEmpty()
+See(SecondNearestEnemyOf(Myself))
+Range(SecondNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+END
+
+IF
+ActionListEmpty()
+See(ThirdNearestEnemyOf(Myself))
+Range(ThirdNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+END
+
+IF
+ActionListEmpty()
+See(FourthNearestEnemyOf(Myself))
+Range(FourthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+END
+
+IF
+ActionListEmpty()
+See(FifthNearestEnemyOf(Myself))
+Range(FifthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+END
+
+IF
+ActionListEmpty()
+See(SixthNearestEnemyOf(Myself))
+Range(SixthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+END
+
+IF
+ActionListEmpty()
+See(NearestEnemyOf(Myself))
+
+THEN
+RESPONSE #100
+MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SecondNearestEnemyOf(Myself))
+
+THEN
+RESPONSE #100
+MoveToObject(SecondNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(ThirdNearestEnemyOf(Myself))
+
+THEN
+RESPONSE #100
+MoveToObject(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FourthNearestEnemyOf(Myself))
+
+THEN
+RESPONSE #100
+MoveToObject(FourthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FifthNearestEnemyOf(Myself))
+
+THEN
+RESPONSE #100
+MoveToObject(FifthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SixthNearestEnemyOf(Myself))
+
+THEN
+RESPONSE #100
+MoveToObject(SixthNearestEnemyOf(Myself))
+END
+
