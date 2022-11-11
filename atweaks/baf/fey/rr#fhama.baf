@@ -78,13 +78,14 @@ IF
 	OR(3)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
-	  Help([EVILCUTOFF.0.FAIRY]) // other fey creatures
+	  Heard([EVILCUTOFF.0.FAIRY],99) // other fey creatures
 THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
-		Help()
+		Shout(99)
+		Continue()
 END
 
 IF
@@ -96,7 +97,8 @@ THEN
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
-		Help()
+		Shout(99)
+		Continue()
 END
 
 IF
@@ -136,7 +138,8 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Help","LOCALS",12)
-		Help()
+		Shout(99)
+		Continue()
 END
 
 IF
@@ -1541,13 +1544,13 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
     !Allegiance(Myself,GOODCUTOFF)
-	Help([EVILCUTOFF.0.FAIRY]) // other fey creatures
-    InMyArea(LastHelp(Myself))
-	!StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
+	Heard([EVILCUTOFF.0.FAIRY],99) // other fey creatures
+    InMyArea(LastHeardBy(Myself))
+	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Move","LOCALS",6)
-		MoveToObject(LastHelp(Myself))
+		MoveToObject(LastHeardBy(Myself))
 END
 
 IF

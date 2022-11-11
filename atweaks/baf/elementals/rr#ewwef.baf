@@ -11,13 +11,14 @@ IF
     OR(3)
       AttackedBy([ANYONE],DEFAULT)
       TookDamage()
-      Help([EVILCUTOFF.0.ELEMENTAL])
+      Heard([EVILCUTOFF.0.ELEMENTAL],89)
 THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
         Enemy()
-        Help()
+        Shout(89)
+		Continue()
 END
 
 IF
@@ -29,7 +30,8 @@ THEN
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
         Enemy()
-        Help()
+        Shout(89)
+		Continue()
 END
 
 IF
@@ -91,149 +93,468 @@ END
 
 IF
     !GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other elementals may hear it and join the battle
+	Allegiance(Myself,EVILCUTOFF)
     See([GOODCUTOFF])
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Help","LOCALS",12)
-        Help()
+        Shout(89)
+		Continue()
 END
 
 IF
-See(NearestEnemyOf(Myself))
-Range(NearestEnemyOf(Myself),5)
+	HitBy([ANYONE],COLD)
+    !StateCheck(Myself,STATE_SLOWED)
+    !GlobalTimerNotExpired("rr#ewwsl","LOCALS")
 THEN
-RESPONSE #100
+	RESPONSE #100
+        SetGlobalTimer("rr#ewwsl","LOCALS",12)
+		ApplySpellRES("rr#ewwsl",Myself) // Slow
+END
+
+IF
+    OR(6)  // note: this block specifically checks for Players in order to target unconscious opponents (if any) since they can't be seen otherwise
+      See(Player1)
+      See(Player2)
+      See(Player3)
+      See(Player4)
+      See(Player5)
+      See(Player6)
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([GOODCUTOFF],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    See([GOODCUTOFF]) // note: this block is intended to check for opponents who may be panicked
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SixthNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SixthNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(SixthNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(FifthNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(FifthNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(FifthNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(FourthNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(FourthNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    CheckStatGT(FourthNearest([GOODCUTOFF.HUMANOID]),0,SAVEVSDEATH)
+    See(FourthNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(ThirdNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(SecondNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([GOODCUTOFF.HUMANOID],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([GOODCUTOFF.HUMANOID],STATE_PANIC)
+    See([GOODCUTOFF.HUMANOID])
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(WorstAC([PC]),1,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Improved Mantle or higher
+    !StateCheck(WorstAC([PC]),STATE_PANIC)
+    See(WorstAC([PC])) // these blocks are optimized for targeting low AC characters
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([PC.0.0.THIEF]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([PC.0.0.THIEF]),STATE_PANIC)
+    See(ThirdNearest([PC.0.0.THIEF])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([PC.0.0.THIEF]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([PC.0.0.THIEF]),STATE_PANIC)
+    See(SecondNearest([PC.0.0.THIEF])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([PC.0.0.THIEF],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([PC.0.0.THIEF],STATE_PANIC)
+    See([PC.0.0.THIEF]) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([PC.0.0.BARD_ALL]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([PC.0.0.BARD_ALL]),STATE_PANIC)
+    See(ThirdNearest([PC.0.0.BARD_ALL])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([PC.0.0.BARD_ALL]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([PC.0.0.BARD_ALL]),STATE_PANIC)
+    See(SecondNearest([PC.0.0.BARD_ALL])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([PC.0.0.BARD_ALL],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([PC.0.0.BARD_ALL],STATE_PANIC)
+    See([PC.0.0.BARD_ALL]) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([PC.0.0.MAGE_THIEF]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([PC.0.0.MAGE_THIEF]),STATE_PANIC)
+    See(ThirdNearest([PC.0.0.MAGE_THIEF])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([PC.0.0.MAGE_THIEF]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([PC.0.0.MAGE_THIEF]),STATE_PANIC)
+    See(SecondNearest([PC.0.0.MAGE_THIEF])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([PC.0.0.MAGE_THIEF],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([PC.0.0.MAGE_THIEF],STATE_PANIC)
+    See([PC.0.0.MAGE_THIEF]) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([PC.0.0.MAGE]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([PC.0.0.MAGE]),STATE_PANIC)
+    See(ThirdNearest([PC.0.0.MAGE])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([PC.0.0.MAGE]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([PC.0.0.MAGE]),STATE_PANIC)
+    See(SecondNearest([PC.0.0.MAGE])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([PC.0.0.MAGE],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([PC.0.0.MAGE],STATE_PANIC)
+    See([PC.0.0.MAGE]) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SixthNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SixthNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(SixthNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(FifthNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(FifthNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(FifthNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(FourthNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(FourthNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(FourthNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(ThirdNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([GOODCUTOFF.HUMANOID]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([GOODCUTOFF.HUMANOID]),STATE_PANIC)
+    See(SecondNearest([GOODCUTOFF.HUMANOID]))
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([GOODCUTOFF.HUMANOID],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([GOODCUTOFF.HUMANOID],STATE_PANIC)
+    See([GOODCUTOFF.HUMANOID])
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(WorstAC([PC]),1,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Improved Mantle or higher
+    !StateCheck(WorstAC([PC]),STATE_PANIC)
+    See(WorstAC([PC])) // these blocks are optimized for targeting low AC characters
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([PC.0.0.THIEF]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([PC.0.0.THIEF]),STATE_PANIC)
+    See(ThirdNearest([PC.0.0.THIEF])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([PC.0.0.THIEF]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([PC.0.0.THIEF]),STATE_PANIC)
+    See(SecondNearest([PC.0.0.THIEF])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([PC.0.0.THIEF],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([PC.0.0.THIEF],STATE_PANIC)
+    See([PC.0.0.THIEF]) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([PC.0.0.BARD_ALL]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([PC.0.0.BARD_ALL]),STATE_PANIC)
+    See(ThirdNearest([PC.0.0.BARD_ALL])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([PC.0.0.BARD_ALL]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([PC.0.0.BARD_ALL]),STATE_PANIC)
+    See(SecondNearest([PC.0.0.BARD_ALL])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([PC.0.0.BARD_ALL],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([PC.0.0.BARD_ALL],STATE_PANIC)
+    See([PC.0.0.BARD_ALL]) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([PC.0.0.MAGE_THIEF]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([PC.0.0.MAGE_THIEF]),STATE_PANIC)
+    See(ThirdNearest([PC.0.0.MAGE_THIEF])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([PC.0.0.MAGE_THIEF]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([PC.0.0.MAGE_THIEF]),STATE_PANIC)
+    See(SecondNearest([PC.0.0.MAGE_THIEF])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([PC.0.0.MAGE_THIEF],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([PC.0.0.MAGE_THIEF],STATE_PANIC)
+    See([PC.0.0.MAGE_THIEF]) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(ThirdNearest([PC.0.0.MAGE]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(ThirdNearest([PC.0.0.MAGE]),STATE_PANIC)
+    See(ThirdNearest([PC.0.0.MAGE])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT(SecondNearest([PC.0.0.MAGE]),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck(SecondNearest([PC.0.0.MAGE]),STATE_PANIC)
+    See(SecondNearest([PC.0.0.MAGE])) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+    !CheckStatGT([PC.0.0.MAGE],0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle of higher
+    !StateCheck([PC.0.0.MAGE],STATE_PANIC)
+    See([PC.0.0.MAGE]) // generally have poor saves vs. death
+    False()
+THEN
+    RESPONSE #100
+        NoAction()
+END
+
+IF
+	Global("RR#NOPND","GLOBAL",0) // opening doors is allowed
+    Allegiance(Myself,EVILCUTOFF) // humanoids and some intelligent monsters can open unlocked doors
+    !AreaType(OUTDOOR)
+    !Range(NearestEnemyOf(Myself),30)
+    Range(NearestDoor,15) // if the nearest door is in visual range. note: this seems to auto-skip locked doors
+    OpenState(NearestDoor,FALSE)
+THEN
+    RESPONSE #100
+        MoveToObject(NearestDoor)
+        OpenDoor(NearestDoor)
+END
+
+IF
+    !StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
+    !StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+    !CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Mantle or higher
+    Allegiance(LastSeenBy(Myself),GOODCUTOFF) // safety check
+THEN
+    RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
-END
-
-IF
-See(SecondNearestEnemyOf(Myself))
-Range(SecondNearestEnemyOf(Myself),5)
-THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
-END
-
-IF
-See(ThirdNearestEnemyOf(Myself))
-Range(ThirdNearestEnemyOf(Myself),5)
-THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
-END
-
-IF
-See(FourthNearestEnemyOf(Myself))
-Range(FourthNearestEnemyOf(Myself),5)
-THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
-END
-
-IF
-See(FifthNearestEnemyOf(Myself))
-Range(FifthNearestEnemyOf(Myself),5)
-THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
-END
-
-IF
-See(SixthNearestEnemyOf(Myself))
-Range(SixthNearestEnemyOf(Myself),5)
-THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
-END
-
-IF
-ActionListEmpty()
-See(NearestEnemyOf(Myself))
-THEN
-RESPONSE #100
-MoveToObject(NearestEnemyOf(Myself))
-END
-
-IF
-ActionListEmpty()
-See(SecondNearestEnemyOf(Myself))
-THEN
-RESPONSE #100
-MoveToObject(SecondNearestEnemyOf(Myself))
-END
-
-IF
-ActionListEmpty()
-See(ThirdNearestEnemyOf(Myself))
-THEN
-RESPONSE #100
-MoveToObject(ThirdNearestEnemyOf(Myself))
-END
-
-IF
-ActionListEmpty()
-See(FourthNearestEnemyOf(Myself))
-THEN
-RESPONSE #100
-MoveToObject(FourthNearestEnemyOf(Myself))
-END
-
-IF
-ActionListEmpty()
-See(FifthNearestEnemyOf(Myself))
-THEN
-RESPONSE #100
-MoveToObject(FifthNearestEnemyOf(Myself))
-END
-
-IF
-ActionListEmpty()
-See(SixthNearestEnemyOf(Myself))
-THEN
-RESPONSE #100
-MoveToObject(SixthNearestEnemyOf(Myself))
-END
-
-IF
-See(NearestEnemyOf(Myself))
-ActionListEmpty()
-THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
-END
-
-IF
-See(LastAttackerOf(Myself))
-ActionListEmpty()
-!Allegiance(Myself,ENEMY)
-AttackedBy([ANYONE],DEFAULT)
-THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(LastAttackerOf(Myself),30)
+AttackReevaluate(LastSeenBy(Myself),30)
 END
 
 IF
     !GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
-    Help([EVILCUTOFF.0.ELEMENTAL])
-    InMyArea(LastHelp(Myself))
-    !StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
+    Heard([EVILCUTOFF.0.ELEMENTAL],89)
+    InMyArea(LastHeardBy(Myself))
+    !StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Move","LOCALS",6)
-        MoveToObject(LastHelp(Myself))
+        MoveToObject(LastHeardBy(Myself))
 END
 
 IF
-    !GlobalTimerNotExpired("RR#Move","LOCALS")
     Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
+    !GlobalTimerNotExpired("RR#Move","LOCALS")
+	!Detect(NearestEnemyOf(Myself))
 THEN
     RESPONSE #100
         RandomWalkContinuous()

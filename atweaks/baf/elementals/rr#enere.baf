@@ -3,14 +3,15 @@ IF
     OR(4)
       AttackedBy([ANYONE],DEFAULT)
       TookDamage()
-      Help([EVILCUTOFF.0.ELEMENTAL]) // elementals
-      Help([EVILCUTOFF.0.FAIRY]) // fey creatures (Nereids will respond to their calls for help too)
+      Heard([EVILCUTOFF.0.ELEMENTAL],89) // elementals
+      Heard([EVILCUTOFF.0.FAIRY],89) // fey creatures (Nereids will respond to their calls for help too)
 THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
         Enemy()
-        Help()
+        Shout(89)
+		Continue()
 END
 
 IF
@@ -22,7 +23,8 @@ THEN
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
         Enemy()
-        Help()
+        Shout(89)
+		Continue()
 END
 
 IF
@@ -56,11 +58,13 @@ END
 
 IF
     !GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other allies may hear it and join the battle
+	Allegiance(Myself,EVILCUTOFF)
     See([GOODCUTOFF])
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Help","LOCALS",12)
-        Help()
+        Shout(89)
+		Continue()
 END
 
 IF
@@ -819,14 +823,14 @@ END
 IF
     !GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
     OR(2)
-      Help([EVILCUTOFF.0.FAIRY]) // fey creatures
-      Help([EVILCUTOFF.0.ELEMENTAL]) // elementals
-    InMyArea(LastHelp(Myself))
-    !StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
+      Heard([EVILCUTOFF.0.FAIRY],89) // fey creatures
+      Heard([EVILCUTOFF.0.ELEMENTAL],89) // elementals
+    InMyArea(LastHeardBy(Myself))
+    !StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Move","LOCALS",6)
-        MoveToObject(LastHelp(Myself))
+        MoveToObject(LastHeardBy(Myself))
 END
 
 IF

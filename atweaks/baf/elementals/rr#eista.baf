@@ -13,7 +13,7 @@ IF
       See(NearestEnemyOf(Myself))
       AttackedBy([ANYONE],DEFAULT)
       TookDamage()
-      Help([EVILCUTOFF.0.ELEMENTAL.ELEMENTAL_AIR])
+      Heard([EVILCUTOFF.0.ELEMENTAL.ELEMENTAL_AIR],89)
       Gender(Myself,SUMMONED) // summoned elemental
       Exists(LastSummonerOf(Myself)) // gated elemental
 THEN
@@ -21,7 +21,8 @@ THEN
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
         Enemy()
-        Help()
+        Shout(89)
+		Continue()
 END
 
 IF
@@ -84,7 +85,8 @@ IF
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Help","LOCALS",12)
-        Help()
+        Shout(89)
+		Continue()
 END
 
 IF
@@ -641,19 +643,20 @@ END
 IF
     Allegiance(Myself,EVILCUTOFF)
     !GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
-    Help([EVILCUTOFF.0.ELEMENTAL.ELEMENTAL_AIR])
-    InMyArea(LastHelp(Myself))
-    !StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
+    Heard([EVILCUTOFF.0.ELEMENTAL.ELEMENTAL_AIR],89)
+    InMyArea(LastHeardBy(Myself))
+    !StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
     RESPONSE #100
         SetGlobalTimer("RR#Move","LOCALS",6)
-        MoveToObject(LastHelp(Myself))
+        MoveToObject(LastHeardBy(Myself))
 END
 
 IF
     Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
     StateCheck(Myself,STATE_INVISIBLE) // if Natural Invisibility is active and there is nothing better to do
     !GlobalTimerNotExpired("RR#Move","LOCALS")
+	!Detect(NearestEnemyOf(Myself))
 THEN
     RESPONSE #100
         RandomWalkContinuous()

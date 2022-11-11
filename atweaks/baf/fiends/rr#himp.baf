@@ -20,14 +20,15 @@ IF
 	OR(4)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
-	  Help([EVILCUTOFF.0.IMP.0.0.0.MASK_LAWFUL]) // other Imps
-	  Help([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_LAWFUL]) // Baatezu fiends
+	  Heard([EVILCUTOFF.0.IMP.0.0.0.MASK_LAWFUL],151) // other Imps
+	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_LAWFUL],151) // Baatezu fiends
 THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
-		Help()
+		Shout(151)
+		Continue()
 END
 
 IF
@@ -39,7 +40,8 @@ THEN
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
-		Help()
+		Shout(151)
+		Continue()
 END
 
 IF
@@ -86,7 +88,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Help","LOCALS",12)
-		Help()
+		Shout(151)
 END
 
 IF
@@ -1216,19 +1218,20 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
 	OR(2)
-	  Help([EVILCUTOFF.0.IMP.0.0.0.MASK_LAWFUL]) // other Imps
-	  Help([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_LAWFUL]) // Baatezu fiends
-        InMyArea(LastHelp(Myself))
-	!StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
+	  Heard([EVILCUTOFF.0.IMP.0.0.0.MASK_LAWFUL],151) // other Imps
+	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_LAWFUL],151) // Baatezu fiends
+        InMyArea(LastHeardBy(Myself))
+	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Move","LOCALS",6)
-		MoveToObject(LastHelp(Myself))
+		MoveToObject(LastHeardBy(Myself))
 END
 
 IF
     Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
 	!GlobalTimerNotExpired("RR#Move","LOCALS")
+	!Detect(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
 		RandomWalkContinuous()

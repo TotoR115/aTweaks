@@ -21,14 +21,15 @@ IF
 	OR(4)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
-	  Help([EVILCUTOFF.0.MEPHIT])
+	  Heard([EVILCUTOFF.0.MEPHIT],89)
 	  Gender(Myself,3) // gated mephit
 THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
-		Help()
+		Shout(89)
+		Continue()
 END
 
 IF
@@ -40,7 +41,8 @@ THEN
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
 		Enemy()
-		Help()
+		Shout(89)
+		Continue()
 END
 
 IF
@@ -84,11 +86,13 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other mephits may hear it and join the battle
+	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Help","LOCALS",12)
-		Help()
+		Shout(89)
+		Continue()
 END
 
 IF
@@ -915,18 +919,19 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
-	Help([EVILCUTOFF.0.MEPHIT])
-        InMyArea(LastHelp(Myself))
-	!StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
+	Heard([EVILCUTOFF.0.MEPHIT],89)
+        InMyArea(LastHeardBy(Myself))
+	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Move","LOCALS",6)
-		MoveToObject(LastHelp(Myself))
+		MoveToObject(LastHeardBy(Myself))
 END
 
 IF
     Allegiance(Myself,EVILCUTOFF) // only RandomWalk if hostile
 	!GlobalTimerNotExpired("RR#Move","LOCALS")
+	!Detect(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
 		RandomWalkContinuous()
