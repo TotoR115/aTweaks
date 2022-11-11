@@ -1263,6 +1263,12 @@ REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH "RR#EWWEI" "RR#EWWEF"
 
 
 //////////////////////////
+// Genies
+//////////////////////////
+
+INCLUDE "atweaks/lib/c192.tpa"
+
+//////////////////////////
 // Elementals
 //////////////////////////
 
@@ -3708,6 +3714,18 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#esunn.baf~                   
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ezaam.baf~                                      // Zaaman Rul AI script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#ewizs.baf~                                      // Mental Combat AI script (for elementals summoned by arcane spellcasters)
 
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GDJIN.baf~                     // Djinni AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNDJN.baf~                     // Noble Djinni AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GDAO.baf~                      // Dao AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNDAO.baf~                     // Noble Dao AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GEFRT.baf~                     // Efreeti AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNEFR.baf~                     // Noble Efreeti AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GGRDS.baf~                     // Guardian AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GMARD.baf~                     // Marid AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNMRD.baf~                     // Noble Marid AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SDJIN.baf~                     // Summoned Djinni script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SEFRT.baf~                     // Summoned Efreeti AI script
+
 
 
 
@@ -4657,7 +4675,7 @@ ACTION_IF GAME_INCLUDES ~bg1~ THEN BEGIN
 END
 
 
-// Add more Nereids and Water Weirds to the game
+// Add more Nereids, Water Weirds and Marids to the game
 
 <<<<<<<<atweaks/inlined/baf/elementals/bg3600.baf
 IF
@@ -4677,6 +4695,7 @@ THEN
     RESPONSE #100
         SetGlobal("rr#spw01","MYAREA",1)
         CreateCreature("rr#enere",[1125.585],15) // Nereid (top)
+        CreateCreature("rr#gmard",[1180.650],11) // Marid (center)		
         CreateCreature("rr#ewwei",[1155.730],13) // Water Weird (bottom)
 END
 >>>>>>>>
@@ -4717,6 +4736,7 @@ THEN
         CreateCreature("rr#enere",[1200.2530],0) // Nereid (top)
         CreateCreature("rr#enere",[1150.2600],14) // Nereid (middle)
         CreateCreature("rr#ewwei",[1240.2650],13) // Water Weird (bottom)
+        CreateCreature("rr#gnmrd",[1260.2590],13) // Noble Marid (front)
 END
 >>>>>>>>
 
@@ -4731,6 +4751,7 @@ THEN
         CreateCreature("rr#enere",[2470.1110],0) // Nereid (top)
         CreateCreature("rr#enere",[2340.1135],14) // Nereid (middle)
         CreateCreature("rr#ewwei",[2395.1220],13) // Water Weird (bottom)
+        CreateCreature("rr#gnmrd",[2500.1250],13) // Noble Marid (front)
 END
 >>>>>>>>
 
@@ -4757,7 +4778,7 @@ COMPILE_BAF_TO_BCS
 BUT_ONLY_IF_IT_CHANGES
 
 
-// Add an Ice Paraelemental and a Salamander Noble to the Planar Sphere's ice and fire chambers
+// Add an Ice Paraelemental and a Burning Man to the Planar Sphere's ice and fire chambers
 
 <<<<<<<<atweaks/inlined/baf/elementals/ar0412.baf
 IF
@@ -4766,7 +4787,7 @@ THEN
     RESPONSE #100
         SetGlobal("rr#spw01","AR0412",1)
         CreateCreature("rr#eicer",[850.480],0) // Ice Paraelemental
-        CreateCreature("SALGRFIR",[2070.1020],4) // Salamander Noble
+        CreateCreature("golbur01",[2070.1020],4) // Burning Man
 END
 >>>>>>>>
 
@@ -5032,6 +5053,65 @@ COPY_EXISTING ~ar6001.are~ ~override~                                           
 BUT_ONLY_IF_IT_CHANGES
 
 
+// Replace 2 of the standard Efreets in firkraag's lair with PnP guardians genies, 1 with a noble Efreeti and 1 with a noble Dao
+
+COPY_EXISTING ~ar1202.are~ ~override~                                              // Firkraag's lair
+  READ_LONG  0x54 "actor_off"
+  READ_SHORT 0x58 "actor_num"
+  WHILE ("%actor_num%" > 0) BEGIN
+    SET "actor_num" = ("%actor_num%" - 1)
+    READ_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) "cre_file"
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "DDGUARD2") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#ggrd2~ #8
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "DDGUARD3") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#gnda3~ #8
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "DDGUARD4") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#ggrd4~ #8
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "DDGUARD5") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#gnef5~ #8
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+// Replace the Dao in north forest with Noble Dao, ancian vampires with Noble Efreet and add 2 Greater elementals (fire and earth)
+
+COPY_EXISTING ~ar1800.are~ ~override~                                              // Firkraag's lair
+  READ_LONG  0x54 "actor_off"
+  READ_SHORT 0x58 "actor_num"
+  WHILE ("%actor_num%" > 0) BEGIN
+    SET "actor_num" = ("%actor_num%" - 1)
+    READ_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) "cre_file"
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "VAMANC01") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~GENEFN01~ #8
+	  WRITE_LONG ("%actor_off%" + 0x40 + ("%actor_num%" * 0x110)) "-1"
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "GENDAO01") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#gndao~ #8
+	  WRITE_LONG ("%actor_off%" + 0x40 + ("%actor_num%" * 0x110)) "-1"
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "GENEFR01") BEGIN
+	  WRITE_LONG ("%actor_off%" + 0x40 + ("%actor_num%" * 0x110)) "-1"
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+<<<<<<<<atweaks/inlined/baf/elementals/ar1800.baf
+IF
+    Global("rr#spw01","ar1800",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spw01","ar1800",1)
+        CreateCreature("ELFIRG01",[1352.458],2) // Greater fire elemental (bottom)
+        CreateCreature("ELEARG01",[1433.696],2) // Greater earth elemental (bottom)
+END
+>>>>>>>>
+
+EXTEND_BOTTOM ~ar1800.bcs~  ~atweaks/inlined/baf/elementals/ar1800.baf~            // extend the North forest area script (BG2)
+
+
 /////////////////////////////
 // Compatibility adjustments
 /////////////////////////////
@@ -5239,7 +5319,7 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~rr#fake.itm~ BEGIN
 END
 
 //////////// Compatibility with IR: script check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
-ACTION_FOR_EACH script IN rr#ensal rr#echan BEGIN
+ACTION_FOR_EACH script IN rr#ensal rr#echan rr#gefrt rr#gnefr BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
     COPY_EXISTING ~%script%.bcs~ ~override~
 	  DECOMPILE_AND_PATCH BEGIN
