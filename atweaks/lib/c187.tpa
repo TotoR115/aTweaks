@@ -167,6 +167,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#sphug~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -226,6 +228,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#spwch~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -286,6 +290,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#spmut~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ 					   // replace default weapon with a more PnP accurate weapon (bite)
 REPLACE_CRE_ITEM ~RR#spweb~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ EQUIP                 // replace default weapon with a more PnP accurate weapon (web)
@@ -425,7 +431,6 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SPIDFGSU~                                                             // Kitthrix Spider
             ~SPIDPH~                                                               // Phase Spider
             ~SPIDPH01~                                                             // Phase Spider
-            ~SPIDPHAS~                                                             // Astral Phase Spider
             ~SPIDPHSU~                                                             // Phase Spider
             ~SPSPID06~                                                             // Phase Spider
             ~A7Q3SP01~                                                             // Phase Spider
@@ -511,6 +516,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~MAGE06~                                                           // removes MAGE06.ITM (hast spell)
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#spswb~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 	                   // replace default weapon with a more PnP accurate weapon (bite)
@@ -581,6 +588,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~lring~                 		   // Add default immunity to normal weapons
 REPLACE_CRE_ITEM ~RING95~ #0 #0 #0 ~UNDROPPABLE~ ~rring~                 		   // Add default undead immunity to mind spells
@@ -648,6 +657,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~MAGE06~                                                           // removes MAGE06.ITM (hast spell)
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#spvtx~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
@@ -715,6 +726,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#sppla~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ 	                   // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#spweb~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ EQUIP                 // replace default weapon with a more PnP accurate weapon (web)
@@ -776,6 +789,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#splas~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ 	                   // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#spweb~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ EQUIP                 // replace default weapon with a more PnP accurate weapon (web)
@@ -811,6 +826,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~MAGE06~                                                           // removes MAGE06.ITM (hast spell), done by new mov
 REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~lring~			               // add immunity to +2 weapons and less
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                   	   // replace default ANTIWEB with a more PnP accurate
@@ -887,6 +904,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#spetc~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (claw)
 REPLACE_CRE_ITEM ~RR#spetc~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ 	                   // replace default weapon with a more PnP accurate weapon (claw)
@@ -955,6 +974,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~WYVERN2~                                                          // removes 2nd weapon
 REPLACE_CRE_ITEM ~RR#spwyv~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // replace default hover immunity with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#spwy1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (bite)
@@ -1024,6 +1045,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~WYVERN2~                                                          // removes 2nd weapon
 REPLACE_CRE_ITEM ~RR#spwyv~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // replace default hover immunity with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#spwy1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (bite)
@@ -1093,6 +1116,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~WYVERN2~                                                          // removes 2nd weapon
 REPLACE_CRE_ITEM ~RR#spwyv~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // replace default hover immunity with a more PnP accurate
 REPLACE_CRE_ITEM ~RR#spwy1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (bite)
@@ -1190,7 +1215,7 @@ ACTION_FOR_EACH file IN														   	   // Huge Spider Summons
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#sphsu" #8
 	  WRITE_BYTE 0x273 4  //Thief Class
@@ -1207,7 +1232,7 @@ ACTION_FOR_EACH file IN															   // Giant Spider Summons
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#spgsu" #8
 	  WRITE_BYTE 0x273 4  //Thief Class
@@ -1226,7 +1251,7 @@ ACTION_FOR_EACH file IN															   // Phase Spider Summons
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#sppsu" #8
 	  WRITE_BYTE 0x273 4  //Thief Class
@@ -1243,7 +1268,7 @@ ACTION_FOR_EACH file IN															   // Planar Spider Summons
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#sppsu" #8
 	  WRITE_BYTE 0x273 4  //Thief Class
@@ -1261,7 +1286,7 @@ ACTION_FOR_EACH file IN															   // Ettercap Summons
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#spesu" #8
 	  WRITE_BYTE 0x273 4  //Thief Class
@@ -1279,7 +1304,7 @@ ACTION_FOR_EACH file IN														   	   // Wyvern Summons
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#spwsu" #8
 	  REMOVE_CRE_ITEM ~MISC52~ // Wyvern Head

@@ -148,7 +148,7 @@ CheckStatGT(LastSeenBy(Myself),0,WEB)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),30)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -158,7 +158,7 @@ CheckStatGT(LastSeenBy(Myself),0,WEB)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),30)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -168,7 +168,7 @@ CheckStatGT(LastSeenBy(Myself),0,WEB)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),30)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -178,7 +178,7 @@ CheckStatGT(LastSeenBy(Myself),0,WEB)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),30)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -188,7 +188,7 @@ CheckStatGT(LastSeenBy(Myself),0,WEB)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),30)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -198,7 +198,7 @@ CheckStatGT(LastSeenBy(Myself),0,WEB)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),30)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -542,7 +542,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -575,7 +575,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -608,7 +608,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -641,7 +641,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -674,7 +674,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -707,7 +707,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1183,7 +1183,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1215,7 +1215,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1247,7 +1247,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1279,7 +1279,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1311,7 +1311,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1343,7 +1343,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1804,7 +1804,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1835,7 +1835,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1866,7 +1866,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1897,7 +1897,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1928,7 +1928,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1959,7 +1959,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2409,7 +2409,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2439,7 +2439,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2469,7 +2469,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2499,7 +2499,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2529,7 +2529,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2559,7 +2559,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2716,7 +2716,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2745,7 +2745,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2774,7 +2774,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2803,7 +2803,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2832,7 +2832,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2861,7 +2861,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3018,7 +3018,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3047,7 +3047,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3076,7 +3076,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3105,7 +3105,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3134,7 +3134,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3163,7 +3163,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3315,7 +3315,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3343,7 +3343,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3371,7 +3371,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3399,7 +3399,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3427,7 +3427,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3455,7 +3455,7 @@ THEN
 RESPONSE #100
 SetGlobal("rr#webb","LOCALS",1)
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF

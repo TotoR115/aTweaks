@@ -164,7 +164,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",0)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -179,7 +179,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",0)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -194,7 +194,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",0)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -209,7 +209,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",0)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -224,7 +224,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",0)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -239,7 +239,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",0)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -424,24 +424,24 @@ SetGlobal("rr#phasx","LOCALS",0)
 SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 ForceSpellRES("rr#phasx",WorstAC) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 SetGlobal("rr#phasx","LOCALS",0)
 SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 ForceSpellRES("rr#phasx",WeakestOf) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 SetGlobal("rr#phasx","LOCALS",0)
 SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 ForceSpellRES("rr#phasx",MostDamagedOf) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 SetGlobal("rr#phasx","LOCALS",0)
 SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -478,7 +478,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",[PC.0.0.MAGE]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 Continue()
 END
@@ -517,7 +517,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",[PC.0.0.CLERIC_MAGE]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 Continue()
 END
@@ -556,7 +556,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",[PC.0.0.MAGE_THIEF]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 Continue()
 END
@@ -595,7 +595,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",[PC.0.0.THIEF]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #40
 Continue()
 END
@@ -634,7 +634,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",[PC.0.0.BARD]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #40
 Continue()
 END
@@ -673,7 +673,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",NearestEnemyOf(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -710,7 +710,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -747,7 +747,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -784,7 +784,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -821,7 +821,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -858,7 +858,7 @@ SetGlobalTimer("rr#phase","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#phasx","LOCALS",1)
 ForceSpellRES("rr#phasx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
