@@ -9,9 +9,9 @@ THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+		SetGlobalTimer("RR#Help","LOCALS",12)
         Enemy()
         Shout(89)
-		Continue()
 END
 
 IF
@@ -25,9 +25,9 @@ THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+		SetGlobalTimer("RR#Help","LOCALS",12)
         Enemy()
         Shout(89)
-		Continue()
 END
 
 IF

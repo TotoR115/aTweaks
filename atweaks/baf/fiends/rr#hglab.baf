@@ -27,19 +27,21 @@ END
 
 IF
 	Global("RR#Active","LOCALS",0)
-	OR(5)
+	OR(6)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
 	  Heard([EVILCUTOFF.0.IMP.0.0.0.MASK_CHAOTIC],151) // Quasits
 	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],151) // Tanar'ri fiends
-          Name("RR#HSGLA",Myself) // indicates gated fiend
+	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],5828) // Hostile Tanar'ri fiends global shout
+      Name("RR#HSGLA",Myself) // indicates gated fiend
 THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+		SetGlobalTimer("RR#Help","LOCALS",12)
 		Enemy()
 		Shout(151)
-		Continue()
+		GlobalShout(5828) // aTweaks hostile global shout
 END
 
 IF
@@ -50,9 +52,10 @@ THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+		SetGlobalTimer("RR#Help","LOCALS",12)
 		Enemy()
 		Shout(151)
-		Continue()
+		GlobalShout(5828) // aTweaks hostile global shout
 END
 
 IF
@@ -172,7 +175,7 @@ IF
 	  See([0.0.DEMONIC.0.0.0.MASK_LAWFUL])
 THEN
 	RESPONSE #100
-                SetGlobal("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
+        SetGlobal("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
 		SetGlobalTimer("RR#Ethsc","LOCALS",4)
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
 END
@@ -221,7 +224,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -238,7 +241,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -256,7 +259,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -275,7 +278,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -295,7 +298,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -316,7 +319,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -329,13 +332,13 @@ THEN
 END
 
 IF
-	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other allies may hear it and join the battle
+	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every three rounds while in combat, other allies may hear it and join the battle
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#Help","LOCALS",12)
+		SetGlobalTimer("RR#Help","LOCALS",18)
 		Shout(151)
-                GlobalShout(5828) // aTweaks hostile global shout
+        GlobalShout(5828) // aTweaks hostile global shout
 		Continue()
 END
 
@@ -343,20 +346,20 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	!Range(NearestEnemyOf(Myself),30)
 	Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],5828) // Hostile Tanar'ri fiends global shout
-        InMyArea(LastHeardBy(Myself))
+    InMyArea(LastHeardBy(Myself))
 	!Range(LastHeardBy(Myself),30)
 	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastHeardBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastHeardBy(Myself)) // Teleport Without Error
 END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	Exists(LastAttackerOf(Myself))
 	!Range(LastAttackerOf(Myself),6)
-        InMyArea(LastAttackerOf(Myself))
+    InMyArea(LastAttackerOf(Myself))
         Allegiance(LastAttackerOf(Myself),GOODCUTOFF)
 	!StateCheck(LastAttackerOf(Myself),STATE_REALLY_DEAD)
 	!CheckStatGT(LastAttackerOf(Myself),2,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Absolute Immunity or PfMW
@@ -366,7 +369,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastAttackerOf(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastAttackerOf(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -417,7 +420,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -437,7 +440,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -457,7 +460,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -477,7 +480,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -498,7 +501,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -2081,7 +2084,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	!Range(LastSeenBy(Myself),6)
-        InMyArea(LastSeenBy(Myself))
+    InMyArea(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
 	!CheckStatGT(LastSeenBy(Myself),2,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Absolute Immunity or PfMW
         CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
@@ -2089,7 +2092,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -2133,7 +2136,7 @@ IF
 	OR(2)
 	  Heard([EVILCUTOFF.0.IMP.0.0.0.MASK_CHAOTIC],151) // Quasits
 	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],151) // Tanar'ri fiends
-        InMyArea(LastHeardBy(Myself))
+    InMyArea(LastHeardBy(Myself))
 	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100

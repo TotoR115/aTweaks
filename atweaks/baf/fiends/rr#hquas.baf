@@ -17,18 +17,20 @@ END
 
 IF
 	Global("RR#Active","LOCALS",0)
-	OR(4)
+	OR(5)
 	  AttackedBy([ANYONE],DEFAULT)
 	  TookDamage()
 	  Heard([EVILCUTOFF.0.IMP.0.0.0.MASK_CHAOTIC],151) // other quasits
 	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],151) // Tanar'ri fiends
+	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],5828) // Hostile Tanar'ri fiends global shout
 THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+		SetGlobalTimer("RR#Help","LOCALS",12)
 		Enemy()
 		Shout(151)
-		Continue()
+		GlobalShout(5828) // aTweaks hostile global shout
 END
 
 IF
@@ -39,9 +41,10 @@ THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
 		SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+		SetGlobalTimer("RR#Help","LOCALS",12)
 		Enemy()
 		Shout(151)
-		Continue()
+		GlobalShout(5828) // aTweaks hostile global shout
 END
 
 IF
@@ -83,11 +86,11 @@ THEN
 END
 
 IF
-	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other allies may hear it and join the battle
+	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every three rounds while in combat, other allies may hear it and join the battle
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#Help","LOCALS",12)
+		SetGlobalTimer("RR#Help","LOCALS",18)
 		Shout(151)
 END
 
@@ -735,10 +738,11 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
-	OR(2)
+	OR(3)
 	  Heard([EVILCUTOFF.0.IMP.0.0.0.MASK_CHAOTIC],151) // other Quasits
 	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],151) // Tanar'ri fiends
-        InMyArea(LastHeardBy(Myself))
+	  Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],5828) // Hostile Tanar'ri fiends global shout
+    InMyArea(LastHeardBy(Myself))
 	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100

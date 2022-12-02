@@ -538,7 +538,7 @@ ACTION_FOR_EACH file IN
 BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	  COPY_EXISTING "%file%.cre" override
-		LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+		WRITE_LONG 0x14 "0"
 		LPF make_summon END
 		WRITE_ASCII SCRIPT_OVERRIDE "fl#ghasu" #8
       BUT_ONLY
@@ -1609,7 +1609,8 @@ ACTION_IF !MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN //Not a skeleton in this case
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         WRITE_LONG 0x28 25603 // enforce skeleton animation
-		LPF make_skeleton INT_VAR newxpv = 0 END
+		LPF make_skeleton END
+		WRITE_LONG 0x14 "0"
         LPF make_summon END
         WRITE_ASCII SCRIPT_OVERRIDE "fl#sklsu" #8 // Swaps to fl#lowm for hostile summons
       BUT_ONLY
@@ -1758,7 +1759,8 @@ ACTION_IF !MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN // Do not touch if spell revis
 	BEGIN
 	  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 		COPY_EXISTING "%file%.cre" override
-		  LPF make_skeleton_warrior INT_VAR newxpv = 0 END
+		  LPF make_skeleton_warrior END
+		  WRITE_LONG 0x14 "0"
 		  LPF make_summon END
 		  WRITE_ASCII SCRIPT_OVERRIDE "fl#skwsu" #8 // Swaps to fl#sklwm for hostile summons
 		BUT_ONLY
@@ -2270,7 +2272,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
       WRITE_LONG 0x28 25603 // enforce skeleton animation
-	  LPF ~RR#MDCRE~ INT_VAR "newxpv" = "0" END
+	  WRITE_LONG 0x14 "0"
       LPF make_summon END
       WRITE_ASCII SCRIPT_OVERRIDE "fl#sklsu" #8 // Swaps to fl#lowm for hostile summons
     BUT_ONLY

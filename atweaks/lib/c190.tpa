@@ -797,7 +797,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ms6salf.cre~ BEGIN								   // Compatibility wit
 COPY_EXISTING ~ms6salf.cre~ ~override~											   // Fire Salamander from IWDification - Stratagems wizard summon spell
   // REPLACE_CRE_ITEM ~RR#EFSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
   REMOVE_CRE_ITEM ~FSALRING~                                                       // IWDification - Stratagems Salamanders visual effect - not for PnP
-  LPF ~RR#MDCRE~ INT_VAR "newxpv" = "0" END
+  WRITE_LONG 0x14 "0"                                      // new XP value
   LPF make_summon END
   WRITE_ASCII SCRIPT_OVERRIDE "rr#salf" #8
 BUT_ONLY
@@ -907,10 +907,7 @@ END                                                                             
 ACTION_IF FILE_EXISTS_IN_GAME ~ms6salc.cre~ BEGIN								   // Compatibility with IWDification - Stratagems Begins here
 COPY_EXISTING ~ms6salc.cre~ ~override~											   // Ice Salamander from IWDification - Stratagems wizard summon spell
   REMOVE_CRE_ITEM ~CSALRING~                                                       // IWDification - Stratagems Salamanders visual effect (already included)
-  LPF ~RR#MDCRE~ INT_VAR 
-  "newxpv"   = "0"                                                                 // new XP value
-  "enforce"  = "1"                                                                 // values are enforced for all creatures
-  END
+  WRITE_LONG 0x14 "0"                                      // new XP value
   LPF make_summon END
   WRITE_ASCII SCRIPT_OVERRIDE "rr#salc" #8
 BUT_ONLY
@@ -1068,14 +1065,14 @@ STR_VAR                                                                         
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
   INT_VAR
-    opcode = "232"                                                                 // effect: #232 (Cast Spell on Condition)
-    target = "1"                                                                   // target: 1 (self)
-    timing = "9"                                                                   // timing mode: 9 (permanent after death)
+    "opcode" = "232"                                                               // effect: #232 (Cast Spell on Condition)
+    "target" = "1"                                                                 // target: 1 (self)
+    "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
     "duration" = "0"                                                               // duration: 0
     "parameter1" = "0"                                                             // param1: (target)
     "parameter2" = "7"                                                             // param2: (condition)
     "sectype" = "0"                                                                // secondary type: none
-    probability1 = "100"                                                           // probability1: 100%
+    "probability1" = "100"                                                         // probability1: 100%
     STR_VAR
     "resource"  = "RR#ENDIS"                                                       // resref: (Nereid's Displacement ability)
     "effsource" = ""                                                               // effsource: none
@@ -3997,8 +3994,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			 ~es8erth~															   // Lesser Earth Elemental (IWDification - Stratagems)
 			 ~es8fire~															   // Lesser Fire Elemental (IWDification - Stratagems)
 			 ~es8watr~															   // Lesser Water Elemental (IWDification - Stratagems)
-			 ~ms6salf~															   // fire salamander (IWDification - Stratagems)
-			 ~ms6salc~                                                             // Ice Salamander (IWDification - Stratagems)
+			 // ~ms6salf~															   // fire salamander (IWDification - Stratagems)
+			 // ~ms6salc~                                                             // Ice Salamander (IWDification - Stratagems)
 			~rr#ewats~                                                             // Lesser Water Elemental (aTweaks_summon)
 			~DW#WATE2~                                                             // Water Elemental (stratagems water elemental summoning)
 			~DW#WATE3~                                                             // Greater Water Elemental (stratagems water elemental summoning)
@@ -4692,8 +4689,8 @@ ACTION_IF GAME_IS ~bgt~ THEN BEGIN
 END
 
 ACTION_IF GAME_IS ~bgee~ BEGIN
-  EXTEND_BOTTOM ar1500.bcs ~atweaks/inlined/baf/elementals/bg1500.baf~
-  COPY_EXISTING ar3600.are override
+  EXTEND_BOTTOM ~ar1500.bcs~ ~atweaks/inlined/baf/elementals/bg1500.baf~
+  COPY_EXISTING ~ar3600.are~ override
     READ_ASCII 0x94 script
     PATCH_IF "%script%" STRING_EQUAL_CASE ar3601 BEGIN
       SPRINT script ar3600
@@ -4757,7 +4754,7 @@ COMPILE_BAF_TO_BCS
 BUT_ONLY_IF_IT_CHANGES
 
 
-// Add an Ice Paraelemental and a Salamander Noble to the Planar Sphere's ice and fire chambers
+// Add an Ice Paraelemental and a Burning Man to the Planar Sphere's ice and fire chambers
 
 <<<<<<<<atweaks/inlined/baf/elementals/ar0412.baf
 IF
@@ -4766,7 +4763,7 @@ THEN
     RESPONSE #100
         SetGlobal("rr#spw01","AR0412",1)
         CreateCreature("rr#eicer",[850.480],0) // Ice Paraelemental
-        CreateCreature("SALGRFIR",[2070.1020],4) // Salamander Noble
+        CreateCreature("golbur01",[2070.1020],4) // Burning Man
 END
 >>>>>>>>
 
@@ -5062,15 +5059,9 @@ END                                                                             
 // in PnP Frost and Fire salamander don't get along. MS6 summons both witch is not sensible
 // replace frost salamander by noble salamander
 ACTION_IF FILE_EXISTS_IN_GAME MSUMMO6.2DA BEGIN
-// COPY_EXISTING ~RR#ENSAL.itm~ ~override/RR#ENSAI.itm~							   // Create Compatible weapon with IWDification - Stratagems
-// LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 232 target = 1 parameter1 = 0 parameter2 = 9 timing = 2 STR_VAR resource = ~rr#eiems~ END
 
 COPY_EXISTING "salgrfir.cre" "override/rr#saln.cre"
-  // REPLACE_CRE_ITEM ~RR#ENSAI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace pnp weapon with compatible IWDification - Stratagems version
-  LPF ~RR#MDCRE~ INT_VAR 
-  "newxpv"   = "0"                                                                 // new XP value
-  "enforce"  = "1"                                                                 // values are enforced for all creatures
-  END
+  WRITE_LONG 0x14 "0"                                         					   // new XP value
   LPF make_summon END
   WRITE_ASCII SCRIPT_OVERRIDE "rr#salf" #8
 BUT_ONLY
@@ -5083,6 +5074,7 @@ BUT_ONLY
 APPEND ~MSUMMO7.2DA~ ~3 MS6SALC~
 
 END
+
 // Spell Revisions
 
 // Restore the original descriptions for spells that show SR's creature stats
@@ -5225,7 +5217,7 @@ END                                                                             
 ACTION_PHP_EACH ir_rings AS rr#var => rr#file BEGIN
 ACTION_IF FILE_EXISTS_IN_GAME ~%rr#file%.eff~ BEGIN                                // if the designated file with a EFF extension exists
 COPY_EXISTING ~%rr#file%.eff~  ~override~
-  WRITE_ASCIIE 0x30 "%rr#var_0%" #8                                                // resref (creature to be summoned) 
+  WRITE_ASCIIE 0x30 "%rr#var_0%" #8                                                // resref (creature to be summoned)
   WRITE_ASCIIE 0x70 "%rr#var_1%" #8                                                // resref2 (VVC to display)
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block

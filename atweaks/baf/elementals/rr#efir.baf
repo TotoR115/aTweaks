@@ -20,9 +20,9 @@ THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+		SetGlobalTimer("RR#Help","LOCALS",12)
         Enemy()
         Shout(89)
-		Continue()
 END
 
 IF
@@ -94,11 +94,11 @@ END
 
 IF
     !Allegiance(Myself,GOODCUTOFF)
-    !GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other elementals may hear it and join the battle
+    !GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every three rounds while in combat, other elementals may hear it and join the battle
     See(NearestEnemyOf(Myself))
 THEN
     RESPONSE #100
-        SetGlobalTimer("RR#Help","LOCALS",12)
+        SetGlobalTimer("RR#Help","LOCALS",18)
         Shout(89)
 		Continue()
 END

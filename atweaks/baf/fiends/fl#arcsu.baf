@@ -74,7 +74,7 @@ IF
 See(NearestEnemyOf(Myself))
 THEN
 RESPONSE #100
-SetGlobalTimer("RR#Help","LOCALS",12)
+SetGlobalTimer("RR#Help","LOCALS",18)
 GlobalShout(5827)
 Continue()
 END
@@ -82,7 +82,7 @@ END
 IF
 !GlobalTimerNotExpired("RR#Cast","LOCALS")
 Allegiance(Myself,GOODCUTOFF)
-!Range(NearestEnemyOf(Myself),20)
+!Range(NearestEnemyOf(Myself),30)
 Heard([GOODCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],5827)
 InMyArea(LastHeardBy(Myself))
 !Range(LastHeardBy(Myself),12)
@@ -96,7 +96,7 @@ END
 IF
 !GlobalTimerNotExpired("RR#Cast","LOCALS")
 Allegiance(Myself,EVILCUTOFF)
-!Range(NearestEnemyOf(Myself),20)
+!Range(NearestEnemyOf(Myself),30)
 Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],5827)
 InMyArea(LastHeardBy(Myself))
 !Range(LastHeardBy(Myself),12)

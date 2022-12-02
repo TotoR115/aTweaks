@@ -112,20 +112,20 @@ IF
 	  See([0.0.DEMONIC.0.0.0.MASK_LAWFUL])
 THEN
 	RESPONSE #100
-                SetGlobal("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
+        SetGlobal("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
 		SetGlobalTimer("RR#Ethsc","LOCALS",4)
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
 END
 
 IF
-        Global("RR#ETHPL","LOCALS",1) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
+    Global("RR#ETHPL","LOCALS",1) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
 	!See([GOODCUTOFF])
-        InMyArea(Player1)
-        !Detect(Player1)
+    InMyArea(Player1)
+    !Detect(Player1)
 	StateCheck(Myself,STATE_MIRRORIMAGE)
-        OR(2)
-          StateCheck(Myself,STATE_INVISIBLE)
-          RandomNum(8,1)
+    OR(2)
+      StateCheck(Myself,STATE_INVISIBLE)
+      RandomNum(8,1)
 THEN
 	RESPONSE #100
 		MoveToObject(Player1)
@@ -153,7 +153,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	Exists(LastAttackerOf(Myself))
 	!Range(LastAttackerOf(Myself),6)
-        InMyArea(LastAttackerOf(Myself))
+    InMyArea(LastAttackerOf(Myself))
         Allegiance(LastAttackerOf(Myself),GOODCUTOFF)
 	!StateCheck(LastAttackerOf(Myself),STATE_REALLY_DEAD)
 	!CheckStatGT(LastAttackerOf(Myself),2,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Absolute Immunity or PfMW
@@ -163,7 +163,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastAttackerOf(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastAttackerOf(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -172,13 +172,13 @@ IF
 	Allegiance(Myself,EVILCUTOFF)
 	!Range(NearestEnemyOf(Myself),30)
 	Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],5827) // Tanar'ri fiends global shout
-        InMyArea(LastHeardBy(Myself))
+    InMyArea(LastHeardBy(Myself))
 	!Range(LastHeardBy(Myself),16)
 	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastHeardBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastHeardBy(Myself)) // Teleport Without Error
 END
 
 IF
@@ -193,7 +193,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -210,7 +210,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -228,7 +228,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -247,7 +247,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -267,7 +267,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -288,7 +288,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
@@ -339,7 +339,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -359,7 +359,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -379,7 +379,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -399,7 +399,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -419,7 +419,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		AttackOneRound(LastSeenBy(Myself))
 		SetInterrupt(TRUE)
 END
@@ -1995,7 +1995,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	!Range(LastSeenBy(Myself),6)
-        InMyArea(LastSeenBy(Myself))
+    InMyArea(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
 	!CheckStatGT(LastSeenBy(Myself),2,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // no Absolute Immunity or PfMW
         CheckStatLT(LastSeenBy(Myself),100,RESISTCRUSHING)
@@ -2003,7 +2003,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 

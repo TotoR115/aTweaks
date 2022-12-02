@@ -129,7 +129,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	Exists(LastAttackerOf(Myself))
 	!Range(LastAttackerOf(Myself),6)
-        InMyArea(LastAttackerOf(Myself))
+    InMyArea(LastAttackerOf(Myself))
 	OR(2)
           !Allegiance(LastAttackerOf(Myself),GOODCUTOFF) // don't teleport to attacking party members if green circled
           !Allegiance(Myself,GOODCUTOFF)
@@ -143,17 +143,17 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastAttackerOf(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastAttackerOf(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
 IF
-	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, other allies may hear it and join the battle
+	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every three rounds while in combat, other allies may hear it and join the battle
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#Help","LOCALS",12)
-                GlobalShout(5827) // aTweaks global shout
+		SetGlobalTimer("RR#Help","LOCALS",18)
+        GlobalShout(5827) // aTweaks global shout
 		Continue()
 END
 
@@ -162,13 +162,13 @@ IF
 	Allegiance(Myself,GOODCUTOFF)
 	!Range(NearestEnemyOf(Myself),30)
 	Heard([GOODCUTOFF.0.DEMONIC.0.0.0.MASK_LAWFUL],5827) // Baatezu fiends global shout
-        InMyArea(LastHeardBy(Myself))
+    InMyArea(LastHeardBy(Myself))
 	!Range(LastHeardBy(Myself),16)
 	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastHeardBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastHeardBy(Myself)) // Teleport Without Error
 END
 
 IF
@@ -176,13 +176,13 @@ IF
 	Allegiance(Myself,EVILCUTOFF)
 	!Range(NearestEnemyOf(Myself),30)
 	Heard([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_LAWFUL],5827) // Baatezu fiends global shout
-        InMyArea(LastHeardBy(Myself))
+    InMyArea(LastHeardBy(Myself))
 	!Range(LastHeardBy(Myself),16)
 	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastHeardBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastHeardBy(Myself)) // Teleport Without Error
 END
 
 IF
@@ -1295,7 +1295,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
         !Range(LastSeenBy(Myself),6)
-        InMyArea(LastSeenBy(Myself))
+    InMyArea(LastSeenBy(Myself))
 	OR(2)
           StateCheck(LastSeenBy(Myself),STATE_PANIC)
           HPLT(LastSeenBy(Myself),11)
@@ -1319,7 +1319,7 @@ END
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	!Range(LastSeenBy(Myself),6)
-        InMyArea(LastSeenBy(Myself))
+    InMyArea(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_REALLY_DEAD)
         !StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
         CheckStat(LastSeenBy(Myself),0,PROTECTION_FROM_EVIL)
@@ -1329,7 +1329,7 @@ THEN
 	RESPONSE #100
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-                ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
+        ForceSpellRES("RR#TELWE",LastSeenBy(Myself)) // Teleport Without Error
 		SetInterrupt(TRUE)
 END
 
