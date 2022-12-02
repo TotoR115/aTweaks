@@ -327,7 +327,7 @@ Range(NearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -362,7 +362,7 @@ Range(SecondNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -397,7 +397,7 @@ Range(ThirdNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -432,7 +432,7 @@ Range(FourthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -467,7 +467,7 @@ Range(FifthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -502,7 +502,7 @@ Range(SixthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1020,7 +1020,7 @@ Range(NearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1054,7 +1054,7 @@ Range(SecondNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1088,7 +1088,7 @@ Range(ThirdNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1122,7 +1122,7 @@ Range(FourthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1156,7 +1156,7 @@ Range(FifthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1190,7 +1190,7 @@ Range(SixthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1693,7 +1693,7 @@ Range(NearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1726,7 +1726,7 @@ Range(SecondNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1759,7 +1759,7 @@ Range(ThirdNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1792,7 +1792,7 @@ Range(FourthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1825,7 +1825,7 @@ Range(FifthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1858,7 +1858,7 @@ Range(SixthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2355,7 +2355,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2388,7 +2388,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2421,7 +2421,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2454,7 +2454,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2487,7 +2487,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2520,7 +2520,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2692,7 +2692,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2724,7 +2724,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2756,7 +2756,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2788,7 +2788,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2820,7 +2820,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -2852,7 +2852,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3024,7 +3024,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3056,7 +3056,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3088,7 +3088,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3120,7 +3120,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3152,7 +3152,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3184,7 +3184,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3341,7 +3341,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3370,7 +3370,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3399,7 +3399,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3428,7 +3428,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3457,7 +3457,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3486,7 +3486,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3495,7 +3495,7 @@ ActionListEmpty()
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -3506,7 +3506,7 @@ AttackedBy([ANYONE],DEFAULT)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastAttackerOf(Myself),30)
+AttackReevaluate(LastAttackerOf(Myself),15)
 END
 
 IF
