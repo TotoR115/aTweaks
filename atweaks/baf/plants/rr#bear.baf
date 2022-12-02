@@ -21,9 +21,9 @@ THEN
 RESPONSE #100
 SetGlobal("RR#Active","LOCALS",1)
 SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+SetGlobalTimer("RR#Help","LOCALS",18)
 Enemy()
 Shout(68)
-Continue()
 END
 
 IF
@@ -34,18 +34,18 @@ THEN
 RESPONSE #100
 SetGlobal("RR#Active","LOCALS",1)
 SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+SetGlobalTimer("RR#Help","LOCALS",18)
 Enemy()
 Shout(68)
-Continue()
 END
 
 IF
-	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every rounds while in combat, others may hear it and join the battle
+	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every three rounds while in combat, others may hear it and join the battle
 	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#Help","LOCALS",6)
+		SetGlobalTimer("RR#Help","LOCALS",18)
 		Shout(68)
 		Continue()
 END
@@ -167,61 +167,67 @@ IF
 	See([0.0.0.FOOD_CREATURE])
 THEN
 	RESPONSE #100
-		AttackReevaluate(LastSeenBy(Myself),30)
+		AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
+Allegiance(Myself,EVILCUTOFF)
 See(NearestEnemyOf(Myself))
 Range(NearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
+Allegiance(Myself,EVILCUTOFF)
 See(SecondNearestEnemyOf(Myself))
 Range(SecondNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
+Allegiance(Myself,EVILCUTOFF)
 See(ThirdNearestEnemyOf(Myself))
 Range(ThirdNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
+Allegiance(Myself,EVILCUTOFF)
 See(FourthNearestEnemyOf(Myself))
 Range(FourthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
+Allegiance(Myself,EVILCUTOFF)
 See(FifthNearestEnemyOf(Myself))
 Range(FifthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
+Allegiance(Myself,EVILCUTOFF)
 See(SixthNearestEnemyOf(Myself))
 Range(SixthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -285,7 +291,7 @@ Allegiance(Myself,EVILCUTOFF)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -296,7 +302,7 @@ AttackedBy([ANYONE],DEFAULT)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastAttackerOf(Myself),30)
+AttackReevaluate(LastAttackerOf(Myself),15)
 END
 
 IF

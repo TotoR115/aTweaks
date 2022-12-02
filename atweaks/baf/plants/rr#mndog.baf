@@ -570,7 +570,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -606,7 +606,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -642,7 +642,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -678,7 +678,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -714,7 +714,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -750,7 +750,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1567,7 +1567,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1603,7 +1603,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1639,7 +1639,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1675,7 +1675,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1711,7 +1711,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -1747,7 +1747,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -4513,7 +4513,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -4545,7 +4545,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -4577,7 +4577,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -4609,7 +4609,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -4641,7 +4641,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -4673,7 +4673,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -5031,7 +5031,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -5060,7 +5060,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -5089,7 +5089,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -5118,7 +5118,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -5147,7 +5147,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -5176,7 +5176,7 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -5186,5 +5186,5 @@ Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END

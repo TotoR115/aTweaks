@@ -2,7 +2,7 @@ IF
 	See("ysKalun")  // Kalun Trimthorn - Kalun
 THEN
 	RESPONSE #100
-		AttackReevaluate(LastSeenBy(Myself),30)
+		AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -28,9 +28,9 @@ THEN
     RESPONSE #100
         SetGlobal("RR#Active","LOCALS",1)
         SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+		SetGlobalTimer("RR#Help","LOCALS",12)
         Enemy()
         Shout(44)
-		Continue()
 END
 
 IF
@@ -39,20 +39,20 @@ IF
     See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
 THEN
     RESPONSE #100
-    SetGlobal("RR#Active","LOCALS",1)
-    SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-    Enemy()
-    Shout(44)
-    Continue()
+        SetGlobal("RR#Active","LOCALS",1)
+        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+        SetGlobalTimer("RR#Help","LOCALS",12)
+        Enemy()
+        Shout(44)
 END
 
 IF
-	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every rounds while in combat, others may hear it and join the battle
+	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every three rounds while in combat, others may hear it and join the battle
 	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#Help","LOCALS",6)
+		SetGlobalTimer("RR#Help","LOCALS",18)
 		Shout(44)
 		Continue()
 END
@@ -214,11 +214,10 @@ AreaType(OUTDOOR)
 Allegiance(Myself,ENEMY)
 HPPercentLT(Myself,30)
 !NumCreatureGT([ENEMY.0.117],1)
+LevelPartyLT(4)
 THEN
 RESPONSE #100
-SetInterrupt(FALSE)
-RunAwayFromNoInterrupt([PC],120)
-SetInterrupt(TRUE)
+RandomWalkContinuous()
 END
 
 IF
@@ -252,7 +251,7 @@ IF
 	See([0.0.0.FOOD_CREATURE])
 THEN
 	RESPONSE #100
-		AttackReevaluate(LastSeenBy(Myself),30)
+		AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -262,7 +261,7 @@ Range(NearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -272,7 +271,7 @@ Range(SecondNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SecondNearestEnemyOf(Myself),30)
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -282,7 +281,7 @@ Range(ThirdNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(ThirdNearestEnemyOf(Myself),30)
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -292,7 +291,7 @@ Range(FourthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FourthNearestEnemyOf(Myself),30)
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -302,7 +301,7 @@ Range(FifthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(FifthNearestEnemyOf(Myself),30)
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -312,7 +311,7 @@ Range(SixthNearestEnemyOf(Myself),5)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(SixthNearestEnemyOf(Myself),30)
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
 END
 
 IF
@@ -377,7 +376,7 @@ AttackedBy([ANYONE],DEFAULT)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(LastAttackerOf(Myself),30)
+AttackReevaluate(LastAttackerOf(Myself),15)
 END
 
 IF
@@ -387,7 +386,7 @@ Allegiance(Myself,EVILCUTOFF)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),30)
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF

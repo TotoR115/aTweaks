@@ -1766,7 +1766,7 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-/////////////////Great Cat
+/////////////////Great Cats
 
 // Cheetah
 
@@ -3527,7 +3527,7 @@ ACTION_FOR_EACH file IN // Dogs
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#dogsu" #8
 	BUT_ONLY
@@ -3544,7 +3544,7 @@ ACTION_FOR_EACH file IN // Wolves
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#wlfsu" #8
 	BUT_ONLY
@@ -3562,7 +3562,7 @@ ACTION_FOR_EACH file IN // Bears
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#beasu" #8
 	BUT_ONLY
@@ -3579,7 +3579,7 @@ ACTION_FOR_EACH file IN // Great Cat
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#catsu" #8
 	BUT_ONLY
@@ -3591,7 +3591,7 @@ ACTION_FOR_EACH file IN // Ankheg
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#anksu" #8
 	BUT_ONLY
@@ -3603,7 +3603,7 @@ ACTION_FOR_EACH file IN // Boalisk
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#boasu" #8
 	BUT_ONLY
@@ -3616,7 +3616,7 @@ ACTION_FOR_EACH file IN // Staff of woodlands
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#SHAMB" #8
 	BUT_ONLY
@@ -3630,7 +3630,7 @@ ACTION_FOR_EACH file IN // RR's Shambling mound
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#SHM" #8
 	  WRITE_ASCII SCRIPT_CLASS "rr#SHAMB" #8
@@ -3642,7 +3642,7 @@ ACTION_FOR_EACH file IN // RR's Shambling mound
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
-	  LPF ~RR#MDCRE~ INT_VAR newxpv = 0 END
+	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#mndog" #8
 	BUT_ONLY

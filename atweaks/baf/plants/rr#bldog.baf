@@ -9,9 +9,9 @@ THEN
 RESPONSE #100
 SetGlobal("RR#Active","LOCALS",1)
 SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+SetGlobalTimer("RR#Help","LOCALS",18)
 Enemy()
 Shout(99)
-Continue()
 END
 
 IF
@@ -22,18 +22,18 @@ THEN
 RESPONSE #100
 SetGlobal("RR#Active","LOCALS",1)
 SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+SetGlobalTimer("RR#Help","LOCALS",18)
 Enemy()
 Shout(99)
-Continue()
 END
 
 IF
-	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every two rounds while in combat, others may hear it and join the battle
+	!GlobalTimerNotExpired("RR#Help","LOCALS") // shout for help every three rounds while in combat, others may hear it and join the battle
 	Allegiance(Myself,EVILCUTOFF)
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#Help","LOCALS",12)
+		SetGlobalTimer("RR#Help","LOCALS",18)
 		Shout(99)
 		Continue()
 END
@@ -180,24 +180,24 @@ SetGlobal("rr#blinx","LOCALS",0)
 SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 ForceSpellRES("rr#blinx",WorstAC) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 SetGlobal("rr#blinx","LOCALS",0)
 SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 ForceSpellRES("rr#blinx",WeakestOf) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 SetGlobal("rr#blinx","LOCALS",0)
 SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 ForceSpellRES("rr#blinx",MostDamagedOf) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #25
 SetGlobal("rr#blinx","LOCALS",0)
 SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -234,7 +234,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",[PC.0.0.CLERIC_MAGE]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #35
 Continue()
 END
@@ -273,7 +273,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",[PC.0.0.CLERIC_MAGE]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #35
 Continue()
 END
@@ -312,7 +312,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",[PC.0.0.MAGE_THIEF]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #35
 Continue()
 END
@@ -351,7 +351,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",[PC.0.0.THIEF]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #55
 Continue()
 END
@@ -390,7 +390,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",[PC.0.0.BARD]) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 RESPONSE #55
 Continue()
 END
@@ -429,7 +429,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",NearestEnemyOf(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -466,7 +466,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -503,7 +503,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -540,7 +540,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -577,7 +577,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
@@ -613,7 +613,7 @@ SetGlobalTimer("rr#blink","LOCALS",6)  // phasing refresh timer
 SetGlobal("rr#blinx","LOCALS",1)
 ForceSpellRES("rr#blinx",LastSeenBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 EquipMostDamagingMelee()
-AttackReevaluate(LastSeenBy(Myself),45)
+AttackReevaluate(LastSeenBy(Myself),15)
 END
 
 IF
