@@ -1306,7 +1306,10 @@ COPY_EXISTING ~spwi604.spl~ ~override/rr#rgaze.spl~  								// Revenent Gaze
   FOR(i=0; i<ab_num; i+=1) BEGIN
     WRITE_SHORT (ab_off+i*0x28+0x26) %gaze_pro%                                     // use gaze projectile
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 134 opcode = 109 parameter1 = 0 parameter2 = 2 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 134 opcode = 109 parameter1 = 0 parameter2 = 2 duration = 30 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 174 duration = 30 timer = 4 STR_VAR resource = "EFF_E05" END
+  LPF DELETE_EFFECT INT_VAR silent = 1 match_opcode = 318 END
+  LPF DELETE_EFFECT INT_VAR silent = 1 match_opcode = 326 END
   LPF ALTER_EFFECT INT_VAR savingthrow = 1 END
   LPF CLONE_EFFECT INT_VAR match_opcode = 109 opcode = 139 parameter1 = RESOLVE_STR_REF(@1026) END
   LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ 
@@ -1333,13 +1336,17 @@ ACTION_FOR_EACH file IN
 //				shadesm1 // Arcane-Divine Spell Pack - Not Tested
 //				shadesm2 // Arcane-Divine Spell Pack - Not Tested
 //				shadesm3 // Arcane-Divine Spell Pack - Not Tested
-				a#sdsha1 // Song and Silence
-				a#sdsha2 // Song and Silence
-				a#sdsha3 // Song and Silence
-				a#sdsha4 // Song and Silence
+				a#sdsha1 // Song and Silence Shadowdancer summoning
+				a#sdsha2 // Song and Silence Shadowdancer summoning
+				a#sdsha3 // Song and Silence Shadowdancer summoning
+				a#sdsha4 // Song and Silence Shadowdancer summoning
 				acq10119 // AC_Quest
+				acshad01 //
+				l#gnosh	 // SotSC:Shadow
+				l#gnoen  // SotSC: Shadow Master
 				specx1 	 // TDD
 				va#shdgl // Tower of Deception
+
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1394,6 +1401,7 @@ BEGIN
 			notenf04 = a#sdsha3
 			notenf05 = a#sdsha4
 			notenf06 = specx1
+			notenf07 = l#gnoen
         END
         LPF RR#MDCSC
           STR_VAR
@@ -1408,6 +1416,10 @@ BEGIN
 			script08 = DW2MS3GE
 			skipfile01 = va#shdgl
 			skipfile02 = sumshad		
+			skipfile03 = a#sdsha1		
+			skipfile04 = a#sdsha2		
+			skipfile05 = a#sdsha3		
+			skipfile06 = a#sdsha4		
         END
         // LPF cold_spell_immunities END
       END
@@ -1442,6 +1454,22 @@ COPY_EXISTING b1-10.itm "override/fl#shad.itm"
       parameter2 = 91 //damaged ability score
       duration = 5*60
   END
+
+// Shadow, summoned
+ACTION_FOR_EACH file IN
+				a#sdsha1 // Song and Silence Shadowdancer kit
+				a#sdsha2 // Song and Silence Shadowdancer kit
+				a#sdsha3 // Song and Silence Shadowdancer kit
+				a#sdsha4 // Song and Silence Shadowdancer kit
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+	  WRITE_LONG 0x14 "0"
+      LPF make_summon END
+	  WRITE_BYTE 0x273 "4"	// Thief
+    BUT_ONLY
+  END
+END
 
 
 

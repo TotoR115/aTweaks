@@ -3,6 +3,8 @@
 // Creature changes, summons
 //////////////////////////////////////////////////////////////////////
 
+INCLUDE "atweaks/lib/c150_funs.tpa"
+
 COPY_EXISTING ~demnabsu.cre~ ~override~
   LPF make_nabassu END
 BUT_ONLY_IF_IT_CHANGES
