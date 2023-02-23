@@ -1309,7 +1309,7 @@ COPY_EXISTING ~spwi604.spl~ ~override/rr#rgaze.spl~  								// Revenent Gaze
   LPF ALTER_EFFECT INT_VAR match_opcode = 134 opcode = 109 parameter1 = 0 parameter2 = 2 duration = 30 END
   LPF CLONE_EFFECT INT_VAR match_opcode = 174 duration = 30 timer = 4 STR_VAR resource = "EFF_E05" END
   LPF DELETE_EFFECT INT_VAR silent = 1 match_opcode = 318 END
-  LPF DELETE_EFFECT INT_VAR silent = 1 match_opcode = 326 END
+  LPF DELETE_EFFECT INT_VAR silent = 1 match_opcode = 328 END
   LPF ALTER_EFFECT INT_VAR savingthrow = 1 END
   LPF CLONE_EFFECT INT_VAR match_opcode = 109 opcode = 139 parameter1 = RESOLVE_STR_REF(@1026) END
   LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ 

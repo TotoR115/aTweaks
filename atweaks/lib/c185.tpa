@@ -349,6 +349,7 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "126" END     // mark opcode #126 (Movement Modifier) for deletion
 LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "176" END     // mark opcode #176 (Movement Modifier II) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "233" END     // mark opcode #233 (Modify proficiencies) for deletion
 ADD_MEMORIZED_SPELL ~rr#fcsng~ #0 ~innate~ ( 1 )                                   // adds 1x Charming Song
 ADD_MEMORIZED_SPELL ~rr#fcld~ #0 ~innate~ ( 1 )                                    // adds 1x Fog Cloud
 ADD_MEMORIZED_SPELL ~rr#wi405~ #0 ~innate~ ( 1 )                                   // adds 1x Improved Invisibility

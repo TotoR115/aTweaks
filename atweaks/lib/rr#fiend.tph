@@ -375,7 +375,7 @@ COPY ~atweaks/spl/RR#IMSPD.SPL~  ~override~										   // Polymorph Self: Large
 COPY ~atweaks/itm/RR#IMRAT.itm~  ~override~										   // Polymorph Self: Big rat (used by Imp)
 COPY ~atweaks/itm/RR#IMSPD.itm~  ~override~										   // Polymorph Self: Large Spider (used by Imp)
 COPY ~atweaks/itm/RR#IMSP2.itm~  ~override~										   // Polymorph Self: Phase Spider (used by Imp)
-COPY ~atweaks/spl/rr#NATFR.spl~  ~override~										   // Polymorph Self: Large Spider (used by Imp)
+COPY ~atweaks/spl/RR#NATFR.spl~  ~override~										   // Polymorph Self: Natural Form (used by Imp)
 
 COPY_EXISTING ~SPWI104.SPL~  ~override/RR#DSUGG.SPL~                               // Change Charm Person into Suggestion (used by Imp)
   SAY NAME1 @708 SAY NAME2 @708                                                    // Suggestion
@@ -423,6 +423,7 @@ COPY ~atweaks/spl/rr#QUWLF.SPL~  ~override~										   // Polymorph Self: Wolf 
 COPY ~atweaks/itm/rr#QUBAT.ITM~  ~override~										   // Polymorph Self: Bat (used by Quasits)
 COPY ~atweaks/itm/rr#QUWLF.ITM~  ~override~										   // Polymorph Self: Wolf (used by Quasits)
 COPY ~atweaks/itm/rr#QUWL2.ITM~  ~override~										   // Polymorph Self: Winter Wolf (used by Quasits)
+COPY ~atweaks/spl/RR#NATF2.spl~  ~override~										   // Polymorph Self: Natural Form (used by Quasit)
 
 COPY_EXISTING ~SPWI205.SPL~  ~override/rr#dmfea.spl~                               // Change Horror into Blast of Fear (used by Quasits)
   SAY NAME1 @748 SAY NAME2 @748                                                    // Blast of Fear
@@ -518,6 +519,7 @@ LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                   
 COPY_EXISTING ~SPWI206.SPL~  ~override/RR#WI206.SPL~                               // Clone Invisibility into an innate ability (used by Erinyes)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
 COPY_EXISTING ~SPWI206.SPL~  ~override/RR#WR206.SPL~                               // Clone Invisibility into an innate ability at will (used by imps and quasits)
+LPF ALTER_SPELL_HEADER INT_VAR target = 5 END									   // target self
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew"   = "1" END   // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPWI212.SPL~  ~override/RR#WI212.SPL~                               // Clone Mirror Image into an innate ability (used by Glabrezu)
