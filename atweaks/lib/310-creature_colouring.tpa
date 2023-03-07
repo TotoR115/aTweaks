@@ -1368,7 +1368,7 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 
-/*
+
 // Quasit
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -1395,7 +1395,7 @@ INT_VAR opcode_to_delete = "52" END                                             
 SET opcode = "52"                                                                  // effect: #52 (Colour: Very Bright by RGB
 SET target = "1"                                                                   // target: 1 (self)
 SET timing = "9"                                                                   // timing mode: 9 (permanent after death)
-SET parameter1 = "459520"                                                          // param1: (color designation)
+SET parameter1 = "196864"                                                          // param1: (color designation)
 SET parameter2 = "2"                                                               // param2: 2 (location - major color)
 SET parameter3 = "0"                                                               // param3: 0
 SET parameter4 = "0"                                                               // param4: 0
@@ -1532,7 +1532,7 @@ END                                                                             
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
-*/
+
 
 
 // Giant Troll

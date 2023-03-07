@@ -1125,15 +1125,15 @@ DEFINE_PATCH_FUNCTION cure_spell_immunities BEGIN
     SPRINT IWDcume ""
   END
 // End : Add Spells from IWDification mod or stratagems mods
-  PATCH_FOR_EACH ~spell~ IN                                                          // grant immunity to each of the following spells
+  PATCH_FOR_EACH ~spell~ IN                                                            // grant immunity to each of the following spells
                 ~SPPR103~                                                              // Cure Light Wounds
                 ~A#JUSTCL~                                                             // Cure Light Wounds (Divine Remix)
-                ~ca#culw~                                                            // Cure Light Wounds (PnP Deva)              
-                ~L#KORIEP~                                                           // Cure Light Wounds (mod) 
-                ~A7Q6CURE~                                                           // Cure Light Wounds (afaaq)  
-                ~%srcumo%~                                                              // Cure Medium Wounds  (Spell Revisions)
-				~%IWDcumw%~                                                          // Cure moderate Wounds  (IWDification)
-                ~%IWDcume%~                                                              // Cure Medium Wounds
+                ~ca#culw~                                                              // Cure Light Wounds (PnP Deva)              
+                ~L#KORIEP~                                                             // Cure Light Wounds (mod) 
+                ~A7Q6CURE~                                                             // Cure Light Wounds (afaaq)  
+                ~%srcumo%~                                                             // Cure Medium Wounds  (Spell Revisions)
+				~%IWDcumw%~                                                            // Cure moderate Wounds  (IWDification)
+                ~%IWDcume%~                                                            // Cure Medium Wounds
                 ~SPPR401~                                                              // Cure Serious Wounds
                 ~CA#CURSW~                                                             // Cure Serious Wounds (PnP Deva)
                 ~SPIN200~                                                              // Cure Serious Wounds
@@ -3223,7 +3223,6 @@ READ_ASCII 0 sig (3)
   PATCH_MATCH "%sig%" WITH
       ~CRE~ BEGIN                                                                      // CRE file parsed
       PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
-                        ~55~                                                           // Slay
                         ~13~                                                           // Kill Target
       BEGIN
       LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
@@ -3233,23 +3232,6 @@ READ_ASCII 0 sig (3)
         "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
         "duration" = "0"                                                               // duration: 0
         "parameter2" = EVALUATE_BUFFER "%effect%"                                      // param2: effect
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
-                       ~124~                                                           // Polymorph
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "9"                                                                 // timing mode: 9 (permanent after death)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
         "sectype" = "0"                                                                // secondary type: none
         "probability1" = "100"                                                         // probability1: 100%
       STR_VAR                                                                          // initialize strings
@@ -3279,7 +3261,6 @@ READ_ASCII 0 sig (3)
     END                                                                                // ends WITH CRE block
     ~ITM~ BEGIN                                                                        // ITM file parsed
       PATCH_FOR_EACH ~effect~ IN                                                       // grant immunity to each of the following effects
-                        ~55~                                                           // Slay
                         ~13~                                                           // Kill Target
       BEGIN
       LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
@@ -3289,23 +3270,6 @@ READ_ASCII 0 sig (3)
         "timing" = "2"                                                                 // timing mode: 2 (while equipped)
         "duration" = "0"                                                               // duration: 0
         "parameter2" = EVALUATE_BUFFER "%effect%"                                      // param2: effect
-        "sectype" = "0"                                                                // secondary type: none
-        "probability1" = "100"                                                         // probability1: 100%
-      STR_VAR                                                                          // initialize strings
-        "resource"  = ""                                                               // resref: none
-        "effsource" = ""                                                               // effsource: none
-      END                                                                              // ends LAUNCH_PATCH_FUNCTION
-      END                                                                              // ends PATCH_FOR_EACH
-      PATCH_FOR_EACH ~icon~ IN                                                         // grant protection from each of the following icons
-                       ~124~                                                           // Polymorph
-      BEGIN
-      LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
-      INT_VAR                                                                          // initialize variables
-        "opcode" = "169"                                                               // effect: #169 (Immunity Special Effect Icon)
-        "target" = "1"                                                                 // target: 1 (self)
-        "timing" = "2"                                                                 // timing mode: 2 (while equipped)
-        "duration" = "0"                                                               // duration: 0
-        "parameter2" = EVALUATE_BUFFER "%icon%"                                        // param2: icon
         "sectype" = "0"                                                                // secondary type: none
         "probability1" = "100"                                                         // probability1: 100%
       STR_VAR                                                                          // initialize strings
