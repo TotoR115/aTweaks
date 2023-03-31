@@ -1,0 +1,1344 @@
+///////////////
+// PnP Spiders and Ettercaps
+///////////////
+
+
+INCLUDE "atweaks/lib/tactical_shared.tpa"
+
+OUTER_SET PoisonSecType = fl#Poison
+
+//////////////////////////////
+// New spells
+//////////////////////////////
+
+COPY ~atweaks/spl/spiders/rr#spweb.spl~ ~override~                             	   // spider web
+COPY ~atweaks/eff/spiders/rr#spweb.eff~ ~override~          				       // Immunity to spider web spell
+
+COPY ~atweaks/spl/rr#phase.spl~ ~override~                            	   		   // Dimension Door (renewable), for phase spider
+  SAY NAME1 #12082 SAY NAME2 #12082
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew"   = "1" END // Execute the "spell to innate ablity" function
+COPY ~atweaks/spl/rr#phasx.spl~ ~override~                            	   		   // Dimension Door (renewable), for blink dog
+  SAY NAME1 #12082 SAY NAME2 #12082
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END   				   // Execute the "spell to innate ablity" function
+
+COPY ~atweaks/spl/spiders/rr#spwrt.spl~ ~override~               				   // wraith spider poison attack
+OUTER_SET $f_AddSecType(rr#spwrt.spl) = PoisonSecType
+
+COPY ~atweaks/spl/spiders/rr#spoi1.spl~ ~override~               				   // Type F (letal) poison attack
+OUTER_SET $f_AddSecType(rr#spoi1.spl) = PoisonSecType
+
+// ADD_PROJECTILE ~atweaks/pro/spiders/rr#spvtx.pro~                                  // Vortex spider web projectile
+COPY_EXISTING ~spin575.spl~ ~override/RR#spvtx.SPL~                                // Vortex spider web
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew"   = "1" END // Execute the "spell to innate ablity" function
+  // READ_LONG  0x64 ab_off
+  // READ_SHORT 0x68 ab_num
+  // FOR(i=0; i<ab_num; i+=1) BEGIN
+    // WRITE_SHORT (ab_off+i*0x28+0x26) ~%rr#spvtx%~                                  // use new projectile
+  // END
+  // PATCH_FOR_EACH cs IN 115 137 139 140 141 180 182 186 187 188 189 BEGIN
+    // LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 2 probability1 = 100 parameter1 = "%cs%" parameter2 = 5 STR_VAR resource = ~rr#spvtx~ END
+  // END
+  // PATCH_FOR_EACH rc IN 107 118 119 123 132 133 134 136 146 BEGIN
+    // LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 2 probability1 = 100 parameter1 = "%rc%" parameter2 = 4 STR_VAR resource = ~rr#spvtx~ END
+  // END
+// COPY ~atweaks/eff/spiders/rr#spvtx.eff~ ~override~               				   // Immunity to spider web spell	
+
+COPY_EXISTING ~SPWI215.spl~ ~override/RR#WI215.SPL~                                // web
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END 				   // Execute the "spell to innate ablity" function
+COPY_EXISTING ~SPWI701.spl~ ~override/RR#WI701.SPL~                                // web
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END 				   // Execute the "spell to innate ablity" function
+
+ADD_PROJECTILE ~atweaks/pro/spiders/rr#spwr2.pro~                                  // Vortex spider web projectile
+COPY_EXISTING ~SPWI215.spl~ ~override/RR#spwr2.SPL~                                // Wraith spider web (held + cold dmg)
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END 				   // Execute the "spell to innate ablity" function
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 12 target = 2 probability1 = 100 parameter1 = 0 parameter2 = 131072 dicenumber = 1 dicesize = 4 END
+  READ_LONG  0x64 ab_off
+  READ_SHORT 0x68 ab_num
+  FOR(i=0; i<ab_num; i+=1) BEGIN
+    WRITE_SHORT (ab_off+i*0x28+0x26) ~%rr#spwr2%~                                  // use new projectile
+  END
+  PATCH_FOR_EACH cs IN 115 137 139 140 141 180 182 186 187 188 189 BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 2 probability1 = 100 parameter1 = "%cs%" parameter2 = 5 STR_VAR resource = ~rr#spwr2~ END
+  END
+  PATCH_FOR_EACH rc IN 107 118 119 123 132 133 134 136 146 BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 2 probability1 = 100 parameter1 = "%rc%" parameter2 = 4 STR_VAR resource = ~rr#spwr2~ END
+  END
+
+COPY_EXISTING ~rr#spweb.eff~ ~override/rr#spwr2.eff~          				       // Immunity to wraith spider web spell
+  WRITE_ASCII 0x30 ~rr#spwr2~ #8
+
+
+COPY_EXISTING ~spcl412.spl~ ~override/RR#sptrp.SPL~                                // ettercap web trap
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew"   = "1" END // Execute the "spell to innate ablity" function
+	LPF ALTER_EFFECT INT_VAR match_opcode = 252 STR_VAR resource = "SPWI215" END
+	WRITE_ASCII 0x3a "SPWI215B"
+	WRITE_ASCII 0x76 "SPWI215B"
+
+//////////////////////////////
+// New items
+//////////////////////////////
+
+COPY ~atweaks/itm/spiders/RR#spid.itm~ ~override~                                  // spider immunity (shared by all spiders)
+	LAUNCH_PATCH_FUNCTION ~web_immunity~ END                                       // add web immunity
+
+COPY ~atweaks/itm/spiders/RR#spid.itm~ ~override/rr#spwyv.itm~                     // Wyvern immunity (shared by all Wyvern)
+	LAUNCH_PATCH_FUNCTION ~hover_immunities~ END                                   // add flying immunity
+	WRITE_SHORT 0x1c "10"
+
+COPY ~atweaks/itm/spiders/rr#spweb.itm~ ~override~                             	   // spider web (shared by most spiders)
+	LPF set_enchantment INT_VAR enchantment = 0 END
+
+COPY ~atweaks/itm/spiders/rr#sphug.itm~ ~override~                                 // Huge spider attack
+	LPF set_enchantment INT_VAR enchantment = 0 END
+COPY_EXISTING ~rr#sphug.itm~ ~override/rr#spmut.itm~                               // Mutated spider attack
+	LPF set_enchantment INT_VAR enchantment = 0 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 8 dicenumber = 1 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 25 parameter2 = 0 duration = 30 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 142 duration = 30 END
+COPY ~atweaks/itm/spiders/rr#spgia.itm~ ~override~                                 // Giant spider attack
+	LPF set_enchantment INT_VAR enchantment = 1 END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = "rr#spoi1" END
+COPY_EXISTING ~rr#spgia.itm~ ~override/rr#spphs.itm~                               // Phase spider attack
+	LPF set_enchantment INT_VAR enchantment = 2 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 6 dicenumber = 1 END
+    LPF ALTER_EFFECT INT_VAR savebonus = "-2" END
+COPY_EXISTING ~rr#spphs.itm~ ~override/rr#sppla.itm~                               // Planetar (Astral Phase) spider attack
+	LPF set_enchantment INT_VAR enchantment = 3 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicenumber = 2 END
+	LPF ALTER_EFFECT INT_VAR savebonus = "-4" END
+COPY_EXISTING ~rr#sphug.itm~ ~override/rr#spswl.itm~                               // Sword spider attack - legs
+	LPF set_enchantment INT_VAR enchantment = 2 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 6 dicenumber = 2 damage_type = 3 END
+	LPF DELETE_EFFECT END
+COPY_EXISTING ~rr#sphug.itm~ ~override/rr#spswb.itm~                               // Sword spider attack - bite
+	LPF set_enchantment INT_VAR enchantment = 2 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 4 dicenumber = 2 END
+	LPF DELETE_EFFECT END
+COPY ~atweaks/itm/spiders/rr#spwrt.itm~ ~override~                                 // Wraith spider attack
+	LPF set_enchantment INT_VAR enchantment = 3 END
+COPY_EXISTING ~rr#spphs.itm~ ~override/rr#spvtx.itm~                               // Vortex spider attack
+	LPF set_enchantment INT_VAR enchantment = 3 END
+	LPF CLONE_EFFECT INT_VAR match_opcode = 146 opcode = 25 timing = 0 target = 2 parameter1 = 20 parameter2 = 2 duration = 1 probability1 = 100 savingthrow = 0 savebonus = 0 END
+COPY_EXISTING ~rr#spvtx.itm~ ~override/rr#splas.itm~                               // Lashar'ra spider attack
+	LPF set_enchantment INT_VAR enchantment = 3 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 25 parameter1 = 16 duration = 4 END
+COPY_EXISTING ~rr#spphs.itm~ ~override/rr#spbeb.itm~                               // Bebilith attack - bite
+	LPF set_enchantment INT_VAR enchantment = 4 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 6 END
+COPY_EXISTING ~rr#spswl.itm~ ~override/rr#spbel.itm~                               // Bebilith attack - legs
+	LPF set_enchantment INT_VAR enchantment = 4 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 4 END
+COPY_EXISTING ~S1-3.ITM~ ~override/rr#spetc.itm~                               	   // Ettercap attack (claws)
+	LPF set_enchantment INT_VAR enchantment = 1 END
+COPY_EXISTING ~rr#spgia.ITM~ ~override/rr#spetb.itm~                               // Ettercap attack (bites)
+	LPF set_enchantment INT_VAR enchantment = 1 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 8 dicenumber = 1 END
+
+COPY_EXISTING ~rr#sphug.itm~ ~override/rr#spwch.itm~                               // Watch spider attack
+	LPF set_enchantment INT_VAR enchantment = 1 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 25 opcode = 109 parameter1 = 0 parameter2 = 2 duration = 30 END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 142 duration = 30 parameter2 = 13 END
+
+COPY_EXISTING ~B1-10.ITM~ ~override/rr#spwy1.itm~                                  // Wyvern attack (bites)
+	LPF set_enchantment INT_VAR enchantment = 2 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 8 dicenumber = 2 END
+COPY_EXISTING ~rr#spgia.itm~ ~override/rr#spwy2.itm~                               // Wyvern attack (stinger)
+	LPF set_enchantment INT_VAR enchantment = 2 END
+	LPF ALTER_ITEM_HEADER INT_VAR dicesize = 6 dicenumber = 1 END
+
+
+//////////////////////////
+// Creature modifications: Spiders
+//////////////////////////
+
+// Spider, Huge
+
+COPY_EXISTING "SPIDPHSU.cre" "override/RR#SPHSU.cre"
+	SAY NAME1 #15977
+	SAY NAME2 #15977
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SPIDHU~                                                               // Huge Spider
+            ~SPIDHU01~                                                             // Huge Spider
+            ~RR#SPHSU~                                                             // Huge Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#sphug~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "14"                                                                  // new movement rate
+"newxpv"   = "270"                                                                 // new XP value
+"newhp"    = "18"                                                                  // new hit point value
+"newac"    = "6"                                                                   // new Armor Class value
+"newth"    = "19"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "14"                                                                  // new Save vs. Death
+"newsvw"   = "16"                                                                  // new Save vs. Wand
+"newsvp"   = "15"                                                                  // new Save vs. Polymorph
+"newsvb"   = "17"                                                                  // new Save vs. Breath
+"newsvs"   = "17"                                                                  // new Save vs. Spell
+"newlvl1"  = "2"                                                                   // new level (first class)
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "3"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "16"                                                                  // new Dexterity value
+"newcon"   = "12"                                                                  // new Constitution value
+"newchr"   = "3"                                                                   // new Charisma value
+"newmor"   = "8"                                                                   // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "138"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#sphug"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "DW#SPIDS"                                                          // Stratagems melee script
+"skipfile01" = "RR#SPHSU"                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Spider, Watch
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SPIDLAND~                                                             // Watch Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spwch~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "14"                                                                  // new movement rate
+"newxpv"   = "270"                                                                 // new XP value
+"newhp"    = "18"                                                                  // new hit point value
+"newac"    = "6"                                                                   // new Armor Class value
+"newth"    = "19"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "14"                                                                  // new Save vs. Death
+"newsvw"   = "16"                                                                  // new Save vs. Wand
+"newsvp"   = "15"                                                                  // new Save vs. Polymorph
+"newsvb"   = "17"                                                                  // new Save vs. Breath
+"newsvs"   = "17"                                                                  // new Save vs. Spell
+"newlvl1"  = "2"                                                                   // new level (first class)
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "7"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "16"                                                                  // new Dexterity value
+"newcon"   = "12"                                                                  // new Constitution value
+"newchr"   = "3"                                                                   // new Charisma value
+"newmor"   = "8"                                                                   // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "138"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spwch"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "DW#SPIDS"                                                          // Stratagems melee script
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Spider, Mutated
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SENSMSP~                                                              // Mutated Spider
+            ~SPIDSM01~                                                             // Small Spider
+            ~SPIDSM02~                                                             // Mutated Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spmut~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ 					   // replace default weapon with a more PnP accurate weapon (bite)
+REPLACE_CRE_ITEM ~RR#spweb~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ EQUIP                 // replace default weapon with a more PnP accurate weapon (web)
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "14"                                                                  // new movement rate
+"newxpv"   = "650"                                                                 // new XP value
+"newhp"    = "32"                                                                  // new hit point value
+"newac"    = "4"                                                                   // new Armor Class value
+"newth"    = "16"                                                                  // new THAC0 value
+"newapr"   = "2"                                                                   // new number of attacks per round
+"newsvd"   = "13"                                                                  // new Save vs. Death
+"newsvw"   = "15"                                                                  // new Save vs. Wand
+"newsvp"   = "14"                                                                  // new Save vs. Polymorph
+"newsvb"   = "16"                                                                  // new Save vs. Breath
+"newsvs"   = "16"                                                                  // new Save vs. Spell
+"newlvl1"  = "4"                                                                   // new level (first class)
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "7"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "17"                                                                  // new Dexterity value
+"newcon"   = "12"                                                                  // new Constitution value
+"newchr"   = "3"                                                                   // new Charisma value
+"newmor"   = "13"                                                                  // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "137"                                                                 // new class
+"newalign" = "51"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spgia"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "DW#SPIDS"                                                          // Stratagems melee script
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Spider, Giant
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SPIDGI~                                                               // Giant Spider
+            ~SPIDGI01~                                                             // Giant Spider
+            ~SPIDGISU~                                                             // Giant Spider
+            ~SPSPID05~                                                             // Giant Spider
+            ~UDSPID01~                                                             // Giant Spider
+            ~UDSPID02~                                                             // Giant Spider
+            ~UDSPID03~                                                             // Giant Spider
+            ~UDSPID04~                                                             // Giant Spider
+            ~UDSPID05~                                                             // Giant Spider
+            ~UDSPID06~                                                             // Giant Spider
+            ~UDSPID07~                                                             // Giant Spider
+            ~UDSPID08~                                                             // Giant Spider
+            ~A7Q2WS2C~                                                             // Giant Spider
+            ~A7Q3SP03~                                                             // Giant Spider
+            ~A7Q3SP04~                                                             // Giant Spider
+            ~C#SOSPD1~                                                             // Giant Spider
+            ~C#SOSPDD~                                                             // Giant Spider
+            ~O#LLSPI1~                                                             // Giant Spider
+            ~O#LLSPI2~                                                             // Giant Spider
+            ~O#LLSPI3~                                                             // Giant Spider
+            ~O#LLSPI4~                                                             // Giant Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spgia~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ 	                   // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~RR#spweb~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ EQUIP                 // replace default weapon with a more PnP accurate weapon (web)
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "9"                                                                   // new movement rate
+"newxpv"   = "650"                                                                 // new XP value
+"newhp"    = "36"                                                                  // new hit point value
+"newac"    = "4"                                                                   // new Armor Class value
+"newth"    = "15"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "11"                                                                  // new Save vs. Death
+"newsvw"   = "13"                                                                  // new Save vs. Wand
+"newsvp"   = "12"                                                                  // new Save vs. Polymorph
+"newsvb"   = "13"                                                                  // new Save vs. Breath
+"newsvs"   = "14"                                                                  // new Save vs. Spell
+"newlvl1"  = "4"                                                                   // new level (first class)
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "7"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "17"                                                                  // new Dexterity value
+"newcon"   = "12"                                                                  // new Constitution value
+"newchr"   = "3"                                                                   // new Charisma value
+"newmor"   = "13"                                                                  // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "137"                                                                 // new class
+"newalign" = "51"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spgia"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "DW#SPIDS"                                                          // Stratagems melee script
+"script10"   = "DW2MP0MO"                                                          // Stratagems melee script
+"script11"   = "O#LLFIGH"                                                          // melee script
+"skipfile01" = "SPIDGISU"                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Spider, Phase
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SPIDFGSU~                                                             // Kitthrix Spider
+            ~SPIDPH~                                                               // Phase Spider
+            ~SPIDPH01~                                                             // Phase Spider
+            ~SPIDPHSU~                                                             // Phase Spider
+            ~SPSPID06~                                                             // Phase Spider
+            ~A7Q3SP01~                                                             // Phase Spider
+            ~F_SUMSPI~                                                             // Phase Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spphs~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ 	                   // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~RR#spweb~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ EQUIP                 // replace default weapon with a more PnP accurate weapon (web)
+ADD_MEMORIZED_SPELL ~rr#phase~ #0 ~innate~ ( 1 )                                   // adds 1x Teleport
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "11"                                                                  // new movement rate
+"newxpv"   = "1400"                                                                // new XP value
+"newhp"    = "45"                                                                  // new hit point value
+"newac"    = "7"                                                                   // new Armor Class value
+"newth"    = "15"                                                              	   // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "10"                                                                  // new Save vs. Death
+"newsvw"   = "12"                                                                  // new Save vs. Wand
+"newsvp"   = "11"                                                                  // new Save vs. Polymorph
+"newsvb"   = "12"                                                                  // new Save vs. Breath
+"newsvs"   = "13"                                                                  // new Save vs. Spell
+"newlvl1"  = "5"                                                                   // new level (first class)
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "7"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "18"                                                                  // new Dexterity value
+"newcon"   = "15"                                                                  // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "15"                                                                  // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "139"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spphs"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "PSPIDER"                                                           // phase spider script
+"script10"   = "DW2MP1MO"                                                          // Stratagems melee script
+"skipfile01" = "SPIDPHSU"                                                          // summons
+"skipfile02" = "F_SUMSPI"                                                          // summons
+"skipfile03" = "F_SUMSPI"                                                          // summons
+"skipfile04" = "SPIDFGSU"                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Spider, Sword
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~PLYSPID~                                                              // Phase Spider
+            ~SPIDSW~                                                               // Phase Spider
+            ~SPIDSW01~                                                             // Phase Spider
+            ~SPIDSW02~                                                             // Phase Spider
+            ~SPIDSWSU~                                                             // Phase Spider
+            ~SPSPID07~                                                             // Phase Spider
+            ~A7Q2WS2A~                                                             // Phase Spider
+            ~A7Q2WS2B~                                                             // Phase Spider
+            ~A7Q3SP02~                                                             // Phase Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~MAGE06~                                                           // removes MAGE06.ITM (hast spell)
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spswb~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 	                   // replace default weapon with a more PnP accurate weapon (bite)
+REPLACE_CRE_ITEM ~RR#spswl~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (legs)
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "10"                                                                  // new movement rate
+"rr#ptwf"  = "1"                                                                   // perfect two weapon fighting (1 = enable)
+"newxpv"   = "2000"                                                                // new XP value
+"newhp"    = "45"                                                                  // new hit point value
+"newac"    = "3"                                                                   // new Armor Class value
+"newth"    = "15"                                                                  // new THAC0 value
+"newapr"   = "4"                                                                   // new number of attacks per round
+"newsvd"   = "10"                                                                  // new Save vs. Death
+"newsvw"   = "12"                                                                  // new Save vs. Wand
+"newsvp"   = "11"                                                                  // new Save vs. Polymorph
+"newsvb"   = "12"                                                                  // new Save vs. Breath
+"newsvs"   = "13"                                                                  // new Save vs. Spell
+"newlvl1"  = "5"                                                                   // new level (first class)
+"newstr"   = "18"                                                                  // new Strength value
+"newstrx"  = "51"                                                                  // new Exceptional Strength value
+"newint"   = "7"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "17"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newchr"   = "4"                                                                   // new Charisma value
+"newmor"   = "15"                                                                  // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "140"                                                                 // new class
+"newalign" = "51"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spswd"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "DW#SPIDS"                                                          // phase spider script
+"script10"   = "DW2MP1MO"                                                          // Stratagems melee script
+"skipfile01" = "PLYSPID"                                                           // Polymorphe (Mage)
+"skipfile02" = "SPIDSWSU"                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Spider, Wraith
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SPIDWR~                                                               // Wraith Spider
+            ~SPIDWR01~                                                             // Wraith Spider
+            ~TTSPID~                                                               // Wraith Spider
+            ~A7Q2WS2D~                                                             // Wraith Spider
+            ~C#Q04009~                                                             // Wraith Spider
+            ~L#ULCSP~                                                              // Wraith Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~lring~                 		   // Add default immunity to normal weapons
+REPLACE_CRE_ITEM ~RING95~ #0 #0 #0 ~UNDROPPABLE~ ~rring~                 		   // Add default undead immunity to mind spells
+REPLACE_CRE_ITEM ~RR#spwrt~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+ADD_MEMORIZED_SPELL ~rr#spwr2~ #0 ~innate~ ( 1 )                                   // adds 1x wraith web
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "14"                                                                  // new movement rate
+"newxpv"   = "1400"                                                                // new XP value
+"newhp"    = "26"                                                                  // new hit point value
+"newac"    = "5"                                                                   // new Armor Class value
+"newth"    = "17"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "13"                                                                  // new Save vs. Death
+"newsvw"   = "15"                                                                  // new Save vs. Wand
+"newsvp"   = "14"                                                                  // new Save vs. Polymorph
+"newsvb"   = "16"                                                                  // new Save vs. Breath
+"newsvs"   = "16"                                                                  // new Save vs. Spell
+"newcr"    = "100"                                                                 // new Resist Cold value
+"newmr"    = "15"                                                                  // new Resist Cold value
+"newlvl1"  = "3"                                                                   // new level (first class)
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "10"                                                                  // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "18"                                                                  // new Dexterity value
+"newcon"   = "9"                                                                   // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "15"                                                                  // new morale value
+"newgen"   = "4"                                                                   // new general value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "141"                                                                 // new class
+"newalign" = "19"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = "L#ULCSP"
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spwrt"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "DW#SPIDG"                                                          // phase spider script
+"script10"   = "DW2MP1MO"                                                          // Stratagems melee script
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // add cold immunity
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Spider, Vortex
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SMSPID02~                                                             // Vortex Spider
+            ~SPIDVO01~                                                             // Vortex Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~MAGE06~                                                           // removes MAGE06.ITM (hast spell)
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spvtx~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+ADD_MEMORIZED_SPELL ~rr#spvtx~ #0 ~innate~ ( 1 )                                   // adds 1x vortex web
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "11"                                                                  // new movement rate
+"newxpv"   = "2700"                                                                // new XP value
+"newhp"    = "60"                                                                  // new hit point value
+"newac"    = "4"                                                                   // new Armor Class value
+"newth"    = "13"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "10"                                                                  // new Save vs. Death
+"newsvw"   = "12"                                                                  // new Save vs. Wand
+"newsvp"   = "11"                                                                  // new Save vs. Polymorph
+"newsvb"   = "12"                                                                  // new Save vs. Breath
+"newsvs"   = "13"                                                                  // new Save vs. Spell
+"newmr"    = "15"                                                                  // new Resist Cold value
+"newlvl1"  = "7"                                                                   // new level (first class)
+"newstr"   = "18"                                                                  // new Strength value
+"newstrx"  = "51"                                                                  // new Exceptional Strength value
+"newint"   = "8"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "18"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "10"                                                                  // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "139"                                                                 // new class
+"newalign" = "19"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spvtx"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "SPIDVO01"                                                          // phase spider script
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Spider, Planar (Astral phase)
+
+COPY_EXISTING "SPIDPHSU.cre" "override/RR#SPASU.cre"
+	SAY NAME1 @1941
+	SAY NAME2 @1941
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SPIDPHAS~                                                             // Astral Phase Spider
+            ~RR#SPASU~                                                             // Astral Phase Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#sppla~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ 	                   // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~RR#spweb~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ EQUIP                 // replace default weapon with a more PnP accurate weapon (web)
+ADD_MEMORIZED_SPELL ~rr#phase~ #0 ~innate~ ( 1 )                                   // adds 1x Teleport
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "14"                                                                  // new movement rate
+"newxpv"   = "8000"                                                                // new XP value
+"newhp"    = "88"                                                                  // new hit point value
+"newac"    = "6"                                                                   // new Armor Class value
+"newth"    = "9"                                                              	   // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "7"                                                                   // new Save vs. Death
+"newsvw"   = "9"                                                                   // new Save vs. Wand
+"newsvp"   = "8"                                                                   // new Save vs. Polymorph
+"newsvb"   = "8"                                                                   // new Save vs. Breath
+"newsvs"   = "10"                                                                  // new Save vs. Spell
+"newlvl1"  = "11"                                                                  // new level (first class)
+"newstr"   = "18"                                                                  // new Strength value
+"newint"   = "12"                                                                  // new Intelligence value
+"newwis"   = "13"                                                                  // new Wisdom value
+"newdex"   = "18"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newchr"   = "12"                                                                  // new Charisma value
+"newmor"   = "11"                                                                  // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "139"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spphs"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "PSPIDER"                                                           // phase spider script
+"skipfile01" = "RR#SPASU"                                                          // aTweak Astral Spider
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Lashar'ra, Spider Queen
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~senspi01~                                                             // Astral Phase Spider
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#splas~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ 	                   // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~RR#spweb~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ EQUIP                 // replace default weapon with a more PnP accurate weapon (web)
+ADD_MEMORIZED_SPELL ~rr#phase~ #0 ~innate~ ( 1 )                                   // adds 1x Teleport
+ADD_MEMORIZED_SPELL ~rr#spvtx~ #0 ~innate~ ( 1 )                                   // adds 1x vortex web
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#splas"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "SENSPI01"                                                          // phase spider script
+"script06"   = "BPWDASGT"                                                          // Big Picture script
+"script07"   = "DW#MELEE"                                                          // SCSII melee script
+"script08"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script09"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Bebilith
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~F_DEMSPI~                                                             // Bébilith (Drizzt Saga)
+            // ~ABAIA~                                                                // Bébilith (Longer Road)
+            // ~ABAIA2~                                                               // Bébilith
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~MAGE06~                                                           // removes MAGE06.ITM (hast spell), done by new mov
+REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~lring~			               // add immunity to +2 weapons and less
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~                   	   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spbel~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP 	               // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~RR#spbeb~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 					   // replace default weapon with a more PnP accurate weapon (web)
+ADD_MEMORIZED_SPELL ~rr#phase~ #0 ~innate~ ( 1 )                                   // adds 1x Teleport
+ADD_MEMORIZED_SPELL ~rr#WI215~ #0 ~innate~ ( 4 )                                   // adds 4x WEB
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm" = "1"                                                             	   // Backstab immunity
+"rr#ptwf"  = "1"                                                                   // perfect two weapon fighting (for creatures with multiple weapons)
+"newmove"  = "14"                                                                  // new movement rate
+"newxpv"   = "13000"                                                               // new XP value
+"newhp"    = "96"                                                                  // new hit point value
+"newac"    = "-5"                                                                  // new Armor Class value
+"newth"    = "9"                                                                   // new THAC0 value
+"newapr"   = "2"                                                                   // new number of attacks per round
+"newsvd"   = "7"                                                                   // new Save vs. Death
+"newsvw"   = "9"                                                                   // new Save vs. Wand
+"newsvp"   = "8"                                                                   // new Save vs. Polymorph
+"newsvb"   = "8"                                                                   // new Save vs. Breath
+"newsvs"   = "10"                                                                  // new Save vs. Spell
+"newmr"    = "50"                                                                  // new Resist Cold value
+"newlvl1"  = "12"                                                                  // new level (first class)
+"newstr"   = "20"                                                                  // new Strength value
+"newint"   = "12"                                                                  // new Intelligence value
+"newwis"   = "15"                                                                  // new Wisdom value
+"newdex"   = "15"                                                                  // new Dexterity value
+"newcon"   = "20"                                                                  // new Constitution value
+"newchr"   = "15"                                                                  // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newrace"  = "116"                                                                 // new race
+"newclass" = "160"                                                                 // new class
+"newalign" = "51"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spbeb"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "PSPIDER"                                                           // phase spider script
+"script10"   = "DW2MP0MO"                                                          // Stratagems melee script
+END                                                                                // ends FUNCTION call
+// PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~ABAIA~) OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~ABAIA2~) BEGIN                       
+  // WRITE_SHORT 0x24 67                                                 			   
+// END
+LPF ADD_CRE_EFFECT INT_VAR opcode = 219 timing = 9 target = 1 probability1 = 100 parameter1 = 3 parameter2 = 8 END
+LPF CLONE_EFFECT INT_VAR match_opcode = 219 parameter1 = 1 END
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Ettercaps
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~ETTER01~                                                              // Ettercaps
+            ~ETTERC~                                                               // Ettercaps
+            ~ETTERC1~                                                              // Ettercaps
+            ~ETTERCSU~                                                             // Ettercaps
+            ~ETTERSUM~                                                             // Ettercaps (Heart of the Wood mod)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REPLACE_CRE_ITEM ~RR#spid~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~ 		                   // replace default ANTIWEB with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spetc~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (claw)
+REPLACE_CRE_ITEM ~RR#spetc~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~ 	                   // replace default weapon with a more PnP accurate weapon (claw)
+REPLACE_CRE_ITEM ~RR#spetb~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 	                   // replace default weapon with a more PnP accurate weapon (bite)
+ADD_MEMORIZED_SPELL ~rr#sptrp~ #0 ~innate~ ( 1 )                                   // adds 1x web trap
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#ptwf"  = "1"                                                                   // perfect two weapon fighting (1 = enable)
+"newxpv"   = "650"                                                                 // new XP value
+"newhp"    = "40"                                                                  // new hit point value
+"newac"    = "6"                                                                   // new Armor Class value
+"newth"    = "15"                                                                  // new THAC0 value
+"newapr"   = "2"                                                                   // new number of attacks per round
+"newsvd"   = "11"                                                                  // new Save vs. Death
+"newsvw"   = "13"                                                                  // new Save vs. Wand
+"newsvp"   = "12"                                                                  // new Save vs. Polymorph
+"newsvb"   = "13"                                                                  // new Save vs. Breath
+"newsvs"   = "14"                                                                  // new Save vs. Spell
+"newlvl1"  = "5"                                                                   // new level (first class)
+"newstr"   = "12"                                                                  // new Strength value
+"newint"   = "7"                                                                   // new Intelligence value
+"newwis"   = "15"                                                                  // new Wisdom value
+"newdex"   = "17"                                                                  // new Dexterity value
+"newcon"   = "15"                                                                  // new Constitution value
+"newchr"   = "8"                                                                   // new Charisma value
+"newmor"   = "13"                                                                  // new morale value
+"newrace"  = "107"                                                                 // new race
+"newclass" = "115"                                                                 // new class
+"newalign" = "35"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spett"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "ETTERCAP"                                                          // Ettercaps script
+"skipfile01" = "ETTERCSU"                                                          // Summons Lv3 (Mage)
+"skipfile02" = "ETTERSUM"                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Baby Wyverns
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~AMWYVERN~                                                             // Lilly
+            ~NWYVBAB~                                                              // Baby Wyvern
+            ~PLYWYVRN~                                                             // Wyvern - Polymorph
+            ~WYVBAB01~                                                             // Baby Wyvern
+            ~WYVERBA~                                                              // Baby Wyvern
+            ~C#Q04002~                                                             // Baby Wyvern
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~WYVERN2~                                                          // removes 2nd weapon
+REPLACE_CRE_ITEM ~RR#spwyv~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // replace default hover immunity with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spwy1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (bite)
+REPLACE_CRE_ITEM ~RR#spwy2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 	                   // replace default weapon with a more PnP accurate weapon (stinger)
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#ptwf"  = "1"                                                                   // perfect two weapon fighting (1 = enable)
+"newxpv"   = "450"                                                                 // new XP value
+"newhp"    = "31"                                                                  // new hit point value
+"newac"    = "3"                                                                   // new Armor Class value
+"newth"    = "17"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "13"                                                                  // new Save vs. Death
+"newsvw"   = "15"                                                                  // new Save vs. Wand
+"newsvp"   = "14"                                                                  // new Save vs. Polymorph
+"newsvb"   = "16"                                                                  // new Save vs. Breath
+"newsvs"   = "16"                                                                  // new Save vs. Spell
+"newlvl1"  = "4"                                                                   // new level (first class)
+"newstr"   = "18"                                                                  // new Strength value
+"newint"   = "5"                                                                   // new Intelligence value
+"newwis"   = "12"                                                                  // new Wisdom value
+"newdex"   = "14"                                                                  // new Dexterity value
+"newcon"   = "15"                                                                  // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "13"                                                                  // new morale value
+"newrace"  = "118"                                                                 // new race
+"newclass" = "149"                                                                 // new class
+"newalign" = "35"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = "PLYWYVRN"
+"notenf02"  = "AMWYVERN"
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spwyv"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "WYVERN"                                                            // Ettercaps script
+"skipfile01" = "PLYWYVRN"                                                          // Polymorph
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // remove spurious opcode protections
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Wyvern
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~WYVERN~                                                               // Wyvern
+            ~WYVERN01~                                                             // Wyvern
+            ~WYVERNSU~                                                             // Wyvern
+            ~WYVERSUM~                                                             // Wyvern (heart wood)
+            ~L#GNOWY~                                                              // Wyvern
+            ~X#CORWYV~                                                             // Wyvern
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~WYVERN2~                                                          // removes 2nd weapon
+REPLACE_CRE_ITEM ~RR#spwyv~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // replace default hover immunity with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spwy1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (bite)
+REPLACE_CRE_ITEM ~RR#spwy2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 	                   // replace default weapon with a more PnP accurate weapon (stinger)
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#ptwf"  = "1"                                                                   // perfect two weapon fighting (1 = enable)
+"newxpv"   = "1400"                                                                // new XP value
+"newhp"    = "63"                                                                  // new hit point value
+"newac"    = "3"                                                                   // new Armor Class value
+"newth"    = "13"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "10"                                                                  // new Save vs. Death
+"newsvw"   = "12"                                                                  // new Save vs. Wand
+"newsvp"   = "11"                                                                  // new Save vs. Polymorph
+"newsvb"   = "12"                                                                  // new Save vs. Breath
+"newsvs"   = "13"                                                                  // new Save vs. Spell
+"newlvl1"  = "7"                                                                   // new level (first class)
+"newstr"   = "19"                                                                  // new Strength value
+"newint"   = "7"                                                                   // new Intelligence value
+"newwis"   = "12"                                                                  // new Wisdom value
+"newdex"   = "14"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "14"                                                                  // new morale value
+"newrace"  = "118"                                                                 // new race
+"newclass" = "149"                                                                 // new class
+"newalign" = "35"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spwyv"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "WYVERN"                                                            // Ettercaps script
+"skipfile01" = "WYVERNSU"                                                          // Summons Lv3 (Mage)
+"skipfile02" = "WYVERSUM"                                                          // summons
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // remove spurious opcode protections
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Greater Wyvern
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~PWYVV01~                                                               // Greater Wyvern
+            ~WYVERNBI~                                                             // Greater Wyvern
+            ~WYVGRE01~                                                             // Greater Wyvern
+            ~WQXWYV~                                                               // Greater Wyvern
+            ~TSNDOOR~                                                              // Greater Wyvern
+            ~ANVIVERN~                                                             // Greater Wyvern
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~WYVERN2~                                                          // removes 2nd weapon
+REPLACE_CRE_ITEM ~RR#spwyv~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // replace default hover immunity with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#spwy1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon (bite)
+REPLACE_CRE_ITEM ~RR#spwy2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 	                   // replace default weapon with a more PnP accurate weapon (stinger)
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#ptwf"  = "1"                                                                   // perfect two weapon fighting (1 = enable)
+"newxpv"   = "5000"                                                                // new XP value
+"newhp"    = "87"                                                                  // new hit point value
+"newac"    = "1"                                                                   // new Armor Class value
+"newth"    = "10"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "8"                                                                   // new Save vs. Death
+"newsvw"   = "10"                                                                  // new Save vs. Wand
+"newsvp"   = "9"                                                                   // new Save vs. Polymorph
+"newsvb"   = "9"                                                                   // new Save vs. Breath
+"newsvs"   = "11"                                                                  // new Save vs. Spell
+"newlvl1"  = "10"                                                                  // new level (first class)
+"newstr"   = "20"                                                                  // new Strength value
+"newint"   = "10"                                                                  // new Intelligence value
+"newwis"   = "12"                                                                  // new Wisdom value
+"newdex"   = "15"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newrace"  = "118"                                                                 // new race
+"newclass" = "149"                                                                 // new class
+"newalign" = "35"                                                                  // new alignment (True Neutral)
+"enforce"   = "0"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = "TSNDOOR"
+"notenf01"  = "ANVIVERN"
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#spwyv"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW#GPSHM"                                                          // Stratagems Shoutt script
+"script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
+"script09"   = "WYVERN"                                                            // Ettercaps script
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // remove spurious opcode protections
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // remove spurious opcode protections
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+//////////////////
+// New AI Scripts
+//////////////////
+
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#sphug.baf~                         // Huge Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spwch.baf~                         // watch Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spgia.baf~                         // Giant Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spphs.baf~                         // Phase Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spswd.baf~                         // Sword Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spwrt.baf~                         // Wraith Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spvtx.baf~                         // Vortex Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#splas.baf~                         // Lashar'ra Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spbeb.baf~                         // Bebilith Spiders AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spett.baf~                         // Ettercaps AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spwyv.baf~                         // Wyvern AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spesu.baf~                         // Ettercaps Summon's script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#sphsu.baf~                         // Huge Spiders Summon's script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spgsu.baf~                         // Giant Spiders Summon's script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#sppsu.baf~                         // Phase Spiders Summon's script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/spiders/rr#spwsu.baf~                         // Wyvern Summon's script
+
+//////////////
+// Spells Update
+//////////////
+
+// Alter polymorph weapon 
+
+COPY_EXISTING ~plyspid.itm~ ~override~							// Sword spider
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 6 dicenumber = 2 damage_type = 3 END
+
+
+// Alter Summoning spells : Spider Spawn & Wyvern Call
+
+COPY_EXISTING ~SPIDGISU.EFF~ ~override/RR#SPHSU.EFF~                           	   // Huge Spiders summoning eff
+	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPIDGISU~ ~RR#SPHSU~
+COPY_EXISTING ~SPIDGISU.EFF~ ~override/RR#SPASU.EFF~                           	   // Planar Spider summoning eff
+	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPIDGISU~ ~RR#SPASU~
+
+ACTION_FOR_EACH file IN														   	   // Huge Spider Summons
+			  ~RR#SPHSU~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+	COPY_EXISTING "%file%.cre" override
+	  WRITE_LONG 0x14 "0"
+	  LPF make_summon END
+	  WRITE_ASCII SCRIPT_OVERRIDE "rr#sphsu" #8
+	  WRITE_BYTE 0x273 4  //Thief Class
+	  WRITE_BYTE 0x68 50  //Move silently
+	  WRITE_BYTE 0x45 50  //Hide in Shadow
+	  WRITE_BYTE 0x65 50 //Set traps
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
+	BUT_ONLY
+  END
+END
+ACTION_FOR_EACH file IN															   // Giant Spider Summons
+			~SPIDGISU~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+	COPY_EXISTING "%file%.cre" override
+	  WRITE_LONG 0x14 "0"
+	  LPF make_summon END
+	  WRITE_ASCII SCRIPT_OVERRIDE "rr#spgsu" #8
+	  WRITE_BYTE 0x273 4  //Thief Class
+	  WRITE_BYTE 0x68 70  //Move silently
+	  WRITE_BYTE 0x45 70  //Hide in Shadow
+	  WRITE_BYTE 0x65 70 //Set traps
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
+	BUT_ONLY
+  END
+END
+ACTION_FOR_EACH file IN															   // Phase Spider Summons
+			~SPIDPHSU~
+			~F_SUMSPI~
+			~SPIDFGSU~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+	COPY_EXISTING "%file%.cre" override
+	  WRITE_LONG 0x14 "0"
+	  LPF make_summon END
+	  WRITE_ASCII SCRIPT_OVERRIDE "rr#sppsu" #8
+	  WRITE_BYTE 0x273 4  //Thief Class
+	  WRITE_BYTE 0x68 90  //Move silently
+	  WRITE_BYTE 0x45 90  //Hide in Shadow
+	  WRITE_BYTE 0x65 90 //Set traps
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
+	BUT_ONLY
+  END
+END
+ACTION_FOR_EACH file IN															   // Planar Spider Summons
+			~RR#SPASU~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+	COPY_EXISTING "%file%.cre" override
+	  WRITE_LONG 0x14 "0"
+	  LPF make_summon END
+	  WRITE_ASCII SCRIPT_OVERRIDE "rr#sppsu" #8
+	  WRITE_BYTE 0x273 4  //Thief Class
+	  WRITE_BYTE 0x68 100 //Move silently
+	  WRITE_BYTE 0x45 100 //Hide in Shadow
+	  WRITE_BYTE 0x65 100 //Set traps
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
+	BUT_ONLY
+  END
+END
+ACTION_FOR_EACH file IN															   // Ettercap Summons
+			~ETTERCSU~
+			~ETTERSUM~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+	COPY_EXISTING "%file%.cre" override
+	  WRITE_LONG 0x14 "0"
+	  LPF make_summon END
+	  WRITE_ASCII SCRIPT_OVERRIDE "rr#spesu" #8
+	  WRITE_BYTE 0x273 4  //Thief Class
+	  WRITE_BYTE 0x68 80  //Move silently
+	  WRITE_BYTE 0x45 80  //Hide in Shadow
+	  WRITE_BYTE 0x65 100 //Set traps
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
+	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
+	BUT_ONLY
+  END
+END
+ACTION_FOR_EACH file IN														   	   // Wyvern Summons
+			  ~WYVERNSU~
+			  ~WYVERSUM~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+	COPY_EXISTING "%file%.cre" override
+	  WRITE_LONG 0x14 "0"
+	  LPF make_summon END
+	  WRITE_ASCII SCRIPT_OVERRIDE "rr#spwsu" #8
+	  REMOVE_CRE_ITEM ~MISC52~ // Wyvern Head
+	BUT_ONLY
+  END
+END
+ACTION_IF !MOD_IS_INSTALLED "SPELL_REV.TP2" "0" BEGIN							   // Compatibility with Spell Revision: do not change spells if Spell Revision is installed as those spells are nomore used...
+	COPY ~atweaks/spl/spiders/rr#wi423.spl~ ~override/spwi423.spl~				   // PnP summons 1d3 spiders and no Sword Spiders at all. Add one Greater spider at lv16 to stay balanced with raise undead
+		SAY 0x50 @1940
+	COPY_EXISTING ~spwi619.spl~ ~override~										   // PnP summons: 1d3 Wyvern.
+		SAY 0x50 @1942
+		LPF CLONE_EFFECT INT_VAR match_opcode = 177 probability1 = 66 END
+		LPF CLONE_EFFECT INT_VAR match_opcode = 177 match_probability1 = 66 probability1 = 33 END
+END
+///////////////////////////////////
+// More sensible spiders encounters
+///////////////////////////////////
+
+//////////////
+// Misc stuff
+//////////////
+
+// Write the queued-up values
+ACTION_PHP_EACH f_AddSecType AS file => SecTypeToAdd BEGIN
+  COPY_EXISTING "%file%" override
+    WRITE_BYTE 0x27 SecTypeToAdd
+  BUT_ONLY
+END
+
+OUTER_SET $f_ImmunitySecType(25) = PoisonSecType
+OUTER_SET $f_RemoveSecType(11) = PoisonSecType
+
+LAF integrate_sectypes END
+
+///////////////////////////////////
+// Compatibility
+///////////////////////////////////
