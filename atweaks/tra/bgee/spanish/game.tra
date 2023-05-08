@@ -324,7 +324,7 @@ Tirada de Salvación: Ninguna
 Este hechizo transporta al lanzador a cualquier lugar conocido por él. El lanzador siempre llega exactamente al punto deseado simplemente visualizando un área que le sea familiar. Cuando el hechizo es lanzado una puerta dimensional es abierta en frente del lanzador en la cual inmediatamente pone un pie dentro. Luego de pasar a través del portal, el lanzador se encontrará a sí mismo eligiendo un destino.~
 @1895  = ~Llamar a los seres del bosque (Conjuración/Convocación)
 Nivel: 4
-Esfera: Animal/Convocación
+Esfera: Animal
 Alcance: Rango visual del lanzador
 Duración: 3 turnos
 Tiempo de lanzamiento: 7
@@ -338,8 +338,8 @@ Este conjuro convoca a una ninfa que acudirá en ayuda del grupo. La criatura te
 Por medio de este conjuro el lanzador está capacitado para convocar seres del bosque a su posición. El tipo y el número de creaturas que aparecerán dependerán del nivel del lanzador:
 
 7º: 2 Dríadas o 1 Hamadriada
-10º: 3 Hamadriadas
-13º+: 4 Hamadriadas y 1 Ninfa
+10º: 2 Hamadriadas o 1 Hamadriada y 1 Ninfa
+13º+: 2 Hamadriadas y 1 Ninfa
 
 Las creaturas convocadas ayudarán al lanzador con lo que sea que posean y se quedarán hasta ser destruidas o que el conjuro expire.~
 @1900  = ~Amistad Animal~

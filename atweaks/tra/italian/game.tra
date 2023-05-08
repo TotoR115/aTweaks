@@ -390,7 +390,7 @@ Questo incantesimo trasporta il lanciatore in un dato luogo già da lui conosciut
 @1895 = ~Chiama Creature del Bosco
 (Evocazione, Attrazione)
 Livello: 4
-Sfera: Animale, Evocazione
+Sfera: Animale
 Raggio d'azione: Raggio visivo del Lanciatore
 Durata: 3 turni
 Casting Time: 7
@@ -400,8 +400,8 @@ Tiro Salvezza: Nessuno
 Mediante questo incantesimo, il lanciatore é in grado di evocare diverse creature del bosco. Il tipo ed il numero di creature evocate dipendono dal livello del lanciatore:
 
 Livello 7: 2 Driadi o 1 Amadriade
-Livello 10: 3 Amadriadi
-Livello 13 o superiore: 4 Amadriadi ed una Ninfa
+Livello 10: 2 Amadriadi o 1 Amadriade ed 1 Ninfa
+Livello 13 o superiore: 2 Amadriadi ed 1 Ninfa
 
 Le creature evocate aiuteranno il lanciatore con qualsiasi mezzo in loro possesso, rimanendo fino a che non verranno uccise o fino alla fine dell'incantesimo.~
 

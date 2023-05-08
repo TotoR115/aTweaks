@@ -369,10 +369,11 @@ Jet de sauvegarde : aucun
 Ce sortilège transporte le lanceur à tout endroit désigné qui lui est déjà connu. Le lanceur arrive toujours exactement au point souhaité en visualisant simplement une zone qui lui est familière. Lorsque le sortilège est lancé, une porte dimensionnelle s'ouvre devant le lanceur, au travers de laquelle il marche immédiatement. Dès qu'il passe au travers du portail, le lanceur se retrouve à la destination choisie.~
 
 
-@1895 = ~Appel des créatures des bois (conjuration, convocation)
+@1895 = ~Appel des créatures des bois 
+(conjuration, convocation)
 
 Niveau : 4
-Sphère : animale, convocation
+Sphère : animale
 Portée : portée visuelle du lanceur
 Durée : 3 tours
 Temps d'incantation : 7
@@ -382,8 +383,8 @@ Jets de sauvegarde : aucun
 Grâce à ce sortilège, le lanceur est capable de convoquer certaines créatures des bois là où il se trouve. Le genre et le nombre de créatures qui apparaissent dépendent du niveau du lanceur :
 
 7ème : 2 dryades ou 1 hamadryade
-10ème : 3 hamadryades
-13ème ou plus : 4 hamadryades et 1 nymphe
+10ème : 2 hamadryades ou 1 hamadryade et 1 nymphe
+13ème ou plus : 2 hamadryades et 1 nymphe
 
 Les créatures convoquées aident le lanceur par tous les moyens dont elles disposent, demeurant là jusqu'à ce qu'elles soient tuées ou jusqu'à ce que le sortilège expire.~
 

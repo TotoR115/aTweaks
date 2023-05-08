@@ -429,19 +429,22 @@ Rzut obronny: brak
 To zaklêcie przenosi czarodzieja do dowolnego miejsca, które znajduje siê w jego polu widzenia. Po rzuceniu czaru przed magiem otwieraj¹ siê miêdzywymiarowe drzwi, przez które natychmiast przechodzi.~
 
 
-@1895 = ~Wezwanie leœnych istot (Sprowadzanie/Przywo³ywanie)
+@1895 = ~Wezwanie leœnych istot 
+(Sprowadzanie/Przywo³ywanie)
 Poziom: 4
-Sfera: Zwierzêta/Przywo³ywanie
+Sfera: Zwierzêta
 Zasiêg: pole widzenia
 Czas dzia³ania: 3 tury
 Czas dzia³ania: 7
 Obszar dzia³ania: specjalny
 Rzut obronny: brak
 
-Za pomoc¹ tego zaklêcia mo¿na przywo³aæ leœne istoty, które bêd¹ pomaga³a dru¿ynie. Ich rodzaj i liczba zale¿y od poziomu rzucaj¹cego:  
+Za pomoc¹ tego zaklêcia mo¿na przywo³aæ leœne istoty, które bêd¹ pomaga³a dru¿ynie. Ich rodzaj i liczba zale¿y od poziomu rzucaj¹cego:
+
 7 poziom: 2 driady lub 1 hamadriada
-10 poziom: 3 hamadriady
-13 poziom i wy¿szy: 4 hamadriady i 1 nimfa
+10 poziom: 2 hamadriady lub 1 hamadriada i 1 nimfa
+13 poziom i wy¿szy: 2 hamadriady i 1 nimfa
+
 Istoty pozostaj¹ pod kontrol¹ rzucaj¹cego do chwili œmierci lub zakoñczenia dzia³ania czaru.~
 
 

@@ -429,19 +429,22 @@ Rzut obronny: brak
 To zaklęcie przenosi czarodzieja do dowolnego miejsca, które znajduje się w jego polu widzenia. Po rzuceniu czaru przed magiem otwierają się międzywymiarowe drzwi, przez które natychmiast przechodzi.~
 
 
-@1895 = ~Wezwanie leśnych istot (Sprowadzanie/Przywoływanie)
+@1895 = ~Wezwanie leśnych istot 
+(Sprowadzanie/Przywoływanie)
 Poziom: 4
-Sfera: Zwierzęta/Przywoływanie
+Sfera: Zwierzęta
 Zasięg: pole widzenia
 Czas działania: 3 tury
 Czas działania: 7
 Obszar działania: specjalny
 Rzut obronny: brak
 
-Za pomocą tego zaklęcia można przywołać leśne istoty, które będą pomagała drużynie. Ich rodzaj i liczba zależy od poziomu rzucającego:  
+Za pomocą tego zaklęcia można przywołać leśne istoty, które będą pomagała drużynie. Ich rodzaj i liczba zależy od poziomu rzucającego:
+
 7 poziom: 2 driady lub 1 hamadriada
-10 poziom: 3 hamadriady
-13 poziom i wyższy: 4 hamadriady i 1 nimfa
+10 poziom: 2 hamadriady lub 1 hamadriada i 1 nimfa
+13 poziom i wy¿szy: 2 hamadriady i 1 nimfa
+
 Istoty pozostają pod kontrolą rzucającego do chwili śmierci lub zakończenia działania czaru.~
 
 
