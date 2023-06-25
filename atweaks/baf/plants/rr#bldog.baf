@@ -626,7 +626,7 @@ InMyArea(LastHeardBy(Myself))
 THEN
 RESPONSE #100
 SetGlobalTimer("rr#Move","LOCALS",6)
-ForceSpellRES("rr#blinx",LastHeardBy(Myself))
+ForceSpellRES("rr#blinx",LastHeardBy(Myself)) // Dimension Door (special version, breaks targeting via 1 second invisibility)
 END
 
 IF

@@ -82,7 +82,7 @@ THEN
 RESPONSE #100
 SetInterrupt(FALSE)
 ForceSpellRES("rr#acids",LastSeenBy(Myself)) // Acid Spit
-RemoveSpellRES("rr#acids") // Elemental Concealment
+RemoveSpellRES("rr#acids") // Acid Spit
 SetInterrupt(TRUE)
 END
 

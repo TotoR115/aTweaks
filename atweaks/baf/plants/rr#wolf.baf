@@ -15,35 +15,38 @@ IF
 THEN
 	RESPONSE #100
 		ChangeEnemyAlly(Myself,NEUTRAL)
+		RandomWalkContinuous()
+		SetGlobal("RR#neutral","LOCALS",1)
 END
 
 IF
-    Global("RR#Active","LOCALS",0)
-	!Allegiance(Myself,GOODCUTOFF)
-    OR(3)
-      AttackedBy([ANYONE],DEFAULT)
-      TookDamage()
-	  Heard([EVILCUTOFF.0.117],44)
+Global("RR#Active","LOCALS",0)
+!Allegiance(Myself,GOODCUTOFF)
+OR(3)
+AttackedBy([ANYONE],DEFAULT)
+TookDamage()
+Heard([EVILCUTOFF.0.117],44)
+Global("RR#neutral","LOCALS",0)
 THEN
-    RESPONSE #100
-        SetGlobal("RR#Active","LOCALS",1)
-        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-		SetGlobalTimer("RR#Help","LOCALS",12)
-        Enemy()
-        Shout(44)
+RESPONSE #100
+SetGlobal("RR#Active","LOCALS",1)
+SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+SetGlobalTimer("RR#Help","LOCALS",12)
+Enemy()
+Shout(44)
 END
 
 IF
-    Global("RR#Active","LOCALS",0)
-    Allegiance(Myself,EVILCUTOFF)
-    See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
+Global("RR#Active","LOCALS",0)
+Allegiance(Myself,EVILCUTOFF)
+See([GOODCUTOFF]) // this cannot be in the previous block, otherwise neutral creatures would go hostile upon seeing a party member
 THEN
-    RESPONSE #100
-        SetGlobal("RR#Active","LOCALS",1)
-        SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-        SetGlobalTimer("RR#Help","LOCALS",12)
-        Enemy()
-        Shout(44)
+RESPONSE #100
+SetGlobal("RR#Active","LOCALS",1)
+SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
+SetGlobalTimer("RR#Help","LOCALS",12)
+Enemy()
+Shout(44)
 END
 
 IF

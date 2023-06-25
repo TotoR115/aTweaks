@@ -533,7 +533,7 @@ COPY_EXISTING "trollreg.itm" "override/rr#dwreg.itm"
   LPF ALTER_EFFECT INT_VAR match_opcode = 98 parameter1 = 2 parameter2 = 3 END
   SAY NAME1 #1292
 COPY "atweaks\itm\undead\fl#Revn1.itm" "override/rr#dwdie.itm"
-  LPF DELETE_EFFECT INT_VAR match_opcode = 27 END 					  			// not immune to Acid
+  LPF DELETE_EFFECT INT_VAR match_opcode = 27 END 					  				// not immune to Acid
   LPF DELETE_EFFECT INT_VAR match_opcode = 86 END									// not immune to slashing (dismember)
 // Winter Wolf
 COPY ~atweaks/itm/plants/rr#wwolf.itm~ ~override~                                   // Winter Wolf melee attack: 1d6 +1d2 (+1)
@@ -788,8 +788,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SMOUND01~                                                             // Lesser Shambler
             ~SMOUNDSU~                                                             // Lesser Shambler - Staff of the woodlands +4
             ~RR#SHM01~                                                             // Lesser Shambler - RR_mod
-            ~SSHAMB~                                                               // Lesser Shambler - RR_mod
             ~SUMOUND~                                                              // Lesser Shambler - RR_mod
+            ~SMOUND02~                                                             // Lesser Shambler - IR mod - Staff of the woodlands +4
 
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -865,7 +865,7 @@ END                                                                             
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~GLOBSHAM~                                                             // Shambling Mount
-            ~SMOUND02~                                                             // Greater Shambler - IR mod - Staff of the woodlands +4
+            ~SSHAMB~                                                               // Shambler - IWDification
 
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -1710,6 +1710,7 @@ PATCH_IF IDS_OF_SYMBOL("Animate" "BEAR_GIANT_D2") > 0 BEGIN
 END
 PATCH_IF ("%file%" STRING_EQUAL_CASE ~kaldran~) BEGIN
   REPLACE_CRE_ITEM ~rr#gibea~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON2~
+  REPLACE_CRE_ITEM ~rr#gibe2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 				       // 2nd attack
 END ELSE PATCH_IF ("%file%" STRING_EQUAL_CASE ~F_SPIBEA~) BEGIN
   REPLACE_CRE_ITEM ~rr#gibe2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 				       // 2nd attack    
 END ELSE BEGIN
@@ -1720,17 +1721,17 @@ LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                
 INT_VAR                                                                            // Initialize variables
 "rr#ptwf"  = "1"                                                                   // perfect two weapon fighting (for creatures with multiple weapons)
 "newmove"  = "9"                                                                   // new movement rate
-"newxpv"   = "8000"                                                                // new XP value
-"newhp"    = "128"                                                                 // new hit point value
+"newxpv"   = "6000"                                                                // new XP value
+"newhp"    = "96"                                                                  // new hit point value
 "newac"    = "5"                                                                   // new Armor Class value
-"newth"    = "5"                                                                   // new THAC0 value
+"newth"    = "9"                                                                   // new THAC0 value
 "newapr"   = "2"                                                                   // new number of attacks per round
-"newsvd"   = "4"                                                                   // new Save vs. Death
-"newsvw"   = "6"                                                                   // new Save vs. Wand
-"newsvp"   = "5"                                                                   // new Save vs. Polymorph
-"newsvb"   = "4"                                                                   // new Save vs. Breath
-"newsvs"   = "7"                                                                   // new Save vs. Spell
-"newlvl1"  = "16"                                                                  // new level (first class)
+"newsvd"   = "7"                                                                   // new Save vs. Death
+"newsvw"   = "9"                                                                   // new Save vs. Wand
+"newsvp"   = "8"                                                                   // new Save vs. Polymorph
+"newsvb"   = "8"                                                                   // new Save vs. Breath
+"newsvs"   = "10"                                                                   // new Save vs. Spell
+"newlvl1"  = "12"                                                                  // new level (first class)
 "newstr"   = "19"                                                                  // new Strength value
 "newint"   = "3"                                                                   // new Intelligence value
 "newwis"   = "12"                                                                  // new Wisdom value
@@ -2673,7 +2674,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                          
     "timing" = "1"                                                                 // timing mode: 9 (permanent until death)
     "duration" = "0"                                                               // duration: 0
     "parameter1" = "0"                                                             // param1: (target)
-    "parameter2" = "9"                                                             // param2: (condition)
+    "parameter2" = "2"                                                             // param2: (condition)
     "sectype" = "0"                                                                // secondary type: none
     "probability1" = "100"                                                         // probability1: 100%
     STR_VAR
@@ -3137,6 +3138,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~WOLFDR01~                                                             // Dread Wolf - BG1
             ~PLYWOLF~                                                              // Wolf - Druid polymorph
             ~ANWOLF1~                                                              // Dread Wolf - Heros, Thieves and Money Lander (HTML)
+            ~BHWOLFD~                                                              // Dread Wolf - Bonehill
             ~P#WOLF05~                                                             // Dread Wolf - BG1 NPC
             ~P#WOLF04~                                                             // Dread Wolf - BG1 NPC
 
@@ -3219,8 +3221,8 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~OBSICE03~                                                             // Winter Wolf - BG2
             ~WOLFWI~                                                               // Winter Wolf - BG1
             ~WOLFWI01~                                                             // Winter Wolf - BG2
-            ~WOLFWISU~                                                             // Winter Wolf - Druid Summoning Spell
-            ~WOLFWWSU~                                                             // Winter Wolf - BG2 (unused Wizard monster's summoning table)
+            ~WOLFWISU~                                                             // Winter Wolf - BG2 (unused Wizard monster's summoning table)
+            ~WOLFWWSU~                                                             // Winter Wolf  - Druid Summoning Spell
             ~CDIA482~                                                              // Winter Wolf (IWDmod, polymorph)
             ~P#WOLF01~                                                             // Winter Wolf BG1 NPC
             ~WOLFEXIT~                                                             // Winter Wolf - TDD
@@ -3265,6 +3267,8 @@ INT_VAR                                                                         
 STR_VAR                                                                            // initialize strings
 "enforce"   = "1"                                                            	   // enforce values
 "notenf01"  = "WOLFEXIT"                                                           // not enforced values
+"notenf02"  = "WOLFWISU"                                                           // not enforced values
+"notenf03"  = "WOLFWWSU"                                                           // not enforced values
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
@@ -3523,7 +3527,7 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/plants/rr#boasu.baf~                       
 ACTION_FOR_EACH file IN // Dogs
 			~dogwilsu~
 			~A#FERA01~
-			~dogwarsu~
+			~dogwasu~
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
 	COPY_EXISTING "%file%.cre" override
@@ -3537,7 +3541,6 @@ END
 ACTION_FOR_EACH file IN // Wolves
 			~wolfsu~
 			~wolfdisu~
-			~worgsu~
 			~A#FERA02~
 			~A#FERA03~
 			~AGWLFV01~
@@ -3650,18 +3653,31 @@ BEGIN
 END
 
 ACTION_IF !MOD_IS_INSTALLED "SPELL_REV.TP2" "0" BEGIN								// Compatibility with Spell Revision: do not change spells if it is installed
-COPY_EXISTING ~bearblsu.cre~ override
-			  ~catjagsu.cre~ override
-			  ~jaguarsu.cre~ override
+COPY_EXISTING ~spanim1.eff~ ~override~
+  WRITE_LONG 0x1c "10"
+COPY_EXISTING ~spanim2.eff~ ~override~
+  WRITE_LONG 0x1c "20"
+COPY_EXISTING ~spanim3.eff~ ~override~
+  WRITE_LONG 0x1c "30"
+COPY_EXISTING ~dogwasu.cre~ override
+			  ~worgsu.cre~ override
+	WRITE_LONG 0x18 3																// XP/Power Level animalsummon 1 (x4)
+COPY_EXISTING ~catjagsu.cre~ override
 			  ~wolfdisu.cre~ override
-	WRITE_LONG 0x18 3																// XP/Power Level animalsummon 1 (x5)
-
-COPY_EXISTING ~bearposu.cre~ override
+			  ~bearblsu.cre~ override
+			  ~jaguarsu.cre~ override
+	WRITE_LONG 0x18 4   										   // XP/Power Level animalsummon 1 (x3)
+COPY_EXISTING ~catliosu.cre~ override
+			  ~bearbrsu.cre~ override
+	WRITE_LONG 0x18 6   										   // XP/Power Level animalsummon 2 (x4)
+COPY_EXISTING ~bearcasu.cre~ override
 			  ~rr#smilo.cre~ override
-	WRITE_LONG 0x18 6																// XP/Power Level animalsummon 2 (x5)
-
+			  ~wolfwwsu.cre~ override
+	WRITE_LONG 0x18 8   										   // XP/Power Level animalsummon 2 (x3)
+COPY_EXISTING ~bearposu.cre~ override
+	WRITE_LONG 0x18 10   										   // XP/Power Level animalsummon 3 (x3)
 COPY_EXISTING ~rr#gbear.cre~ override
-	WRITE_LONG 0x18 15																// XP/Power Level animalsummon 3 (x4)
+	WRITE_LONG 0x18 30   										   // XP/Power Level animalsummon 3 (x2)
  
 	COPY ~atweaks/2da/plants/anisum01.2da~ override
 		 ~atweaks/2da/plants/anisum02.2da~ override
@@ -3673,9 +3689,26 @@ COPY_EXISTING ~rr#gbear.cre~ override
 		 ~atweaks/eff/plants/rr#anim2.eff~ override
 		 ~atweaks/eff/plants/rr#anim3.eff~ override
 	COPY ~atweaks/spl/plants/rr#pr604.spl~ ~override/sppr604.spl~
-	// Summoned should not leave corpses behind after they are slain
-	// Also, they should not be targetable while the summoning animation plays
-	// Lastly, the player should have the option to dismiss (unsummon) a summoned creature at will
+	  SAY UNIDENTIFIED_DESC @1931
+	  PATCH_IF MOD_IS_INSTALLED "Divine_Remix.tp2" "1000" BEGIN
+	    WRITE_BYTE 0x21 THIS BOR 0b11000000 // Exclusion Flag
+	  END
+	
+	COPY_EXISTING ~sppr402.spl~ ~override~
+				  ~spra304.spl~ ~override~
+	SAY UNIDENTIFIED_DESC @1932
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 Duration = 2400 END
+
+	COPY_EXISTING ~sppr501.spl~ ~override~
+				  ~spra305.spl~ ~override~
+	SAY UNIDENTIFIED_DESC @1933
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 Duration = 2400 END
+
+	COPY_EXISTING ~sppr602.spl~ ~override~
+				  ~spra306.spl~ ~override~
+	SAY UNIDENTIFIED_DESC @1934
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 Duration = 2400 END
+
 END
 
 ///////////////////////////////////

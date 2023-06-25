@@ -8,6 +8,8 @@ IF
 THEN
 	RESPONSE #100
 		ChangeEnemyAlly(Myself,NEUTRAL)
+		RandomWalkContinuous()
+		SetGlobal("RR#neutral","LOCALS",1)
 END
 
 IF
@@ -17,11 +19,12 @@ OR(3)
 AttackedBy([ANYONE],DEFAULT)
 TookDamage()
 Heard([EVILCUTOFF.0.103],68)
+Global("RR#neutral","LOCALS",0)
 THEN
 RESPONSE #100
 SetGlobal("RR#Active","LOCALS",1)
 SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-SetGlobalTimer("RR#Help","LOCALS",18)
+SetGlobalTimer("RR#Help","LOCALS",12)
 Enemy()
 Shout(68)
 END
@@ -34,7 +37,7 @@ THEN
 RESPONSE #100
 SetGlobal("RR#Active","LOCALS",1)
 SetGlobalTimer("RR#Rest","LOCALS",2400) // 8 hours
-SetGlobalTimer("RR#Help","LOCALS",18)
+SetGlobalTimer("RR#Help","LOCALS",12)
 Enemy()
 Shout(68)
 END
@@ -69,6 +72,27 @@ THEN
 RESPONSE #100
 SetGlobalTimer("RR#RestTimer","LOCALS",2400)
 SetGlobal("RR#Rest","LOCALS",1)
+Continue()
+END
+
+IF
+Global("RR#Active","LOCALS",0)
+HitBy([GOODCUTOFF],0)
+!Allegiance(Myself,GOODCUTOFF)
+THEN
+RESPONSE #100
+SetGlobal("RR#Active","LOCALS",1)
+Enemy()
+Continue()
+END
+
+IF
+Global("RR#Active","LOCALS",0)
+Allegiance(Myself,EVILCUTOFF)
+See([GOODCUTOFF])
+THEN
+RESPONSE #100
+SetGlobal("RR#Active","LOCALS",1)
 Continue()
 END
 
@@ -114,6 +138,15 @@ SetGlobalTimer("whatthe","LOCALS",0)
 END
 
 IF
+Allegiance(Myself,EVILCUTOFF)
+Global("RR#Active","LOCALS",0)
+!Detect(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+NoAction()
+END
+
+IF
 StateCheck(Myself,STATE_PANIC)
 THEN
 RESPONSE #100
@@ -124,6 +157,17 @@ IF
 StateCheck(Myself,STATE_CHARMED)
 See(NearestEnemyOf(Myself))
 ActionListEmpty()
+!Range(LastSeenBy(Myself),5)
+THEN
+RESPONSE #100
+MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+StateCheck(Myself,STATE_CHARMED)
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+Range(LastSeenBy(Myself),5)
 THEN
 RESPONSE #100
 Attack(LastSeenBy(Myself))
@@ -156,8 +200,19 @@ HitBy([ANYONE],FIRE)
 THEN
 RESPONSE #100
 SetInterrupt(FALSE)
-RunAwayFrom(LastAttackerOf(Myself),200)
+RunAwayFromNoInterrupt(LastAttackerOf(Myself),200)
 SetInterrupt(TRUE)
+END
+
+IF
+AreaType(OUTDOOR)
+Allegiance(Myself,ENEMY)
+!Detect([PC])
+Global("RR#neutral","LOCALS",0)
+THEN
+RESPONSE #100
+SetGlobal("RR#neutral","LOCALS",1)
+ChangeEnemyAlly(Myself,NEUTRAL)
 END
 
 IF
@@ -174,6 +229,7 @@ IF
 Allegiance(Myself,EVILCUTOFF)
 See(NearestEnemyOf(Myself))
 Range(NearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
@@ -184,6 +240,7 @@ IF
 Allegiance(Myself,EVILCUTOFF)
 See(SecondNearestEnemyOf(Myself))
 Range(SecondNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
@@ -194,6 +251,7 @@ IF
 Allegiance(Myself,EVILCUTOFF)
 See(ThirdNearestEnemyOf(Myself))
 Range(ThirdNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
@@ -204,6 +262,7 @@ IF
 Allegiance(Myself,EVILCUTOFF)
 See(FourthNearestEnemyOf(Myself))
 Range(FourthNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
@@ -214,6 +273,7 @@ IF
 Allegiance(Myself,EVILCUTOFF)
 See(FifthNearestEnemyOf(Myself))
 Range(FifthNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
@@ -224,6 +284,7 @@ IF
 Allegiance(Myself,EVILCUTOFF)
 See(SixthNearestEnemyOf(Myself))
 Range(SixthNearestEnemyOf(Myself),5)
+!CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 THEN
 RESPONSE #100
 EquipMostDamagingMelee()
@@ -285,16 +346,6 @@ MoveToObject(SixthNearestEnemyOf(Myself))
 END
 
 IF
-See(NearestEnemyOf(Myself))
-ActionListEmpty()
-Allegiance(Myself,EVILCUTOFF)
-THEN
-RESPONSE #100
-EquipMostDamagingMelee()
-AttackReevaluate(NearestEnemyOf(Myself),15)
-END
-
-IF
 See(LastAttackerOf(Myself))
 ActionListEmpty()
 !Allegiance(Myself,ENEMY)
@@ -303,6 +354,16 @@ THEN
 RESPONSE #100
 EquipMostDamagingMelee()
 AttackReevaluate(LastAttackerOf(Myself),15)
+END
+
+IF
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+Allegiance(Myself,EVILCUTOFF)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
 IF
@@ -325,4 +386,46 @@ IF
 THEN
 	RESPONSE #100
 		RandomWalkContinuous()
+END
+
+IF
+Allegiance(Myself,NEUTRAL)
+Global("RR#neutral","LOCALS",1)
+Range([GOODCUTOFF],20)
+THEN
+RESPONSE #100
+Enemy()
+SetGlobal("RR#neutral","LOCALS",0)
+END
+
+IF
+AreaType(OUTDOOR)
+Allegiance(Myself,NEUTRAL)
+!Range([PC],20)
+See([0.0.103])
+!Range([0.0.103],15)
+Global("RR#neutral","LOCALS",1)
+THEN
+RESPONSE #100
+MoveToObject([0.0.103])
+Continue()
+END
+
+IF
+AreaType(OUTDOOR)
+Allegiance(Myself,NEUTRAL)
+!NumCreatureGT([0.0.103],1)
+Global("RR#neutral","LOCALS",1)
+THEN
+RESPONSE #100
+RandomWalkContinuous()
+END
+
+IF
+Allegiance(Myself,NEUTRAL)
+AttackedBy([ANYONE],DEFAULT)
+THEN
+RESPONSE #100
+Enemy()
+SetGlobal("RR#neutral","LOCALS",1)
 END
