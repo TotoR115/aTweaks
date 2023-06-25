@@ -400,6 +400,60 @@ Les créatures convoquées aident le lanceur par tous les moyens dont elles dispos
 @1906 = ~Vapeurs toxiques~
 @1907 = ~Parler avec les plantes~
 
+// Araignées version papier
+@1940 = ~Progéniture d'Araignée (Conjuration/Convocation)
+Niveau : 4
+Portée : 40 mètres
+Durée : 6 rounds + 1 round par niveau
+Temps d'incantation : 6
+Zone d'effet : Spéciale
+Jet de Sauvegarde : Non
+
+Par ce sort, le magicien amène à la vie 1d3 oeufs d'araignée qui éclosent aussitôt pour donner vie à des araignées adultes sous son contrôle télépathique. Le type d'araignée dépend du niveau du magicien qui lance le sort :
+7ème - 8ème : Araignée énorme
+9ème - 11ème : Araignée géante
+12ème - 15ème : Araignée éclipsante
+16ème et + : Araignée Astrale éclipsante (seulement une)
+Les araignées restent sous le contrôle du magicien jusqu'à expiration du sort ou leur mort.~
+@1941 = ~Araignée Astrale éclipsante~
+@1942 = ~Appel de la Wiverne (Conjuration/Convocation)
+Niveau : 6
+Portée : 30 m
+Durée : 1 round par niveau
+Temps d'incantation : 1 round
+Zone d'effet : Spéciale
+Jet de Sauvegarde : Non
+
+Ce sort permet au magicien d'ouvrir un portail magique pour invoquer 1d3 Wiverne, qui seront sous son contrôle mental et qui lui obéiront en toutes circonstances (à moins d'utiliser des moyens magiques, comme Charme-monstres). Le contrôle dure jusqu'à expiration du sort.~
+
+// Vase, limons et Gelée version papier
+
+@1950 = ~Zombie Olivâtre~
+@1951 = ~Limon Olivâtre~
+@1952 = ~Guérison des maladies (Abjuration)
+Sphère: Necromancie
+Portée : Contact
+Durée : Permanente
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : Aucun
+
+En imposant les mains sur une personne souffrante, le lanceur de ce sort peut guérir presque toutes les maladies connues. La guérison est permanente mais n’accorde pas à son bénéficiaire une quelconque immunité magique contre de futures affections. Certaines maladies magiques ne sont pas sujettes à ce sort.
+Ce sort est également efficace contre les monstres parasites tels que limons verts, olivatre, vers putrides et autres.
+~
+@1953 = ~Guérison des maladies 
+(Abjuration)
+Niveau : 3
+Sphère : Guérison
+Portée : Contact
+Durée : Permanente
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : Aucun
+
+En imposant les mains sur une personne souffrante, le lanceur de ce sort peut guérir presque toutes les maladies connues. La guérison est permanente mais n'accorde pas à son bénéficiaire une quelconque immunité magique contre de futures affections. Ce sort annule également l'effet d'un sort de débilité mentale. Certaines maladies magiques ne sont pas sujettes à ce sort.
+Ce sort est également efficace contre les monstres parasites tels que limons verts, olivatre, vers putrides et autres.~
+
 // Plantes & Bêtes version papier
 
 @1910 = ~Suffocation~
@@ -423,6 +477,54 @@ Les créatures convoquées aident le lanceur par tous les moyens dont elles dispos
 @1928 = ~Hombres~
 @1929 = ~Ours Géant~
 @1930 = ~Smilodon~
+@1931 = ~Conjuration d’Animaux
+(Conjuration / Convocation)
+
+Niveau : 6
+Sphère : Convocation
+Portée : 60 mètres
+Durée : 2 Rounds / Niveau
+Temps d’incantation : 9
+Zone d’effet : Spéciale
+Jet de sauvegarde : Aucun
+
+Ce sort permet de convoquer et de contrôler des animaux. Le nombre de Dés de Vie total des êtres créés ne peut dépasser son niveau. Les mammifére répondront aux désirs du lanceur de sort pendant toute la durée du sort.~
+@1932 = ~Convocation d’animaux I 
+(Conjuration, Convocation)
+
+Niveau : 4
+Sphère : animale, convocation
+Portée : 20 m
+Durée : 8 heures
+Temps d’incantation : 7
+Zone d’effet : spéciale
+Jet de sauvegarde : aucun
+
+Le jeteur de sorts peut convoquer jusqu’à 4 animaux ayant 4 dés de vie ou moins. Le type d’animal qui apparaît dépend de l’environnement du jeteur de sort au moment précis de la convocation Ils restent sous son contrôle jusqu’à leur mort ou expiration du sort.~
+@1933 = ~Convocation d’animaux II 
+(Conjuration/Convocation)
+
+Niveau : 5
+Sphère : animal, convocation
+Portée : 60 mètres/niveau
+Durée : 8 heures
+Temps d’incantation : 8
+Zone d’effet : spéciale
+Jet de sauvegarde : aucun
+
+Le jeteur de sorts peut convoquer jusqu’à 4 animaux ayant 8 dés de vie ou moins. Seuls viennent les animaux se trouvant à sa portée au moment où il jette le sort. Les animaux convoqués utilisent tous les moyens qu’ils possèdent pour aider le jeteur de sorts. Ils restent tant que le combat n’est pas terminé, que la mission n’est pas accomplie, que le jeteur de sorts n’est pas en sécurité, que ce dernier ne les a pas renvoyés, etc, ou jusqu’à expiration du sort. Seuls les animaux normaux ou géants peuvent être convoqués ; ce sort n’a aucun effet sur les animaux fantastiques ou les monstres (chimères, dragons, gorgones, manticores, etc.)~
+@1934 = ~Convocation d’Animaux III 
+(Conjuration, Convocation)
+
+Niveau : 6
+Sphère : Animale, Convocation
+Portée : 55 mètres
+Durée : 8 heures
+Temps d’incantation : 9
+Zone d’effet : Spéciale
+Jet de sauvegarde : Aucun
+
+Grâce à ce sort, le jeteur appelle à son aide jusqu’à 4 animaux ayant moins de 12 dés de vie. Seuls les animaux étant à portée du sort au moment où il est lancé répondent à cet appel. Ils aident alors le jeteur de sort du mieux de leurs capacités et lui obéissent jusqu’à leur mort ou la fin du sort. Seuls les animaux normaux ou géants peuvent être ainsi convoqués.~
 
 // Élémentaires version papier
 

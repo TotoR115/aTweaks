@@ -544,6 +544,110 @@ The summoned creatures aid the caster by whatever means they possess, staying un
 @1928 = ~Shades~
 @1929 = ~Giant Bear~
 @1930 = ~Smilodon~
+@1931 = ~Conjure Animals
+(Conjuration/Summoning)
+
+Level: 6
+Sphere: Summoning
+Range: 25 ft.
+Duration: 2 Rounds/level
+Casting Time: 9
+Area of Effect: Special 
+Saving Throw: None 
+
+This spell allows the caster to summon forth and control massive animals. The total Hit Dice of the mammals cannot exceed his level. The animals will respond to the caster's every whim for the duration of the spell.~
+@1932 = ~Animal Summoning I 
+(Conjuration/Summoning)
+
+Level: 4
+Sphere: Animal
+Range: 25 ft.
+Duration: 8 hours
+Casting Time: 7 
+Area of Effect: Special 
+Saving Throw: None 
+
+By means of this spell, the caster calls between up to 4 animals that have 4 Hit Dice or less. The animals appearing are randomly determined. They will remain under the caster's control until slain or the spell duration expires.~
+@1933 = ~Animal Summoning II 
+(Conjuration/Summoning)
+
+Level: 5
+Sphere: Animal
+Range: 25 ft.
+Duration: 8 hours
+Casting Time: 8 
+Area of Effect: Special 
+Saving Throw: None 
+
+By means of this spell, the caster calls up to 4 animals that have 8 Hit Dice or less. The animals summoned aid the caster by whatever means they possess, staying until the spell duration expires. Only normal or giant animals can be summoned; fantastic animals or monsters cannot be summoned by this spell (no chimerae, dragons, gorgons, manticores, etc.).~
+@1934 = ~Animal Summoning III
+(Conjuration/Summoning)
+
+Level: 6
+Sphere: Animal
+Range: 25 ft. 
+Duration: 8 hours
+Casting Time: 9
+Area of Effect: Special 
+Saving Throw: None 
+
+By means of this spell, the caster calls up to 4 animals that have 12 Hit Dice or less. Only animals within visual range of the caster at the time the spell is cast will come. The summoned animals aid the caster by whatever means they possess, staying until they are slain or the spell's duration expires. Only normal- or giant-sized animals can be summoned.~
+
+
+// PnP spiders
+
+@1940 = ~Spider Spawn (Conjuration/Summoning)
+Level: 4
+Range: 40 yards
+Duration: 6 rounds + 1 round/level
+Casting Time: 6
+Area of Effect: Special
+Saving Throw: None
+
+Upon casting this spell the wizard conjures 1d3 spider eggs into existence, quickly producing fully grown spiders that remain under the wizard's telepathic control.  The type of spiders that appear depend upon the level of the wizard casting the spell.
+7th : Huge Spider
+9th : Giant Spider
+12th : Phase Spider
+16th+ : Astral Phase Spider (only one)
+These spider(s) will remain under the wizard's control until slain, or the spell duration expires.~
+@1941 = ~Astral Phase Spider~
+@1942 = ~Wyvern Call (Conjuration/Summoning) 
+Level: 6
+Range: 40 yards 
+Duration: 1 round/level
+Casting Time: 1 round
+Area of Effect: Special 
+Saving Throw: None 
+
+When this spell is cast the wizard opens up a magical channel that will summon 1d3 wyvern to his aid.  Those creatures will be totally under his mental control with no chance of it turning on him except, of course, through magical means like charm monster.  Those creatures will remain under the wizard's control, and will live and die at his command until the spell duration expires.~
+
+// PnP Oooze
+
+@1950 = ~Slime Zombie~
+@1951 = ~Olive Slime~
+@1952 = ~Cure Disease (Abjuration)
+Level: 3
+Sphere: Necromantic
+Range: Touch
+Duration: Permanent
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+By laying her hands upon a sickly person, the caster can cure almost any disease with this spell.  The cure is permanent, but this does not grant the recipient of the spell immunity from further afflictions.  Blindness, deafness and feeblemind are also cured with this spell.  Some magically created diseases may not be curable by this spell. 
+The spell is also effective against parasitic monsters such as green slime, olive slime, rot grubs, and others.~
+@1953 = ~Cure Disease 
+(Abjuration)
+Level: 3
+Sphere: Healing
+Range: Touch
+Duration: Permanent
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+By laying <PRO_HISHER> hands upon a sickly person, the caster can cure almost any disease with this spell. The cure is permanent, but does not grant the recipient of the spell immunity from further afflictions. Feeblemind are also cured with this spell. Some magically created diseases may not be curable by this spell. 
+The spell is also effective against parasitic monsters such as green slime, olive slime, rot grubs, and others.~
 
 // PnP Elementals
 
