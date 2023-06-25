@@ -581,7 +581,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~TTSPID~                                                               // Wraith Spider
             ~A7Q2WS2D~                                                             // Wraith Spider
             ~C#Q04009~                                                             // Wraith Spider
-            ~L#ULCSP~                                                              // Wraith Spider
+            ~L#ULCSP~                                                              // Wraith Spider - SotSC (Ssimkh, the Ghost-Feeding Spider)
 
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -595,6 +595,9 @@ REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~lring~                 		   /
 REPLACE_CRE_ITEM ~RING95~ #0 #0 #0 ~UNDROPPABLE~ ~rring~                 		   // Add default undead immunity to mind spells
 REPLACE_CRE_ITEM ~RR#spwrt~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_MEMORIZED_SPELL ~rr#spwr2~ #0 ~innate~ ( 1 )                                   // adds 1x wraith web
+PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~L#ULCSP~) BEGIN
+  ADD_MEMORIZED_SPELL ~rr#phase~ #0 ~innate~ ( 1 )                                   // adds 1x Teleport
+END
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "14"                                                                  // new movement rate
@@ -639,6 +642,7 @@ STR_VAR                                                                         
 "script08"   = "DW#SPHLP"                                                          // Stratagems Shoutt script
 "script09"   = "DW#SPIDG"                                                          // phase spider script
 "script10"   = "DW2MP1MO"                                                          // Stratagems melee script
+"script11"   = "PSPIDER"                                                           // phase spider script
 END                                                                                // ends FUNCTION call
 LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // add cold immunity
 // =============================================================================== // the actual work ends here
@@ -1221,7 +1225,8 @@ BEGIN
 	  WRITE_BYTE 0x273 4  //Thief Class
 	  WRITE_BYTE 0x68 50  //Move silently
 	  WRITE_BYTE 0x45 50  //Hide in Shadow
-	  WRITE_BYTE 0x65 50 //Set traps
+	  WRITE_BYTE 0x65 50  //Set traps
+	  WRITE_BYTE 0x23d 12 //Set Constotution to 12 to avoid bonus linked to the new class
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
 	BUT_ONLY
@@ -1238,7 +1243,8 @@ BEGIN
 	  WRITE_BYTE 0x273 4  //Thief Class
 	  WRITE_BYTE 0x68 70  //Move silently
 	  WRITE_BYTE 0x45 70  //Hide in Shadow
-	  WRITE_BYTE 0x65 70 //Set traps
+	  WRITE_BYTE 0x65 70  //Set traps
+	  WRITE_BYTE 0x23d 12 //Set Constotution to 12 to avoid bonus linked to the new class
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
 	BUT_ONLY
@@ -1257,7 +1263,8 @@ BEGIN
 	  WRITE_BYTE 0x273 4  //Thief Class
 	  WRITE_BYTE 0x68 90  //Move silently
 	  WRITE_BYTE 0x45 90  //Hide in Shadow
-	  WRITE_BYTE 0x65 90 //Set traps
+	  WRITE_BYTE 0x65 90  //Set traps
+	  WRITE_BYTE 0x23d 14 //Set Constotution to 14 to avoid bonus linked to the new class
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
 	BUT_ONLY
@@ -1275,6 +1282,7 @@ BEGIN
 	  WRITE_BYTE 0x68 100 //Move silently
 	  WRITE_BYTE 0x45 100 //Hide in Shadow
 	  WRITE_BYTE 0x65 100 //Set traps
+	  WRITE_BYTE 0x23d 14 //Set Constotution to 14 to avoid bonus linked to the new class
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
 	BUT_ONLY
@@ -1293,6 +1301,7 @@ BEGIN
 	  WRITE_BYTE 0x68 80  //Move silently
 	  WRITE_BYTE 0x45 80  //Hide in Shadow
 	  WRITE_BYTE 0x65 100 //Set traps
+	  WRITE_BYTE 0x23d 14 //Set Constotution to 14 to avoid bonus linked to the new class
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 1 timing = 9 target = 1 probability1 = 100 END
 	  LPF ADD_CRE_EFFECT INT_VAR opcode = 144 parameter2 = 14 timing = 9 target = 1 probability1 = 100 END
 	BUT_ONLY
@@ -1312,12 +1321,10 @@ BEGIN
   END
 END
 ACTION_IF !MOD_IS_INSTALLED "SPELL_REV.TP2" "0" BEGIN							   // Compatibility with Spell Revision: do not change spells if Spell Revision is installed as those spells are nomore used...
-	COPY ~atweaks/spl/spiders/rr#wi423.spl~ ~override/spwi423.spl~				   // PnP summons 1d3 spiders and no Sword Spiders at all. Add one Greater spider at lv16 to stay balanced with raise undead
+	COPY ~atweaks/spl/spiders/rr#wi423.spl~ ~override/spwi423.spl~				   // PnP summons: 1d3 spiders and no Sword Spiders at all. Add one Greater spider at lv16 to stay balanced with Animate Dead
 		SAY 0x50 @1940
-	COPY_EXISTING ~spwi619.spl~ ~override~										   // PnP summons: 1d3 Wyvern.
+	COPY ~atweaks/spl/spiders/rr#wi619.spl~ ~override/spwi619.spl~				   // PnP summons: 1d3 Wyverns
 		SAY 0x50 @1942
-		LPF CLONE_EFFECT INT_VAR match_opcode = 177 probability1 = 66 END
-		LPF CLONE_EFFECT INT_VAR match_opcode = 177 match_probability1 = 66 probability1 = 33 END
 END
 ///////////////////////////////////
 // More sensible spiders encounters
