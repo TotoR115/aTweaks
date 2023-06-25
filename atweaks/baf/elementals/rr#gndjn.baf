@@ -208,8 +208,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#mir20",Myself) // Mirror Image
-        RemoveSpellRES("rr#mir20") // remove one instance of the spell upon casting
+		SpellRES("rr#mir20",Myself) // Mirror Image
 END
 
 IF

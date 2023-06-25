@@ -2042,6 +2042,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~AR#ELEFI~                                                             // Lesser Fire Elemental (Arena)
             ~FIRLSMOD~                                                             // Lesser Fire Elemental (PofQuestPack)
             ~PXF5ELEM~                                                             // Lesser Fire Elemental (Devin)
+			~DRLFIR1~                                                              // Lesser Fire Elemental (Divine Remix)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -3985,6 +3986,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~swafir02~                                                             // Fire Elemental (priest summon)
             ~elfirsuw~                                                             // Lesser Fire Elemental (mage summon)
             ~sumelfir~                                                             // Lesser Fire Elemental (staff summon)
+			~drlfir1~                                                              // Lesser Fire Elemental (Divine Remix)
             ~elemchan~                                                             // Chan
             ~elemsunn~                                                             // Sunnis
             ~elemzaam~                                                             // Zaaman Rul

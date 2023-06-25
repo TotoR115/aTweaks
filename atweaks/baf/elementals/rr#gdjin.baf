@@ -206,11 +206,8 @@ IF
 	!CheckStatGT([GOODCUTOFF.0.DARKPLANATAR],0,TRUE_SIGHT)
 THEN
 	RESPONSE #100
-        SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#mir20",Myself) // Mirror Image
-        RemoveSpellRES("rr#mir20") // remove one instance of the spell upon casting
-        SetInterrupt(TRUE)
+		SpellRES("rr#mir20",Myself) // Mirror Image
 END
 
 IF

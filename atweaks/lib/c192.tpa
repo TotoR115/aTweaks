@@ -44,7 +44,9 @@ COPY ~atweaks/wav/elementals/rr#gwofa.wav~ ~override~
 COPY ~atweaks/wav/elementals/rr#gwofb.wav~ ~override~
 
 ADD_PROJECTILE ~atweaks/pro/elementals/rr#gwof.pro~                                // Wall of Fire projectile : emulation of wall
-COPY ~atweaks/spl/elementals/rr#gwof1.spl~ ~override~                              // Wall of Fire damage (2d8) sub-spell
+COPY ~atweaks/spl/elementals/rr#gwof1.spl~ ~override~                              // Wall of Fire damage (2d6) sub-spell
+COPY ~atweaks/spl/elementals/rr#gwof1.eff~ ~override~                              // Wall of Fire damage vs undead
+COPY ~atweaks/spl/elementals/rr#gwof2.spl~ ~override~                              // Wall of Fire damage (2d6) sub-spell
   READ_LONG  0x64 ab_off
   READ_SHORT 0x68 ab_num
   FOR(i=0; i<ab_num; i+=1) BEGIN
@@ -152,7 +154,7 @@ END
 COPY_EXISTING ~SPPR211.SPL~  ~override/RR#PR211.SPL~                               // Clone Silence 15' Radius into an innate ability (used by Guardian)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~SPPR698.SPL~  ~override/RR#PR698.SPL~                               // Clone Silence 15' Radius into an innate ability (used by Guardian)
+COPY_EXISTING ~SPPR603.SPL~  ~override/RR#PR603.SPL~                               // Clone Blade Barrier into an innate ability (used by Guardian)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPPR606.SPL~  ~override/rr#gr606.SPL~                               // Clone Fire Seeds into an innate ability (used Efreet)
@@ -252,7 +254,7 @@ COPY_EXISTING ~genie02.cre~ ~override/rr#gnmrd.cre~
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             //~aataqah~                                                              // Djinni
             //~dagenie~                                                              // Djinni
-            ~djinnisu~                                                             // Djinni
+            // ~djinnisu~                                                             // Djinni
             ~gendji01~                                                             // Djinni
             //~idjinni~                                                              // Djinni
             ~ppdjinn~                                                              // Djinni
@@ -333,7 +335,6 @@ END                                                                             
 END                                                                                // ends ACTION_FOR_EACH block
 
 ACTION_FOR_EACH file IN // Djinni Summons
-				~djinnisu~
 				~sumdjinn~
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
@@ -352,6 +353,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~gendjn01~                                                             // Noble Djinni
             ~ppdjinn2~                                                             // Noble Djinni
             ~caligen3~                                                             // Noble Djinni (TDD)
+			~djinnisu~															   // Djinni (for balance with efreetsu)
 
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
@@ -427,6 +429,18 @@ LPF ~ADD_CRE_EFFECT~ INT_VAR opcode = 206 target = 1 timing = 9 parameter1 = 474
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
+
+ACTION_FOR_EACH file IN // Djinni Summons
+				~djinnisu~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+    WRITE_LONG 0x14 "0"
+	LPF make_summon END
+	WRITE_ASCII SCRIPT_OVERRIDE "rr#sdjin" #8
+	BUT_ONLY
+  END
+END
 
 
 // Genie: Dao
@@ -814,8 +828,8 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~fl#shout~ #0 ~innate~ ( 2 )                                   // adds Shout
 ADD_MEMORIZED_SPELL ~rr#pr211~ #0 ~innate~ ( 2 )                                   // adds Silence (15')
-ADD_MEMORIZED_SPELL ~rr#DDETI~ #0 ~innate~ ( 1 )                                   // adds Detect Invisibility/illusion at will
-ADD_MEMORIZED_SPELL ~rr#pr698~ #0 ~innate~ ( 2 )                                   // adds Blade Barrier
+ADD_MEMORIZED_SPELL ~rr#ddeti~ #0 ~innate~ ( 1 )                                   // adds Detect Invisibility/illusion at will
+ADD_MEMORIZED_SPELL ~rr#pr603~ #0 ~innate~ ( 2 )                                   // adds Blade Barrier
 ADD_MEMORIZED_SPELL ~rr#gfbth~ #0 ~innate~ ( 1 )                                   // adds Breath of fire (360° burning hand)
 ADD_CRE_ITEM ~RR#GGRDR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 	   // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~RR#GGRDL~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 				   		   // 2nd attack
@@ -1058,6 +1072,11 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNMRD.baf~                   
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SDJIN.baf~                     // Summoned Djinni script
 COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SEFRT.baf~                     // Summoned Efreeti AI script
 
+////////////////////
+// Revised spells //
+////////////////////
+
+// PnP Conjure Fire elemental for druid should conjure: lesser fire elemental, greater, elder, salamnders or efreeti
 
 
 /////////////////////////////
@@ -1181,19 +1200,19 @@ EXTEND_BOTTOM ~ar1800.bcs~  ~atweaks/inlined/baf/elementals/ar1800.baf~         
 /////////////////////////////
 
 //////////// Compatibility with IR: script check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
-ACTION_FOR_EACH script IN rr#gefrt rr#gnefr BEGIN
-  ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
-    COPY_EXISTING ~%script%.bcs~ ~override~
-	  DECOMPILE_AND_PATCH BEGIN
-      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
-        ~clck26~
-        ~rr#fake~ // I am a bit lazy but this will do the trick and is easier in this case than R_B_B
-      REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
-		~clck24~
-		~rr#fake~ // idem
-	  END
-    BUT_ONLY
+ACTION_IF MOD_IS_INSTALLED "ITEM_REV.TP2" "0" BEGIN
+  ACTION_FOR_EACH script IN rr#gefrt rr#gnefr BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
+      COPY_EXISTING ~%script%.bcs~ ~override~
+	    DECOMPILE_AND_PATCH BEGIN
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+          ~clck26~
+          ~rr#fake~ // I am a bit lazy but this will do the trick and is easier in this case than R_B_B
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		  ~clck24~
+		  ~rr#fake~ // idem
+	    END
+      BUT_ONLY
+    END
   END
-END
-
-END                                                                                // ends Item Revisions compatibility block
+END     // ends Item Revisions compatibility block

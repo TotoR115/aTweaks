@@ -1385,7 +1385,7 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
     BEGIN                                                                              // execute the following
       LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                           // Starts FUNCTION call (add new creature effect built-in function)
         INT_VAR                                                                        // initialize variables
-          "opcode" = "206"                                                             // effect: #206 (Protection from Opcode)
+          "opcode" = "206"                                                             // effect: #206 (Protection from spell)
           "target" = "1"                                                               // target: 1 (self)
           "timing" = "9"                                                               // timing mode: 9 (permanent after death)
           "duration" = "0"                                                             // duration: 0
@@ -2021,9 +2021,9 @@ DEFINE_PATCH_FUNCTION make_shadow_fiend BEGIN
   PATCH_INCLUDE ~aTweaks/lib/fj_cre_validity.tpp~                                      // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
   PATCH_IF valid BEGIN
     // =============================================================================== // the actual work starts from here
-    REMOVE_CRE_ITEM ~IMMUNE1~                                                          // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-    REMOVE_CRE_ITEM ~IMMUNE2~                                                          // removes HELMNOAN.ITM (no critical hit immunity in PnP)
-    REMOVE_CRE_ITEM ~RING95~                                                           // removes HELMNOAN.ITM (no critical hit immunity in PnP)
+    REMOVE_CRE_ITEM ~IMMUNE1~                                                          // removes IMMUNE1.ITM (immunity to +1 weapons and below)
+    REMOVE_CRE_ITEM ~IMMUNE2~                                                          // removes IMMUNE2.ITM (immunity to +2 weapons and below)
+    REMOVE_CRE_ITEM ~RING95~                                                           // removes RING95.ITM (Hunded immunities)
     REPLACE_CRE_ITEM ~RR#DSHA2~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                         // replace fiend immunities with pnp Shadow Fiend immunities 
 	REPLACE_CRE_ITEM fl#shaf1 #0 #0 #0 UNDROPPABLE weapon1 EQUIP
     REPLACE_CRE_ITEM fl#shaf2 #0 #0 #0 UNDROPPABLE shield

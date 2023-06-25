@@ -7,6 +7,16 @@ Continue()
 END
 
 IF
+AttackedBy([GOODCUTOFF],DEFAULT)
+TookDamage()
+!Allegiance(Myself,ENEMY)
+THEN
+RESPONSE #100
+Enemy()
+ChangeAIScript("rr#gefrt",OVERRIDE)
+END
+
+IF
     OR(2)
       StateCheck(Myself,STATE_IMMOBILE) // using this instead of STATE_DISABLED because the latter includes STATE_CHARMED
       StateCheck(Myself,STATE_REALLY_DEAD) // prevents contingencies and other ReallyForceSpell() stuff from popping up on dead creatures
@@ -47,13 +57,13 @@ IF
 THEN
   RESPONSE #100
     SetGlobal("rr#comeback","LOCALS",1)
-    FollowObjectFormation(LastSummonerOf(Myself), 3, 6)
+    FollowObjectFormation(LastSummonerOf(Myself),3,6)
 END
 
 IF
   Global("rr#comeback","LOCALS",1)
   OR(2)
-     Exists([EVILCUTOFF.0.0.0.0.0.0])
+     Exists([EVILCUTOFF])
      !CombatCounter(0)
 THEN
   RESPONSE #100
@@ -82,11 +92,8 @@ IF
 	!CheckStatGT([EVILCUTOFF.0.DARKPLANATAR],0,TRUE_SIGHT)
 THEN
 	RESPONSE #100
-        SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
-		ForceSpellRES("rr#gi212",Myself) // Mirror Image
-        RemoveSpellRES("rr#gi212") // remove one instance of the spell upon casting
-        SetInterrupt(TRUE)
+		SpellRES("rr#gi212",Myself) // Mirror Image
 END
 
 IF

@@ -294,7 +294,7 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#pyren","LOCALS",30)
-		SpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
+		ForceSpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
 		SetInterrupt(TRUE)
 END
 
@@ -316,7 +316,7 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#pyren","LOCALS",30)
-		SpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
+		ForceSpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
 		SetInterrupt(TRUE)
 END
 
@@ -338,7 +338,7 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#pyren","LOCALS",30)
-		SpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
+		ForceSpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
 		SetInterrupt(TRUE)
 END
 
@@ -360,7 +360,7 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#pyren","LOCALS",30)
-		SpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
+		ForceSpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
 		SetInterrupt(TRUE)
 END
 
@@ -382,7 +382,7 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		SetGlobalTimer("RR#pyren","LOCALS",30)
-		SpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
+		ForceSpellRES("rr#pyren",LastSeenBy(Myself)) // pyrotechnics
 		SetInterrupt(TRUE)
 END
 
@@ -408,7 +408,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #60
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -439,7 +439,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #60
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -469,7 +469,7 @@ THEN
     RESPONSE #15
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #55
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -499,7 +499,7 @@ THEN
     RESPONSE #15
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #55
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -529,7 +529,7 @@ THEN
     RESPONSE #15
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #55
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -559,7 +559,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #80
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -587,7 +587,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #80
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -615,7 +615,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #80
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -643,7 +643,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #80
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -671,7 +671,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #80
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -698,7 +698,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #80
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -725,7 +725,7 @@ THEN
     RESPONSE #20
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #80
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
@@ -754,7 +754,7 @@ THEN
     RESPONSE #75
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #25
 		Continue()
 END
@@ -781,7 +781,7 @@ THEN
     RESPONSE #75
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #25
 		Continue()
 END
@@ -807,7 +807,7 @@ THEN
     RESPONSE #70
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #30
 		Continue()
 END
@@ -833,7 +833,7 @@ THEN
     RESPONSE #70
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #30
 		Continue()
 END
@@ -859,7 +859,7 @@ THEN
     RESPONSE #70
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
     RESPONSE #30
 		Continue()
 END
@@ -885,7 +885,7 @@ THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
 END
 
 IF
@@ -909,7 +909,7 @@ THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
 END
 
 IF
@@ -933,7 +933,7 @@ THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
 END
 
 IF
@@ -957,7 +957,7 @@ THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
 END
 
 IF
@@ -980,7 +980,7 @@ THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
 END
 
 IF
@@ -1003,7 +1003,7 @@ THEN
     RESPONSE #100
         SetGlobalTimer("RR#Cast","LOCALS",6)
         SetGlobalTimer("RR#flame","LOCALS",12)
-        SpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
+        ForceSpellRES("rr#gpfla",LastSeenBy(Myself)) // Produce Flame
 END
 
 IF
