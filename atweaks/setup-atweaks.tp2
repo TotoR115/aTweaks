@@ -8,7 +8,7 @@
 
 BACKUP ~atweaks/backup~
 AUTHOR "Wisp, shsforums.net"                                                       // Author and e-mail address
-VERSION ~v4.53~                                                                    // Mod version
+VERSION ~v4.54a_TotoR~                                                                    // Mod version
 
 ALWAYS                                                                             // Always do this block
   INCLUDE ~aTweaks/LIB/RR#AGLEF.TPH~                                               // Include my custom "Add Global Effect" function
@@ -392,7 +392,7 @@ GROUP @1 // PnP Tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
 INCLUDE "atweaks/lib/c188.tpa"
-
+*/
 
 ///////////////////////
 // PnP Plant creatures
@@ -403,7 +403,7 @@ GROUP @1 // PnP Tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
 INCLUDE "atweaks/lib/c189.tpa"
-*/
+
 
 
 //////////////////

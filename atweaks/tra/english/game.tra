@@ -544,6 +544,55 @@ The summoned creatures aid the caster by whatever means they possess, staying un
 @1928 = ~Shades~
 @1929 = ~Giant Bear~
 @1930 = ~Smilodon~
+@1931 = ~Conjure Animals
+(Conjuration/Summoning)
+
+Level: 6
+Sphere: Summoning
+Range: 25 ft.
+Duration: 2 Rounds/level
+Casting Time: 9
+Area of Effect: Special 
+Saving Throw: None 
+
+This spell allows the caster to summon forth and control massive animals. The total Hit Dice of the mammals cannot exceed his level. The animals will respond to the caster's every whim for the duration of the spell.~
+@1932 = ~Animal Summoning I 
+(Conjuration/Summoning)
+
+Level: 4
+Sphere: Animal
+Range: 25 ft.
+Duration: 8 hours
+Casting Time: 7 
+Area of Effect: Special 
+Saving Throw: None 
+
+By means of this spell, the caster calls between up to 4 animals that have 4 Hit Dice or less. The animals appearing are randomly determined. They will remain under the caster's control until slain or the spell duration expires.~
+@1933 = ~Animal Summoning II 
+(Conjuration/Summoning)
+
+Level: 5
+Sphere: Animal
+Range: 25 ft.
+Duration: 8 hours
+Casting Time: 8 
+Area of Effect: Special 
+Saving Throw: None 
+
+By means of this spell, the caster calls up to 4 animals that have 8 Hit Dice or less. The animals summoned aid the caster by whatever means they possess, staying until the spell duration expires. Only normal or giant animals can be summoned; fantastic animals or monsters cannot be summoned by this spell (no chimerae, dragons, gorgons, manticores, etc.).~
+@1934 = ~Animal Summoning III
+(Conjuration/Summoning)
+
+Level: 6
+Sphere: Animal
+Range: 25 ft. 
+Duration: 8 hours
+Casting Time: 9
+Area of Effect: Special 
+Saving Throw: None 
+
+By means of this spell, the caster calls up to 4 animals that have 12 Hit Dice or less. Only animals within visual range of the caster at the time the spell is cast will come. The summoned animals aid the caster by whatever means they possess, staying until they are slain or the spell's duration expires. Only normal- or giant-sized animals can be summoned.~
+
 
 // PnP Elementals
 

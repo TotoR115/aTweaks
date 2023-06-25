@@ -1,0 +1,59 @@
+IF
+	GlobalLT("Dread_Die","LOCALS",2)
+	OR(2)
+	  HitBy([ANYONE],FIRE)
+	  HitBy([ANYONE],ACID)
+THEN
+	RESPONSE #100
+		SetGlobal("Dread_Die","LOCALS",1)
+		SetGlobalTimer("Dread_Death","LOCALS",12)
+		DestroyItem("monhp1")  // Necklace
+		Continue()
+END
+
+IF
+	HPLT(Myself,4)
+	Global("Dread_Die","LOCALS",0)
+	OR(2)
+		StateCheck(Myself,STATE_FLAME_DEATH)
+		StateCheck(Myself,STATE_ACID_DEATH)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+IF
+	HPLT(Myself,4)
+	Global("Dread_Die","LOCALS",0)
+	OR(4)
+		StateCheck(Myself,STATE_FROZEN_DEATH)
+		StateCheck(Myself,STATE_STONE_DEATH)
+		!StateCheck(Myself,STATE_FLAME_DEATH)
+		!StateCheck(Myself,STATE_ACID_DEATH)
+THEN
+	RESPONSE #100
+		SetGlobal("Dread_Die","LOCALS",2)
+		SetGlobalTimer("dread_Back","LOCALS",12)
+		ForceSpellRES("fl#dwdie",Myself)  // No such index
+		DestroyItem("rr#dwreg")  // Ring
+		PlayDead(300)
+		Continue()
+END
+
+IF
+	Global("Dread_Die","LOCALS",2)
+	GlobalTimerExpired("dread_Back","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Dread_Die","LOCALS",0)
+		ForceSpellRES("fl#dwbac",Myself)  // No such index
+END
+
+IF
+	Global("Dread_Die","LOCALS",1)
+	GlobalTimerExpired("Dread_Death","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobal("Dread_Die","LOCALS",0)
+		ForceSpellRES("fl#dwitm",Myself)  // No such index
+END

@@ -423,6 +423,54 @@ Les créatures convoquées aident le lanceur par tous les moyens dont elles dispos
 @1928 = ~Hombres~
 @1929 = ~Ours Géant~
 @1930 = ~Smilodon~
+@1931 = ~Conjuration d’Animaux
+(Conjuration / Convocation)
+
+Niveau : 6
+Sphère : Convocation
+Portée : 60 mètres
+Durée : 2 Rounds / Niveau
+Temps d’incantation : 9
+Zone d’effet : Spéciale
+Jet de sauvegarde : Aucun
+
+Ce sort permet de convoquer et de contrôler des animaux. Le nombre de Dés de Vie total des êtres créés ne peut dépasser son niveau. Les mammifére répondront aux désirs du lanceur de sort pendant toute la durée du sort.~
+@1932 = ~Convocation d’animaux I 
+(Conjuration, Convocation)
+
+Niveau : 4
+Sphère : animale, convocation
+Portée : 20 m
+Durée : 8 heures
+Temps d’incantation : 7
+Zone d’effet : spéciale
+Jet de sauvegarde : aucun
+
+Le jeteur de sorts peut convoquer jusqu’à 4 animaux ayant 4 dés de vie ou moins. Le type d’animal qui apparaît dépend de l’environnement du jeteur de sort au moment précis de la convocation Ils restent sous son contrôle jusqu’à leur mort ou expiration du sort.~
+@1933 = ~Convocation d’animaux II 
+(Conjuration/Convocation)
+
+Niveau : 5
+Sphère : animal, convocation
+Portée : 60 mètres/niveau
+Durée : 8 heures
+Temps d’incantation : 8
+Zone d’effet : spéciale
+Jet de sauvegarde : aucun
+
+Le jeteur de sorts peut convoquer jusqu’à 4 animaux ayant 8 dés de vie ou moins. Seuls viennent les animaux se trouvant à sa portée au moment où il jette le sort. Les animaux convoqués utilisent tous les moyens qu’ils possèdent pour aider le jeteur de sorts. Ils restent tant que le combat n’est pas terminé, que la mission n’est pas accomplie, que le jeteur de sorts n’est pas en sécurité, que ce dernier ne les a pas renvoyés, etc, ou jusqu’à expiration du sort. Seuls les animaux normaux ou géants peuvent être convoqués ; ce sort n’a aucun effet sur les animaux fantastiques ou les monstres (chimères, dragons, gorgones, manticores, etc.)~
+@1934 = ~Convocation d’Animaux III 
+(Conjuration, Convocation)
+
+Niveau : 6
+Sphère : Animale, Convocation
+Portée : 55 mètres
+Durée : 8 heures
+Temps d’incantation : 9
+Zone d’effet : Spéciale
+Jet de sauvegarde : Aucun
+
+Grâce à ce sort, le jeteur appelle à son aide jusqu’à 4 animaux ayant moins de 12 dés de vie. Seuls les animaux étant à portée du sort au moment où il est lancé répondent à cet appel. Ils aident alors le jeteur de sort du mieux de leurs capacités et lui obéissent jusqu’à leur mort ou la fin du sort. Seuls les animaux normaux ou géants peuvent être ainsi convoqués.~
 
 // Élémentaires version papier
 
