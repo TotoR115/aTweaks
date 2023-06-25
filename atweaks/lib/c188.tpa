@@ -1,0 +1,944 @@
+///////////////
+// PnP Ooze creatures
+///////////////
+
+
+INCLUDE "atweaks/lib/tactical_shared.tpa"
+
+OUTER_SET DiseaseSecType = fl#Disease
+OUTER_SET PoisonSecType = fl#Poison
+//////////////////////////////
+// New spells
+//////////////////////////////
+
+COPY ~atweaks/eff/ooze/rr#slimk.eff~ ~override~          				           // Cure disease kill slime
+COPY ~atweaks/spl/ooze/rr#sligr.spl~ ~override~          				           // Green Slime effect
+OUTER_SET $f_AddSecType(rr#sligr.spl) = DiseaseSecType
+COPY ~atweaks/spl/ooze/rr#sliol.spl~ ~override~          				           // Green Slime effect
+OUTER_SET $f_AddSecType(rr#sliol.spl) = DiseaseSecType
+
+ADD_PROJECTILE ~atweaks/pro/ooze/rr#jelmp.pro~
+COPY ~atweaks/spl/ooze/rr#jelmp.spl~ ~override~                                    // Mustard Jelly's vapor
+  SAY NAME1 @1906
+  READ_LONG  0x64 ab_off
+  READ_SHORT 0x68 ab_num
+  FOR(i=0; i<ab_num; i+=1) BEGIN
+    WRITE_SHORT (ab_off+i*0x28+0x26) ~%rr#jelmp%~                                  // use new projectile
+  END
+OUTER_SET $f_AddSecType(rr#jelmp.spl) = PoisonSecType
+
+
+//////////////////////////////
+// New items
+//////////////////////////////
+
+COPY_EXISTING ~RING95.ITM~  ~override/RR#OOSJ.ITM~                                  // OOze/Slime/jelly immunity ring
+  LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END// effect: -1 (all effects)
+  LAUNCH_PATCH_FUNCTION ~plant_traits~ END                                   	    // Plant traits
+LAF item_labels STR_VAR item = "RR#OOSJ" END
+
+COPY_EXISTING ~RR#OOSJ.ITM~  ~override/RR#SLIME.ITM~                                // Slime and Ochre Jelly immunity ring
+  LAUNCH_PATCH_FUNCTION ~electrical_spell_immunities~ END                           // Electrical spell immunities
+
+COPY_EXISTING ~RR#SLIME.ITM~  ~override/RR#JELLM.ITM~                               // Mustard Jelly immunity ring
+  LAUNCH_PATCH_FUNCTION ~magic_missile_immunity~ END                                // Magic Missile spell immunities
+COPY_EXISTING ~RING95.ITM~  ~override/RR#JLINV.ITM~                                 // Weak Invisibility ring
+  LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END// effect: -1 (all effects)
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 20 target = 1 timing = 2 parameter2 = 2 probability1 = 100 END // Weak Invisibility
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 66 target = 1 timing = 2 parameter1 = 200 probability1 = 100 END // Translucency
+
+COPY_EXISTING ~RR#OOSJ.ITM~  ~override/RR#OOZE.ITM~                                 // Ooze immunity ring
+  LAUNCH_PATCH_FUNCTION ~fire_spell_immunities~ END							   		// Fire spell immunities
+  LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END							   		// Cold spell immunities
+
+COPY ~atweaks/itm/ooze/rr#sligr.itm~ ~override~                             	    // Green Slime 
+  LPF set_enchantment INT_VAR enchantment = 0 END
+COPY_EXISTING ~rr#sligr.ITM~ ~override/rr#sliol.itm~                             	// Olive Slime
+  LPF set_enchantment INT_VAR enchantment = 1 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = "rr#sliol" END
+COPY_EXISTING ~rr#sligr.ITM~ ~override/rr#sliz1.itm~                             	// Olive Slime
+  LPF set_enchantment INT_VAR enchantment = 1 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 probability1 = 10 STR_VAR resource = "rr#sliol" END
+  LPF ALTER_ITEM_HEADER INT_VAR range = 1 dicesize = 4 dicenumber = 1 END
+COPY_EXISTING ~rr#sliz1.ITM~ ~override/rr#sliz2.itm~                             	// Olive Slime
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 4 dicenumber = 2 END
+COPY_EXISTING ~rr#sliz1.ITM~ ~override/rr#sliz3.itm~                             	// Olive Slime
+  LPF ALTER_ITEM_HEADER INT_VAR range = 2 dicesize = 4 dicenumber = 3 END
+COPY ~atweaks/itm/ooze/rr#jeloc.itm~ ~override~                             	    // Ochre Jelly
+  LPF set_enchantment INT_VAR enchantment = 2 END
+COPY_EXISTING ~rr#jeloc.itm~ ~override/rr#jelo1.itm~                                // Fission Slime
+  LPF set_enchantment INT_VAR enchantment = 2 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 dicesize = 6 END
+COPY_EXISTING ~rr#jeloc.itm~ ~override/rr#jelo2.itm~                                // Fission Slime
+  LPF set_enchantment INT_VAR enchantment = 2 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 0 dicesize = 4 END
+COPY_EXISTING ~rr#jeloc.itm~ ~override/rr#slifi.itm~                                // Fission Slime
+  LPF set_enchantment INT_VAR enchantment = 1 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 0 dicenumber = 2 dicesize = 8 END
+COPY_EXISTING ~rr#jeloc.itm~ ~override/rr#jelmu.itm~                                // Mustard Jelly
+  LPF set_enchantment INT_VAR enchantment = 3 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 0 dicenumber = 5 dicesize = 4 END
+COPY_EXISTING ~rr#jeloc.itm~ ~override/rr#oozgr.itm~                                // Grey Ooze
+  LPF set_enchantment INT_VAR enchantment = 1 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 2 dicenumber = 1 dicesize = 10 END
+//////////////////////////
+// Creature modifications: Ooze, Jelly and Slimes
+//////////////////////////
+
+
+// Slime, Green
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~GORJELGR~                                                             // Green Slime 
+            ~JELGRE01~                                                             // Green Slime 
+            ~JELLYGR~                                                              // Green Slime 
+            ~JELLYGR2~                                                             // Green Slime - BG1
+            ~DW#GHGRE~                                                             // Green Slime - SCS
+            ~X#JELLY~                                                              // Green Slime - BG1 NPC
+            ~X#SLIME~                                                              // Green Slime - BG1 NPC
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // mark opcode #206 (Protection from Spell) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // mark opcode #267 (Disable display string) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "292" END     // mark opcode #292 (Immunity to backstab) for deletion 
+REMOVE_CRE_ITEM ~GORJELGR~  							                           // remove GORJELGR (Vanilla Green Slime immunity)
+REMOVE_CRE_ITEM ~RING95~  							                           	   // remove Ring95 (undead immunity)
+REMOVE_CRE_ITEM ~JELLGR1~  							                           	   // remove JELLGR1 (Grenn Slime's Vanilla Weapon)
+REMOVE_CRE_ITEM ~DW#JELGR~  							                           // remove DW#JELGR (Grenn Slime's Stratagems Weapon)
+REPLACE_CRE_ITEM ~RR#SLIME~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~		                   // replace default ring with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#sligr~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm"  = "1"                                                                  // backstab immunity
+"newxpv"   = "420"                                                                 // new XP value
+"newhp"    = "16"                                                                  // new hit point value
+"newac"    = "9"                                                                   // new Armor Class value
+"newth"    = "19"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "14"                                                                  // new Save vs. Death
+"newsvw"   = "16"                                                                  // new Save vs. Wand
+"newsvp"   = "15"                                                                  // new Save vs. Polymorph
+"newsvb"   = "17"                                                                  // new Save vs. Breath
+"newsvs"   = "17"                                                                  // new Save vs. Spell
+"newlvl1"  = "2"                                                                   // new level (first class)
+"newar"    = "100"                                                                 // new Resist Acid value
+"newer"	   = "100"                                                                 // new Resist Electricity value
+"newrs"	   = "100"                                                                 // new Resist Slashing
+"newrc"	   = "100"                                                                 // new Resist Crushing
+"newrp"	   = "100"                                                                 // new Resist Piercing
+"newrm"    = "100"                                                                 // new Resist Missiles
+"newstr"   = "14"                                                                  // new Strength value
+"newint"   = "3"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "9"                                                                   // new Dexterity value
+"newcon"   = "9"                                                                   // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "10"                                                                  // new morale value
+"newrace"  = "119"                                                                 // new race
+"newclass" = "154"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#ooze"                                                           // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW2MC0MO"                                                          // SCSII melee script
+"script08"   = "AGRANDBR"                                                          // Big Picture script
+"skipfile01" = ""                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+// Ooze, Puddle - a relative of the slimes and molds, this pudding is relatively normal...except when exposed to electricity or fire.  When this occurs, it splits into new puddings and can therefore be very dangerous.
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~GORJELF2~                                                             // Puddle Ooze
+            ~GORJELFU~                                                             // Puddle Ooze
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // mark opcode #206 (Protection from Spell) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // mark opcode #267 (Disable display string) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "292" END     // mark opcode #292 (Immunity to backstab) for deletion 
+REMOVE_CRE_ITEM ~GORJELFU~  							                           // remove Ring95 (undead immunity)
+REPLACE_CRE_ITEM ~RR#slime~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~		                   // replace default with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#slifi~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm"  = "1"                                                                  // backstab immunity
+"newxpv"   = "650"                                                                // new XP value
+"newhp"    = "27"                                                                  // new hit point value
+"newac"    = "8"                                                                   // new Armor Class value
+"newth"    = "17"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "13"                                                                  // new Save vs. Death
+"newsvw"   = "15"                                                                  // new Save vs. Wand
+"newsvp"   = "14"                                                                  // new Save vs. Polymorph
+"newsvb"   = "16"                                                                  // new Save vs. Breath
+"newsvs"   = "16"                                                                  // new Save vs. Spell
+"newlvl1"  = "3"                                                                   // new level (first class)
+"newar"    = "100"                                                                 // new Resist Acid value
+"newfr"	   = "100"                                                                 // new Resist Fire value
+"newer"	   = "100"                                                                 // new Resist Electricity value
+"newrs"	   = "100"                                                                 // new Resist Slashing
+"newrc"	   = "100"                                                                 // new Resist Crushing
+"newrp"	   = "100"                                                                 // new Resist Piercing
+"newrm"    = "100"                                                                 // new Resist Missiles
+"newstr"   = "14"                                                                  // new Strength value
+"newint"   = "3"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "9"                                                                   // new Dexterity value
+"newcon"   = "9"                                                                   // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "14"                                                                  // new morale value
+"newrace"  = "119"                                                                 // new race
+"newclass" = "153"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#oozep"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW2RC0MO"                                                          // SCSII melee script
+"script08"   = "DW2MC0MO"                                                          // SCSII melee script
+"script09"   = "GORJELFU"                                                          // Vanilla fission script
+"skipfile01" = ""                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+// Slime, Olive
+
+COPY_EXISTING "GORJELGR.cre" "override/rr#olisl.cre"
+	SAY NAME1 @1951
+	SAY NAME2 @1951
+	WRITE_ASCII 0x248 ""
+	WRITE_ASCII 0x280 "rr#olisl"	
+
+// COPY ~atweaks/cre/ooze/rr#slioz.cre~ override                             	  	  // Slime Zombie
+	// SAY NAME1 @1950
+	// SAY NAME2 @1950
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~JELOLI01~                                                             // Olive Slime - mod added ?
+            ~SCHLUM~                                                               // Olive Slime - BG1: Schlumpsha the Sewer King
+            ~rr#olisl~                                                             // Olive Slime - atweaks encounters
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // mark opcode #206 (Protection from Spell) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // mark opcode #267 (Disable display string) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "292" END     // mark opcode #292 (Immunity to backstab) for deletion 
+REMOVE_CRE_ITEM ~RING95~  							                           	   // remove Ring95 (undead immunity)
+REMOVE_CRE_ITEM ~JELLOL1~  							                           	   // remove JELLOL1 (Olive Slime's Weapon)
+REMOVE_CRE_ITEM ~SCHLUM1~  							                           	   // remove SCHLUM1 (Olive Slime's Vanilla Weapon)
+REMOVE_CRE_ITEM ~DW#SCHLU~  							                           // remove DW#SCHLU (Olive Slime's Weapon)
+REPLACE_CRE_ITEM ~RR#SLIME~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~		                   // replace default RING95 with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#sliol~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm"  = "1"                                                                  // backstab immunity
+"newxpv"   = "975"                                                                 // new XP value
+"newhp"    = "42"                                                                  // new hit point value
+"newac"    = "9"                                                                   // new Armor Class value
+"newth"    = "13"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "14"                                                                  // new Save vs. Death
+"newsvw"   = "16"                                                                  // new Save vs. Wand
+"newsvp"   = "15"                                                                  // new Save vs. Polymorph
+"newsvb"   = "17"                                                                  // new Save vs. Breath
+"newsvs"   = "17"                                                                  // new Save vs. Spell
+"newlvl1"  = "6"                                                                   // new level (first class)
+"newer"	   = "100"                                                                 // new Resist Electricity value
+"newrs"	   = "100"                                                                 // new Resist Slashing
+"newrc"	   = "100"                                                                 // new Resist Crushing
+"newrp"	   = "100"                                                                 // new Resist Piercing
+"newrm"    = "100"                                                                 // new Resist Missiles
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "3"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "9"                                                                   // new Dexterity value
+"newcon"   = "9"                                                                   // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "10"                                                                  // new morale value
+"newrace"  = "119"                                                                 // new race
+"newclass" = "150"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = "SCHLUM"
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#slio"                                                           // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "SHOUT"                                                             // generic shout script
+"script06"   = "BPWDASGT"                                                          // Big Picture script
+"script07"   = "DW#GPSHT"                                                          // SCSII melee script
+"script08"   = "DW2RC0MO"                                                          // SCSII melee script
+"script09"   = "DW2MC0MO"                                                          // SCSII melee script
+"script10"   = "DW2RS0MO"                                                          // SCSII melee script
+"skipfile01" = ""                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+// Slime, Olive Creature
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~sewerf1~                                                              // Slime Zombie - BG1 Sewerfolk
+            ~sewerf2~                                                              // Slime Zombie - BG1 Sewerfolk
+            ~sewerf3~                                                              // Slime Zombie - BG1 Sewerfolk
+            ~sewerf4~                                                              // Slime Zombie - BG1 Sewerfolk
+            ~sewerf5~                                                              // Slime Zombie - BG1 Sewerfolk
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // mark opcode #206 (Protection from Spell) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // mark opcode #267 (Disable display string) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "292" END     // mark opcode #292 (Immunity to backstab) for deletion 
+REMOVE_CRE_ITEM ~RING95~  							                           	   // remove Ring95 (undead immunity)
+REMOVE_CRE_ITEM ~JELLOL1~  							                           	   // remove JELLOL1 (Olive Slime's Vanilla Weapon)
+REPLACE_CRE_ITEM ~RR#SLIME~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~		                   // replace default RING95 with a more PnP accurate
+PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~sewerf1~ OR "%SOURCE_RES%" STRING_EQUAL_CASE ~sewerf4~) BEGIN                        // special cases
+  REPLACE_CRE_ITEM ~RR#sliz3~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace default weapon with a more PnP accurate weapon
+  newxpv = 2500
+  newhp = 66
+  newth = 13
+  newsvd = 13
+  newsvw = 13
+  newsvp = 13
+  newsvb = 13
+  newsvs = 13
+  newlvl1 = 8
+  newstr = 18
+  newstrx  = 100
+  PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~sewerf1~) BEGIN
+    newstrx  = 50
+  END
+END	ELSE PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~sewerf5~) BEGIN
+  REPLACE_CRE_ITEM ~RR#sliz1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace default weapon with a more PnP accurate weapon
+  newxpv = 975
+  newhp = 26
+  newth = 17
+  newsvd = 13
+  newsvw = 13
+  newsvp = 13
+  newsvb = 13
+  newlvl1 = 3
+  newstr = 14
+END	ELSE BEGIN
+  REPLACE_CRE_ITEM ~RR#sliz2~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // replace default weapon with a more PnP accurate weapon
+  newxpv = 420
+  newhp = 42
+  newth = 15
+  newsvd = 13
+  newsvw = 13
+  newsvp = 13
+  newsvb = 13
+  newlvl1 = 5
+  newstr = 17
+END
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm"  = "1"                                                                  // backstab immunity
+ newxpv			                                                                   // new XP value
+ newhp		 	                                                                   // new hit point value
+"newac"    = "9"                                                                   // new Armor Class value
+ newth			                                                                   // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+ newsvd			                                                                   // new Save vs. Death
+ newsvw			                                                                   // new Save vs. Wand
+ newsvp			                                                                   // new Save vs. Polymorph
+ newsvb			                                                                   // new Save vs. Breath
+ newsvs			                                                                   // new Save vs. Spell
+ newlvl1		                                                                   // new level (first class)
+"newer"	   = "100"                                                                 // new Resist Electricity value
+"newrs"	   = "100"                                                                 // new Resist Slashing
+"newrc"	   = "100"                                                                 // new Resist Crushing
+"newrp"	   = "100"                                                                 // new Resist Piercing
+"newrm"    = "100"                                                                 // new Resist Missiles
+ newstr			                                                                   // new Strength value
+ newstrx			                                                                   // new Strength value
+"newint"   = "3"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "9"                                                                   // new Dexterity value
+"newcon"   = "9"                                                                   // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "10"                                                                  // new morale value
+"newrace"  = "119"                                                                 // new race
+"newclass" = "150"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#slioz"                                                           // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "SHOUT"                                                             // generic shout script
+"script06"   = "BPWDASGT"                                                          // Big Picture script
+"script07"   = "DW#GPSHT"                                                          // SCSII melee script
+"script08"   = "DW2MS0GE"                                                          // SCSII melee script
+"script09"   = "DW2MC0GE"                                                          // SCSII melee script
+"script10"   = "DW1MELTH"                                                          // SCSII melee script
+"skipfile01" = ""                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+COPY ~atweaks/cre/ooze/rr#sliz1.CRE~ ~override~                   	  	   					   // Slime Zombie
+	 ~atweaks/cre/ooze/rr#sliz2.CRE~ ~override~
+	 ~atweaks/cre/ooze/rr#sliz3.CRE~ ~override~
+	 ~atweaks/cre/ooze/rr#sliz4.CRE~ ~override~
+	SAY NAME1 @1950
+	SAY NAME2 @1950
+
+
+// Slime, Fission - an off-shoot of the slimes and molds, this particular slime will split into new and independent creatures when hit.  It is vulnerable to fire, which will kill it permanently.
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~SLIFIS01~                                                             // Fission Slime 
+            ~SLIFIS02~                                                             // Fission Slime 
+            ~JELLSPA~                                                              // Fission Slime - BG1
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // mark opcode #206 (Protection from Spell) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // mark opcode #267 (Disable display string) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "292" END     // mark opcode #292 (Immunity to backstab) for deletion 
+REMOVE_CRE_ITEM ~RING95~  							                           	   // remove Ring95 (undead immunity)
+REMOVE_CRE_ITEM ~JELLOL1~  							                           	   // remove JELLOL1 (Olive Slime's Vanilla Weapon)
+REPLACE_CRE_ITEM ~RR#SLIME~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~		                   // replace default RING95 with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#slifi~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm"  = "1"                                                                  // backstab immunity
+"newxpv"   = "1500"                                                                 // new XP value
+"newhp"    = "56"                                                                  // new hit point value
+"newac"    = "9"                                                                   // new Armor Class value
+"newth"    = "13"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "14"                                                                  // new Save vs. Death
+"newsvw"   = "16"                                                                  // new Save vs. Wand
+"newsvp"   = "15"                                                                  // new Save vs. Polymorph
+"newsvb"   = "17"                                                                  // new Save vs. Breath
+"newsvs"   = "17"                                                                  // new Save vs. Spell
+"newlvl1"  = "6"                                                                   // new level (first class)
+"newar"    = "100"                                                                 // new Resist Acid value
+"newer"	   = "100"                                                                 // new Resist Electricity value
+"newrs"	   = "100"                                                                 // new Resist Slashing
+"newrc"	   = "100"                                                                 // new Resist Crushing
+"newrp"	   = "100"                                                                 // new Resist Piercing
+"newrm"    = "100"                                                                 // new Resist Missiles
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "3"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "9"                                                                   // new Dexterity value
+"newcon"   = "9"                                                                   // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "10"                                                                  // new morale value
+"newrace"  = "119"                                                                 // new race
+"newclass" = "150"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#slifi"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW2RM0MO"                                                          // SCSII melee script
+"script08"   = "DW2RC0MO"                                                          // SCSII melee script
+"script09"   = "SLIFIS01"                                                          // Venilla Fission script
+"script10"   = "JELLSPA"                                                           // Venilla Fission script
+"skipfile01" = ""                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+// Jelly, Ochre
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~JELLOC~                                                               // Ochre Jelly
+            ~JELOCH01~                                                             // Ochre Jelly
+            ~JELLYCO~                                                              // Ochre Jelly - BG1
+            ~DW#GHOCH~                                                             // Ochre Jelly - SCS
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // mark opcode #206 (Protection from Spell) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // mark opcode #267 (Disable display string) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "292" END     // mark opcode #292 (Immunity to backstab) for deletion 
+REMOVE_CRE_ITEM ~RING95~  							                           	   // remove Ring95 (undead immunity)
+REMOVE_CRE_ITEM ~JELLOC1~  							                           	   // remove JELLOC1 (Ochre Jelly's Vanilla Weapon)
+REMOVE_CRE_ITEM ~DW#JELOC~  							                           // remove DW#JELOC (Ochre Jelly's Stratagems Weapon)
+REPLACE_CRE_ITEM ~RR#SLIME~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~		                   // replace default RING95 with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#jeloc~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm"  = "1"                                                                  // backstab immunity
+"newxpv"   = "270"                                                                 // new XP value
+"newhp"    = "48"                                                                  // new hit point value
+"newac"    = "8"                                                                   // new Armor Class value
+"newth"    = "15"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "11"                                                                  // new Save vs. Death
+"newsvw"   = "13"                                                                  // new Save vs. Wand
+"newsvp"   = "12"                                                                  // new Save vs. Polymorph
+"newsvb"   = "13"                                                                  // new Save vs. Breath
+"newsvs"   = "14"                                                                  // new Save vs. Spell
+"newlvl1"  = "6"                                                                   // new level (first class)
+"newar"    = "100"                                                                 // new Resist Acid value
+"newer"	   = "100"                                                                 // new Resist Electricity value
+"newrp"	   = "100"                                                                 // new Resist Piercing
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "3"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "9"                                                                   // new Dexterity value
+"newcon"   = "14"                                                                  // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "10"                                                                  // new morale value
+"newrace"  = "119"                                                                 // new race
+"newclass" = "152"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#jell0"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW2RC2MO"                                                          // SCSII melee script
+"script08"   = "DW2RC2MW"                                                          // SCSII melee script
+"skipfile01" = ""                                                          // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+COPY_EXISTING "JELLOC.cre" "override/RR#JLOC1.cre"
+  WRITE_LONG  0x14 135 // XP/2
+  REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~RR#jell0~ ~RR#jell1~
+  REPLACE_CRE_ITEM ~RR#jelo1~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // Damage / 2
+
+COPY_EXISTING "JELLOC.cre" "override/RR#JLOC2.cre"
+  WRITE_LONG  0x14 78  // XP/4
+  REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~RR#jell0~ ~RR#jell1~
+  REPLACE_CRE_ITEM ~RR#jelo2~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               // Damage / 4
+
+
+// Jelly, Mustard
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~JELLMU~                                                               // Mustard Jelly
+            ~JELLMUSU~                                                             // Mustard Jelly
+            ~JELMUS01~                                                             // Mustard Jelly
+            ~POLYOCHR~                                                             // Mustard Jelly
+            ~PLYJELLY~                                                             // Mustard Jelly
+            ~JELLYMU~                                                              // Mustard Jelly - BG1
+            ~JELLMUL~                                                              // Mustard Jelly - BG1
+            ~A#GHAUN~                                                              // Mustard Jelly - MOD
+            ~GHJMU~                                                                // Mustard Jelly - MOD
+            ~PLYJELL1~                                                             // Mustard Jelly - MOD
+            ~RR#PJELL~                                                             // Mustard Jelly - MOD
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // mark opcode #206 (Protection from Spell) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // mark opcode #267 (Disable display string) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "292" END     // mark opcode #292 (Immunity to backstab) for deletion 
+REMOVE_CRE_ITEM ~RING95~  							                           	   // remove Ring95 (undead immunity)
+REMOVE_CRE_ITEM ~JELLMU1~  							                           	   // remove JELLMU1 (Mustard Jelly's Vanilla Weapon)
+REMOVE_CRE_ITEM ~DW#JELMU~  							                           // remove DW#JELMU (Mustard Jelly's Stratagems Weapon)
+REPLACE_CRE_ITEM ~RR#JLINV~ #0 #0 #0 ~UNDROPPABLE~ ~AMULET~		                   // replace default RING95 with a more PnP accurate
+REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                 		   // add immunity to normal weapons
+REPLACE_CRE_ITEM ~RR#jellm~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~		                   // replace default RING95 with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#jelmu~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm"  = "1"                                                                  // backstab immunity
+"newxpv"   = "4000"                                                                // new XP value
+"newhp"    = "73"                                                                  // new hit point value
+"newac"    = "4"                                                                   // new Armor Class value
+"newth"    = "13"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "10"                                                                  // new Save vs. Death
+"newsvw"   = "12"                                                                  // new Save vs. Wand
+"newsvp"   = "11"                                                                  // new Save vs. Polymorph
+"newsvb"   = "12"                                                                  // new Save vs. Breath
+"newsvs"   = "13"                                                                  // new Save vs. Spell
+"newlvl1"  = "7"                                                                   // new level (first class)
+"newar"    = "100"                                                                 // new Resist Acid value
+"newer"	   = "100"                                                                 // new Resist Electricity value
+"newmr"	   = "10"                                                                  // new Magic Resistance value
+"newrp"	   = "100"                                                                 // new Resist Piercing
+"newstr"   = "17"                                                                  // new Strength value
+"newint"   = "10"                                                                  // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "9"                                                                   // new Dexterity value
+"newcon"   = "14"                                                                  // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "14"                                                                  // new morale value
+"newrace"  = "119"                                                                 // new race
+"newclass" = "151"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#jelmu"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW2RC2MO"                                                          // SCSII melee script
+"script08"   = "DW2MS0MO"                                                          // SCSII melee script
+"skipfile01" = "JELLMUSU"                                                          // summons
+"skipfile02" = "POLYOCHR"                                                          // polymorph spell
+"skipfile03" = "PLYJELL1"                                                          // polymorph spell
+"skipfile04" = "RR#PJELL"                                                          // polymorph spell ?
+"skipfile05" = "JELMUS01"                                                          // polymorph spell ?
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ADD_CRE_EFFECT INT_VAR opcode = 206 probability1 = 100 target = 1 timing = 9 STR_VAR resource = "rr#jelmp" END // add immunity to Mustard Jelly's vapor
+LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
+  INT_VAR
+    "opcode" = "232"                                                               // effect: #232 (Cast Spell on Condition)
+    "target" = "1"                                                                 // target: 1 (self)
+    "timing" = "1"                                                                 // timing mode: 1 (permanent until death)
+    "duration" = "0"                                                               // duration: 0
+    "parameter1" = "0"                                                             // param1: (target)
+    "parameter2" = "9"                                                             // param2: (condition)
+    "sectype" = "0"                                                                // secondary type: none
+    "probability1" = "100"                                                         // probability1: 100%
+    STR_VAR
+    "resource"  = "rr#jelmp"                                                       // resref: (Mustard Jelly's vapor)
+    END
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+COPY_EXISTING "JELLMU.cre" "override/RR#JELMU.cre"								   // Mustard Jelly can Split at will
+WRITE_LONG 0x14 "2000"
+WRITE_SHORT 0x24 37
+WRITE_SHORT 0x26 37
+WRITE_ASCII 0x280 "rr#jelmu" #8
+LPF ADD_CRE_EFFECT 
+INT_VAR 
+opcode = 176 
+parameter1 = 14 parameter2 = 1 
+timing = 9 target = 1 probability1 = 100 
+END
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#jelm1"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "RR#JELMU"                                                          // third AI script name
+END
+
+
+// Ooze, Gray
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~JELGRA01~                                                             // Gray Ooze
+            ~JELLGR~                                                               // Gray Ooze
+            ~DW#GHGRA~                                                             // Gray Ooze - SCS
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "206" END     // mark opcode #206 (Protection from Spell) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "267" END     // mark opcode #267 (Disable display string) for deletion 
+LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "292" END     // mark opcode #292 (Immunity to backstab) for deletion 
+REMOVE_CRE_ITEM ~RING95~  							                           	   // remove Ring95 (undead immunity)
+REMOVE_CRE_ITEM ~OOZEGR1~  							                           	   // remove OOZEGR1 (Gray Ooze's Vanilla Weapon)
+REMOVE_CRE_ITEM ~DW#JELGR~  							                           // remove DW#JELGR (Gray Ooze's Stratagems Weapon)
+REPLACE_CRE_ITEM ~RR#ooze~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~		                   // replace default RING95 with a more PnP accurate
+REPLACE_CRE_ITEM ~RR#oozgr~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#bsimm"  = "1"                                                                  // backstab immunity
+"newxpv"   = "270"                                                                 // new XP value
+"newhp"    = "27"                                                                  // new hit point value
+"newac"    = "8"                                                                   // new Armor Class value
+"newth"    = "17"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "13"                                                                  // new Save vs. Death
+"newsvw"   = "15"                                                                  // new Save vs. Wand
+"newsvp"   = "14"                                                                  // new Save vs. Polymorph
+"newsvb"   = "16"                                                                  // new Save vs. Breath
+"newsvs"   = "16"                                                                  // new Save vs. Spell
+"newlvl1"  = "3"                                                                   // new level (first class)
+"newar"    = "100"                                                                 // new Resist Acid value
+"newfr"	   = "100"                                                                 // new Resist Fire value
+"newcr"	   = "100"                                                                 // new Resist Cold value
+"newstr"   = "16"                                                                  // new Strength value
+"newint"   = "3"                                                                   // new Intelligence value
+"newwis"   = "9"                                                                   // new Wisdom value
+"newdex"   = "9"                                                                   // new Dexterity value
+"newcon"   = "9"                                                                   // new Constitution value
+"newchr"   = "9"                                                                   // new Charisma value
+"newmor"   = "14"                                                                  // new morale value
+"newrace"  = "119"                                                                 // new race
+"newclass" = "153"                                                                 // new class
+"newalign" = "34"                                                                  // new alignment (True Neutral)
+"enforce"   = "1"                                                            	   // enforced creature 1 (uses strict PnP values)
+STR_VAR                                                                            // initialize strings
+"notenf01"  = ""
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   //  Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#ooze"                                                           // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // third AI script name
+"script04"   = "GENSHT01"                                                          // generic shout script
+"script05"   = "BPWDASGT"                                                          // Big Picture script
+"script06"   = "DW#MELEE"                                                          // SCSII melee script
+"script07"   = "DW2RC0MO"                                                          // SCSII melee script
+"skipfile01" = ""                                                          		   // summons
+END                                                                                // ends FUNCTION call
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+//////////////////
+// New AI Scripts
+//////////////////
+
+COMPILE EVALUATE_BUFFER ~atweaks/baf/ooze/rr#ooze.baf~                             // Ooze and Slime generic AI script
+						~atweaks/baf/ooze/rr#slifi.baf~                            // Fission Slime AI script
+						~atweaks/baf/ooze/rr#jell0.baf~                            // Ochre Jelly AI script
+						~atweaks/baf/ooze/rr#jell1.baf~                            // Ochre Jelly AI script
+						~atweaks/baf/ooze/rr#jelmu.baf~                            // Mustard Jelly AI script
+						~atweaks/baf/ooze/rr#jelm1.baf~                            // Mustard Jelly AI script
+						~atweaks/baf/ooze/rr#oozep.baf~                            // Ooze Puddle AI script
+						~atweaks/baf/ooze/rr#slio.baf~                             // Olive Slime AI script
+						~atweaks/baf/ooze/rr#slioz.baf~                            // Olive Slime Creature AI script
+
+//////////////
+// Spells Update: Cure Disease 
+//////////////
+
+// Cure disease should kill Green and Olive Slime
+
+COPY_EXISTING ~SPPR317.SPL~ override
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 177 parameter1 = 150 parameter2 = 5 STR_VAR resource = "RR#SLIMK" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 154 END
+
+// Alter polymorph weapon
+
+COPY_EXISTING ~plyjelly.itm~ ~override~
+  LPF ALTER_ITEM_HEADER INT_VAR dicenumber = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 parameter1 = 0 parameter2 = 65536 dicenumber = 5 dicesize = 4 probablity1 = 100 target = 2 END
+
+
+///////////////////////////////////
+// More sensible encounters
+///////////////////////////////////
+
+// Add some Olive Slime and Olive Slime Creature
+
+<<<<<<<<atweaks/inlined/baf/elementals/bg0501.baf
+IF
+    Global("rr#spw01","MYAREA",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spw01","MYAREA",1)
+        CreateCreature("rr#olisl",[1050.404],15) // Olive Slime
+        CreateCreature("rr#sliz1",[800.85],15)   // Slime Creature
+        CreateCreature("rr#sliz2",[1040.295],15) // Slime Creature
+END
+>>>>>>>>
+
+<<<<<<<<atweaks/inlined/baf/elementals/bg0514.baf
+IF
+    Global("rr#spw01","MYAREA",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spw01","MYAREA",1)
+        CreateCreature("rr#olisl",[650.3000],15) // Olive Slime
+        CreateCreature("rr#sliz1",[580.2930],15) // Slime Creature
+        CreateCreature("rr#sliz2",[630.2930],15) // Slime Creature
+        CreateCreature("rr#olisl",[445.1480],15) // Olive Slime
+        CreateCreature("rr#sliz3",[625.1455],15) // Slime Creature
+        CreateCreature("rr#sliz4",[585.1520],15) // Slime Creature
+        CreateCreature("rr#olisl",[3040.2215],15) // Olive Slime
+        CreateCreature("rr#sliz1",[3035.2265],15) // Slime Creature
+        CreateCreature("rr#sliz4",[3000.2100],15) // Slime Creature
+END
+>>>>>>>>
+
+ACTION_IF GAME_IS ~tutu_totsc~ THEN BEGIN
+  EXTEND_BOTTOM ~fw0501.bcs~  ~atweaks/inlined/baf/elementals/bg0501.baf~          // extend the Durlag Sellar area script (Tutu)
+  EXTEND_BOTTOM ~fw0514.bcs~  ~atweaks/inlined/baf/elementals/bg0514.baf~          // extend the Durlag D4 area script (Tutu)
+END
+
+ACTION_IF GAME_IS ~bgt~ THEN BEGIN
+  EXTEND_BOTTOM ~ARD001.bcs~  ~atweaks/inlined/baf/elementals/bg0501.baf~          // extend the Durlag Sellar area script (bgt)
+  EXTEND_BOTTOM ~ARD014.bcs~  ~atweaks/inlined/baf/elementals/bg0514.baf~          // extend the Durlag D4 area script (bgt)
+END
+
+ACTION_IF GAME_IS ~bgee~ BEGIN
+  COPY_EXISTING ~ar0501.are~ override
+    READ_ASCII 0x94 script
+    PATCH_IF "%script%" STRING_EQUAL_CASE ar0501 BEGIN
+      SPRINT script ar0501
+      WRITE_ASCIIE 0x94 "%script%" #8
+    END
+  BUT_ONLY
+  EXTEND_BOTTOM "%script%.bcs" ~atweaks/inlined/baf/elementals/bg0501.baf~         // extend the Durlag Sellar area script (bgee)
+  EXTEND_BOTTOM ~ar0514.bcs~  ~atweaks/inlined/baf/elementals/bg0514.baf~          // extend the Durlag D4 area script (bgee)
+END
+
+ACTION_IF GAME_IS ~eet~ BEGIN
+  EXTEND_BOTTOM ~bg0501.bcs~  ~atweaks/inlined/baf/elementals/bg0501.baf~          // extend the Durlag Sellar area script (eet)
+  EXTEND_BOTTOM ~bg0514.bcs~  ~atweaks/inlined/baf/elementals/bg0514.baf~          // extend the Durlag D4 area script (eet)
+END
+
+<<<<<<<<atweaks/inlined/baf/elementals/ar0404.baf
+IF
+    Global("rr#spw01","MYAREA",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spw01","MYAREA",1)
+        CreateCreature("rr#olisl",[630.1046],15) // Olive Slime
+        CreateCreature("rr#sliz1",[410.900],15) // Slime Creature
+        CreateCreature("rr#sliz2",[495.750],15) // Slime Creature
+        CreateCreature("rr#sliz4",[350.735],15) // Slime Creature
+END
+>>>>>>>>
+
+EXTEND_BOTTOM ~ar0404.bcs~  ~atweaks/inlined/baf/elementals/ar0404.baf~            // extend the Slums Sewers area script (BG2)
+
+<<<<<<<<atweaks/inlined/baf/elementals/ar0418.baf
+IF
+    Global("rr#spw01","MYAREA",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spw01","MYAREA",1)
+        CreateCreature("rr#olisl",[680.480],15) // Olive Slime
+        CreateCreature("rr#sliz1",[700.535],15) // Slime Creature
+        CreateCreature("rr#sliz2",[650.570],15) // Slime Creature
+        CreateCreature("rr#sliz3",[580.610],15) // Slime Creature
+        CreateCreature("rr#sliz4",[970.620],15) // Slime Creature
+END
+>>>>>>>>
+
+  COPY_EXISTING ar0418.are override
+    READ_ASCII 0x94 script
+    PATCH_IF "%script%" STRING_EQUAL_CASE ar0418 BEGIN
+      SPRINT script ar0418
+      WRITE_ASCIIE 0x94 "%script%" #8
+    END
+  BUT_ONLY
+  EXTEND_BOTTOM "%script%.bcs" ~atweaks/inlined/baf/elementals/ar0418.baf~		   // extend the Slums Sewers area script (BG2)
+
+//////////////
+// Misc stuff
+//////////////
+
+// Write the queued-up values
+ACTION_PHP_EACH f_AddSecType AS file => SecTypeToAdd BEGIN
+  COPY_EXISTING "%file%" override
+    WRITE_BYTE 0x27 SecTypeToAdd
+  BUT_ONLY
+END
+
+OUTER_SET $f_ImmunitySecType(78) = DiseaseSecType
+OUTER_SET $f_RemoveSecType(79) = DiseaseSecType
+OUTER_SET $f_ImmunitySecType(25) = PoisonSecType
+OUTER_SET $f_RemoveSecType(11) = PoisonSecType
+
+LAF integrate_sectypes END
+
+///////////////////////////////////
+// Compatibility
+///////////////////////////////////

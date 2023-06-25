@@ -400,6 +400,38 @@ Les créatures convoquées aident le lanceur par tous les moyens dont elles dispos
 @1906 = ~Vapeurs toxiques~
 @1907 = ~Parler avec les plantes~
 
+// Araignées version papier
+@1940 = ~Progéniture d'Araignée (Conjuration/Convocation)
+Niveau : 4
+Portée : 40 mètres
+Durée : 6 rounds + 1 round par niveau
+Temps d'incantation : 6
+Zone d'effet : Spéciale
+Jet de Sauvegarde : Non
+
+Par ce sort, le magicien amène à la vie 1d3 oeufs d'araignée qui éclosent aussitôt pour donner vie à des araignées adultes sous son contrôle télépathique. Le type d'araignée dépend du niveau du magicien qui lance le sort :
+7ème - 8ème : Araignée énorme
+9ème - 11ème : Araignée géante
+12ème - 15ème : Araignée éclipsante
+16ème et + : Araignée Astrale éclipsante (seulement une)
+Les araignées restent sous le contrôle du magicien jusqu'à expiration du sort ou leur mort.~
+@1941 = ~Araignée Astrale éclipsante~
+@1942 = ~Appel de la Wiverne (Conjuration/Convocation)
+Niveau : 6
+Portée : 30 m
+Durée : 1 round par niveau
+Temps d'incantation : 1 round
+Zone d'effet : Spéciale
+Jet de Sauvegarde : Non
+
+Ce sort permet au magicien d'ouvrir un portail magique pour invoquer 1d3 Wiverne, qui seront sous son contrôle mental et qui lui obéiront en toutes circonstances (à moins d'utiliser des moyens magiques, comme Charme-monstres). Le contrôle dure jusqu'à expiration du sort.~
+
+// Vase, limons et Gelée version papier
+
+@1950 = ~Zombie Olivâtre~
+@1951 = ~Limon Olivâtre~
+
+
 // Plantes & Bêtes version papier
 
 @1910 = ~Suffocation~
@@ -423,6 +455,7 @@ Les créatures convoquées aident le lanceur par tous les moyens dont elles dispos
 @1928 = ~Hombres~
 @1929 = ~Ours Géant~
 @1930 = ~Smilodon~
+
 
 // Élémentaires version papier
 
