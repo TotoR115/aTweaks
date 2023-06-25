@@ -35,6 +35,7 @@ OUTER_SET $f_AddSecType(rr#jelmp.spl) = PoisonSecType
 COPY_EXISTING ~RING95.ITM~  ~override/RR#OOSJ.ITM~                                  // OOze/Slime/jelly immunity ring
   LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END// effect: -1 (all effects)
   LAUNCH_PATCH_FUNCTION ~plant_traits~ END                                   	    // Plant traits
+  LAUNCH_PATCH_FUNCTION ~vorpal_immunity~ END                                       // grant vorpal immunity
 LAF item_labels STR_VAR item = "RR#OOSJ" END
 
 COPY_EXISTING ~RR#OOSJ.ITM~  ~override/RR#SLIME.ITM~                                // Slime and Ochre Jelly immunity ring
@@ -157,7 +158,7 @@ STR_VAR                                                                         
 "script06"   = "DW#MELEE"                                                          // SCSII melee script
 "script07"   = "DW2MC0MO"                                                          // SCSII melee script
 "script08"   = "AGRANDBR"                                                          // Big Picture script
-"skipfile01" = ""                                                          // summons
+"skipfile01" = ""                                                          		   // summons
 END                                                                                // ends FUNCTION call
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -604,7 +605,7 @@ COPY_EXISTING "JELLOC.cre" "override/RR#JLOC2.cre"
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~JELLMU~                                                               // Mustard Jelly
-            ~JELLMUSU~                                                             // Mustard Jelly
+            ~JELLMUSU~                                                             // Mustard Jelly (summoned ?)
             ~JELMUS01~                                                             // Mustard Jelly
             ~POLYOCHR~                                                             // Mustard Jelly
             ~PLYJELLY~                                                             // Mustard Jelly
@@ -688,7 +689,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                          
     "timing" = "1"                                                                 // timing mode: 1 (permanent until death)
     "duration" = "0"                                                               // duration: 0
     "parameter1" = "0"                                                             // param1: (target)
-    "parameter2" = "9"                                                             // param2: (condition)
+    "parameter2" = "8"                                                             // param2: (condition)
     "sectype" = "0"                                                                // secondary type: none
     "probability1" = "100"                                                         // probability1: 100%
     STR_VAR
@@ -804,7 +805,7 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/ooze/rr#ooze.baf~                          
 						~atweaks/baf/ooze/rr#slioz.baf~                            // Olive Slime Creature AI script
 
 //////////////
-// Spells Update: Cure Disease 
+// Spells Update
 //////////////
 
 // Cure disease should kill Green and Olive Slime
@@ -812,6 +813,16 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/ooze/rr#ooze.baf~                          
 COPY_EXISTING ~SPPR317.SPL~ override
   LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 177 parameter1 = 150 parameter2 = 5 STR_VAR resource = "RR#SLIMK" END
   LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 154 END
+  SAY UNIDENTIFIED_DESC @1952
+
+ACTION_IF !((IDS_OF_SYMBOL (~spell~ ~CLERIC_CURE_DISEASE_PC~)) < 0) BEGIN
+  OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CURE_DISEASE_PC") - 1000
+  OUTER_SPRINT curedis "SPpr%code%"
+  COPY_EXISTING "%curedis%.SPL" override
+    LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 177 parameter1 = 150 parameter2 = 5 STR_VAR resource = "RR#SLIMK" END
+    LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 154 END
+    SAY UNIDENTIFIED_DESC @1953
+END
 
 // Alter polymorph weapon
 
