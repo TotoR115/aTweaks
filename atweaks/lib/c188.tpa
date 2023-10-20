@@ -242,14 +242,14 @@ END                                                                             
 // Slime, Olive
 
 COPY_EXISTING "GORJELGR.cre" "override/rr#olisl.cre"
-	SAY NAME1 @1951
-	SAY NAME2 @1951
+	SAY NAME1 @1961
+	SAY NAME2 @1961
 	WRITE_ASCII 0x248 ""
 	WRITE_ASCII 0x280 "rr#olisl"	
 
 // COPY ~atweaks/cre/ooze/rr#slioz.cre~ override                             	  	  // Slime Zombie
-	// SAY NAME1 @1950
-	// SAY NAME2 @1950
+	// SAY NAME1 @1960
+	// SAY NAME2 @1960
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~JELOLI01~                                                             // Olive Slime - mod added ?
@@ -440,8 +440,8 @@ COPY ~atweaks/cre/ooze/rr#sliz1.CRE~ ~override~                   	  	   					  
 	 ~atweaks/cre/ooze/rr#sliz2.CRE~ ~override~
 	 ~atweaks/cre/ooze/rr#sliz3.CRE~ ~override~
 	 ~atweaks/cre/ooze/rr#sliz4.CRE~ ~override~
-	SAY NAME1 @1950
-	SAY NAME2 @1950
+	SAY NAME1 @1960
+	SAY NAME2 @1960
 
 
 // Slime, Fission - an off-shoot of the slimes and molds, this particular slime will split into new and independent creatures when hit.  It is vulnerable to fire, which will kill it permanently.
@@ -813,7 +813,7 @@ COMPILE EVALUATE_BUFFER ~atweaks/baf/ooze/rr#ooze.baf~                          
 COPY_EXISTING ~SPPR317.SPL~ override
   LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 177 parameter1 = 150 parameter2 = 5 STR_VAR resource = "RR#SLIMK" END
   LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 154 END
-  SAY UNIDENTIFIED_DESC @1952
+  SAY UNIDENTIFIED_DESC @1962
 
 ACTION_IF !((IDS_OF_SYMBOL (~spell~ ~CLERIC_CURE_DISEASE_PC~)) < 0) BEGIN
   OUTER_SET code=IDS_OF_SYMBOL ("spell" "CLERIC_CURE_DISEASE_PC") - 1000
@@ -821,7 +821,7 @@ ACTION_IF !((IDS_OF_SYMBOL (~spell~ ~CLERIC_CURE_DISEASE_PC~)) < 0) BEGIN
   COPY_EXISTING "%curedis%.SPL" override
     LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 177 parameter1 = 150 parameter2 = 5 STR_VAR resource = "RR#SLIMK" END
     LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 154 END
-    SAY UNIDENTIFIED_DESC @1953
+    SAY UNIDENTIFIED_DESC @1963
 END
 
 // Alter polymorph weapon
