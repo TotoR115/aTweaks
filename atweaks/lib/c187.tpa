@@ -15,11 +15,8 @@ COPY ~atweaks/spl/spiders/rr#spweb.spl~ ~override~                             	
 COPY ~atweaks/eff/spiders/rr#spweb.eff~ ~override~          				       // Immunity to spider web spell
 
 COPY ~atweaks/spl/rr#phase.spl~ ~override~                            	   		   // Dimension Door (renewable), for phase spider
-  SAY NAME1 #12082 SAY NAME2 #12082
+  SAY NAME1 #12082 SAY NAME2 #12082 SAY UNIDENTIFIED_DESC @1891
   LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew"   = "1" END // Execute the "spell to innate ablity" function
-COPY ~atweaks/spl/rr#phasx.spl~ ~override~                            	   		   // Dimension Door (renewable), for blink dog
-  SAY NAME1 #12082 SAY NAME2 #12082
-  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END   				   // Execute the "spell to innate ablity" function
 
 COPY ~atweaks/spl/spiders/rr#spwrt.spl~ ~override~               				   // wraith spider poison attack
 OUTER_SET $f_AddSecType(rr#spwrt.spl) = PoisonSecType
@@ -718,8 +715,8 @@ END                                                                             
 // Spider, Planar (Astral phase)
 
 COPY_EXISTING "SPIDPHSU.cre" "override/RR#SPASU.cre"
-	SAY NAME1 @1941
-	SAY NAME2 @1941
+	SAY NAME1 @1950
+	SAY NAME2 @1950
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~SPIDPHAS~                                                             // Astral Phase Spider
@@ -1322,9 +1319,9 @@ BEGIN
 END
 ACTION_IF !MOD_IS_INSTALLED "SPELL_REV.TP2" "0" BEGIN							   // Compatibility with Spell Revision: do not change spells if Spell Revision is installed as those spells are nomore used...
 	COPY ~atweaks/spl/spiders/rr#wi423.spl~ ~override/spwi423.spl~				   // PnP summons: 1d3 spiders and no Sword Spiders at all. Add one Greater spider at lv16 to stay balanced with Animate Dead
-		SAY 0x50 @1940
+		SAY 0x50 @1951
 	COPY ~atweaks/spl/spiders/rr#wi619.spl~ ~override/spwi619.spl~				   // PnP summons: 1d3 Wyverns
-		SAY 0x50 @1942
+		SAY 0x50 @1952
 END
 ///////////////////////////////////
 // More sensible spiders encounters
