@@ -15,6 +15,7 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~RR#DDOOR.BAM~ THEN BEGIN                     
   COPY    ~aTweaks/VVC/RR#DDOOR.VVC~   ~override~                                  // Custom Dimension Door VVC
 END                                                                                // ends ACTION_IF block
 COPY ~atweaks/spl/rr#telwe.spl~ ~override/rr#telwr.spl~                            // Teleport Without Error (renewable)
+  SAY UNIDENTIFIED_DESC @2138
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY ~atweaks/spl/rr#niinv.spl~ ~override~                                         // Natural Invisibility
@@ -171,12 +172,13 @@ COPY ~atweaks/spl/elementals/rr#ewwsl.spl~ ~override~                           
 
 COPY ~atweaks/bam/elementals/rr#eairw.bam~ ~override~                              // Whirlwind BAM icon
 COPY ~atweaks/spl/elementals/rr#eairw.spl~ ~override~                              // Whirlwind (Air Elemental)
+SAY NAME1 @2134 SAY NAME2 @2134 SAY UNIDENTIFIED_DESC @2135
 COPY ~atweaks/bam/elementals/rr#whirl.bam~ ~override~                      		   // Whirlwind BAM animation
 COPY ~atweaks/vvc/rr#whirl.vvc~ ~override~ 			                     		   // Whirlwind VVC animation
 COPY ~atweaks/wav/rr#whirl.wav~ ~override~ 			                     		   // Whirlwind WAV sound effect
 
 COPY ~atweaks/spl/elementals/rr#ecncl.spl~ ~override~                              // Elemental Concealment
-SAY NAME1 @2123 SAY NAME2 @2123
+SAY NAME1 @2123 SAY NAME2 @2123 SAY UNIDENTIFIED_DESC @2136
 LPF DELETE_EFFECT INT_VAR match_opcode = 139 END							   	   // Remove string: invisibile - useless
 
 COPY ~atweaks/spl/elementals/rr#equa.spl~ ~override~                               // Earthquake (note: this filename must be 7 characters or less)
@@ -245,13 +247,13 @@ COPY ~atweaks/spl/elementals/rr#eyanc.spl~ ~override~                           
 SAY NAME1 @2127 SAY NAME2 @2127
 
 COPY ~atweaks/spl/elementals/rr#echan.spl~ ~override~                              // Summon Allies (Chan)
-SAY NAME1 @2127 SAY NAME2 @2127
+SAY NAME1 @2127 SAY NAME2 @2127 SAY UNIDENTIFIED_DESC @2141
 
 COPY ~atweaks/spl/elementals/rr#esunn.spl~ ~override~                              // Summon Allies (Sunnis)
-SAY NAME1 @2127 SAY NAME2 @2127
+SAY NAME1 @2127 SAY NAME2 @2127 SAY UNIDENTIFIED_DESC @2142
 
 COPY ~atweaks/spl/elementals/rr#ezaam.spl~ ~override~                              // Summon Allies (Zaaman Rul)
-SAY NAME1 @2127 SAY NAME2 @2127
+SAY NAME1 @2127 SAY NAME2 @2127 SAY UNIDENTIFIED_DESC @2143
 
 
 
@@ -259,19 +261,22 @@ COPY ~atweaks/spl/elementals/rr#eimfb.spl~ ~override~                           
 COPY ~atweaks/spl/elementals/rr#eimhe.spl~ ~override~                              // Heat Emission, 1d20 (Imix)
 COPY ~atweaks/spl/elementals/rr#eimfs.spl~ ~override~                              // Fire Shield: Red, triple strength, Part1 (Imix)
 COPY ~atweaks/spl/elementals/rr#eimfd.spl~ ~override~                              // Fire Shield: Red, triple strength, Part2 (Imix)
-COPY_EXISTING ~rr#eimhe.spl~ ~override/rr#eiems.spl~                               // Heat Emission, 1d8 (fire salamander) -- compatibility with Stratagems and IWDification
-		WRITE_LONG 0x1aa 8														   // 1d8
+// COPY_EXISTING ~rr#eimhe.spl~ ~override/rr#eiems.spl~                               // Heat Emission, 1d8 (fire salamander) -- compatibility with Stratagems and IWDification
+		// WRITE_LONG 0x1aa 8														   // 1d8
 
 COPY ~atweaks/spl/elementals/rr#ezafb.spl~ ~override~                              // Fireball, 12d6 (Zaaman Rul)
+SAY NAME1 @2144 SAY UNIDENTIFIED_DESC @2145
 COPY ~atweaks/spl/elementals/rr#ezafa.spl~ ~override~                              // Flame Arrow, double damage (Zaaman Rul)
+SAY NAME1 @2146 SAY UNIDENTIFIED_DESC @2147
 COPY ~atweaks/spl/elementals/rr#ezafs.spl~ ~override~                              // Fire Shield: Red, double strength, Part1 (Zaaman Rul)
+SAY NAME1 @2148 SAY UNIDENTIFIED_DESC @2149
 COPY ~atweaks/spl/elementals/rr#ezafd.spl~ ~override~                              // Fire Shield: Red, double strength, Part2 (Zaaman Rul)
 
 // Pyrotechnics
 
 COPY ~atweaks/bam/rr#pyrot.bam~ ~override~                                         // Pyrotechnics BAM icon
 COPY ~atweaks/spl/rr#pyrot.spl~ ~override~                                         // Pyrotechnics
-  SAY NAME1 @747 SAY NAME2 @747
+  SAY NAME1 @747 SAY NAME2 @747 SAY UNIDENTIFIED_DESC @2150
   READ_LONG  0x64 ab_off
   READ_SHORT 0x68 ab_num
   FOR(i=0; i<ab_num; i+=1) BEGIN
@@ -294,8 +299,8 @@ COPY ~atweaks/spl/mephits/rr#mmswf.spl~ ~override~                              
 
 COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         // Fog VVC animation
 COPY ~atweaks/spl/elementals/rr#echsf.spl~ ~override~                              // Solid Fog
-  SAY NAME1 @2128 SAY NAME2 @2128
-  LPF CLONE_EFFECT INT_VAR match_opcode = 158 opcode = 142 parameter2 = 145 END			   // Add Grease icon in character sheets -- it is already there, on protrait thanks to grease overlay...
+  SAY NAME1 @2128 SAY NAME2 @2128 SAY UNIDENTIFIED_DESC @2139
+  LPF CLONE_EFFECT INT_VAR match_opcode = 158 opcode = 142 parameter2 = 145 END	   // Add Grease icon in character sheets -- it is already there, on protrait thanks to grease overlay...
   READ_LONG  0x64 ab_off
   READ_SHORT 0x68 ab_num
   FOR(i=0; i<ab_num; i+=1) BEGIN
@@ -338,11 +343,11 @@ LPF insect_spell_immunities END
 // Gust of Wind
 
 COPY ~atweaks/spl/mephits/rr#maigw.spl~ ~override~                                 // Gust of Wind
-  SAY NAME1 @1850 SAY NAME2 @1850
+  SAY NAME1 @1850 SAY NAME2 @1850 SAY UNIDENTIFIED_DESC @2140
 
-// Know Alignment (custom version, to avoid compatibility issues with Spell Revisions)
+// Know Alignment
 
-COPY ~atweaks/spl/elementals/rr#ekal.spl~ ~override~                               // Know Alignment
+COPY ~atweaks/spl/elementals/rr#ekal.spl~ ~override~                               // Know Alignment (custom version, to avoid compatibility issues with Spell Revisions)
 
 // Iron Skins (Sunnis' version)
 
@@ -354,7 +359,7 @@ COPY_EXISTING ~spwi103.spl~  ~override/rr#wi103.spl~                            
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi104.spl~  ~override/rr#ersug.spl~                               // Change Charm Person into renewable Suggestion
-  SAY NAME1 @708 SAY NAME2 @708                                                    // Suggestion
+  SAY NAME1 @708 SAY NAME2 @708 SAY UNIDENTIFIED_DESC @2137                        // Suggestion
 LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END      // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi213.spl~  ~override/rr#wi213.spl~                               // Clone Stinking Cloud into an innate ability

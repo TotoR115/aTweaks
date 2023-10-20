@@ -11,10 +11,10 @@ DEFINE_PATCH_FUNCTION make_imp BEGIN
     // =============================================================================== // the actual work starts from here
     REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
     REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-	ADD_MEMORIZED_SPELL ~RR#IMRAT~ #0 ~innate~ ( 1 )                                   // adds 1x Polymorph self rat
-	ADD_MEMORIZED_SPELL ~RR#IMSPD~ #0 ~innate~ ( 1 )                                   // adds 1x Polymorph self spider
 	ADD_MEMORIZED_SPELL ~RR#DSUGG~ #0 ~innate~ ( 1 )                                   // adds 1x Suggestion
 	ADD_MEMORIZED_SPELL ~RR#WR206~ #0 ~innate~ ( 1 )                                   // adds Invisibility at will
+	ADD_MEMORIZED_SPELL ~RR#IMRAT~ #0 ~innate~ ( 1 )                                   // adds 1x Polymorph self rat
+	ADD_MEMORIZED_SPELL ~RR#IMSPD~ #0 ~innate~ ( 1 )                                   // adds 1x Polymorph self spider
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~REGHP1~                                                           // removes REGHP1.ITM (regeneration now handled via equipped weapon)
     REPLACE_CRE_ITEM ~RR#DIMP~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                  // replace default weapon with a more PnP accurate weapon
@@ -734,14 +734,12 @@ DEFINE_PATCH_FUNCTION make_quasit BEGIN
     // =============================================================================== // the actual work starts from here
 	REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 	REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-	ADD_MEMORIZED_SPELL ~RR#QUBAT~ #0 ~innate~ ( 1 )                                   // adds 1x Polymorph self: Bat
-	ADD_MEMORIZED_SPELL ~RR#QUWLF~ #0 ~innate~ ( 1 )                                   // adds 1x Polymorph self: Wolf
 	ADD_MEMORIZED_SPELL ~RR#DMFEA~ #0 ~innate~ ( 1 )                                   // adds 1x Blast of fear
 	ADD_MEMORIZED_SPELL ~RR#WR206~ #0 ~innate~ ( 1 )                                   // adds Invisibility at will
+	ADD_MEMORIZED_SPELL ~RR#QUBAT~ #0 ~innate~ ( 1 )                                   // adds 1x Polymorph self: Bat
+	ADD_MEMORIZED_SPELL ~RR#QUWLF~ #0 ~innate~ ( 1 )                                   // adds 1x Polymorph self: Wolf
     REMOVE_CRE_ITEM ~DW#SUMFI~                                                         // removes DW#SUMFI.ITM (SCSII's fiend immunities, prevents conflict)
     REMOVE_CRE_ITEM ~REGHP1~                                                           // removes REGHP1.ITM (regeneration now handled via equipped weapon)
-    REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-    REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
     REPLACE_CRE_ITEM ~RR#DQUAS~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 	REPLACE_CRE_ITEM ~RR#DIMP2~ #0 #0 #0 ~UNDROPPABLE~ ~RRING~                  	   // PnP IMP immunities
 	REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~						   // Immunity to non-magical weapons

@@ -9,11 +9,12 @@
 // Whirlwind (Djinn)
 
 COPY ~atweaks/spl/elementals/rr#gdjiw.spl~ ~override~                              // Whirlwind
+SAY NAME1 @2134 SAY NAME2 @2134 SAY UNIDENTIFIED_DESC @2135
 
 // Gust of Wind (Noble Djinn)
 
 COPY ~atweaks/spl/mephits/rr#maigw.spl~ ~override/rr#gaigw.spl~                    // Gust of Wind
-  SAY NAME1 @1850 SAY NAME2 @1850
+  SAY NAME1 @1850 SAY NAME2 @1850 SAY UNIDENTIFIED_DESC @2140
   READ_LONG  0x64 "abil_off"
   READ_SHORT 0x68 "abil_num"
   FOR ("index" = 0; "%index%" < "%abil_num%"; "index" = ("%index%" + 1)) BEGIN     // cycle through headers
@@ -23,6 +24,7 @@ COPY ~atweaks/spl/mephits/rr#maigw.spl~ ~override/rr#gaigw.spl~                 
 // Pyrotechnics (Efreet)
 
 COPY_EXISTING ~rr#pyrot.spl~ ~override/rr#pyroe.spl~                               // efreet version of Pyrotechnics
+SAY UNIDENTIFIED_DESC @2150
 READ_LONG  0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
  FOR ("index" = 0; "%index%" < "%abil_num%"; "index" = ("%index%" + 1)) BEGIN      // cycle through headers
@@ -70,14 +72,14 @@ COPY ~atweaks/spl/elementals/rr#r2mud.spl~ ~override~                           
 // Produce Flame (Efreet)
 
 COPY ~aTweaks/SPL/RR#PFLAM.SPL~ ~override/RR#GPFLA.spl~                            // Produce Flame (spell-like ability) at will
-  SAY NAME1 @673 SAY NAME2 @673
+  SAY NAME1 @673 SAY NAME2 @673 SAY UNIDENTIFIED_DESC @2151
 LPF ~RR#SP2IN~ INT_VAR "rr#rinvs" = "1" "rr#renew" = "1" END      				   // Execute the "spell to innate ablity" function
 
-// Fire Breath (Guragian)
+// Fire Breath (Guardian)
 
 ADD_PROJECTILE ~atweaks/pro/elementals/rr#gfbth.pro~                               // Fire breath projectile
 COPY ~atweaks/spl/elementals/rr#gfbth.spl~ ~override~                              // Fire breath spell
-  SAY NAME1 #44913 SAY NAME2 #44913
+  SAY NAME1 #44913 SAY NAME2 #44913 SAY UNIDENTIFIED_DESC @2152
   READ_LONG  0x64 ab_off
   READ_SHORT 0x68 ab_num
   FOR(i=0; i<ab_num; i+=1) BEGIN
@@ -159,7 +161,7 @@ LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END  
 
 COPY_EXISTING ~SPPR606.SPL~  ~override/rr#gr606.SPL~                               // Clone Fire Seeds into an innate ability (used Efreet)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1"  END    // Execute the "spell to innate ablity" function
-LAUNCH_PATCH_FUNCTION ALTER_EFFECT INT_VAR match_opcode = 122 opcode = 111  END    // Create weapon to auto replace exisying weapon
+LAUNCH_PATCH_FUNCTION ALTER_EFFECT INT_VAR silent = 1 match_opcode = 122 opcode = 111  END    // Create weapon to auto replace exisying weapon
 
 COPY_EXISTING ~SPWI206.SPL~  ~override/rr#gi206.SPL~                               // Clone Invisibility into an innate ability (used by Djinn and Efreet)
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ END  								  		       // Execute the "spell to innate ablity" function
@@ -899,7 +901,7 @@ END                                                                             
 // Genie: Marids
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-            ~rr#gmard~                                                             // Noble Marid (atweaks - more sensible encounters)
+            ~rr#gmard~                                                             // Marid (atweaks - more sensible encounters)
 
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
