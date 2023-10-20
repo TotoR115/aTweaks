@@ -5,7 +5,6 @@
 @126 = ~Animal Empathy~
 
 
-
 // Gameplay Tweaks
 
 @221 = ~aTWEAKS - Simple Thief script~
@@ -98,8 +97,6 @@ Level 18: deals 8d8 damage to all nearby enemies, pushing them away from the Bha
 A successful saving throw vs. breath halves the damage and negates all secondary effects. Exceptionally large creatures (Giants, Dragons, Iron Golems...etc.) are immune to all secondary effects.~
 
 
-
-
 // Cosmetic tweaks
 
 
@@ -187,7 +184,6 @@ A successful saving throw vs. breath halves the damage and negates all secondary
 
 
 // PnP Fiends
-
 
 @651 = ~Die Baatezu!~
 @652 = ~Witness true power!~
@@ -297,9 +293,13 @@ The appendix seems to refer to newly-discovered variations on normal breeds of c
 "Magic Golems - this rare type of golem is formed from pure magical energy and is completely immune to spellcraft as well as enchanted weapons.  To my knowledge, only weapons without enchantments have any effects on this creature."
 
 "Mariliths - while this is apparently a legitimate form of demon, it is one that only an exceptional few have encountered and survived.  The Marilith is a six-armed demon with a human female front half and the back half of a snake.  She is incredibly quick and deadly, and on top of her martial prowess with six swords, she casts spells as well.  Fighters should beware: this demon is immune to normal weapons and minor enchantments."~
+
+
 // Revised Fiend summoning
 
-@751 = ~Cacofiend (Conjuration/Summoning)
+@751 = ~Cacofiend 
+(Conjuration/Summoning)
+
 Level: 7
 Range: Visual sight of caster
 Duration: 20 rounds
@@ -309,7 +309,9 @@ Saving Throw: None
 
 This spell will summon forth a denizen of the Lower Planes. The nature of the Fiend corresponds to the alignment of its summoner. A Cornugon appears if the caster is lawfully aligned, while a Nabassu appears if the caster is chaotically aligned. If the caster is neither lawfully nor chaotically aligned, an Arcanaloth will be summoned instead. In any case, the spellcaster has no control over the actions of the summoned Fiend. Anyone not protected from evil, as per the spell, may be attacked by the creature, including innocent bystanders as well as the spellcaster and his party.  Note that the spellcaster bears any reputation and alignment repercussions for the actions of the summoned Fiend.~
 
-@752 = ~Summon Fiend (Conjuration/Summoning)
+@752 = ~Summon Fiend 
+(Conjuration/Summoning)
+
 Level: 8
 Range: Visual sight of caster
 Duration: 33 rounds
@@ -319,7 +321,9 @@ Saving Throw: None
 
 This spell will summon forth one of the more powerful denizens of the Lower Planes. The nature of the Fiend corresponds to the alignment of its summoner. A Gelugon appears if the caster is lawfully aligned, while a Glabrezu appears if the caster is chaotically aligned. If the caster is neither lawfully nor chaotically aligned, a Nycaloth will be summoned instead. In any case, the spellcaster has no control over the actions of the summoned Fiend. Anyone not protected from evil, as per the spell, may be attacked by the creature, including innocent bystanders as well as the spellcaster and his party. Note that the spellcaster bears any reputation and alignment repercussions for the actions of the summoned Fiend.~
 
-@753 = ~Gate (Conjuration, Summoning)
+@753 = ~Gate 
+(Conjuration, Summoning)
+
 Level: 9
 Range: Visual sight of caster
 Duration: 66 rounds
@@ -331,7 +335,9 @@ This spell will summon forth one of the most powerful denizens of the Lower Plan
 
 // Note: the Priest version of Gate is different in terms of spell level and casting time
 
-@754 = ~Gate (Conjuration, Summoning)
+@754 = ~Gate 
+(Conjuration, Summoning)
+
 Level: 7
 Range: Visual sight of caster
 Duration: 66 rounds
@@ -348,7 +354,9 @@ This spell will summon forth one of the most powerful denizens of the Lower Plan
 @759 = ~Attempts to open a gate to Baator~
 @760 = ~The attempt fails~
 
-@761 = ~Cacofiend (Conjuration/Summoning)
+@761 = ~Cacofiend 
+(Conjuration/Summoning)
+
 Level: 7
 Range: Visual sight of caster
 Duration: 20 rounds
@@ -358,7 +366,9 @@ Saving Throw: None
 
 This spell will summon forth a denizen of the Lower Planes. During the casting of the spell, the wizard must choose the nature of the fiend to be summoned. If the caster is lawfully aligned he may choose to summon a Cornugon baatezu or an Arcanaloth yugoloth. A chaotically aligned caster may choose to summon a Nabassu tanar'ri or an Arcanaloth yugoloth. A caster who is neither lawfully nor chaotically aligned may choose between any of the three kinds of fiends. In any case, the spellcaster has no control over the actions of the summoned Fiend. Anyone not protected from evil, as per the spell, may be attacked by the creature, including innocent bystanders as well as the spellcaster and his party.  Note that the spellcaster bears any reputation and alignment repercussions for the actions of the summoned Fiend.~
 
-@762 = ~Summon Fiend (Conjuration/Summoning)
+@762 = ~Summon Fiend 
+(Conjuration/Summoning)
+
 Level: 8
 Range: Visual sight of caster
 Duration: 33 rounds
@@ -368,7 +378,9 @@ Saving Throw: None
 
 This spell will summon forth one of the more powerful denizens of the Lower Planes. During the casting of the spell, the wizard must choose the nature of the fiend to be summoned. If the caster is lawfully aligned he may choose to summon a Gelugon baatezu or a Nycaloth yugoloth. A chaotically aligned caster may choose to summon a Glabrezu tanar'ri or a Nycaloth yugoloth. A caster who is neither lawfully nor chaotically aligned may choose between any of the three kinds of fiends. In any case, the spellcaster has no control over the actions of the summoned Fiend. Anyone not protected from evil, as per the spell, may be attacked by the creature, including innocent bystanders as well as the spellcaster and his party. Note that the spellcaster bears any reputation and alignment repercussions for the actions of the summoned Fiend.~
 
-@763 = ~Gate (Conjuration, Summoning)
+@763 = ~Gate 
+(Conjuration, Summoning)
+
 Level: 9
 Range: Visual sight of caster
 Duration: 66 rounds
@@ -380,7 +392,9 @@ This spell will summon forth one of the most powerful denizens of the Lower Plan
 
 // Note: the Priest version of Gate is different in terms of spell level and casting time
 
-@764 = ~Gate (Conjuration, Summoning)
+@764 = ~Gate 
+(Conjuration, Summoning)
+
 Level: 7
 Range: Visual sight of caster
 Duration: 66 rounds
@@ -393,6 +407,49 @@ This spell will summon forth one of the most powerful denizens of the Lower Plan
 
 @790 = ~fails to open a gate to the Abyss~
 @791 = ~fails to open a gate to Baator~
+
+
+// PnP familliar
+
+@800 = ~Blast of Fear
+(Necromancy)
+
+Range: 40 yards
+Duration: 1 turn
+Casting Time: 1 
+Area of Effect: 25-ft. radius
+Saving Throw: Neg.
+
+When this spell is invoked, the caster sends forth an invisible cone of terror which causes creatures within its area of effect to save vs. spells or turn away from the caster and flee in panic for 1 round per level of the caster. Fiends, Constructs, Slimes and Undead creatures are unaffected by fear.~
+@801 = ~Polymorph Self: Bat~
+@802 = ~Polymorph Self: Bat
+(Alteration)
+
+When this spell is cast, the Quasit is able to assume the form of a Bat. He also gains the physical mode of locomotion and breathing as well. This spell does not give the new form's other abilities such as special attacks and magic, nor does it run the risk of the Quasit changing personality and mentality.~
+@803 = ~Polymorph Self: Wolf~
+@804 = ~Polymorph Self: Wolf
+(Alteration)
+
+When this spell is cast, the Quasit is able to assume the form of a Wolf. He also gains the physical mode of locomotion and breathing as well. This spell does not give the new form's other abilities such as special attacks and magic, nor does it run the risk of the Quasit changing personality and mentality.~
+@805 = ~Polymorph Self: Spider~
+@806 = ~Polymorph Self: Spider
+(Alteration)
+
+When this spell is cast, the Imp is able to assume the form of a Spider. He also gains the physical mode of locomotion and breathing as well. This spell does not give the new form's other abilities such as special attacks and magic, nor does it run the risk of the Imp changing personality and mentality.~
+@807 = ~Polymorph Self: Rat~
+@808 = ~Polymorph Self: Rat
+(Alteration)
+
+When this spell is cast, the Imp is able to assume the form of a Rat. He also gains the physical mode of locomotion and breathing as well. This spell does not give the new form's other abilities such as special attacks and magic, nor does it run the risk of the Imp changing personality and mentality.~
+@1858 = ~Glass Dust
+
+Range: 0
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: 30-ft. radius
+Saving Throw: Neg.
+
+Dust Mephits can breathe a 15' radius cloud of irritating glassy dust three times per day. Humanoids who fail to save vs. breath weapon suffer a 4 point Armor Class penalty and a 2 point THAC0 penalty for three rounds. Mephits, elementals, undead and other non-humanoid creatures with thick or insensitive skins are immune to this effect.~
 
 
 //PnP Undead
@@ -420,7 +477,6 @@ This spell will summon forth one of the most powerful denizens of the Lower Plan
 
 
 //PnP Beholders
-
 
 @1320 = ~Charming eye damaged~
 @1321 = ~Holding eye damaged~
@@ -469,7 +525,12 @@ This spell will summon forth one of the most powerful denizens of the Lower Plan
 @1856 = ~Taunt~
 @1857 = ~Flash of Flame~
 
-@1890 = ~Color Spray (Alteration)
+
+// PnP Spells
+
+@1890 = ~Color Spray 
+(Alteration)
+
 Level: 1
 Range: 30 feet
 Duration: Special
@@ -479,7 +540,9 @@ Saving Throw: Special
 
 Upon the casting of this spell, a vivid, fan-shaped spray of clashing colors spring forth in front of the caster. All creatures in the area of effect are entitled a saving throw vs. spell to avoid the effects, if they are above the 6th level or above the level of the caster. Blind or unseeing creatures are not affected. Creatures that are not allowed a saving throw, or that fail their saving throw, and whose level is below or equal to the level of the caster are struck unconscious for 4 rounds; those whose level is 1 or 2 greater than the level of the caster are struck blind for 2 rounds; those that are 3 or more levels above the level of the caster are disoriented and unable to think or act coherently for 1 round.~
 
-@1891 = ~Dimension Door (Alteration)
+@1891 = ~Dimension Door 
+(Alteration)
+
 Level: 4
 Range: 0
 Duration: Instant
@@ -492,6 +555,7 @@ This spell transports the caster to any designated place that is already known t
 
 @1895 = ~Call Woodland Beings
 (Conjuration, Summoning)
+
 Level: 4
 Sphere: Animal
 Range: Visual Range of Caster
@@ -519,31 +583,58 @@ The summoned creatures aid the caster by whatever means they possess, staying un
 @1905 = ~Touch of Tranquility~
 @1906 = ~Toxic Vapors~
 @1907 = ~Speak With Plants~
+@1908 = ~Transport Via Plants~
+@1909 = ~Transport Via Plants
+(Alteration)
+
+Range: 0
+Duration: Instant
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None
+
+By means of this spell, the caster is able to enter any plant and pass any distance to another plant,regardless of the distance separating the two.~
+@1910 = ~Animal Friendship
+(Enchantment/Charm)
+
+By means of this spell, the caster is able to show an animal that he seeks its friendship. If the animal fails a saving throw vs. spell, it will regard the caster as a trusted friend and ally to be heeded and protected during the next 5 turns. If the caster harms, or attempts to harm, the animal by some overt action, or if a dispel magic spell is successfully cast upon the animal, the spell is broken.~
+@1911 = ~Detect Snares and Pits
+(Divination)
+
+This spell grants the caster the ability to detect snares, pits, deadfalls and similar natural hazards. A single casting of the spell will reveal all traps within a 30 foot radius of the caster during the following 10 rounds. This spell only functions in natural surroundings.~
+@1912 = ~Speak With Plants
+(Alteration)
+
+This spell allows the caster to converse with plants and to exercise limited control over them. Creatures entwined by an Entangle spell can be released (even if the spell was cast by an opponent) and are protected from all subsequent entangle effects for 1 turn. Furthermore, by communicating her intent to nearby plants, the caster can prevent her own Entangle spell from affecting her allies - this ability is always active.~
+
 
 // PnP Plants & Beasts
 
-@1910 = ~Suffocate~
-@1911 = ~Pacifier Spores~
-@1912 = ~Hallucinator Spores~
-@1913 = ~Petrifying Gaze~
-@1914 = ~Poison Breath~
-@1915 = ~Electricity Absorption~
-@1916 = ~Spore Explosion~
-@1917 = ~Sprint~
-@1918 = ~Gaze of Pestilence~
-@1919 = ~Fire Breath~
-@1920 = ~Frost Breath~
-@1921 = ~Acid Spit~
-@1922 = ~~
-@1923 = ~Curative magic has no effect on someone afflicted with boalisk gaze~
-@1924 = ~Stricken by boalisk gaze~
-@1925 = ~Close to dying from boalisk gaze~
-@1926 = ~Succumbs to boalisk gaze~
-@1927 = ~Burrow~
-@1928 = ~Shades~
-@1929 = ~Giant Bear~
-@1930 = ~Smilodon~
-@1931 = ~Conjure Animals
+@1920 = ~Suffocate~
+@1921 = ~Pacifier Spores~
+@1922 = ~Hallucinator Spores~
+@1923 = ~Petrifying Gaze~
+@1924 = ~Poison Breath~
+@1925 = ~Electricity Absorption~
+@1926 = ~Spore Explosion~
+@1927 = ~Sprint~
+@1928 = ~Gaze of Pestilence~
+@1929 = ~Frost Breath~
+@1930 = ~Frost Breath(Evocation)
+Winter Wolves can release a cone-shaped stream of frost from their lungs causing 6d4 points of cold damage to all creatures within 10 feet. A successful save vs. breath reduces the damage by half.~
+@1931 = ~Fire Breath~
+@1932 = ~Acid Spit~
+@1945 = ~Acid Spit(Evocation)
+Ankhegs can spit acid at a single creature within 30 feet dealing 8d4 points of acid damage. A successful saving throw vs. poison halves the damage.~
+@1933 = ~Curative magic has no effect on someone afflicted with boalisk gaze~
+@1934 = ~Stricken by boalisk gaze~
+@1935 = ~Close to dying from boalisk gaze~
+@1936 = ~Succumbs to boalisk gaze~
+@1937 = ~Burrow~
+@1938 = ~Shades~
+@1939 = ~Giant Bear~
+@1940 = ~Smilodon~
+@1941 = ~Conjure Animals
 (Conjuration/Summoning)
 
 Level: 6
@@ -555,7 +646,7 @@ Area of Effect: Special
 Saving Throw: None 
 
 This spell allows the caster to summon forth and control massive animals. The total Hit Dice of the mammals cannot exceed his level. The animals will respond to the caster's every whim for the duration of the spell.~
-@1932 = ~Animal Summoning I 
+@1942 = ~Animal Summoning I 
 (Conjuration/Summoning)
 
 Level: 4
@@ -566,8 +657,8 @@ Casting Time: 7
 Area of Effect: Special 
 Saving Throw: None 
 
-By means of this spell, the caster calls between up to 4 animals that have 4 Hit Dice or less. The animals appearing are randomly determined. They will remain under the caster's control until slain or the spell duration expires.~
-@1933 = ~Animal Summoning II 
+By means of this spell, the caster calls up to 4 animals that have 4 Hit Dice or less. The animals appearing are randomly determined. They will remain under the caster's control until slain or the spell duration expires.~
+@1943 = ~Animal Summoning II 
 (Conjuration/Summoning)
 
 Level: 5
@@ -579,7 +670,7 @@ Area of Effect: Special
 Saving Throw: None 
 
 By means of this spell, the caster calls up to 4 animals that have 8 Hit Dice or less. The animals summoned aid the caster by whatever means they possess, staying until the spell duration expires. Only normal or giant animals can be summoned; fantastic animals or monsters cannot be summoned by this spell (no chimerae, dragons, gorgons, manticores, etc.).~
-@1934 = ~Animal Summoning III
+@1944 = ~Animal Summoning III
 (Conjuration/Summoning)
 
 Level: 6
@@ -591,6 +682,106 @@ Area of Effect: Special
 Saving Throw: None 
 
 By means of this spell, the caster calls up to 4 animals that have 12 Hit Dice or less. Only animals within visual range of the caster at the time the spell is cast will come. The summoned animals aid the caster by whatever means they possess, staying until they are slain or the spell's duration expires. Only normal- or giant-sized animals can be summoned.~
+@1945 = ~Moon Dog Howl
+
+Range: 0
+Duration: Special
+Casting Time: 1
+Area of Effect: 30-ft. radius
+Saving Throw: Special
+
+With this ability, Moon Dogs, can causes any evil ennemies within sight to flee in panic with no save and take 1d4 + 4 points of damages. At the same time it will also dispelling fear and casting Protection from Evil on party members.~
+@1946 = ~Moon Dog Sight
+
+Range: 0
+Duration: Special
+Casting Time: 1
+Area of Effect: Special
+Saving Throw: None
+
+With this ability, Moon Dogs, can see through (and therefore dispel) all forms of illusion and invisibility, detecting traps and evil in the vicinity.~
+@1947 = ~Moon Dog Lick
+
+Range: Touch
+Duration: Instant
+Casting Time: 1
+Area of Effect: 1 creature
+
+With this ability, Moon Dogs, can heal 20 HP of damage and cures Disease, Deafness, Blindness and Poison. usable only once per Character.~
+@1948 = ~Summon Shades
+
+Range: 0
+Duration: Special
+Casting Time: 1
+Area of Effect: Special
+Saving Throw: None
+
+With this ability, Moon Dogs, can summon one greater shade wolf.~
+
+
+// PnP spiders
+
+@1950 = ~Astral Phase Spider~
+@1951 = ~Spider Spawn 
+(Conjuration/Summoning)
+
+Level: 4
+Range: 40 yards
+Duration: 6 rounds + 1 round/level
+Casting Time: 6
+Area of Effect: Special
+Saving Throw: None
+
+Upon casting this spell the wizard conjures 1d3 spider eggs into existence, quickly producing fully grown spiders that remain under the wizard's telepathic control.  The type of spiders that appear depend upon the level of the wizard casting the spell.
+7th : Huge Spider
+9th : Giant Spider
+12th : Phase Spider
+16th+ : Astral Phase Spider (only one)
+These spider(s) will remain under the wizard's control until slain, or the spell duration expires.~
+@1952 = ~Wyvern Call 
+(Conjuration/Summoning)
+
+Level: 6
+Range: 40 yards 
+Duration: 1 round/level
+Casting Time: 1 round
+Area of Effect: Special 
+Saving Throw: None 
+
+When this spell is cast the wizard opens up a magical channel that will summon 1d3 wyvern to his aid.  Those creatures will be totally under his mental control with no chance of it turning on him except, of course, through magical means like charm monster.  Those creatures will remain under the wizard's control, and will live and die at his command until the spell duration expires.~
+
+
+// PnP Oooze
+
+@1960 = ~Slime Zombie~
+@1961 = ~Olive Slime~
+@1962 = ~Cure Disease 
+(Abjuration)
+
+Level: 3
+Sphere: Necromantic
+Range: Touch
+Duration: Permanent
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+By laying her hands upon a sickly person, the caster can cure almost any disease with this spell.  The cure is permanent, but this does not grant the recipient of the spell immunity from further afflictions.  Blindness, deafness and feeblemind are also cured with this spell.  Some magically created diseases may not be curable by this spell. 
+The spell is also effective against parasitic monsters such as green slime, olive slime, rot grubs, and others.~
+@1963 = ~Cure Disease 
+(Abjuration)
+
+Level: 3
+Sphere: Healing
+Range: Touch
+Duration: Permanent
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+By laying <PRO_HISHER> hands upon a sickly person, the caster can cure almost any disease with this spell. The cure is permanent, but does not grant the recipient of the spell immunity from further afflictions. Feeblemind are also cured with this spell. Some magically created diseases may not be curable by this spell. 
+The spell is also effective against parasitic monsters such as green slime, olive slime, rot grubs, and others.~
+
 
 // PnP Elementals
 
@@ -633,7 +824,130 @@ By means of this spell, the caster calls up to 4 animals that have 12 Hit Dice o
 @2130 = ~Protected from gas-based spells and attacks~
 @2131 = ~Locked in mental combat~
 @2132 = ~Unsummon~
+@2133 = ~Unsummon
 
+Return the creature to the place it came from.~
+@2134 = ~Whirlwind~
+@2135 = ~Whirlwind 
+(Evocation)
+
+The most feared power of a creature from the elemental plan of air is its ability to form a whirlwind upon command. Using this form, the creature appears as a truncated, reversed cone with a 10 foot bottom diameter and 30 foot top diameter. The effects of the whirlwind depend on the Hit Dice of the creature:
+
+8 HD - Deals 1d8 points of crushing damage (save vs. breath for half) and kills all creatures of 2 Hit Dice and below
+12 HD - Deals 2d8 points of crushing damage (save vs. breath at -1 for half) and kills all creatures of 3 Hit Dice and below
+16 HD - Deals 3d8 points of crushing damage (save vs. breath at -2 for half) and kills all creatures of 4 Hit Dice and below
+20 HD - Deals 4d8 points of crushing damage (save vs. breath at -3 for half) and kills all creatures of 5 Hit Dice and below
+24 HD - Deals 5d8 points of crushing damage (save vs. breath at -4 for half) and kills all creatures of 6 Hit Dice and below~
+@2136 = ~Elemental Concealment
+
+An elemental with this ability can conceal its presence by blending into the natural state of the element that it is composed of. Air Elementals can hide in the wind, Fire Elementals can hide in fire, Earth Elementals can hide in earth or stone and Water Elementals can hide in pools of water. In doing so, they become completely hidden from normal view until they make an attack. Detect Invisibility, True Seeing and similar spells can reveal a concealed elemental.~
+@2137 = ~Suggestion 
+(Enchantment/Charm)
+
+Range: Visual range of caster 
+Duration: 5 rounds
+Casting Time: 1 
+Area of Effect: 1 person 
+Saving Throw: Neg.
+
+When this spell is cast, the caster can influence the actions of the chosen recipient by the utterance of a few words, phrases or sentences, thereby suggesting a course of action, unless a save vs. spells with a +3 bonus is made. The suggestion must be worded in such a manner as to make the action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act automatically negates the effect of the spell.~
+@2138 = ~Teleport Without Error
+(Alteration) 
+
+Range: 0
+Duration: Instant 
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None 
+
+This spell allows the caster to transport himself to any known location in his home plane with no chance for error. It also enables travel to other planes of existence, but this assumes that the caster has already visited that plane and carefully perused the destination area.~
+@2139 = ~Solid Fog
+(Alteration) 
+
+Range: Visual range of caster
+Duration: Instant 
+Casting Time: 1
+Area of Effect: 15-ft. radius
+Saving Throw: None 
+
+The caster creates a billowing mass of misty vapors similar to a wall of fog spell. The fog obscures all sight, normal and infravision, beyond 2 feet. However, unlike normal fog, only a very strong wind can move these vapors, and any creature attempting to move through the solid fog progresses at a movement rate of 1 foot per round.~
+@2140 = ~Gust of Wind
+(Alteration) 
+
+Range: 30 yards
+Duration: Instant
+Casting Time: 1
+Area of Effect: Special
+Saving Throw: None
+
+A strong blast of air originates from the caster and moves in the direction he is facing. It disperses any gas-based spells in the vicinity.~
+@2141 = ~Summon 1 Air Elemental and 2 Aerial Servants~
+@2142 = ~Summon 3 Earth Elementals~
+@2143 = ~Summon 2 Fire Elementals~
+@2144 = ~Zaaman's Fireball~
+@2145 = ~Zaaman's Fireball
+(Evocation)
+
+Range: Visual range of caster 
+Duration: Instantaneous 
+Casting Time: 1 
+Area of Effect: 15-ft. radius
+Saving Throw: 1/2 
+
+This ability create a Fireball that delivers 12d6 points of damage.
+Creatures, in the area of effect, failing their saving throws each suffer full damage from the blast. Those who roll successful saving throws manage to dodge, fall flat, or roll aside, each receiving half.~
+@2146 = ~Zaaman's Flame Arrow~
+@2147 = ~Zaaman's Flame Arrow
+(Conjuration/Summoning)
+
+Range: Visual range of caster
+Duration: Instant
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: 1/2
+
+This spell enables the caster to hurl four fiery bolts at opponents within range. Each bolt inflicts 2d6 points of piercing damage, plus 8d6 points of fire damage. Only half of the fire damage is inflicted if the creature struck saves vs. spell.~
+@2148 = ~Zaaman's Fireshield (Red)~
+@2149 = ~Zaaman's Fireshield (Red)
+(Evocation)
+
+Range: 0
+Duration: 46 rounds
+Casting Time: 1
+Area of Effect: The Caster 
+Saving Throw: None 
+
+The red fireshield protects the user from fire damage by surrounding the caster with a shield of flame.  This shield not only grants the user 50% fire resistance, but also protects the caster from attacks made within a 5' radius around the caster.  An opponent that hits the caster with any weapons or spells within this radius suffers 2d8 +4 fire damage.~
+@2150 = ~Pyrotechnics
+(Evocation)
+
+Range: Visual range of caster 
+Duration: Instantaneous 
+Casting Time: 1 
+Area of Effect: 15-ft. radius
+Saving Throw: Neg.
+
+A pyrotechnics spell produces a flashing and fiery burst of glowing, colored aerial fireworks. This effect temporarily blinds those creatures in, under, or within 120 feet of the area and that have an unobstructed line of sight to the burst. Creatures viewing this are blinded for 3 rounds unless they successfully save vs. spell.~
+@2151 = ~Produce Flame
+(Transmutation/Alteration)
+
+Range: 40 yards
+Duration: Instant
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Special
+
+A bright flame, equal in brightness to a torch, springs forth from the caster's palm when he casts a produce flame spell. The flame does not harm the caster, but it is hot and it causes the combustion of flammable materials (paper, cloth, dry wood, oil, etc.). The caster is capable of hurling the magical flame as a missile, with a range of 40 yards. The flame flashes on impact, igniting combustibles within a 3-foot diameter of its center of impact unless a save vs. breath is made. A victim struck by the flame suffers 1d4+1 points of fire damage initially and, if combustion occurs, another 1d2 points of damage during each of the following two rounds.~
+@2152 = ~Fire Breath
+(Transmutation/Alteration)
+
+Range: 10 yards
+Duration: Instant
+Casting Time: 1
+Area of Effect: 15-ft. radius
+Saving Throw: 1/2
+
+Guardian's genies can breathe a cloud of green fire 30’ in diameter directly in front of themselves once per day. The cloud of fire causes 14d6 points of damage to those caught in its area of effect, with a save allowed versus breath weapon for half damage.~
 
 
 // Elemental shouts and taunts
@@ -665,6 +979,7 @@ By means of this spell, the caster calls up to 4 animals that have 12 Hit Dice o
 
 @2200 = ~Conjure Fire Elemental
 (Conjuration/Summoning)
+
 Level: 6
 Range: Visual sight of caster
 Duration: 1 turn/level
@@ -676,6 +991,7 @@ Upon casting a conjure fire elemental spell, the caster opens a special gate to 
 
 @2201 = ~Conjure Air Elemental
 (Conjuration/Summoning)
+
 Level: 6
 Range: Visual sight of caster
 Duration: 1 turn/level
@@ -687,6 +1003,7 @@ Upon casting a conjure air elemental spell, the caster opens a special gate to t
 
 @2202 = ~Conjure Earth Elemental
 (Conjuration/Summoning)
+
 Level: 6
 Range: Visual sight of caster
 Duration: 1 turn/level
@@ -698,6 +1015,7 @@ Upon casting a conjure earth elemental spell, the caster opens a special gate to
 
 @2213 = ~Conjure Water Elemental
 (Conjuration/Summoning)
+
 Level: 6
 Range: Visual sight of caster
 Duration: 1 turn/level
@@ -712,6 +1030,7 @@ Upon casting a conjure water elemental spell, the caster opens a special gate to
 
 @2203 = ~Conjure Fire Elemental
 (Conjuration/Summoning)
+
 Level: 6
 Sphere: Elemental, Summoning
 Range: Visual sight of caster
@@ -724,6 +1043,7 @@ Upon casting a conjure fire elemental spell, the caster opens a special gate to 
 
 @2204 = ~Conjure Earth Elemental
 (Conjuration/Summoning)
+
 Level: 7
 Sphere: Elemental, Summoning
 Range: Visual sight of caster
@@ -736,6 +1056,7 @@ Upon casting a conjure earth elemental spell, the caster opens a special gate to
 
 @2205 = ~Conjure Air Elemental
 (Conjuration/Summoning)
+
 Level: 7
 Sphere: Elemental, Summoning
 Range: Visual sight of caster
@@ -782,6 +1103,7 @@ Harnessing the power of the earth, this powerful shapechange ability allows the 
 @2209 = ~Wind Wall~
 @2210 = ~Wind Wall
 (Alteration)
+
 Level: 3
 Range: 10 yards/level
 Duration: 1 round/level
@@ -806,6 +1128,7 @@ Requires: Elemental Summoning~
 
 @2212 = ~Conjure Earth Elemental
 (Conjuration/Summoning)
+
 Level: 6
 Sphere: Elemental, Summoning
 Range: Visual sight of caster

@@ -20,7 +20,7 @@ OUTER_SET DiseaseSecType = fl#Disease
 // Gas Spores
 ADD_PROJECTILE ~atweaks/pro/plants/rr#gassp.pro~                                 	// Spore Explosion projectile
 COPY ~atweaks/spl/plants/rr#gassp.spl~ ~override~                                 	// Spore Explosion (disease)
-  SAY NAME1 @1916
+  SAY NAME1 @1926
   READ_LONG  0x64 ab_off
   READ_SHORT 0x68 ab_num
   FOR(i=0; i<ab_num; i+=1) BEGIN
@@ -32,15 +32,18 @@ COPY ~atweaks/spl/plants/rr#gasd.spl~ ~override~                                
 // Mykonid
 COPY ~atweaks/spl/plants/rr#myck.spl~ ~override~                                    // Myconid Poisonous Skin
 COPY ~atweaks/spl/plants/rr#pacif.spl~ ~override~                                 	// Myconid's pacificate spores
-SAY NAME1 @1911
+SAY NAME1 @1921
 COPY ~atweaks/eff/plants/rr#pacif.eff~ ~override~                                 	// pacificate spores immunity
 COPY ~atweaks/spl/plants/rr#hallu.spl~ ~override~                                 	// Myconid's hallucinating spores
-SAY NAME1 @1912
+SAY NAME1 @1922
 COPY ~atweaks/eff/plants/rr#hallu.eff~ ~override~                                 	// hallucinating spores immunity
 // Shambler
 COPY ~atweaks/spl/plants/rr#suffo.spl~ ~override~                                 	// Shambler's suffocate spell
-SAY NAME1 @1910
+SAY NAME1 @1920
 COPY ~atweaks/spl/plants/rr#shela.spl~ ~override~                                 	// Shambler's Electricity Absorption ability
+COPY ~atweaks/spl/elementals/rr#ecncl.spl~ ~override~                              // Elemental Concealment
+SAY NAME1 @2123 SAY NAME2 @2123 SAY UNIDENTIFIED_DESC @2136
+LPF DELETE_EFFECT INT_VAR match_opcode = 139 END							   	   // Remove string: invisibile - useless
 
 /////////// Beasts ///////////
 // Great Cat
@@ -50,11 +53,11 @@ SAY NAME1 #34120
 /////////// Magical Beasts ///////////
 // Ankheg
 COPY ~atweaks/spl/plants/rr#acids.spl~ ~override~                                 	// Ankheg Acid Spit
-  SAY NAME1 @1921
+  SAY NAME1 @1932 SAY UNIDENTIFIED_DESC @1945
 // Greater Basilisk
 ADD_PROJECTILE ~atweaks/pro/plants/rr#gbpoi.pro~
 COPY ~atweaks/spl/plants/rr#gbpoi.spl~ ~override~                                 	// Geater Basilisk Poison Breath
-  SAY NAME1 @1914
+  SAY NAME1 @1924
   READ_LONG  0x64 ab_off
   READ_SHORT 0x68 ab_num
   FOR(i=0; i<ab_num; i+=1) BEGIN
@@ -63,7 +66,7 @@ COPY ~atweaks/spl/plants/rr#gbpoi.spl~ ~override~                               
 // Boalisk
 COPY "atweaks/spl/undead/fl#mum.spl" ~override/rr#bogaz.spl~						// Clone of mummy disease
   SET gaze_pro = IDS_OF_SYMBOL (~PROJECTL~ ~gaze~) + 1
-  SAY NAME1 @1918
+  SAY NAME1 @1928
   WRITE_SHORT 0x80 30 																// Gaze Range
   READ_LONG  0x64 ab_off
   READ_SHORT 0x68 ab_num
@@ -83,8 +86,8 @@ COPY "atweaks/spl/undead/fl#mum.spl" ~override/rr#bogaz.spl~						// Clone of mu
   FOR (i=1;i<6;++i) BEGIN
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 78 target = 2 parameter1 = 2 parameter2 = 9 timing = 4 duration = i*7200 END //2 points of chr
   END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 139 target = 2 parameter1 = RESOLVE_STR_REF(@1925) timing = 4 duration = 5*7200 END //display a waring a day before insta-death
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 139 target = 2 parameter1 = RESOLVE_STR_REF(@1926) timing = 4 duration = 6*7200 - 1 END //display flavour text right before insta-death
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 139 target = 2 parameter1 = RESOLVE_STR_REF(@1935) timing = 4 duration = 5*7200 END //display a waring a day before insta-death
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 139 target = 2 parameter1 = RESOLVE_STR_REF(@1936) timing = 4 duration = 6*7200 - 1 END //display flavour text right before insta-death
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 13 target = 2 parameter2 = 512 timing = 4 duration = 6*7200 insert_point = "-1" END //death, disintegration-style
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 timing = 1 insert_point = "-1" STR_VAR resource = "rr#bogaz" END //Non-cumulativity
   LPF ALTER_EFFECT INT_VAR savingthrow = 0x4  END //save vs. petrification
@@ -102,7 +105,7 @@ COPY ~atweaks/spl/rr#phasx.spl~ ~override/rr#blinx.spl~                         
 
 // Moon Dog
 COPY ~atweaks/spl/plants/rr#shade.spl~ override                          		   // Shades spell
-  SAY NAME1 @1928
+  SAY NAME1 @1938 SAY UNIDENTIFIED_DESC 1948
   LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#rinvs"   = "1" END  
 COPY ~atweaks/eff/plants/rr#shade.eff~ override                          		   // spell's effect
 COPY ~atweaks/cre/plants/rr#shade.cre~ override                          		   // Summoning creature
@@ -155,7 +158,7 @@ COPY_EXISTING ~conecold.pro~ ~override/rr#fros.pro~  								// New projectile f
   WRITE_SHORT 0x206 200	// ~ 10 feet
 ADD_PROJECTILE ~override/rr#fros.pro~
 COPY ~atweaks/spl/plants/rr#frost.spl~ ~override~                                 	// Winter Wolf frost breath
-  SAY NAME1 @1920
+  SAY NAME1 @1929 SAY UNIDENTIFIED_DESC @1930
   READ_LONG  0x64 ab_off
   READ_SHORT 0x68 ab_num
   FOR(i=0; i<ab_num; i+=1) BEGIN
@@ -163,7 +166,7 @@ COPY ~atweaks/spl/plants/rr#frost.spl~ ~override~                               
   END
 // Hell Hound
 COPY ~atweaks/spl/plants/rr#fireb.spl~ ~override~                                 	// Hell Hound Fire Breath
-  SAY NAME1 @1919
+  SAY NAME1 @1931
 
 // Dread Wolf: Troll likes spells
 COPY ~atweaks\spl\fl#die.spl~  "override/fl#dwdie.spl"
@@ -196,7 +199,7 @@ COPY_EXISTING ~SUFUNGUS.EFF~ ~override/rr#mking.eff~  								// Basilsk Gaze
 // Basilisk
 COPY_EXISTING ~spwi604.spl~ ~override/rr#pgaze.spl~  								// Basilsk Gaze
   SET gaze_pro = IDS_OF_SYMBOL (~PROJECTL~ ~gaze~) + 1
-  SAY NAME1 @1913
+  SAY NAME1 @1923
   WRITE_ASCII 0x10 "none" #8														// no casting animation
   WRITE_SHORT 0x22 0 																// Gaze Range
   WRITE_SHORT 0x80 30 																// Gaze Range
@@ -213,6 +216,7 @@ COPY_EXISTING ~spwi604.spl~ ~override/rr#pgaze.spl~  								// Basilsk Gaze
 COPY_EXISTING ~SPIN698.spl~ override												// Moon Dog Improved invisibility
   LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew"  = "1" END
 COPY_EXISTING ~SPIN891.spl~ override												// Moon Dog Howl
+  SAY UNIDENTIFIED_DESC @1945
   LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs"   = "1" "rr#renew"  = "1" END
   SET NOT_PARTY = IDS_OF_SYMBOL (~PROJECTL~ ~INAREANP~) + 1
   READ_LONG  0x64 ab_off
@@ -226,8 +230,10 @@ COPY_EXISTING ~MOOND8.eff~ override														// Moon Dog Howl Damages 1d4+4 
   WRITE_LONG 0x38 1
   WRITE_LONG 0x3C 4
 COPY_EXISTING ~SPIN696.spl~ override													// Moon Dog Sight
+  SAY UNIDENTIFIED_DESC @1946
   LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs"   = "1" "rr#renew"  = "1" END
 COPY_EXISTING ~SPIN699.spl~ override													// Moon Dog Lick
+  SAY UNIDENTIFIED_DESC @1947
   LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "99" "rr#rinvs"   = "1" "rr#renew"  = "1" END  
   LPF ADD_SPELL_EFFECT INT_VAR insert_point = "-1" opcode = 206 target = 2 duration = 2400 STR_VAR resource = "SPIN699" END // One time per Ally per 8 hours
 
@@ -1611,8 +1617,8 @@ END                                                                             
 // Bear, Polar and grizzly
 
 COPY_EXISTING "BEARPO01.cre" "override/rr#gbear.cre"
-	SAY NAME1 @1929
-	SAY NAME2 @1929
+	SAY NAME1 @1939
+	SAY NAME2 @1939
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~BEARGR~                                                               // Grizzly Bear - BG2
@@ -2089,8 +2095,8 @@ END                                                                             
 // Lion
 
 COPY_EXISTING "CATLIO01.cre" "override/rr#smilo.cre"
-	SAY NAME1 @1930
-	SAY NAME2 @1930
+	SAY NAME1 @1940
+	SAY NAME2 @1940
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
             ~CATLIO01~                                                             // Lion - BG2
@@ -3533,6 +3539,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#dogsu" #8
 	BUT_ONLY
   END
@@ -3549,6 +3556,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#wlfsu" #8
 	BUT_ONLY
   END
@@ -3567,6 +3575,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#beasu" #8
 	BUT_ONLY
   END
@@ -3584,6 +3593,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#catsu" #8
 	BUT_ONLY
   END
@@ -3596,6 +3606,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#anksu" #8
 	BUT_ONLY
   END
@@ -3608,6 +3619,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#boasu" #8
 	BUT_ONLY
   END
@@ -3621,6 +3633,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#SHAMB" #8
 	BUT_ONLY
   END
@@ -3635,6 +3648,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#SHM" #8
 	  WRITE_ASCII SCRIPT_CLASS "rr#SHAMB" #8
 	BUT_ONLY
@@ -3647,6 +3661,7 @@ BEGIN
 	COPY_EXISTING "%file%.cre" override
 	  WRITE_LONG 0x14 "0"
 	  LPF make_summon END
+	  WRITE_BYTE 0x275 6
 	  WRITE_ASCII SCRIPT_OVERRIDE "rr#mndog" #8
 	BUT_ONLY
   END
@@ -3677,7 +3692,7 @@ COPY_EXISTING ~bearcasu.cre~ override
 COPY_EXISTING ~bearposu.cre~ override
 	WRITE_LONG 0x18 10   										   // XP/Power Level animalsummon 3 (x3)
 COPY_EXISTING ~rr#gbear.cre~ override
-	WRITE_LONG 0x18 30   										   // XP/Power Level animalsummon 3 (x2)
+	WRITE_LONG 0x18 12   										   // XP/Power Level animalsummon 3 (x3)
  
 	COPY ~atweaks/2da/plants/anisum01.2da~ override
 		 ~atweaks/2da/plants/anisum02.2da~ override
@@ -3689,24 +3704,24 @@ COPY_EXISTING ~rr#gbear.cre~ override
 		 ~atweaks/eff/plants/rr#anim2.eff~ override
 		 ~atweaks/eff/plants/rr#anim3.eff~ override
 	COPY ~atweaks/spl/plants/rr#pr604.spl~ ~override/sppr604.spl~
-	  SAY UNIDENTIFIED_DESC @1931
+	  SAY UNIDENTIFIED_DESC @1941
 	  PATCH_IF MOD_IS_INSTALLED "Divine_Remix.tp2" "1000" BEGIN
 	    WRITE_BYTE 0x21 THIS BOR 0b11000000 // Exclusion Flag
 	  END
 	
 	COPY_EXISTING ~sppr402.spl~ ~override~
 				  ~spra304.spl~ ~override~
-	SAY UNIDENTIFIED_DESC @1932
+	SAY UNIDENTIFIED_DESC @1942
 	LPF ALTER_EFFECT INT_VAR match_opcode = 177 Duration = 2400 END
 
 	COPY_EXISTING ~sppr501.spl~ ~override~
 				  ~spra305.spl~ ~override~
-	SAY UNIDENTIFIED_DESC @1933
+	SAY UNIDENTIFIED_DESC @1943
 	LPF ALTER_EFFECT INT_VAR match_opcode = 177 Duration = 2400 END
 
 	COPY_EXISTING ~sppr602.spl~ ~override~
 				  ~spra306.spl~ ~override~
-	SAY UNIDENTIFIED_DESC @1934
+	SAY UNIDENTIFIED_DESC @1944
 	LPF ALTER_EFFECT INT_VAR match_opcode = 177 Duration = 2400 END
 
 END
