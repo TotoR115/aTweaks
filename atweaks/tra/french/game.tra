@@ -213,7 +213,7 @@ Cet appendice particulier s'intéresse aux nouvelles variantes de monstres commun
 
 // invocation de Démons modifiée
 
-@751 = ~Cacofiélon (Conjuration / Convocation)
+@751 = ~Cacofiélon (Conjuration/Convocation)
 Niveau : 7
 Portée : Champ visuel du lanceur
 Durée : 20 rounds
@@ -223,7 +223,7 @@ Jet de sauvegarde : aucun
 
 Ce sortilège convoquera un résident des Plans Abyssaux. La nature du démon correspond à l'alignement de son convocateur. Un Cornugon apparaît si le lanceur est d'alignement loyal, tandis qu'un Nabassu apparaît si le lanceur est d'alignement chaotique. Si le lanceur n'est ni loyal, ni chaotique, un Arcanaloth est alors convoqué. En tous cas, le lanceur du sort n'a aucun contrôle sur les actes du démon convoqué. Quiconque n'est pas protégé contre le mal (avec le sortilège adéquat) peut être attaqué par la créature, y compris les badauds innocents, ainsi que le lanceur du sortilège et ses alliés. Notez que le lanceur supporte toute répercussion sur son alignement et sa réputation des actes du démon convoqué.~
 
-@752 = ~Convocation d'un Fiélon (Conjuration / Convocation)
+@752 = ~Convocation d'un Fiélon (Conjuration/Convocation)
 Niveau : 8
 Portée : Champ visuel du lanceur
 Durée : 33 rounds
@@ -233,7 +233,7 @@ Jet de sauvegarde : aucun
 
 Ce sortilège convoquera l'un des puissants résidents des Plans Abyssaux. La nature du démon correspond à l'alignement de son convocateur. Un Gélugon apparaît si le lanceur est d'alignement loyal, tandis qu'un Glabrezu apparaît si le lanceur est d'alignement chaotique. Si le lanceur n'est ni loyal, ni chaotique, un Nycaloth est alors convoqué. En tous cas, le lanceur du sort n'a aucun contrôle sur les actes du démon convoqué. Quiconque n'est pas protégé contre le mal (avec le sortilège adéquat) peut être attaqué par la créature, y compris les badauds innocents, ainsi que le lanceur du sortilège et ses alliés. Notez que le lanceur supporte toute répercussion sur son alignement et sa réputation des actes du démon convoqué.~
 
-@753 = ~Portail (Conjuration / Convocation)
+@753 = ~Portail (Conjuration/Convocation)
 Niveau : 9
 Portée : Champ visuel du lanceur
 Durée : 66 rounds
@@ -245,7 +245,7 @@ Ce sortilège convoquera l'un des plus puissants résidents des Plans Abyssaux. La
 
 // Note: La version du sort de Portail des Prètres est différent en terme de niveau et de temps d'invocation
 
-@754 = ~Portail (Conjuration / Convocation)
+@754 = ~Portail (Conjuration/Convocation)
 Niveau : 7
 Portée : Champ visuel du lanceur
 Durée : 33 rounds
@@ -262,7 +262,7 @@ Ce sortilège convoquera l'un des plus puissants résidents des Plans Abyssaux. La
 @759 = ~Tente d'ouvrir un portail vers Baator~
 @760 = ~La tentative échoue~
 
-@761 = ~Cacofiélon (Conjuration / Convocation)
+@761 = ~Cacofiélon (Conjuration/Convocation)
 Niveau : 7
 Portée : Champ visuel du lanceur
 Durée : 20 rounds
@@ -272,7 +272,7 @@ Jet de sauvegarde : aucun
 
 Ce sortilège convoquera un résident des Plans Abyssaux. Durant le lancement du sort, le magicien doit choisir la nature du démon qui sera convoqué. Si le lanceur est d'alignement loyal, il peut choisir de convoquer un baatezu Cornugon ou un yugoloth Arcanaloth. Un lanceur d'alignement chaotique peut choisir de convoquer un tanar'ri Nabassu ou un yugoloth Arcanaloth. Un lanceur qui n'est ni loyal ni chaotique peut choisir entre ces trois catégories de démons. En tous cas, le lanceur du sort n'a aucun contrôle sur les actes du démon convoqué. Quiconque n'est pas protégé contre le mal (avec le sortilège adéquat) peut être attaqué par la créature, y compris les badauds innocents, ainsi que le lanceur du sortilège et ses alliés. Notez que le lanceur supporte toute répercussion sur son alignement et sa réputation des actes du démon convoqué.~
 
-@762 = ~Convocation d'un Fiélon (Conjuration / Convocation)
+@762 = ~Convocation d'un Fiélon (Conjuration/Convocation)
 Niveau : 8
 Portée : Champ visuel du lanceur
 Durée : 33 rounds
@@ -282,7 +282,7 @@ Jet de sauvegarde : aucun
 
 Ce sortilège convoquera l'un des puissants résidents des Plans Abyssaux. Durant le lancement du sort, le magicien doit choisir la nature du démon qui sera convoqué. Si le lanceur est d'alignement loyal, il peut choisir de convoquer un baatezu Gelugon ou un yugoloth Nycaloth. Un lanceur d'alignement chaotique peut choisir de convoquer un tanar'ri Glabrezu ou un yugoloth Nycaloth. Un lanceur qui n'est ni loyal ni chaotique peut choisir entre ces trois catégories de démons. En tous cas, le lanceur du sort n'a aucun contrôle sur les actes du démon convoqué. Quiconque n'est pas protégé contre le mal (avec le sortilège adéquat) peut être attaqué par la créature, y compris les badauds innocents, ainsi que le lanceur du sortilège et ses alliés. Notez que le lanceur supporte toute répercussion sur son alignement et sa réputation des actes du démon convoqué.~
 
-@763 = ~Portail (Conjuration / Convocation)
+@763 = ~Portail (Conjuration/Convocation)
 Niveau : 9
 Portée : Champ visuel du lanceur
 Durée : 66 rounds
@@ -294,7 +294,7 @@ Ce sortilège convoquera l'un des plus puissants résidents des Plans Abyssaux. Du
 
 // Note: La version du sort de Portail des Prètres est différent en terme de niveau et de temps d'invocation
 
-@764 = ~Portail (Conjuration / Convocation)
+@764 = ~Portail (Conjuration/Convocation)
 Niveau : 7
 Portée : Champ visuel du lanceur
 Durée : 66 rounds
@@ -307,6 +307,42 @@ Ce sortilège convoquera l'un des plus puissants résidents des Plans Abyssaux. Du
 
 @790 = ~ne réussit pas à ouvrir un portail vers les Abysses~
 @791 = ~ne réussit pas à ouvrir un portail vers Baator~
+
+// PnP familliar
+
+@800 = ~Aura de Peur (Nécromancie)
+Portée : 40 m
+Durée : 1 tour
+Temps d'incantation : 1
+Zone d'effet : rayon de 7,5 métres
+Jet de sauvegarde : annule
+
+Lorsque ce sort est invoqué, le lanceur projete un cone de terreur qui affect toutes les créatures ennemies situées dans la zone d’effet. Celles-ci doivent lancer des jets de sauvegarde contre les sorts ou prennent la fuite dans un état de panique. Certaines créatures sont immunisées contre les effets de la peur, notamment tous les morts-vivants, les démons, les golems et les limons.~
+@801 = ~Métamorphose: Chauve-souris~
+@802 = ~Métamorphose: Chauve-souris (Altération)
+
+Ce sort permet au Quasit de prendre la forme d’une Chauve-souris. Il gagne ainsi les capacités de déplacement et de respiration de la nouvelle forme, mais pas les attaques spéciales ni magiques, tout en conservant sa personnalité et ses caractéristiques mentales. Si les attributs mentaux sont conservés, ceux physiques s’adaptent à la nouvelle forme. Les résistances naturelles à certaines formes d’attaques sont également acquises.~
+@803 = ~Métamorphose: Loup~
+@804 = ~Métamorphose: Loup (Altération)
+
+Ce sort permet au Quasit de prendre la forme d’un Loup. Il gagne ainsi les capacités de déplacement et de respiration de la nouvelle forme, mais pas les attaques spéciales ni magiques, tout en conservant sa personnalité et ses caractéristiques mentales. Si les attributs mentaux sont conservés, ceux physiques s’adaptent à la nouvelle forme. Les résistances naturelles à certaines formes d’attaques sont également acquises.~
+@805 = ~Métamorphose: Araignée~
+@806 = ~Métamorphose: Araignée (Altération)
+
+Ce sort permet au Diablotin de prendre la forme d’une Araignée. Il gagne ainsi les capacités de déplacement et de respiration de la nouvelle forme, mais pas les attaques spéciales ni magiques, tout en conservant sa personnalité et ses caractéristiques mentales. Si les attributs mentaux sont conservés, ceux physiques s’adaptent à la nouvelle forme. Les résistances naturelles à certaines formes d’attaques sont également acquises.~
+@807 = ~Métamorphose: Rat~
+@808 = ~Métamorphose: Rat (Altération)
+
+WCe sort permet au Diablotin de prendre la forme d’un Rat. Il gagne ainsi les capacités de déplacement et de respiration de la nouvelle forme, mais pas les attaques spéciales ni magiques, tout en conservant sa personnalité et ses caractéristiques mentales. Si les attributs mentaux sont conservés, ceux physiques s’adaptent à la nouvelle forme. Les résistances naturelles à certaines formes d’attaques sont également acquises.~
+@1858 = ~Glass Dust
+
+Range: 0
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: 30-ft. radius
+Saving Throw: Negates effect
+
+Dust Mephits can breathe a 15' radius cloud of irritating glassy dust three times per day. Humanoids who fail to save vs. breath weapon suffer a 4 point Armor Class penalty and a 2 point THAC0 penalty for three rounds. Mephits, elementals, undead and other non-humanoid creatures with thick or insensitive skins are immune to this effect.~
 
 
 //Morts-vivants version papier
@@ -339,7 +375,7 @@ Ce sortilège convoquera l'un des plus puissants résidents des Plans Abyssaux. Du
 @1801 = ~échoue à l'ouverture d'un portail interplanaire~
 
 
-@1850 = ~Rafale de vent~
+@1850 = ~Rafale~
 @1851 = ~Grandit~
 @1852 = ~Aura de chaleur~
 @1853 = ~Émission de chaleur~
@@ -347,6 +383,9 @@ Ce sortilège convoquera l'un des plus puissants résidents des Plans Abyssaux. Du
 @1855 = ~Mur de brouillard~
 @1856 = ~Raille~
 @1857 = ~Éclair de flamme~
+
+
+// Sorts version papier
 
 @1890 = ~Vapeur colorée (Altération)
 Niveau : 1
@@ -358,7 +397,7 @@ Jet de sauvegarde : spécial
 
 Lorsque ce sort est lancé, une pulvérisation de couleurs vives est projetée en arc de cercle devant le lanceur. Toutes les créatures dans la zone d'effet doivent réussir un jet de sauvegarde contre les sorts pour en éviter les effets, si elles sont de niveau supérieur à 6, ou supérieur au niveau du lanceur de sorts. Les créatures aveugles ou non voyantes ne sont pas affectées. Les créatures qui n'ont pas droit à un jet de sauvegarde, ou dont le jet de sauvegarde échoue, et dont le niveau est égal ou inférieur à celui du lanceur de sorts, tombent dans l'inconscience pour 4 rounds. Celles disposant de 1 ou 2 niveaux supérieurs à celui du lanceur de sorts deviennent aveugles pour 2 rounds. Celles qui ont 3 niveaux ou plus que le lanceur de sorts sont désorientées et incapables de penser ou d'agir de manière cohérente pendant 1 round.~
 
-@1891 = ~Porte dimensionnelle (altération)
+@1891 = ~Porte dimensionnelle (Altération)
 Niveau : 4
 Portée : 0
 Durée : instantanée
@@ -369,9 +408,7 @@ Jet de sauvegarde : aucun
 Ce sortilège transporte le lanceur à tout endroit désigné qui lui est déjà connu. Le lanceur arrive toujours exactement au point souhaité en visualisant simplement une zone qui lui est familière. Lorsque le sortilège est lancé, une porte dimensionnelle s'ouvre devant le lanceur, au travers de laquelle il marche immédiatement. Dès qu'il passe au travers du portail, le lanceur se retrouve à la destination choisie.~
 
 
-@1895 = ~Appel des créatures des bois 
-(conjuration, convocation)
-
+@1895 = ~Appel des créatures des bois (Conjuration/Convocation)
 Niveau : 4
 Sphère : animale
 Portée : portée visuelle du lanceur
@@ -395,13 +432,145 @@ Les créatures convoquées aident le lanceur par tous les moyens dont elles dispos
 @1901 = ~Beauté aveuglante~
 @1902 = ~Chant envoûtant~
 @1903 = ~Résiste à l'effet du charme~
-@1904 = ~Détecte les pièges et les fosses~
+@1904 = ~Détection des collets et des fosses~
 @1905 = ~Toucher de la tranquillité~
 @1906 = ~Vapeurs toxiques~
-@1907 = ~Parler avec les plantes~
+@1907 = ~Langage des Plantes~
+@1908 = ~Voie végétale~
+@1909 = ~Voie végétale (Altération)
+Portée : 0
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : lanceur de Sorts
+Jets de sauvegarde : aucun
+
+Ce sort permet au lanceur de sorts de se téléporter en entrant dans une plante et en émergeant immédiatement d'une autre plante quelque soit la distance qui les sépare.~
+@1910 = ~Amitié avec les animaux (Enchantement/Charme)
+Portée : 10 mètres
+Durée : 8 heures
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : annule
+
+La cible doit être un animal. Si la créature rate son jet de sauvegarde, elle considère le jeteur de sorts comme un véritable ami et allié méritant son attention et sa protection. Le jeteur de sorts peut donner des ordres au bénéficiaire qui les exécute le plus vite possible. Si le jeteur de sorts nuit ou essaie de nuire à l'animal sous le charme par une action non déguisée, ou si un sort de dissipation de la magie est jeté avec succès à l'animal, le charme est rompu.~
+@1911 = ~Détection des collets et des fosses (Divination)
+Portée : 0
+Durée : 10 rounds
+Temps d’incantation : 1
+Zone d’effet : rayon de 9 métres
+Jet de sauvegarde : Aucun
+
+Ce sort permet de détecter les collets, les fosses, les précipices et autres accidents de terrain. Le lanceur de sorts ressent une impression de danger, qui augmente au fur et à mesure qu'il s'approche de sa source. Il peut déterminer la nature générale du danger (fosse, collet, ou précipice), mais pas son fonctionnement exact ni la manière de le désamorcer. Ce sort ne fontionne qu'en extérieur.~
+@1912 = ~Langage des Plantes (Altération)
+Portée : 0
+Durée : 1 tour
+Temps d’incantation : 1
+Zone d’effet : rayon de 9 métres
+Jet de sauvegarde : Aucun
+
+Lancer ce sort permet de converser en des termes très rudimentaires avec tous les végétaux vivants et d'exercer un contrôle limité sur elles. il permet de délivrer les créatures victimes d'un sort d'enchevêtrement et protège de ses effects pendant 1 tour. Toute la végétation se trouvant dans la zone d'effet est automatiquement affectée.~
+
+
+// Plantes & Bêtes version papier
+
+@1920 = ~Suffocation~
+@1921 = ~Spores Pacificateurs~
+@1922 = ~Spores Hallucinatoires~
+@1923 = ~Regards Pétrifiant~
+@1924 = ~Souffle Empoisonné~
+@1925 = ~Absorbtion de l'Electricité~
+@1926 = ~Spores Explosifs~
+@1927 = ~Sprint~
+@1928 = ~Regard Pestilentiel~
+@1929 = ~Souffle de Feu~
+@1930 = ~Souffle glacé~
+@1931 = ~Giclée d'acide~
+@1932 = ~~
+@1933 = ~La magie curative n'a aucun effet sur quiconque affecté par le regard du boalisk ~
+@1934 = ~Affligé par le regard du boalisk~
+@1935 = ~À l'agonie à cause du regard du boalisk~
+@1936 = ~Succombe du regard du boalisk~
+@1937 = ~Enfoui~
+@1938 = ~Hombres~
+@1939 = ~Ours Géant~
+@1940 = ~Smilodon~
+@1941 = ~Conjuration d’Animaux (Conjuration/Convocation)
+Niveau : 6
+Sphère : Convocation
+Portée : 60 mètres
+Durée : 2 Rounds / Niveau
+Temps d’incantation : 9
+Zone d’effet : Spéciale
+Jet de sauvegarde : Aucun
+
+Ce sort permet de convoquer et de contrôler des animaux. Le nombre de Dés de Vie total des êtres créés ne peut dépasser son niveau. Les mammifére répondront aux désirs du lanceur de sort pendant toute la durée du sort.~
+@1942 = ~Convocation d’animaux I (Conjuration/Convocation)
+Niveau : 4
+Sphère : animale, convocation
+Portée : 20 m
+Durée : 8 heures
+Temps d’incantation : 7
+Zone d’effet : spéciale
+Jet de sauvegarde : aucun
+
+Le jeteur de sorts peut convoquer jusqu’à 4 animaux ayant 4 dés de vie ou moins. Le type d’animal qui apparaît dépend de l’environnement du jeteur de sort au moment précis de la convocation Ils restent sous son contrôle jusqu’à leur mort ou expiration du sort.~
+@1943 = ~Convocation d’animaux II (Conjuration/Convocation)
+Niveau : 5
+Sphère : animal, convocation
+Portée : 60 mètres/niveau
+Durée : 8 heures
+Temps d’incantation : 8
+Zone d’effet : spéciale
+Jet de sauvegarde : aucun
+
+Le jeteur de sorts peut convoquer jusqu’à 4 animaux ayant 8 dés de vie ou moins. Seuls viennent les animaux se trouvant à sa portée au moment où il jette le sort. Les animaux convoqués utilisent tous les moyens qu’ils possèdent pour aider le jeteur de sorts. Ils restent tant que le combat n’est pas terminé, que la mission n’est pas accomplie, que le jeteur de sorts n’est pas en sécurité, que ce dernier ne les a pas renvoyés, etc, ou jusqu’à expiration du sort. Seuls les animaux normaux ou géants peuvent être convoqués ; ce sort n’a aucun effet sur les animaux fantastiques ou les monstres (chimères, dragons, gorgones, manticores, etc.)~
+@1944 = ~Convocation d’Animaux III (Conjuration/Convocation)
+Niveau : 6
+Sphère : Animale, Convocation
+Portée : 55 mètres
+Durée : 8 heures
+Temps d’incantation : 9
+Zone d’effet : Spéciale
+Jet de sauvegarde : Aucun
+
+Grâce à ce sort, le jeteur appelle à son aide jusqu’à 4 animaux ayant moins de 12 dés de vie. Seuls les animaux étant à portée du sort au moment où il est lancé répondent à cet appel. Ils aident alors le jeteur de sort du mieux de leurs capacités et lui obéissent jusqu’à leur mort ou la fin du sort. Seuls les animaux normaux ou géants peuvent être ainsi convoqués.~
+@1945 = ~Hurlement du chien de la lune
+Portée : 0
+Durée : spéciale
+Temps d'incantation : 1
+Zone d'effet : rayon de 9 métres
+Jet de sauvegarde : spécial
+
+Le hurlement inflige 1d4 + 4 point de dégâts et emplit de terreur les ennemis mauvais, tout en supprimant la peur et lançant une Protection contre le mal sur les membres du groupe.~
+@1946 = ~Œil du chien de la lune
+Portée : 0
+Durée : spéciale
+Temps d'incantation : 1
+Zone d'effet : spécial
+Jet de sauvegarde : aucun
+
+le chien voit (et dissipe) toutes les formes d’illusion et d’invisibilité, détecte les pièges et le mal.~
+@1947 = ~Langue soignante
+Portée : 0
+Durée : spéciale
+Temps d'incantation : 1
+Zone d'effet : 1 Créature
+Jet de sauvegarde : aucun
+
+soigne 20 PV et supprime les maladies, la surdité, les poisons et fait recouvrir la vue. Cette capacité est utilisable une fois par personage.~
+@1948 = ~Invocation des ombres
+Portée : 0
+Durée : spéciale
+Temps d'incantation : 1
+Zone d'effet : spécial
+Jet de sauvegarde : aucun
+
+Cette capacité permet au Chien de la Lune d'invoquer une ombre de loup supérieur pour combattre à ses côtés.~
+
 
 // Araignées version papier
-@1940 = ~Progéniture d'Araignée (Conjuration/Convocation)
+
+@1950 = ~Progéniture d'Araignée (Conjuration/Convocation)
 Niveau : 4
 Portée : 40 mètres
 Durée : 6 rounds + 1 round par niveau
@@ -415,8 +584,8 @@ Par ce sort, le magicien amène à la vie 1d3 oeufs d'araignée qui éclosent aussit
 12ème - 15ème : Araignée éclipsante
 16ème et + : Araignée Astrale éclipsante (seulement une)
 Les araignées restent sous le contrôle du magicien jusqu'à expiration du sort ou leur mort.~
-@1941 = ~Araignée Astrale éclipsante~
-@1942 = ~Appel de la Wiverne (Conjuration/Convocation)
+@1951 = ~Araignée Astrale éclipsante~
+@1952 = ~Appel de la Wiverne (Conjuration/Convocation)
 Niveau : 6
 Portée : 30 m
 Durée : 1 round par niveau
@@ -426,11 +595,12 @@ Jet de Sauvegarde : Non
 
 Ce sort permet au magicien d'ouvrir un portail magique pour invoquer 1d3 Wiverne, qui seront sous son contrôle mental et qui lui obéiront en toutes circonstances (à moins d'utiliser des moyens magiques, comme Charme-monstres). Le contrôle dure jusqu'à expiration du sort.~
 
+
 // Vase, limons et Gelée version papier
 
-@1950 = ~Zombie Olivâtre~
-@1951 = ~Limon Olivâtre~
-@1952 = ~Guérison des maladies (Abjuration)
+@1960 = ~Zombie Olivâtre~
+@1961 = ~Limon Olivâtre~
+@1962 = ~Guérison des maladies (Abjuration)
 Sphère: Necromancie
 Portée : Contact
 Durée : Permanente
@@ -441,8 +611,7 @@ Jet de sauvegarde : Aucun
 En imposant les mains sur une personne souffrante, le lanceur de ce sort peut guérir presque toutes les maladies connues. La guérison est permanente mais n’accorde pas à son bénéficiaire une quelconque immunité magique contre de futures affections. Certaines maladies magiques ne sont pas sujettes à ce sort.
 Ce sort est également efficace contre les monstres parasites tels que limons verts, olivatre, vers putrides et autres.
 ~
-@1953 = ~Guérison des maladies 
-(Abjuration)
+@1963 = ~Guérison des maladies (Abjuration)
 Niveau : 3
 Sphère : Guérison
 Portée : Contact
@@ -454,77 +623,6 @@ Jet de sauvegarde : Aucun
 En imposant les mains sur une personne souffrante, le lanceur de ce sort peut guérir presque toutes les maladies connues. La guérison est permanente mais n'accorde pas à son bénéficiaire une quelconque immunité magique contre de futures affections. Ce sort annule également l'effet d'un sort de débilité mentale. Certaines maladies magiques ne sont pas sujettes à ce sort.
 Ce sort est également efficace contre les monstres parasites tels que limons verts, olivatre, vers putrides et autres.~
 
-// Plantes & Bêtes version papier
-
-@1910 = ~Suffocation~
-@1911 = ~Spores Pacificateurs~
-@1912 = ~Spores Hallucinatoires~
-@1913 = ~Regards Pétrifiant~
-@1914 = ~Souffle Empoisonné~
-@1915 = ~Absorbtion de l'Electricité~
-@1916 = ~Spores Explosifs~
-@1917 = ~Sprint~
-@1918 = ~Regard Pestilentiel~
-@1919 = ~Souffle de Feu~
-@1920 = ~Souffle glacé~
-@1921 = ~Giclée d'acide~
-@1922 = ~~
-@1923 = ~La magie curative n'a aucun effet sur quiconque affecté par le regard du boalisk ~
-@1924 = ~Affligé par le regard du boalisk~
-@1925 = ~À l'agonie à cause du regard du boalisk~
-@1926 = ~Succombe du regard du boalisk~
-@1927 = ~Enfoui~
-@1928 = ~Hombres~
-@1929 = ~Ours Géant~
-@1930 = ~Smilodon~
-@1931 = ~Conjuration d’Animaux
-(Conjuration / Convocation)
-
-Niveau : 6
-Sphère : Convocation
-Portée : 60 mètres
-Durée : 2 Rounds / Niveau
-Temps d’incantation : 9
-Zone d’effet : Spéciale
-Jet de sauvegarde : Aucun
-
-Ce sort permet de convoquer et de contrôler des animaux. Le nombre de Dés de Vie total des êtres créés ne peut dépasser son niveau. Les mammifére répondront aux désirs du lanceur de sort pendant toute la durée du sort.~
-@1932 = ~Convocation d’animaux I 
-(Conjuration, Convocation)
-
-Niveau : 4
-Sphère : animale, convocation
-Portée : 20 m
-Durée : 8 heures
-Temps d’incantation : 7
-Zone d’effet : spéciale
-Jet de sauvegarde : aucun
-
-Le jeteur de sorts peut convoquer jusqu’à 4 animaux ayant 4 dés de vie ou moins. Le type d’animal qui apparaît dépend de l’environnement du jeteur de sort au moment précis de la convocation Ils restent sous son contrôle jusqu’à leur mort ou expiration du sort.~
-@1933 = ~Convocation d’animaux II 
-(Conjuration/Convocation)
-
-Niveau : 5
-Sphère : animal, convocation
-Portée : 60 mètres/niveau
-Durée : 8 heures
-Temps d’incantation : 8
-Zone d’effet : spéciale
-Jet de sauvegarde : aucun
-
-Le jeteur de sorts peut convoquer jusqu’à 4 animaux ayant 8 dés de vie ou moins. Seuls viennent les animaux se trouvant à sa portée au moment où il jette le sort. Les animaux convoqués utilisent tous les moyens qu’ils possèdent pour aider le jeteur de sorts. Ils restent tant que le combat n’est pas terminé, que la mission n’est pas accomplie, que le jeteur de sorts n’est pas en sécurité, que ce dernier ne les a pas renvoyés, etc, ou jusqu’à expiration du sort. Seuls les animaux normaux ou géants peuvent être convoqués ; ce sort n’a aucun effet sur les animaux fantastiques ou les monstres (chimères, dragons, gorgones, manticores, etc.)~
-@1934 = ~Convocation d’Animaux III 
-(Conjuration, Convocation)
-
-Niveau : 6
-Sphère : Animale, Convocation
-Portée : 55 mètres
-Durée : 8 heures
-Temps d’incantation : 9
-Zone d’effet : Spéciale
-Jet de sauvegarde : Aucun
-
-Grâce à ce sort, le jeteur appelle à son aide jusqu’à 4 animaux ayant moins de 12 dés de vie. Seuls les animaux étant à portée du sort au moment où il est lancé répondent à cet appel. Ils aident alors le jeteur de sort du mieux de leurs capacités et lui obéissent jusqu’à leur mort ou la fin du sort. Seuls les animaux normaux ou géants peuvent être ainsi convoqués.~
 
 // Élémentaires version papier
 
@@ -562,11 +660,111 @@ Grâce à ce sort, le jeteur appelle à son aide jusqu’à 4 animaux ayant moins de 1
 @2125 = ~Englouti dans des flammes brûlantes~
 @2126 = ~Élémentaire d'Eau Mineur~
 @2127 = ~Convocation d'Alliés~
-@2128 = ~Brouillard Solide~
+@2128 = ~Brouillard dense~
 @2129 = ~Vitesse de Déplacement réduite~
 @2130 = ~Protégé contre les attaques et les sorts basés sur le gaz~
 @2131 = ~Engagé dans un combat mental~
 @2132 = ~Renvoi~
+@2133 = ~Renvoi
+Renvoi la créature vers son plan ou lieu d'origine.~
+@2134 = ~Tourbillons~
+@2135 = ~Tourbillons (Invocation/Évocation)
+
+Le plus impressionnant des pouvoirs des créatures du plan élémentaire de l'air est la capacité de créer un tourbillon sur commande. Avec cette capacité, la créature apparaît comme un cône tronqué et inversé de 3 m a sa base et de diamètre et 9 m au maximum de sa hauteur. Les effets de ce tourbillon dépendent des DV de la Créature :
+
+8 DV - inflige 1d8 points de dégâts contondant (jet de sauvegardes contre le souffle pour moitié) and tue les créatures de 2 DV ou moins
+12 DV - inflige 2d8 points de dégâts contondant (jet de sauvegardes contre le souffle pour moitié) and tue les créatures de 3 DV ou moins
+16 DV - inflige 3d8 points de dégâts contondant (jet de sauvegardes contre le souffle pour moitié) and tue les créatures de 4 DV ou moins
+20 DV - inflige 4d8 points de dégâts contondant (jet de sauvegardes contre le souffle pour moitié) and tue les créatures de 5 DV ou moins
+24 DV - inflige 5d8 points de dégâts contondant (jet de sauvegardes contre le souffle pour moitié) and tue les créatures de 6 DV ou moins~
+@2136 = ~Dissimulation Élémentaire
+Avec cette capacité, un élémentaire peut dissimuler sa présence en se fondant dans un espace naturel qui lui est propre. Les élémentaires d'air peuvent se cacher dans le vent, ceux du feu dans le feu, ceux de la terre dans la pierre et ceux de l'eau dans les mares d'eau. En utilisant cette capacité, ils se rendent ainsi complètement invisibles jusqu'à leur première attaque. Les sorts de détection de l'invisibilité ou de vision véritable révèlent un élémentaire dissimulé.~
+@2137 = ~Suggestion (Enchantement/Charme) 
+Portée : champ visuel du lanceur
+Durée : 5 rounds
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : annule
+
+Lorsque ce sort est lancé, il influence les actions du récipiendaire choisi en prononçant quelques mots - une phrase ou deux maximum — lui suggérant un comportement qui l'arrange à moins que la créature réussisse un jet de sauvegarde contre les sorts avec un bonus de +3. Le lanceur de sorts doit formuler sa suggestion de manière à ce que l'action réclamée paraisse raisonnable ; demander à la cible de se suicider, de se jeter sur la pointe d'une lance, ou de faire toute autre chose d'aussi évidemment dommageable à sa santé annule l'effet du sort.~
+@2138 = ~Téléportation sans erreur (Altération) 
+Portée : 0
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : le lanceur de sorts
+Jet de sauvegarde : aucun
+
+Le lanceur de sorts peut se transporter, en tout endroit connu de lui, sur son plan d'origine, sans aucune possibilité d'erreur. Le sort permet aussi de voyager dans d'autres plans d'existence, mais ceux-ci sont au mieux “étudiés avec attention”. Ceci suppose que le magicien s'y soit rendu et en ait étudié une zone spécifique, en prévoyant d'y effectuer une téléportation sans erreur.~
+@2139 = ~Brouillard dense (Altération) 
+Portée : champ visuel du lanceur
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : rayon de 4,5 métres
+Jet de sauvegarde : aucun
+
+Lorsqu'il lance ce sort, le lanceur de sorts crée une masse tourbillonnante de vapeurs semblables à celles d'un sort de mur de brouillard. Ce brouillard obscurcit la vue (normale ou infravision) au-delà de 60 centimètres. Toutefois, contrairement au brouillard normal, seul un vent très fort peut le dissiper ; et toute créature tentant de se déplacer à l'intérieur ne progresse que de 30 centimètres par round.~
+@2140 = ~Rafale (Altération) 
+Portée : 30 m
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : spéciale
+Jet de sauvegarde : aucun
+
+Ce sort projette une forte bouffée de vent depuis de la main du lancuer de sorts vers la direction à laquelle il fait face. il disperse la plupart des gaz et vapeurs.~
+@2141 = ~Convoque 1 Élémentaire d'air et 2 Serviteurs Aériens~
+@2142 = ~Convoque 3 Élémentaires de Terre~
+@2143 = ~Convoque 2 Élémentaires de feu~
+@2144 = ~Boule de Feu de Zaaman~
+@2145 = ~Boule de Feu de Zaaman (Invocation/Évocation)
+Portée : champ visuel du lanceur
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : rayon de 4,5 métres
+Jet de sauvegarde : 1/2
+
+Cette capacité est une version amélioré du sort de Boule de Feu. Elle Créée une Boule de feu qui engendre 12d6 points de dégâts. Les créatures qui ratent leur jet de sauvegarde subissent la totalité des dégâts. Celles qui le réussissent parviennent à bondir à l’écart, à se jeter à terre ou à rouler sur le côté, et n’encaissent que la moitié des dégâts.~
+@2146 = ~Flèche enflammée de Zaaman~
+@2147 = ~Flèche enflammée de Zaaman (Conjuration/Convocation)
+Portée : champ visuel du lanceur
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : 1/2
+
+Cette capacité est une version amélioré du sort de Flèche enflammée. Elle permet de projeter quatre carreaux enflammés sur des adversaires se trouvant à portée. Chaque carreau inflige 2d6 points de dégâts perforants, plus 8d6 points de dégâts de feu (seulement la moitié si la cible réussit son jet de sauvegarde contre les sorts).~
+@2148 = ~Bouclier de feu (rouge) de Zaaman~
+@2149 = ~Bouclier de feu (rouge) de Zaaman (Invocation/Évocation)
+Portée : 0
+Durée : 46 rounds
+Temps d'incantation : 1
+Zone d'effet : lanceur de sorts
+Jet de sauvegarde : aucun
+
+Cette capcité est une version améliré du bouclier de feu rouge. Celui-ci protège le lanceur du feu en l’entourant de flammes. Non seulement ce bouclier lui octroie 50 % de Résistance au feu, mais il le protège aussi contre toute attaque lancée dans un rayon de 1,5 m. Tout adversaire attaquant le lanceur avec un arme ou un sort subit 2d8 +4 points de dégâts de feu.~
+@2150 = ~pyrotechnie (Invocation/Évocation)
+Portée : champ visuel du lanceur
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : rayon de 4,5 métres
+Jet de sauvegarde : annule
+
+Le sort pyrotechnie produit une explosion de feux d'artifice colorés et scintillants qui dure un round. Il aveugle temporairement toute créature se trouvant à moins de 36 mètres et possédant une vue directe sur lui. Les créatures affectées sont aveuglées pour 3 rounds, à moins de réussir un jet de sauvegarde contre les sorts.~
+@2151 = ~Flammes (Transmutation/Altération)
+Portée : 40 métres
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : 1 créature
+Jet de sauvegarde : spécial
+
+Une flamme vive d'une intensité comparable à celle d'une torche jaillit de la paume de sa main. Elle ne lui cause aucun dégât, mais elle est réellement chaude et peut mettre le feu à des matériaux inflammables (papier, vêtements, bois sec, huile, etc.). Le prêtre peut projeter cette flamme magique à une portée de 40 mètres (considérée comme portée courte). La flamme se met à briller plus fort au moment de l'impact ; puis elle enflamme tous les matériaux combustibles se trouvant dans un rayon de 90 cm du centre de son impact et s'éteint. Toute créature touchée subit 1d4+1 points de dégâts et, si une partie de ses possessions prend feu, elle subit 1d2 points de dégâts supplémentaires pendant deux rounds.~
+@2152 = ~Souffle de feu (Transmutation/Altération)
+Portée : 10 métres
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : rayon de 4,5 métres
+Jet de sauvegarde : 1/2
+
+Les Génies Guardiens peuvent souffler un nuage de 9 de diamètre une fois par jour. Le nuage inflige 14d6 points de dégâts a tous ceux pris dans sa zone d'effet. Les créatures qui réussissent leur jet de sauvegarde contre le souffle n’encaissent que la moitié des dégâts.~
 
 
 // Cris et moqueries élémentaires
@@ -661,7 +859,7 @@ Jet de sauvegarde : aucun
 Ce sort ouvre un portail spécial vers le plan élémentaire de la Terre, invoquant un élémentaire de terre au voisinage du jeteur de sorts. Un élémentaire de 12 dés de vie répond toujours à la convocation. De plus, il y a 35 % de chance qu'un Élémentaire Majeur de 16 dés de vie apparaisse en sus, et 5 % de chance qu'un Ancien Élémentaire de 20 dés de vie apparaisse. Tous les ordres donnés à l'élémentaire le sont par voie télépathique, ce qui évite de perdre du temps à cause d'une mauvaise communication, et ne nécessite pas de connaître le langage utilisé par la créature convoquée. Contrairement aux mages, les prêtres n'ont pas à s'engager dans un combat mental afin de contrôler leur élémentaire. L'élémentaire accomplira la volonté du lanceur jusqu'à ce qu'il soit tué, ou jusqu'à expiration du sort.~
 
 @2205 = ~Conjuration d'un Élémentaire d'Air (Conjuration/Convocation)
-Niveau : 6
+Niveau : 7
 Sphère : Élémentaire, Convocation
 Portée : champ visuel du lanceur
 Durée : 1 tour / niveau

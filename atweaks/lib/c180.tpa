@@ -18,6 +18,8 @@ COPY ~atweaks/spl/mephits/rr#maigw.spl~ ~override~                              
 COPY ~atweaks/spl/mephits/rr#mdugt.spl~ ~override~                                 // Gate (Dust Mephit)
 COPY ~atweaks/eff/mephits/rr#mdugt.eff~ ~override~                                 // Gate EFF (Dust Mephit)
 COPY ~atweaks/spl/mephits/rr#mdugd.spl~ ~override~                                 // Glass Dust, part 1 (Dust Mephit)
+  SAY UNIDENTIFIED_DESC @1858
+  
 COPY ~atweaks/spl/mephits/rr#mdug2.spl~ ~override~                                 // Glass Dust, part 2 (Dust Mephit)
 COPY ~atweaks/eff/mephits/rr#mdugd.eff~ ~override~                                 // Glass Dust EFF (Dust Mephit)
 

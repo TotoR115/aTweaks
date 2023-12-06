@@ -580,7 +580,7 @@ END
 
 // Nabassu
 
-ACTION_IF (MOD_IS_INSTALLED ~stratagems.TP2~ ~7080~) BEGIN
+ACTION_IF ((MOD_IS_INSTALLED ~stratagems.TP2~ ~7080~) OR GAME_IS (~BG2EE~ ~EET~)) BEGIN
   OUTER_SPRINT cultanar ""
   END ELSE OUTER_SPRINT cultanar tanar
 

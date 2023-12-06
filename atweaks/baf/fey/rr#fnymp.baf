@@ -93,7 +93,7 @@ END
 
 IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
-	HaveSpellRES("rr#ddor2") // Dimension Door (Nymph)
+	HaveSpellRES("rr#tvpl2") // Dimension Door (Nymph)
 	OR(2)
 	  Range(NearestEnemyOf(Myself),6) // Nymphs avoid melee combat
 	  AttackedBy([ANYONE],DEFAULT)
@@ -102,8 +102,8 @@ THEN
 		SetInterrupt(FALSE)
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		CreateCreatureOffscreen("RR#TRAT",0) // Targeting Rat (script aid)
-		ForceSpellRES("rr#ddorx","RR#TRAT") // Dimension Door (special version, breaks targeting via 1 second invisibility)
-		RemoveSpellRES("rr#ddor2") // remove the spell from memory
+		ForceSpellRES("rr#tvplx","RR#TRAT") // Dimension Door (special version, breaks targeting via 1 second invisibility)
+		RemoveSpellRES("rr#tvpl2") // remove the spell from memory
 		SetInterrupt(TRUE)
 END
 

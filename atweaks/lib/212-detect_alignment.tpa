@@ -25,66 +25,17 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~SPWI202~                                                            // Detect Evil (Arcane version)
               ~SPCL212~                                                            // Detect Evil (Paladin innate)
               ~SPIN696~                                                            // Moon Dog Sight (Moon Dog figurine)
-             ~CDDETEVL~                                                            // G2 BG2 Fixpack Detect Evil (shell spell)
+             ~CDDETEVL~                                                            // G3 BG2 Fixpack Detect Evil (shell spell)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.spl~ BEGIN                                   // if the designated file with a SPL extension exists
 COPY_EXISTING ~%file%.spl~ ~override~
 PATCH_IF (%SOURCE_SIZE% > 0x71) THEN BEGIN                                         // file size check
 // =============================================================================== // the actual work starts from here
-  READ_LONG  0x64 "abil_off" ELSE 0
-  READ_SHORT 0x68 "abil_num" ELSE 0
-  READ_LONG  0x6a "fx_off"   ELSE 0
-  SET "delta" = 0
-  FOR (index = 0 ; index < abil_num ; index = index + 1) BEGIN
-    READ_SHORT ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
-    READ_SHORT ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
-    SET "abil_fx_idx" = ("%abil_fx_idx%" + "%delta%")
-    WRITE_SHORT ("%abil_off%" + 0x20 + (0x28 * "%index%")) "%abil_fx_idx%"
-    FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
-     READ_SHORT ("%fx_off%" +        (0x30 * ("%abil_fx_idx%" + "%index2%"))) "opcode"
-      PATCH_IF ("%opcode%" = 115) BEGIN // clone effect #115: Detect Alignment
-        READ_ASCII ("%fx_off%" +        (("%abil_fx_idx%" + "%index2%") * 0x30)) "clone_fx" (0x30)
-        SET "index2"= "%abil_fx_num%" // kills loop
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "3"              // param1: 3 (IDS Entry - MASK_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "0"              // timing: 0 (Duration)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "1"              // duration: 1
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DAGLR~ #8    // resref: RR#DAGLR.EFF (evil alignments glow red)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "19"             // param1: 19 (IDS Entry - LAWFUL_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASLE~ #8    // resref: RR#DASLE.EFF (display string - Lawful Evil)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "35"             // param1: 35 (IDS Entry - NEUTRAL_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASNE~ #8    // resref: RR#DASNE.EFF (display string - Neutral Evil)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "51"             // param1: 51 (IDS Entry - CHAOTIC_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASCE~ #8    // resref: RR#DASCE.EFF (display string - Chaotic Evil)
-        SET "delta" = "%delta%" + 4
-        WRITE_SHORT ("%abil_off%" + 0x1e + (0x28 * "%index%")) ("%abil_fx_num%" + 4)
-      END
-    END
-  END
-SET opcode_to_delete = "115"                                                       // mark effect #115 (Detect Alignment) for deletion
-SET header = "-1"                                                                  // mark all extended headers for deletion
-LAUNCH_PATCH_MACRO ~DELETE_SPELL_EFFECT~                                           // delete the designated opcodes from all of the spell's extended headers
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 115 opcode = 177 parameter1 = 3 parameter2 = 8 timing = 0 duration = 1 STR_VAR resource ="RR#DAGLR" END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 177 parameter1 = 19 timing = 0 duration = 1 STR_VAR resource ="RR#DASLE" END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 177 parameter1 = 35 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DASNE" END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 177 parameter1 = 51 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DASCE" END
+  LPF DELETE_EFFECT STR_VAR silent = 1 match_opcode = 115 END
 // =============================================================================== // the actual work ends here
 END                                                                                // ends file size check
 BUT_ONLY_IF_IT_CHANGES
@@ -95,7 +46,7 @@ END                                                                             
 OUTER_SPRINT DetectG ""
 ACTION_IF IDS_OF_SYMBOL ("spell" "CLERIC_DETECT_GOOD") > 0 BEGIN 
  OUTER_SET code = (IDS_OF_SYMBOL ("spell" "CLERIC_DETECT_GOOD") - 1000)
- OUTER_SPRINT DetectG SPPR%code%
+ OUTER_SPRINT "DetectG" "SPPR%code%"
 END
 
 ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
@@ -106,60 +57,11 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.spl~ BEGIN                                
 COPY_EXISTING ~%file%.spl~ ~override~
 PATCH_IF (%SOURCE_SIZE% > 0x71) THEN BEGIN                                         // file size check
 // =============================================================================== // the actual work starts from here
-  READ_LONG  0x64 "abil_off" ELSE 0
-  READ_SHORT 0x68 "abil_num" ELSE 0
-  READ_LONG  0x6a "fx_off"   ELSE 0
-  SET "delta" = 0
-  FOR (index = 0 ; index < abil_num ; index = index + 1) BEGIN
-    READ_SHORT ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
-    READ_SHORT ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
-    SET "abil_fx_idx" = ("%abil_fx_idx%" + "%delta%")
-    WRITE_SHORT ("%abil_off%" + 0x20 + (0x28 * "%index%")) "%abil_fx_idx%"
-    FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
-     READ_SHORT ("%fx_off%" +        (0x30 * ("%abil_fx_idx%" + "%index2%"))) "opcode"
-      PATCH_IF ("%opcode%" = 115) BEGIN // clone effect #115: Detect Alignment
-        READ_ASCII ("%fx_off%" +        (("%abil_fx_idx%" + "%index2%") * 0x30)) "clone_fx" (0x30)
-        SET "index2"= "%abil_fx_num%" // kills loop
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "1"              // param1: 1 (IDS Entry - MASK_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "0"              // timing: 0 (Duration)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "1"              // duration: 1
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DAGLG~ #8    // resref: RR#DAGLG.EFF (good alignments glow green)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "17"             // param1: 17 (IDS Entry - LAWFUL_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASLG~ #8    // resref: RR#DASLG.EFF (display string - Lawful Good)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "33"             // param1: 33 (IDS Entry - NEUTRAL_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASNG~ #8    // resref: RR#DASNG.EFF (display string - Neutral Good)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "49"             // param1: 49 (IDS Entry - CHAOTIC_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASCG~ #8    // resref: RR#DASCG.EFF (display string - Chaotic Good)
-        SET "delta" = "%delta%" + 4
-        WRITE_SHORT ("%abil_off%" + 0x1e + (0x28 * "%index%")) ("%abil_fx_num%" + 4)
-      END
-    END
-  END
-SET opcode_to_delete = "115"                                                       // mark effect #115 (Detect Alignment) for deletion
-SET header = "-1"                                                                  // mark all extended headers for deletion
-LAUNCH_PATCH_MACRO ~DELETE_SPELL_EFFECT~                                           // delete the designated opcodes from all of the spell's extended headers
+  LPF CLONE_EFFECT INT_VAR match_opcode = 115 opcode = 177 parameter1 = 1 parameter2 = 8 timing = 0 duration = 1 STR_VAR resource ="RR#DAGLG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 17 timing = 0 duration = 1 STR_VAR resource ="RR#DASLG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 33 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASNG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 49 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASCG" END
+  LPF DELETE_EFFECT STR_VAR match_opcode = 115 END
 // =============================================================================== // the actual work ends here
 END                                                                                // ends file size check
 BUT_ONLY_IF_IT_CHANGES
@@ -176,133 +78,26 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~SPWI208~                                                            // Know Alignment (Arcane version)
              ~RR#WI208~                                                            // Know Alignment (RR version used by Keeper of the Law)
               ~rr#ekal~                                                            // Know Alignment (aTweaks version used by the Elemental Princes)
-              ~VXFL~                                                               // Know Alignment (varshoon)
+              ~VXFI~                                                               // Know Alignment (varshoon: Feel Intensions)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.spl~ BEGIN                                   // if the designated file with a SPL extension exists
 COPY_EXISTING ~%file%.spl~ ~override~
 PATCH_IF (%SOURCE_SIZE% > 0x71) THEN BEGIN                                         // file size check
 // =============================================================================== // the actual work starts from here
-  READ_LONG  0x64 "abil_off" ELSE 0
-  READ_SHORT 0x68 "abil_num" ELSE 0
-  READ_LONG  0x6a "fx_off"   ELSE 0
-  SET "delta" = 0
-  FOR (index = 0 ; index < abil_num ; index = index + 1) BEGIN
-    READ_SHORT ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
-    READ_SHORT ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
-    SET "abil_fx_idx" = ("%abil_fx_idx%" + "%delta%")
-    WRITE_SHORT ("%abil_off%" + 0x20 + (0x28 * "%index%")) "%abil_fx_idx%"
-    FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
-     READ_SHORT ("%fx_off%" +        (0x30 * ("%abil_fx_idx%" + "%index2%"))) "opcode"
-      PATCH_IF ("%opcode%" = 115) BEGIN // clone effect #115: Detect Alignment
-        READ_ASCII ("%fx_off%" +        (("%abil_fx_idx%" + "%index2%") * 0x30)) "clone_fx" (0x30)
-        SET "index2"= "%abil_fx_num%" // kills loop
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "1"              // param1: 1 (IDS Entry - MASK_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "0"              // timing: 0 (Duration)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "1"              // duration: 1
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DAGLG~ #8    // resref: RR#DAGLG.EFF (good alignments glow green)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "2"              // param1: 2 (IDS Entry - MASK_GENEUTRAL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "0"              // timing: 0 (Duration)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "1"              // duration: 1
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DAGLB~ #8    // resref: RR#DAGLB.EFF (neutral alignments glow blue)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "3"              // param1: 3 (IDS Entry - MASK_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "0"              // timing: 0 (Duration)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "1"              // duration: 1
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DAGLR~ #8    // resref: RR#DAGLR.EFF (evil alignments glow red)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "17"             // param1: 17 (IDS Entry - LAWFUL_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASLG~ #8    // resref: RR#DASLG.EFF (display string - Lawful Good)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "18"             // param1: 18 (IDS Entry - LAWFUL_NEUTRAL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASLN~ #8    // resref: RR#DASLN.EFF (display string - Lawful Neutral)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "19"             // param1: 19 (IDS Entry - LAWFUL_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASLE~ #8    // resref: RR#DASLE.EFF (display string - Lawful Evil)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "33"             // param1: 33 (IDS Entry - NEUTRAL_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASNG~ #8    // resref: RR#DASNG.EFF (display string - Neutral Good)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "34"             // param1: 34 (IDS Entry - NEUTRAL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASNT~ #8    // resref: RR#DASNT.EFF (display string - True Neutral)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "35"             // param1: 35 (IDS Entry - NEUTRAL_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASNE~ #8    // resref: RR#DASNE.EFF (display string - Neutral Evil)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "49"             // param1: 49 (IDS Entry - CHAOTIC_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASCG~ #8    // resref: RR#DASCG.EFF (display string - Chaotic Good)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "50"             // param1: 50 (IDS Entry - CHAOTIC_NEUTRAL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASCN~ #8    // resref: RR#DASCN.EFF (display string - Chaotic Neutral)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "51"             // param1: 51 (IDS Entry - CHAOTIC_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASCE~ #8    // resref: RR#DASCE.EFF (display string - Chaotic Evil)
-        SET "delta" = "%delta%" + 12
-        WRITE_SHORT ("%abil_off%" + 0x1e + (0x28 * "%index%")) ("%abil_fx_num%" + 12)
-      END
-    END
-  END
-SET opcode_to_delete = "115"                                                       // mark effect #115 (Detect Alignment) for deletion
-SET header = "-1"                                                                  // mark all extended headers for deletion
-LAUNCH_PATCH_MACRO ~DELETE_SPELL_EFFECT~                                           // delete the designated opcodes from all of the spell's extended headers
-SET opcode_to_delete = "139"                                                       // mark effect #139 (Display String) for deletion
-SET header = "-1"                                                                  // mark all extended headers for deletion
-LAUNCH_PATCH_MACRO ~DELETE_SPELL_EFFECT~                                           // delete the designated opcodes from all of the spell's extended headers
+  LPF CLONE_EFFECT INT_VAR match_opcode = 115 match_parameter2 = 2 opcode = 177 parameter1 = 1 parameter2 = 8 timing = 0 duration = 1 STR_VAR resource ="RR#DAGLG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 2 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DAGLB" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 3 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DAGLR" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 17 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASLG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 18 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASLN" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 19 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASLE" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 33 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASNG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 34 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASNT" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 35 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASNE" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 49 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASCG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 50 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASCN" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 51 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLG" resource ="RR#DASCE" END
+  LPF DELETE_EFFECT STR_VAR match_opcode = 115 END
+  LPF DELETE_EFFECT STR_VAR match_opcode = 139 END
 // =============================================================================== // the actual work ends here
 END                                                                                // ends file size check
 BUT_ONLY_IF_IT_CHANGES
@@ -314,99 +109,21 @@ END                                                                             
 
 // Special Spell Revisions compatibility block
 
-ACTION_IF MOD_IS_INSTALLED SPELL_REV.TP2 0 THEN BEGIN                              // SR's Arcane version of Detect Evil needs special treatment
-COPY_EXISTING ~SPWI202.SPL~  ~override~                                            // Detect Evil (Arcane version)
-  READ_LONG  0x64 "abil_off" ELSE 0
-  READ_SHORT 0x68 "abil_num" ELSE 0
-  READ_LONG  0x6a "fx_off"   ELSE 0
-  SET "delta" = 0
-  FOR (index = 0 ; index < abil_num ; index = index + 1) BEGIN
-    READ_SHORT ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
-    READ_SHORT ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
-    SET "abil_fx_idx" = ("%abil_fx_idx%" + "%delta%")
-    WRITE_SHORT ("%abil_off%" + 0x20 + (0x28 * "%index%")) "%abil_fx_idx%"
-    FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
-     READ_SHORT ("%fx_off%" +        (0x30 * ("%abil_fx_idx%" + "%index2%"))) "opcode"
-      PATCH_IF ("%opcode%" = 177) BEGIN // clone effect #177: Use EFF file
-        READ_ASCII ("%fx_off%" +        (("%abil_fx_idx%" + "%index2%") * 0x30)) "clone_fx" (0x30)
-        SET "index2"= "%abil_fx_num%" // kills loop
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "1"              // param1: 1 (IDS Entry - MASK_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "0"              // timing: 0 (Duration)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "1"              // duration: 1
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DAGLG~ #8    // resref: RR#DAGLG.EFF (good alignments glow green)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "2"              // param1: 2 (IDS Entry - MASK_GENEUTRAL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "0"              // timing: 0 (Duration)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "1"              // duration: 1
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DAGLB~ #8    // resref: RR#DAGLB.EFF (neutral alignments glow blue)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "3"              // param1: 3 (IDS Entry - MASK_EVIL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "0"              // timing: 0 (Duration)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "1"              // duration: 1
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DAGLR~ #8    // resref: RR#DAGLR.EFF (evil alignments glow red)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "17"             // param1: 17 (IDS Entry - LAWFUL_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASLG~ #8    // resref: RR#DASLG.EFF (display string - Lawful Good)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "18"             // param1: 18 (IDS Entry - LAWFUL_NEUTRAL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASLN~ #8    // resref: RR#DASLN.EFF (display string - Lawful Neutral)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "33"             // param1: 33 (IDS Entry - NEUTRAL_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASNG~ #8    // resref: RR#DASNG.EFF (display string - Neutral Good)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "34"             // param1: 34 (IDS Entry - NEUTRAL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASNT~ #8    // resref: RR#DASNT.EFF (display string - True Neutral)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "49"             // param1: 49 (IDS Entry - CHAOTIC_GOOD)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASCG~ #8    // resref: RR#DASCG.EFF (display string - Chaotic Good)
-        INSERT_BYTES            ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) 0x30             // new effect
-          WRITE_EVALUATED_ASCII ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "%clone_fx%"     // cloned effect
-          WRITE_SHORT           ("%fx_off%" +        ("%abil_fx_idx%" * 0x30)) "177"            // effect #177: use EFF File
-          WRITE_LONG            ("%fx_off%" + 0x04 + ("%abil_fx_idx%" * 0x30)) "50"             // param1: 50 (IDS Entry - CHAOTIC_NEUTRAL)
-          WRITE_LONG            ("%fx_off%" + 0x08 + ("%abil_fx_idx%" * 0x30)) "8"              // param2: 8 (IDS File - ALIGN.IDS)
-          WRITE_BYTE            ("%fx_off%" + 0x0c + ("%abil_fx_idx%" * 0x30)) "1"              // timing: 1 (Permanent)
-          WRITE_LONG            ("%fx_off%" + 0x0e + ("%abil_fx_idx%" * 0x30)) "0"              // duration: 0
-          WRITE_ASCII           ("%fx_off%" + 0x14 + ("%abil_fx_idx%" * 0x30)) ~RR#DASCN~ #8    // resref: RR#DASCN.EFF (display string - Chaotic Neutral)
-        SET "delta" = "%delta%" + 12
-        WRITE_SHORT ("%abil_off%" + 0x1e + (0x28 * "%index%")) ("%abil_fx_num%" + 9)
-      END
-    END
-  END
-COPY ~atweaks/spl/elementals/rr#ekal2.spl~ ~override/rr#ekal.spl~                  // Know Alignment (aTweaks Elemental Prince version)
+ACTION_IF MOD_IS_INSTALLED SPELL_REV.TP2 0 THEN BEGIN                              // SR's Detect Alignment needs special treatment
+COPY_EXISTING ~SPWI202.SPL~  ~override~                                            // Detect Alignment (Arcane version)
+			  ~SPPR104.SPL~  ~override~                                            // Detect Alignment (Divine version)
+// =============================================================================== // the actual work starts from here
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 2 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DAGLG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 2 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DAGLB" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 3 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DAGLR" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 17 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DASLG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 18 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DASLN" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 33 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DASNG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 34 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DASNT" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 49 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DASCG" END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 177 parameter1 = 50 timing = 0 duration = 1 STR_VAR match_resource = "RR#DAGLR" resource ="RR#DASCN" END
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+
 END                                                                                // ends SR compatibility block
 

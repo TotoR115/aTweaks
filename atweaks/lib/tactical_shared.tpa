@@ -29,7 +29,7 @@ END
 ACTION_IF !FILE_EXISTS_IN_GAME rr#usumn.spl BEGIN
   COPY ~atweaks/bam/rr#usumn.bam~ ~override~                                        // Unsummon BAM icon
   COPY ~atweaks/spl/rr#usumn.spl~ ~override~                                        // Spell which allows the player to unsummon a creature
-    SAY NAME1 @2132 SAY NAME2 @2132
+    SAY NAME1 @2132 SAY NAME2 @2132 SAY UNIDENTIFIED_DESC @2133
 END
 
 // Add new secondary types; this is already non-cumulative

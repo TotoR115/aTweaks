@@ -9,26 +9,26 @@ INCLUDE "atweaks/lib/tactical_shared.tpa"
 // New spells
 //////////////
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~RR#DDOOR.BAM~ THEN BEGIN                        // Checks for the Icewind Dale's Dimension Door animation component
-  COPY    ~aTweaks/BAM/SPDIMNDR.BAM~   ~override/RR#DDOOR.BAM~                     // IWD1's Dimension Door animation (custom file name)
-  COPY    ~aTweaks/WAV/EFF_M09.WAV~    ~override/RR#DDOOR.WAV~                     // IWD1's Dimension Door sound effect (custom file name)
-  COPY    ~aTweaks/VVC/RR#DDOOR.VVC~   ~override~                                  // Custom Dimension Door VVC
-END                                                                                // ends ACTION_IF block
-COPY ~atweaks/spl/rr#telwe.spl~ ~override/rr#ddoor.spl~                            // Dimension Door (renewable)
-  SAY NAME1 #12082 SAY NAME2 #12082
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING    ~SPENTACI.BAM~   ~override/RR#SPENT.BAM~                          // Entangle animation
+COPY_EXISTING    ~EFF_E03.WAV~    ~override/RR#SPENT.WAV~                          // sound effect (custom file name)
+COPY    ~aTweaks/VVC/RR#SPENT.VVC~   ~override~                     			   // Custom Dimension Door VVC
 
-COPY ~atweaks/spl/rr#telwe.spl~ ~override/rr#ddor2.spl~                            // Dimension Door (non-renewable, for Nymphs)
-  SAY NAME1 #12082 SAY NAME2 #12082
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+COPY ~atweaks/spl/fey/rr#tvplt.spl~ ~override~                            		   // Transport Via Plants(renewable)
+  SAY NAME1 @1908 SAY NAME2 @1908 SAY UNIDENTIFIED_DESC @1909
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END   // Execute the "spell to innate ablity" function
 
-COPY ~atweaks/spl/rr#telwx.spl~ ~override/rr#ddorx.spl~                            // Dimension Door (special version, breaks targeting via 1 second invisibility)
-  SAY NAME1 #12082 SAY NAME2 #12082
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+
+COPY ~atweaks/spl/fey/rr#tvplt.spl~ ~override/rr#tvpl2.spl~                        // Transport Via Plants (non-renewable, for Nymphs)
+  SAY NAME1 @1908 SAY NAME2 @1908 SAY UNIDENTIFIED_DESC @1909
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "0" END   // Execute the "spell to innate ablity" function
+
+COPY ~atweaks/spl/fey/rr#tvplx.spl~ ~override/rr#tvplx.spl~                        // Transport Via Plants (special version, breaks targeting via 1 second invisibility)
+  SAY NAME1 @1908 SAY NAME2 @1908 SAY UNIDENTIFIED_DESC @1909
+  LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END   // Execute the "spell to innate ablity" function
 
 
 COPY ~atweaks/spl/fey/rr#fafrn.spl~ ~override~                                     // Animal Friendship (renewable)
-  SAY NAME1 @1900 SAY NAME2 @1900
+  SAY NAME1 @1900 SAY NAME2 @1900 SAY UNIDENTIFIED_DESC @1910
 
 COPY ~atweaks/spl/fey/rr#fbbea.spl~ ~override~                                     // Blinding Beauty (part 1)
   SAY NAME1 @1901 SAY NAME2 @1901
@@ -83,14 +83,14 @@ COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                      
 COPY ~atweaks/spl/fey/rr#fcld.spl~ ~override~                                      // Fog Cloud
 
 COPY ~atweaks/spl/fey/rr#fdsnr.spl~ ~override~                                     // Detect Snares and Pits (renewable)
-  SAY NAME1 @1904 SAY NAME2 @1904
+  SAY NAME1 @1904 SAY NAME2 @1904 SAY UNIDENTIFIED_DESC @1911
 
 COPY ~atweaks/spl/fey/rr#ftrnq.spl~ ~override~                                     // Touch of Tranquility (spell)
   SAY NAME1 @1905 SAY NAME2 @1905
 
 COPY ~atweaks/bam/fey/rr#fspkp.bam~ ~override~                                     // Speak With Plants icon
 COPY ~atweaks/spl/fey/rr#fspkp.spl~ ~override~                                     // Speak With Plants (renewable)
-  SAY NAME1 @1907 SAY NAME2 @1907
+  SAY NAME1 @1907 SAY NAME2 @1907 SAY UNIDENTIFIED_DESC @1912
 LPF add_conditional_immunity INT_VAR f_Condition = 169 f_Strref = 4742 STR_VAR f_Spell = SPPR105 END // Entangle (Priest)
 LPF add_conditional_immunity INT_VAR f_Condition = 169 f_Strref = 4742 STR_VAR f_Spell = SPWM111 END // Entangle (Wild Mage)
 LPF add_conditional_immunity INT_VAR f_Condition = 169 f_Strref = 4742 STR_VAR f_Spell = SPIN688 END // Plant Growth (Black Dragon)
@@ -168,7 +168,7 @@ REMOVE_KNOWN_SPELLS                                                             
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#fchrm~ #0 ~innate~ ( 3 )                                   // adds 3x Charm Person
 ADD_MEMORIZED_SPELL ~rr#fspkp~ #0 ~innate~ ( 1 )                                   // adds 1x Speak With Plants
-ADD_MEMORIZED_SPELL ~rr#ddoor~ #0 ~innate~ ( 1 )                                   // adds 1x Dimension Door
+ADD_MEMORIZED_SPELL ~rr#tvplt~ #0 ~innate~ ( 1 )                                   // adds 1x Transport Via Plants
 WRITE_BYTE 0x6f 1                                                                  // BG1 Proficiency slot (small sword)
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
@@ -256,7 +256,7 @@ ADD_MEMORIZED_SPELL ~rr#fentg~ #0 ~innate~ ( 1 )                                
 ADD_MEMORIZED_SPELL ~rr#fafrn~ #0 ~innate~ ( 1 )                                   // adds 1x Animal Friendship
 ADD_MEMORIZED_SPELL ~rr#fdsnr~ #0 ~innate~ ( 1 )                                   // adds 1x Detect Snares and Pits
 ADD_MEMORIZED_SPELL ~rr#fspkp~ #0 ~innate~ ( 1 )                                   // adds 1x Speak With Plants
-ADD_MEMORIZED_SPELL ~rr#ddoor~ #0 ~innate~ ( 1 )                                   // adds 1x Dimension Door
+ADD_MEMORIZED_SPELL ~rr#tvplt~ #0 ~innate~ ( 1 )                                   // adds 1x Transport Via Plants
 WRITE_BYTE 0x6f 1                                                                  // BG1 Proficiency slot (small sword)
 WRITE_SHORT 0x4c 0                                                                 // remove missile AC modifier (was -5)
 LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
@@ -330,16 +330,16 @@ ACTION_FOR_EACH ~file~ IN                                                       
               ~_IRINE02~                                                           // Sirine (Tutu)
                    ~SIL~                                                           // Sil (BGT)
                   ~_SIL~                                                           // Sil (Tutu)
-			  ~J#SIRIN1~ 														   //Sirine (Jarl Adv)
-			  ~J#SIRIN2~ 														   //Sirine (Jarl Adv)
+			  ~J#SIRIN1~ 														   // Sirine (Jarl Adv)
+			  ~J#SIRIN2~ 														   // Sirine (Jarl Adv)
 			    ~L#NDC1~														   // Southern Edge
-			   ~NTSILUA~ 														   //Sirine (NTotSC)
-			  ~NTSIRIN2~ 														   //Sirine (NTotSC)
-			  ~NTSIRIN4~ 														   //Sirine (NTotSC)
-			  ~NTSIRINE~ 														   //Sirine (NTotSC)			  
-			    ~ISLSIR~ 														   //Sirine Queen (BGT)
-			    ~MEIALA~ 														   //Sirine (BGT)
-			  ~QSEROMOD~ 														   //Sirine (PofQuestPack)
+			   ~NTSILUA~ 														   // Sirine (NTotSC)
+			  ~NTSIRIN2~ 														   // Sirine (NTotSC)
+			  ~NTSIRIN4~ 														   // Sirine (NTotSC)
+			  ~NTSIRINE~ 														   // Sirine (NTotSC)			  
+			    ~ISLSIR~ 														   // Sirine Queen (BGT)
+			    ~MEIALA~ 														   // Sirine (BGT)
+			  ~QSEROMOD~ 														   // Sirine (PofQuestPack)
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
@@ -474,7 +474,7 @@ LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_MEMORIZED_SPELL ~rr#ddor2~ #0 ~innate~ ( 1 )                                   // adds 1x Dimension Door (non-renewable)
+ADD_MEMORIZED_SPELL ~rr#tvpl2~ #0 ~innate~ ( 1 )                                   // adds 1x Transport Via Plants (non-renewable)
 ADD_MEMORIZED_SPELL ~SPPR101~ #0 ~priest~ ( 2 )                                    // adds 2x Bless
 ADD_MEMORIZED_SPELL ~SPPR103~ #0 ~priest~ ( 2 )                                    // adds 2x Cure Light Wounds
 ADD_MEMORIZED_SPELL ~SPPR202~ #1 ~priest~ ( 1 )                                    // adds 1x Barkskin
@@ -815,14 +815,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~BG1700.BCS~ BEGIN                                
   EXTEND_BOTTOM ~BG1700.BCS~  ~atweaks/inlined/baf/fey/rr#chama.baf~              // extend the Cloakwood 4 area script (EET)
 END
 
-ACTION_IF GAME_IS ~iwdee~ BEGIN                                                   // use the proper dimension door animation on IWD:EE
-  COPY_EXISTING ~rr#ddoor.spl~ ~override~                                         // Dimension Door
-                ~rr#ddor2.spl~ ~override~                                         // Dimension Door
-    WRITE_ASCII 0x10 ~#EFF_M09~ #8 // casting sound
-    LPF ALTER_EFFECT INT_VAR check_globals = 0 check_headers = 1 match_opcode = 215 STR_VAR resource = ~DDOORH~ END
-    LPF ALTER_EFFECT INT_VAR check_globals = 0 check_headers = 1 match_opcode = 174 STR_VAR resource = ~#EFF_M09~ END
-  BUT_ONLY
-END
 
 ////////////////////////////////////////
 // Item Revisions
