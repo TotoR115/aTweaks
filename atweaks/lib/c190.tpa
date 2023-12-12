@@ -641,8 +641,8 @@ INT_VAR                                                                         
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "9000"                                                                // new XP value
 "newhp"    = "128"                                                                 // new hit point value
-"newac"    = "7"                                                                   // new Armor Class value
-"newth"    = "10"                                                                   // new THAC0 value
+"newac"    = "3"                                                                   // new Armor Class value
+"newth"    = "5"                                                                   // new THAC0 value
 "newapr"   = "1"                                                                   // new number of attacks per round
 "newsvd"   = "4"                                                                   // new Save vs. Death
 "newsvw"   = "6"                                                                   // new Save vs. Wand
@@ -651,8 +651,8 @@ INT_VAR                                                                         
 "newsvs"   = "7"                                                                   // new Save vs. Spell
 "newlvl1"  = "16"                                                                  // new level (first class)
 "newstr"   = "23"                                                                  // new Strength value
-"newdex"   = "20"                                                                  // new Dexterity value
-"newcon"   = "16"                                                                  // new Constitution value
+"newdex"   = "14"                                                                  // new Dexterity value
+"newcon"   = "14"                                                                  // new Constitution value
 "newint"   = "4"                                                                   // new Intelligence value
 "newwis"   = "6"                                                                   // new Wisdom value
 "newchr"   = "5"                                                                   // new Charisma value
@@ -956,7 +956,8 @@ INT_VAR                                                                         
 "newsvb"   = "12"                                                                  // new Save vs. Breath
 "newsvs"   = "13"                                                                  // new Save vs. Spell
 "newlvl1"  = "8"                                                                   // new level (first class)
-"newstr"   = "16"                                                                  // new Strength value
+"newstr"   = "18"                                                                  // new Strength value
+"newstrx"  = "10"                                                                  // new Exceptional Strength value
 "newdex"   = "17"                                                                  // new Dexterity value
 "newcon"   = "14"                                                                  // new Constitution value
 "newint"   = "14"                                                                  // new Intelligence value
