@@ -319,24 +319,34 @@ ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.spl AND FILE_EXISTS_IN_GAME fl#atfiends2.
   OUTER_SPRINT $crefile(dw#sumyn) fl#nycsu
   OUTER_SPRINT $crefile(dw#sumyu) fl#ultsu
 
-  COPY_EXISTING ~dw#HLBF.eff~ ~override/dw#cacof.eff~
-				~dw#HLco.eff~ ~override/dw#sumgl.eff~
+  COPY_EXISTING ~dw#hlbf.eff~ ~override/dw#cacof.eff~
+				~dw#hlco.eff~ ~override/dw#sumgl.eff~
 				~dw#hlba.eff~ ~override/dw#pitsu.eff~
 
   COPY_EXISTING dw#cacof.spl override
-				dw#sumfi.spl override
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 16 STR_VAR resource = "dw#hlbf" END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 32 STR_VAR resource = "dw#sumya" END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 48 STR_VAR resource = "dw#cacof" END
+    BUT_ONLY IF_EXISTS	
+
+  COPY_EXISTING dw#sumfi.spl override
 				dw#sfc1.spl override
 				dw#sfc2.spl override
-				dw#gatem.spl override
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 16 STR_VAR resource = "dw#hlco" END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 32 STR_VAR resource = "dw#sumyn" END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 48 STR_VAR resource = "dw#sumgl" END
+    BUT_ONLY IF_EXISTS	
+
+  COPY_EXISTING dw#gatem.spl override
 				dw#gatep.spl override
-	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spcaco~ ~dw#cacof~ (8)
-	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spfiend~ ~dw#sumgl~ (8)
-	REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~spgate~ ~dw#pitsu~ (8)
-	
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 16 STR_VAR resource = "dw#pitsu" END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 32 STR_VAR resource = "dw#sumyu" END
+	LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 48 STR_VAR resource = "dw#hlba" END
+    BUT_ONLY IF_EXISTS	
 
   ACTION_FOR_EACH res IN
                   dw#cacof
-                  dw#HLBF
+                  dw#hlbf
                   dw#sumya
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%res%.eff" BEGIN
@@ -348,7 +358,7 @@ ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.spl AND FILE_EXISTS_IN_GAME fl#atfiends2.
 
   ACTION_FOR_EACH res IN
                   dw#sumgl
-                  dw#HLco
+                  dw#hlco
                   dw#sumyn
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%res%.eff" BEGIN
