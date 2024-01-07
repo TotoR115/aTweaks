@@ -291,7 +291,7 @@ DEFINE_PATCH_FUNCTION make_bone_fiend BEGIN
            newxpv
           "newmove"  = "9"                                                             // new movement rate
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
-          "newhp"    = "40"                                                            // new hit point value
+          "newhp"    = (40 + 5)                                                          // new hit point value
           "newac"    = "3"                                                             // new Armor Class value
           "newth"    = "15"                                                            // new THAC0 value
           "newapr"   = "4"                                                             // new number of attacks per round
@@ -379,7 +379,7 @@ DEFINE_PATCH_FUNCTION make_abishai BEGIN
            newxpv
           "newmove"  = "9"                                                             // new movement rate
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
-          "newhp"    = "64"                                                            // new hit point value
+          "newhp"    = (64 + 6)                                                           // new hit point value
           "newac"    = "1"                                                             // new Armor Class value
           "newth"    = "13"                                                            // new THAC0 value
           "newapr"   = "3"                                                             // new number of attacks per round
@@ -460,7 +460,7 @@ DEFINE_PATCH_FUNCTION make_cornugon BEGIN
            newxpv
           "newmove"  = "7"                                                             // new movement rate
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
-          "newhp"    = "80"                                                            // new hit point value
+          "newhp"    = (80 + 20)                                                        // new hit point value
           "newac"    = "-2"                                                            // new Armor Class value
           "newth"    = "11"                                                            // new THAC0 value
           "newapr"   = "2"                                                             // new number of attacks per round
@@ -556,7 +556,7 @@ DEFINE_PATCH_FUNCTION make_gelugon BEGIN
         newxpv
           "rr#ptwf"  = "1"                                                             // perfect two weapon fighting
           "newmove"  = "11"                                                            // new movement rate
-          "newhp"    = "88"                                                            // new hit point value
+          "newhp"    = (88 + 22)                                                          // new hit point value
           "newac"    = "-3"                                                            // new Armor Class value
           "newth"    = "9"                                                             // new THAC0 value
           "newapr"   = "3"                                                             // new number of attacks per round
@@ -643,7 +643,7 @@ DEFINE_PATCH_FUNCTION make_pit_fiend INT_VAR enforce = 0 BEGIN
           "newmove"  = "11"                                                            // new movement rate
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
           "rr#sinv"  = "1"                                                             // See invisible creatures (1 = enable)
-          "newhp"    = "104"                                                           // new hit point value
+          "newhp"    = (104 + 26)                                                          // new hit point value
           "newac"    = "-5"                                                            // new Armor Class value
           "newth"    = "7"                                                             // new THAC0 value
           "newapr"   = "5"                                                             // new number of attacks per round
@@ -1301,7 +1301,7 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
            newxpv
           "newmove"  = "9"                                                             // new movement rate
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
-          "newhp"    = "76"                                                            // new hit point value
+          "newhp"    = (76 + 14)                                                          // new hit point value
           "newac"    = "-5"                                                            // new Armor Class value
           "newth"    = "13"                                                            // new THAC0 value
           "newapr"   = "3"                                                             // new number of attacks per round
@@ -1442,7 +1442,7 @@ DEFINE_PATCH_FUNCTION make_glabrezu BEGIN
            newxpv
           "newmove"  = "11"                                                            // new movement rate
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
-          "newhp"    = "80"                                                            // new hit point value
+          "newhp"    = (80 + 20)                                                             // new hit point value
           "newac"    = "-7"                                                            // new Armor Class value
           "newth"    = "11"                                                            // new THAC0 value
           "newapr"   = "5"                                                             // new number of attacks per round
@@ -1570,7 +1570,7 @@ DEFINE_PATCH_FUNCTION make_marilith BEGIN
           "rr#bsimm" = "1"                                                             // Backstab immunity (1 = enable)
           "rr#bump"  = "1"                                                             // NPC bump (1 = enable)
           "newmove"  = "11"                                                            // new movement rate
-          "newhp"    = "96"                                                            // new hit point value
+          "newhp"    = (96 + 24)                                                        // new hit point value
           "newac"    = "-9"                                                            // new Armor Class value
           "newth"    = "9"                                                             // new THAC0 value
           "newapr"   = "4"                                                             // new number of attacks per round
@@ -1697,7 +1697,7 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
          "rr#bsimm" = "1"                                                              // Backstab immunity (1 = enable)
          "newmove"  = "11"                                                             // new movement rate
          "rr#bump"  = "1"                                                              // NPC bump (1 = enable)
-          "newhp"    = "104"                                                           // new hit point value
+          "newhp"    = (104 + 26)                                                           // new hit point value
           "newac"    = "-8"                                                            // new Armor Class value
           "newth"    = "7"                                                             // new THAC0 value
           "newapr"   = "1"                                                             // new number of attacks per round
@@ -1840,7 +1840,7 @@ DEFINE_PATCH_FUNCTION make_ultroloth BEGIN
     REPLACE_CRE_ITEM fl#yugro #0 #0 #0 ~UNDROPPABLE~ ~ARMOR~
     LAUNCH_PATCH_FUNCTION RR#MDCRE
       INT_VAR
-        "newhp"        = 130
+        "newhp"        = ( 130 + 26 )
         "newac"        = "-8"
         "newth"        = 7
         "newapr"       = 2
@@ -1911,7 +1911,7 @@ DEFINE_PATCH_FUNCTION make_nycaloth BEGIN
 	END 						   													   // Infinity Animation Compatibility (IAv5b)
     LAUNCH_PATCH_FUNCTION RR#MDCRE
       INT_VAR
-        newhp        = 110
+        newhp        = (110 + 22)
         newac        = "-6"
         newth        = 9
         newapr       = 1

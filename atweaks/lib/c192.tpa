@@ -1,0 +1,1220 @@
+//////////////////////////
+// Genies
+//////////////////////////
+
+//////////////
+// New spells
+//////////////
+
+// Whirlwind (Djinn)
+
+COPY ~atweaks/spl/elementals/rr#gdjiw.spl~ ~override~                              // Whirlwind
+SAY NAME1 @2134 SAY NAME2 @2134 SAY UNIDENTIFIED_DESC @2135
+
+// Gust of Wind (Noble Djinn)
+
+COPY ~atweaks/spl/mephits/rr#maigw.spl~ ~override/rr#gaigw.spl~                    // Gust of Wind
+  SAY NAME1 @1850 SAY NAME2 @1850 SAY UNIDENTIFIED_DESC @2140
+  READ_LONG  0x64 "abil_off"
+  READ_SHORT 0x68 "abil_num"
+  FOR ("index" = 0; "%index%" < "%abil_num%"; "index" = ("%index%" + 1)) BEGIN     // cycle through headers
+    WRITE_BYTE ("%abil_off%" + 0x02 + (0x28 * "%index%")) "2"                      // change ability icon location to Wizard (2)
+  END
+
+// Pyrotechnics (Efreet)
+
+COPY_EXISTING ~rr#pyrot.spl~ ~override/rr#pyroe.spl~                               // efreet version of Pyrotechnics
+SAY UNIDENTIFIED_DESC @2150
+READ_LONG  0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+ FOR ("index" = 0; "%index%" < "%abil_num%"; "index" = ("%index%" + 1)) BEGIN      // cycle through headers
+  WRITE_BYTE ("%abil_off%" + 0x02 + (0x28 * "%index%")) "2"                        // change ability icon location to Wizard (2)
+ END
+
+COPY_EXISTING ~rr#pyroe.spl~ ~override/rr#pyren.spl~                               // Noble efreet version of Pyrotechnics at will
+LPF ~RR#SP2IN~ INT_VAR "rr#renew" = "1" END      								   // Execute the "spell to innate ablity" function
+
+// Wall of Fire (Efreet)
+
+COPY ~atweaks/spl/elementals/rr#gwalf.spl~ ~override~                              // Wall of Fire
+  SAY NAME1 #12063 SAY NAME2 #12063 SAY 0x50 #12183
+COPY ~atweaks/bam/elementals/rr#gwofb.bam~ ~override~
+COPY ~atweaks/bam/elementals/rr#gwofc.bam~ ~override~
+COPY ~atweaks/bam/elementals/rr#gwalf.bam~ ~override~
+COPY ~atweaks/vvc/rr#gwalf.vvc~ 		   ~override~
+COPY ~atweaks/wav/elementals/rr#gwofa.wav~ ~override~
+COPY ~atweaks/wav/elementals/rr#gwofb.wav~ ~override~
+
+ADD_PROJECTILE ~atweaks/pro/elementals/rr#gwof.pro~                                // Wall of Fire projectile : emulation of wall
+COPY ~atweaks/spl/elementals/rr#gwof1.spl~ ~override~                              // Wall of Fire damage (2d6) sub-spell
+COPY ~atweaks/spl/elementals/rr#gwof1.eff~ ~override~                              // Wall of Fire damage vs undead
+COPY ~atweaks/spl/elementals/rr#gwof2.spl~ ~override~                              // Wall of Fire damage (2d6) sub-spell
+  READ_LONG  0x64 ab_off
+  READ_SHORT 0x68 ab_num
+  FOR(i=0; i<ab_num; i+=1) BEGIN
+    WRITE_SHORT (ab_off+i*0x28+0x26) ~%rr#gwof%~                                   // use new projectile
+  END
+
+// mirror Image (Djinn)
+
+COPY ~atweaks/spl/elementals/rr#mir20.spl~ ~override~                              // Mirror Image Lv20
+COPY ~atweaks/spl/elementals/rr#mir16.spl~ ~override~                              // Mirror Image Lv16
+
+// Gaz form (genies)
+
+COPY ~atweaks/spl/elementals/rr#gmsgf.spl~ ~override~                                 // Gaseous Form (Ennemy)
+COPY_EXISTING ~helm01.itm~ ~override/rr#gform.itm~
+
+// Rock to mud (Dao)
+
+COPY ~atweaks/spl/elementals/rr#r2mud.spl~ ~override~                              // Rock to mud
+
+// Produce Flame (Efreet)
+
+COPY ~aTweaks/SPL/RR#PFLAM.SPL~ ~override/RR#GPFLA.spl~                            // Produce Flame (spell-like ability) at will
+  SAY NAME1 @673 SAY NAME2 @673 SAY UNIDENTIFIED_DESC @2151
+LPF ~RR#SP2IN~ INT_VAR "rr#rinvs" = "1" "rr#renew" = "1" END      				   // Execute the "spell to innate ablity" function
+
+// Fire Breath (Guardian)
+
+ADD_PROJECTILE ~atweaks/pro/elementals/rr#gfbth.pro~                               // Fire breath projectile
+COPY ~atweaks/spl/elementals/rr#gfbth.spl~ ~override~                              // Fire breath spell
+  SAY NAME1 #44913 SAY NAME2 #44913 SAY UNIDENTIFIED_DESC @2152
+  READ_LONG  0x64 ab_off
+  READ_SHORT 0x68 ab_num
+  FOR(i=0; i<ab_num; i+=1) BEGIN
+    WRITE_SHORT (ab_off+i*0x28+0x26) ~%rr#gfbth%~                                   // use new projectile
+  END
+
+// Detect illusion (Guardian)
+
+COPY ~aTweaks/SPL/RR#DDETI.SPL~ ~override~                                         // Detect Illusion (Guardian)
+
+// Stoneskin (noble Dao - 20th level)
+
+COPY_EXISTING ~atweaks/spl/elementals/rr#gstsk.spl~ override                      // Clone Stoneskin into an innate ability
+
+// Water Jet (Marid)
+
+ADD_PROJECTILE ~atweaks/pro/elementals/rr#gmrwj.pro~                               // Water Jet projectile
+COPY ~atweaks/spl/elementals/rr#gmrwj.spl~ ~override~                              // Water Jet (Marid)
+  READ_LONG  0x64 ab_off
+  READ_SHORT 0x68 ab_num
+  FOR(i=0; i<ab_num; i+=1) BEGIN
+    WRITE_SHORT (ab_off+i*0x28+0x26) ~%rr#gmrwj%~                                  // use new projectile
+  END
+
+
+// Shout
+
+ACTION_IF !FILE_EXISTS_IN_GAME "fl#shout.spl" BEGIN
+COPY "atweaks/bam/fl#shout.bam" "override"
+COPY "atweaks/spl/base.spl" "override/fl#shout.spl"
+  SAY NAME1 @738 //Shout
+  WRITE_ASCII 0x10 ~CAS_M06~ #8 //casting sound
+  WRITE_BYTE  0x19 BIT2 //flags: hostile
+  WRITE_SHORT 0x22 15 //evocation (animation)
+  WRITE_SHORT 0x25 6 //evoker (school)
+  WRITE_BYTE  0x27 11 //disabling (secondary type)
+  LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_Projectile = fl#shout END
+  WRITE_ASCII 0x76 ~fl#shout~ #8 //BAM
+  target = 2
+  power = 4
+  resist_dispel = 1
+  duration = 36
+  savingthrow = 1
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 80 target power resist_dispel duration savingthrow END //Deafness
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 139 target power parameter1 = 14073 resist_dispel timing = 1 savingthrow END //string: deafness
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 142 target power parameter2 = 112 resist_dispel duration savingthrow END //icon: deafness
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 target power parameter2 = 1 resist_dispel duration = 3 savingthrow STR_VAR resource = SPH1HI01 END //visual effect
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 215 target power parameter2 = 1 resist_dispel duration = 3 savingthrow STR_VAR resource = SPHLHI02 END //more visual effects
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 target power parameter2 = 0x400000 resist_dispel timing = 1 dicenumber = 1 dicesize = 6 END //1d6 damage, no save
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 12 target power parameter2 = 0x400000 resist_dispel timing = 1 dicenumber = 1 dicesize = 6 savingthrow END //1d6, with save
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target power duration resist_dispel savingthrow STR_VAR resource = EVAL "%DEST_RES%" END //non-cumulativity if you are deafened
+  LPF RR#SP2IN INT_VAR rr#rinvs = 1 END //General "make innate" treatment (overrides the casting time specified above)
+
+//Patch immunity to fl#shout into silencing and deafening spells, items  
+COPY_EXISTING sppr211.spl  override
+              rr#pr211.spl override
+              spin692.spl  override
+              spin998.spl  override
+              sppr988.spl  override
+              spwi612.spl  override
+              spwish35.spl override
+              spwi223.spl  override
+              misc3l.itm   override
+              sw1h36.itm   override
+              wand19.itm   override
+  LPF add_conditional_immunity INT_VAR f_Condition = 38 STR_VAR f_Spell = fl#shout END
+  LPF add_conditional_immunity INT_VAR f_Condition = 80 STR_VAR f_Spell = fl#shout END
+BUT_ONLY
+END
+
+
+// Clone spells into innate abilities
+
+COPY_EXISTING ~SPPR211.SPL~  ~override/RR#PR211.SPL~                               // Clone Silence 15' Radius into an innate ability (used by Guardian)
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+
+COPY_EXISTING ~SPPR603.SPL~  ~override/RR#PR603.SPL~                               // Clone Blade Barrier into an innate ability (used by Guardian)
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+
+COPY_EXISTING ~SPPR606.SPL~  ~override/rr#gr606.SPL~                               // Clone Fire Seeds into an innate ability (used Efreet)
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1"  END    // Execute the "spell to innate ablity" function
+LAUNCH_PATCH_FUNCTION ALTER_EFFECT INT_VAR silent = 1 match_opcode = 122 opcode = 111  END    // Create weapon to auto replace exisying weapon
+
+COPY_EXISTING ~SPWI206.SPL~  ~override/rr#gi206.SPL~                               // Clone Invisibility into an innate ability (used by Djinn and Efreet)
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ END  								  		       // Execute the "spell to innate ablity" function
+WRITE_BYTE 0x7e 5																   // Target Self
+READ_LONG  0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+ FOR ("index" = 0; "%index%" < "%abil_num%"; "index" = ("%index%" + 1)) BEGIN      // cycle through headers
+  WRITE_BYTE ("%abil_off%" + 0x02 + (0x28 * "%index%")) "2"                        // change ability icon location to Wizard (2)
+ END
+
+COPY_EXISTING ~SPWI212.SPL~  ~override/rr#gi212.SPL~                               // Clone Mirror Image into an innate ability (used by Djinn and Efreet)
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+READ_LONG  0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+ FOR ("index" = 0; "%index%" < "%abil_num%"; "index" = ("%index%" + 1)) BEGIN      // cycle through headers
+  WRITE_BYTE ("%abil_off%" + 0x02 + (0x28 * "%index%")) "2"                        // change ability icon location to Wizard (2)
+ END
+
+COPY_EXISTING ~spwi303.spl~  ~override/rr#gi303.spl~                               // Clone Flame Arrow into an innate ability at will (used by Noble Efreet)
+LPF ~RR#SP2IN~ INT_VAR  "rr#ctime" = "99" "rr#rinvs" = "1" "rr#renew" = "1" END    // Execute the "spell to innate ablity" function
+
+COPY_EXISTING ~spwi418.spl~  ~override/rr#gi418.spl~                               // Clone Fire Shield:Red into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "99" "rr#rinvs" = "1" END 	   				   // Execute the "spell to innate ablity" function
+
+COPY_EXISTING ~spwi506.SPL~  ~override/rr#gi506.SPL~                               // Clone Domination into an innate ability (used by Dao)
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "99" END                     // Execute the "spell to innate ablity" function
+
+COPY_EXISTING ~spwi813.SPL~  ~override/rr#wi813.SPL~                               // Clone Maze into an innate ability (used by Noble Djinn)
+LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+
+//////////////
+// New items
+//////////////
+
+COPY ~atweaks/itm/elementals/rr#genie.itm~ ~override~                              // genie attack
+LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+COPY_EXISTING ~rr#genie.itm~ ~override/rr#gdjin.itm~                               // Djinni attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
+LAUNCH_PATCH_FUNCTION ~air_affinity~ END                                           // grant air affinity bonuses
+COPY_EXISTING ~rr#genie.itm~ ~override/rr#gdao.itm~                                // Dao attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 6 dicenumber = 3 END
+LAUNCH_PATCH_FUNCTION ~earth_affinity~ END                                         // apply earth affinity traits
+COPY_EXISTING ~rr#genie.itm~ ~override/rr#gefrt.itm~                               // Efreeti attack
+  LPF set_enchantment INT_VAR enchantment = 2 END
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 8 dicenumber = 3 END
+LAUNCH_PATCH_FUNCTION ~fire_spell_immunities~ END                                  // grant immunities to fire-based area effect spells
+COPY_EXISTING ~rr#genie.itm~ ~override/rr#gndjn.itm~                               // Noble Djinni attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 8 dicenumber = 3 END
+LAUNCH_PATCH_FUNCTION ~cloud_spell_immunities~ END                                 // grant air (Cloud) spell immunities
+COPY_EXISTING ~rr#gdao.itm~ ~override/rr#gndao.itm~                                // Noble Dao attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 6 dicenumber = 4 END
+COPY_EXISTING ~rr#gefrt.itm~ ~override/rr#gnefr.itm~                               // Noble Efreeti attack
+  LPF set_enchantment INT_VAR enchantment = 4 END
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 8 dicenumber = 4 END
+COPY_EXISTING ~rr#gefrt.itm~ ~override/rr#GGRDR.itm~                               // Guardian 3x attack (2d6)
+  LPF set_enchantment INT_VAR enchantment = 3 END
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 6 dicenumber = 2 END
+LAUNCH_PATCH_FUNCTION charm_immunity END                                           // Charm immunities
+LAUNCH_PATCH_FUNCTION sleep_immunity END                                           // Sleep immunities
+LAUNCH_PATCH_FUNCTION confusion_immunity END                                       // Confusion immunities
+LAF item_labels STR_VAR item = "RR#GGRDR" END
+COPY_EXISTING ~B1-10.itm~ ~override/rr#GGRDL.itm~                                  // Guardian 1x attack (1d10)
+  LPF set_enchantment INT_VAR enchantment = 3 END
+COPY_EXISTING ~rr#genie.itm~ ~override/rr#gmard.itm~                               // Marid attack (4d8)
+  LPF set_enchantment INT_VAR enchantment = 3 END
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 8 dicenumber = 4 END
+COPY_EXISTING ~rr#gmard.itm~ ~override/rr#gnmrd.itm~                               // Noble Marid attack (8d4)
+  LPF set_enchantment INT_VAR enchantment = 5 END
+  LPF ALTER_ITEM_HEADER INT_VAR dicesize = 4 dicenumber = 8 END
+LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
+LAUNCH_PATCH_FUNCTION ~cloud_spell_immunities~ END                                 // grant air (Cloud) spell immunities
+
+//////////////////////////
+// Creature modifications
+//////////////////////////
+
+// Create resources for More sensible encounters
+
+COPY_EXISTING ~ddguard2.cre~ ~override/rr#ggrd2.cre~
+COPY_EXISTING ~ddguard3.cre~ ~override/rr#gnda3.cre~
+COPY_EXISTING ~ddguard4.cre~ ~override/rr#ggrd4.cre~
+COPY_EXISTING ~ddguard5.cre~ ~override/rr#gnef5.cre~
+COPY_EXISTING ~gendao01.cre~ ~override/rr#gndao.cre~
+COPY_EXISTING ~genie02.cre~ ~override/rr#gmard.cre~
+COPY_EXISTING ~genie02.cre~ ~override/rr#gnmrd.cre~
+
+// Genie: Djinni
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            //~aataqah~                                                              // Djinni
+            //~dagenie~                                                              // Djinni
+            // ~djinnisu~                                                             // Djinni
+            ~gendji01~                                                             // Djinni
+            //~idjinni~                                                              // Djinni
+            ~ppdjinn~                                                              // Djinni
+            ~sumdjinn~                                                             // Djinni
+            //~e3invis~                                                          // Djinni (Fade)
+            //~entdjin~                                                              // Djinni (RoT)
+            //~entdjin3~                                                             // Djinni (RoT)
+            //~pladjin~                                                              // Djinni (RoT)
+            //~nshdbud~                                                              // Djinni (Saerileth)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~DW#DJINN~                                                         // removes DW#DJINN.ITM (Stratagems cloudkill immunity)
+ADD_MEMORIZED_SPELL ~rr#mir20~ #0 ~innate~ ( 1 )                                   // adds mirror image
+ADD_MEMORIZED_SPELL ~rr#gi206~ #0 ~innate~ ( 1 )                                   // adds invisibility
+ADD_MEMORIZED_SPELL ~rr#gdjiw~ #0 ~innate~ ( 1 )                                   // adds whirlwind
+ADD_CRE_ITEM ~RR#GDJIN~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 	   // replace default weapon with a more PnP accurate weapon
+PATCH_IF LONG_AT 0x28 = 0x7F06 BEGIN											   // Djinni Leg
+  "newmove"  = "8"                                                                 // new movement rate
+END ELSE BEGIN 
+  "newmove"  = "18"                                                                // new movement rate
+  LAUNCH_PATCH_FUNCTION hover_immunities END                                       // grant immunities to ground-based spells
+END
+LPF minimum_proficiency INT_VAR value = 1 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+newmove
+"newxpv"   = "5000"                                                                // new XP value
+"newhp"    = "59"                                                                  // new hit point value
+"newac"    = "4"                                                                   // new Armor Class value
+"newth"    = "13"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "10"                                                                  // new Save vs. Death
+"newsvw"   = "12"                                                                  // new Save vs. Wand
+"newsvp"   = "11"                                                                  // new Save vs. Polymorph
+"newsvb"   = "12"                                                                  // new Save vs. Breath
+"newsvs"   = "13"                                                                  // new Save vs. Spell
+"newlvl1"  = "7"                                                                   // new level (first class)
+"newstr"   = "20"                                                                  // new Strength value
+"newdex"   = "19"                                                                  // new Dexterity value
+"newcon"   = "15"                                                                  // new Constitution value
+"newint"   = "14"                                                                  // new Intelligence value
+"newwis"   = "17"                                                                  // new Wisdom value
+"newchr"   = "17"                                                                  // new Charisma value
+"newmor"   = "14"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "193"                                                                 // new class (GENIE_DJINNI)
+"newalign" = "49"                                                                  // new alignment (Neutral Good)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = ""                                                           // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#GDJIN"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "DJINNI01"                                                          // generic Djinni AI script
+"script06"   = "SUMDJ01"                                                           // Vanilla Summon Djinni AI script
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script09"   = "DW2MC0GE"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~air_affinity~ END                                             // grant air affinity bonuses
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+ACTION_FOR_EACH file IN // Djinni Summons
+				~sumdjinn~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+    WRITE_LONG 0x14 "0"
+	LPF make_summon END
+	WRITE_ASCII SCRIPT_OVERRIDE "rr#sdjin" #8
+	BUT_ONLY
+  END
+END
+
+
+// Genie: Djinn, Noble
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~gendjn01~                                                             // Noble Djinni
+            ~ppdjinn2~                                                             // Noble Djinni
+            ~caligen3~                                                             // Noble Djinni (TDD)
+			~djinnisu~															   // Djinni (for balance with efreetsu)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~DW#DJINN~                                                         // removes DW#DJINN.ITM (Stratagems cloudkill immunity)
+ADD_MEMORIZED_SPELL ~rr#mir20~ #0 ~innate~ ( 3 )                                   // adds mirror image
+ADD_MEMORIZED_SPELL ~rr#gi206~ #0 ~innate~ ( 3 )                                   // adds invisibility
+ADD_MEMORIZED_SPELL ~rr#gdjiw~ #0 ~innate~ ( 1 )                                   // adds whirlwind
+ADD_MEMORIZED_SPELL ~rr#wi502~ #0 ~innate~ ( 1 )                                   // adds Cloudkill
+ADD_MEMORIZED_SPELL ~rr#gaigw~ #0 ~innate~ ( 1 )                                   // adds gust of wind (zone of sweet air)
+ADD_MEMORIZED_SPELL ~rr#wi813~ #0 ~innate~ ( 1 )                                   // adds windtomb (maze)
+ADD_CRE_ITEM ~RR#GNDJN~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                     // replace default weapon with a more PnP accurate weapon
+LPF minimum_proficiency INT_VAR value = 2 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+PATCH_IF (LONG_AT 0x28 = 0x5FBD OR LONG_AT 0x28 = 0x7F06 OR LONG_AT 0x28 = 0x5FBF OR LONG_AT 0x28 = 0x5FC1 OR LONG_AT 0x28 = 0x5FC3) BEGIN // Genie with Legs
+  "newmove"  = "9"                                                                 // new movement rate
+END ELSE BEGIN 
+  "newmove"  = "24"                                                                // new movement rate
+  LAUNCH_PATCH_FUNCTION hover_immunities END                                       // grant immunities to ground-based spells
+END
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+newmove
+"newxpv"   = "10000"                                                               // new XP value
+"newhp"    = "83"                                                                  // new hit point value
+"newac"    = "1"                                                                   // new Armor Class value
+"newth"    = "9"                                                                   // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "7"                                                                   // new Save vs. Death
+"newsvw"   = "9"                                                                   // new Save vs. Wand
+"newsvp"   = "8"                                                                   // new Save vs. Polymorph
+"newsvb"   = "8"                                                                   // new Save vs. Breath
+"newsvs"   = "10"                                                                  // new Save vs. Spell
+"newlvl1"  = "10"                                                                  // new level (first class)
+"newstr"   = "22"                                                                  // new Strength value
+"newdex"   = "21"                                                                  // new Dexterity value
+"newcon"   = "15"                                                                  // new Constitution value
+"newint"   = "18"                                                                  // new Intelligence value
+"newwis"   = "19"                                                                  // new Wisdom value
+"newchr"   = "19"                                                                  // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "196"                                                                 // new class (GENIE_NOBLE_DJINNI)
+"newalign" = "49"                                                                  // new alignment (Neutral Good)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = ""                                                           	   // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#GNDJN"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "DJINNI04"                                                          // generic Noble Djinni AI script
+"script06"   = "DJINNI01"                                                          // generic Noble Djinni AI script
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script09"   = "CALIGEN3"                                                          // Stratagems melee AI script
+"script10"   = "DW2MC0GE"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~air_affinity~ END                                             // grant air affinity bonuses
+// LAUNCH_PATCH_FUNCTION ~cloud_spell_immunities~ END                                   // grant air (Cloud) spell immunities
+LPF ~ADD_CRE_EFFECT~ INT_VAR opcode = 206 target = 1 timing = 9 parameter1 = 4742 STR_VAR resource = "RR#eairw" END
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+ACTION_FOR_EACH file IN // Djinni Summons
+				~djinnisu~
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+    WRITE_LONG 0x14 "0"
+	LPF make_summon END
+	WRITE_ASCII SCRIPT_OVERRIDE "rr#sdjin" #8
+	BUT_ONLY
+  END
+END
+
+
+// Genie: Dao
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~9xgenie~                                                              // Djinni
+            ~ddguard3~                                                             // Dao ?
+            ~gendao01~                                                             // Dao
+            ~genie1~                                                               // Dao
+            ~genie01~                                                              // Dao
+            ~genie02~                                                              // Dao
+            ~genie03~                                                              // Djinni ?
+            ~genie04~                                                              // Dao
+            ~kgenie1~                                                              // Dao
+            ~kgenie2~                                                              // Dao
+            ~trgeni02~                                                             // Dao
+            ~trgeni03~                                                             // Dao
+            ~genietrv~                                                             // Dao (BP)
+            ~u!kgen~                                                               // Dao (UB)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_MEMORIZED_SPELL ~rr#r2mud~ #0 ~innate~ ( 6 )                                   // adds Rock to Mud
+ADD_MEMORIZED_SPELL ~rr#mir16~ #0 ~innate~ ( 3 )                                   // adds mirror image
+ADD_MEMORIZED_SPELL ~rr#gi206~ #0 ~innate~ ( 3 )                                   // adds invisibility
+ADD_CRE_ITEM ~RR#GDAO~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                      // replace default weapon with a more PnP accurate weapon
+LPF minimum_proficiency INT_VAR value = 1 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+PATCH_IF (LONG_AT 0x28 = 0x5FBD OR LONG_AT 0x28 = 0x7F06 OR LONG_AT 0x28 = 0x5FBF OR LONG_AT 0x28 = 0x5FC1 OR LONG_AT 0x28 = 0x5FC3) BEGIN // Genie with Legs
+  "newmove"  = "7"                                                                 // new movement rate
+END ELSE BEGIN 
+  "newmove"  = "11"                                                                // new movement rate
+  LAUNCH_PATCH_FUNCTION hover_immunities END                                       // grant immunities to ground-based spells
+END
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+newmove
+"newxpv"   = "6000"                                                                // new XP value
+"newhp"    = "67"                                                                  // new hit point value
+"newac"    = "3"                                                                   // new Armor Class value
+"newth"    = "11"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "10"                                                                  // new Save vs. Death
+"newsvw"   = "12"                                                                  // new Save vs. Wand
+"newsvp"   = "11"                                                                  // new Save vs. Polymorph
+"newsvb"   = "12"                                                                  // new Save vs. Breath
+"newsvs"   = "13"                                                                  // new Save vs. Spell
+"newlvl1"  = "8"                                                                   // new level (first class)
+"newstr"   = "19"                                                                  // new Strength value
+"newdex"   = "15"                                                                  // new Dexterity value
+"newcon"   = "18"                                                                  // new Constitution value
+"newint"   = "12"                                                                  // new Intelligence value
+"newwis"   = "16"                                                                  // new Wisdom value
+"newchr"   = "20"                                                                  // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "194"                                                                 // new class (GENIE_DAO)
+"newalign" = "35"                                                                  // new alignment (Neutral Good)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = ""                                                           	   // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#GDAO"                                                           // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "DDGUARD"                                                           // generic Genie AI script (Firkraag's lair)
+"script06"   = "DAO01"                                                             // generic Dao AI script
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~earth_affinity~ END                                         // apply earth affinity traits
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+// Genie: Dao, Noble
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~rr#gndao~                                                             // Dao (atweaks - more sensible enconters)
+            ~rr#gnda3~                                                             // Dao (atweaks - more sensible enconters)
+            ~trgeni01~                                                             // Dao
+            ~gencali1~                                                             // Dao (TDD)
+            ~gencali2~                                                             // Dao (TDD)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_MEMORIZED_SPELL ~rr#r2mud~ #0 ~innate~ ( 6 )                                   // adds Rock to Mud
+ADD_MEMORIZED_SPELL ~rr#mir20~ #0 ~innate~ ( 3 )                                   // adds mirror image
+ADD_MEMORIZED_SPELL ~rr#gi206~ #0 ~innate~ ( 3 )                                   // adds invisibility
+ADD_MEMORIZED_SPELL ~rr#gstsk~ #0 ~innate~ ( 1 )                                   // adds Stoneskin
+ADD_MEMORIZED_SPELL ~rr#gi506~ #0 ~innate~ ( 1 )                                   // adds Domination
+LPF minimum_proficiency INT_VAR value = 2 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+ADD_CRE_ITEM ~RR#GNDAO~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP               	   // replace default weapon with a more PnP accurate weapon
+PATCH_IF "%file%" STRING_EQUAL_CASE ~trgeni01~ BEGIN
+  READ_LONG 0x2bc itm_off
+  READ_LONG 0x2c0 itm_num
+  FOR (i=0;i<"%itm_num%";++i) BEGIN // cycle through items
+	READ_ASCII ("%itm_off%" + 0x14*i ) itm_name
+	PATCH_IF "%itm_name%" STRING_EQUAL_CASE "SW1H23" BEGIN
+      WRITE_LONG ("%itm_off%" + 0x14*i + 0x10) 2 // Not stealable
+	END
+  END
+END
+PATCH_IF (LONG_AT 0x28 = 0x5FBD OR LONG_AT 0x28 = 0x7F06 OR LONG_AT 0x28 = 0x5FBF OR LONG_AT 0x28 = 0x5FC1 OR LONG_AT 0x28 = 0x5FC3) BEGIN // Genie with Legs
+  "newmove"  = "9"                                                                 // new movement rate
+END ELSE BEGIN 
+  "newmove"  = "18"                                                                // new movement rate
+  LAUNCH_PATCH_FUNCTION hover_immunities END                                       // grant immunities to ground-based spells
+END
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+newmove
+"newxpv"   = "11000"                                                               // new XP value
+"newhp"    = "99"                                                                  // new hit point value
+"newac"    = "0"                                                                   // new Armor Class value
+"newth"    = "7"                                                                   // new THAC0 value
+"newapr"   = "2"                                                                   // new number of attacks per round
+"newsvd"   = "8"                                                                   // new Save vs. Death
+"newsvw"   = "10"                                                                  // new Save vs. Wand
+"newsvp"   = "9"                                                                   // new Save vs. Polymorph
+"newsvb"   = "9"                                                                   // new Save vs. Breath
+"newsvs"   = "11"                                                                  // new Save vs. Spell
+"newlvl1"  = "12"                                                                  // new level (first class)
+"newstr"   = "21"                                                                  // new Strength value
+"newdex"   = "15"                                                                  // new Dexterity value
+"newcon"   = "18"                                                                  // new Constitution value
+"newint"   = "16"                                                                  // new Intelligence value
+"newwis"   = "18"                                                                  // new Wisdom value
+"newchr"   = "21"                                                                  // new Charisma value
+"newmor"   = "18"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "194"                                                                 // new class (GENIE_DAO)
+"newalign" = "35"                                                                  // new alignment (Neutral Evil)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = ""                                                           	   // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#GNDAO"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "DDGUARD"                                                           // generic Genie AI script (Firkraag's lair)
+"script06"   = "DAO01"                                                             // generic Dao AI script
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script09"   = "DW2MC0MW"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~earth_affinity~ END                                         // apply earth affinity traits
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+// Genie: Efreet
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~ddguard1~                                                             // Efreeti
+            ~ddguard2~                                                             // Efreeti
+            ~ddguard4~                                                             // Efreeti
+            ~ddguard5~                                                             // Efreeti
+            ~ddguard6~                                                             // Efreeti
+			~efreetsu~                                                             // Efreeti
+            ~genefr01~                                                             // Efreeti
+            ~sumefree~                                                             // Efreeti
+            ~caligen2~                                                             // Efreeti (TDD)
+            //~genogeni~                                                             // Efreeti (TDD)
+            ~salam01~                                                              // Efreeti (TDD)
+            ~salam02~                                                              // Efreeti (TDD)
+            ~salam03~                                                              // Efreeti (TDD)
+            ~salam04~                                                              // Efreeti (TDD)
+            ~salam05~                                                              // Efreeti (TDD)
+            ~salam06~                                                              // Efreeti (TDD)
+            ~uleffy~                                                               // Efreeti (RoT)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_MEMORIZED_SPELL ~rr#gwalf~ #0 ~innate~ ( 1 )                                   // adds Wall of Fire
+ADD_MEMORIZED_SPELL ~rr#gi212~ #0 ~innate~ ( 1 )                                   // adds mirror image
+ADD_MEMORIZED_SPELL ~rr#gi206~ #0 ~innate~ ( 1 )                                   // adds invisibility
+ADD_MEMORIZED_SPELL ~rr#gpfla~ #0 ~innate~ ( 1 )                                   // adds Produce Flame at will
+ADD_MEMORIZED_SPELL ~rr#pyroe~ #0 ~innate~ ( 1 )                                   // adds pyrotechnics at will
+ADD_CRE_ITEM ~RR#GEFRT~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 	   // replace default weapon with a more PnP accurate weapon
+LPF minimum_proficiency INT_VAR value = 2 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+PATCH_IF (LONG_AT 0x28 = 0x5FBD OR LONG_AT 0x28 = 0x7F06 OR LONG_AT 0x28 = 0x5FBF OR LONG_AT 0x28 = 0x5FC1 OR LONG_AT 0x28 = 0x5FC3) BEGIN // Genie with Legs
+  "newmove"  = "8"                                                                 // new movement rate
+END ELSE BEGIN 
+  "newmove"  = "18"                                                                // new movement rate
+  LAUNCH_PATCH_FUNCTION hover_immunities END                                       // grant immunities to ground-based spells
+END
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+newmove
+"newxpv"   = "8000"                                                                // new XP value
+"newhp"    = "80"                                                                  // new hit point value
+"newac"    = "2"                                                                   // new Armor Class value
+"newth"    = "11"                                                                  // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "8"                                                                   // new Save vs. Death
+"newsvw"   = "10"                                                                  // new Save vs. Wand
+"newsvp"   = "9"                                                                   // new Save vs. Polymorph
+"newsvb"   = "9"                                                                   // new Save vs. Breath
+"newsvs"   = "11"                                                                  // new Save vs. Spell
+"newfr"    = "100"                                                                 // new Resist Fire value
+"newlvl1"  = "10"                                                                  // new level (first class)
+"newstr"   = "21"                                                                  // new Strength value
+"newdex"   = "16"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newint"   = "12"                                                                  // new Intelligence value
+"newwis"   = "17"                                                                  // new Wisdom value
+"newchr"   = "17"                                                                  // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "195"                                                                 // new class (GENIE_EFREETI)
+"newalign" = "19"                                                                  // new alignment (Lawful Evil)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = ""                                                           	   // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#GEFRT"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "DDGUARD"                                                           // generic Genie AI script (Firkraag's lair)
+"script06"   = "EFREET01"                                                          // generic Efreet AI script
+"script07"   = "CALIGEN2"                                                          // Stratagems melee AI script
+"script08"   = "SALAMEFR"                                                          // Stratagems melee AI script
+"script09"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script10"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script11"   = "DW2MS0GE"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~fire_spell_immunities~ END                                  // grant immunities to fire-based area effect spells
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+ACTION_FOR_EACH file IN // Efreet Summons
+				~efreetsu~
+				~sumefree~     
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
+    COPY_EXISTING "%file%.cre" override
+    WRITE_LONG 0x14 "0"
+	LPF make_summon END
+	WRITE_ASCII SCRIPT_OVERRIDE "rr#sefrt" #8
+	BUT_ONLY
+  END
+END
+
+// Genie: Efreet, Noble
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~rr#gnef5~                                                             // Noble Efreeti (atweaks - more sensible encounters)
+            // ~hellgen~                                                              // Noble Efreeti - Special case
+            ~genefn01~                                                             // Noble Efreeti
+            ~obsfir01~                                                             // Noble Efreeti
+            ~caligen1~                                                             // Noble Efreeti (TDD)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_MEMORIZED_SPELL ~rr#gwalf~ #0 ~innate~ ( 3 )                                   // adds Wall of Fire
+ADD_MEMORIZED_SPELL ~rr#gi212~ #0 ~innate~ ( 3 )                                   // adds mirror image
+ADD_MEMORIZED_SPELL ~rr#gi206~ #0 ~innate~ ( 3 )                                   // adds invisibility
+ADD_MEMORIZED_SPELL ~rr#gpfla~ #0 ~innate~ ( 1 )                                   // adds Produce Flame at will
+ADD_MEMORIZED_SPELL ~rr#pyren~ #0 ~innate~ ( 1 )                                   // adds pyrotechnics at will
+ADD_MEMORIZED_SPELL ~rr#gi303~ #0 ~innate~ ( 1 )                                   // adds Flame arrows at will
+ADD_MEMORIZED_SPELL ~rr#gr606~ #0 ~innate~ ( 1 )                                   // adds fire seeds
+ADD_MEMORIZED_SPELL ~rr#gi418~ #0 ~innate~ ( 1 )                                   // adds fire shield
+ADD_CRE_ITEM ~RR#GNEFR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 	   // replace default weapon with a more PnP accurate weapon
+LPF minimum_proficiency INT_VAR value = 3 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+PATCH_IF (LONG_AT 0x28 = 0x5FBD OR LONG_AT 0x28 = 0x7F06 OR LONG_AT 0x28 = 0x5FBF OR LONG_AT 0x28 = 0x5FC1 OR LONG_AT 0x28 = 0x5FC3) BEGIN // Genie with Legs
+  "newmove"  = "9"                                                                 // new movement rate
+END ELSE BEGIN 
+  "newmove"  = "24"
+  LAUNCH_PATCH_FUNCTION hover_immunities END                                       // grant immunities to ground-based spells
+END
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+newmove
+"newxpv"   = "11000"                                                               // new XP value
+"newhp"    = "104"                                                                 // new hit point value
+"newac"    = "-1"                                                                  // new Armor Class value
+"newth"    = "7"                                                                   // new THAC0 value
+"newapr"   = "2"                                                                   // new number of attacks per round
+"newsvd"   = "8"                                                                   // new Save vs. Death
+"newsvw"   = "10"                                                                  // new Save vs. Wand
+"newsvp"   = "9"                                                                   // new Save vs. Polymorph
+"newsvb"   = "9"                                                                   // new Save vs. Breath
+"newsvs"   = "11"                                                                  // new Save vs. Spell
+"newfr"    = "100"                                                                 // new Resist Fire value
+"newlvl1"  = "13"                                                                  // new level (first class)
+"newstr"   = "23"                                                                  // new Strength value
+"newdex"   = "16"                                                                  // new Dexterity value
+"newcon"   = "16"                                                                  // new Constitution value
+"newint"   = "16"                                                                  // new Intelligence value
+"newwis"   = "19"                                                                  // new Wisdom value
+"newchr"   = "19"                                                                  // new Charisma value
+"newmor"   = "18"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "197"                                                                 // new class (GENIE_NOBLE_EFREETI)
+"newalign" = "50"                                                                  // new alignment (Chaotic Neutral)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = "hellgen"                                                           // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#GNEFR"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "HELLGEN"                                                           // Vanilla AI script
+"script06"   = "DDGUARD"                                                           // generic Genie AI script (Firkraag's lair)
+"script07"   = "EFREET04"                                                          // generic Efreet AI script
+"script08"   = "CALIGEN1"                                                          // generic Efreet AI script
+"script09"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script10"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script11"   = "DW2MC0GE"                                                          // Stratagems melee AI script
+"skipfile01" = "hellgen"
+END                                                                                // ends FUNCTION call
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~fire_spell_immunities~ END                                  // grant immunities to fire-based area effect spells
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+// Genie: Guardian
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~rr#ggrd2~                                                             // Guardian (atweaks - more sensible enconters)
+            ~rr#ggrd4~                                                             // Guardian (atweaks - more sensible enconters)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+ADD_MEMORIZED_SPELL ~fl#shout~ #0 ~innate~ ( 2 )                                   // adds Shout
+ADD_MEMORIZED_SPELL ~rr#pr211~ #0 ~innate~ ( 2 )                                   // adds Silence (15')
+ADD_MEMORIZED_SPELL ~rr#ddeti~ #0 ~innate~ ( 1 )                                   // adds Detect Invisibility/illusion at will
+ADD_MEMORIZED_SPELL ~rr#pr603~ #0 ~innate~ ( 2 )                                   // adds Blade Barrier
+ADD_MEMORIZED_SPELL ~rr#gfbth~ #0 ~innate~ ( 1 )                                   // adds Breath of fire (360° burning hand)
+ADD_CRE_ITEM ~RR#GGRDR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 	   // replace default weapon with a more PnP accurate weapon
+ADD_CRE_ITEM ~RR#GGRDL~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ 				   		   // 2nd attack
+LPF minimum_proficiency INT_VAR value = 1 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~JANNI_LEGS~)) > 0) BEGIN
+	WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~JANNI_LEGS~))					   // Use Jann animation
+END
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"rr#sinv"  = "1"                                                                   // See invisible creatures (1 = enable)
+"rr#ptwf"  = "1"                                                                   // perfect two weapon fighting (1 = enable)
+"rr#bsimm" = "1"                                                             	   // Backstab immunity
+"newmove"  = "11"                                                                  // new movement rate
+"newxpv"   = "13000"                                                               // new XP value
+"newhp"    = "112"                                                                 // new hit point value
+"newac"    = "-4"                                                                  // new Armor Class value
+"newth"    = "7"                                                                   // new THAC0 value
+"newapr"   = "2"                                                                   // new number of attacks per round (2+1 fighter)
+"newsvd"   = "5"                                                             	   // new Save vs. Death
+"newsvw"   = "7"                                                            	   // new Save vs. Wand
+"newsvp"   = "6"                                                             	   // new Save vs. Polymorph
+"newsvb"   = "5"                                                             	   // new Save vs. Breath
+"newsvs"   = "8"                                                             	   // new Save vs. Spell
+"newmr"    = "25"                                                                  // new Save vs. Spell
+"newfr"    = "100"                                                                 // new Resist Fire value
+"newlvl1"  = "14"                                                                  // new level (first class)
+"newstr"   = "20"                                                                  // new Strength value
+"newdex"   = "14"                                                                  // new Dexterity value
+"newcon"   = "17"                                                                  // new Constitution value
+"newint"   = "14"                                                                  // new Intelligence value
+"newwis"   = "12"                                                                  // new Wisdom value
+"newchr"   = "12"                                                                  // new Charisma value
+"newmor"   = "18"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "2"                                                                   // new class (FIGHTER)
+"newalign" = "19"                                                                  // new alignment (Lawful Evil)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = ""                                                           	   // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#ggrds"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "DDGUARD"                                                           // generic Genie AI script (Firkraag's lair)
+"script06"   = "EFREET01"                                                          // generic Efreet AI script
+"script07"   = "CALIGEN2"                                                          // Stratagems melee AI script
+"script08"   = "SALAMEFR"                                                          // Stratagems melee AI script
+"script09"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script10"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script11"   = "DW2MS0GE"                                                          // Stratagems melee AI script
+"script12"   = "DW2MC0GE"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~fire_spell_immunities~ END                                  // grant immunities to fire-based area effect spells
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+// Genie: Marids
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~rr#gmard~                                                             // Marid (atweaks - more sensible encounters)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+SAY NAME1 #2880 SAY NAME2 #2880                                                    // Genie
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~DW#DJINN~                                                         // removes DW#DJINN.ITM (Stratagems cloudkill immunity)
+ADD_MEMORIZED_SPELL ~spwi203~ #0 ~Wizard~ ( 2 )                                    // adds Detect Invisibility
+ADD_MEMORIZED_SPELL ~spwi206~ #0 ~Wizard~ ( 2 )                                    // adds invisibility
+ADD_MEMORIZED_SPELL ~rr#mmswf~ #0 ~innate~ ( 7 )                                   // adds Wall of Fog
+ADD_MEMORIZED_SPELL ~rr#gmrwj~ #0 ~innate~ ( 1 )                                   // adds Water Jet at will
+ADD_CRE_ITEM ~RR#GMARD~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 	   // replace default weapon with a more PnP accurate weapon
+LPF minimum_proficiency INT_VAR value = 1 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~MARID_LEGS~)) > 0) BEGIN
+	WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~MARID_LEGS~))					   // Use IA marid animation
+END ELSE WRITE_LONG 0x28 0x7F06													   // Use DJINNI_LEGS
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "7"                                                                   // new movement rate
+"newxpv"   = "11000"                                                               // new XP value
+"newhp"    = "104"                                                                 // new hit point value
+"newac"    = "0"                                                                   // new Armor Class value
+"newth"    = "7"                                                                   // new THAC0 value
+"newapr"   = "1"                                                                   // new number of attacks per round
+"newsvd"   = "8"                                                                   // new Save vs. Death
+"newsvw"   = "10"                                                                  // new Save vs. Wand
+"newsvp"   = "9"                                                                   // new Save vs. Polymorph
+"newsvb"   = "9"                                                                   // new Save vs. Breath
+"newsvs"   = "11"                                                                  // new Save vs. Spell
+"newcr"    = "-50"                                                                 // new Resist Fire value
+"newcr"    = "50"                                                                  // new Resist Cold value
+"newmr"    = "25"                                                                  // new Resist Magic value
+"newlvl1"  = "13"                                                                  // new level (first class)
+"newlvl2"  = "26"                                                                  // new level (Second class)
+"newstr"   = "22"                                                                  // new Strength value
+"newdex"   = "21"                                                                  // new Dexterity value
+"newcon"   = "14"                                                                  // new Constitution value
+"newint"   = "19"                                                                  // new Intelligence value
+"newwis"   = "19"                                                                  // new Wisdom value
+"newchr"   = "20"                                                                  // new Charisma value
+"newmor"   = "16"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "7"                                                     			   // new class (F_M)
+"newalign" = "50"                                                                  // new alignment (Chaotic Neutral)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = ""                                                           	   // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#GMARD"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "DJINNI01"                                                          // generic Djinni AI script
+"script06"   = "SUMDJ01"                                                           // Vanilla Summon Djinni AI script
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script09"   = "DW2MC0GE"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+// Genie: Noble Marids
+
+ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
+            ~rr#gnmrd~                                                             // Noble Marid (atweaks - more sensible encounters)
+
+BEGIN                                                                              // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+COPY_EXISTING ~%file%.cre~ ~override~
+LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+// =============================================================================== // the actual work starts from here
+SAY NAME1 #2880 SAY NAME2 #2880                                                    // Genie
+REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
+REMOVE_CRE_ITEM ~DW#DJINN~                                                         // removes DW#DJINN.ITM (Stratagems cloudkill immunity)
+ADD_MEMORIZED_SPELL ~spwi203~ #0 ~Wizard~ ( 4 )                                    // adds Detect Invisibility
+ADD_MEMORIZED_SPELL ~spwi206~ #0 ~Wizard~ ( 4 )                                    // adds invisibility
+ADD_MEMORIZED_SPELL ~rr#mmswf~ #0 ~innate~ ( 12 )                                  // adds Wall of Fog
+ADD_MEMORIZED_SPELL ~rr#echsf~ #0 ~innate~ ( 1 )                                   // adds Solid Fog
+ADD_MEMORIZED_SPELL ~rr#wi503~ #0 ~innate~ ( 1 )                                   // adds 1x Cone of Cold
+ADD_MEMORIZED_SPELL ~rr#gmrwj~ #0 ~innate~ ( 1 )                                   // adds Water Jet at will
+ADD_CRE_ITEM ~RR#GNMRD~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 	   // replace default weapon with a more PnP accurate weapon
+LPF minimum_proficiency INT_VAR value = 2 proficiency = IDS_OF_SYMBOL (stats PROFICIENCYSCIMITARWAKISASHININJATO) END
+PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~MARID~)) > 0) BEGIN
+	WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~MARID~))							   // Use IA marid animation
+END ELSE WRITE_LONG 0x28 0x7F05													   // Use DJINNI
+LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                            // Initialize variables
+"newmove"  = "16"                                                                  // new movement rate
+"newxpv"   = "17000"                                                               // new XP value
+"newhp"    = "128"                                                                 // new hit point value
+"newac"    = "-2"                                                                  // new Armor Class value
+"newth"    = "5"                                                                   // new THAC0 value
+"newapr"   = "2"                                                                   // new number of attacks per round
+"newsvd"   = "4"                                                                   // new Save vs. Death
+"newsvw"   = "6"                                                                   // new Save vs. Wand
+"newsvp"   = "5"                                                                   // new Save vs. Polymorph
+"newsvb"   = "4"                                                                   // new Save vs. Breath
+"newsvs"   = "7"                                                                   // new Save vs. Spell
+"newcr"    = "-100"                                                                // new Resist Fire value
+"newcr"    = "100"                                                                 // new Resist Cold value
+"newmr"    = "50"                                                                  // new Resist Magic value
+"newlvl1"  = "16"                                                                  // new level (first class)
+"newlvl2"  = "30"                                                                  // new level (Second class)
+"newstr"   = "24"                                                                  // new Strength value
+"newdex"   = "22"                                                                  // new Dexterity value
+"newcon"   = "14"                                                                  // new Constitution value
+"newint"   = "20"                                                                  // new Intelligence value
+"newwis"   = "20"                                                                  // new Wisdom value
+"newchr"   = "22"                                                                  // new Charisma value
+"newmor"   = "18"                                                                  // new morale value
+"newgendr" = "1"                                                             	   // new gender (Male)
+"newgen"   = "5"                                                                   // new general (GIANTHUMANOID)
+"newrace"  = "147"                                                                 // new race (GENIE)
+"newclass" = "7"                                                     			   // new class (F_M)
+"newalign" = "50"                                                                  // new alignment (Chaotic Neutral)
+"enforce"  = "1"                                                                   // values are enforced for all creatures
+STR_VAR                                                                            // initialize strings
+"notenf01"   = ""                                                           	   // non-enforced creature 1 (uses best stat values)
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                            // Initialize strings
+"newscript"  = "RR#GNMRD"                                                          // new AI script
+"script01"   = ""                                                                  // first AI script name
+"script02"   = "None"                                                              // second AI script name
+"script03"   = "WTASIGHT"                                                          // generic AI script
+"script04"   = "GENSHT01"                                                          // generic Shout AI script
+"script05"   = "DJINNI01"                                                          // generic Djinni AI script
+"script06"   = "SUMDJ01"                                                           // Vanilla Summon Djinni AI script
+"script07"   = "BPWTASGT"                                                          // Big Picture generic AI script
+"script08"   = "DW2MC3GE"                                                          // Stratagems melee AI script
+"script09"   = "DW2MC0GE"                                                          // Stratagems melee AI script
+END                                                                                // ends FUNCTION call
+LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
+// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+// LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
+// LAUNCH_PATCH_FUNCTION ~cloud_spell_immunities~ END                                 // grant air (Cloud) spell immunities
+// =============================================================================== // the actual work ends here
+BUT_ONLY_IF_IT_CHANGES
+END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                // ends ACTION_FOR_EACH block
+
+
+//////////////////
+// New AI Scripts
+//////////////////
+
+
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GDJIN.baf~                     // Djinni AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNDJN.baf~                     // Noble Djinni AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GDAO.baf~                      // Dao AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNDAO.baf~                     // Noble Dao AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GEFRT.baf~                     // Efreeti AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNEFR.baf~                     // Noble Efreeti AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GGRDS.baf~                     // Guardian AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GMARD.baf~                     // Marid AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#GNMRD.baf~                     // Noble Marid AI script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SDJIN.baf~                     // Summoned Djinni script
+COMPILE EVALUATE_BUFFER ~atweaks/baf/elementals/rr#SEFRT.baf~                     // Summoned Efreeti AI script
+
+////////////////////
+// Revised spells //
+////////////////////
+
+// PnP Conjure Fire elemental for druid should conjure: lesser fire elemental, greater, elder, salamnders or efreeti
+
+
+/////////////////////////////
+// More sensible encounters
+/////////////////////////////
+
+
+<<<<<<<<atweaks/inlined/baf/elementals/bg1500m.baf
+IF
+    Global("rr#spwm01","MYAREA",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spwm01","MYAREA",1)
+        CreateCreature("rr#gmard",[1180.650],11) // Marid (center)
+END
+>>>>>>>>
+
+ACTION_IF GAME_IS ~tutu_totsc~ THEN BEGIN
+  EXTEND_BOTTOM ~fw1500.bcs~  ~atweaks/inlined/baf/elementals/bg1500m.baf~          // extend the Balduran's Isle North area script (Tutu)
+END
+
+ACTION_IF GAME_IS ~bgt~ THEN BEGIN
+  EXTEND_BOTTOM ~arw500.bcs~  ~atweaks/inlined/baf/elementals/bg1500m.baf~          // extend the Balduran's Isle North area script (BGT)
+END
+
+ACTION_IF GAME_IS ~bgee~ BEGIN
+  EXTEND_BOTTOM ~ar1500.bcs~ ~atweaks/inlined/baf/elementals/bg1500m.baf~
+END
+
+ACTION_IF GAME_IS ~eet~ BEGIN
+  EXTEND_BOTTOM ~bg1500.bcs~ ~atweaks/inlined/baf/elementals/bg1500m.baf~          // extend the Balduran's Isle North area script (EET)
+END
+
+<<<<<<<<atweaks/inlined/baf/elementals/ar1700m.baf
+IF
+    Global("rr#spwm01","AR1700",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spwm01","AR1700",1)
+		CreateCreature("rr#gnmrd",[1260.2590],13) // Noble Marid (front)
+																		
+END
+>>>>>>>>
+
+EXTEND_BOTTOM ~ar1700.bcs~  ~atweaks/inlined/baf/elementals/ar1700m.baf~            // extend the Small Teeth Pass area script (BG2)
+
+<<<<<<<<atweaks/inlined/baf/elementals/ar2300m.baf
+IF
+    Global("rr#spwm01","AR2300",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spwm01","AR2300",1)
+        CreateCreature("rr#gnmrd",[2500.1250],13) // Noble Marid (front)
+																		
+END
+>>>>>>>>
+
+EXTEND_BOTTOM ~ar2300.bcs~  ~atweaks/inlined/baf/elementals/ar2300m.baf~            // extend the Sahuagin City area script (BG2)
+
+
+// Replace 2 of the standard Efreets in firkraag's lair with PnP guardians genies, 1 with a noble Efreeti and 1 with a noble Dao
+
+COPY_EXISTING ~ar1202.are~ ~override~                                              // Firkraag's lair
+  READ_LONG  0x54 "actor_off"
+  READ_SHORT 0x58 "actor_num"
+  WHILE ("%actor_num%" > 0) BEGIN
+    SET "actor_num" = ("%actor_num%" - 1)
+    READ_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) "cre_file"
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "DDGUARD2") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#ggrd2~ #8
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "DDGUARD3") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#gnda3~ #8
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "DDGUARD4") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#ggrd4~ #8
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "DDGUARD5") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#gnef5~ #8
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+// Replace the Dao in north forest with Noble Dao, ancian vampires with Noble Efreet and add 2 Greater elementals (fire and earth)
+
+COPY_EXISTING ~ar1800.are~ ~override~                                              // Firkraag's lair
+  READ_LONG  0x54 "actor_off"
+  READ_SHORT 0x58 "actor_num"
+  WHILE ("%actor_num%" > 0) BEGIN
+    SET "actor_num" = ("%actor_num%" - 1)
+    READ_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) "cre_file"
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "VAMANC01") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~GENEFN01~ #8
+	  WRITE_LONG ("%actor_off%" + 0x40 + ("%actor_num%" * 0x110)) "-1"
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "GENDAO01") BEGIN
+      WRITE_ASCII ("%actor_off%" + 0x80 + ("%actor_num%" * 0x110)) ~rr#gndao~ #8
+	  WRITE_LONG ("%actor_off%" + 0x40 + ("%actor_num%" * 0x110)) "-1"
+    END
+    PATCH_IF ("%cre_file%" STRING_EQUAL_CASE "GENEFR01") BEGIN
+	  WRITE_LONG ("%actor_off%" + 0x40 + ("%actor_num%" * 0x110)) "-1"
+    END
+  END
+BUT_ONLY_IF_IT_CHANGES
+
+<<<<<<<<atweaks/inlined/baf/elementals/ar1800.baf
+IF
+    Global("rr#spw01","ar1800",0)
+THEN
+    RESPONSE #100
+        SetGlobal("rr#spw01","ar1800",1)
+        CreateCreature("ELFIRG01",[1352.458],2) // Greater fire elemental (bottom)
+        CreateCreature("ELEARG01",[1433.696],2) // Greater earth elemental (bottom)
+END
+>>>>>>>>
+
+EXTEND_BOTTOM ~ar1800.bcs~  ~atweaks/inlined/baf/elementals/ar1800.baf~            // extend the North forest area script (BG2)
+
+/////////////////////////////
+// Compatibility adjustments
+/////////////////////////////
+
+//////////// Compatibility with IR: script check for CLCK26 and CLCK24 are not sensible, replace them with a fake item
+ACTION_IF MOD_IS_INSTALLED "ITEM_REV.TP2" "0" BEGIN
+  ACTION_FOR_EACH script IN rr#gefrt rr#gnefr BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%script%.bcs~ BEGIN
+      COPY_EXISTING ~%script%.bcs~ ~override~
+	    DECOMPILE_AND_PATCH BEGIN
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+          ~clck26~
+          ~rr#fake~ // I am a bit lazy but this will do the trick and is easier in this case than R_B_B
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+		  ~clck24~
+		  ~rr#fake~ // idem
+	    END
+      BUT_ONLY
+    END
+  END
+END     // ends Item Revisions compatibility block
