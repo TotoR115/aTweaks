@@ -5,11 +5,7 @@
 
 ACTION_IF !FILE_EXISTS_IN_GAME rr#spain.spl BEGIN
   COPY ~aTweaks/SPL/RR#SPAIN.SPL~ ~override~                                         // Symbol Pain
-    READ_LONG  0x64 ab_off
-    READ_SHORT 0x68 ab_num
-    FOR(i=0; i<ab_num; i+=1) BEGIN
-      WRITE_SHORT (ab_off+i*0x28+0x26) %RR#SPAIN%                                    // use new projectile (party friendly)
-    END
+    LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#SPAIN%~ END					 // use new projectile (party friendly)
 END
 
 COPY ~aTweaks/SPL/RR#DLDRN.SPL~ ~override~                                         // Drain Life (Alu-Fiend)
@@ -491,22 +487,14 @@ BUT_ONLY_IF_IT_CHANGES
 COPY ~atweaks/bam/rr#pyrot.bam~ ~override~                                         // Pyrotechnics BAM icon
 COPY ~atweaks/spl/rr#pyrot.spl~ ~override~                                         // Pyrotechnics
   SAY NAME1 @747 SAY NAME2 @747
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#pyrot%                                    // use new projectile (party friendly)
-  END 
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#pyrot%~ END					   // use new projectile
 
 COPY ~atweaks/spl/rr#niinv.spl~ ~override~                                         // Natural Invisibility (for Hellcats)
 
 COPY ~atweaks/bam/rr#icew.bam~ ~override~                                          // Wall of Ice BAM
 COPY ~atweaks/spl/rr#icew.spl~ ~override~                                          // Wall of Ice
   SAY NAME1 @1024 SAY NAME2 @1024
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#icew%                                     // use new projectile
-  END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#icew%~ END					   // use new projectile
 
 
 // Clone spells into innate abilities
@@ -560,27 +548,15 @@ COPY_EXISTING ~SPPR211.SPL~  ~override/RR#PR211.SPL~                            
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPWI811.SPL~  ~override/RR#WI811.SPL~                               // Clone Symbol, Fear into an innate ability (used by Balor)
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %RR#SPAIN%                                    // use new projectile (party friendly)
-  END 
+LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#SPAIN%~ END					   // use new projectile
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPWI816.SPL~  ~override/RR#WI816.SPL~                               // Clone Symbol, Stun into an innate ability (used by Balor)
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %RR#SPAIN%                                    // use new projectile (party friendly)
-  END 
+LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#SPAIN%~ END					   // use new projectile
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPWI817.SPL~  ~override/RR#WI817.SPL~                               // Clone Symbol, Death into an innate ability (used by Balor)
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %RR#SPAIN%                                    // use new projectile (party friendly)
-  END 
+LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#SPAIN%~ END					   // use new projectile
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING spwi112.spl "override/RR#WI112.spl"                                  //Magic Missile
@@ -907,7 +883,7 @@ COPY "atweaks/spl/base.spl" "override/fl#cnefr.spl"
   WRITE_SHORT 0x25 5 //illusion (school)
   WRITE_BYTE  0x27 11 //disabling (secondary type)
   LPF fill_headers END  
-  LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_CastTime = 4 f_Projectile = fl#cnenp END
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 range = 15 speed = 4 projectile = ~%fl#cnenp%~ END
   target = 2
   power = 4
   resist_dispel = 1
@@ -923,9 +899,9 @@ COPY "atweaks/spl/base.spl" "override/fl#cnefr.spl"
   LPF RR#SP2IN INT_VAR rr#rinvs = 1 END //General "make innate" treatment (overrides the casting time specified above)
 
 //Fear, touch  
-COPY_EXISTING fl#cnefr.spl "override/fl#tchfr.spl"
-  LPF configure_spell_header INT_VAR f_Target = 1 f_Range = 1 END
-  
+COPY_EXISTING "fl#cnefr.spl" "override/fl#tchfr.spl"
+  LPF ALTER_SPELL_HEADER INT_VAR target = 1 range = 1 END
+ 
 //Telekinesis
 COPY "atweaks/spl/base.spl" "override/fl#telki.spl"
   SAY NAME1 @731 //Telekinesis
@@ -935,7 +911,7 @@ COPY "atweaks/spl/base.spl" "override/fl#telki.spl"
   WRITE_SHORT 0x25 8 //transmutation (school)
   WRITE_BYTE  0x27 11 //disabling (secondary type)
   LPF fill_headers END
-  LPF configure_spell_header INT_VAR f_CastTime = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 5 END
   target = 2
   power = 5
   resist_dispel = 1
@@ -962,7 +938,7 @@ COPY "atweaks/spl/base.spl" "override/fl#csdis.spl"
   savingthrow = 1
   FOR (f_Header=1;f_Header<=SHORT_AT 0x68;++f_Header) BEGIN
     f_Level = f_Header = 1 ? 1 : 5*(f_Header - 1)
-    LPF configure_spell_header INT_VAR f_Header f_Range = 1 f_Level END
+    LPF ALTER_SPELL_HEADER INT_VAR header = f_Header min_level = f_Level range = 1 speed = 4 projectile = ~%fl#cnenp%~ END
     LPF ADD_SPELL_EFFECT INT_VAR header = f_Header opcode = 78 target power parameter1 = f_Header parameter2 = 4 timing = 1 duration = 1 resist_dispel savingthrow END //Disease: 1 point of STR damage per 3 levels of the caster
     LPF ADD_SPELL_EFFECT INT_VAR header = f_Header opcode = 78 target power parameter1 = 6 parameter2 = 3 timing = 1 duration = 1 resist_dispel savingthrow END //Disease: 1 HP damage/round
   END
@@ -982,7 +958,7 @@ COPY "atweaks/spl/base.spl" "override/fl#mssug.spl"
   WRITE_SHORT 0x25 4  //enchanter (school)
   WRITE_BYTE  0x27 11 //disabling (secondary type)
   LPF fill_headers END
-  LPF configure_spell_header INT_VAR f_Target = 4 f_CastTime = 6 f_Projectile = fl#sight END
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 speed = 6 projectile = ~%fl#sight%~ END
   target = 2
   power = 6
   resist_dispel = 1
@@ -1007,7 +983,7 @@ COPY "atweaks/spl/base.spl" "override/fl#clrsp.spl"
   WRITE_SHORT 0x25 8 //transmuter (school)
   WRITE_BYTE  0x27 11 //disabling (secondary type)
   LPF fill_headers END
-  LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_Projectile = 249 END
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 range = 15 projectile = 249 END
   target = 2
   power = 1
   resist_dispel = 1
@@ -1071,8 +1047,7 @@ COPY "atweaks/spl/base.spl" "override/fl#shout.spl"
   WRITE_SHORT 0x22 15 //evocation (animation)
   WRITE_SHORT 0x25 6 //evoker (school)
   WRITE_BYTE  0x27 11 //disabling (secondary type)
-  LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_Projectile = fl#shout END
-  WRITE_ASCII 0x76 ~fl#shout~ #8 //BAM
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 range = 15 projectile = ~%fl#shout%~ STR_VAR icon = ~fl#shout~ END
   target = 2
   power = 4
   resist_dispel = 1
@@ -1114,7 +1089,7 @@ COPY "atweaks/spl/base.spl" "override/fl#ultgz.spl"
   WRITE_SHORT 0x22 0 //no animation
   WRITE_SHORT 0x25 0 //no school
   WRITE_BYTE  0x27 11 //disabling (secondary type)
-  LPF configure_spell_header INT_VAR f_Projectile = 65 END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = 65 END
   target = 2
   duration = 60
   savingthrow = 1
@@ -1128,7 +1103,7 @@ COPY "atweaks/spl/base.spl" "override/fl#ultgz.spl"
 //The Nycaloths' weapons        
 COPY_EXISTING s1-12m2.itm "override/fl#nyca.itm"
   LPF prep_itm_spl END
-  LPF configure_weapon_header INT_VAR f_Speed = 7 f_ToHit = 7 f_Damage = 3 f_NumDice = 2 f_DieSize = 8 f_DamageType = 3 END
+  LPF ALTER_ITEM_HEADER INT_VAR Speed = 7 thac0_bonus = 7 damage_bonus = 3 dicenumber = 2 dicesize = 8 damage_type = 3 END
   enchantment = 3
   WRITE_LONG 0x60 enchantment 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 233 target = 1 parameter1 = enchantment parameter2 = 109 timing = 2 END //Detectable weapon enchantment
@@ -1136,7 +1111,7 @@ COPY_EXISTING s1-12m2.itm "override/fl#nyca.itm"
 //Ultroloth
 COPY_EXISTING b1-12m4.itm "override/fl#ultr.itm"
   LPF prep_itm_spl END
-  LPF configure_weapon_header INT_VAR f_Speed = 1 f_DamageType = 2 END
+  LPF ALTER_ITEM_HEADER INT_VAR Speed = 1 damage_type = 2 END
   enchantment = 6
   WRITE_LONG 0x60 enchantment
   LPF ADD_ITEM_EFFECT INT_VAR opcode = 12 target = 2 parameter2 = 0x400000 timing = 1 dicenumber = 1 dicesize = 12 type = 1 END //1d12 magical damage
@@ -1147,7 +1122,7 @@ COPY_EXISTING b1-12m4.itm "override/fl#ultr.itm"
 //Arcanaloth 
 COPY_EXISTING b1-12m3.itm "override/fl#arca1.itm"
   LPF prep_itm_spl END
-  LPF configure_weapon_header INT_VAR f_Speed = 2 f_NumDice = 1 f_DieSize = 4 f_DamageType = 3 END
+  LPF ALTER_ITEM_HEADER INT_VAR Speed = 2 dicenumber = 1 dicesize = 4 damage_type = 3 END
   enchantment = 3
   WRITE_LONG 0x60 enchantment
   LPF ADD_ITEM_EFFECT INT_VAR opcode = 278 target = 2 parameter1 = "-1" duration = 2400 type = 1 probability1 = 66 END //-1 to hit for 8 hours, cumulative
@@ -1156,23 +1131,10 @@ COPY_EXISTING b1-12m3.itm "override/fl#arca1.itm"
 
 COPY_EXISTING b1-12m3.itm "override/fl#arca2.itm"
   LPF prep_itm_spl END
-  LPF configure_weapon_header
-    INT_VAR
-      f_Speed = 2
-      f_NumDice = 2
-      f_DieSize = 6
-      f_DamageType = 3
-  END
+  LPF ALTER_ITEM_HEADER INT_VAR Speed = 2 dicenumber = 2 dicesize = 6 damage_type = 3 END
   enchantment = 3
   WRITE_LONG 0x60 enchantment
-  LPF ADD_ITEM_EQEFFECT
-    INT_VAR
-      opcode = 233
-      target = 1
-      parameter1 = enchantment
-      parameter2 = 109
-      timing = 2
-  END
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 233 target = 1 parameter1 = enchantment parameter2 = 109 timing = 2 END
   
 //The robe used by Ultroloths and Arcanaloths
 COPY_EXISTING clck17.itm "override/fl#yugro.itm"

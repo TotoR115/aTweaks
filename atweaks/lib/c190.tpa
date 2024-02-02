@@ -106,19 +106,11 @@ COPY ~atweaks/eff/rr#cnstr.eff~ ~override/rr#dgra2.eff~
 COPY ~atweaks/bam/rr#icew.bam~ ~override~                                          // Wall of Ice BAM
 COPY ~atweaks/spl/rr#icew.spl~ ~override~                                          // Wall of Ice
   SAY NAME1 @1024 SAY NAME2 @1024
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#icew%                                     // use new projectile
-  END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#icew%~ 	END					   // use new projectile
 
 COPY ~atweaks/spl/elementals/rr#enbga.spl~ ~override~                              // Beguiling Aura (part 1)
   SAY NAME1 @2104 SAY NAME2 @2104
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#fcsng%                                    // use new projectile
-  END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#fcsng%~ 	END					   // use new projectile
 
 
 COPY ~atweaks/spl/elementals/rr#enbg2.spl~ ~override~                              // Beguiling Aura (part 2)
@@ -182,11 +174,7 @@ SAY NAME1 @2123 SAY NAME2 @2123 SAY UNIDENTIFIED_DESC @2136
 LPF DELETE_EFFECT INT_VAR match_opcode = 139 END							   	   // Remove string: invisibile - useless
 
 COPY ~atweaks/spl/elementals/rr#equa.spl~ ~override~                               // Earthquake (note: this filename must be 7 characters or less)
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %fl#sight%                                    // use new projectile
-  END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%fl#sight%~ 	END					   // use new projectile
 
 COPY ~atweaks/eff/elementals/rr#eburn.eff~ ~override~                              // Burn immunity EFF (for noncombustible creatures)
 COPY ~atweaks/spl/elementals/rr#eburn.spl~ ~override~                              // Burn (Fire Elemental on-hit effect)
@@ -277,22 +265,14 @@ COPY ~atweaks/spl/elementals/rr#ezafd.spl~ ~override~                           
 COPY ~atweaks/bam/rr#pyrot.bam~ ~override~                                         // Pyrotechnics BAM icon
 COPY ~atweaks/spl/rr#pyrot.spl~ ~override~                                         // Pyrotechnics
   SAY NAME1 @747 SAY NAME2 @747 SAY UNIDENTIFIED_DESC @2150
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#pyrot%                                    // use new projectile (party friendly)
-  END 
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#pyrot%~ 	END					   // use new projectile
 
 // Wall of Fog
 
 COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         // Wall of Fog animation
 COPY ~atweaks/spl/mephits/rr#mmswf.spl~ ~override~                                 // Wall of Fog
   SAY NAME1 @1855 SAY NAME2 @1855
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#cloud%                                    // use new projectile (party friendly)
-  END 
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#cloud%~ 	END					   // use new projectile (party friendly)
 
 
 // Solid Fog
@@ -301,11 +281,7 @@ COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                      
 COPY ~atweaks/spl/elementals/rr#echsf.spl~ ~override~                              // Solid Fog
   SAY NAME1 @2128 SAY NAME2 @2128 SAY UNIDENTIFIED_DESC @2139
   LPF CLONE_EFFECT INT_VAR match_opcode = 158 opcode = 142 parameter2 = 145 END	   // Add Grease icon in character sheets -- it is already there, on protrait thanks to grease overlay...
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#cloud%                                    // use new projectile (party friendly)
-  END 
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#cloud%~ 	END					   // use new projectile (party friendly)
 
 
 // Stun for 3 rounds (Yan-C-Bin on hit effect)
@@ -318,26 +294,11 @@ COPY ~atweaks/spl/elementals/rr#estun.spl~ ~override~                           
 
 COPY ~atweaks/spl/elementals/rr#echww.spl~ ~override~                              // Wind Wall (Chan)
   SAY NAME1 @2209 SAY NAME2 @2209 SAY DESC @2210 SAY UNIDENTIFIED_DESC @2210
-  READ_LONG  0x64 "abil_off"
-  READ_SHORT 0x68 "abil_num"
-  READ_LONG  0x6a "fx_off"
-  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN // cycle through abilities
-    READ_SHORT  ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
-    READ_SHORT  ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
-    FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
-      READ_SHORT ("%fx_off%" +        (0x30 * ("%index2%" + "%abil_fx_idx%"))) "opcode"
-      READ_LONG  ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) "param1"
-        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 2978)) BEGIN // display string: "Gas Cloud"
-          SAY ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) @2130 // Protected from gas-based spells and attacks
-        END
-    END
-  END
-  FOR(i=0; i<abil_num; i+=1) BEGIN
-    WRITE_SHORT (abil_off+i*0x28+0x26) %rr#vrpo%                                     // use new projectile
-  END
-LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 duration = 12 STR_VAR resource = rr#dgrab END
-LPF cloud_spell_immunities END
-LPF insect_spell_immunities END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#vrpo%~ 	END					   // use new projectile (party friendly)
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF(@2130) END	// Protected from gas-based spells and attacks
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 probability1 = 100 duration = 120 STR_VAR resource = rr#dgrab END
+  LPF cloud_spell_immunities END
+  LPF insect_spell_immunities END
 
 
 // Gust of Wind

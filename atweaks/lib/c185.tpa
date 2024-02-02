@@ -32,11 +32,8 @@ COPY ~atweaks/spl/fey/rr#fafrn.spl~ ~override~                                  
 
 COPY ~atweaks/spl/fey/rr#fbbea.spl~ ~override~                                     // Blinding Beauty (part 1)
   SAY NAME1 @1901 SAY NAME2 @1901
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %fl#sight%                                    // use new projectile
-  END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%fl#sight%~ 	END					   // use new projectile
+
 COPY ~atweaks/spl/fey/rr#fbbe2.spl~ ~override~                                     // Blinding Beauty (part 2)
 COPY ~atweaks/eff/fey/rr#fbbea.eff~ ~override~                                     // Blinding Beauty EFF (for targeting only humanoids)
 
@@ -46,11 +43,7 @@ COPY ~atweaks/eff/fey/rr#fchrm.eff~ ~override~                                  
 
 COPY ~atweaks/spl/fey/rr#fcsng.spl~ ~override~                                     // Charming Song (part 1)
   SAY NAME1 @1902 SAY NAME2 @1902
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#fcsng%                                    // use new projectile
-  END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#fcsng%~ 	END					   // use new projectile
 
 COPY ~atweaks/spl/fey/rr#fcsn2.spl~ ~override~                                     // Charming Song (part 2)
 COPY ~atweaks/eff/fey/rr#fcsng.eff~ ~override~                                     // Charming Song EFF 1 (for targeting only humanoids)
@@ -106,11 +99,7 @@ END
 ADD_PROJECTILE ~atweaks/pro/rr#fentg.pro~                                          // New projectile for Entangle (party friendly)
 COPY ~atweaks/eff/fey/rr#fentg.eff~ ~override~                                     // Entangle EFF (for incorporeal and large creature immunity)
 COPY ~atweaks/spl/fey/rr#fentg.spl~ ~override~                                     // Entangle
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#fentg%                                    // use new projectile
-  END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#fentg%~ 	END					   // use new projectile
 
 COPY ~atweaks/spl/fey/rr#fiinv.spl~ ~override~                                     // Improved Invisibility shell spell (use Casting Level 11th)
 COPY_EXISTING ~SPWI405.SPL~  ~override/rr#wi405.spl~                               // Clone Improved Invisibility into an innate ability (used by Sirine)
@@ -121,11 +110,7 @@ ADD_PROJECTILE ~atweaks/pro/rr#ftvap.pro~                                       
 
 COPY ~atweaks/spl/fey/rr#ftvap.spl~ ~override~                                     // Mustard Jelly Toxic Vapors
   SAY NAME1 @1906 SAY NAME2 @1906
-  READ_LONG  0x64 ab_off
-  READ_SHORT 0x68 ab_num
-  FOR(i=0; i<ab_num; i+=1) BEGIN
-    WRITE_SHORT (ab_off+i*0x28+0x26) %rr#ftvap%                                    // use new projectile
-  END
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#ftvap%~ 	END					   // use new projectile
   FOR (i = LONG_AT 0x6a; i < SOURCE_SIZE; i += 0x30) BEGIN
     READ_BYTE  i + 0xc timing
     WRITE_LONG i + 0xe timing = 1 ? 0 : 12 //2 rounds for non-instant effects
