@@ -308,9 +308,9 @@ COPY_EXISTING demnab01.cre ~override/fl#nabsu.cre~
 // have them summon SCSII-aTweaks hybrids
 ACTION_IF FILE_EXISTS_IN_GAME dw#cacof.spl AND FILE_EXISTS_IN_GAME fl#atfiends2.mrk BEGIN
   OUTER_SPRINT $crefile(dw#cacof) fl#nabsu // spcaco
-  OUTER_SPRINT $crefile(dw#HLBF) fl#corsu
+  OUTER_SPRINT $crefile(dw#hlbf) fl#corsu
   OUTER_SPRINT $crefile(dw#sumgl) fl#glasu // spfiend
-  OUTER_SPRINT $crefile(dw#HLco) fl#gelsu
+  OUTER_SPRINT $crefile(dw#hlco) fl#gelsu
   OUTER_SPRINT $crefile(dw#hlba) fl#balsu
   OUTER_SPRINT $crefile(dw#pitsu) fl#pitsu // spgate
   OUTER_SPRINT $crefile(dw#gatem) fl#pitsu
