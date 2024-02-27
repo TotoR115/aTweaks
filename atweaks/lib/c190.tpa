@@ -16,17 +16,17 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~RR#DDOOR.BAM~ THEN BEGIN                     
 END                                                                                // ends ACTION_IF block
 COPY ~atweaks/spl/rr#telwe.spl~ ~override/rr#telwr.spl~                            // Teleport Without Error (renewable)
   SAY UNIDENTIFIED_DESC @2138
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END     // Execute the "spell to innate ablity" function
 
-COPY ~atweaks/spl/rr#niinv.spl~ ~override~                                         // Natural Invisibility
+COPY ~atweaks/spl/rr#niinv.spl~ ~override~                                         // Natural Invisibility - improved invisibility removed: can be targeted by spells and removal of the spurious AC and saving throw penalty
   SAY NAME1 @2100 SAY NAME2 @2100
-  PATCH_IF !GAME_IS ~bgee eet~ BEGIN
-	LPF CLONE_EFFECT INT_VAR match_opcode = 20 match_parameter2 = 1 opcode = 33 parameter2 = 0 parameter1 = 4 timing = 0 END
-	LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 34 END
-	LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 35 END
-	LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 36 END
-	LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 37 END
-  END
+  // PATCH_IF !GAME_IS ~bgee eet~ BEGIN
+	// LPF CLONE_EFFECT INT_VAR match_opcode = 20 match_parameter2 = 1 opcode = 33 parameter2 = 0 parameter1 = 4 timing = 0 END
+	// LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 34 END
+	// LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 35 END
+	// LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 36 END
+	// LPF CLONE_EFFECT INT_VAR match_opcode = 33 opcode = 37 END
+  // END
 
 COPY ~atweaks/spl/elementals/rr#emcbt.spl~ ~override~                              // New Mental Combat spell (used for arcane spellcasters when summoning elementals)
   READ_LONG  0x64 "abil_off"
@@ -317,53 +317,53 @@ COPY ~atweaks/spl/elementals/rr#esuis.spl~ ~override~                           
 // Clone spells into innate abilities
 
 COPY_EXISTING ~spwi103.spl~  ~override/rr#wi103.spl~                               // Clone Burning Hands into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi104.spl~  ~override/rr#ersug.spl~                               // Change Charm Person into renewable Suggestion
   SAY NAME1 @708 SAY NAME2 @708 SAY UNIDENTIFIED_DESC @2137                        // Suggestion
 LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END      // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi213.spl~  ~override/rr#wi213.spl~                               // Clone Stinking Cloud into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi302.spl~  ~override/rr#wr302.spl~                               // Clone Remove Magic into a renewable innate ability
 LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END      // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi303.spl~  ~override/rr#wi303.spl~                               // Clone Flame Arrow into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi304.spl~  ~override/rr#wi304.spl~                               // Clone Fireball into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi306.spl~  ~override/rr#wi306.spl~                               // Clone Hold Person into an innate ability (used by Cryonax)
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi403.spl~  ~override/rr#wi403.spl~                               // Clone Fire Shield:Blue into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi404.spl~  ~override/rr#wi404.spl~                               // Clone Ice Storm into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi404.spl~  ~override/rr#ehyis.spl~                               // Clone Ice Storm into an innate ability (Olhydra's version)
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi408.spl~  ~override/rr#wi408.spl~                               // Clone Stoneskin into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi418.spl~  ~override/rr#wi418.spl~                               // Clone Fire Shield:Red into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi502.spl~  ~override/rr#wi502.spl~                               // Clone Cloudkill into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi503.spl~  ~override/rr#wi503.spl~                               // Clone Cone of Cold into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi604.spl~  ~override/rr#wi604.spl~                               // Clone Flesh to Stone into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~spwi625.spl~  ~override/rr#wi625.spl~                               // Clone Stone to Flesh into an innate ability
-LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 
 
@@ -375,21 +375,21 @@ LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END  
 //////////////
 
 COPY ~atweaks/itm/elementals/rr#etrai.itm~ ~override~                              // elemental traits "helmet" (shared by all Elementals, needs to be a helmet in order to grant critical hit protection)
-LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-LAUNCH_PATCH_FUNCTION ~bleeding_immunity~ END                                      // add bleeding immunity
-LAUNCH_PATCH_FUNCTION ~disease_immunity~ END                                       // add disease immunity
-LAUNCH_PATCH_FUNCTION ~poison_immunity~ END                                        // add poison immunity
-LAUNCH_PATCH_FUNCTION ~poison_spell_immunities~ END                                // add immunity to poison-based spells
-LAUNCH_PATCH_FUNCTION ~insect_spell_immunities~ END                                // add immunity to insect spells
-LAUNCH_PATCH_FUNCTION ~hold_immunity~ END                                          // add hold immunity
-LAUNCH_PATCH_FUNCTION ~stun_immunity~ END                                          // add stun immunity
-LAUNCH_PATCH_FUNCTION ~sleep_immunity~ END                                         // add sleep immunity
+LPF ~extraplanar_traits~ END                                     // add extraplanar traits
+LPF ~bleeding_immunity~ END                                      // add bleeding immunity
+LPF ~disease_immunity~ END                                       // add disease immunity
+LPF ~poison_immunity~ END                                        // add poison immunity
+LPF ~poison_spell_immunities~ END                                // add immunity to poison-based spells
+LPF ~insect_spell_immunities~ END                                // add immunity to insect spells
+LPF ~hold_immunity~ END                                          // add hold immunity
+LPF ~stun_immunity~ END                                          // add stun immunity
+LPF ~sleep_immunity~ END                                         // add sleep immunity
 PATCH_FOR_EACH ~spell~ IN                                                          // creatures without flesh shouldn't be affected by the Flesh to Stone spell
              ~SPWI604~                                                             // Flesh to Stone (wizard version)
              ~SPIN984~                                                             // Flesh to Stone (Beholder ray)
             ~RR#WI604~                                                             // Flesh to Stone (aTweaks)
 BEGIN                                                                              // execute the following
-  LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+  LPF ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
   INT_VAR                                                                          // initialize variables
     "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
     "target" = "1"                                                                 // target: 1 (self)
@@ -401,19 +401,19 @@ BEGIN                                                                           
   STR_VAR                                                                          // initialize strings
     "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
     "effsource" = ""                                                               // effsource: none
-  END                                                                              // ends LAUNCH_PATCH_FUNCTION
+  END                                                                              // ends LPF
 END                                                                                // ends PATCH_FOR_EACH
 BUT_ONLY_IF_IT_CHANGES
 LAF item_labels STR_VAR item = "RR#etrai" END
 
 COPY_EXISTING ~RING95.ITM~ ~override/rr#etrsl.itm~                 				   // fire and noble salamander traits "Ring"
-LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
-LAUNCH_PATCH_FUNCTION ~fire_salamander_immunities~ END                             // add salamander immunities
+LPF ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
+LPF ~fire_salamander_immunities~ END                             // add salamander immunities
 LAF item_labels STR_VAR item = "RR#etrsl" END
 COPY_EXISTING ~RING95.ITM~ ~override/rr#etrfr.itm~                 				   // frost salamander traits "Ring"
-LAUNCH_PATCH_FUNCTION ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
-LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
+LPF ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
+LPF ~extraplanar_traits~ END                                     // add extraplanar traits
+LPF ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
 
 COPY_EXISTING "rr#etrai.itm" ~override/fl#etrsu.itm~                               // As RR#ETRAI, but lacking immunity to Death Spell (for use by summoned elementals)
 			  "rr#etrsl.itm" ~override/rr#etrss.itm~                               // As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
@@ -430,21 +430,21 @@ BUT_ONLY
 
 COPY_EXISTING "rr#etrai.itm" ~override/rr#etrae.itm~                               // As RR#ETRAI, but for air elementals
 			  "fl#etrsu.itm" ~override/fl#etras.itm~                               // As fl#etrsu, but for air elementals
-LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+LPF hover_immunities END                                         // grant immunities to ground-based spells
+LPF air_affinity END                                             // grant air affinity bonuses
 COPY_EXISTING "rr#etrai.itm" ~override/rr#etree.itm~                               // As RR#ETRAI, but for earth elementals
 			  "fl#etrsu.itm" ~override/fl#etres.itm~                               // As fl#etrsu, but for earth elementals
-LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+LPF earth_affinity END                                           // apply earth affinity traits
+LPF entangle_immunities END                                      // grant immunity to entangle spells
+LPF web_immunity END                                             // grant immunity to web spells and effects
 COPY_EXISTING "rr#etrai.itm" ~override/rr#etrfe.itm~                               // As RR#ETRAI, but for fire elementals
 		      "fl#etrsu.itm" ~override/fl#etrfs.itm~                               // As fl#etrsu, but for fire elementals
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+LPF entangle_immunities END                                      // grant immunity to entangle spells
+LPF web_immunity END                                             // grant immunity to web spells and effects
 COPY_EXISTING "rr#etrai.itm" ~override/rr#etrwe.itm~                               // As RR#ETRAI, but for water elementals
 			  "fl#etrsu.itm" ~override/fl#etrws.itm~                               // As fl#etrsu, but for water elementals
-LAUNCH_PATCH_FUNCTION add_water_elemental_effects END
+LPF add_water_elemental_effects END
 
 
 COPY ~atweaks/itm/rr#dinv.itm~  ~override~                                         // item which makes creatures untargetable until the gating animation finishes
@@ -556,7 +556,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 //PATCH_IF NOT MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~5900~ BEGIN // Stratagems remove mental combat but can also be desactivated by concole Command : CLUAConsole:SetGlobal("RR#NOEMC","GLOBAL",1)
 WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                    // assign override AI script
@@ -587,16 +587,16 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion (remove spurious Maze immunity)
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // mark opcode #101 (Protection from Opcode) for deletion (remove spurious Maze immunity)
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 REPLACE_CRE_ITEM ~RR#EASER~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
-REMOVE_CRE_ITEM ~MAGE01~                                                           // initial invisibility is handled via weapon
+// REMOVE_CRE_ITEM ~MAGE01~                                                           // initial invisibility is handled via weapon
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "18"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -626,7 +626,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EASER"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -637,7 +637,7 @@ STR_VAR                                                                         
 "script06"   = "BPWTSIGT"                                                          // Big Picture generic AI script
 "script07"   = "DVMELEE"                                                           // Spell Revisions melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~hover_immunities~ END                                       // grant immunities to ground-based spells
+LPF ~hover_immunities~ END                                       // grant immunities to ground-based spells
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etrsu" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -673,7 +673,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #73254 SAY NAME2 #73255                                                  // Fire Salamander
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -681,7 +681,7 @@ REMOVE_MEMORIZED_SPELLS                                                         
 REPLACE_CRE_ITEM ~RR#EFSAL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#EFSA2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // tail attack
 REPLACE_CRE_ITEM ~RR#etrsl~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "7"                                                                   // new movement rate
 "newxpv"   = "2000"                                                                // new XP value
@@ -715,7 +715,7 @@ INT_VAR                                                                         
 STR_VAR                                                                            // Initialize strings
 "notenf01" = "nthellsa"                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EFSAL"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -735,9 +735,9 @@ STR_VAR                                                                         
 "script15"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
 "skipfile01" = "plysala"                                                           // special case, the Avenger kit Fire Salamander form
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-// LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
-// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LPF ~extraplanar_traits~ END                                     // add extraplanar traits
+// LPF fire_salamander_immunities END                               // grant fire salamander immunities
+// LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~icsalfir~) 
 OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~hgsal01~) 
 OR ("%SOURCE_RES%" STRING_EQUAL_CASE ~plysala~) 
@@ -788,7 +788,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #72145 SAY NAME2 #72146                                                  // Frost Salamander
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -797,7 +797,7 @@ REMOVE_CRE_ITEM ~RING95~                                                        
 REPLACE_CRE_ITEM ~RR#EFRSA~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#EFRS2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // bite attack
 REPLACE_CRE_ITEM ~RR#etrfr~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Frost Salamanders traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "9"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -834,7 +834,7 @@ STR_VAR                                                                         
 "notenf02" = "ntsalmi1"                                                            // non-enforced creature 2 (uses best stat values)
 "notenf03" = "ntsalmi2"                                                            // non-enforced creature 3 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EFRSA"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -851,8 +851,8 @@ STR_VAR                                                                         
 "script12"   = "DW2MP0GE"                                                          // Stratagems melee AI script
 "script13"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-// LAUNCH_PATCH_FUNCTION ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
+// LPF ~extraplanar_traits~ END                                     // add extraplanar traits
+// LPF ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~salgrice~) BEGIN                       // special case, the Frost Salamanders in Abazigal's lair need a diferent script setup
   WRITE_ASCII 0x248 ~DEADABAZ~ #8                                                  // override script (already set in ARE file so we can't use that slot)
   WRITE_ASCII 0x250 ~RR#EFRSA~ #8                                                  // class script
@@ -892,23 +892,23 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_MEMORIZED_SPELL ~rr#track~ #0 ~innate~ ( 1 )                                   // adds 1x Tracking
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 REPLACE_CRE_ITEM ~RR#EISTA~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
-REMOVE_CRE_ITEM ~MAGE01~                                                           // initial invisibility is handled via weapon
+// REMOVE_CRE_ITEM ~MAGE01~                                                           // initial invisibility is handled via weapon (keep and remove from weapon)
 REMOVE_CRE_ITEM ~STALKESU~                                                         // original CRE had two copies of this attack
 REMOVE_CRE_ITEM ~STALKER~                                                          // immunities are handled differently
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "9"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "3000"                                                                // new XP value
 "newhp"    = "64"                                                                  // new hit point value
-"newac"    = "3"                                                                   // new Armor Class value
+"newac"    = "1"                                                                   // new Armor Class value, should be 3 - 2 for natural invisibility
 "newth"    = "13"                                                                  // new THAC0 value
 "newapr"   = "1"                                                                   // new number of attacks per round
 "newsvd"   = "10"                                                                  // new Save vs. Death
@@ -935,7 +935,7 @@ INT_VAR                                                                         
 STR_VAR                                                                            // initialize strings
 "notenf01"   = "gorstalk"                                                          // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EISTA"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -949,7 +949,7 @@ STR_VAR                                                                         
 "script09"   = "DW1MELMO"                                                          // Stratagems melee AI script
 "script10"   = "DW#SUMEI"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~hover_immunities~ END                                       // grant immunities to ground-based spells
+LPF ~hover_immunities~ END                                       // grant immunities to ground-based spells
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etrsu" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -971,7 +971,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -985,7 +985,7 @@ PATCH_IF (("%SOURCE_RES%" STRING_EQUAL_CASE ~SHOAL~) OR ("%SOURCE_RES%" STRING_E
     WRITE_EVALUATED_ASCII 0x250 "None" #8                                          // new class script
    END
 END
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "9"                                                                   // new movement rate
 "newxpv"   = "975"                                                                 // new XP value
@@ -1018,7 +1018,7 @@ STR_VAR                                                                         
 "notenf01"   = "shoal"                                                             // non-enforced creature 1 (uses best stat values)
 "notenf02"   = "_shoal"                                                            // non-enforced creature 2 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 INT_VAR
 "ovrempty" = "3"                                                                   // special case, do not use the override script slot for Nereids because of Shoal
 STR_VAR                                                                            // Initialize strings
@@ -1030,7 +1030,7 @@ STR_VAR                                                                         
 "script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script06"   = "DW2MM0MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
+LPF ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
   INT_VAR
     "opcode" = "232"                                                               // effect: #232 (Cast Spell on Condition)
     "target" = "1"                                                                 // target: 1 (self)
@@ -1044,7 +1044,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_CRE_EFFECT~                                          
     "resource"  = "RR#ENDIS"                                                       // resref: (Nereid's Displacement ability)
     "effsource" = ""                                                               // effsource: none
     END
-LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
+LPF ~extraplanar_traits~ END                                     // add extraplanar traits
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -1061,7 +1061,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -1074,7 +1074,7 @@ ADD_MEMORIZED_SPELL ~rr#enlfr~ #0 ~innate~ ( 1 )                                
 REPLACE_CRE_ITEM ~RR#ENSAL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~RR#ENSA2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // tail attack
 REPLACE_CRE_ITEM ~RR#etrsl~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "14"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -1112,7 +1112,7 @@ STR_VAR                                                                         
 "notenf01"   = "salking"                                                           // non-enforced creature 1 (uses best stat values)
 "notenf02"   = "firesal2"                                                          // non-enforced creature 2 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#ENSAL"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1126,9 +1126,9 @@ STR_VAR                                                                         
 "script09"   = "DW2MP4MO"                                                          // Stratagems melee AI script
 "script10"   = "DW2MP3MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-// LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
-// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LPF ~extraplanar_traits~ END                                     // add extraplanar traits
+// LPF fire_salamander_immunities END                               // grant fire salamander immunities
+// LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etrss" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -1158,14 +1158,14 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 REPLACE_CRE_ITEM ~RR#EWWEI~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "9"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -1199,7 +1199,7 @@ INT_VAR                                                                         
 "newalign" = "51"                                                                  // new alignment (Chaotic Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EWWEI"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1246,7 +1246,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2845 SAY NAME2 #2847                                                    // Lesser Air Elemental
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR_SMALL~))                  // use the proper avatar (ELEMENTAL_AIR_SMALL)
@@ -1257,7 +1257,7 @@ ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EAIRL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "14"                                                                  // new movement rate
 "newxpv"   = "3000"                                                                // new XP value
@@ -1286,7 +1286,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EAIR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1306,8 +1306,8 @@ STR_VAR                                                                         
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script16"   = "WIZELSU2"                                                          // ?? mental combat
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LPF hover_immunities END                                         // grant immunities to ground-based spells
+// LPF air_affinity END                                             // grant air affinity bonuses
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etras" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -1333,7 +1333,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_AIR~))                        // use the proper avatar (ELEMENTAL_AIR)
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~ELAIRSU1~) BEGIN                       // special case, this particular Air Elemental needs to be renamed
@@ -1360,7 +1360,7 @@ ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EAIRR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "36"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -1393,7 +1393,7 @@ STR_VAR                                                                         
 "notenf01"   = "_IRASPEC"                                                          // non-enforced creature 1 (uses best stat values)
 "notenf02"   = "AIRASPEC"                                                          // non-enforced creature 2 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EAIR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1415,8 +1415,8 @@ STR_VAR                                                                         
 "script17"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script18"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LPF hover_immunities END                                         // grant immunities to ground-based spells
+// LPF air_affinity END                                             // grant air affinity bonuses
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etras" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -1444,7 +1444,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2848 SAY NAME2 #2849                                                    // Greater Air Elemental
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~UDAIR~) BEGIN                          // special case, Underdark portal spawn
@@ -1459,7 +1459,7 @@ ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EAIRG~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "36"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -1490,7 +1490,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EAIR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1508,8 +1508,8 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LPF hover_immunities END                                         // grant immunities to ground-based spells
+// LPF air_affinity END                                             // grant air affinity bonuses
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etras" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -1535,7 +1535,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2115 SAY NAME2 @2115                                                    // Elder Air Elemental
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -1546,7 +1546,7 @@ ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EAIRE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "36"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -1579,7 +1579,7 @@ INT_VAR                                                                         
 STR_VAR
 "notenf01" = "li#druai"                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EAIR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1601,8 +1601,8 @@ STR_VAR                                                                         
 "skipfile01"   = "li#druai"
 "skipfile02"   = "AR#ELAIK"
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
+// LPF hover_immunities END                                         // grant immunities to ground-based spells
+// LPF air_affinity END                                             // grant air affinity bonuses
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etras" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -1629,7 +1629,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2850 SAY NAME2 #2851                                                    // Lesser Earth Elemental
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_SMALL~))                // use the proper avatar (ELEMENTAL_EARTH_SMALL)
@@ -1639,7 +1639,7 @@ ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EEARL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "newxpv"   = "2000"                                                                // new XP value
@@ -1668,7 +1668,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EEAR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1689,9 +1689,9 @@ STR_VAR                                                                         
 "script16"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script17"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LPF earth_affinity END                                           // apply earth affinity traits
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -1714,7 +1714,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~) > 0 )) BEGIN			   // Compatibility with IA and ee
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))                // use the IA avatar (ELEMENTAL_EARTH_IWD)
@@ -1725,7 +1725,7 @@ ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EEARR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -1755,7 +1755,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EEAR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1775,9 +1775,9 @@ STR_VAR                                                                         
 "script15"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 "skipfile01" = "SHEARTH"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LPF earth_affinity END                                           // apply earth affinity traits
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -1807,7 +1807,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2853 SAY NAME2 #2856                                                    // Greater Earth Elemental
 WRITE_LONG 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                     // use the proper avatar (ELEMENTAL_EARTH)
@@ -1823,7 +1823,7 @@ ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EEARG~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "7"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -1854,7 +1854,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EEAR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1874,9 +1874,9 @@ STR_VAR                                                                         
 "script15"   = "DW2MC0GE"                                                          // Stratagems melee AI script
 "skipfile01" = "cdidree"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LPF earth_affinity END                                           // apply earth affinity traits
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -1904,7 +1904,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2116 SAY NAME2 @2116                                                    // Elder Earth Elemental
 WRITE_LONG 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                     // use the proper avatar (ELEMENTAL_EARTH)
@@ -1920,7 +1920,7 @@ SPRINT notenf_regexp "^$"
 PATCH_IF FILE_EXISTS_IN_GAME li#druea.itm BEGIN                                    //Do not enforce if Refinements is installed
   SPRINT notenf_regexp DRUEAR01
 END
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "7"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -1953,7 +1953,7 @@ INT_VAR                                                                         
 STR_VAR
   notenf_regexp
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EEAR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -1974,9 +1974,9 @@ STR_VAR                                                                         
 "skipfile01" = "DRUEAR01"                                                          // skip script patching for a designated file
 "skipfile02" = "AR#ELEAK"
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LPF earth_affinity END                                           // apply earth affinity traits
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -2005,7 +2005,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2878 SAY NAME2 #2879                                                    // Lesser Fire Elemental
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_SMALL~))                 // use the proper avatar (ELEMENTAL_FIRE_SMALL)
@@ -2015,7 +2015,7 @@ ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EFIRL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newxpv"   = "2000"                                                                // new XP value
 "newhp"    = "64"                                                                  // new hit point value
@@ -2044,7 +2044,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EFIR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2064,9 +2064,9 @@ STR_VAR                                                                         
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script16"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -2091,7 +2091,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~) > 0 )) BEGIN			   // Compatibility with IA and ee
   WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the IA avatar (ELEMENTAL_FIRE_IWD)
@@ -2102,7 +2102,7 @@ ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EFIRR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "6000"                                                                // new XP value
@@ -2132,7 +2132,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EFIR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2151,9 +2151,9 @@ STR_VAR                                                                         
 "script14"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "SHFIRE"                                                            // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -2207,7 +2207,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2876 SAY NAME2 #2877                                                    // Greater Fire Elemental
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the proper avatar (ELEMENTAL_FIRE)
@@ -2222,7 +2222,7 @@ ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EFIRG~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "10000"                                                               // new XP value
@@ -2253,7 +2253,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EFIR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2275,9 +2275,9 @@ STR_VAR                                                                         
 "skipfile01" = "tg#did5"
 "skipfile02" = "cdidrfe"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -2302,7 +2302,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2117 SAY NAME2 @2117                                                    // Elder Fire Elemental
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE~))					   // use the proper avatar (ELEMENTAL_FIRE)
@@ -2317,7 +2317,7 @@ SPRINT notenf_regexp "^$"
 PATCH_IF FILE_EXISTS_IN_GAME li#drufi.itm BEGIN                                    //Do not enforce DRUFIR01 if Refinements is installed
   SPRINT nonenf_regexp DRUFIR01
 END
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "14000"                                                               // new XP value
@@ -2350,7 +2350,7 @@ INT_VAR                                                                         
 STR_VAR
   notenf_regexp
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EFIR"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2371,9 +2371,9 @@ STR_VAR                                                                         
 "skipfile01" = "DRUFIR01"                                                          // skip script patching for a designated file
 "skipfile02" = "AR#ELFIK"
 END                                                                                // ends FUNCTION call
-// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+// LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
 PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
 REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
@@ -2409,7 +2409,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2126 SAY NAME2 @2126 
 PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER_SMALL~) > 0 )) BEGIN		   // Compatibility with IA and ee
@@ -2422,7 +2422,7 @@ REMOVE_CRE_EFFECTS
 ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
 REPLACE_CRE_ITEM ~RR#EWATL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "newxpv"   = "2000"                                                                // new XP value
@@ -2451,7 +2451,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EWAT"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2482,7 +2482,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 @2119 SAY NAME2 @2119
 PATCH_IF (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_WATER~)>0) BEGIN					   // Compatibility with IA and ee
@@ -2496,7 +2496,7 @@ REMOVE_CRE_EFFECTS
 ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
 REPLACE_CRE_ITEM ~RR#EWATR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -2526,7 +2526,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EWAT"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2559,7 +2559,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY SELECT_COMMON1 @471 SAY BATTLE_CRY1 @471 SAY BATTLE_CRY2 @472 SAY ATTACK1 @473 SAY ATTACK2 @474 SAY DAMAGE @475 SAY DYING @476 SAY SELECT_ACTION1 @477
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~WATER_WEIRD~))			   			   // Forced Use of WATER_WEIRD
@@ -2572,7 +2572,7 @@ REMOVE_CRE_ITEM ~WALLPASS~ ~TG#WEL2~
 ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
 REPLACE_CRE_ITEM ~RR#EWATG~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -2603,7 +2603,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EWAT"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2644,7 +2644,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~WATER_WEIRD~))			   			   // Forced use of WATER_WEIRD
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
@@ -2656,7 +2656,7 @@ REPLACE_CRE_ITEM ~RR#EWATE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP              
 REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
 // ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "14000"                                                               // new XP value
@@ -2688,7 +2688,7 @@ INT_VAR                                                                         
 STR_VAR
 "notenf01" = "li#druwa"                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EWAT"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2718,13 +2718,13 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 ADD_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -2756,14 +2756,14 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EICE"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "DW2MC2MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+LPF cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2778,14 +2778,14 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 ADD_CRE_ITEM ~RR#DINV~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~AMULET~                 // item which makes creatures invisible and untargetable while they gate in
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -2817,7 +2817,7 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EICE"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -2825,7 +2825,7 @@ STR_VAR                                                                         
 "script03"   = "DW2MC2MO"                                                          // Stratagems melee AI script
 "script04"   = "DW2MM0MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+LPF cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2838,13 +2838,13 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -2876,14 +2876,14 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EICE"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "DW2MC2MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+LPF cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2896,13 +2896,13 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 ADD_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -2934,14 +2934,14 @@ INT_VAR                                                                         
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EICE"                                                           // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "DW2MC2MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+LPF cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -2955,7 +2955,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -2972,7 +2972,7 @@ REMOVE_CRE_ITEM ~ELEMPRIN~                                                      
 ADD_CRE_ITEM ~RR#ETRAI~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add elemental traits
 REPLACE_CRE_ITEM ~RR#ECRYO~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "7"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -3008,7 +3008,7 @@ INT_VAR                                                                         
 "newalign" = "35"                                                                  // new alignment (Neutral Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#ECRYO"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -3018,9 +3018,9 @@ STR_VAR                                                                         
 "script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script06"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION petrification_immunity  END                                  // petrification immunity
-LAUNCH_PATCH_FUNCTION cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
-LAUNCH_PATCH_FUNCTION clear_bg1_profs  END                                         // Clear BG1 proficiencies
+LPF petrification_immunity  END                                  // petrification immunity
+LPF cold_spell_immunities END                                    // grant immunities to cold-based area effect spells
+LPF clear_bg1_profs  END                                         // Clear BG1 proficiencies
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -3034,7 +3034,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -3050,7 +3050,7 @@ REMOVE_CRE_ITEM ~ELEMPRIN~                                                      
 ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
 REPLACE_CRE_ITEM ~RR#EIMIX~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "14"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -3086,7 +3086,7 @@ INT_VAR                                                                         
 "newalign" = "35"                                                                  // new alignment (Neutral Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EIMIX"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -3096,12 +3096,12 @@ STR_VAR                                                                         
 "script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script06"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
-LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
-// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
-LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LPF petrification_immunity END                                   // petrification immunity
+// LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
+LPF clear_bg1_profs END                                          // Clear BG1 proficiencies
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -3115,7 +3115,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -3131,7 +3131,7 @@ REMOVE_CRE_ITEM ~ELEMPRIN~                                                      
 ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
 REPLACE_CRE_ITEM ~RR#EOGRE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "7"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -3168,7 +3168,7 @@ INT_VAR                                                                         
 "newalign" = "35"                                                                  // new alignment (Neutral Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EOGRE"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -3178,13 +3178,13 @@ STR_VAR                                                                         
 "script05"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 "script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "16" END      // remove spurious haste opcode
-// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "16" END      // remove spurious haste opcode
+// LPF earth_affinity END                                           // apply earth affinity traits
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
+LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+LPF clear_bg1_profs END                                          // Clear BG1 proficiencies
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -3198,7 +3198,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -3214,7 +3214,7 @@ REMOVE_CRE_ITEM ~ELEMPRIN~                                                      
 ADD_CRE_ITEM ~RR#ETRWE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add water elemental traits
 REPLACE_CRE_ITEM ~RR#EHYDR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -3251,7 +3251,7 @@ INT_VAR                                                                         
 "newalign" = "35"                                                                  // new alignment (Neutral Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EHYDR"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -3261,10 +3261,10 @@ STR_VAR                                                                         
 "script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script06"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
-LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LPF entangle_immunities END                                      // grant immunity to entangle spells
+LPF web_immunity END                                             // grant immunity to web spells and effects
+LPF clear_bg1_profs END                                          // Clear BG1 proficiencies
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -3279,7 +3279,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -3293,7 +3293,7 @@ REMOVE_CRE_ITEM ~ELEMPRIN~                                                      
 ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add air elemental traits
 REPLACE_CRE_ITEM ~RR#EYANC~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "48"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -3330,7 +3330,7 @@ INT_VAR                                                                         
 "newalign" = "35"                                                                  // new alignment (Neutral Evil)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EYANC"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -3340,13 +3340,13 @@ STR_VAR                                                                         
 "script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script06"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
-LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
-// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
-LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
-LAUNCH_PATCH_FUNCTION missile_weapon_immunity END                                  // missile weapon immunity
-LAUNCH_PATCH_FUNCTION cloud_spell_immunities END                                   // grant immunities to gas-based area effect spells
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LPF clear_bg1_profs END                                          // Clear BG1 proficiencies
+// LPF hover_immunities END                                         // grant immunities to ground-based spells
+// LPF air_affinity END                                             // grant air affinity bonuses
+LPF petrification_immunity END                                   // petrification immunity
+LPF missile_weapon_immunity END                                  // missile weapon immunity
+LPF cloud_spell_immunities END                                   // grant immunities to gas-based area effect spells
 WRITE_SHORT 0x4c "-99"                                                             // special case, AC vs. missile weapons modifier
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -3366,7 +3366,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -3386,7 +3386,7 @@ ADD_CRE_ITEM ~RR#ETRAE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#ECHAN~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "48"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -3423,7 +3423,7 @@ INT_VAR                                                                         
 STR_VAR                                                                            // Initialize strings
 "notenf01" = "AR#AIRGD"
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#ECHAN"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -3437,12 +3437,12 @@ STR_VAR                                                                         
 "script09"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 "skipfile01" = "AR#AIRGD"
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
-LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
-// LAUNCH_PATCH_FUNCTION hover_immunities END                                         // grant immunities to ground-based spells
-// LAUNCH_PATCH_FUNCTION air_affinity END                                             // grant air affinity bonuses
-LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
-LAUNCH_PATCH_FUNCTION cloud_spell_immunities END                                   // grant immunities to gas-based area effect spells
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LPF clear_bg1_profs END                                          // Clear BG1 proficiencies
+// LPF hover_immunities END                                         // grant immunities to ground-based spells
+// LPF air_affinity END                                             // grant air affinity bonuses
+LPF petrification_immunity END                                   // petrification immunity
+LPF cloud_spell_immunities END                                   // grant immunities to gas-based area effect spells
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -3458,7 +3458,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -3474,7 +3474,7 @@ ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#ESUNN~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "newmove"  = "7"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
@@ -3513,7 +3513,7 @@ INT_VAR                                                                         
 STR_VAR                                                                            // Initialize strings
 "notenf01" = "AR#EARGD"                                                            // non-enforced creature 1 (uses best stat values)                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#ESUNN"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -3526,12 +3526,12 @@ STR_VAR                                                                         
 "script08"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "AR#EARGD"
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
-LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
-// LAUNCH_PATCH_FUNCTION earth_affinity END                                           // apply earth affinity traits
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
-LAUNCH_PATCH_FUNCTION petrification_immunity END                                   // petrification immunity
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+LPF clear_bg1_profs END                                          // Clear BG1 proficiencies
+// LPF earth_affinity END                                           // apply earth affinity traits
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
+LPF petrification_immunity END                                   // petrification immunity
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -3547,7 +3547,7 @@ ACTION_FOR_EACH ~file~ IN                                                       
 BEGIN                                                                              // execute the following
 ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -3564,7 +3564,7 @@ ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         
 REPLACE_CRE_ITEM ~RR#EZAAM~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
 ADD_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                              // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LAUNCH_PATCH_FUNCTION ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
+LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
 INT_VAR                                                                            // Initialize variables
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "rr#sinv"  = "1"                                                                   // See invisible creatures (1 = enable)
@@ -3601,7 +3601,7 @@ INT_VAR                                                                         
 STR_VAR                                                                            // Initialize strings
 "notenf01" = "AR#FIRGD"                                                            // non-enforced creature 1 (uses best stat values)
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
 STR_VAR                                                                            // Initialize strings
 "newscript"  = "RR#EZAAM"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
@@ -3614,11 +3614,11 @@ STR_VAR                                                                         
 "script08"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "skipfile01" = "AR#FIRGD"
 END                                                                                // ends FUNCTION call
-LAUNCH_PATCH_FUNCTION ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
-// LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-// LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-// LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
-LAUNCH_PATCH_FUNCTION clear_bg1_profs END                                          // Clear BG1 proficiencies
+LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
+// LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+// LPF entangle_immunities END                                      // grant immunity to entangle spells
+// LPF web_immunity END                                             // grant immunity to web spells and effects
+LPF clear_bg1_profs END                                          // Clear BG1 proficiencies
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
@@ -3687,21 +3687,21 @@ COPY ~atweaks/itm/elementals/rr#eshfe.itm~ ~override~                           
      ~atweaks/itm/elementals/rr#eshfr.itm~ ~override~                              // Shapechange Fire Elemental attack
      ~atweaks/itm/elementals/rr#eshee.itm~ ~override~                              // Druid Earth Elemental transformation attack
      ~atweaks/itm/elementals/rr#esher.itm~ ~override~                              // Shapechange Earth Elemental attack
-LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-LAUNCH_PATCH_FUNCTION ~bleeding_immunity~ END                                      // add bleeding immunity
-LAUNCH_PATCH_FUNCTION ~disease_immunity~ END                                       // add disease immunity
-LAUNCH_PATCH_FUNCTION ~poison_immunity~ END                                        // add poison immunity
-LAUNCH_PATCH_FUNCTION ~poison_spell_immunities~ END                                // add immunity to poison-based spells
-LAUNCH_PATCH_FUNCTION ~insect_spell_immunities~ END                                // add immunity to insect spells
-LAUNCH_PATCH_FUNCTION ~hold_immunity~ END                                          // add hold immunity
-LAUNCH_PATCH_FUNCTION ~stun_immunity~ END                                          // add stun immunity
-LAUNCH_PATCH_FUNCTION ~sleep_immunity~ END                                         // add sleep immunity
+LPF ~extraplanar_traits~ END                                     // add extraplanar traits
+LPF ~bleeding_immunity~ END                                      // add bleeding immunity
+LPF ~disease_immunity~ END                                       // add disease immunity
+LPF ~poison_immunity~ END                                        // add poison immunity
+LPF ~poison_spell_immunities~ END                                // add immunity to poison-based spells
+LPF ~insect_spell_immunities~ END                                // add immunity to insect spells
+LPF ~hold_immunity~ END                                          // add hold immunity
+LPF ~stun_immunity~ END                                          // add stun immunity
+LPF ~sleep_immunity~ END                                         // add sleep immunity
 PATCH_FOR_EACH ~spell~ IN                                                          // creatures without flesh shouldn't be affected by the Flesh to Stone spell
              ~SPWI604~                                                             // Flesh to Stone (wizard version)
              ~SPIN984~                                                             // Flesh to Stone (Beholder ray)
             ~RR#WI604~                                                             // Flesh to Stone (aTweaks)
 BEGIN                                                                              // execute the following
-  LAUNCH_PATCH_FUNCTION ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
+  LPF ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
   INT_VAR                                                                          // initialize variables
     "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
     "target" = "1"                                                                 // target: 1 (self)
@@ -3713,20 +3713,20 @@ BEGIN                                                                           
   STR_VAR                                                                          // initialize strings
     "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
     "effsource" = ""                                                               // effsource: none
-  END                                                                              // ends LAUNCH_PATCH_FUNCTION
+  END                                                                              // ends LPF
 END                                                                                // ends PATCH_FOR_EACH
 
 COPY_EXISTING ~rr#eshfe.itm~ ~override~                                            // Druid Fire Elemental transformation attack
               ~rr#eshfr.itm~ ~override~                                            // Shapechange Fire Elemental attack
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LAUNCH_PATCH_FUNCTION entangle_immunities END                                      // grant immunity to entangle spells
-LAUNCH_PATCH_FUNCTION web_immunity END                                             // grant immunity to web spells and effects
+LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+LPF entangle_immunities END                                      // grant immunity to entangle spells
+LPF web_immunity END                                             // grant immunity to web spells and effects
 
 
 COPY ~atweaks/itm/elementals/rr#eshsa.itm~ ~override~                              // Avenger kit Fire Salamander transformation attack
-LAUNCH_PATCH_FUNCTION ~extraplanar_traits~ END                                     // add extraplanar traits
-LAUNCH_PATCH_FUNCTION fire_salamander_immunities END                               // grant fire salamander immunities
-LAUNCH_PATCH_FUNCTION fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
+LPF ~extraplanar_traits~ END                                     // add extraplanar traits
+LPF fire_salamander_immunities END                               // grant fire salamander immunities
+LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 
 
 ACTION_FOR_EACH file IN
@@ -3770,47 +3770,16 @@ END
 // Remove Breathe Fireball ability from Fire Salamanders
 
 COPY_EXISTING ~spcl634.spl~ ~override~                                             // Shapeshifts Fire Salamander
-  READ_LONG  0x64 "abil_off"
-  READ_SHORT 0x68 "abil_num"
-  READ_LONG  0x6a "fx_off"
-  SET "delta" = 0
-  FOR ("index" = 0; "%index%" < "%abil_num%"; "index" = ("%index%" + 1)) BEGIN // loop through abilities
-    READ_SHORT  ("%abil_off%" + 0x1e + ("%index%" * 0x28)) "abil_fx_num"
-    READ_SHORT  ("%abil_off%" + 0x20 + ("%index%" * 0x28)) "abil_fx_idx"
-    SET "abil_fx_idx" = ("%abil_fx_idx%" + "%delta%")
-    WRITE_SHORT ("%abil_off%" + 0x20 + ("%index%" * 0x28)) "abil_fx_idx"
-    FOR ("index2" = 0; "%index2%" < "%abil_fx_num%"; "index2" = ("%index2%" + 1)) BEGIN
-      READ_SHORT ("%fx_off%" +        (0x30 * ("%abil_fx_idx%" + "%index2%"))) "opcode"
-      READ_ASCII ("%fx_off%" + 0x14 + (0x30 * ("%abil_fx_idx%" + "%index2%"))) "resref"
-      PATCH_IF ((("%opcode%" = 171) OR ("%opcode%" = 172)) AND ("%resref%" STRING_EQUAL_CASE ~SPIN160~)) BEGIN  // effect #171 or #171
-        DELETE_BYTES ("%fx_off%" +        (0x30 * ("%abil_fx_idx%" + "%index2%"))) 0x30 // delete effect
-        SET "abil_fx_num" = ("%abil_fx_num%" - 1)
-        SET "index2" = ("%index2%" - 1)
-        SET "delta" = ("%delta%" - 1)
-      END
-    END
-    WRITE_SHORT ("%abil_off%" + 0x1e + ("%index%" * 0x28)) "%abil_fx_num%"
-  END
+  SAY 0x50 @2215
+  LPF DELETE_SPELL_EFFECT INT_VAR match_opcode = 171 END
+  LPF DELETE_SPELL_EFFECT INT_VAR match_opcode = 171 STR_VAR match_resource = "SPIN160" END
   BUT_ONLY_IF_IT_CHANGES
 
 
 ACTION_IF FILE_EXISTS_IN_GAME ~sppr732.spl~ BEGIN
 COPY_EXISTING ~sppr732.spl~ ~override~                                             // Earth Elemental Transformation
-READ_LONG  0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-READ_LONG  0x6a "fx_off"
-  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN // cycle through abilities
-    READ_SHORT  ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
-    READ_SHORT  ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
-    FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
-      READ_SHORT ("%fx_off%" +        (0x30 * ("%index2%" + "%abil_fx_idx%"))) "opcode"
-      READ_ASCII ("%fx_off%" + 0x14 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) "resref"
-      PATCH_IF ("%opcode%" = 111 AND "%resref%" STRING_EQUAL_CASE ~DRUEAR~) BEGIN  // effect #111: Create Magical Weapon
-       WRITE_ASCII ("%fx_off%" + 0x14 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) "rr#eshee" #8 // use aTweaks' item
-      END
-    END
-  END
-LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+LPF ALTER_SPELL_EFFECT INT_VAR match_opcode = 111 STR_VAR match_resource = "DRUEAR" resource = "rr#eshee" END
+LPF ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
   INT_VAR                                                                          // initialize variables
     "opcode" = "171"                                                               // effect: #171 (Give Innate Ability)
     "target" = "1"                                                                 // target: 1 (self)
@@ -3821,7 +3790,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                        
   STR_VAR
     "resource"  = "rr#equa"                                                        // resref
     "effsource" = ""                                                               // effsource: none
-END                                                                                // ends LAUNCH_PATCH_FUNCTION
+END                                                                                // ends LPF
 END
 
 
@@ -3834,7 +3803,7 @@ PATCH_FOR_EACH ~weapon~ IN                                                      
              ~rr#eshee~                                                            // Elder Earth Elemental
              ~rr#eshfe~                                                            // Elder Fire Elemental
 BEGIN
-LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+LPF ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
   INT_VAR                                                                          // initialize variables
     "opcode" = "112"                                                               // effect: #112 (Remove Item)
     "target" = "1"                                                                 // target: 1 (self)
@@ -3845,9 +3814,9 @@ LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                        
   STR_VAR
     "resource"  = EVALUATE_BUFFER "%weapon%"                                       // resref
     "effsource" = ""                                                               // effsource: none
-END                                                                                // ends LAUNCH_PATCH_FUNCTION
+END                                                                                // ends LPF
 END                                                                                // ends PATCH_FOR_EACH
-LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+LPF ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
   INT_VAR                                                                          // initialize variables
     "opcode" = "172"                                                               // effect: #172 (Remove Spell)
     "target" = "1"                                                                 // target: 1 (self)
@@ -3858,7 +3827,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                        
   STR_VAR
     "resource"  = "rr#equa"                                                        // resref
     "effsource" = ""                                                               // effsource: none
-END                                                                                // ends LAUNCH_PATCH_FUNCTION
+END                                                                                // ends LPF
 
 
 COPY_EXISTING ~spin151.spl~ ~override~                                             // Shapeshifts Natural Form
@@ -3868,7 +3837,7 @@ PATCH_FOR_EACH ~weapon~ IN                                                      
              ~rr#eshfr~                                                            // Fire Elemental
              ~rr#eshsa~                                                            // Fire Salamander
 BEGIN
-LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+LPF ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
   INT_VAR                                                                          // initialize variables
     "opcode" = "112"                                                               // effect: #112 (Remove Item)
     "target" = "1"                                                                 // target: 1 (self)
@@ -3879,7 +3848,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                        
   STR_VAR
     "resource"  = EVALUATE_BUFFER "%weapon%"                                       // resref
     "effsource" = ""                                                               // effsource: none
-END                                                                                // ends LAUNCH_PATCH_FUNCTION
+END                                                                                // ends LPF
 END                                                                                // ends PATCH_FOR_EACH
 
 
@@ -4223,7 +4192,7 @@ DEFINE_ASSOCIATIVE_ARRAY es_hla BEGIN
       90,        0    =>   RR#ESWG                                                 // Greater Elementals
 END                                                                                // ends DEFINE_ASSOCIATIVE_ARRAY
 PHP_EACH es_hla AS value  => resref BEGIN
-LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+LPF ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
   INT_VAR                                                                          // initialize variables
     "opcode" = "146"                                                               // effect: #146 (Cast Spell at Target)
     "target" = "1"                                                                 // target
@@ -4237,7 +4206,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                        
   STR_VAR
     "resource"  =  EVALUATE_BUFFER "%resref%"                                      // resref
     "effsource" = ""                                                               // effsource: none
-END                                                                                // ends LAUNCH_PATCH_FUNCTION
+END                                                                                // ends LPF
 END                                                                                // ends PHP_EACH
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = SPPR723 END
 
@@ -4253,7 +4222,7 @@ DEFINE_ASSOCIATIVE_ARRAY ges_hla BEGIN
       33,        0    =>   SUMZAAM                                                 // Zaaman Rul
 END                                                                                // ends DEFINE_ASSOCIATIVE_ARRAY
 PHP_EACH ges_hla AS value  => resref BEGIN
-LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+LPF ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
   INT_VAR                                                                          // initialize variables
     "opcode" = "177"                                                               // effect: #177 (Use EFF File)
     "target" = "1"                                                                 // target
@@ -4267,7 +4236,7 @@ LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                        
   STR_VAR
     "resource"  =  EVALUATE_BUFFER "%resref%"                                      // resref
     "effsource" = ""                                                               // effsource: none
-END                                                                                // ends LAUNCH_PATCH_FUNCTION
+END                                                                                // ends LPF
 END                                                                                // ends PHP_EACH
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = SPPR724 END
 
@@ -4287,7 +4256,7 @@ ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN				   // Com
       90,        0    =>   RR#ESWG                                                   // Greater Elementals
   END                                                                                // ends DEFINE_ASSOCIATIVE_ARRAY
   PHP_EACH es_hla AS value  => resref BEGIN
-  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+  LPF ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
    INT_VAR                                                                           // initialize variables
     "opcode" = "146"                                                                 // effect: #146 (Cast Spell at Target)
     "target" = "1"                                                                   // target
@@ -4301,7 +4270,7 @@ ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN				   // Com
    STR_VAR
     "resource"  =  EVALUATE_BUFFER "%resref%"                                        // resref
     "effsource" = ""                                                                 // effsource: none
-   END                                                                               // ends LAUNCH_PATCH_FUNCTION
+   END                                                                               // ends LPF
   END                                                                                // ends PHP_EACH
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = EVAL ~%hla_ES%~ END
   
@@ -4317,7 +4286,7 @@ ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN				   // Com
       33,        0    =>   SUMZAAM                                                   // Zaaman Rul
   END                                                                                // ends DEFINE_ASSOCIATIVE_ARRAY
   PHP_EACH ges_hla AS value  => resref BEGIN
-  LAUNCH_PATCH_FUNCTION ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
+  LPF ~ADD_SPELL_EFFECT~                                           // Start FUNCTION call (add Spell Effect)
    INT_VAR                                                                           // initialize variables
     "opcode" = "177"                                                                 // effect: #177 (Use EFF File)
     "target" = "1"                                                                   // target
@@ -4331,7 +4300,7 @@ ACTION_IF MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~4240~ THEN BEGIN				   // Com
    STR_VAR
     "resource"  =  EVALUATE_BUFFER "%resref%"                                        // resref
     "effsource" = ""                                                                 // effsource: none
-  END                                                                                // ends LAUNCH_PATCH_FUNCTION
+  END                                                                                // ends LPF
   END                                                                                // ends PHP_EACH
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 3 duration = 120 parameter1 = 74011 "insert_point" = "-1" STR_VAR resource = EVAL ~%hla_GES%~ END
 END																					 // Ends compatibility with Stratagems

@@ -4,8 +4,10 @@
 // New spells
 
 ACTION_IF !FILE_EXISTS_IN_GAME rr#spain.spl BEGIN
+  // OUTER_SET rr#SPAIN = (IDS_OF_SYMBOL (~projectile~ ~rr#SPAIN~) - 1)
+  // PRINT ~IDS Of Symbole of pain : %rr#SPAIN%~
   COPY ~aTweaks/SPL/RR#SPAIN.SPL~ ~override~                                         // Symbol Pain
-    LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#SPAIN%~ END					 // use new projectile (party friendly)
+    LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#spain%~ END					 // use new projectile (party friendly)
 END
 
 COPY ~aTweaks/SPL/RR#DLDRN.SPL~ ~override~                                         // Drain Life (Alu-Fiend)
@@ -548,15 +550,15 @@ COPY_EXISTING ~SPPR211.SPL~  ~override/RR#PR211.SPL~                            
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPWI811.SPL~  ~override/RR#WI811.SPL~                               // Clone Symbol, Fear into an innate ability (used by Balor)
-LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#SPAIN%~ END					   // use new projectile
+LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#spain%~ END					   // use new projectile
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPWI816.SPL~  ~override/RR#WI816.SPL~                               // Clone Symbol, Stun into an innate ability (used by Balor)
-LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#SPAIN%~ END					   // use new projectile
+LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#spain%~ END					   // use new projectile
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING ~SPWI817.SPL~  ~override/RR#WI817.SPL~                               // Clone Symbol, Death into an innate ability (used by Balor)
-LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#SPAIN%~ END					   // use new projectile
+LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#spain%~ END					   // use new projectile
 LAUNCH_PATCH_FUNCTION ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
 
 COPY_EXISTING spwi112.spl "override/RR#WI112.spl"                                  //Magic Missile

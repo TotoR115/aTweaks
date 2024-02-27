@@ -38,10 +38,11 @@ ADD_SECTYPE RR#ETHER @707
 ADD_SECTYPE fl#Disease #2449
 ADD_SECTYPE fl#Fear @1027
 ADD_SECTYPE fl#Poison #14028
+ADD_SECTYPE fl#Webbed #12088
 
 //Add new projectiles; this is also non-cumulative
 
-ADD_PROJECTILE ~aTweaks/PRO/RR#SPAIN.PRO~                                          // New projectile for Symbol Pain (party friendly)
+ADD_PROJECTILE ~aTweaks/PRO/rr#spain.PRO~                                          // New projectile for Symbol Pain (party friendly)
 ADD_PROJECTILE ~atweaks/pro/fl#cnenp.pro~                                          // Invisible, 90° cone-shaped projectile, party-friendly
 ADD_PROJECTILE ~atweaks/pro/fl#shout.pro~                                          // shoutt, 30° cone-shaped projectile, party-friendly
 ADD_PROJECTILE ~atweaks/pro/fl#sight.pro~                                          // Like INAREANP, but extends roughly as far as you can see
@@ -54,7 +55,7 @@ ADD_PROJECTILE ~atweaks/pro/rr#cloud.pro~                                       
 //We forcibly reload all PRO variables, because there's a bug in WeiDU 231
 COPY_EXISTING missile.ids override
   READ_2DA_ENTRIES_NOW buff 2
-  PATCH_FOR_EACH pro IN RR#SPAIN fl#cnenp fl#sight rr#pyrot rr#fcsng rr#icew rr#vrpo BEGIN
+  PATCH_FOR_EACH pro IN rr#spain fl#cnenp fl#sight rr#pyrot rr#fcsng rr#icew rr#vrpo BEGIN
     FOR (i = buff - 1; i >= 0; --i) BEGIN
       READ_2DA_ENTRY_FORMER buff i 1 label
       PATCH_IF "%label%" STRING_EQUAL_CASE "%pro%" BEGIN

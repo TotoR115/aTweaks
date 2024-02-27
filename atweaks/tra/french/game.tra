@@ -484,8 +484,8 @@ Lancer ce sort permet de converser en des termes très rudimentaires avec tous le
 @1928 = ~Regard Pestilentiel~
 @1929 = ~Souffle de Feu~
 @1930 = ~Souffle glacé~
-@1931 = ~Giclée d'acide~
-@1932 = ~~
+@1931 = ~Fire Breath~
+@1932 = ~Giclée d'acide~
 @1933 = ~La magie curative n'a aucun effet sur quiconque affecté par le regard du boalisk ~
 @1934 = ~Affligé par le regard du boalisk~
 @1935 = ~À l'agonie à cause du regard du boalisk~
@@ -566,6 +566,36 @@ Zone d'effet : spécial
 Jet de sauvegarde : aucun
 
 Cette capacité permet au Chien de la Lune d'invoquer une ombre de loup supérieur pour combattre à ses côtés.~
+@1949 = ~Giclée d'acide (Evocation)
+
+Les ankhegs peuvent cracher de l'acide sur une seule créature dans un rayon de 30 m, lui infligeant 8d4 points de dégâts d'acide. Un jet de sauvegarde réussi contre le poison réduit les dégâts de moitié.~
+@1955 = ~Métamorphose : Ours brun
+
+Durée : Permanente
+Temps d'incantation : 1
+Zone d'effet : Le lanceur de sorts
+
+Le lanceur de sorts peut se transformer en ours brun. Caractéristiques de la forme d'un ours brun :
+ - Force : 18/76
+ - Dextérité : 14
+ - Constitution : 17
+ - Classe d'armure de base : 6
+ - THAC0 de base : 15
+ - Nombre d'attaques : 2
+ - Dégâts de l'attaque : 1d6 (perforant) ; frappe comme une arme enchantée +2~
+ @1956 = ~Métamorphose : Ours noir
+
+Durée : Permanente
+Temps d'incantation : 1
+Zone d'effet : Le lanceur de sorts
+
+Le lanceur de sorts peut se transformer en ours noir. Caractéristiques de la forme d'un ours noir :
+ - Force : 18/51
+ - Dextérité : 16
+ - Constitution : 16
+ - Classe d'armure de base : 7
+ - Nombre d'attaques : 2
+ - Dégâts de l'attaque : 1d4 (perforant) ; frappe comme une arme enchantée +1~
 
 
 // Araignées version papier
@@ -594,6 +624,34 @@ Zone d'effet : Spéciale
 Jet de Sauvegarde : Non
 
 Ce sort permet au magicien d'ouvrir un portail magique pour invoquer 1d3 Wiverne, qui seront sous son contrôle mental et qui lui obéiront en toutes circonstances (à moins d'utiliser des moyens magiques, comme Charme-monstres). Le contrôle dure jusqu'à expiration du sort.~
+@1953 = ~Métamorphose : Araignée-épée
+
+Durée : Permanente
+Temps d'incantation : 1
+Zone d'effet : Le lanceur de sorts
+
+Le lanceur de sorts peut se transformer en araignée-épée. Caractéristiques de la forme de l'araignée-épée :
+ - Force : 18/51
+ - Dextérité : 17
+ - Constitution : 16
+ - Classe d'armure de base : 3
+ - THAC0 de base : 15
+ - Nombre d'attaques : 4
+ - Dégâts de l'attaque : 2d6 (taillade) ; frappe comme une arme enchantée +1~
+@1954 = ~Métamorphose : Bébé Wyvern
+
+Durée : Permanente
+Temps d'incantation : 1
+Zone d'effet : Le lanceur de sorts
+
+Le lanceur de sorts peut se transformer en bébé wyvern. Caractéristiques de la forme d'un bébé wyvern :
+ - Force : 18
+ - Dextérité : 17
+ - Constitution : 16
+ - Classe d'armure de base : 3
+ - THAC0 de base : 13
+ - Nombre d'attaques : 2
+ - Dégâts d'attaque : 1d6 (perforant) ; la cible touchée subit 1 dégât de poison toutes les 1 secondes pendant un round (sauvegarde contre la mort pour aucun) ; frappe comme une arme enchantée +2~
 
 
 // Vase, limons et Gelée version papier
@@ -936,6 +994,30 @@ Zone d'effet : spéciale
 Jet de sauvegarde : aucun
 
 Ce sort ouvre un portail spécial vers le plan élémentaire de la Terre, invoquant un élémentaire de terre au voisinage du jeteur de sorts. Un élémentaire de 12 dés de vie répond toujours à la convocation. De plus, il y a 35 % de chance qu'un Élémentaire Majeur de 16 dés de vie apparaisse en sus, et 5 % de chance qu'un Ancien Élémentaire de 20 dés de vie apparaisse. Tous les ordres donnés à l'élémentaire le sont par voie télépathique, ce qui évite de perdre du temps à cause d'une mauvaise communication, et ne nécessite pas de connaître le langage utilisé par la créature convoquée. Contrairement aux mages, les prêtres n'ont pas à s'engager dans un combat mental afin de contrôler leur élémentaire. L'élémentaire accomplira la volonté du lanceur jusqu'à ce qu'il soit tué, ou jusqu'à expiration du sort.~
+@2214 = ~Conjuration d'un élémentaire d'air (Conjuration / Invocation)
+Niveau : 7
+Sphère : Élémentaire, Invocation
+Portée : Vue visuelle du lanceur de sorts
+Durée : 1 tour/niveau 1 tour/niveau
+Temps d'incantation : 1 round
+Zone d'effet : Spéciale
+Jets de sauvegarde : Aucun
+
+En lançant un sort de conjuration de l'élémentaire d'air, le lanceur ouvre une porte spéciale vers le plan élémentaire de l'Air, et un élémentaire d'air est convoqué à proximité du lanceur de sorts.  Un élémentaire de 12 points de vie répond toujours à la convocation. De plus, il y a 35 % de chances qu'un élémentaire supérieur de 16 HD supplémentaire apparaisse et 5 % de chances qu'un élémentaire supérieur de 20 points de vie soit invoqué.  Tous les ordres donnés à l'élémentaire sont télépathiques, il n'y a donc pas de perte de temps due à une mauvaise communication, et il n'est pas nécessaire de connaître la langue de la créature invoquée. Les prêtres n'ont pas à s'engager dans une bataille d'esprit pour contrôler l'élémentaire qu'ils ont invoqué (contrairement aux mages).  L'élémentaire reste sous le contrôle du lanceur de sorts jusqu'à ce qu'il soit tué ou que la durée du sort expire.~
+@2215 = ~Métamorphose : Salamandre de feu
+
+Durée : Permanente
+Temps d'incantation : 1
+Zone d'effet : Le lanceur de sorts
+
+Le lanceur de sorts peut se transformer en salamandre de feu. Caractéristiques de la forme de la salamandre de feu :
+ - Force : 16
+ - Dextérité : 12
+ - Constitution : 14
+ - Classe d'armure de base : 3
+ - 100 % de résistance au feu
+ - Nombre d'attaques : 2
+ - Dégâts d'attaque : 1d6 (perçant) + 1d6 (feu) ; frappe comme une arme enchantée +2~
 
 
 // Scribe Scrolls ability and assorted dialogue (8200-8300)

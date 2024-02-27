@@ -1024,7 +1024,8 @@ OUTER_SET $f_AddSecType(fl#mum.spl) = DiseaseSecType
 ACTION_FOR_EACH file IN
 		mumgre01
 		riftcr03
-		MUMMYX1 // TDD		
+		MUMMYX1 // TDD
+		dx#mummy // Cowled Menace
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
@@ -1085,7 +1086,7 @@ BEGIN
             newsvs = 7
             newmr = 15
             newlvl1 = 19
-            newfr = 100
+            newfr = 0
             newcr = 100
             newer = "-50"
             newar = 0
@@ -1105,7 +1106,9 @@ BEGIN
             newclass = 3 //cleric
 
             enforce = 1
-        END
+           STR_VAR
+            notenf01 = dx#mummy
+       END
         LPF RR#MDCSC
           STR_VAR
             newscript = fl#gmum
@@ -1115,6 +1118,7 @@ BEGIN
 			script04 = DW2MC0GE
             script05 = "mummy01'"
             script06 = "mummy01"
+			script07 = "dx#mummy"
         END
         // LPF cold_spell_immunities END
       END
@@ -1794,6 +1798,7 @@ ACTION_IF !MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN // Do not touch if spell revis
 END
 
 COPY "atweaks/spl/undead/fl#skelw.spl" override
+  SAY NAME1 @672
   FOR (i=0;i<SHORT_AT 0x68;++i) BEGIN
     WRITE_SHORT LONG_AT 0x64 + 0x28*i + 0x26 fl#sight
   END

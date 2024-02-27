@@ -9,7 +9,7 @@ BEGIN
 	SET ds_special = 0
 	SET ds_parameter1 = 1
 	TEXT_SPRINT ds_stats "stats"
-   END ELSE PATCH_IF GAME_IS "BGEE BG2EE EET IWDEE" BEGIN
+   END ELSE PATCH_IF ENGINE_IS "BG2EE" BEGIN
 	SET ds_opcode = 328
 	SET ds_special = 1
 	SET ds_parameter1 = 0
@@ -29,7 +29,7 @@ DEFINE_ACTION_FUNCTION item_labels
 STR_VAR item = ""
 BEGIN
    OUTER_SPRINT opcodelist ""
-   COPY ~%MOD_FOLDER%/ssl/libdata.txt~ ~%MOD_FOLDER%/ssl~
+   COPY ~%MOD_FOLDER%/lib/ds/libdata.txt~ ~%MOD_FOLDER%/lib/ds~
        READ_2DA_ENTRIES_NOW stats_data 5
        SET see_name_code=0
        FOR (i=0;i<stats_data;i+=1) BEGIN
@@ -71,7 +71,7 @@ BEGIN
              END
           END
           DEFAULT
-             LPF warning STR_VAR warning=~Unrecognised opcode in %MOD_FOLDER%/ssl/libdata.txt~ END
+             LPF warning STR_VAR warning=~Unrecognised opcode in %MOD_FOLDER%/lib/ds/libdata.txt~ END
           END
        END
 

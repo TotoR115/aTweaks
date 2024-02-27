@@ -587,12 +587,11 @@ This spell allows the caster to converse with plants and to exercise limited con
 @1927 = ~Sprint~
 @1928 = ~Gaze of Pestilence~
 @1929 = ~Frost Breath~
-@1930 = ~Frost Breath(Evocation)
+@1930 = ~Frost Breath (Evocation)
+
 Winter Wolves can release a cone-shaped stream of frost from their lungs causing 6d4 points of cold damage to all creatures within 10 feet. A successful save vs. breath reduces the damage by half.~
 @1931 = ~Fire Breath~
 @1932 = ~Acid Spit~
-@1945 = ~Acid Spit(Evocation)
-Ankhegs can spit acid at a single creature within 30 feet dealing 8d4 points of acid damage. A successful saving throw vs. poison halves the damage.~
 @1933 = ~Curative magic has no effect on someone afflicted with boalisk gaze~
 @1934 = ~Stricken by boalisk gaze~
 @1935 = ~Close to dying from boalisk gaze~
@@ -674,6 +673,36 @@ Area of Effect: Special
 Saving Throw: None
 
 With this ability, Moon Dogs, can summon one greater shade wolf.~
+@1949 = ~Acid Spit (Evocation)
+
+Ankhegs can spit acid at a single creature within 30 feet dealing 8d4 points of acid damage. A successful saving throw vs. poison halves the damage.~
+@1955 = ~Shapeshift: Brown Bear
+
+Duration: Permanent
+Casting Time: 1
+Area of Effect: The caster
+
+The caster can change into a brown bear. Characteristics of a brown bear shape:
+ - Strength: 18/76
+ - Dexterity: 14
+ - Constitution: 17
+ - Base Armor Class: 6
+ - Base THAC0: 15
+ - Number of Attacks: 2
+ - Attack Damage: 1d6 (Piercing); strikes as an enchanted weapon +2~
+ @1956 = ~Shapeshift: Black Bear
+
+Duration: Permanent
+Casting Time: 1
+Area of Effect: The caster
+
+The caster can change into a black bear. Characteristics of a black bear shape:
+ - Strength: 18/51
+ - Dexterity: 16
+ - Constitution: 16
+ - Base Armor Class: 7
+ - Number of Attacks: 2
+ - Attack Damage: 1d4 (Piercing); strikes as an enchanted weapon +1~
 
 
 // PnP spiders
@@ -702,6 +731,34 @@ Area of Effect: Special
 Saving Throw: None 
 
 When this spell is cast the wizard opens up a magical channel that will summon 1d3 wyvern to his aid.  Those creatures will be totally under his mental control with no chance of it turning on him except, of course, through magical means like charm monster.  Those creatures will remain under the wizard's control, and will live and die at his command until the spell duration expires.~
+@1953 = ~Shapeshift: Sword Spider
+
+Duration: Permanent
+Casting Time: 1
+Area of Effect: The caster
+
+The caster can change into a sword spider. Characteristics of a sword spider shape:
+ - Strength: 18/51
+ - Dexterity: 17
+ - Constitution: 16
+ - Base Armor Class: 3
+ - Base THAC0: 15
+ - Number of Attacks: 4
+ - Attack Damage: 2d6 (Slashing); strikes as an enchanted weapon +1~
+@1954 = ~Shapeshift: Baby Wyvern
+
+Duration: Permanent
+Casting Time: 1
+Area of Effect: The caster
+
+The caster can change into a baby wyvern. Characteristics of a baby wyvern shape:
+ - Strength: 18
+ - Dexterity: 17
+ - Constitution: 16
+ - Base Armor Class: 3
+ - Base THAC0: 13
+ - Number of Attacks: 2
+ - Attack Damage: 1d6 (piercing); hit target suffers 1 poison damage every 1 seconds for one round (save vs. death for none); strikes as an enchanted weapon +2~
 
 
 // PnP Oooze
@@ -774,6 +831,7 @@ The spell is also effective against parasitic monsters such as green slime, oliv
 @2131 = ~Locked in mental combat~
 @2132 = ~Unsummon~
 @2133 = ~Unsummon
+
 Return the creature to the place it came from.~
 @2134 = ~Whirlwind~
 @2135 = ~Whirlwind (Evocation)
@@ -1056,6 +1114,20 @@ Area of Effect: Special
 Saving Throw: None
 
 Upon casting a conjure air elemental spell, the caster opens a special gate to the elemental plane of Air, and an air elemental is summoned to the vicinity of the spellcaster.  One 12 hit dice elemental always answers the summons. Furthermore, there is a 35% chance that an additional 16 HD Greater Elemental appears and a 5% chance than an additional 20 hit dice Elder Elemental is summoned.  All of the commands given to the elemental are done telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature. Priests do not have to engage in a battle of the wits to control their summoned elemental (unlike mages).  The elemental will remain under the caster's control until slain or until the spell duration expires.~
+@2215 = ~Shapeshift: Fire Salamander
+
+Duration: Permanent
+Casting Time: 1
+Area of Effect: The caster
+
+The caster can change into a fire salamander. Characteristics of a fire salamander shape:
+ - Strength: 16
+ - Dexterity: 12
+ - Constitution: 14
+ - Base Armor Class: 3
+ - 100% resistance to fire
+ - Number of Attacks: 2
+ - Attack Damage: 1d6 (piercing) + 1d6 (fire); strikes as an enchanted weapon +2~
 
 
 // Scribe Scrolls ability and assorted dialogue (8200-8300)

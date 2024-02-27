@@ -33,10 +33,11 @@ END
 IF
 !StateCheck(Myself,STATE_REALLY_DEAD)
 !GlobalTimerNotExpired("flAura","LOCALS")
+Detect(NearestEnemyOf(Myself))
 THEN
 RESPONSE #100
 ReallyForceSpellRES("fl#skelw",Myself)
-SetGlobalTimer("flAura","LOCALS",6)
+SetGlobalTimer("flAura","LOCALS",60)
 Continue()
 END
 
