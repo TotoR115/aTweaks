@@ -8,7 +8,6 @@ END
 
 IF
     Allegiance(LastSummonerOf(Myself),ENEMY)
-    !Allegiance(Myself,ENEMY)
 THEN
     RESPONSE #100
         SetInterrupt(FALSE)
