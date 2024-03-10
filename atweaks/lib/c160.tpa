@@ -1750,7 +1750,7 @@ BEGIN
 	  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~SKELETON~))  // Use Skeleton animation, bow animation does not work with other skeletons
 	  READ_LONG 0x2b8 "item_offset"
       PATCH_IF SHORT_AT "item_offset" = "-1" BEGIN
-	    REPLACE_CRE_ITEM ~HELM08~ #0 #0 #0 ~NONE~ ~HELMET~              // add Normal helm for appearence
+	    REPLACE_CRE_ITEM ~HELM01~ #0 #0 #0 ~NONE~ ~HELMET~              // add Normal helm for appearence
 	  END
 	  LPF make_skeleton_warrior 
 	  STR_VAR
@@ -1805,15 +1805,17 @@ COPY "atweaks/spl/undead/fl#skelw.spl" override
 
 COPY_EXISTING "ax1h01.ITM" "override/fl#AXE1.ITM"
   LPF ALTER_ITEM_HEADER INT_VAR dicesize = 5 dicenumber = 2 END
-  WRITE_LONG 0x18 104
+  WRITE_BYTE 0x18 0b01101000
 COPY_EXISTING "BLUN06.ITM" "override/fl#BLUN1.ITM"
   LPF ALTER_ITEM_HEADER INT_VAR dicesize = 3 dicenumber = 3 END
-  WRITE_LONG 0x18 104
+  WRITE_BYTE 0x18 0b01101000
 COPY_EXISTING "SKELWASU.ITM" "override/fl#AXE2.ITM"
   WRITE_ASCII 0x22 "AX"
+  WRITE_BYTE 0x18 0b01101000
   LPF ALTER_ITEM_HEADER INT_VAR dicesize = 5 dicenumber = 2 END
 COPY_EXISTING "SKELWASU.ITM" "override/fl#BLUN2.ITM"
   WRITE_ASCII 0x22 "MS"  
+  WRITE_BYTE 0x18 0b01101000
   LPF ALTER_ITEM_HEADER INT_VAR dicesize = 3 dicenumber = 3 damage_type = 6 END
 
 
