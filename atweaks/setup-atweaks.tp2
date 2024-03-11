@@ -73,6 +73,10 @@ LANGUAGE ~Polish~ ~polish~ ~atweaks/tra/english/setup.tra~
                            ~atweaks/tra/polish/setup.tra~
                            ~atweaks/tra/polish/game.tra~
 
+LANGUAGE ~Simplified Chinese~ ~schinese~ ~atweaks/tra/english/setup.tra~
+                           ~atweaks/tra/english/game.tra~
+                           ~atweaks/tra/schinese/setup.tra~
+                           ~atweaks/tra/schinese/game.tra~
 
 
 // ******************************************************* PnP tweaks *************************************************************************************
