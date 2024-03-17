@@ -1750,7 +1750,7 @@ BEGIN
 	  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~SKELETON~))  // Use Skeleton animation, bow animation does not work with other skeletons
 	  READ_LONG 0x2b8 "item_offset"
       PATCH_IF SHORT_AT "item_offset" = "-1" BEGIN
-	    REPLACE_CRE_ITEM ~HELM01~ #0 #0 #0 ~NONE~ ~HELMET~              // add Normal helm for appearence
+	    REPLACE_CRE_ITEM ~HELM08~ #0 #0 #0 ~NONE~ ~HELMET~              // add Normal helm for appearence
 	  END
 	  LPF make_skeleton_warrior 
 	  STR_VAR

@@ -1457,7 +1457,7 @@ DEFINE_PATCH_FUNCTION make_glabrezu BEGIN
           "newer"    = "100"                                                           // new Resist Electricity value
           "newar"    = 0                                                               // new Resist Acid value
           "newlvl1"  = "10"                                                            // new level (first class)
-          "newstr"   = "20"                                                            // new Strength value
+          "newstr"   = "19"                                                            // new Strength value
           "newint"   = "16"                                                            // new Intelligence value
           "newwis"   = "13"                                                            // new Wisdom value
           "newdex"   = "18"                                                            // new Dexterity value

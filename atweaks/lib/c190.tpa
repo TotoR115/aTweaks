@@ -9,16 +9,16 @@ INCLUDE "atweaks/lib/tactical_shared.tpa"
 // New spells
 //////////////
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~RR#DDOOR.BAM~ THEN BEGIN                        // Checks for the Icewind Dale's Dimension Door animation component
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~RR#DDOOR.BAM~ THEN BEGIN                        	// Checks for the Icewind Dale's Dimension Door animation component
   COPY    ~aTweaks/BAM/SPDIMNDR.BAM~   ~override/RR#DDOOR.BAM~                     // IWD1's Dimension Door animation (custom file name)
   COPY    ~aTweaks/WAV/EFF_M09.WAV~    ~override/RR#DDOOR.WAV~                     // IWD1's Dimension Door sound effect (custom file name)
-  COPY    ~aTweaks/VVC/RR#DDOOR.VVC~   ~override~                                  // Custom Dimension Door VVC
-END                                                                                // ends ACTION_IF block
+  COPY    ~aTweaks/VVC/RR#DDOOR.VVC~   ~override~                                  	// Custom Dimension Door VVC
+END                                                                                		// ends ACTION_IF block
 COPY ~atweaks/spl/rr#telwe.spl~ ~override/rr#telwr.spl~                            // Teleport Without Error (renewable)
   SAY UNIDENTIFIED_DESC @2138
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END     // Execute the "spell to innate ablity" function
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#renew" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY ~atweaks/spl/rr#niinv.spl~ ~override~                                         // Natural Invisibility - improved invisibility removed: can be targeted by spells and removal of the spurious AC and saving throw penalty
+COPY ~atweaks/spl/rr#niinv.spl~ ~override~                                         	// Natural Invisibility - improved invisibility removed: can be targeted by spells and removal of the spurious AC and saving throw penalty
   SAY NAME1 @2100 SAY NAME2 @2100
   // PATCH_IF !GAME_IS ~bgee eet~ BEGIN
 	// LPF CLONE_EFFECT INT_VAR match_opcode = 20 match_parameter2 = 1 opcode = 33 parameter2 = 0 parameter1 = 4 timing = 0 END
@@ -44,7 +44,7 @@ COPY ~atweaks/spl/elementals/rr#emcbt.spl~ ~override~                           
     END
   END
 
-COPY ~atweaks/spl/rr#uchrm.spl~ ~override~                                         // Remove Enchantment Spell School (uncharm)
+COPY ~atweaks/spl/rr#uchrm.spl~ ~override~                                         	// Remove Enchantment Spell School (uncharm)
 
 COPY ~atweaks/spl/elementals/rr#track.spl~ ~override~                              // Tracking
 COPY ~atweaks/spl/elementals/rr#ecfir.spl~ ~override~                              // Conjure Fire Elemental
@@ -60,20 +60,20 @@ COPY ~atweaks/spl/elementals/rr#enlfr.spl~ ~override~                           
   READ_LONG  0x64 "abil_off"
   READ_SHORT 0x68 "abil_num"
   READ_LONG  0x6a "fx_off"
-  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN // cycle through abilities
+  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN 					// cycle through abilities
     READ_SHORT  ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
     READ_SHORT  ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
     FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
       READ_SHORT ("%fx_off%" +        (0x30 * ("%index2%" + "%abil_fx_idx%"))) "opcode"
       READ_LONG  ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) "param1"
-        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 14790)) BEGIN // display string
-          SAY ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) @2102  // Fire Resistance Lowered
+        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 14790)) BEGIN 				// display string
+          SAY ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) @2102 // Fire Resistance Lowered
         END
     END
   END
 
-COPY ~atweaks/vvc/rr#cnstr.vvc~ ~override~                                         // Constrict/Grab/Flaming Whip ability VVC animation
-COPY ~atweaks/bam/rr#cnstr.bam~ ~override~                                         // Constrict/Grab/Flaming Whip ability BAM graphics
+COPY ~atweaks/vvc/rr#cnstr.vvc~ ~override~                                         	// Constrict/Grab/Flaming Whip ability VVC animation
+COPY ~atweaks/bam/rr#cnstr.bam~ ~override~                                         	// Constrict/Grab/Flaming Whip ability BAM graphics
 COPY ~atweaks/spl/rr#cnstr.spl~ ~override/rr#dgrab.spl~                            // Grab ability (Glabrezu)
 SAY NAME1 @684 SAY NAME2 @684                                                    
   LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete = 177 END
@@ -89,53 +89,53 @@ SAY NAME1 @684 SAY NAME2 @684
   PATCH_FOR_EACH parameter1 IN 119 121 122 123 132 133 134 136 142 143 144 146 BEGIN //slime, demonic, lycanthrope, beholder, shadow, spectre, wraith, mist, giant, orc, golem, dragon
     LPF ADD_SPELL_EFFECT INT_VAR insert_point opcode target parameter1 parameter2 duration STR_VAR resource END
   END
-  parameter2 = 5 //class.ids
-  PATCH_FOR_EACH parameter1 IN 120 121 125 BEGIN //gnoll, hobgoblin, ogre
+  parameter2 = 5 																		//class.ids
+  PATCH_FOR_EACH parameter1 IN 120 121 125 BEGIN 									//gnoll, hobgoblin, ogre
     LPF ADD_SPELL_EFFECT INT_VAR insert_point opcode target parameter1 parameter1 duration STR_VAR resource END
   END
 
 COPY ~atweaks/eff/rr#cnstr.eff~ ~override/rr#dgrab.eff~                            // Grab ability immunity (for large and incorporeal creatures)
-  WRITE_ASCII 0x30 ~RR#DGRAB~ #8                                                   // resref: RR#DGRAB
+  WRITE_ASCII 0x30 ~RR#DGRAB~ #8                                                   	// resref: RR#DGRAB
 
 COPY ~atweaks/eff/rr#cnstr.eff~ ~override/rr#dgra2.eff~
-  WRITE_LONG  0x10 146 //cast spell
-  WRITE_LONG  0x20 1 //cast instantly
-  WRITE_LONG  0x24 1 //instant/permanent
+  WRITE_LONG  0x10 146 																//cast spell
+  WRITE_LONG  0x20 1 																	//cast instantly
+  WRITE_LONG  0x24 1 																	//instant/permanent
   WRITE_ASCII 0x30 rr#dgrab #8
 
-COPY ~atweaks/bam/rr#icew.bam~ ~override~                                          // Wall of Ice BAM
-COPY ~atweaks/spl/rr#icew.spl~ ~override~                                          // Wall of Ice
+COPY ~atweaks/bam/rr#icew.bam~ ~override~                                          	// Wall of Ice BAM
+COPY ~atweaks/spl/rr#icew.spl~ ~override~                                          	// Wall of Ice
   SAY NAME1 @1024 SAY NAME2 @1024
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#icew%~ 	END					   // use new projectile
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#icew%~ 	END					   	// use new projectile
 
-COPY ~atweaks/spl/elementals/rr#enbga.spl~ ~override~                              // Beguiling Aura (part 1)
+COPY ~atweaks/spl/elementals/rr#enbga.spl~ ~override~                              	// Beguiling Aura (part 1)
   SAY NAME1 @2104 SAY NAME2 @2104
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#fcsng%~ 	END					   // use new projectile
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#fcsng%~ 	END					   	// use new projectile
 
 
-COPY ~atweaks/spl/elementals/rr#enbg2.spl~ ~override~                              // Beguiling Aura (part 2)
+COPY ~atweaks/spl/elementals/rr#enbg2.spl~ ~override~                              	// Beguiling Aura (part 2)
   READ_LONG  0x64 "abil_off"
   READ_SHORT 0x68 "abil_num"
   READ_LONG  0x6a "fx_off"
-  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN // cycle through abilities
+  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN 					// cycle through abilities
     READ_SHORT  ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
     READ_SHORT  ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
     FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
       READ_SHORT ("%fx_off%" +        (0x30 * ("%index2%" + "%abil_fx_idx%"))) "opcode"
       READ_LONG  ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) "param1"
-        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 1476)) BEGIN // display string
-          SAY ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) @2106  // Fascinated
+        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 1476)) BEGIN 				// display string
+          SAY ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) @2106 // Fascinated
         END
     END
   END
 
 COPY ~atweaks/eff/elementals/rr#enbga.eff~ ~override~                              // Beguiling Aura EFF 1 (for targeting only male characters)
 COPY ~atweaks/eff/elementals/rr#enbg2.eff~ ~override~                              // Beguiling Aura EFF 2 (for elven and half-elven charm immunity)
-  SAY 0x1C @1903                                                                   // Resists charm effect
+  SAY 0x1C @1903                                                                   	// Resists charm effect
  LAF add_blindness_immunity STR_VAR f_Spell = "rr#enbg2" END
 
-COPY ~aTweaks/VVC/RR#SKISS.VVC~ ~override~                                         // Kiss VVC animation
-COPY ~aTweaks/BAM/RR#SKISS.BAM~ ~override~                                         // Kiss BAM graphics
+COPY ~aTweaks/VVC/RR#SKISS.VVC~ ~override~                                         	// Kiss VVC animation
+COPY ~aTweaks/BAM/RR#SKISS.BAM~ ~override~                                         	// Kiss BAM graphics
 COPY ~atweaks/bam/elementals/rr#enkis.bam~ ~override~                              // Drowning Kiss bam
 COPY ~atweaks/spl/elementals/rr#enkis.spl~ ~override~                              // Drowning Kiss (Nereid)
   SAY NAME1 @2107 SAY NAME2 @2107
@@ -152,7 +152,7 @@ COPY ~atweaks/spl/elementals/rr#envlp.spl~ ~override~                           
   SAY NAME1 @2111 SAY NAME2 @2111
 COPY ~atweaks/eff/elementals/rr#envlp.eff~ ~override~                              // Envelop immunity EFF (for large and incorporeal creatures)
 COPY ~atweaks/bam/elementals/rr#envlp.bam~ ~override~                              // Envelop BAM animation
-COPY ~atweaks/vvc/rr#envlp.vvc~ ~override~                                         // Envelop VVC animation
+COPY ~atweaks/vvc/rr#envlp.vvc~ ~override~                                         	// Envelop VVC animation
 
 COPY ~atweaks/spl/elementals/rr#drown.spl~ ~override~                              // Drown
 SAY NAME1 @2112 SAY NAME2 @2112
@@ -162,32 +162,32 @@ SAY NAME1 @2113 SAY NAME2 @2113
 
 COPY ~atweaks/spl/elementals/rr#ewwsl.spl~ ~override~                              // 1 round Slow (Water Weirds are slowed by cold damage)
 
-COPY ~atweaks/bam/elementals/rr#eairw.bam~ ~override~                              // Whirlwind BAM icon
-COPY ~atweaks/spl/elementals/rr#eairw.spl~ ~override~                              // Whirlwind (Air Elemental)
+COPY ~atweaks/bam/elementals/rr#eairw.bam~ ~override~                              	// Whirlwind BAM icon
+COPY ~atweaks/spl/elementals/rr#eairw.spl~ ~override~                              	// Whirlwind (Air Elemental)
 SAY NAME1 @2134 SAY NAME2 @2134 SAY UNIDENTIFIED_DESC @2135
-COPY ~atweaks/bam/elementals/rr#whirl.bam~ ~override~                      		   // Whirlwind BAM animation
-COPY ~atweaks/vvc/rr#whirl.vvc~ ~override~ 			                     		   // Whirlwind VVC animation
-COPY ~atweaks/wav/rr#whirl.wav~ ~override~ 			                     		   // Whirlwind WAV sound effect
+COPY ~atweaks/bam/elementals/rr#whirl.bam~ ~override~                      		   	// Whirlwind BAM animation
+COPY ~atweaks/vvc/rr#whirl.vvc~ ~override~ 			                     		   	// Whirlwind VVC animation
+COPY ~atweaks/wav/rr#whirl.wav~ ~override~ 			                     		   	// Whirlwind WAV sound effect
 
-COPY ~atweaks/spl/elementals/rr#ecncl.spl~ ~override~                              // Elemental Concealment
+COPY ~atweaks/spl/elementals/rr#ecncl.spl~ ~override~                              	// Elemental Concealment
 SAY NAME1 @2123 SAY NAME2 @2123 SAY UNIDENTIFIED_DESC @2136
-LPF DELETE_EFFECT INT_VAR match_opcode = 139 END							   	   // Remove string: invisibile - useless
+LPF DELETE_EFFECT INT_VAR match_opcode = 139 END							   	   		// Remove string: invisibile - useless
 
-COPY ~atweaks/spl/elementals/rr#equa.spl~ ~override~                               // Earthquake (note: this filename must be 7 characters or less)
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%fl#sight%~ 	END					   // use new projectile
+COPY ~atweaks/spl/elementals/rr#equa.spl~ ~override~                               	// Earthquake (note: this filename must be 7 characters or less)
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%fl#sight%~ 	END					   	// use new projectile
 
-COPY ~atweaks/eff/elementals/rr#eburn.eff~ ~override~                              // Burn immunity EFF (for noncombustible creatures)
-COPY ~atweaks/spl/elementals/rr#eburn.spl~ ~override~                              // Burn (Fire Elemental on-hit effect)
+COPY ~atweaks/eff/elementals/rr#eburn.eff~ ~override~                              	// Burn immunity EFF (for noncombustible creatures)
+COPY ~atweaks/spl/elementals/rr#eburn.spl~ ~override~                              	// Burn (Fire Elemental on-hit effect)
   READ_LONG  0x64 "abil_off"
   READ_SHORT 0x68 "abil_num"
   READ_LONG  0x6a "fx_off"
-  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN // cycle through abilities
+  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN 					// cycle through abilities
     READ_SHORT  ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
     READ_SHORT  ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
     FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
       READ_SHORT ("%fx_off%" +        (0x30 * ("%index2%" + "%abil_fx_idx%"))) "opcode"
       READ_LONG  ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) "param1"
-        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 12074)) BEGIN // display string: "Burning Hands"
+        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 12074)) BEGIN 				// display string: "Burning Hands"
           SAY ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) @2124 // Burning
         END
     END
@@ -203,98 +203,98 @@ SAY NAME1 @2121 SAY NAME2 @2121
   READ_LONG  0x64 "abil_off"
   READ_SHORT 0x68 "abil_num"
   READ_LONG  0x6a "fx_off"
-  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN // cycle through abilities
+  FOR (index = 0 ; index < abil_num ; index = index + 1 ) BEGIN 					// cycle through abilities
     READ_SHORT  ("%abil_off%" + 0x1e + (0x28 * "%index%")) "abil_fx_num"
     READ_SHORT  ("%abil_off%" + 0x20 + (0x28 * "%index%")) "abil_fx_idx"
     FOR (index2 = 0 ; index2 < abil_fx_num ; index2 = index2 + 1) BEGIN
       READ_SHORT ("%fx_off%" +        (0x30 * ("%index2%" + "%abil_fx_idx%"))) "opcode"
       READ_LONG  ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) "param1"
-        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 334)) BEGIN // display string: "Entangled"
+        PATCH_IF (("%opcode%" = 139) AND ("%param1%" = 334)) BEGIN 					// display string: "Entangled"
           SAY ("%fx_off%" + 0x04 + (0x30 * ("%index2%" + "%abil_fx_idx%"))) @2125 // Engulfed in searing flames
         END
     END
   END
-COPY ~atweaks/spl/elementals/rr#engl2.spl~ ~override~                              // Engulf, part 2 (fire damage)
+COPY ~atweaks/spl/elementals/rr#engl2.spl~ ~override~                              	// Engulf, part 2 (fire damage)
 
-COPY ~atweaks/eff/elementals/rr#ecry1.eff~ ~override~                              // Cryonax Summon Allies EFF 1 (Ice Paraelemental)
-COPY ~atweaks/spl/elementals/rr#ecryo.spl~ ~override~                              // Summon Allies (Cryonax)
+COPY ~atweaks/eff/elementals/rr#ecry1.eff~ ~override~                              	// Cryonax Summon Allies EFF 1 (Ice Paraelemental)
+COPY ~atweaks/spl/elementals/rr#ecryo.spl~ ~override~                              	// Summon Allies (Cryonax)
 SAY NAME1 @2127 SAY NAME2 @2127
 
-COPY ~atweaks/spl/elementals/rr#eimix.spl~ ~override~                              // Summon Allies (Imix)
+COPY ~atweaks/spl/elementals/rr#eimix.spl~ ~override~                              	// Summon Allies (Imix)
 SAY NAME1 @2127 SAY NAME2 @2127
 
-COPY ~atweaks/spl/elementals/rr#eogre.spl~ ~override~                              // Summon Allies (Ogremoch)
+COPY ~atweaks/spl/elementals/rr#eogre.spl~ ~override~                              	// Summon Allies (Ogremoch)
 SAY NAME1 @2127 SAY NAME2 @2127
 
-COPY ~atweaks/eff/elementals/rr#ehyd1.eff~ ~override~                              // Olhydra Summon Allies EFF 1 (Water Elemental)
-COPY ~atweaks/spl/elementals/rr#ehydr.spl~ ~override~                              // Summon Allies (Olhydra)
+COPY ~atweaks/eff/elementals/rr#ehyd1.eff~ ~override~                              	// Olhydra Summon Allies EFF 1 (Water Elemental)
+COPY ~atweaks/spl/elementals/rr#ehydr.spl~ ~override~                              	// Summon Allies (Olhydra)
 SAY NAME1 @2127 SAY NAME2 @2127
 
-COPY ~atweaks/eff/elementals/rr#eyan1.eff~ ~override~                              // Yan-C-Bin and Chan Summon Allies EFF 1 (Air Elemental, non-arcane version)
-COPY ~atweaks/spl/elementals/rr#eyanc.spl~ ~override~                              // Summon Allies (Yan-C-Bin)
+COPY ~atweaks/eff/elementals/rr#eyan1.eff~ ~override~                              	// Yan-C-Bin and Chan Summon Allies EFF 1 (Air Elemental, non-arcane version)
+COPY ~atweaks/spl/elementals/rr#eyanc.spl~ ~override~                              	// Summon Allies (Yan-C-Bin)
 SAY NAME1 @2127 SAY NAME2 @2127
 
-COPY ~atweaks/spl/elementals/rr#echan.spl~ ~override~                              // Summon Allies (Chan)
+COPY ~atweaks/spl/elementals/rr#echan.spl~ ~override~                              	// Summon Allies (Chan)
 SAY NAME1 @2127 SAY NAME2 @2127 SAY UNIDENTIFIED_DESC @2141
 
-COPY ~atweaks/spl/elementals/rr#esunn.spl~ ~override~                              // Summon Allies (Sunnis)
+COPY ~atweaks/spl/elementals/rr#esunn.spl~ ~override~                              	// Summon Allies (Sunnis)
 SAY NAME1 @2127 SAY NAME2 @2127 SAY UNIDENTIFIED_DESC @2142
 
-COPY ~atweaks/spl/elementals/rr#ezaam.spl~ ~override~                              // Summon Allies (Zaaman Rul)
+COPY ~atweaks/spl/elementals/rr#ezaam.spl~ ~override~                        		// Summon Allies (Zaaman Rul)
 SAY NAME1 @2127 SAY NAME2 @2127 SAY UNIDENTIFIED_DESC @2143
 
 
 
-COPY ~atweaks/spl/elementals/rr#eimfb.spl~ ~override~                              // Fireball, 20d6 (Imix)
-COPY ~atweaks/spl/elementals/rr#eimhe.spl~ ~override~                              // Heat Emission, 1d20 (Imix)
-COPY ~atweaks/spl/elementals/rr#eimfs.spl~ ~override~                              // Fire Shield: Red, triple strength, Part1 (Imix)
-COPY ~atweaks/spl/elementals/rr#eimfd.spl~ ~override~                              // Fire Shield: Red, triple strength, Part2 (Imix)
+COPY ~atweaks/spl/elementals/rr#eimfb.spl~ ~override~                              	// Fireball, 20d6 (Imix)
+COPY ~atweaks/spl/elementals/rr#eimhe.spl~ ~override~                              	// Heat Emission, 1d20 (Imix)
+COPY ~atweaks/spl/elementals/rr#eimfs.spl~ ~override~                             	// Fire Shield: Red, triple strength, Part1 (Imix)
+COPY ~atweaks/spl/elementals/rr#eimfd.spl~ ~override~                              	// Fire Shield: Red, triple strength, Part2 (Imix)
 // COPY_EXISTING ~rr#eimhe.spl~ ~override/rr#eiems.spl~                               // Heat Emission, 1d8 (fire salamander) -- compatibility with Stratagems and IWDification
-		// WRITE_LONG 0x1aa 8														   // 1d8
+		// WRITE_LONG 0x1aa 8														   	// 1d8
 
-COPY ~atweaks/spl/elementals/rr#ezafb.spl~ ~override~                              // Fireball, 12d6 (Zaaman Rul)
+COPY ~atweaks/spl/elementals/rr#ezafb.spl~ ~override~                              	// Fireball, 12d6 (Zaaman Rul)
 SAY NAME1 @2144 SAY UNIDENTIFIED_DESC @2145
-COPY ~atweaks/spl/elementals/rr#ezafa.spl~ ~override~                              // Flame Arrow, double damage (Zaaman Rul)
+COPY ~atweaks/spl/elementals/rr#ezafa.spl~ ~override~                              	// Flame Arrow, double damage (Zaaman Rul)
 SAY NAME1 @2146 SAY UNIDENTIFIED_DESC @2147
-COPY ~atweaks/spl/elementals/rr#ezafs.spl~ ~override~                              // Fire Shield: Red, double strength, Part1 (Zaaman Rul)
+COPY ~atweaks/spl/elementals/rr#ezafs.spl~ ~override~                              	// Fire Shield: Red, double strength, Part1 (Zaaman Rul)
 SAY NAME1 @2148 SAY UNIDENTIFIED_DESC @2149
-COPY ~atweaks/spl/elementals/rr#ezafd.spl~ ~override~                              // Fire Shield: Red, double strength, Part2 (Zaaman Rul)
+COPY ~atweaks/spl/elementals/rr#ezafd.spl~ ~override~                              	// Fire Shield: Red, double strength, Part2 (Zaaman Rul)
 
 // Pyrotechnics
 
-COPY ~atweaks/bam/rr#pyrot.bam~ ~override~                                         // Pyrotechnics BAM icon
-COPY ~atweaks/spl/rr#pyrot.spl~ ~override~                                         // Pyrotechnics
+COPY ~atweaks/bam/rr#pyrot.bam~ ~override~                                         	// Pyrotechnics BAM icon
+COPY ~atweaks/spl/rr#pyrot.spl~ ~override~                                         	// Pyrotechnics
   SAY NAME1 @747 SAY NAME2 @747 SAY UNIDENTIFIED_DESC @2150
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#pyrot%~ 	END					   // use new projectile
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#pyrot%~ 	END					   	// use new projectile
 
 // Wall of Fog
 
-COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         // Wall of Fog animation
-COPY ~atweaks/spl/mephits/rr#mmswf.spl~ ~override~                                 // Wall of Fog
+COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         	// Wall of Fog animation
+COPY ~atweaks/spl/mephits/rr#mmswf.spl~ ~override~                                	// Wall of Fog
   SAY NAME1 @1855 SAY NAME2 @1855
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#cloud%~ 	END					   // use new projectile (party friendly)
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#cloud%~ 	END					   	// use new projectile (party friendly)
 
 
 // Solid Fog
 
-COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         // Fog VVC animation
+COPY ~atweaks/vvc/rr#mmswf.vvc~ ~override~                                         	// Fog VVC animation
 COPY ~atweaks/spl/elementals/rr#echsf.spl~ ~override~                              // Solid Fog
   SAY NAME1 @2128 SAY NAME2 @2128 SAY UNIDENTIFIED_DESC @2139
-  LPF CLONE_EFFECT INT_VAR match_opcode = 158 opcode = 142 parameter2 = 145 END	   // Add Grease icon in character sheets -- it is already there, on protrait thanks to grease overlay...
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#cloud%~ 	END					   // use new projectile (party friendly)
+  LPF CLONE_EFFECT INT_VAR match_opcode = 158 opcode = 142 parameter2 = 145 END	// Add Grease icon in character sheets -- it is already there, on protrait thanks to grease overlay...
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#cloud%~ 	END					   	// use new projectile (party friendly)
 
 
 // Stun for 3 rounds (Yan-C-Bin on hit effect)
 
-COPY ~atweaks/eff/elementals/rr#estun.eff~ ~override~                              // Stun immunity EFF (for undead, constructs etc.)
-COPY ~atweaks/spl/elementals/rr#estun.spl~ ~override~                              // Stun (Yan-C-Bin on hit effect)
+COPY ~atweaks/eff/elementals/rr#estun.eff~ ~override~                              	// Stun immunity EFF (for undead, constructs etc.)
+COPY ~atweaks/spl/elementals/rr#estun.spl~ ~override~                              	// Stun (Yan-C-Bin on hit effect)
 
 
 // Wind Wall
 
-COPY ~atweaks/spl/elementals/rr#echww.spl~ ~override~                              // Wind Wall (Chan)
+COPY ~atweaks/spl/elementals/rr#echww.spl~ ~override~                              	// Wind Wall (Chan)
   SAY NAME1 @2209 SAY NAME2 @2209 SAY DESC @2210 SAY UNIDENTIFIED_DESC @2210
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#vrpo%~ 	END					   // use new projectile (party friendly)
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = ~%rr#vrpo%~ 	END					   	// use new projectile (party friendly)
   LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF(@2130) END	// Protected from gas-based spells and attacks
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 2 probability1 = 100 duration = 120 STR_VAR resource = rr#dgrab END
   LPF cloud_spell_immunities END
@@ -303,67 +303,67 @@ COPY ~atweaks/spl/elementals/rr#echww.spl~ ~override~                           
 
 // Gust of Wind
 
-COPY ~atweaks/spl/mephits/rr#maigw.spl~ ~override~                                 // Gust of Wind
+COPY ~atweaks/spl/mephits/rr#maigw.spl~ ~override~                                 	// Gust of Wind
   SAY NAME1 @1850 SAY NAME2 @1850 SAY UNIDENTIFIED_DESC @2140
 
 // Know Alignment
 
-COPY ~atweaks/spl/elementals/rr#ekal.spl~ ~override~                               // Know Alignment (custom version, to avoid compatibility issues with Spell Revisions)
+COPY ~atweaks/spl/elementals/rr#ekal.spl~ ~override~                               	// Know Alignment (custom version, to avoid compatibility issues with Spell Revisions)
 
 // Iron Skins (Sunnis' version)
 
-COPY ~atweaks/spl/elementals/rr#esuis.spl~ ~override~                              // Iron Skins
+COPY ~atweaks/spl/elementals/rr#esuis.spl~ ~override~                              	// Iron Skins
 
 // Clone spells into innate abilities
 
-COPY_EXISTING ~spwi103.spl~  ~override/rr#wi103.spl~                               // Clone Burning Hands into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi103.spl~  ~override/rr#wi103.spl~                               	// Clone Burning Hands into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi104.spl~  ~override/rr#ersug.spl~                               // Change Charm Person into renewable Suggestion
-  SAY NAME1 @708 SAY NAME2 @708 SAY UNIDENTIFIED_DESC @2137                        // Suggestion
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END      // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi104.spl~  ~override/rr#ersug.spl~                               	// Change Charm Person into renewable Suggestion
+  SAY NAME1 @708 SAY NAME2 @708 SAY UNIDENTIFIED_DESC @2137                    	// Suggestion
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END 		// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi213.spl~  ~override/rr#wi213.spl~                               // Clone Stinking Cloud into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi213.spl~  ~override/rr#wi213.spl~                               	// Clone Stinking Cloud into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi302.spl~  ~override/rr#wr302.spl~                               // Clone Remove Magic into a renewable innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END      // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi302.spl~  ~override/rr#wr302.spl~                               	// Clone Remove Magic into a renewable innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" "rr#renew" = "1" END     	// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi303.spl~  ~override/rr#wi303.spl~                               // Clone Flame Arrow into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi303.spl~  ~override/rr#wi303.spl~                               	// Clone Flame Arrow into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi304.spl~  ~override/rr#wi304.spl~                               // Clone Fireball into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi304.spl~  ~override/rr#wi304.spl~                               	// Clone Fireball into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi306.spl~  ~override/rr#wi306.spl~                               // Clone Hold Person into an innate ability (used by Cryonax)
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi306.spl~  ~override/rr#wi306.spl~                               	// Clone Hold Person into an innate ability (used by Cryonax)
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi403.spl~  ~override/rr#wi403.spl~                               // Clone Fire Shield:Blue into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi403.spl~  ~override/rr#wi403.spl~                               	// Clone Fire Shield:Blue into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi404.spl~  ~override/rr#wi404.spl~                               // Clone Ice Storm into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi404.spl~  ~override/rr#wi404.spl~                               	// Clone Ice Storm into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi404.spl~  ~override/rr#ehyis.spl~                               // Clone Ice Storm into an innate ability (Olhydra's version)
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi404.spl~  ~override/rr#ehyis.spl~                               	// Clone Ice Storm into an innate ability (Olhydra's version)
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi408.spl~  ~override/rr#wi408.spl~                               // Clone Stoneskin into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi408.spl~  ~override/rr#wi408.spl~                               	// Clone Stoneskin into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      						// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi418.spl~  ~override/rr#wi418.spl~                               // Clone Fire Shield:Red into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi418.spl~  ~override/rr#wi418.spl~                               	// Clone Fire Shield:Red into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" END                      						// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi502.spl~  ~override/rr#wi502.spl~                               // Clone Cloudkill into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi502.spl~  ~override/rr#wi502.spl~                               	// Clone Cloudkill into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi503.spl~  ~override/rr#wi503.spl~                               // Clone Cone of Cold into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi503.spl~  ~override/rr#wi503.spl~                               	// Clone Cone of Cold into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi604.spl~  ~override/rr#wi604.spl~                               // Clone Flesh to Stone into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi604.spl~  ~override/rr#wi604.spl~                               	// Clone Flesh to Stone into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
-COPY_EXISTING ~spwi625.spl~  ~override/rr#wi625.spl~                               // Clone Stone to Flesh into an innate ability
-LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the "spell to innate ablity" function
+COPY_EXISTING ~spwi625.spl~  ~override/rr#wi625.spl~                               	// Clone Stone to Flesh into an innate ability
+LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     					// Execute the "spell to innate ablity" function
 
 
 
@@ -374,199 +374,199 @@ LPF ~RR#SP2IN~ INT_VAR "rr#ctime" = "1" "rr#rinvs" = "1" END     // Execute the 
 // New items
 //////////////
 
-COPY ~atweaks/itm/elementals/rr#etrai.itm~ ~override~                              // elemental traits "helmet" (shared by all Elementals, needs to be a helmet in order to grant critical hit protection)
-LPF ~extraplanar_traits~ END                                     // add extraplanar traits
-LPF ~bleeding_immunity~ END                                      // add bleeding immunity
-LPF ~disease_immunity~ END                                       // add disease immunity
-LPF ~poison_immunity~ END                                        // add poison immunity
-LPF ~poison_spell_immunities~ END                                // add immunity to poison-based spells
-LPF ~insect_spell_immunities~ END                                // add immunity to insect spells
-LPF ~hold_immunity~ END                                          // add hold immunity
-LPF ~stun_immunity~ END                                          // add stun immunity
-LPF ~sleep_immunity~ END                                         // add sleep immunity
-PATCH_FOR_EACH ~spell~ IN                                                          // creatures without flesh shouldn't be affected by the Flesh to Stone spell
-             ~SPWI604~                                                             // Flesh to Stone (wizard version)
-             ~SPIN984~                                                             // Flesh to Stone (Beholder ray)
-            ~RR#WI604~                                                             // Flesh to Stone (aTweaks)
-BEGIN                                                                              // execute the following
-  LPF ~ADD_ITEM_EQEFFECT~                                        // Starts FUNCTION call
-  INT_VAR                                                                          // initialize variables
-    "opcode" = "206"                                                               // effect: #206 (Protection from Spell)
-    "target" = "1"                                                                 // target: 1 (self)
-    "timing" = "2"                                                                 // timing mode: 2 (while equipped)
-    "parameter1" = "4742"                                                          // param1: string (Spell Ineffective)
-    "duration" = "0"                                                               // duration: 0
-    "sectype" = "0"                                                                // secondary type: none
-    "probability1" = "100"                                                         // probability1: 100%
-  STR_VAR                                                                          // initialize strings
-    "resource"  = EVALUATE_BUFFER "%spell%"                                        // resref: the current spell
-    "effsource" = ""                                                               // effsource: none
-  END                                                                              // ends LPF
-END                                                                                // ends PATCH_FOR_EACH
+COPY ~atweaks/itm/elementals/rr#etrai.itm~ ~override~                              	// elemental traits "helmet" (shared by all Elementals, needs to be a helmet in order to grant critical hit protection)
+LPF ~extraplanar_traits~ END                                     						// add extraplanar traits
+LPF ~bleeding_immunity~ END                                      						// add bleeding immunity
+LPF ~disease_immunity~ END                                       						// add disease immunity
+LPF ~poison_immunity~ END                                        						// add poison immunity
+LPF ~poison_spell_immunities~ END                                					// add immunity to poison-based spells
+LPF ~insect_spell_immunities~ END                                					// add immunity to insect spells
+LPF ~hold_immunity~ END                                          						// add hold immunity
+LPF ~stun_immunity~ END                                          						// add stun immunity
+LPF ~sleep_immunity~ END                                         						// add sleep immunity
+PATCH_FOR_EACH ~spell~ IN                                                          	// creatures without flesh shouldn't be affected by the Flesh to Stone spell
+             ~SPWI604~                                                             	// Flesh to Stone (wizard version)
+             ~SPIN984~                                                             	// Flesh to Stone (Beholder ray)
+            ~RR#WI604~                                                             	// Flesh to Stone (aTweaks)
+BEGIN                                                                              		// execute the following
+  LPF ~ADD_ITEM_EQEFFECT~                                        						// Starts FUNCTION call
+  INT_VAR                                                                          		// initialize variables
+    "opcode" = "206"                                                               	// effect: #206 (Protection from Spell)
+    "target" = "1"                                                                 	// target: 1 (self)
+    "timing" = "2"                                                                 	// timing mode: 2 (while equipped)
+    "parameter1" = "4742"                                                          	// param1: string (Spell Ineffective)
+    "duration" = "0"                                                               	// duration: 0
+    "sectype" = "0"                                                                	// secondary type: none
+    "probability1" = "100"                                                         	// probability1: 100%
+  STR_VAR                                                                          		// initialize strings
+    "resource"  = EVALUATE_BUFFER "%spell%"                                        	// resref: the current spell
+    "effsource" = ""                                                               	// effsource: none
+  END                                                                              		// ends LPF
+END                                                                                		// ends PATCH_FOR_EACH
 BUT_ONLY_IF_IT_CHANGES
 LAF item_labels STR_VAR item = "RR#etrai" END
 
-COPY_EXISTING ~RING95.ITM~ ~override/rr#etrsl.itm~                 				   // fire and noble salamander traits "Ring"
-LPF ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
-LPF ~fire_salamander_immunities~ END                             // add salamander immunities
+COPY_EXISTING ~RING95.ITM~ ~override/rr#etrsl.itm~                 				   	// fire and noble salamander traits "Ring"
+LPF ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END 					// effect: -1 (all effects)
+LPF ~fire_salamander_immunities~ END                             					// add salamander immunities
 LAF item_labels STR_VAR item = "RR#etrsl" END
-COPY_EXISTING ~RING95.ITM~ ~override/rr#etrfr.itm~                 				   // frost salamander traits "Ring"
-LPF ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END // effect: -1 (all effects)
-LPF ~extraplanar_traits~ END                                     // add extraplanar traits
-LPF ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
+COPY_EXISTING ~RING95.ITM~ ~override/rr#etrfr.itm~                 				   	// frost salamander traits "Ring"
+LPF ~DELETE_ITEM_EQEFFECT~ INT_VAR "opcode_to_delete" = "-1" END 					// effect: -1 (all effects)
+LPF ~extraplanar_traits~ END                                     						// add extraplanar traits
+LPF ~cold_spell_immunities~ END                                  						// grant immunities to cold-based area effect spells
 
-COPY_EXISTING "rr#etrai.itm" ~override/fl#etrsu.itm~                               // As RR#ETRAI, but lacking immunity to Death Spell (for use by summoned elementals)
-			  "rr#etrsl.itm" ~override/rr#etrss.itm~                               // As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
-			  "rr#etrfr.itm" ~override/rr#etrsf.itm~                               // As RR#etrfr, but lacking immunity to Death Spell (for use by summons)
+COPY_EXISTING "rr#etrai.itm" ~override/fl#etrsu.itm~                               	// As RR#ETRAI, but lacking immunity to Death Spell (for use by summoned elementals)
+			  "rr#etrsl.itm" ~override/rr#etrss.itm~                               	// As RR#ETRSL, but lacking immunity to Death Spell (for use by summons)
+			  "rr#etrfr.itm" ~override/rr#etrsf.itm~                               	// As RR#etrfr, but lacking immunity to Death Spell (for use by summons)
   GET_OFFSET_ARRAY ea ITM_V10_GEN_EFFECTS
   PHP_EACH ea AS _ => off BEGIN
     READ_SHORT off opcode
     READ_ASCII off + 0x14 resref
     PATCH_IF opcode = 206 AND "%resref%" STRING_EQUAL_CASE "SPWI605" BEGIN
-      WRITE_BYTE off + 0x12 0                                                      // null the probability
+      WRITE_BYTE off + 0x12 0                                                      	// null the probability
     END
   END
 BUT_ONLY
 
-COPY_EXISTING "rr#etrai.itm" ~override/rr#etrae.itm~                               // As RR#ETRAI, but for air elementals
-			  "fl#etrsu.itm" ~override/fl#etras.itm~                               // As fl#etrsu, but for air elementals
-LPF hover_immunities END                                         // grant immunities to ground-based spells
-LPF air_affinity END                                             // grant air affinity bonuses
-COPY_EXISTING "rr#etrai.itm" ~override/rr#etree.itm~                               // As RR#ETRAI, but for earth elementals
-			  "fl#etrsu.itm" ~override/fl#etres.itm~                               // As fl#etrsu, but for earth elementals
-LPF earth_affinity END                                           // apply earth affinity traits
-LPF entangle_immunities END                                      // grant immunity to entangle spells
-LPF web_immunity END                                             // grant immunity to web spells and effects
-COPY_EXISTING "rr#etrai.itm" ~override/rr#etrfe.itm~                               // As RR#ETRAI, but for fire elementals
-		      "fl#etrsu.itm" ~override/fl#etrfs.itm~                               // As fl#etrsu, but for fire elementals
-LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
-LPF entangle_immunities END                                      // grant immunity to entangle spells
-LPF web_immunity END                                             // grant immunity to web spells and effects
-COPY_EXISTING "rr#etrai.itm" ~override/rr#etrwe.itm~                               // As RR#ETRAI, but for water elementals
-			  "fl#etrsu.itm" ~override/fl#etrws.itm~                               // As fl#etrsu, but for water elementals
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrae.itm~                               	// As RR#ETRAI, but for air elementals
+			  "fl#etrsu.itm" ~override/fl#etras.itm~                               	// As fl#etrsu, but for air elementals
+LPF hover_immunities END                                         						// grant immunities to ground-based spells
+LPF air_affinity END                                             						// grant air affinity bonuses
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etree.itm~                               	// As RR#ETRAI, but for earth elementals
+			  "fl#etrsu.itm" ~override/fl#etres.itm~                               	// As fl#etrsu, but for earth elementals
+LPF earth_affinity END                                           						// apply earth affinity traits
+LPF entangle_immunities END                                      						// grant immunity to entangle spells
+LPF web_immunity END                                             						// grant immunity to web spells and effects
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrfe.itm~                               	// As RR#ETRAI, but for fire elementals
+		      "fl#etrsu.itm" ~override/fl#etrfs.itm~                               	// As fl#etrsu, but for fire elementals
+LPF fire_spell_immunities END                                    						// grant immunities to fire-based area effect spells
+LPF entangle_immunities END                                      						// grant immunity to entangle spells
+LPF web_immunity END                                             						// grant immunity to web spells and effects
+COPY_EXISTING "rr#etrai.itm" ~override/rr#etrwe.itm~                               	// As RR#ETRAI, but for water elementals
+			  "fl#etrsu.itm" ~override/fl#etrws.itm~                               	// As fl#etrsu, but for water elementals
 LPF add_water_elemental_effects END
 
 
-COPY ~atweaks/itm/rr#dinv.itm~  ~override~                                         // item which makes creatures untargetable until the gating animation finishes
-COPY ~atweaks/itm/elementals/rr#easer.itm~ ~override~                              // Aerial Servant attack
+COPY ~atweaks/itm/rr#dinv.itm~  ~override~                                         	// item which makes creatures untargetable until the gating animation finishes
+COPY ~atweaks/itm/elementals/rr#easer.itm~ ~override~                              	// Aerial Servant attack
   LPF set_enchantment INT_VAR enchantment = 4 END
-	WRITE_BYTE 0x98 0															   // Nerf Aerial Servant atk by removing strength Bonus as the attack is a grabbing attack and should not use strength modifier (Aerial don't accept atk command in PnP)
-COPY ~atweaks/itm/elementals/rr#efsal.itm~ ~override~                              // Fire Salamander spear attack
+	WRITE_BYTE 0x98 0															   		// Nerf Aerial Servant atk by removing strength Bonus as the attack is a grabbing attack and should not use strength modifier (Aerial don't accept atk command in PnP)
+COPY ~atweaks/itm/elementals/rr#efsal.itm~ ~override~                              	// Fire Salamander spear attack
   LPF set_enchantment INT_VAR enchantment = 2 END
-COPY ~atweaks/itm/elementals/rr#efsa2.itm~ ~override~                              // Fire Salamander tail attack
+COPY ~atweaks/itm/elementals/rr#efsa2.itm~ ~override~                              	// Fire Salamander tail attack
   LPF set_enchantment INT_VAR enchantment = 2 END
-COPY ~atweaks/itm/elementals/rr#efrsa.itm~ ~override~                              // Frost Salamander claw attack
+COPY ~atweaks/itm/elementals/rr#efrsa.itm~ ~override~                              	// Frost Salamander claw attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#efrs2.itm~ ~override~                              // Frost Salamander bite attack
+COPY ~atweaks/itm/elementals/rr#efrs2.itm~ ~override~                              	// Frost Salamander bite attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#eista.itm~ ~override~                              // Invisible Stalker attack
+COPY ~atweaks/itm/elementals/rr#eista.itm~ ~override~                              	// Invisible Stalker attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#ensal.itm~ ~override~                              // Salamander Noble spear attack
+COPY ~atweaks/itm/elementals/rr#ensal.itm~ ~override~                              	// Salamander Noble spear attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#ensa2.itm~ ~override~                              // Salamander Noble tail attack
+COPY ~atweaks/itm/elementals/rr#ensa2.itm~ ~override~                              	// Salamander Noble tail attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#ewwei.itm~ ~override~                              // Water Weird attack
-COPY ~atweaks/itm/elementals/rr#eairl.itm~ ~override~                              // Lesser Air Elemental attack
+COPY ~atweaks/itm/elementals/rr#ewwei.itm~ ~override~                              	// Water Weird attack
+COPY ~atweaks/itm/elementals/rr#eairl.itm~ ~override~                              	// Lesser Air Elemental attack
   LPF set_enchantment INT_VAR enchantment = 2 END
-COPY ~atweaks/itm/elementals/rr#eairr.itm~ ~override~                              // Air Elemental attack
+COPY ~atweaks/itm/elementals/rr#eairr.itm~ ~override~                              	// Air Elemental attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#eairg.itm~ ~override~                              // Greater Air Elemental attack
+COPY ~atweaks/itm/elementals/rr#eairg.itm~ ~override~                              	// Greater Air Elemental attack
   LPF set_enchantment INT_VAR enchantment = 4 END
-COPY ~atweaks/itm/elementals/rr#eaire.itm~ ~override~                              // Elder Air Elemental attack
+COPY ~atweaks/itm/elementals/rr#eaire.itm~ ~override~                              	// Elder Air Elemental attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#eearl.itm~ ~override~                              // Lesser Earth Elemental attack
+COPY ~atweaks/itm/elementals/rr#eearl.itm~ ~override~                              	// Lesser Earth Elemental attack
   LPF set_enchantment INT_VAR enchantment = 2 END
-COPY ~atweaks/itm/elementals/rr#eearr.itm~ ~override~                              // Earth Elemental attack
+COPY ~atweaks/itm/elementals/rr#eearr.itm~ ~override~                              	// Earth Elemental attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#eearg.itm~ ~override~                              // Greater Earth Elemental attack
+COPY ~atweaks/itm/elementals/rr#eearg.itm~ ~override~                              	// Greater Earth Elemental attack
   LPF set_enchantment INT_VAR enchantment = 4 END
-COPY ~atweaks/itm/elementals/rr#eeare.itm~ ~override~                              // Elder Earth Elemental attack
+COPY ~atweaks/itm/elementals/rr#eeare.itm~ ~override~                              	// Elder Earth Elemental attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#efirl.itm~ ~override~                              // Lesser Fire Elemental attack
+COPY ~atweaks/itm/elementals/rr#efirl.itm~ ~override~                              	// Lesser Fire Elemental attack
   LPF set_enchantment INT_VAR enchantment = 2 END
-COPY ~atweaks/itm/elementals/rr#efirr.itm~ ~override~                              // Fire Elemental attack
+COPY ~atweaks/itm/elementals/rr#efirr.itm~ ~override~                              	// Fire Elemental attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#efirg.itm~ ~override~                              // Greater Fire Elemental attack
+COPY ~atweaks/itm/elementals/rr#efirg.itm~ ~override~                              	// Greater Fire Elemental attack
   LPF set_enchantment INT_VAR enchantment = 4 END
-COPY ~atweaks/itm/elementals/rr#efire.itm~ ~override~                              // Elder Fire Elemental attack
+COPY ~atweaks/itm/elementals/rr#efire.itm~ ~override~                              	// Elder Fire Elemental attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#ewatl.itm~ ~override~                              // Lesser Water Elemental attack
+COPY ~atweaks/itm/elementals/rr#ewatl.itm~ ~override~                              	// Lesser Water Elemental attack
   LPF set_enchantment INT_VAR enchantment = 2 END
-COPY ~atweaks/itm/elementals/rr#ewatr.itm~ ~override~                              // Water Elemental attack
+COPY ~atweaks/itm/elementals/rr#ewatr.itm~ ~override~                              	// Water Elemental attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#ewatg.itm~ ~override~                              // Greater Water Elemental attack
+COPY ~atweaks/itm/elementals/rr#ewatg.itm~ ~override~                              	// Greater Water Elemental attack
   LPF set_enchantment INT_VAR enchantment = 4 END
-COPY ~atweaks/itm/elementals/rr#ewate.itm~ ~override~                              // Elder Water Elemental attack
+COPY ~atweaks/itm/elementals/rr#ewate.itm~ ~override~                              	// Elder Water Elemental attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#eicer.itm~ ~override~                              // Ice Paraelemental attack
+COPY ~atweaks/itm/elementals/rr#eicer.itm~ ~override~                              	// Ice Paraelemental attack
   LPF set_enchantment INT_VAR enchantment = 3 END
-COPY ~atweaks/itm/elementals/rr#ecryo.itm~ ~override~                              // Cryonax attack
+COPY ~atweaks/itm/elementals/rr#ecryo.itm~ ~override~                              	// Cryonax attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#eimix.itm~ ~override~                              // Imix attack
+COPY ~atweaks/itm/elementals/rr#eimix.itm~ ~override~                              	// Imix attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#eogre.itm~ ~override~                              // Ogremoch attack
+COPY ~atweaks/itm/elementals/rr#eogre.itm~ ~override~                              	// Ogremoch attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#ehydr.itm~ ~override~                              // Olhydra attack
+COPY ~atweaks/itm/elementals/rr#ehydr.itm~ ~override~                              	// Olhydra attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#eyanc.itm~ ~override~                              // Yan-C-Bin attack
+COPY ~atweaks/itm/elementals/rr#eyanc.itm~ ~override~                              	// Yan-C-Bin attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#echan.itm~ ~override~                              // Chan attack
+COPY ~atweaks/itm/elementals/rr#echan.itm~ ~override~                              	// Chan attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#esunn.itm~ ~override~                              // Sunnis attack
+COPY ~atweaks/itm/elementals/rr#esunn.itm~ ~override~                              	// Sunnis attack
   LPF set_enchantment INT_VAR enchantment = 5 END
-COPY ~atweaks/itm/elementals/rr#ezaam.itm~ ~override~                              // Zaaman Rul attack
+COPY ~atweaks/itm/elementals/rr#ezaam.itm~ ~override~                              	// Zaaman Rul attack
   LPF set_enchantment INT_VAR enchantment = 5 END
 
 
 // Special Spell Revisions compatibility block. Needs to go way up here so that the spell is backed up before aTweaks alters it
 
 ACTION_IF MOD_IS_INSTALLED spell_rev.tp2 0 BEGIN
-COPY_EXISTING ~sppr702.spl~  ~override/rr#srbk1.spl~                               // Backup SR's Summon Shambling Mound
-END                                                                                // ends Spell Revisions compatibility block
+COPY_EXISTING ~sppr702.spl~  ~override/rr#srbk1.spl~                               	// Backup SR's Summon Shambling Mound
+END                                                                                		// ends Spell Revisions compatibility block
 
 
 // Ensure that the mental combat script is assigned to all elementals summoned by arcane spellcasters. Also, these elementals need to start out as NEUTRAL
-ACTION_FOR_EACH ~file~ IN                                                          // for each of the following files
-            ~elairsu1~                                                             // Air Elemental (mage summon)
-            ~elairsu2~                                                             // Air Elemental (mage summon)
-            ~elairsu3~                                                             // Air Elemental (mage summon)
-            ~elairsu4~                                                             // Air Elemental (mage summon)
-            ~elairsuw~                                                             // Lesser Air Elemental (mage summon)
-            ~elearsu1~                                                             // Earth Elemental (mage summon)
-            ~elearsu2~                                                             // Earth Elemental (mage summon)
-            ~elearsu3~                                                             // Earth Elemental (mage summon)
-            ~elearsu4~                                                             // Earth Elemental (mage summon)
-            ~elearsuw~                                                             // Lesser Earth Elemental (mage summon)
-            ~elfirsu1~                                                             // Fire Elemental (mage summon)
-            ~elfirsu2~                                                             // Fire Elemental (mage summon)
-            ~elfirsu3~                                                             // Fire Elemental (mage summon)
-            ~elfirsu4~                                                             // Fire Elemental (mage summon)
-            ~elfirsuw~                                                             // Lesser Fire Elemental (mage summon)
-			~cdi8air~															   // Lesser Air Elemental (IWDification)
-			~cdi8erth~															   // Lesser Earth Elemental (IWDification)
-			~cdi8fire~															   // Lesser Fire Elemental (IWDification)
-			~cdi8watr~															   // Lesser Water Elemental (IWDification)
-			~es8air~															   // Lesser Air Elemental (IWDification - Stratagems)
-			~es8erth~															   // Lesser Earth Elemental (IWDification - Stratagems)
-			~es8fire~															   // Lesser Fire Elemental (IWDification - Stratagems)
-			~es8watr~															   // Lesser Water Elemental (IWDification - Stratagems)
-			~DW#WATE2~                                                             // Water Elemental (stratagems water elemental summoning)
-			~DW#WATE3~                                                             // Greater Water Elemental (stratagems water elemental summoning)
-			~DW#WATE4~                                                             // Elder Water Elemental (stratagems water elemental summoning)
-BEGIN                                                                              // execute the following
-ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+ACTION_FOR_EACH ~file~ IN                                                          		// for each of the following files
+            ~elairsu1~                                                            		// Air Elemental (mage summon)
+            ~elairsu2~                                                             	// Air Elemental (mage summon)
+            ~elairsu3~                                                             	// Air Elemental (mage summon)
+            ~elairsu4~                                                             	// Air Elemental (mage summon)
+            ~elairsuw~                                                             	// Lesser Air Elemental (mage summon)
+            ~elearsu1~                                                             	// Earth Elemental (mage summon)
+            ~elearsu2~                                                             	// Earth Elemental (mage summon)
+            ~elearsu3~                                                             	// Earth Elemental (mage summon)
+            ~elearsu4~                                                             	// Earth Elemental (mage summon)
+            ~elearsuw~                                                             	// Lesser Earth Elemental (mage summon)
+            ~elfirsu1~                                                             	// Fire Elemental (mage summon)
+            ~elfirsu2~                                                             	// Fire Elemental (mage summon)
+            ~elfirsu3~                                                             	// Fire Elemental (mage summon)
+            ~elfirsu4~                                                             	// Fire Elemental (mage summon)
+            ~elfirsuw~                                                             	// Lesser Fire Elemental (mage summon)
+			~cdi8air~															   		// Lesser Air Elemental (IWDification)
+			~cdi8erth~															   		// Lesser Earth Elemental (IWDification)
+			~cdi8fire~															   		// Lesser Fire Elemental (IWDification)
+			~cdi8watr~															   		// Lesser Water Elemental (IWDification)
+			~es8air~															   		// Lesser Air Elemental (IWDification - Stratagems)
+			~es8erth~															   		// Lesser Earth Elemental (IWDification - Stratagems)
+			~es8fire~															   		// Lesser Fire Elemental (IWDification - Stratagems)
+			~es8watr~															   		// Lesser Water Elemental (IWDification - Stratagems)
+			~DW#WATE2~                                                             	// Water Elemental (stratagems water elemental summoning)
+			~DW#WATE3~                                                             	// Greater Water Elemental (stratagems water elemental summoning)
+			~DW#WATE4~                                                             	// Elder Water Elemental (stratagems water elemental summoning)
+BEGIN                                                                              		// execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   	// if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
-LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
+LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   					// Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 //PATCH_IF NOT MOD_IS_INSTALLED ~SETUP-STRATAGEMS.TP2~ ~5900~ BEGIN // Stratagems remove mental combat but can also be desactivated by concole Command : CLUAConsole:SetGlobal("RR#NOEMC","GLOBAL",1)
-WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                    // assign override AI script
-//END                                                                                // ends PATCH_IF stratagems
-WRITE_BYTE  0x270 128                                                              // set initial allegiance to NEUTRAL
-ADD_CRE_ITEM ~RIDRING~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~                  // selection circle removal ring
+WRITE_ASCII 0x248 ~rr#ewizs~ #8                                                    	// assign override AI script
+//END                                                                          	// ends PATCH_IF stratagems
+WRITE_BYTE  0x270 128                                                              	// set initial allegiance to NEUTRAL
+ADD_CRE_ITEM ~RIDRING~ #0 #0 #0 ~UNSTEALABLE&UNDROPPABLE~ ~RRING~                	// selection circle removal ring
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
-END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-END                                                                                // ends ACTION_FOR_EACH block
+END                                                                                		// ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                                		// ends ACTION_FOR_EACH block
 
 
 
@@ -850,6 +850,7 @@ STR_VAR                                                                         
 "script11"   = "DW2MP0MO"                                                          // Stratagems melee AI script
 "script12"   = "DW2MP0GE"                                                          // Stratagems melee AI script
 "script13"   = "VA#CRE01"                                                          // Tower of Deception melee AI script
+"script14"   = "DW2MP2MO"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 // LPF ~extraplanar_traits~ END                                     // add extraplanar traits
 // LPF ~cold_spell_immunities~ END                                  // grant immunities to cold-based area effect spells
@@ -947,7 +948,7 @@ STR_VAR                                                                         
 "script07"   = "senstalk"                                                          // Invisible Stalker in Sendai's lair (covered via aTweaks base script)
 "script08"   = "DW2MC2MO"                                                          // Stratagems melee AI script
 "script09"   = "DW1MELMO"                                                          // Stratagems melee AI script
-"script10"   = "DW#SUMEI"                                                          // Stratagems melee AI script
+"script10"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 END                                                                                // ends FUNCTION call
 LPF ~hover_immunities~ END                                       // grant immunities to ground-based spells
 READ_BYTE 0x275 gender
@@ -1029,6 +1030,7 @@ STR_VAR                                                                         
 "script04"   = "_TASIGHT"                                                          // generic AI script(Tutu)
 "script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script06"   = "DW2MM0MO"                                                          // Stratagems melee AI script
+"script07"   = "DW2MC2GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LPF ~ADD_CRE_EFFECT~                                             // Starts FUNCTION call (add new creature effect built-in function)
   INT_VAR
@@ -1058,24 +1060,24 @@ ACTION_FOR_EACH ~file~ IN                                                       
 			~a7q5fs01~                                                             // Salamander Noble (afaaq)
 			~salking~                                                              // Fire Salamander King (RoT)
 			~firesal2~                                                             // Fire Salamander (RoT)
-BEGIN                                                                              // execute the following
-ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+BEGIN                                                                               // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                 // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_MEMORIZED_SPELL ~rr#wi103~ #0 ~innate~ ( 3 )                                   // adds 3x Burning Hands
-ADD_MEMORIZED_SPELL ~rr#wi303~ #0 ~innate~ ( 3 )                                   // adds 3x Flame Arrow
-ADD_MEMORIZED_SPELL ~rr#wi304~ #0 ~innate~ ( 3 )                                   // adds 3x Fireball
-ADD_MEMORIZED_SPELL ~rr#wi418~ #0 ~innate~ ( 3 )                                   // adds 3x Fire Shield:Red
-ADD_MEMORIZED_SPELL ~rr#ecfir~ #0 ~innate~ ( 1 )                                   // adds 1x Conjure Fire Elemental
-ADD_MEMORIZED_SPELL ~rr#enlfr~ #0 ~innate~ ( 1 )                                   // adds 1x Lower Fire Resistance
-REPLACE_CRE_ITEM ~RR#ENSAL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
-REPLACE_CRE_ITEM ~RR#ENSA2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP                  // tail attack
-REPLACE_CRE_ITEM ~RR#etrsl~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		                   // Fire Salamanders traits
+ADD_MEMORIZED_SPELL ~rr#wi103~ #0 ~innate~ ( 3 )                                 // adds 3x Burning Hands
+ADD_MEMORIZED_SPELL ~rr#wi303~ #0 ~innate~ ( 3 )                                 // adds 3x Flame Arrow
+ADD_MEMORIZED_SPELL ~rr#wi304~ #0 ~innate~ ( 3 )                                 // adds 3x Fireball
+ADD_MEMORIZED_SPELL ~rr#wi418~ #0 ~innate~ ( 3 )                                 // adds 3x Fire Shield:Red
+ADD_MEMORIZED_SPELL ~rr#ecfir~ #0 ~innate~ ( 1 )                                 // adds 1x Conjure Fire Elemental
+ADD_MEMORIZED_SPELL ~rr#enlfr~ #0 ~innate~ ( 1 )                                 // adds 1x Lower Fire Resistance
+REPLACE_CRE_ITEM ~RR#ENSAL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP              // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~RR#ENSA2~ #0 #0 #0 ~UNDROPPABLE~ ~SHIELD~ EQUIP               // tail attack
+REPLACE_CRE_ITEM ~RR#etrsl~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~ 		             // Fire Salamanders traits
 LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
-INT_VAR                                                                            // Initialize variables
+INT_VAR                                                                             // Initialize variables
 "newmove"  = "14"                                                                  // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "10000"                                                               // new XP value
@@ -1092,7 +1094,7 @@ INT_VAR                                                                         
 "newmr"    = "25"                                                                  // new Magic Resistance value
 "newfr"    = "100"                                                                 // new Resist Fire value
 "newcr"    = "0"                                                                   // new Resist Cold value
-"newlvl1"  = "12"                                                                   // new level (first class)
+"newlvl1"  = "12"                                                                  // new level (first class)
 "newstr"   = "18"                                                                  // new Strength value
 "newstrx"  = "100"                                                                 // new Exceptional Strength value
 "newdex"   = "16"                                                                  // new Dexterity value
@@ -1125,6 +1127,7 @@ STR_VAR                                                                         
 "script08"   = "DW2MP2MO"                                                          // Stratagems melee AI script
 "script09"   = "DW2MP4MO"                                                          // Stratagems melee AI script
 "script10"   = "DW2MP3MO"                                                          // Stratagems melee AI script
+"script11"   = "DW2MC2GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 // LPF ~extraplanar_traits~ END                                     // add extraplanar traits
 // LPF fire_salamander_immunities END                               // grant fire salamander immunities
@@ -1304,7 +1307,11 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
-"script16"   = "WIZELSU2"                                                          // ?? mental combat
+"script16"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script17"   = "DW-AIREL"                                                          // Stratagems melee AI script
+"script18"   = "WIZELSU2"                                                          // mental combat
+"script19"   = "WIZELSUM"                                                          // mental combat
+"script20"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 END                                                                                // ends FUNCTION call
 // LPF hover_immunities END                                         // grant immunities to ground-based spells
 // LPF air_affinity END                                             // grant air affinity bonuses
@@ -1414,6 +1421,9 @@ STR_VAR                                                                         
 "script16"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script17"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script18"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script19"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script20"   = "DW-AIREL"                                                          // Stratagems melee AI script
+"script21"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 END                                                                                // ends FUNCTION call
 // LPF hover_immunities END                                         // grant immunities to ground-based spells
 // LPF air_affinity END                                             // grant air affinity bonuses
@@ -1450,6 +1460,7 @@ SAY NAME1 #2848 SAY NAME2 #2849                                                 
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~UDAIR~) BEGIN                          // special case, Underdark portal spawn
   WRITE_ASCII 0x248 ~dwair~ #8                                                     // override script
   WRITE_ASCII 0x250 ~~ #8                                                          // class script
+  WRITE_ASCII 0x258 ~~ #8                                                          // race script
 END                                                                                // ends PATCH_IF
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -1507,6 +1518,9 @@ STR_VAR                                                                         
 "script12"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script13"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script16"   = "DW-AIREL"                                                          // Stratagems melee AI script
+"script17"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 END                                                                                // ends FUNCTION call
 // LPF hover_immunities END                                         // grant immunities to ground-based spells
 // LPF air_affinity END                                             // grant air affinity bonuses
@@ -1598,6 +1612,9 @@ STR_VAR                                                                         
 "script14"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script16"   = "DW2MC4MO"                                                          // Stratagems melee AI script
+"script17"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script18"   = "DW-AIREL"                                                          // Stratagems melee AI script
+"script19"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 "skipfile01"   = "li#druai"
 "skipfile02"   = "AR#ELAIK"
 END                                                                                // ends FUNCTION call
@@ -1631,16 +1648,16 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-SAY NAME1 #2850 SAY NAME2 #2851                                                    // Lesser Earth Elemental
-WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_SMALL~))                // use the proper avatar (ELEMENTAL_EARTH_SMALL)
-REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
-REPLACE_CRE_ITEM ~RR#EEARL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
-REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
-REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
-INT_VAR                                                                            // Initialize variables
+SAY NAME1 #2850 SAY NAME2 #2851                                                   // Lesser Earth Elemental
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_SMALL~))           // use the proper avatar (ELEMENTAL_EARTH_SMALL)
+REMOVE_KNOWN_SPELLS                                                               // Remove all known spells from the current creature
+REMOVE_MEMORIZED_SPELLS                                                           // Remove all memorized spells from the current creature
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // add earth elemental traits
+REPLACE_CRE_ITEM ~RR#EEARL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP             // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                      // revise weapon immunities
+REMOVE_CRE_ITEM ~ELEMTYPE~                                                        // remove Spell Revisions' elemental traits
+LPF ~RR#MDCRE~                                                   					// Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                             // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "newxpv"   = "2000"                                                                // new XP value
 "newhp"    = "64"                                                                  // new hit point value
@@ -1667,11 +1684,11 @@ INT_VAR                                                                         
 "newclass" = "188"                                                                 // new class (ELEMENTAL_EARTH)
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
-END                                                                                // ends FUNCTION call
-LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
-STR_VAR                                                                            // Initialize strings
+END                                                                                 // ends FUNCTION call
+LPF ~RR#MDCSC~                                                   					 // Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                              // Initialize strings
 "newscript"  = "RR#EEAR"                                                           // new AI script
-"script01"   = ""                                                                  // first AI script name
+"script01"   = ""                                                                   // first AI script name
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "WTASIGHT"                                                          // generic AI script
 "script04"   = "WDASIGHT"                                                          // generic AI script
@@ -1688,7 +1705,11 @@ STR_VAR                                                                         
 "script15"   = "DW2MC3GW"                                                          // Stratagems melee AI script
 "script16"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script17"   = "DW2MC4GW"                                                          // Stratagems melee AI script
-END                                                                                // ends FUNCTION call
+"script18"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script19"   = "DW-EAREL"                                                          // Stratagems melee AI script
+"script20"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
+"script21"   = "WIZELSUM"                                                          // Vanilla Mental control AI script
+END                                                                                  // ends FUNCTION call
 // LPF earth_affinity END                                           // apply earth affinity traits
 // LPF entangle_immunities END                                      // grant immunity to entangle spells
 // LPF web_immunity END                                             // grant immunity to web spells and effects
@@ -1711,22 +1732,22 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~ELEARSU2~                                                             // Earth Elemental (12 HD, summoned, wizard version)
               ~KEARTH~                                                             // Earth Elemental (12 HD, unused?)
              ~SHEARTH~                                                             // Earth Elemental (12 HD, Shapechange Spell)
-BEGIN                                                                              // execute the following
-ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+BEGIN                                                                               // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                 // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~) > 0 )) BEGIN			   // Compatibility with IA and ee
-  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))                // use the IA avatar (ELEMENTAL_EARTH_IWD)
-END
+// PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~) > 0 )) BEGIN			   // Compatibility with IA and ee
+  // WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH_IWD~))                // use the IA avatar (ELEMENTAL_EARTH_IWD)
+// END
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
-REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
-REPLACE_CRE_ITEM ~RR#EEARR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
-REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
-REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
-INT_VAR                                                                            // Initialize variables
+REMOVE_MEMORIZED_SPELLS                                                           // Remove all memorized spells from the current creature
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // add earth elemental traits
+REPLACE_CRE_ITEM ~RR#EEARR~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP             // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE2~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                      // revise weapon immunities
+REMOVE_CRE_ITEM ~ELEMTYPE~                                                        // remove Spell Revisions' elemental traits
+LPF ~RR#MDCRE~                                                  				    // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                             // Initialize variables
 "newmove"  = "5"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "6000"                                                                // new XP value
@@ -1773,6 +1794,9 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC0MW"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC3MO"                                                          // Stratagems melee AI script
+"script16"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script17"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script18"   = "DW-EAREL"                                                          // Stratagems melee AI script
 "skipfile01" = "SHEARTH"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 // LPF earth_affinity END                                           // apply earth affinity traits
@@ -1810,10 +1834,11 @@ COPY_EXISTING ~%file%.cre~ ~override~
 LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2853 SAY NAME2 #2856                                                    // Greater Earth Elemental
-WRITE_LONG 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                     // use the proper avatar (ELEMENTAL_EARTH)
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                     // use the proper avatar (ELEMENTAL_EARTH)
 PATCH_IF ("%SOURCE_RES%" STRING_EQUAL_CASE ~UDEARTH~) BEGIN                        // special case, Underdark portal spawn
   WRITE_ASCII 0x248 ~DWEARTH~ #8                                                   // override script
   WRITE_ASCII 0x250 ~~ #8                                                          // class script
+  WRITE_ASCII 0x258 ~~ #8                                                          // Race script
 END                                                                                // ends PATCH_IF
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
@@ -1872,6 +1897,10 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC0MO"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC0GE"                                                          // Stratagems melee AI script
+"script16"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script17"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script18"   = "DW-EAREL"                                                          // Stratagems melee AI script
+"script19"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 "skipfile01" = "cdidree"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 // LPF earth_affinity END                                           // apply earth affinity traits
@@ -1901,27 +1930,27 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~dw#eldee~                                                             // Stratagems "Improved Minor Encounters" greater earth elemental
 			~mh#ear20~                                                             // Made in heaven Q&E
             ~AR#ELEAK~                                                             // Earth Elemental (Arena)
-BEGIN                                                                              // execute the following
-ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+BEGIN                                                                               // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                 // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-SAY NAME1 @2116 SAY NAME2 @2116                                                    // Elder Earth Elemental
-WRITE_LONG 0x28  (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                     // use the proper avatar (ELEMENTAL_EARTH)
+SAY NAME1 @2116 SAY NAME2 @2116                                                   // Elder Earth Elemental
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_EARTH~))                  // use the proper avatar (ELEMENTAL_EARTH)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_MEMORIZED_SPELL ~rr#equa~ #0 ~innate~ ( 1 )                                    // adds 1x Earthquake
-ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                   // adds 1x Elemental Concealment
-ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add earth elemental traits
-REPLACE_CRE_ITEM ~RR#EEARE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
-REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
+ADD_MEMORIZED_SPELL ~rr#equa~ #0 ~innate~ ( 1 )                                  // adds 1x Earthquake
+ADD_MEMORIZED_SPELL ~rr#ecncl~ #0 ~innate~ ( 1 )                                 // adds 1x Elemental Concealment
+ADD_CRE_ITEM ~RR#ETREE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         // add earth elemental traits
+REPLACE_CRE_ITEM ~RR#EEARE~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP              // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE3~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                       // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
 SPRINT notenf_regexp "^$"
-PATCH_IF FILE_EXISTS_IN_GAME li#druea.itm BEGIN                                    //Do not enforce if Refinements is installed
+PATCH_IF FILE_EXISTS_IN_GAME li#druea.itm BEGIN                                  //Do not enforce if Refinements is installed
   SPRINT notenf_regexp DRUEAR01
 END
-LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
-INT_VAR                                                                            // Initialize variables
+LPF ~RR#MDCRE~                                                  				    // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                             // Initialize variables
 "newmove"  = "7"                                                                   // new movement rate
 "rr#bump"  = "1"                                                                   // NPC bump (1 = enable)
 "newxpv"   = "14000"                                                               // new XP value
@@ -1952,10 +1981,10 @@ INT_VAR                                                                         
 "enforce"  = "1"                                                                   // values are enforced for all creatures
 STR_VAR
   notenf_regexp
-END                                                                                // ends FUNCTION call
-LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
-STR_VAR                                                                            // Initialize strings
-"newscript"  = "RR#EEAR"                                                           // new AI script
+END                                                                                 // ends FUNCTION call
+LPF ~RR#MDCSC~                                                  					// Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                             // Initialize strings
+"newscript"  = "RR#EEAR"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "WTASIGHT"                                                          // generic AI script
@@ -1971,20 +2000,24 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC4MW"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script16"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script17"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script18"   = "DW-EAREL"                                                          // Stratagems melee AI script
+"script19"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 "skipfile01" = "DRUEAR01"                                                          // skip script patching for a designated file
 "skipfile02" = "AR#ELEAK"
-END                                                                                // ends FUNCTION call
+END                                                                                	 // ends FUNCTION call
 // LPF earth_affinity END                                           // apply earth affinity traits
 // LPF entangle_immunities END                                      // grant immunity to entangle spells
 // LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
-PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
-REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	 // If SUMMONED
+REPLACE_CRE_ITEM "fl#etres" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                     // no immunity to Death Spell
 END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
-END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
-END                                                                                // ends ACTION_FOR_EACH block
+END                                                                                	// ends ACTION_IF FILE_EXISTS_IN_GAME block
+END                                                                               	// ends ACTION_FOR_EACH block
 
 
 // Lesser Fire Elemental (8 HD)
@@ -1997,26 +2030,26 @@ ACTION_FOR_EACH ~file~ IN                                                       
             ~SUMELFIR~                                                             // Lesser Fire Elemental (8 HD, summoned, Staff of Fire)
 			~BSFRELEM~                                                             // Lesser Fire Elemental (BST)
 			~cdi8fire~                                                             // Lesser Fire Elemental (IWDification)
-			 ~es8fire~															   // Lesser Fire Elemental (IWDification - Stratagems)
+			 ~es8fire~															    // Lesser Fire Elemental (IWDification - Stratagems)
             ~AR#ELEFI~                                                             // Lesser Fire Elemental (Arena)
             ~FIRLSMOD~                                                             // Lesser Fire Elemental (PofQuestPack)
             ~PXF5ELEM~                                                             // Lesser Fire Elemental (Devin)
 			~DRLFIR1~                                                              // Lesser Fire Elemental (Divine Remix)
-BEGIN                                                                              // execute the following
-ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
+BEGIN                                                                               // execute the following
+ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                 // if the file exists
 COPY_EXISTING ~%file%.cre~ ~override~
 LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
 SAY NAME1 #2878 SAY NAME2 #2879                                                    // Lesser Fire Elemental
-WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_SMALL~))                 // use the proper avatar (ELEMENTAL_FIRE_SMALL)
+WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_SMALL~))             // use the proper avatar (ELEMENTAL_FIRE_SMALL)
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
-ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
-REPLACE_CRE_ITEM ~RR#EFIRL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 // replace default weapon with a more PnP accurate weapon
-REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                          // revise weapon immunities
+ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                         // add fire elemental traits
+REPLACE_CRE_ITEM ~RR#EFIRL~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP              // replace default weapon with a more PnP accurate weapon
+REPLACE_CRE_ITEM ~IMMUNE1~ #0 #0 #0 ~UNDROPPABLE~ ~LRING~                       // revise weapon immunities
 REMOVE_CRE_ITEM ~ELEMTYPE~                                                         // remove Spell Revisions' elemental traits
-LPF ~RR#MDCRE~                                                   // Starts FUNCTION call (aTweaks' Creature Modification function)
-INT_VAR                                                                            // Initialize variables
+LPF ~RR#MDCRE~                                                   					 // Starts FUNCTION call (aTweaks' Creature Modification function)
+INT_VAR                                                                              // Initialize variables
 "newxpv"   = "2000"                                                                // new XP value
 "newhp"    = "64"                                                                  // new hit point value
 "newac"    = "4"                                                                   // new Armor Class value
@@ -2043,10 +2076,10 @@ INT_VAR                                                                         
 "newclass" = "187"                                                                 // new class (ELEMENTAL_FIRE)
 "newalign" = "34"                                                                  // new alignment (True Neutral)
 "enforce"  = "1"                                                                   // values are enforced for all creatures
-END                                                                                // ends FUNCTION call
-LPF ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
-STR_VAR                                                                            // Initialize strings
-"newscript"  = "RR#EFIR"                                                           // new AI script
+END                                                                                 // ends FUNCTION call
+LPF ~RR#MDCSC~                                                   					// Starts FUNCTION call (aTweaks' Creature Script Modification function)
+STR_VAR                                                                             // Initialize strings
+"newscript"  = "RR#EFIR"                                                          // new AI script
 "script01"   = ""                                                                  // first AI script name
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "WTASIGHT"                                                          // generic AI script
@@ -2063,13 +2096,16 @@ STR_VAR                                                                         
 "script14"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
 "script16"   = "DW2MC3GE"                                                          // Stratagems melee AI script
-END                                                                                // ends FUNCTION call
+"script17"   = "DW-FIREL"                                                          // Stratagems melee AI script
+"script18"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
+"script19"   = "WIZELSUM"                                                          // Mental Combat script
+END                                                                                	 // ends FUNCTION call
 // LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
 // LPF entangle_immunities END                                      // grant immunity to entangle spells
 // LPF web_immunity END                                             // grant immunity to web spells and effects
 READ_BYTE 0x275 gender
-PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	   // If SUMMONED
-REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                        // no immunity to Death Spell
+PATCH_IF gender = 6 OR gender = 20 BEGIN                                       	  // If SUMMONED
+REPLACE_CRE_ITEM "fl#etrfs" #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                     // no immunity to Death Spell
 END
 // =============================================================================== // the actual work ends here
 BUT_ONLY_IF_IT_CHANGES
@@ -2093,9 +2129,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LPF FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~) > 0 )) BEGIN			   // Compatibility with IA and ee
-  WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the IA avatar (ELEMENTAL_FIRE_IWD)
-END                                                          					  
+// PATCH_IF ((IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~) > 0 )) BEGIN			   // Compatibility with IA and ee
+  // WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~ELEMENTAL_FIRE_IWD~))			       // use the IA avatar (ELEMENTAL_FIRE_IWD)
+// END                                                          					  
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 ADD_CRE_ITEM ~RR#ETRFE~ #0 #0 #0 ~UNDROPPABLE~ ~HELMET~                            // add fire elemental traits
@@ -2149,6 +2185,9 @@ STR_VAR                                                                         
 "script12"   = "DW2MC4MW"                                                          // Stratagems melee AI script
 "script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script15"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script16"   = "DW-FIREL"                                                          // Stratagems melee AI script
+"script17"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 "skipfile01" = "SHFIRE"                                                            // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 // LPF fire_spell_immunities END                                    // grant immunities to fire-based area effect spells
@@ -2272,6 +2311,8 @@ STR_VAR                                                                         
 "script14"   = "DW2MC4MW"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script16"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script17"   = "DW-FIREL"                                                          // Stratagems melee AI script
+"script18"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 "skipfile01" = "tg#did5"
 "skipfile02" = "cdidrfe"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
@@ -2368,6 +2409,10 @@ STR_VAR                                                                         
 "script13"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 "script14"   = "DW2MC4MW"                                                          // Stratagems melee AI script
 "script15"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script16"   = "DW2MC2GE"                                                          // Stratagems melee AI script
+"script17"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script18"   = "DW-FIREL"                                                          // Stratagems melee AI script
+"script19"   = "DW#SUMEI"                                                          // Stratagems Summoning AI script
 "skipfile01" = "DRUFIR01"                                                          // skip script patching for a designated file
 "skipfile02" = "AR#ELFIK"
 END                                                                                // ends FUNCTION call
@@ -2617,6 +2662,7 @@ STR_VAR                                                                         
 "script09"   = "DW2MC3MO"                                                          // Stratagems melee AI script
 "script10"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 "script11"   = "DW2MC4GE"                                                          // Stratagems melee AI script
+"script12"   = "DW2MC4MO"                                                          // Stratagems melee AI script
 "skipfile01" = "cdidrwe"                                                           // skip script patching for a designated file
 END                                                                                // ends FUNCTION call
 // LPF add_water_elemental_effects END
@@ -3095,6 +3141,7 @@ STR_VAR                                                                         
 "script04"   = "WTASIGHT"                                                          // generic AI script
 "script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script06"   = "DW2MC3MO"                                                          // Stratagems melee AI script
+"script07"   = "DW2MC5GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LPF petrification_immunity END                                   // petrification immunity
@@ -3175,8 +3222,9 @@ STR_VAR                                                                         
 "script02"   = "None"                                                              // second AI script name
 "script03"   = "elemogre"                                                          // original Ogremoch script
 "script04"   = "WTASIGHT"                                                          // generic AI script
-"script05"   = "DW2MC3MO"                                                          // Stratagems melee AI script
-"script06"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
+"script06"   = "DW2MC3MO"                                                          // Stratagems melee AI script
+"script07"   = "DW2MC5GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "16" END      // remove spurious haste opcode
@@ -3260,6 +3308,7 @@ STR_VAR                                                                         
 "script04"   = "WTASIGHT"                                                          // generic AI script
 "script05"   = "BPWDASGT"                                                          // Big Picture generic AI script
 "script06"   = "DW2MC3MO"                                                          // Stratagems melee AI script
+"script07"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 END                                                                                // ends FUNCTION call
 LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
 LPF entangle_immunities END                                      // grant immunity to entangle spells
@@ -3524,6 +3573,8 @@ STR_VAR                                                                         
 "script06"   = "DVMELEE"                                                           // Spell Revisions melee AI script
 "script07"   = "DW2MC4GE"                                                          // Stratagems melee AI script
 "script08"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script09"   = "DW2MC3MO"                                                          // Stratagems melee AI script
+"script10"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 "skipfile01" = "AR#EARGD"
 END                                                                                // ends FUNCTION call
 LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
@@ -3612,6 +3663,8 @@ STR_VAR                                                                         
 "script06"   = "DVMELEE"                                                           // Spell Revisions melee AI script
 "script07"   = "DW2MS4GE"                                                          // Stratagems melee AI script
 "script08"   = "DW2MC4GW"                                                          // Stratagems melee AI script
+"script09"   = "DW2MC3MO"                                                          // Stratagems melee AI script
+"script10"   = "DW2MC3GE"                                                          // Stratagems melee AI script
 "skipfile01" = "AR#FIRGD"
 END                                                                                // ends FUNCTION call
 LPF ~DELETE_CRE_EFFECT~ INT_VAR opcode_to_delete = "101" END     // remove spurious opcode protections
