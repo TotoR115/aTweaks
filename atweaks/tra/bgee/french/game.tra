@@ -612,7 +612,7 @@ Zone d'effet : spécial
 Jet de sauvegarde : aucun
 
 Cette capacité permet au Chien de la Lune d'invoquer une ombre de loup supérieur pour combattre à ses côtés.~
-1949 = ~Giclée d'acide (Evocation)
+@1949 = ~Giclée d'acide (Evocation)
 
 Les ankhegs peuvent cracher de l'acide sur une seule créature dans un rayon de 30 m, lui infligeant 8d4 points de dégâts d'acide. Un jet de sauvegarde réussi contre le poison réduit les dégâts de moitié.~
 @1955 = ~Métamorphose : Ours brun
