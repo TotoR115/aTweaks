@@ -635,7 +635,6 @@ ACTION_IF FiendsOriginal = 0 BEGIN
                 ~dw#drctz~                                                         // Stratagems Nabassu
 //				~esp04~                                                            // Nabassu (Improved Volcano) Not tested
 				~f_demdrg~                                                         // Greater Tanari (Drizzt Saga)
-                ~F_errtu~                                                          // Errtu (Drizzt Saga)			   
                 ~f_tanari~                                                         // Tanari (Drizzt Saga) 
 				~FINNABAS~                                                         // Nabassu (Ascension)
                 ~holytana~                                                         // Tanari (RoT)  
@@ -810,6 +809,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
 			   ~DW#SBAIM~                                                           // Balor (Stratagems)
                ~endragor~                                                           // Balor (Kiara-Zaiya) 
                ~errtu~                                                              // Balor (TDD)
+               ~F_errtu~                                                            // Errtu (Drizzt Saga)			   
 			   ~FINBALOR~                                                           // Balor (Ascension)
                ~godmari4~                                                           // Balor (RoT) 
                ~O#LLDEM~                                                            // Balor (xxx)

@@ -104,9 +104,10 @@ IF
 	See(NearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),12)
         !StateCheck(Myself,STATE_INVISIBLE) // must be visible in order to emit a fear aura
+		DifficultyGT(EASIEST)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#PFear","LOCALS",18)
+		SetGlobalTimer("RR#PFear","LOCALS",24)
                 ForceSpellRES("RR#DFA2",Myself) // Pit Fiend Aura of Fear
                 Continue()
 END

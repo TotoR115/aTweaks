@@ -509,6 +509,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
 	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
+	DifficultyGT(EASIEST)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -534,6 +535,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
 	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
+	DifficultyGT(EASIEST)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -559,6 +561,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
 	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
+	DifficultyGT(EASIEST)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -584,6 +587,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
 	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
+	DifficultyGT(EASIEST)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)
@@ -609,6 +613,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PANIC)
 	!Check%State%(LastSeenBy(Myself),%Num%RESIST_FEAR)
+	DifficultyGT(EASIEST)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("RR#Cast","LOCALS",6)

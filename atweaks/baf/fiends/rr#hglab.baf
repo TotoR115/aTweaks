@@ -126,6 +126,7 @@ IF
           HPLT(Myself,70)
 	  Range([GOODCUTOFF],4)
 	  RandomNum(5,1)
+	DifficultyGT(EASY)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#ETHPL","LOCALS",1) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
@@ -142,6 +143,7 @@ IF
 	OR(2)
 	  AttackedBy([GOODCUTOFF],DEFAULT)
 	  RandomNum(4,1)
+	DifficultyGT(EASY)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#ETHPL","LOCALS",1) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
@@ -162,9 +164,11 @@ IF
 	!CheckStatGT([GOODCUTOFF.0.PLANATAR],0,TRUE_SIGHT)
 	!CheckStatGT([GOODCUTOFF.0.DARKPLANATAR],0,TRUE_SIGHT)
 THEN
-	RESPONSE #100
+	RESPONSE #60
 		SetGlobalTimer("RR#Cast","LOCALS",6)
 		ForceSpellRES("RR#WI212",Myself) // Mirror Image
+	RESPONSE #40
+		Continue()
 END
 
 IF
@@ -176,7 +180,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobal("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
-		SetGlobalTimer("RR#Ethsc","LOCALS",4)
+		SetGlobalTimer("RR#Ethsc","LOCALS",18)
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
 END
 
@@ -535,7 +539,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(NearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -565,7 +569,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(SecondNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -595,7 +599,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(ThirdNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -625,7 +629,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(FourthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -655,7 +659,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(FifthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -685,7 +689,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(SixthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -715,7 +719,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(SeventhNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -745,7 +749,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(EighthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -775,7 +779,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(NinthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -805,7 +809,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(TenthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -2124,6 +2128,7 @@ IF
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
 	!See([GOODCUTOFF])
 	!See([0.0.DEMONIC.0.0.0.MASK_LAWFUL])
+	DifficultyGT(EASY)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#ETHPL","LOCALS",1) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)

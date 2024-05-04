@@ -121,6 +121,7 @@ IF
           HitBy([GOODCUTOFF],0)
           TookDamage()
 	  Range([GOODCUTOFF],4)
+	DifficultyGT(EASY)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#ETHPL","LOCALS",1) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
@@ -138,7 +139,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobal("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
-		SetGlobalTimer("RR#Ethsc","LOCALS",4)
+		SetGlobalTimer("RR#Ethsc","LOCALS",18)
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
 END
 
@@ -163,6 +164,7 @@ THEN
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
         ForceSpellRES("RR#TELWE",Player1) // Teleport Without Error
         ForceSpellRES("RR#SKISS",Player1) // Succubus Kiss
+		SetGlobalTimer("RR#Ethsc","LOCALS",18)
 		SetInterrupt(TRUE)
 END
 
@@ -187,6 +189,7 @@ THEN
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
         ForceSpellRES("RR#TELWE",Player2) // Teleport Without Error
         ForceSpellRES("RR#SKISS",Player2) // Succubus Kiss
+		SetGlobalTimer("RR#Ethsc","LOCALS",18)
 		SetInterrupt(TRUE)
 END
 
@@ -211,6 +214,7 @@ THEN
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
         ForceSpellRES("RR#TELWE",Player3) // Teleport Without Error
         ForceSpellRES("RR#SKISS",Player3) // Succubus Kiss
+		SetGlobalTimer("RR#Ethsc","LOCALS",18)
 		SetInterrupt(TRUE)
 END
 
@@ -235,6 +239,7 @@ THEN
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
         ForceSpellRES("RR#TELWE",Player4) // Teleport Without Error
         ForceSpellRES("RR#SKISS",Player4) // Succubus Kiss
+		SetGlobalTimer("RR#Ethsc","LOCALS",18)
 		SetInterrupt(TRUE)
 END
 
@@ -259,6 +264,7 @@ THEN
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
         ForceSpellRES("RR#TELWE",Player5) // Teleport Without Error
         ForceSpellRES("RR#SKISS",Player5) // Succubus Kiss
+		SetGlobalTimer("RR#Ethsc","LOCALS",18)
 		SetInterrupt(TRUE)
 END
 
@@ -283,6 +289,7 @@ THEN
 		ApplySpellRES("RR#UNETH",Myself) // Leaving the Ethereal Plane
         ForceSpellRES("RR#TELWE",Player6) // Teleport Without Error
         ForceSpellRES("RR#SKISS",Player6) // Succubus Kiss
+		SetGlobalTimer("RR#Ethsc","LOCALS",18)
 		SetInterrupt(TRUE)
 END
 
@@ -1520,6 +1527,7 @@ IF
 	!GlobalTimerNotExpired("RR#Ethsc","LOCALS")
 	!StateCheck([EVILCUTOFF.HUMANOID.0.0.0.MALE],STATE_CHARMED) // No charmed male party members nearby
 	!See([GOODCUTOFF])
+	DifficultyGT(EASY)
 THEN
 	RESPONSE #100
                 SetGlobal("RR#ETHPL","LOCALS",1) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)

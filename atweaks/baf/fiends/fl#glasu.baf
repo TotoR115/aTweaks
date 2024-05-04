@@ -454,7 +454,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(NearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -484,7 +484,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(SecondNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -514,7 +514,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(ThirdNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -544,7 +544,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(FourthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -574,7 +574,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(FifthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -604,7 +604,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(SixthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -634,7 +634,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(SeventhNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -664,7 +664,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(EighthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -694,7 +694,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(NinthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living
@@ -724,7 +724,7 @@ IF
 	!GlobalTimerNotExpired("RR#Displ","LOCALS") // dispel cooldown
 	See(TenthNearestEnemyOf(Myself))
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) // Spell Immunity: Abjuration
-	OR(4)                                           // note: no level check is needed for dispelling magical weapons
+	OR(6)                                           // note: no level check is needed for dispelling magical weapons
 	  HasItemEquiped("BLAKBLAD",LastSeenBy(Myself)) // Black Blade of Disaster
 	  HasItemEquiped("HARM",LastSeenBy(Myself)) // Harm
 	  HasItemEquiped("SLAYLIVE",LastSeenBy(Myself)) // Slay Living

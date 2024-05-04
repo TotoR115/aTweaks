@@ -286,8 +286,8 @@ END
 PATCH_IF (("%oldclass%" != "newclass") AND ("newclass" != "999")) OR (("%enforce%" = "1") AND ("%newclass%" != "999")) BEGIN
   WRITE_BYTE 0x273 "%newclass%"                                                    // set new class value
 END
-PATCH_IF (("%oldgendr%" != "newgendr") AND ("newgendr" != "999")) OR (("%enforce%" = "1") AND ("%newgendr%" != "999")) BEGIN
-  WRITE_BYTE 0x275 "%newgendr%"                                                    // set new class value
+PATCH_IF (("%oldgendr%" != "newgendr") AND (("newgendr" != "999") OR ("newgendr" != "9"))) OR (("%enforce%" = "1") AND ("%newgendr%" != "999")) BEGIN
+  WRITE_BYTE 0x275 "%newgendr%"                                                    // set new gender value
 END
 PATCH_IF (("%oldalign%" != "newalign") AND ("newalign" != "99")) OR (("%enforce%" = "1") AND ("%newalign%" != "99")) BEGIN
   WRITE_BYTE 0x27b "%newalign%"                                                    // set new alignment value
@@ -296,7 +296,7 @@ PATCH_IF (("%oldhide%" < "%newhide%") AND ("newhide" != "999")) OR (("%enforce%"
   WRITE_BYTE 0x45 "%newhide%"                                                     // set new Hide in Shadows value
 END
 PATCH_IF (("%oldmsil%" < "%newmsil%") AND ("newmsil" != "999")) OR (("%enforce%" = "1") AND ("%newmsil%" != "999")) BEGIN
-  WRITE_BYTE 0x68 "%newmsil%"                                                     // set new Hide in Shadows value
+  WRITE_BYTE 0x68 "%newmsil%"                                                     // set new Move Silently value
 END
 
 PATCH_IF ("%newmove%" != "999") BEGIN                                              // creature movement rate

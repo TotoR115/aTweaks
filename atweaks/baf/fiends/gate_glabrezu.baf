@@ -8,6 +8,7 @@ IF
     HPPercentLT(Myself,50)
     RandomNum(4,1)
   InActiveArea(Myself)
+  DifficultyGT(EASIEST)
 THEN
   RESPONSE #50
     SetGlobalTimer("RR#Cast","LOCALS",6)

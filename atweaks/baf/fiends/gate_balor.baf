@@ -8,6 +8,7 @@ IF
     RandomNum(3,1)
     !Range([EVILCUTOFF.0.DEMONIC.0.0.0.MASK_CHAOTIC],15) // no Tanar'ri fiends nearby
   InActiveArea(Myself)
+  DifficultyGT(EASIEST)
 THEN
   RESPONSE #100
     SetGlobalTimer("RR#Cast","LOCALS",6)

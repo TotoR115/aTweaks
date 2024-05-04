@@ -137,7 +137,7 @@ IF
     !CheckStatGT([EVILCUTOFF.0.DARKPLANATAR],0,TRUE_SIGHT)
 THEN
     RESPONSE #100
-        SetGlobalTimer("rr#niinv","LOCALS",6)
+        SetGlobalTimer("rr#niinv","LOCALS",12)
         ReallyForceSpellRES("rr#niinv",Myself) // Natural Invisibility
 END
 
@@ -157,7 +157,7 @@ IF
     !CheckStatGT([GOODCUTOFF.0.DARKPLANATAR],0,TRUE_SIGHT)
 THEN
     RESPONSE #100
-        SetGlobalTimer("rr#niinv","LOCALS",6)
+        SetGlobalTimer("rr#niinv","LOCALS",12)
         ReallyForceSpellRES("rr#niinv",Myself) // Natural Invisibility
 END
 

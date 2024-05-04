@@ -131,9 +131,26 @@ END
 IF
 	Global("RR#FNOPL","GLOBAL",0) // Global option for no plane shifting
 	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	GlobalLT("RR#DNETH","LOCALS",1)
+        Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
+        HPPercentLT(Myself,71)
+		DifficultyGT(EASY)
+THEN
+	RESPONSE #100
+		IncrementGlobal("RR#DNETH","LOCALS",1)
+                SetGlobal("RR#ETHPL","LOCALS",1) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
+		SetGlobalTimer("RR#Cast","LOCALS",6)
+		ForceSpellRES("RR#DNETH",Myself) // Etherealness + increased regeneration rate
+END
+
+IF
+	Global("RR#FNOPL","GLOBAL",0) // Global option for no plane shifting
+	!GlobalTimerNotExpired("RR#Cast","LOCALS")
+	GlobalGT("RR#DNETH","LOCALS",0)
 	GlobalLT("RR#DNETH","LOCALS",2)
         Global("RR#ETHPL","LOCALS",0) // Ethereal state marker (0 = Prime Material Plane, 1 = Ethereal Plane)
         HPPercentLT(Myself,71)
+		DifficultyGT(NORMAL)
 THEN
 	RESPONSE #100
 		IncrementGlobal("RR#DNETH","LOCALS",1)

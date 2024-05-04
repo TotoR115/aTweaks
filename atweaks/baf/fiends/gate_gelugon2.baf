@@ -4,6 +4,7 @@ IF
   !GlobalTimerNotExpired("flGatingTimer","LOCALS") // always open gates if there is nothing better to do
   !GlobalTimerNotExpired("RR#Cast","LOCALS")
   InActiveArea(Myself)
+  DifficultyGT(EASIEST)
 THEN
   RESPONSE #30
     SetGlobalTimer("RR#Cast","LOCALS",6)

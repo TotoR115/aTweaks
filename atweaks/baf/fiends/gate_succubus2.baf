@@ -6,6 +6,7 @@ IF
   !GlobalTimerNotExpired("RR#Cast","LOCALS")
   Global("RR#ETHPL","LOCALS",0) //Only Gate if we are not ethereal
   InActiveArea(Myself)
+  DifficultyGT(EASIEST)
 THEN
   RESPONSE #40
     SetGlobalTimer("RR#Cast","LOCALS",6)

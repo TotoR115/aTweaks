@@ -1370,7 +1370,6 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
 		  "script22"   = "F_TANARI"                                                    // Drizzt Saga demon script
 		  "script23"   = "WTASI2"                                                      // RoT melee script
 		  "script24"   = "F_DEMDRG"                                                    // Drizzt Saga demon script
-		  "script25"   = "F_ERRTU"                                                     // Drizzt Saga demon script
 		  "skipfile01" = "tg#dem2"                                                     // Refinement Demon
 		  "skipfile02" = "FINNABAS"                                                    // Ascension demon script
       END                                                                              // ends FUNCTION call
@@ -1739,16 +1738,6 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
           "enfc13"   = "sudemde1"                                                      // enforced creature 13 (uses strict PnP values)
           "enfc14"   = "sudemde2"                                                      // enforced creature 14 (uses strict PnP values)
           "enfc15"   = "sudemw1"                                                       // enforced creature 15 (uses strict PnP values)
-          "notenf01" = "ACQ17003"                                                      // non-enforced creature 1 (uses best stat values)
-          "notenf02" = "godmari4"                                                      // non-enforced creature 2 (uses best stat values)
-          "notenf03" = "caddem1"                                                       // non-enforced creature 3 (uses best stat values)
-          "notenf04" = "CADDEM16"                                                      // non-enforced creature 4 (uses best stat values)
-          "notenf05" = "CADDEM21"                                                      // non-enforced creature 5 (uses best stat values)
-          "notenf06" = "endragor"                                                      // non-enforced creature 6 (uses best stat values)
-          "notenf07" = "errtu"                                                         // non-enforced creature 7 (uses best stat values)
-          "notenf08" = "f_demdrg"                                                      // non-enforced creature 8 (uses best stat values)
-          "notenf09" = "f_tanari"                                                      // non-enforced creature 9 (uses best stat values)
-          "notenf10" = "holytana"                                                      // non-enforced creature 10 (uses best stat values)
       END                                                                              // ends FUNCTION call
     END
     LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -1778,7 +1767,7 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
  		"script22"   = "VA#BALOR"                                                      // Tower of Deception script
  		"script23"   = "Z_2BALOR"                                                      // Tales of Anegh script
  		"script24"   = "WTASI2"                                                        // Tales of Anegh script
- 		"script25"   = "F_TANARI"                                                      // Drizzt Saga demon script
+ 		"script25"   = "F_ERRTU"                                                       // Drizzt Saga demon script
  		"script26"   = "ERRTU"                                                         // TDD demon script
  		"script27"   = "F_DEMDRG"                                                      // Drizzt Saga demon script
 		"script28"   = "Z#GBALOR"                                                      // Tales of Anegh script

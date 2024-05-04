@@ -146,7 +146,7 @@ ACTION_FOR_EACH file IN
 			   F_DEATHK // Drizzt Saga
 			   F_DEATHL // Drizzt Saga
 			   NTDEATH1 // NTotSC
-			   NTGGOTHA // NTotSC
+			   NTGGHOTA // NTotSC
 			   "%Melbf%"
 BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
@@ -182,7 +182,7 @@ BEGIN
             newlvl1 = 9 //Fighter
             newlvl2 = 20 //Mage
             newlvl3 = 8 //Cleric
-            newfr = 0
+            newfr = 100
             newcr = 0
             newer = 0
             newar = 0
@@ -206,7 +206,7 @@ BEGIN
             enforce = 1
         STR_VAR
 			notenf01 = MELSUM02
-			notenf02 = F_DEATHK
+			// notenf02 = F_DEATHK
 			notenf03 = NTGGHOTA
         END
         PATCH_IF "%file%" STRING_MATCHES_REGEXP "_?g?ooddeat$" BEGIN
