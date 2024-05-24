@@ -32,7 +32,7 @@ BEGIN                                                                           
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_imp END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                         // ends ACTION_FOR_EACH block
@@ -66,7 +66,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_hellcat END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -107,7 +107,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_erinyes END
-      WRITE_BYTE 0x275 2 // Female
+      // WRITE_BYTE 0x275 2 // Female
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -120,7 +120,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_erinyes END
-        WRITE_BYTE 0x275 2 // Female
+        // WRITE_BYTE 0x275 2 // Female
       BUT_ONLY
     END
   END
@@ -142,7 +142,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_bone_fiend END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -155,7 +155,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_bone_fiend END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -170,7 +170,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_abishai END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -196,7 +196,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_abishai END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -254,7 +254,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_cornugon END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -273,7 +273,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_cornugon END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -292,7 +292,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
       LPF make_gelugon END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY
   END
 END
@@ -315,7 +315,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_pit_fiend END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -342,7 +342,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_pit_fiend END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -380,7 +380,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_quasit END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -404,7 +404,7 @@ BEGIN                                                                           
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                   // if the file exists
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_cambion END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
@@ -421,7 +421,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_cambion END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -441,7 +441,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_alu-fiend END
-      WRITE_BYTE 0x275 2 // Female
+      // WRITE_BYTE 0x275 2 // Female
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -478,7 +478,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_alu-fiend END
-        WRITE_BYTE 0x275 2 // Female
+        // WRITE_BYTE 0x275 2 // Female
       BUT_ONLY
     END
   END
@@ -495,7 +495,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_maurezhi END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -507,7 +507,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_maurezhi END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -527,7 +527,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_succubus END
-      WRITE_BYTE 0x275 2 // Female
+      // WRITE_BYTE 0x275 2 // Female
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -543,7 +543,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_succubus END
-        WRITE_BYTE 0x275 2 // Female
+        // WRITE_BYTE 0x275 2 // Female
       BUT_ONLY
     END
   END
@@ -603,7 +603,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_nabassu END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -645,7 +645,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_nabassu END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -674,7 +674,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_glabrezu END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -702,7 +702,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_glabrezu END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -721,7 +721,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_marilith END
-      WRITE_BYTE 0x275 2 // Female
+      // WRITE_BYTE 0x275 2 // Female
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -753,7 +753,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_marilith END
-        WRITE_BYTE 0x275 2 // Female
+        // WRITE_BYTE 0x275 2 // Female
       BUT_ONLY
     END
   END
@@ -791,7 +791,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN
     COPY_EXISTING ~%file%.cre~ ~override~
       LPF make_balor END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY_IF_IT_CHANGES
   END
 END
@@ -825,7 +825,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_balor INT_VAR enforce = 1 END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
 
       BUT_ONLY
     END
@@ -863,7 +863,7 @@ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
     COPY_EXISTING "%file%.cre" override
       LPF make_shadow_fiend END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
     BUT_ONLY
   END
 END
@@ -882,7 +882,7 @@ ACTION_IF FiendsOriginal = 0 BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME "%file%.cre" BEGIN
       COPY_EXISTING "%file%.cre" override
         LPF make_shadow_fiend END
-        WRITE_BYTE 0x275 1 // Male
+        // WRITE_BYTE 0x275 1 // Male
       BUT_ONLY
     END
   END
@@ -909,7 +909,7 @@ BEGIN
           newlvl1 = 20
           newer = 100
       END
-      WRITE_BYTE 0x275 1 // Male
+      // WRITE_BYTE 0x275 1 // Male
       LPF RR#MDCSC
         STR_VAR
           newscript = fl#shaf2

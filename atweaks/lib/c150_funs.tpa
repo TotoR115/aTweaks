@@ -61,6 +61,7 @@ DEFINE_PATCH_FUNCTION make_imp BEGIN
           "newmorr"  = "60"                                                            // new morale recovery value
           "newrace"  = "141"                                                           // new race (Imp)
           "newclass" = "179"                                                           // new class (Imp)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DIMP01"                                                        // enforced creature 1 (uses strict PnP values)
@@ -160,6 +161,7 @@ DEFINE_PATCH_FUNCTION make_hellcat BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "179"                                                           // new class (Imp)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "GORCAMB6"                                                      // enforced creature 1 (uses strict PnP values)
@@ -242,6 +244,7 @@ DEFINE_PATCH_FUNCTION make_erinyes BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "179"                                                           // new class (Imp)
+          "newgendr" = "2"                                                           	 // new genrder (Female)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DERINY01"                                                      // enforced creature 1 (uses strict PnP values)
@@ -317,6 +320,7 @@ DEFINE_PATCH_FUNCTION make_bone_fiend BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "179"                                                           // new class (Imp)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DBONEF01"                                                      // enforced creature 1 (uses strict PnP values)
@@ -404,6 +408,7 @@ DEFINE_PATCH_FUNCTION make_abishai BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "179"                                                           // new class (Imp)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMABI01"                                                      // enforced creature 1 (uses strict PnP values)
@@ -486,6 +491,7 @@ DEFINE_PATCH_FUNCTION make_cornugon BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "179"                                                           // new class (Imp)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMCOR01"                                                      // enforced creature 1 (uses strict PnP values)
@@ -583,6 +589,7 @@ DEFINE_PATCH_FUNCTION make_gelugon BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "179"                                                           // new class (Imp)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
      END
    LAUNCH_PATCH_FUNCTION ~RR#MDCSC~                                                   // Starts FUNCTION call (aTweaks' Creature Script Modification function)
@@ -669,6 +676,7 @@ DEFINE_PATCH_FUNCTION make_pit_fiend INT_VAR enforce = 0 BEGIN
           "newmorr"  = "1"                                                             // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "179"                                                           // new class (Imp)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "19"                                                            // new alignment (Lawful Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMPIT"                                                        // enforced creature 1 (uses strict PnP values)
@@ -784,6 +792,7 @@ DEFINE_PATCH_FUNCTION make_quasit BEGIN
           "newmorr"  = "60"                                                            // new morale recovery value
           "newrace"  = "141"                                                           // new race (Imp)
           "newclass" = "160"                                                           // new class (Tanari)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "51"                                                            // new alignment (Chaotic Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEADDEM2"                                                      // enforced creature 1 (uses strict PnP values)
@@ -897,6 +906,7 @@ DEFINE_PATCH_FUNCTION make_cambion BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "13"                                                            // new class (MAGE_THIEF)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "51"                                                            // new alignment (Chaotic Evil)
           "newhide"  = "80"                                                            // new Hide in Shadows value
           "newmsil"  = "80"                                                            // new Move Silently value
@@ -1138,6 +1148,7 @@ DEFINE_PATCH_FUNCTION make_maurezhi BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "160"                                                           // new class (Tanari)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "51"                                                            // new alignment (Chaotic Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMMAU01"                                                      // enforced creature 1 (uses strict PnP values)
@@ -1326,6 +1337,7 @@ DEFINE_PATCH_FUNCTION make_nabassu BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "160"                                                           // new class (Tanari)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "51"                                                            // new alignment (Chaotic Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMNAB01"                                                      // enforced creature 1 (uses strict PnP values)
@@ -1467,6 +1479,7 @@ DEFINE_PATCH_FUNCTION make_glabrezu BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "160"                                                           // new class (Tanari)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "51"                                                            // new alignment (Chaotic Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "DEMGLA01"                                                      // enforced creature 1 (uses strict PnP values)
@@ -1721,6 +1734,7 @@ DEFINE_PATCH_FUNCTION make_balor BEGIN
           "newmorr"  = "15"                                                            // new morale recovery value
           "newrace"  = "121"                                                           // new race (Demonic)
           "newclass" = "160"                                                           // new class (Tanari)
+          "newgendr" = "1"                                                           	 // new genrder (Male)
           "newalign" = "51"                                                            // new alignment (Chaotic Evil)
         STR_VAR                                                                        // initialize strings
           "enfc01"   = "BALOR01"                                                       // enforced creature 1 (uses strict PnP values)
@@ -1851,8 +1865,9 @@ DEFINE_PATCH_FUNCTION make_ultroloth BEGIN
         "newwis"       = 20
         "newchr"       = 25
         "newmor"       = 16
-        "newalign"     = 35 //NE
-        "newclass"     = 255                                                           //NO_CLASS
+        "newalign"     = 35 	//NE
+        "newclass"     = 255  	//NO_CLASS
+        "newgendr" 	= 1    	// new genrder (Male)
         
         "enforce"      = 1
     END
@@ -1922,8 +1937,9 @@ DEFINE_PATCH_FUNCTION make_nycaloth BEGIN
         newwis       = 18
         newchr       = 16
         newmor       = 16
-        newalign     = 35 //NE
+        newalign     = 35 	//NE
         newclass     = 255 //NO_CLASS 
+        newgendr 	  = 1   // new genrder (Male)
         
         enforce      = 1
     END
@@ -1979,8 +1995,9 @@ DEFINE_PATCH_FUNCTION make_arcanaloth BEGIN
         newwis       = 18
         newchr       = 19 
         newmor       = 16
-        newalign     = 35 //NE
-        newclass     = 1 //Mage
+        newalign     = 35 	//NE
+        newclass     = 1 	//Mage
+        newgendr 	  = 1   // new genrder (Male)
         
         enforce      = 1
     END
@@ -2049,6 +2066,7 @@ DEFINE_PATCH_FUNCTION make_shadow_fiend BEGIN
         newchr       = 19
         newmor       = 16
         newalign     = 0x33 //CE
+        newgendr 	  = 1    // new genrder (Male)
         rr#ptwf      = 1
         
         enforce      = 1
