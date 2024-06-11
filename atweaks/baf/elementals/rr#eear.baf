@@ -242,7 +242,12 @@ IF
   ActionListEmpty()
   Allegiance(Myself,GOODCUTOFF)
   !Range(LastSummonerOf(Myself),10)
-  !See(LastSummonerOf(Myself))
+  !See(Player1)
+  !See(Player2)
+  !See(Player3)
+  !See(Player4)
+  !See(Player5)
+  !See(Player6)
   CombatCounter(0)
   !Exists([EVILCUTOFF.0.0.0.0.0.0])
 THEN
