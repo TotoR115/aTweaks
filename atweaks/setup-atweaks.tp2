@@ -8,13 +8,13 @@
 
 BACKUP ~atweaks/backup~
 AUTHOR "Wisp, shsforums.net"                                                       // Author and e-mail address
-VERSION ~v4.53~                                                                    // Mod version
+VERSION ~v4.54.alpha~                                                                    // Mod version
 
 ALWAYS                                                                             // Always do this block
   INCLUDE ~aTweaks/LIB/RR#AGLEF.TPH~                                               // Include my custom "Add Global Effect" function
   INCLUDE ~aTweaks/LIB/RR#SP2IN.TPH~                                               // Include my custom "Spell to Innate" function
   INCLUDE ~aTweaks/LIB/REGEXP.TPH~                                                 // allows regexp to match tabs and newlines (from the G3 BG2 Fixpack)
-  INCLUDE ~aTweaks/lib/tobexfix.tph~                                               // if TobEx is installed, this disables some of its currently buggy options
+  //INCLUDE ~aTweaks/lib/tobexfix.tph~                                               // if TobEx is installed, this disables some of its currently buggy options -Now fixed (v28)
   INCLUDE ~aTweaks/lib/iwd1fix.tpa~                                                // fix some IDS file issues with IWD1 to ensure proper script compiling
   INCLUDE "atweaks/lib/rr#mdcre.tph"
   INCLUDE "atweaks/lib/rr#mdcsc.tph"
@@ -266,7 +266,7 @@ BEGIN @152 DESIGNATED 152 //PnP Fiends, mod-added fiends are also affected
 GROUP @1   //PnP Tweaks
 SUBCOMPONENT @150
 
-COPY_EXISTING sw1h01.itm "override/fl#atfiends1.mrk"                               //Installation marker 
+COPY_EXISTING sw1h01.itm "override/fl#atfiends1.mrk"                               //Installation marker
 OUTER_SET FiendsOriginal = 0
 OUTER_SET FiendsScripts = 0
 
@@ -277,7 +277,7 @@ BEGIN @153 DESIGNATED 153 //PnP Fiends, only scripts
 GROUP @1   //PnP Tweaks
 SUBCOMPONENT @150
 
-COPY_EXISTING sw1h01.itm "override/fl#atfiends1.mrk"                               //Installation marker 
+COPY_EXISTING sw1h01.itm "override/fl#atfiends1.mrk"                               //Installation marker
 OUTER_SET FiendsOriginal = 0
 OUTER_SET FiendsScripts = 1
 
@@ -357,12 +357,12 @@ REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~rr#fdrya.bcs~ @1908                      
 INCLUDE ~atweaks/lib/186-woodland_beings.tpa~
 
 
-/*
+
 /////////////////////////////////////
-// PnP Spiders, Snakes and Ettercaps
+// PnP Spiders and Ettercaps
 /////////////////////////////////////
 
-BEGIN @187 DESIGNATED 187 // PnP Spiders, Snakes and Ettercaps
+BEGIN @187 DESIGNATED 187 // PnP Spiders, wyverns and Ettercaps
 GROUP @1 // PnP Tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
@@ -384,12 +384,12 @@ INCLUDE "atweaks/lib/c188.tpa"
 // PnP Plant creatures
 ///////////////////////
 
-BEGIN @189 DESIGNATED 189 // PnP Ooze creatures
+BEGIN @189 DESIGNATED 189 // PnP Plant creatures
 GROUP @1 // PnP Tweaks
 REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90
 
 INCLUDE "atweaks/lib/c189.tpa"
-*/
+
 
 
 //////////////////

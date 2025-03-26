@@ -1,0 +1,151 @@
+INCLUDE ~atweaks/lib/ds/ds.tph~
+
+// borrow and adapted from Stratagems for aTweaks
+DEFINE_PATCH_FUNCTION rr_item_labels
+STR_VAR list = ""
+BEGIN
+   PATCH_IF ENGINE_IS "tob" BEGIN
+	SET ds_opcode = 318
+	SET ds_special = 0
+	SET ds_parameter1 = 1
+	TEXT_SPRINT ds_stats "stats"
+   END ELSE PATCH_IF ENGINE_IS "BG2EE" BEGIN
+	SET ds_opcode = 328
+	SET ds_special = 1
+	SET ds_parameter1 = 0
+	TEXT_SPRINT ds_stats "splstate"
+   END
+    SET item_mm = IDS_OF_SYMBOL ("%ds_stats%" "ITEM_MM")
+    LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 206 opcode = EVAL "%ds_opcode%" parameter1 = EVAL "%ds_parameter1%" parameter2 = "%item_mm%" special = EVAL "ds_special" STR_VAR match_resource = "spwi112" END
+    SET item_evil = IDS_OF_SYMBOL ("%ds_stats%" "ITEM_PROTFROMEVIL")
+	LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 100 match_parameter1 = 9 match_parameter2 = 7 opcode = EVAL "%ds_opcode%" parameter1 = EVAL "%ds_parameter1%" parameter2 = "%item_evil%" special = EVAL "ds_special" END	 
+   PATCH_PHP_EACH "%list%" AS parameters => ds_item BEGIN
+	SET ds_item=IDS_OF_SYMBOL ("%ds_stats%" "%ds_item%")
+	LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 101 match_parameter2 = EVAL "%parameters%" opcode = EVAL "%ds_opcode%" parameter1 = EVAL "%ds_parameter1%" parameter2 = "%ds_item%" special = EVAL "ds_special" END
+   END
+END
+
+DEFINE_ACTION_FUNCTION item_labels 
+STR_VAR item = ""
+BEGIN
+   OUTER_SPRINT opcodelist ""
+   COPY ~%MOD_FOLDER%/lib/ds/libdata.txt~ ~%MOD_FOLDER%/lib/ds~
+       READ_2DA_ENTRIES_NOW stats_data 5
+       SET see_name_code=0
+       FOR (i=0;i<stats_data;i+=1) BEGIN
+          READ_2DA_ENTRY_FORMER stats_data i 0 parameter
+          READ_2DA_ENTRY_FORMER stats_data i 1 opcode
+          READ_2DA_ENTRY_FORMER stats_data i 2 trigger
+          READ_2DA_ENTRY_FORMER stats_data i 3 statname
+          READ_2DA_ENTRY_FORMER stats_data i 4 markername
+          PATCH_MATCH opcode WITH
+          101 BEGIN
+             SPRINT $101_stat(~%parameter%~) ~%statname%~
+             SPRINT opcodelist "%opcodelist% %parameter%"
+             PATCH_IF "%markername%" STRING_COMPARE "*" BEGIN
+                LPF warning STR_VAR warning="In item_labels, you've tried to give a bespoke name to a 101-type item. You can only do this with 206-types." END
+             END
+             INNER_ACTION BEGIN
+                LAF ds_resolve_stat STR_VAR id= EVAL "%statname%" RET "NEW_STAT_%statname%"=stat_ind END   // make sure they're all in SPLSTATE or STATS so scripts compile
+             END
+          END
+		  100 BEGIN
+             SPRINT $100_stat(~%parameter%~) ~%statname%~
+             SPRINT opcodelist "%opcodelist% %parameter%"
+             PATCH_IF "%markername%" STRING_COMPARE "*" BEGIN
+                LPF warning STR_VAR warning="In item_labels, you've tried to give a bespoke name to a 100-type item. You can only do this with 206-types." END
+             END
+             INNER_ACTION BEGIN
+                LAF ds_resolve_stat STR_VAR id= EVAL "%statname%" RET "NEW_STAT_%statname%"=stat_ind END   // make sure they're all in SPLSTATE or STATS so scripts compile
+			 END
+          END
+          206 BEGIN
+             TO_UPPER parameter
+             SPRINT $206_stat(~%parameter%~) ~%statname%~
+             SET see_name_code+=1
+             INNER_ACTION BEGIN
+                LAF ds_resolve_stat STR_VAR id= EVAL "%statname%" RET "NEW_STAT_%statname%"=stat_ind END   // make sure they're all in SPLSTATE or STATS so scripts compile
+                ACTION_IF "%markername%" STRING_COMPARE "*" BEGIN
+                    LAF ds_resolve_stat STR_VAR id= EVAL "%markername%" END
+                END
+             END
+          END
+          DEFAULT
+             LPF warning STR_VAR warning=~Unrecognised opcode in %MOD_FOLDER%/lib/ds/libdata.txt~ END
+          END
+       END
+
+	ACTION_DEFINE_ASSOCIATIVE_ARRAY rr_ds_item BEGIN
+	 
+    ~5~ => ~ITEM_CHARM~
+	~13~ => ~ITEM_SLAY~
+	~24~ => ~ITEM_PANIC~
+	~25~ => ~ITEM_POISON~
+	~38~ => ~ITEM_SILENCE~
+	~39~ => ~ITEM_SLEEP~
+	~40~ => ~ITEM_SLOW~
+	~45~ => ~ITEM_STUN~
+	~55~ => ~ITEM_SLAY~
+	~109~ => ~ITEM_HOLD~ 
+	~128~ => ~ITEM_CONFUSION~ 
+	~134~ => ~ITEM_PETRIFY~
+	~175~ => ~ITEM_HOLD~
+	~185~ => ~ITEM_HOLD~
+	~216~ => ~ITEM_LEVELDRAIN~
+	~217~ => ~ITEM_SLEEP~
+	~78~ => ~ITEM_DISEASE~
+	~74~ => ~ITEM_BLIND~
+	~76~ => ~ITEM_FEEBL~
+	// ~9~ => ~ITEM_PROTFROMEVIL~
+	// ~spwi112~ => ~ITEM_MM~
+	END
+
+  ACTION_IF ("%item%" STRING_EQUAL_CASE "") BEGIN
+   ACTION_IF MOD_IS_INSTALLED "STRATAGEMS.TP2" "5900" BEGIN
+	// ACTION_DEFINE_ASSOCIATIVE_ARRAY rr_ds_item BEGIN
+	 
+    // ~5~ => ~ITEM_CHARM~
+	// ~13~ => ~ITEM_SLAY~
+	// ~24~ => ~ITEM_PANIC~
+	// ~25~ => ~ITEM_POISON~
+	// ~38~ => ~ITEM_SILENCE~
+	// ~39~ => ~ITEM_SLEEP~
+	// ~40~ => ~ITEM_SLOW~
+	// ~45~ => ~ITEM_STUN~
+	// ~55~ => ~ITEM_SLAY~
+	// ~109~ => ~ITEM_HOLD~ 
+	// ~128~ => ~ITEM_CONFUSION~ 
+	// ~134~ => ~ITEM_PETRIFY~
+	// ~175~ => ~ITEM_HOLD~
+	// ~185~ => ~ITEM_HOLD~
+	// ~216~ => ~ITEM_LEVELDRAIN~
+	// ~217~ => ~ITEM_SLEEP~
+	// ~78~ => ~ITEM_DISEASE~
+	// ~74~ => ~ITEM_BLIND~
+	// ~76~ => ~ITEM_FEEBL~
+	// ~9~ => ~ITEM_PROTFROMEVIL~
+	// ~spwi112~ => ~ITEM_MM~
+	// END
+	// END ELSE BEGIN
+	ACTION_DEFINE_ASSOCIATIVE_ARRAY rr_ds_item BEGIN
+
+	~78~ => ~ITEM_DISEASE~
+	~74~ => ~ITEM_BLIND~
+	~76~ => ~ITEM_FEEBL~
+	// ~9~ => ~ITEM_PROTFROMEVIL~
+	END
+  END	// END MOD_IS_INSTALLED
+
+    COPY_EXISTING_REGEXP GLOB ~.*\.itm~ override
+	  LPF rr_item_labels STR_VAR list = "rr_ds_item" END
+    BUT_ONLY
+   BUT_ONLY
+  END ELSE BEGIN // ELSE STRING_EQUAL_CASE
+// PRINT "%item%"
+  OUTER_TEXT_SPRINT patch_item "%item%.itm"
+    COPY_EXISTING  "%patch_item%" override
+	  LPF rr_item_labels STR_VAR list = "rr_ds_item" END
+    BUT_ONLY IF_EXISTS
+   BUT_ONLY
+   END // END STRING_EQUAL_CASE
+END
