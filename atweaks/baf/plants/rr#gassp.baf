@@ -1,0 +1,31 @@
+IF
+	TookDamage()
+THEN
+	RESPONSE #100
+        SetInterrupt(FALSE)
+		ForceSpellRES("rr#gassp",Myself)  // Spore disease
+		ForceSpellRES("rr#gasd",Myself)   // Spore damages
+		CreateVisualEffectObject("SPFIREPI",Myself)
+        SetInterrupt(TRUE)
+		DestroySelf()
+END
+
+IF
+	Range(NearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+        SetInterrupt(FALSE)
+		ForceSpellRES("rr#gassp",Myself)  // Spore disease
+		ForceSpellRES("rr#gasd",Myself)   // Spore damages
+		CreateVisualEffectObject("SPFIREPI",Myself)
+        SetInterrupt(TRUE)
+		DestroySelf()
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	!Range(NearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		MoveToObject(NearestEnemyOf(Myself))
+END

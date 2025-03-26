@@ -1,0 +1,325 @@
+IF
+Global("L#ApeRaceChanged","GLOBAL",0)
+OR(2)
+Class("L#APEAP",FOOD_CREATURE)  // Starfang Tiger
+HasItem("SQUIRP",Myself)  // Attack
+THEN
+RESPONSE #100
+ChangeEnemyAlly("L#APEAP",NEUTRAL)  // Starfang Tiger
+SetGlobal("L#ApeRaceChanged","GLOBAL",1)
+ClearActions(Myself)
+END
+
+IF
+!Detect(NearestEnemyOf(Myself))
+Global("RR#Rest","LOCALS",1)
+!GlobalTimerNotExpired("RR#RestTimer","LOCALS")
+THEN
+RESPONSE #100
+SetGlobal("RR#Rest","LOCALS",0)
+ApplySpell(Myself,RESTORE_FULL_HEALTH)
+Rest()
+END
+
+IF
+!GlobalTimerNotExpired("RR#RestTimer","LOCALS")
+Detect(NearestEnemyOf(Myself))
+Global("RR#Rest","LOCALS",0)
+THEN
+RESPONSE #100
+SetGlobalTimer("RR#RestTimer","LOCALS",2400)
+SetGlobal("RR#Rest","LOCALS",1)
+Continue()
+END
+
+IF
+Global("RR#Active","LOCALS",0)
+HitBy([GOODCUTOFF],0)
+!Allegiance(Myself,GOODCUTOFF)
+THEN
+RESPONSE #100
+SetGlobal("RR#Active","LOCALS",1)
+Enemy()
+Continue()
+END
+
+IF
+Global("RR#Active","LOCALS",0)
+Allegiance(Myself,EVILCUTOFF)
+See([GOODCUTOFF])
+THEN
+RESPONSE #100
+SetGlobal("RR#Active","LOCALS",1)
+Continue()
+END
+
+IF
+OR(13)
+HitBy([GOODCUTOFF],0)
+AttackedBy([GOODCUTOFF.0.0.0.0.SUMMONED],DEFAULT)
+AttackedBy([PC],DEFAULT)
+AttackedBy([FAMILIAR],DEFAULT)
+AttackedBy([ALLY],DEFAULT)
+AttackedBy([CONTROLLED],DEFAULT)
+AttackedBy([CHARMED],DEFAULT)
+SpellCastOnMe([GOODCUTOFF.0.0.0.0.SUMMONED],0)
+SpellCastOnMe([PC],0)
+SpellCastOnMe([FAMILIAR],0)
+SpellCastOnMe([ALLY],0)
+SpellCastOnMe([CONTROLLED],0)
+SpellCastOnMe([CHARMED],0)
+!GlobalTimerNotExpired("whatthe","LOCALS")
+!See([GOODCUTOFF])
+THEN
+RESPONSE #100
+Enemy()
+SetGlobalTimer("whatthe","LOCALS",12)
+Continue()
+END
+
+IF
+!See([GOODCUTOFF])
+GlobalTimerNotExpired("whatthe","LOCALS")
+THEN
+RESPONSE #100
+RandomWalkContinuous()
+END
+
+IF
+See([GOODCUTOFF])
+GlobalTimerNotExpired("whatthe","LOCALS")
+THEN
+RESPONSE #100
+ClearActions(Myself)
+SetGlobalTimer("whatthe","LOCALS",0)
+END
+
+IF
+Allegiance(Myself,EVILCUTOFF)
+Global("RR#Active","LOCALS",0)
+!Detect(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+NoAction()
+END
+
+IF
+StateCheck(Myself,STATE_PANIC)
+THEN
+RESPONSE #100
+RandomWalkContinuous()
+END
+
+IF
+StateCheck(Myself,STATE_CHARMED)
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+!Range(LastSeenBy(Myself),5)
+THEN
+RESPONSE #100
+MoveToObject(LastSeenBy(Myself))
+END
+
+IF
+StateCheck(Myself,STATE_CHARMED)
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+Range(LastSeenBy(Myself),5)
+THEN
+RESPONSE #100
+Attack(LastSeenBy(Myself))
+END
+
+IF
+	Detect([PC])
+	!Range(LastSeenBy(Myself),15)
+	!GlobalTimerNotExpired("RR#Move","LOCALS")
+	See([0.0.0.FOOD_CREATURE])
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(Myself),15)
+END
+
+IF
+AreaType(OUTDOOR)
+!AreaType(CITY)
+!AreaType(DUNGEON)
+!Detect([PC])
+HaveSpellRES("rr#stlth") // Hide in Shadow
+!GlobalTimerNotExpired("RR#stlth","LOCALS")
+!StateCheck(Myself,STATE_INVISIBLE)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+SetGlobalTimer("RR#stlth","LOCALS",6)
+ForceSpellRES("rr#stlth",Myself) // Hide in Shadow
+RemoveSpellRES("rr#stlth") // remove one instance of the spell upon casting
+SetInterrupt(TRUE)
+END
+
+IF
+Global("rr#sprnt","LOCALS",0)
+HasItem("rr#sprnt",Myself)
+Detect([PC])
+THEN
+RESPONSE #100
+SetGlobal("rr#sprnt","LOCALS",1)
+SetGlobalTimer("rr#sprnt","LOCALS",18)
+END
+
+IF
+!GlobalTimerNotExpired("rr#sprnt","LOCALS")
+HasItem("rr#sprnt",Myself)
+THEN
+RESPONSE #100
+DestroyItem("rr#sprnt")
+END
+
+IF
+See(NearestEnemyOf(Myself))
+Range(NearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),15)
+END
+
+IF
+See(SecondNearestEnemyOf(Myself))
+Range(SecondNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
+END
+
+IF
+See(ThirdNearestEnemyOf(Myself))
+Range(ThirdNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
+END
+
+IF
+See(FourthNearestEnemyOf(Myself))
+Range(FourthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
+END
+
+IF
+See(FifthNearestEnemyOf(Myself))
+Range(FifthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
+END
+
+IF
+See(SixthNearestEnemyOf(Myself))
+Range(SixthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
+END
+
+IF
+ActionListEmpty()
+See(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SecondNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(SecondNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(ThirdNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FourthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(FourthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FifthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(FifthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SixthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(SixthNearestEnemyOf(Myself))
+END
+
+IF
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),15)
+END
+
+IF
+See(LastAttackerOf(Myself))
+ActionListEmpty()
+!Allegiance(Myself,ENEMY)
+AttackedBy([ANYONE],DEFAULT)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(LastAttackerOf(Myself),15)
+END
+
+IF
+!GlobalTimerNotExpired("RR#Move","LOCALS") // help -> move timer
+!Allegiance(Myself,GOODCUTOFF)
+OR(4)
+Help([EVILCUTOFF.2]) // Great Cat are mostly solitary per pnp, they don't call but respond to hearing help cries of animals
+Heard([EVILCUTOFF.2],44)
+Heard([EVILCUTOFF.2],89)
+Heard([EVILCUTOFF.2],68)
+InMyArea(LastHelp(Myself))
+!StateCheck(LastHelp(Myself),STATE_REALLY_DEAD)
+THEN
+RESPONSE #100
+SetGlobalTimer("RR#Move","LOCALS",6)
+MoveToObject(LastHelp(Myself))
+END
+
+IF
+	Delay(2)
+	!GlobalTimerNotExpired("RR#Move","LOCALS")
+	OR(2)
+		!Range([PC],15)
+		Allegiance(Myself,NEUTRAL)
+THEN
+	RESPONSE #100
+		RandomWalkContinuous()
+END

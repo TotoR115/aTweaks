@@ -1,0 +1,239 @@
+IF
+!Detect(NearestEnemyOf(Myself))
+Global("RR#Rest","LOCALS",1)
+!GlobalTimerNotExpired("RR#RestTimer","LOCALS")
+THEN
+RESPONSE #100
+SetGlobal("RR#Rest","LOCALS",0)
+ApplySpell(Myself,RESTORE_FULL_HEALTH)
+Rest()
+END
+
+IF
+!GlobalTimerNotExpired("RR#RestTimer","LOCALS")
+Detect(NearestEnemyOf(Myself))
+Global("RR#Rest","LOCALS",0)
+THEN
+RESPONSE #100
+SetGlobalTimer("RR#RestTimer","LOCALS",2400)
+SetGlobal("RR#Rest","LOCALS",1)
+Continue()
+END
+
+IF
+StateCheck(Myself,STATE_PANIC)
+THEN
+RESPONSE #100
+RandomWalkContinuous()
+END
+
+IF
+StateCheck(Myself,STATE_CHARMED)
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+Range(LastSeenBy(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+Attack(LastSeenBy(Myself))
+END
+
+IF
+Global("RR#acids","LOCALS",0)
+See(SixthNearestEnemyOf(Myself))
+Range(LastSeenBy(Myself),30)
+HPPercentLT(Myself,60)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+EquipRanged()
+AttackOneRound(LastSeenBy())
+SetInterrupt(TRUE)
+END
+
+IF
+Global("RR#acids","LOCALS",0)
+See(FifthNearestEnemyOf(Myself))
+Range(LastSeenBy(Myself),30)
+HPPercentLT(Myself,60)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+EquipRanged()
+AttackOneRound(LastSeenBy())
+SetInterrupt(TRUE)
+END
+
+IF
+Global("RR#acids","LOCALS",0)
+See(FourthNearestEnemyOf(Myself))
+Range(LastSeenBy(Myself),30)
+HPPercentLT(Myself,60)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+EquipRanged()
+AttackOneRound(LastSeenBy())
+SetInterrupt(TRUE)
+END
+
+IF
+Global("RR#acids","LOCALS",0)
+See(ThirdNearestEnemyOf(Myself))
+Range(LastSeenBy(Myself),30)
+HPPercentLT(Myself,60)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+EquipRanged()
+AttackOneRound(LastSeenBy())
+SetInterrupt(TRUE)
+END
+
+IF
+Global("RR#acids","LOCALS",0)
+See(SecondNearestEnemyOf(Myself))
+Range(LastSeenBy(Myself),30)
+HPPercentLT(Myself,60)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+EquipRanged()
+AttackOneRound(LastSeenBy())
+SetInterrupt(TRUE)
+END
+
+IF
+Global("RR#acids","LOCALS",0)
+See(NearestEnemyOf(Myself))
+Range(NearestEnemyOf(Myself),30)
+HPPercentLT(Myself,60)
+THEN
+RESPONSE #100
+SetInterrupt(FALSE)
+EquipRanged()
+AttackOneRound(NearestEnemyOf())
+SetInterrupt(TRUE)
+END
+
+IF
+See(NearestEnemyOf(Myself))
+Range(NearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),15)
+END
+
+IF
+See(SecondNearestEnemyOf(Myself))
+Range(SecondNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SecondNearestEnemyOf(Myself),15)
+END
+
+IF
+See(ThirdNearestEnemyOf(Myself))
+Range(ThirdNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
+END
+
+IF
+See(FourthNearestEnemyOf(Myself))
+Range(FourthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FourthNearestEnemyOf(Myself),15)
+END
+
+IF
+See(FifthNearestEnemyOf(Myself))
+Range(FifthNearestEnemyOf(Myself),5)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(FifthNearestEnemyOf(Myself),15)
+END
+
+IF
+See(SixthNearestEnemyOf(Myself))
+Range(SixthNearestEnemyOf(Myself),5)	
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(SixthNearestEnemyOf(Myself),15)
+END
+
+IF
+ActionListEmpty()
+See(NearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(NearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SecondNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(SecondNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(ThirdNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(ThirdNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FourthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(FourthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(FifthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(FifthNearestEnemyOf(Myself))
+END
+
+IF
+ActionListEmpty()
+See(SixthNearestEnemyOf(Myself))
+THEN
+RESPONSE #100
+MoveToObject(SixthNearestEnemyOf(Myself))
+END
+
+IF
+See(NearestEnemyOf(Myself))
+ActionListEmpty()
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(NearestEnemyOf(Myself),15)
+END
+
+IF
+See(LastAttackerOf(Myself))
+ActionListEmpty()
+!Allegiance(Myself,ENEMY)
+AttackedBy([ANYONE],DEFAULT)
+THEN
+RESPONSE #100
+EquipMostDamagingMelee()
+AttackReevaluate(LastAttackerOf(Myself),15)
+END
