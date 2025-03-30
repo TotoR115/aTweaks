@@ -11,7 +11,7 @@ APPEND ~state.IDS~ ~0x8014202D STATE_OUT_OF_ACTION~ UNLESS ~STATE_OUT_OF_ACTION~
 APPEND ~state.IDS~ ~0x00400010 STATE_INVISIBLE~ UNLESS ~STATE_INVISIBLE~ // Add new state entry: Feeblemind & Charmed & Helpless & Stunned & Sleeping & Blind & Confused & Panic
 APPEND ~stats.IDS~ ~404 BERSERKER_RAGE~ UNLESS ~BERSERKER_RAGE~ // Add new state entry: beserker rage
 APPEND ~stats.IDS~ ~403 BARBARIAN_RAGE~ UNLESS ~BARBARIAN_RAGE~ // Add new state entry: beserker rage
-APPEND ~stats.IDS~ ~415 PROTECTION_FROM_PETRIFICATION~ UNLESS ~BARBARIAN_RAGE~ // Add new state entry: beserker rage
+APPEND ~stats.IDS~ ~415 PROTECTION_FROM_PETRIFICATION~ UNLESS ~PROTECTION_FROM_PETRIFICATION~ // Add new state entry: beserker rage
 
 OUTER_SET DiseaseSecType = fl#Disease
 
