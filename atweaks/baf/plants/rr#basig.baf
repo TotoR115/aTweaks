@@ -50,7 +50,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_STONE_DEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_OUT_OF_ACTION)
-	!CheckStatGT(LastSeenBy(Myself),0,PROTECTION_FROM_PETRIFICATION)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_PETRIFICATION)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PETRIFY)
 THEN
 	RESPONSE #100
@@ -70,7 +70,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_STONE_DEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_OUT_OF_ACTION)
-	!CheckStatGT(LastSeenBy(Myself),0,PROTECTION_FROM_PETRIFICATION)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_PETRIFICATION)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PETRIFY)
 THEN
 	RESPONSE #100
@@ -90,7 +90,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_STONE_DEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_OUT_OF_ACTION)
-	!CheckStatGT(LastSeenBy(Myself),0,PROTECTION_FROM_PETRIFICATION)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_PETRIFICATION)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PETRIFY)
 THEN
 	RESPONSE #100
@@ -110,7 +110,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_STONE_DEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_OUT_OF_ACTION)
-	!CheckStatGT(LastSeenBy(Myself),0,PROTECTION_FROM_PETRIFICATION)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_PETRIFICATION)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PETRIFY)
 THEN
 	RESPONSE #100
@@ -130,7 +130,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_STONE_DEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_OUT_OF_ACTION)
-	!CheckStatGT(LastSeenBy(Myself),0,PROTECTION_FROM_PETRIFICATION)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_PETRIFICATION)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PETRIFY)
 THEN
 	RESPONSE #100
@@ -150,7 +150,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(LastSeenBy(Myself),STATE_STONE_DEATH)
 	!StateCheck(LastSeenBy(Myself),STATE_OUT_OF_ACTION)
-	!CheckStatGT(LastSeenBy(Myself),0,PROTECTION_FROM_PETRIFICATION)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_PROTECTION_FROM_PETRIFICATION)
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_PETRIFY)
 THEN
 	RESPONSE #100

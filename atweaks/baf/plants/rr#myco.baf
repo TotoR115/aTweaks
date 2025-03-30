@@ -192,7 +192,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_FEEBL)
 THEN
@@ -219,7 +218,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_FEEBL)
 THEN
@@ -246,7 +244,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_FEEBL)
 THEN
@@ -273,7 +270,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_FEEBL)
 THEN
@@ -300,7 +296,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_FEEBL)
 THEN
@@ -327,7 +322,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_FEEBL)
 THEN
@@ -353,8 +347,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BARBARIAN_RAGE)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 THEN
@@ -380,8 +372,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BARBARIAN_RAGE)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 THEN
@@ -407,8 +397,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BARBARIAN_RAGE)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 THEN
@@ -434,8 +422,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BARBARIAN_RAGE)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 THEN
@@ -461,8 +447,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BARBARIAN_RAGE)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 THEN
@@ -488,8 +472,6 @@ IF
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,BARBARIAN_RAGE)
-	!CheckStat(LastSeenBy(Myself),1,BERSERKER_RAGE)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!Check%State%(LastSeenBy(Myself),%Num%ITEM_CONFUSION)
 THEN

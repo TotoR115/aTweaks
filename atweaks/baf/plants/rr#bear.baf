@@ -26,8 +26,8 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
-		SetGlobalTimer("RR#Rest","LOCALS",EIGHT_HOURS)
-		SetGlobalTimer("RR#Help","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("RR#Rest","LOCALS",2400)
+		SetGlobalTimer("RR#Help","LOCALS",12)
 		Enemy()
 		Shout(68)
 END
@@ -39,8 +39,8 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("RR#Active","LOCALS",1)
-		SetGlobalTimer("RR#Rest","LOCALS",EIGHT_HOURS)
-		SetGlobalTimer("RR#Help","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("RR#Rest","LOCALS",2400)
+		SetGlobalTimer("RR#Help","LOCALS",12)
 		Enemy()
 		Shout(68)
 END
@@ -51,7 +51,7 @@ IF
 	See([GOODCUTOFF])
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#Help","LOCALS",THREE_ROUNDS)
+		SetGlobalTimer("RR#Help","LOCALS",18)
 		Shout(68)
 		Continue()
 END
@@ -73,7 +73,7 @@ IF
 	Global("RR#Rest","LOCALS",0)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#RestTimer","LOCALS",EIGHT_HOURS)
+		SetGlobalTimer("RR#RestTimer","LOCALS",2400)
 		SetGlobal("RR#Rest","LOCALS",1)
 		Continue()
 END
@@ -119,7 +119,7 @@ IF
 THEN
 	RESPONSE #100
 		Enemy()
-		SetGlobalTimer("whatthe","LOCALS",TWO_ROUNDS)
+		SetGlobalTimer("whatthe","LOCALS",12)
 		Continue()
 END
 
@@ -368,7 +368,7 @@ IF
 	!StateCheck(LastHeardBy(Myself),STATE_REALLY_DEAD)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("RR#Move","LOCALS",ONE_ROUND)
+		SetGlobalTimer("RR#Move","LOCALS",6)
 		MoveToObject(LastHeardBy(Myself))
 END
 
