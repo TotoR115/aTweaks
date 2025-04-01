@@ -910,8 +910,8 @@ SAY NAME1 #2880 SAY NAME2 #2880                                                 
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~DW#DJINN~                                                         // removes DW#DJINN.ITM (Stratagems cloudkill immunity)
-ADD_MEMORIZED_SPELL ~spwi203~ #0 ~Wizard~ ( 2 )                                    // adds Detect Invisibility
-ADD_MEMORIZED_SPELL ~spwi206~ #0 ~Wizard~ ( 2 )                                    // adds invisibility
+ADD_MEMORIZED_SPELL ~spwi203~ #1 ~Wizard~ ( 2 )                                    // adds Detect Invisibility
+ADD_MEMORIZED_SPELL ~spwi206~ #1 ~Wizard~ ( 2 )                                    // adds invisibility
 ADD_MEMORIZED_SPELL ~rr#mmswf~ #0 ~innate~ ( 7 )                                   // adds Wall of Fog
 ADD_MEMORIZED_SPELL ~rr#gmrwj~ #0 ~innate~ ( 1 )                                   // adds Water Jet at will
 ADD_CRE_ITEM ~RR#GMARD~ #0 #0 #0 ~UNDROPPABLE~ ~WEAPON1~ EQUIP                 	   // replace default weapon with a more PnP accurate weapon
@@ -987,8 +987,8 @@ SAY NAME1 #2880 SAY NAME2 #2880                                                 
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~DW#DJINN~                                                         // removes DW#DJINN.ITM (Stratagems cloudkill immunity)
-ADD_MEMORIZED_SPELL ~spwi203~ #0 ~Wizard~ ( 4 )                                    // adds Detect Invisibility
-ADD_MEMORIZED_SPELL ~spwi206~ #0 ~Wizard~ ( 4 )                                    // adds invisibility
+ADD_MEMORIZED_SPELL ~spwi203~ #1 ~Wizard~ ( 4 )                                    // adds Detect Invisibility
+ADD_MEMORIZED_SPELL ~spwi206~ #1 ~Wizard~ ( 4 )                                    // adds invisibility
 ADD_MEMORIZED_SPELL ~rr#mmswf~ #0 ~innate~ ( 12 )                                  // adds Wall of Fog
 ADD_MEMORIZED_SPELL ~rr#echsf~ #0 ~innate~ ( 1 )                                   // adds Solid Fog
 ADD_MEMORIZED_SPELL ~rr#wi503~ #0 ~innate~ ( 1 )                                   // adds 1x Cone of Cold
