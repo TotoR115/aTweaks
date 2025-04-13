@@ -5,7 +5,7 @@ papier~
 @2 = ~Alterations des regles du jeu~
 @3 = ~Alterations cosmetiques~
 @4 = ~Alterations diverses~
-
+@89 = ~* * * 'Convocation de demons revisee' est necessaire pour ce composant * * *~
 @90 = ~* * * L'extension Trone de Bhaal est necessaire pour ce composant * * *~
 @91 = ~* * * Ce composant ne peut pas etre installe sur Tutu * * *~
 @92 = ~* * * Ce composant ne peut pas etre installe sur ce jeu * * *~
@@ -45,6 +45,7 @@ gnomes~
 caracteristiques~
 @155 = ~Convocation de demons davantage revisee~
 @156 = ~Portail demoniaque~
+@157 = ~Convocation de demons revisee~
 @160 = ~Morts-vivants version papier~
 @165 = ~Spectateurs version papier~
 @180 = ~Mephites version papier~

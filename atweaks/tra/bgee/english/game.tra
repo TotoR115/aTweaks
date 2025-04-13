@@ -293,7 +293,16 @@ The appendix seems to refer to newly-discovered variations on normal breeds of c
 "Magic Golems - this rare type of golem is formed from pure magical energy and is completely immune to spellcraft as well as enchanted weapons.  To my knowledge, only weapons without enchantments have any effects on this creature."
 
 "Mariliths - while this is apparently a legitimate form of demon, it is one that only an exceptional few have encountered and survived.  The Marilith is a six-armed demon with a human female front half and the back half of a snake.  She is incredibly quick and deadly, and on top of her martial prowess with six swords, she casts spells as well.  Fighters should beware: this demon is immune to normal weapons and minor enchantments."~
+@750 = ~Shout
+(Invocation)
+Level: 4
+Range: 0
+Duration: Instant
+Casting Time: 1
+Area of Effect: 17-ft. cone with 15-deg. arc
+Saving Throw: Special
 
+Shout grants the caster a tremendous vocal powers, allowing him to emit an earsplitting roar from his mouth in a cone-shaped area of effect. Any creature within this area is deafened for 6 rounds and suffers 2d6 points of magic damage. A successful Save vs. Spell negates the deafness and reduces the damage by half.~
 
 // Revised Fiend summoning
 
@@ -1006,7 +1015,8 @@ Area of Effect: 15-ft. radius
 Saving Throw: 1/2
 
 Guardian's genies can breathe a cloud of green fire 30’ in diameter directly in front of themselves once per day. The cloud of fire causes 14d6 points of damage to those caught in its area of effect, with a save allowed versus breath weapon for half damage.~
-
+@2153 = ~Marid~
+@2154 = ~Noble Marid~
 
 // Elemental shouts and taunts
 

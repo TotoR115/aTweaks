@@ -209,7 +209,14 @@ Cet appendice particulier s'intéresse aux nouvelles variantes de monstres commu
 "Golem magique. Ce type très rare de golem est constitué d'énergie magique pure et est complètement immunisé aux sorts et aux armes enchantées. Autant que je sache, seules les armes normales peuvent le blesser."
 
 "Marilith. Bien qu'il s'agisse d'un démon, quelques personnes ont réussi à survivre à la rencontre avec une telle créature. Pourvue d'un buste et d'une tête de femme humaine, la Marilith dispose de 6 bras et le reste de son corps est celui d'un serpent. Incroyablement rapide, elle est experte avec ses six épées. Inutile d'ajouter qu'elle peut en plus lancer des sorts. Guerriers, attention : ce démon est immunisé aux armes normales et aux enchantements mineurs."~
+@750 = ~Cri (Invocation/Évocation)
+Portée : 0
+Durée : instantanée
+Temps d'incantation : 1
+Zone d'effet : Cône de 3 métres par 9 métres
+Jet de sauvegarde : spécial
 
+Lorsqu’il lance ce sort, le magicien se confère une puissance vocale incroyable. Il peut émettre un son à percer les tympans dont l’effet est un cône partant de sa bouche et s’étendant jusqu’à 9 mètres plus loin. Toute créature se trouvant dans cette zone est assourdie pour 6 rounds et subit 2d6 points de dégâts. Si elle réussit un jet de sauvegarde contre les sorts, elle n’est pas assourdie et n’encaisse que la moitié des dégâts.~
 
 // Revised Fiend summoning
 
@@ -897,7 +904,8 @@ Zone d'effet : rayon de 4,5 métres
 Jet de sauvegarde : 1/2
 
 Les Génies Guardiens peuvent souffler un nuage de 9 de diamètre une fois par jour. Le nuage inflige 14d6 points de dégâts a tous ceux pris dans sa zone d'effet. Les créatures qui réussissent leur jet de sauvegarde contre le souffle n’encaissent que la moitié des dégâts.~
-
+@2153 = ~Maride~
+@2154 = ~Maride Noble~
 
 // Cris et moqueries élémentaires
 

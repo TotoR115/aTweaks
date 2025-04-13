@@ -402,7 +402,7 @@ REQUIRE_PREDICATE ENGINE_IS ~tob bg2ee~ @90                                     
 REQUIRE_PREDICATE !GAME_IS ~bgee~ @95
 
 INCLUDE "atweaks/lib/c190.tpa"
-
+INCLUDE "atweaks/lib/c192.tpa"
 
 //////////////////////////////////////////////
 // Increase the Hit Dice of Elemental Princes

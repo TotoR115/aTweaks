@@ -545,9 +545,6 @@ END                                                                             
 // Creature modifications
 //////////////////////////
 
-//////////////////////////
-// Elemental kin
-//////////////////////////
 
 // Aerial Servant
 
@@ -1076,18 +1073,6 @@ BUT_ONLY_IF_IT_CHANGES
 END                                                                                // ends ACTION_IF FILE_EXISTS_IN_GAME block
 END                                                                                // ends ACTION_FOR_EACH block
 
-
-//////////////////////////
-
-//////////////////////////
-// Genies
-//////////////////////////
-
-INCLUDE "atweaks/lib/c192.tpa"
-
-//////////////////////////
-// Elementals
-//////////////////////////
 
 // Lesser Air Elemental (8 HD)
 

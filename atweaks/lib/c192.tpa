@@ -37,7 +37,7 @@ LPF ~RR#SP2IN~ INT_VAR "rr#renew" = "1" END      								   // Execute the "spel
 // Wall of Fire (Efreet)
 
 COPY ~atweaks/spl/elementals/rr#gwalf.spl~ ~override~                              // Wall of Fire
-  SAY NAME1 #12063 SAY NAME2 #12063 SAY 0x50 #12183
+  SAY NAME1 #12063 SAY NAME2 #12063 SAY UNIDENTIFIED_DESC #12183
 COPY ~atweaks/bam/elementals/rr#gwofb.bam~ ~override~
 COPY ~atweaks/bam/elementals/rr#gwofc.bam~ ~override~
 COPY ~atweaks/bam/elementals/rr#gwalf.bam~ ~override~
@@ -151,12 +151,14 @@ ACTION_IF !FILE_EXISTS_IN_GAME "fl#shout.spl" BEGIN
 COPY "atweaks/bam/fl#shout.bam" "override"
 COPY "atweaks/spl/base.spl" "override/fl#shout.spl"
   SAY NAME1 @738 //Shout
+  SAY UNIDENTIFIED_DESC @750 //Shout
   WRITE_ASCII 0x10 ~CAS_M06~ #8 //casting sound
   WRITE_BYTE  0x19 BIT2 //flags: hostile
   WRITE_SHORT 0x22 15 //evocation (animation)
   WRITE_SHORT 0x25 6 //evoker (school)
   WRITE_BYTE  0x27 11 //disabling (secondary type)
   LPF configure_spell_header INT_VAR f_Target = 4 f_Range = 15 f_Projectile = fl#shout END
+  WRITE_ASCII 0x3a ~fl#shout~ #8 //BAM
   WRITE_ASCII 0x76 ~fl#shout~ #8 //BAM
   target = 2
   power = 4
@@ -906,7 +908,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-SAY NAME1 #2880 SAY NAME2 #2880                                                    // Genie
+SAY NAME1 @2153 SAY NAME2 @2153                                                    // Marid
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~DW#DJINN~                                                         // removes DW#DJINN.ITM (Stratagems cloudkill immunity)
@@ -983,7 +985,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~%file%.cre~ BEGIN                                
 COPY_EXISTING ~%file%.cre~ ~override~
 LAUNCH_PATCH_FUNCTION FJ_CRE_VALIDITY INT_VAR do_message = 1 END                   // Nythrun's CRE validity macro (detects corrupt and invalid CREs)
 // =============================================================================== // the actual work starts from here
-SAY NAME1 #2880 SAY NAME2 #2880                                                    // Genie
+SAY NAME1 @2154 SAY NAME2 @2154                                                    // Noble Marid
 REMOVE_KNOWN_SPELLS                                                                // Remove all known spells from the current creature
 REMOVE_MEMORIZED_SPELLS                                                            // Remove all memorized spells from the current creature
 REMOVE_CRE_ITEM ~DW#DJINN~                                                         // removes DW#DJINN.ITM (Stratagems cloudkill immunity)

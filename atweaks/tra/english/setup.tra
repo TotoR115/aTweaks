@@ -6,6 +6,8 @@
 @3 = ~Cosmetic tweaks~
 @4 = ~Miscellaneous tweaks~
 
+
+@89 = ~* * * This component requires 'Revised Fiend summoning' * * *~
 @90 = ~* * * The Throne of Bhaal expansion is required for this component * * *~
 @91 = ~* * * This component cannot be installed on Tutu * * *~
 @92 = ~* * * This component cannot be installed on this game * * *~
@@ -34,13 +36,14 @@
 @153 = ~Give aTweaks scripts to all fiends but do not alter statistics~
 @155 = ~Further Revised Fiend Summoning~
 @156 = ~Fiendish gating~
+@157 = ~Revised Fiend Summoning~
 @160 = ~PnP Undead~
 @180 = ~PnP Mephits~
 @185 = ~PnP Fey creatures~
 @186 = ~Revised Call Woodland Beings spell~
-@187 = ~PnP Spiders, Snakes and Ettercaps~
+@187 = ~PnP Spiders, Wyverns and Ettercaps~
 @188 = ~PnP Ooze creatures~
-@189 = ~PnP Plant creatures~
+@189 = ~PnP Plant and creatures~
 @190 = ~PnP Elementals~
 @191 = ~Increase the Hit Dice of Elemental Princes~
 
